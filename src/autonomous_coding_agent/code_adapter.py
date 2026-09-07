@@ -212,12 +212,12 @@ class ProjectAnalyzer:
         if (workspace / "setup.py").exists() or (workspace / "setup.cfg").exists():
             return "pip"
 
-        # 8. pyproject.toml이 있지만 위 매니저가 아니면 기본 pip (build-system이 setuptools/wheel인 경우)
+        # 8. pyproject.toml이 있지만 위 매니저가 아니면 기본 pip (build-system이 setuptools/wheel인 경우 또는 [project] 섹션이 있는 경우)
         if pyproject.exists():
             content = pyproject.read_text(encoding="utf-8", errors="ignore")
-            if "[build-system]" in content and (
+            if ("[build-system]" in content and (
                 "setuptools" in content or "wheel" in content or "pip" in content
-            ):
+            )) or "[project]" in content:
                 return "pip"
 
         # 9. Node.js 패키지 매니저
