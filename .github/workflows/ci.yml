@@ -1,0 +1,327 @@
+name: Autonomous Coding Agent CI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches: [main, develop]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+  statuses: write
+  checks: write
+
+env:
+  PYTHON_VERSION: "3.11"
+  POETRY_VERSION: "1.8"
+
+jobs:
+  # ============================================================
+  # 1. Code Quality Checks (ruff, black, mypy)
+  # ============================================================
+  lint-and-format:
+    name: Lint & Format Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff black mypy pytest pytest-asyncio pytest-mock
+
+      - name: Run ruff (lint)
+        run: ruff check .
+
+      - name: Run black (format check)
+        run: black --check --diff .
+
+      - name: Run mypy (type check)
+        run: mypy --explicit-package-bases .
+
+  # ============================================================
+  # 2. Test Suite (pytest with async support)
+  # ============================================================
+  test:
+    name: Test Suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-asyncio pytest-mock httpx pydantic
+
+      - name: Run tests
+        run: pytest -v --asyncio-mode=auto --tb=short
+
+      - name: Upload coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            .pytest_cache/
+            htmlcov/
+          retention-days: 7
+
+  # ============================================================
+  # 3. Autonomous Agent Pipeline Verification
+  # ============================================================
+  agent-pipeline:
+    name: Autonomous Agent Pipeline
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: [lint-and-format, test]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install agent dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+          pip install pytest pytest-asyncio pytest-mock httpx pydantic github-api ghapi
+
+      - name: Verify agent imports
+        run: |
+          python -c "
+          from autonomous_coding_agent import (
+              AutonomousCodingAgent,
+              CodeExplorer,
+              WorkPlanner,
+              CodeGenerator,
+              Verifier,
+              CodeCritic,
+              StateManager,
+              GitManager,
+              GitHubClient,
+              GitWorkflow,
+              PatchManager,
+              IssueParser,
+              PRReviewer,
+              WebSearcher,
+              DocumentationParser,
+              VersionChecker,
+              CodeExampleAdapter,
+              CodeExampleApplier,
+              ProjectAnalyzer,
+              TestGenerator,
+          )
+          print('✅ All agent modules imported successfully')
+          "
+
+      - name: Run agent self-test
+        run: |
+          python -c "
+          import tempfile
+          from pathlib import Path
+          from autonomous_coding_agent import TestGenerator
+          
+          with tempfile.TemporaryDirectory() as tmpdir:
+              tmp_path = Path(tmpdir)
+              (tmp_path / 'sample.py').write_text('''
+          import httpx
+          from pydantic import BaseModel
+          
+          class User(BaseModel):
+              name: str
+              email: str
+              age: int
+          
+          async def fetch_user(user_id: int) -> User:
+              async with httpx.AsyncClient() as client:
+                  response = await client.get(f\"https://api.example.com/users/{user_id}\")
+                  response.raise_for_status()
+                  return User(**response.json())
+          ''')
+              
+              generator = TestGenerator(tmp_path)
+              module = generator.generate_tests_for_file('sample.py')
+              test_path = generator.write_test_file(module)
+              print(f'✅ Test generated: {test_path}')
+          "
+
+  # ============================================================
+  # 4. PR Review Automation
+  # ============================================================
+  pr-review:
+    name: Automated PR Review
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: github.event_name == 'pull_request'
+    needs: [lint-and-format, test]
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install review dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+          pip install ghapi
+
+      - name: Run automated PR review
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO_OWNER: ${{ github.repository_owner }}
+          REPO_NAME: ${{ github.event.repository.name }}
+        run: |
+          python -c "
+          import os
+          from autonomous_coding_agent import PRReviewer
+          
+          pr_number = int(os.environ['PR_NUMBER'])
+          repo_owner = os.environ['REPO_OWNER']
+          repo_name = os.environ['REPO_NAME']
+          
+          reviewer = PRReviewer(repo_owner, repo_name)
+          result = reviewer.review_pr(pr_number)
+          
+          print(f'PR Review completed: {result.total_comments} comments')
+          print(f'  Critical: {result.critical_count}')
+          print(f'  Error: {result.error_count}')
+          print(f'  Warning: {result.warning_count}')
+          print(f'  Info: {result.info_count}')
+          print(f'  Nit: {result.nit_count}')
+          
+          if result.critical_count > 0:
+              exit(1)
+          "
+
+  # ============================================================
+  # 5. Dependency Security Scan
+  # ============================================================
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install security tools
+        run: |
+          pip install pip-audit safety bandit
+
+      - name: Run pip-audit
+        run: pip-audit --desc --format=json --output=pip-audit.json || true
+
+      - name: Run safety
+        run: safety check --json --output=safety.json || true
+
+      - name: Run bandit
+        run: bandit -r . -f json -o bandit.json || true
+
+      - name: Upload security reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-reports
+          path: |
+            pip-audit.json
+            safety.json
+            bandit.json
+          retention-days: 30
+
+  # ============================================================
+  # 6. Build & Package
+  # ============================================================
+  build:
+    name: Build Package
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [lint-and-format, test]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install build tools
+        run: |
+          pip install build twine
+
+      - name: Build package
+        run: python -m build
+
+      - name: Verify package
+        run: twine check dist/*
+
+      - name: Upload package artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7
+
+  # ============================================================
+  # 7. Notify on Failure
+  # ============================================================
+  notify-failure:
+    name: Notify on Failure
+    runs-on: ubuntu-latest
+    if: failure()
+    needs: [lint-and-format, test, agent-pipeline, pr-review, security-scan, build]
+    steps:
+      - name: Send failure notification
+        run: |
+          echo "::error::CI pipeline failed. Check the workflow run for details."
+          echo "Failed jobs: ${{ needs.lint-and-format.result }}, ${{ needs.test.result }}, ${{ needs.agent-pipeline.result }}, ${{ needs.pr-review.result }}, ${{ needs.security-scan.result }}, ${{ needs.build.result }}"

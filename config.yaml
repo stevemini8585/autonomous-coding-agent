@@ -1,0 +1,75 @@
+# 자율 코딩 에이전트 설정
+autonomous_coding_agent:
+  # 실행 제어
+  max_iterations: 5              # 단계당 최대 재시도 횟수
+  timeout_per_step: 300          # 단계당 타임아웃(초)
+  parallel_steps: true           # 독립 단계 병렬 실행 여부
+  
+  # 검증 설정
+  verify_tests: true             # 테스트 강제 검증
+  verify_lint: true              # 린트 강제 검증
+  verify_types: true             # 타입 체크 강제 검증
+  coverage_threshold: 80         # 최소 커버리지 %
+  
+  # Git/커밋
+  auto_commit: false             # 완료 시 자동 커밋 여부
+  
+  # 사람 개입
+  hitl_on_failure: true          # 반복 실패 시 사람 개입 요청
+  
+  # 언어별 검증 명령어
+  language_configs:
+    python:
+      test_cmd: "pytest -xvs --tb=short"
+      lint_cmd: "ruff check ."
+      format_cmd: "black --check ."
+      type_cmd: "mypy ."
+      coverage_cmd: "pytest --cov=. --cov-report=term-missing"
+    javascript:
+      test_cmd: "npm test -- --run"
+      lint_cmd: "eslint ."
+      format_cmd: "prettier --check ."
+      type_cmd: "tsc --noEmit"
+    typescript:
+      test_cmd: "npm test -- --run"
+      lint_cmd: "eslint ."
+      format_cmd: "prettier --check ."
+      type_cmd: "tsc --noEmit"
+    go:
+      test_cmd: "go test ./..."
+      lint_cmd: "golangci-lint run"
+      format_cmd: "gofmt -l ."
+      type_cmd: "go vet ./..."
+    rust:
+      test_cmd: "cargo test"
+      lint_cmd: "cargo clippy -- -D warnings"
+      format_cmd: "cargo fmt --check"
+      type_cmd: "cargo check"
+  
+  # 안전장치
+  protected_patterns:
+    - "*.pyc"
+    - "__pycache__/"
+    - ".git/"
+    - ".venv/"
+    - "venv/"
+    - "node_modules/"
+    - "*.lock"
+    - "Cargo.lock"
+    - "go.sum"
+  
+  blocked_commands:
+    - "rm -rf"
+    - "git push --force"
+    - "git reset --hard"
+    - "sudo "
+    - "chmod 777"
+    - "> /dev/sda"
+  
+  # 알림
+  notify_on:
+    - "step_completed"
+    - "step_failed"
+    - "iteration_complete"
+    - "agent_completed"
+    - "hitl_required"
