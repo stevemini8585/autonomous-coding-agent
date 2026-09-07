@@ -32,6 +32,7 @@ from .code_adapter import (
     CodeExampleApplier,
 )
 from .test_generator import TestGenerator, EdgeCaseAnalyzer, ParameterCombinationGenerator, MockGenerator
+from .memory import PatternMemory, LearningAgent, SuccessPattern, SessionRecord
 
 __all__ = [
     "AutonomousCodingAgent",
@@ -70,6 +71,10 @@ __all__ = [
     "EdgeCaseAnalyzer",
     "ParameterCombinationGenerator",
     "MockGenerator",
+    "PatternMemory",
+    "LearningAgent",
+    "SuccessPattern",
+    "SessionRecord",
 ]
 
 __version__ = "0.1.0"
