@@ -13,6 +13,7 @@ from typing import Any
 
 from .coder import CodeGenerator
 from .critic import Critic
+from .dashboard import DashboardServer, get_dashboard
 from .explorer import CodeExplorer
 from .models import (
     AgentResult,
@@ -28,6 +29,81 @@ from .state import get_state_manager
 from .verifier import Verifier
 
 log = logging.getLogger("autonomous_coding_agent.agent")
+
+
+class DashboardClient:
+    """대시보드 클라이언트 - 에이전트에서 대시보드 서버로 진행 상황 전송"""
+
+    def __init__(self, session_id: str, dashboard_url: str = "http://localhost:8899"):
+        self.session_id = session_id
+        self.dashboard_url = dashboard_url.rstrip("/")
+        self.enabled = True
+        self._session_started = False
+
+    def _post(self, endpoint: str, data: dict) -> bool:
+        """HTTP POST 요청 전송"""
+        if not self.enabled:
+            return False
+        try:
+            import json
+            import urllib.request
+
+            url = f"{self.dashboard_url}{endpoint}"
+            req = urllib.request.Request(
+                url,
+                data=json.dumps(data).encode("utf-8"),
+                headers={"Content-Type": "application/json"},
+                method="POST",
+            )
+            urllib.request.urlopen(req, timeout=2).read()
+            return True
+        except Exception as e:
+            log.debug(f"Dashboard update failed: {e}")
+            return False
+
+    def start_session(self, goal: str, total_steps: int = 0) -> None:
+        """세션 시작 알림"""
+        if self._session_started:
+            return
+        self._post(
+            f"/api/sessions/{self.session_id}/start",
+            {"goal": goal, "total_steps": total_steps},
+        )
+        self._session_started = True
+
+    def start_step(self, step_id: str, title: str) -> None:
+        """단계 시작 알림"""
+        self._post(
+            f"/api/sessions/{self.session_id}/step/{step_id}/start",
+            {"title": title},
+        )
+
+    def update_step_progress(
+        self, step_id: str, progress: float, log: str | None = None, metrics: dict | None = None
+    ) -> None:
+        """단계 진행률 업데이트"""
+        data = {"progress": progress}
+        if log:
+            data["log"] = log
+        if metrics:
+            data["metrics"] = metrics
+        self._post(f"/api/sessions/{self.session_id}/step/{step_id}/progress", data)
+
+    def complete_step(
+        self, step_id: str, status: str = "completed", metrics: dict | None = None
+    ) -> None:
+        """단계 완료 알림"""
+        data = {"status": status}
+        if metrics:
+            data["metrics"] = metrics
+        self._post(f"/api/sessions/{self.session_id}/step/{step_id}/complete", data)
+
+    def complete_session(self, status: str = "completed", metrics: dict | None = None) -> None:
+        """세션 완료 알림"""
+        data = {"status": status}
+        if metrics:
+            data["metrics"] = metrics
+        self._post(f"/api/sessions/{self.session_id}/complete", data)
 
 
 class AutonomousCodingAgent:
@@ -82,6 +158,9 @@ class AutonomousCodingAgent:
         self.verifier = Verifier(self.workspace)
         self.critic = Critic(self.workspace)
 
+        # 대시보드 클라이언트 초기화
+        self.dashboard_client = DashboardClient(self.state.session_id)
+
         # 결과
         self._result = None
 
@@ -94,6 +173,9 @@ class AutonomousCodingAgent:
         start_time = time.time()
         self.state.goal = goal
 
+        # 대시보드 세션 시작
+        self.dashboard_client.start_session(goal, total_steps=0)  # plan이 생성된 후 업데이트
+
         try:
             # 1. 탐색 (최초 1회 또는 세션 복원 시 건너뛰기)
             if self.state.explore_result is None:
@@ -102,6 +184,10 @@ class AutonomousCodingAgent:
             # 2. 계획 수립
             if self.state.plan is None:
                 self._create_plan(task_type)
+
+            # 대시보드 총 단계 수 업데이트
+            if self.state.plan:
+                self.dashboard_client.start_session(goal, total_steps=len(self.state.plan.steps))
 
             # 3. 실행 루프
             self._run_execution_loop()
@@ -127,6 +213,12 @@ class AutonomousCodingAgent:
                 f"자율 에이전트 완료: {'성공' if self._result.success else '실패'} ({duration:.1f}초)"
             )
 
+            # 대시보드 세션 완료
+            self.dashboard_client.complete_session(
+                status="completed" if self._result.success else "failed",
+                metrics={"duration": duration, "iterations": self.state.iteration},
+            )
+
         except (OSError, RuntimeError, ValueError) as e:
             log.error(f"자율 에이전트 오류: {e}")
             self._result = AgentResult(
@@ -136,6 +228,8 @@ class AutonomousCodingAgent:
                 duration_seconds=time.time() - start_time,
                 iterations_used=self.state.iteration,
             )
+            # 대시보드 세션 완료 (실패)
+            self.dashboard_client.complete_session(status="failed", metrics={"error": str(e)})
 
         # 최종 상태 저장
         self.state_manager.save_state(self.state)
@@ -234,10 +328,16 @@ class AutonomousCodingAgent:
                 step.status = StepStatus.IN_PROGRESS
                 step.started_at = datetime.now(UTC)
 
+                # 대시보드: 단계 시작 (병렬)
+                self.dashboard_client.start_step(step.id, step.title)
+
                 # 1. 코드 실행
                 if step.type == StepType.CODE:
                     code_result = self.coder.execute_step(step, context)
                     step.artifacts.update(code_result)
+
+                    # 대시보드: 진행률 업데이트 (병렬)
+                    self.dashboard_client.update_step_progress(step.id, 0.5, log="코드 생성 중...")
 
                 # 2. 검증
                 if step.type in (StepType.CODE, StepType.VERIFY):
@@ -247,10 +347,18 @@ class AutonomousCodingAgent:
                     verification = self.verifier.verify_step(step, project_files)
                     step.artifacts["verification"] = verification.__dict__
 
+                    # 대시보드: 검증 진행 (병렬)
+                    self.dashboard_client.update_step_progress(step.id, 0.8, log="검증 중...")
+
                     if not verification.passed:
                         step.status = StepStatus.FAILED
                         step.error = f"검증 실패: {verification.errors}"
                         log.warning(f"  ❌ [병렬] 검증 실패: {step.id}")
+
+                        # 대시보드: 단계 실패 (병렬 - 검증)
+                        self.dashboard_client.complete_step(
+                            step.id, "failed", metrics={"errors": verification.errors}
+                        )
 
                         # 비평 수행
                         critique = self.critic.critique(step, verification, context)
@@ -279,12 +387,25 @@ class AutonomousCodingAgent:
 
                 step.status = StepStatus.COMPLETED
                 step.completed_at = datetime.now(UTC)
+
+                # 대시보드: 단계 완료 (병렬)
+                self.dashboard_client.complete_step(
+                    step.id,
+                    "completed",
+                    metrics={
+                        "files_created": step.artifacts.get("files_created", []),
+                        "files_modified": step.artifacts.get("files_modified", []),
+                    },
+                )
                 return step, None
 
             except (OSError, RuntimeError, ValueError) as e:
                 step.status = StepStatus.FAILED
                 step.error = str(e)
                 log.error(f"  ❌ [병렬] 단계 실행 오류: {step.id} - {e}")
+
+                # 대시보드: 단계 실패 (병렬)
+                self.dashboard_client.complete_step(step.id, "failed", metrics={"error": str(e)})
                 return step, e
 
         # ThreadPoolExecutor로 병렬 실행 (최대 4개 동시)
@@ -309,6 +430,9 @@ class AutonomousCodingAgent:
         step.status = StepStatus.IN_PROGRESS
         step.started_at = datetime.now(UTC)
 
+        # 대시보드: 단계 시작
+        self.dashboard_client.start_step(step.id, step.title)
+
         try:
             # 컨텍스트 구성
             context = {
@@ -330,6 +454,9 @@ class AutonomousCodingAgent:
                 # Merge code result into artifacts (preserve any existing)
                 step.artifacts.update(code_result)
 
+                # 대시보드: 진행률 업데이트
+                self.dashboard_client.update_step_progress(step.id, 0.5, log="코드 생성 중...")
+
             # 2. 검증
             if step.type in (StepType.CODE, StepType.VERIFY):
                 project_files = step.assigned_files or [
@@ -339,10 +466,18 @@ class AutonomousCodingAgent:
                 # Merge verification with existing artifacts (preserve files_created/files_modified)
                 step.artifacts["verification"] = verification.__dict__
 
+                # 대시보드: 검증 진행
+                self.dashboard_client.update_step_progress(step.id, 0.8, log="검증 중...")
+
                 if not verification.passed:
                     step.status = StepStatus.FAILED
                     step.error = f"검증 실패: {verification.errors}"
                     log.warning(f"  ❌ 검증 실패: {step.id}")
+
+                    # 대시보드: 단계 실패
+                    self.dashboard_client.complete_step(
+                        step.id, "failed", metrics={"errors": verification.errors}
+                    )
 
                     # 비평 수행
                     critique = self.critic.critique(step, verification, context)
@@ -371,11 +506,24 @@ class AutonomousCodingAgent:
             step.completed_at = datetime.now(UTC)
             log.info(f"  ✅ 완료: {step.id}")
 
+            # 대시보드: 단계 완료
+            self.dashboard_client.complete_step(
+                step.id,
+                "completed",
+                metrics={
+                    "files_created": step.artifacts.get("files_created", []),
+                    "files_modified": step.artifacts.get("files_modified", []),
+                },
+            )
+
         except (OSError, RuntimeError, ValueError) as e:
             step.status = StepStatus.FAILED
             step.error = str(e)
             step.completed_at = datetime.now(UTC)
             log.error(f"  ❌ 단계 실패 {step.id}: {e}")
+
+            # 대시보드: 단계 실패
+            self.dashboard_client.complete_step(step.id, "failed", metrics={"error": str(e)})
 
     def _final_verification(self) -> dict[str, Any]:
         """최종 전체 검증"""
