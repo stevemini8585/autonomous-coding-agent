@@ -19,6 +19,7 @@ log = logging.getLogger("autonomous_coding_agent.git_integration")
 @dataclass
 class WorkflowResult:
     """워크플로우 실행 결과"""
+
     success: bool
     branch: str
     commits: list[str]
@@ -85,7 +86,9 @@ class GitWorkflow:
         """브랜치 푸시"""
         return self.git.push(branch)
 
-    def create_pr_from_issue(self, issue_number: int, branch: str, base: str = "main") -> int | None:
+    def create_pr_from_issue(
+        self, issue_number: int, branch: str, base: str = "main"
+    ) -> int | None:
         """이슈 기반 PR 생성"""
         # 이슈 정보 가져오기
         issue = self.github.get_issue(issue_number)

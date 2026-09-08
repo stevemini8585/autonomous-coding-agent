@@ -4,21 +4,18 @@
 
 from __future__ import annotations
 
-import asyncio
-import json
 import logging
 import time
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Any
-from collections import defaultdict
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Request
-from fastapi.responses import HTMLResponse, FileResponse
+import uvicorn
+from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-import uvicorn
 
 log = logging.getLogger("autonomous_coding_agent.dashboard")
 
@@ -26,6 +23,7 @@ log = logging.getLogger("autonomous_coding_agent.dashboard")
 @dataclass
 class StepProgress:
     """단계별 진행 상태"""
+
     step_id: str
     title: str
     status: str  # pending, running, completed, failed
@@ -39,6 +37,7 @@ class StepProgress:
 @dataclass
 class SessionProgress:
     """세션 전체 진행 상태"""
+
     session_id: str
     goal: str
     status: str  # running, completed, failed
@@ -263,16 +262,18 @@ class DashboardServer:
         """세션 업데이트 브로드캐스트"""
         if session_id in self.sessions:
             s = self.sessions[session_id]
-            await self.manager.broadcast({
-                "type": "session_update",
-                "session_id": session_id,
-                "data": {
-                    "overall_progress": s.overall_progress,
-                    "current_step": s.current_step,
-                    "total_steps": s.total_steps,
-                    "status": s.status,
+            await self.manager.broadcast(
+                {
+                    "type": "session_update",
+                    "session_id": session_id,
+                    "data": {
+                        "overall_progress": s.overall_progress,
+                        "current_step": s.current_step,
+                        "total_steps": s.total_steps,
+                        "status": s.status,
+                    },
                 }
-            })
+            )
 
     def run(self):
         """서버 실행"""
@@ -294,6 +295,7 @@ def get_dashboard(host: str = "0.0.0.0", port: int = 8899) -> DashboardServer:
 def start_dashboard(host: str = "0.0.0.0", port: int = 8899):
     """대시보드 서버 시작 (백그라운드)"""
     import threading
+
     dashboard = get_dashboard(host, port)
     thread = threading.Thread(target=dashboard.run, daemon=True)
     thread.start()

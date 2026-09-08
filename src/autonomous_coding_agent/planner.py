@@ -93,7 +93,7 @@ class WorkPlanner:
         # 의존성 설정 (순차 실행)
         for i, step in enumerate(step_objects):
             if i > 0:
-                step.dependencies = [step_objects[i-1].id]
+                step.dependencies = [step_objects[i - 1].id]
 
         # 탐색 결과 기반 파일 할당
         self._assign_files_to_steps(step_objects, explore_result, goal)
@@ -107,13 +107,13 @@ class WorkPlanner:
         """목표에서 작업 유형 감지"""
         goal_lower = goal.lower()
 
-        if any(kw in goal_lower for kw in ['버그', 'bug', 'fix', '오류', '에러', '안됨', '깨짐']):
+        if any(kw in goal_lower for kw in ["버그", "bug", "fix", "오류", "에러", "안됨", "깨짐"]):
             return "bugfix"
-        elif any(kw in goal_lower for kw in ['리팩토링', 'refactor', '정리', '개선', '최적화']):
+        elif any(kw in goal_lower for kw in ["리팩토링", "refactor", "정리", "개선", "최적화"]):
             return "refactor"
-        elif any(kw in goal_lower for kw in ['테스트', 'test', '커버리지', 'coverage']):
+        elif any(kw in goal_lower for kw in ["테스트", "test", "커버리지", "coverage"]):
             return "test"
-        elif any(kw in goal_lower for kw in ['문서', 'doc', 'readme', '주석', 'comment']):
+        elif any(kw in goal_lower for kw in ["문서", "doc", "readme", "주석", "comment"]):
             return "documentation"
         else:
             return "feature"
@@ -205,7 +205,7 @@ class WorkPlanner:
                 score += 10  # 높은 가중치
 
             # 3. 일반적인 소스 파일은 기본 점수 부여
-            if file_info.language in ('python', 'javascript', 'typescript', 'go', 'rust'):
+            if file_info.language in ("python", "javascript", "typescript", "go", "rust"):
                 score += 1
 
             if score > 0:
@@ -218,7 +218,9 @@ class WorkPlanner:
         # CODE 단계에 파일 할당
         for step in steps:
             if step.type == StepType.CODE:
-                step.assigned_files = top_files[:5] if top_files else [f.path for f in explore_result.files[:5]]
+                step.assigned_files = (
+                    top_files[:5] if top_files else [f.path for f in explore_result.files[:5]]
+                )
 
     def refine_plan(
         self,
@@ -240,7 +242,7 @@ class WorkPlanner:
         failed_step.status = StepStatus.PENDING  # 재시도 위해 초기화
 
         # 피드백 기반 추가 단계 생성
-        if critique_result and hasattr(critique_result, 'improvements'):
+        if critique_result and hasattr(critique_result, "improvements"):
             for i, improvement in enumerate(critique_result.improvements[:2]):  # 최대 2개 추가
                 new_step = PlanStep(
                     id=f"{failed_step_id}_retry_{i+1}",
@@ -252,7 +254,7 @@ class WorkPlanner:
                 )
                 plan.steps.append(new_step)
 
-        plan.updated_at = __import__('datetime').datetime.now()
+        plan.updated_at = __import__("datetime").datetime.now()
         return plan
 
     def get_next_steps(self, plan: Plan) -> list[PlanStep]:

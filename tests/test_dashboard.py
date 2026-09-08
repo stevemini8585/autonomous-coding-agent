@@ -9,7 +9,6 @@ from autonomous_coding_agent import (
     get_dashboard,
 )
 
-
 # Test constants
 TEST_PORT = 8899
 TEST_TOTAL_STEPS = 5

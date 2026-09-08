@@ -54,15 +54,15 @@ class Critic:
         score = 1.0
 
         # 테스트 실패
-        if not verification.test_results.get('passed', True):
+        if not verification.test_results.get("passed", True):
             score -= 0.4
 
         # 타입 체크 실패
-        if not verification.type_results.get('passed', True):
+        if not verification.type_results.get("passed", True):
             score -= 0.3
 
         # 린트 경고
-        if not verification.lint_results.get('passed', True):
+        if not verification.lint_results.get("passed", True):
             score -= 0.1
 
         # 커버리지 부족
@@ -85,28 +85,30 @@ class Critic:
         issues = []
 
         # 테스트 실패 분석
-        if not verification.test_results.get('passed', True):
-            stderr = verification.test_results.get('stderr', '')
+        if not verification.test_results.get("passed", True):
+            stderr = verification.test_results.get("stderr", "")
             issues.extend(self._parse_test_failures(stderr))
 
         # 타입 에러 분석
-        if not verification.type_results.get('passed', True):
-            stderr = verification.type_results.get('stderr', '')
+        if not verification.type_results.get("passed", True):
+            stderr = verification.type_results.get("stderr", "")
             issues.extend(self._parse_type_errors(stderr))
 
         # 린트 이슈 분석
-        if not verification.lint_results.get('passed', True):
-            stderr = verification.lint_results.get('stderr', '')
+        if not verification.lint_results.get("passed", True):
+            stderr = verification.lint_results.get("stderr", "")
             issues.extend(self._parse_lint_issues(stderr))
 
         # 커버리지 부족
         if verification.coverage < 80:
-            issues.append({
-                'type': 'coverage',
-                'severity': 'warning' if verification.coverage >= 50 else 'error',
-                'message': f'테스트 커버리지 낮음: {verification.coverage:.1f}% (목표: 80%)',
-                'suggestion': '테스트 케이스 추가 필요',
-            })
+            issues.append(
+                {
+                    "type": "coverage",
+                    "severity": "warning" if verification.coverage >= 50 else "error",
+                    "message": f"테스트 커버리지 낮음: {verification.coverage:.1f}% (목표: 80%)",
+                    "suggestion": "테스트 케이스 추가 필요",
+                }
+            )
 
         return issues
 
@@ -116,20 +118,22 @@ class Critic:
 
         # Python pytest 실패 패턴
         patterns = [
-            (r'FAILED\s+(\S+)::(\w+)', 'test_failure'),
-            (r'AssertionError:\s*(.+)', 'assertion_error'),
-            (r'Error:\s*(.+)', 'error'),
-            (r'FAILED\s+(\S+)', 'test_failed'),
+            (r"FAILED\s+(\S+)::(\w+)", "test_failure"),
+            (r"AssertionError:\s*(.+)", "assertion_error"),
+            (r"Error:\s*(.+)", "error"),
+            (r"FAILED\s+(\S+)", "test_failed"),
         ]
 
         for pattern, issue_type in patterns:
             for match in re.finditer(pattern, stderr):
-                issues.append({
-                    'type': issue_type,
-                    'severity': 'error',
-                    'message': match.group(0)[:200],
-                    'suggestion': '테스트 케이스 검토 및 수정 필요',
-                })
+                issues.append(
+                    {
+                        "type": issue_type,
+                        "severity": "error",
+                        "message": match.group(0)[:200],
+                        "suggestion": "테스트 케이스 검토 및 수정 필요",
+                    }
+                )
 
         return issues
 
@@ -138,20 +142,22 @@ class Critic:
         issues = []
 
         patterns = [
-            (r'error:\s*(.+)', 'type_error'),
-            (r'(\S+:\d+):\s*error:', 'type_error_location'),
-            (r'Incompatible types.*', 'incompatible_types'),
-            (r'Missing type annotation.*', 'missing_annotation'),
+            (r"error:\s*(.+)", "type_error"),
+            (r"(\S+:\d+):\s*error:", "type_error_location"),
+            (r"Incompatible types.*", "incompatible_types"),
+            (r"Missing type annotation.*", "missing_annotation"),
         ]
 
         for pattern, issue_type in patterns:
             for match in re.finditer(pattern, stderr, re.IGNORECASE):
-                issues.append({
-                    'type': issue_type,
-                    'severity': 'error',
-                    'message': match.group(0)[:200],
-                    'suggestion': '타입 힌트 추가 또는 수정 필요',
-                })
+                issues.append(
+                    {
+                        "type": issue_type,
+                        "severity": "error",
+                        "message": match.group(0)[:200],
+                        "suggestion": "타입 힌트 추가 또는 수정 필요",
+                    }
+                )
 
         return issues
 
@@ -160,20 +166,22 @@ class Critic:
         issues = []
 
         patterns = [
-            (r'(\S+:\d+:\d+):\s*([WE]\d+)\s*(.+)', 'lint_issue'),
-            (r'error:\s*(.+)', 'lint_error'),
-            (r'warning:\s*(.+)', 'lint_warning'),
+            (r"(\S+:\d+:\d+):\s*([WE]\d+)\s*(.+)", "lint_issue"),
+            (r"error:\s*(.+)", "lint_error"),
+            (r"warning:\s*(.+)", "lint_warning"),
         ]
 
         for pattern, issue_type in patterns:
             for match in re.finditer(pattern, stderr):
-                severity = 'error' if 'error' in issue_type else 'warning'
-                issues.append({
-                    'type': issue_type,
-                    'severity': severity,
-                    'message': match.group(0)[:200],
-                    'suggestion': '코드 스타일 가이드 준수',
-                })
+                severity = "error" if "error" in issue_type else "warning"
+                issues.append(
+                    {
+                        "type": issue_type,
+                        "severity": severity,
+                        "message": match.group(0)[:200],
+                        "suggestion": "코드 스타일 가이드 준수",
+                    }
+                )
 
         return issues
 
@@ -186,15 +194,15 @@ class Critic:
         """개선 제안 생성"""
         improvements = []
 
-        if not verification.test_results.get('passed', True):
+        if not verification.test_results.get("passed", True):
             improvements.append("실패한 테스트 케이스 분석 및 수정")
             improvements.append("테스트 커버리지 향상을 위한 추가 테스트 작성")
 
-        if not verification.type_results.get('passed', True):
+        if not verification.type_results.get("passed", True):
             improvements.append("타입 힌트 추가 및 타입 에러 수정")
             improvements.append("mypy/pyright 설정 검토")
 
-        if not verification.lint_results.get('passed', True):
+        if not verification.lint_results.get("passed", True):
             improvements.append("린트 규칙 준수 (포맷팅, 네이밍, 임포트 순서)")
             improvements.append("자동 포맷터 실행 (black, prettier, gofmt 등)")
 
@@ -203,11 +211,13 @@ class Critic:
             improvements.append("경계값, 예외 케이스 테스트 추가")
 
         # 일반적인 개선 사항
-        improvements.extend([
-            "문서화(docstring, 주석) 보강",
-            "에러 처리 로직 강화",
-            "로깅 추가로 디버깅 용이성 향상",
-        ])
+        improvements.extend(
+            [
+                "문서화(docstring, 주석) 보강",
+                "에러 처리 로직 강화",
+                "로깅 추가로 디버깅 용이성 향상",
+            ]
+        )
 
         return improvements[:5]  # 상위 5개만
 
@@ -222,7 +232,7 @@ class Critic:
             return True
 
         # 테스트 실패가 있으면 재시도
-        if not verification.test_results.get('passed', True):
+        if not verification.test_results.get("passed", True):
             return True
 
         return False
@@ -258,32 +268,47 @@ class Critic:
     def analyze_code_quality(self, file_path: Path) -> dict[str, Any]:
         """파일 단위 코드 품질 분석"""
         try:
-            content = file_path.read_text(encoding='utf-8')
+            content = file_path.read_text(encoding="utf-8")
         except Exception:
             return {}
 
-        lines = content.split('\n')
+        lines = content.split("\n")
 
         metrics = {
-            'total_lines': len(lines),
-            'code_lines': len([l for l in lines if l.strip() and not l.strip().startswith('#')]),
-            'comment_lines': len([l for l in lines if l.strip().startswith('#')]),
-            'blank_lines': len([l for l in lines if not l.strip()]),
-            'max_line_length': max((len(l) for l in lines), default=0),
-            'avg_line_length': sum(len(l) for l in lines) / max(len(lines), 1),
-            'functions': len([l for l in lines if l.strip().startswith('def ') or l.strip().startswith('async def ')]),
-            'classes': len([l for l in lines if l.strip().startswith('class ')]),
+            "total_lines": len(lines),
+            "code_lines": len([l for l in lines if l.strip() and not l.strip().startswith("#")]),
+            "comment_lines": len([l for l in lines if l.strip().startswith("#")]),
+            "blank_lines": len([l for l in lines if not l.strip()]),
+            "max_line_length": max((len(l) for l in lines), default=0),
+            "avg_line_length": sum(len(l) for l in lines) / max(len(lines), 1),
+            "functions": len(
+                [
+                    l
+                    for l in lines
+                    if l.strip().startswith("def ") or l.strip().startswith("async def ")
+                ]
+            ),
+            "classes": len([l for l in lines if l.strip().startswith("class ")]),
         }
 
         # 복잡도 추정 (간단한 휴리스틱)
         complexity_indicators = [
-            'if ', 'elif ', 'for ', 'while ', 'try:', 'except ', 'with ',
-            'and ', 'or ', 'not ', '?', 'match ', 'case ',
+            "if ",
+            "elif ",
+            "for ",
+            "while ",
+            "try:",
+            "except ",
+            "with ",
+            "and ",
+            "or ",
+            "not ",
+            "?",
+            "match ",
+            "case ",
         ]
-        complexity = sum(
-            content.count(indicator) for indicator in complexity_indicators
-        )
-        metrics['estimated_complexity'] = complexity
+        complexity = sum(content.count(indicator) for indicator in complexity_indicators)
+        metrics["estimated_complexity"] = complexity
 
         return metrics
 

@@ -85,9 +85,7 @@ class ProjectAnalyzer:
     def _detect_language(self) -> str:
         """주 언어 감지"""
         py_files = list(self.workspace.rglob("*.py"))
-        js_files = list(self.workspace.rglob("*.js")) + list(
-            self.workspace.rglob("*.ts")
-        )
+        js_files = list(self.workspace.rglob("*.js")) + list(self.workspace.rglob("*.ts"))
         rs_files = list(self.workspace.rglob("*.rs"))
         go_files = list(self.workspace.rglob("*.go"))
 
@@ -215,9 +213,10 @@ class ProjectAnalyzer:
         # 8. pyproject.toml이 있지만 위 매니저가 아니면 기본 pip (build-system이 setuptools/wheel인 경우 또는 [project] 섹션이 있는 경우)
         if pyproject.exists():
             content = pyproject.read_text(encoding="utf-8", errors="ignore")
-            if ("[build-system]" in content and (
-                "setuptools" in content or "wheel" in content or "pip" in content
-            )) or "[project]" in content:
+            if (
+                "[build-system]" in content
+                and ("setuptools" in content or "wheel" in content or "pip" in content)
+            ) or "[project]" in content:
                 return "pip"
 
         # 9. Node.js 패키지 매니저
@@ -255,9 +254,7 @@ class ProjectAnalyzer:
                 content = py_file.read_text(encoding="utf-8", errors="ignore")
 
                 # import 스타일
-                imports = re.findall(
-                    r"^(?:from\s+(\S+)\s+)?import\s+(.+)$", content, re.MULTILINE
-                )
+                imports = re.findall(r"^(?:from\s+(\S+)\s+)?import\s+(.+)$", content, re.MULTILINE)
                 for from_mod, imported in imports:
                     if from_mod:
                         import_patterns.append(f"from {from_mod} import {imported}")
@@ -340,14 +337,10 @@ class ProjectAnalyzer:
         """린트 설정 감지"""
         config = {}
         # ruff
-        if (self.workspace / "ruff.toml").exists() or (
-            self.workspace / "pyproject.toml"
-        ).exists():
+        if (self.workspace / "ruff.toml").exists() or (self.workspace / "pyproject.toml").exists():
             config["ruff"] = True
         # mypy
-        if (self.workspace / "mypy.ini").exists() or (
-            self.workspace / "pyproject.toml"
-        ).exists():
+        if (self.workspace / "mypy.ini").exists() or (self.workspace / "pyproject.toml").exists():
             config["mypy"] = True
         # eslint
         if (self.workspace / ".eslintrc.js").exists() or (
@@ -557,11 +550,7 @@ class CodeExampleAdapter:
         # response.text → response.text (동일)
 
         # 2. Pydantic 모델 사용 패턴
-        if (
-            "class " in adapted
-            and "BaseModel" not in adapted
-            and "pydantic" not in adapted
-        ):
+        if "class " in adapted and "BaseModel" not in adapted and "pydantic" not in adapted:
             # 모델 클래스처럼 보이는 것에 BaseModel 상속 제안 (주석으로)
             pass
 
@@ -630,15 +619,11 @@ class CodeExampleAdapter:
                     pass
 
                 # 기존 네이밍 컨벤션 확인
-                func_names = re.findall(
-                    r"^\s*(?:async\s+)?def\s+(\w+)", existing, re.MULTILINE
-                )
+                func_names = re.findall(r"^\s*(?:async\s+)?def\s+(\w+)", existing, re.MULTILINE)
                 if func_names:
                     snake_count = sum(1 for n in func_names if "_" in n and n.islower())
                     camel_count = sum(
-                        1
-                        for n in func_names
-                        if n[0].islower() and any(c.isupper() for c in n)
+                        1 for n in func_names if n[0].islower() and any(c.isupper() for c in n)
                     )
                     if camel_count > snake_count:
                         # camelCase로 변환 필요
@@ -773,9 +758,7 @@ def adapt_and_apply_examples(
             task = None
             if tasks:
                 for t in tasks:
-                    if t.target_files and any(
-                        f in code.lower() for f in t.target_files
-                    ):
+                    if t.target_files and any(f in code.lower() for f in t.target_files):
                         task = t
                         break
 

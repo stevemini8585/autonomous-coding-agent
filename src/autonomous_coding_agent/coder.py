@@ -70,7 +70,7 @@ class CodeGenerator:
             self._backup_file(file_path)
 
         # 2. 작업 목표 분석하여 구체적 구현 생성
-        goal = context.get('goal', '')
+        goal = context.get("goal", "")
         implementation = self._generate_task_specific_implementation(step, goal, context)
 
         # 3. 파일 적용 - PatchManager 사용
@@ -81,16 +81,18 @@ class CodeGenerator:
             full_path = self.workspace / file_path
 
             if full_path.exists():
-                operations.append(PatchOperation(
-                    file_path=file_path,
-                    old_content=full_path.read_text(encoding='utf-8'),
-                    new_content=content,
-                    description=f"Update {file_path} for {step.title}"
-                ))
+                operations.append(
+                    PatchOperation(
+                        file_path=file_path,
+                        old_content=full_path.read_text(encoding="utf-8"),
+                        new_content=content,
+                        description=f"Update {file_path} for {step.title}",
+                    )
+                )
             else:
                 # 새 파일 생성
                 full_path.parent.mkdir(parents=True, exist_ok=True)
-                full_path.write_text(content, encoding='utf-8')
+                full_path.write_text(content, encoding="utf-8")
                 artifacts["files_created"].append(file_path)
 
         # 패치 적용 (트랜잭션으로 원자적 적용)
@@ -105,16 +107,14 @@ class CodeGenerator:
 
         artifacts["patches_applied"] = [
             {"file": r.file_path, "applied": r.applied, "hunks": r.hunks_applied}
-            for r in results if r.applied
+            for r in results
+            if r.applied
         ]
 
         return artifacts
 
     def _generate_task_specific_implementation(
-        self,
-        step: PlanStep,
-        goal: str,
-        context: dict[str, Any]
+        self, step: PlanStep, goal: str, context: dict[str, Any]
     ) -> dict[str, str]:
         """작업 목표에 맞춘 구체적 구현 생성"""
         implementations = {}
@@ -122,30 +122,42 @@ class CodeGenerator:
         for file_path in step.assigned_files:
             ext = Path(file_path).suffix.lower()
 
-            if ext == '.py':
-                implementations[file_path] = self._generate_python_task_code(step, file_path, goal, context)
-            elif ext in ('.js', '.ts', '.tsx'):
-                implementations[file_path] = self._generate_js_ts_task_code(step, file_path, goal, context)
-            elif ext == '.go':
-                implementations[file_path] = self._generate_go_task_code(step, file_path, goal, context)
-            elif ext == '.rs':
-                implementations[file_path] = self._generate_rust_task_code(step, file_path, goal, context)
+            if ext == ".py":
+                implementations[file_path] = self._generate_python_task_code(
+                    step, file_path, goal, context
+                )
+            elif ext in (".js", ".ts", ".tsx"):
+                implementations[file_path] = self._generate_js_ts_task_code(
+                    step, file_path, goal, context
+                )
+            elif ext == ".go":
+                implementations[file_path] = self._generate_go_task_code(
+                    step, file_path, goal, context
+                )
+            elif ext == ".rs":
+                implementations[file_path] = self._generate_rust_task_code(
+                    step, file_path, goal, context
+                )
             else:
-                implementations[file_path] = self._generate_generic_code(step, file_path, goal, context)
+                implementations[file_path] = self._generate_generic_code(
+                    step, file_path, goal, context
+                )
 
         # 테스트 파일도 생성 (목표에 '테스트' 포함시)
-        if '테스트' in goal or 'test' in goal.lower():
+        if "테스트" in goal or "test" in goal.lower():
             test_files = self._generate_test_files(step, goal, context)
             implementations.update(test_files)
 
         return implementations
 
-    def _generate_python_task_code(self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]) -> str:
+    def _generate_python_task_code(
+        self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]
+    ) -> str:
         """Python 작업별 코드 생성"""
         full_path = self.workspace / file_path
         existing_content = ""
         if full_path.exists():
-            existing_content = full_path.read_text(encoding='utf-8')
+            existing_content = full_path.read_text(encoding="utf-8")
 
         # 기존 파일이 있으면 수정 (docstring, type hints 추가)
         if existing_content:
@@ -155,79 +167,87 @@ class CodeGenerator:
             return self._generate_python_module(step, file_path, goal, context)
 
     def _enhance_python_file(self, content: str, goal: str) -> str:
-            """기존 Python 파일 개선 (docstring, type hints, 문서화 추가)"""
-            lines = content.split('\n')
-            enhanced = []
+        """기존 Python 파일 개선 (docstring, type hints, 문서화 추가)"""
+        lines = content.split("\n")
+        enhanced = []
 
-            i = 0
-            while i < len(lines):
-                line = lines[i]
+        i = 0
+        while i < len(lines):
+            line = lines[i]
 
-                # 함수 정의 다음에 docstring 추가
-                if line.strip().startswith('def ') and not line.strip().startswith('def _'):
-                    # 이미 docstring이 있는지 확인 (다음 non-empty 라인 확인)
-                    next_idx = i + 1
-                    while next_idx < len(lines) and lines[next_idx].strip() == '':
-                        next_idx += 1
+            # 함수 정의 다음에 docstring 추가
+            if line.strip().startswith("def ") and not line.strip().startswith("def _"):
+                # 이미 docstring이 있는지 확인 (다음 non-empty 라인 확인)
+                next_idx = i + 1
+                while next_idx < len(lines) and lines[next_idx].strip() == "":
+                    next_idx += 1
 
-                    has_docstring = False
-                    if next_idx < len(lines):
-                        if '"""' in lines[next_idx] or "'''" in lines[next_idx]:
-                            has_docstring = True
+                has_docstring = False
+                if next_idx < len(lines):
+                    if '"""' in lines[next_idx] or "'''" in lines[next_idx]:
+                        has_docstring = True
 
-                    if not has_docstring:
-                        # 함수 시그니처에서 인자 추출
-                        func_match = re.match(r'(\s*)def (\w+)\((.*?)\)', line)
-                        if func_match:
-                            indent = func_match.group(1)
-                            func_name = func_match.group(2)
-                            params = func_match.group(3)
+                if not has_docstring:
+                    # 함수 시그니처에서 인자 추출
+                    func_match = re.match(r"(\s*)def (\w+)\((.*?)\)", line)
+                    if func_match:
+                        indent = func_match.group(1)
+                        func_name = func_match.group(2)
+                        params = func_match.group(3)
 
-                            # docstring 생성 (Google style - ruff/black 호환)
-                            docstring_lines = [f'{indent}    """{func_name} 함수."""']
-                            if params.strip():
-                                param_list = [p.strip().split(':')[0].strip() for p in params.split(',') if p.strip()]
-                                if param_list:
-                                    docstring_lines.append(f'{indent}    Args:')
-                                    for param in param_list:
-                                        if param and '=' not in param:
-                                            docstring_lines.append(f'{indent}        {param}: 매개변수 설명.')
-                            docstring_lines.append(f'{indent}    Returns:')
-                            docstring_lines.append(f'{indent}        결과값.')
-                            docstring = '\n'.join(docstring_lines)
+                        # docstring 생성 (Google style - ruff/black 호환)
+                        docstring_lines = [f'{indent}    """{func_name} 함수."""']
+                        if params.strip():
+                            param_list = [
+                                p.strip().split(":")[0].strip()
+                                for p in params.split(",")
+                                if p.strip()
+                            ]
+                            if param_list:
+                                docstring_lines.append(f"{indent}    Args:")
+                                for param in param_list:
+                                    if param and "=" not in param:
+                                        docstring_lines.append(
+                                            f"{indent}        {param}: 매개변수 설명."
+                                        )
+                        docstring_lines.append(f"{indent}    Returns:")
+                        docstring_lines.append(f"{indent}        결과값.")
+                        docstring = "\n".join(docstring_lines)
 
-                            # 현재 라인(함수 정의)을 추가하고, docstring을 그 다음에 삽입
-                            enhanced.append(line)
+                        # 현재 라인(함수 정의)을 추가하고, docstring을 그 다음에 삽입
+                        enhanced.append(line)
 
-                            # 빈 줄들 복사
-                            j = i + 1
-                            while j < len(lines) and lines[j].strip() == '':
-                                enhanced.append(lines[j])
-                                j += 1
+                        # 빈 줄들 복사
+                        j = i + 1
+                        while j < len(lines) and lines[j].strip() == "":
+                            enhanced.append(lines[j])
+                            j += 1
 
-                            # docstring 삽입
-                            enhanced.append(docstring)
+                        # docstring 삽입
+                        enhanced.append(docstring)
 
-                            # 남은 줄들(j부터)을 enhanced에 추가하고 인덱스 업데이트
-                            while j < len(lines):
-                                enhanced.append(lines[j])
-                                j += 1
+                        # 남은 줄들(j부터)을 enhanced에 추가하고 인덱스 업데이트
+                        while j < len(lines):
+                            enhanced.append(lines[j])
+                            j += 1
 
-                            i = j  # 다음 루프는 j부터
-                            continue  # while 루프 계속
+                        i = j  # 다음 루프는 j부터
+                        continue  # while 루프 계속
 
-                # 일반 라인 처리
-                enhanced.append(line)
-                i += 1
+            # 일반 라인 처리
+            enhanced.append(line)
+            i += 1
 
-            return '\n'.join(enhanced)
+        return "\n".join(enhanced)
 
-    def _generate_python_module(self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]) -> str:
+    def _generate_python_module(
+        self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]
+    ) -> str:
         """Python 모듈 생성"""
         module_name = Path(file_path).stem
 
         # 목표에 맞춘 구체적 구현
-        if '타입 힌트' in goal and '문서화' in goal:
+        if "타입 힌트" in goal and "문서화" in goal:
             return f'''"""
 {module_name} - {goal[:100]}
 """
@@ -287,18 +307,22 @@ if __name__ == "__main__":
     main()
 '''
 
-    def _generate_test_files(self, step: PlanStep, goal: str, context: dict[str, Any]) -> dict[str, str]:
+    def _generate_test_files(
+        self, step: PlanStep, goal: str, context: dict[str, Any]
+    ) -> dict[str, str]:
         """테스트 파일 생성"""
         test_files = {}
 
         for file_path in step.assigned_files:
-            if file_path.endswith('.py') and not file_path.endswith('_test.py'):
-                test_path = file_path.replace('.py', '_test.py')
+            if file_path.endswith(".py") and not file_path.endswith("_test.py"):
+                test_path = file_path.replace(".py", "_test.py")
                 test_files[test_path] = self._generate_python_test_file(file_path, goal, context)
 
         return test_files
 
-    def _generate_python_test_file(self, source_file: str, goal: str, context: dict[str, Any]) -> str:
+    def _generate_python_test_file(
+        self, source_file: str, goal: str, context: dict[str, Any]
+    ) -> str:
         """소스 파일에 대한 테스트 파일 생성"""
         module_name = Path(source_file).stem
         test_path = f"{module_name}_test.py"
@@ -307,25 +331,25 @@ if __name__ == "__main__":
         source_path = self.workspace / source_file
         functions = []  # list of (name, params)
         if source_path.exists():
-            content = source_path.read_text(encoding='utf-8')
-            for match in re.finditer(r'^\s*def (\w+)\((.*?)\)', content, re.MULTILINE):
-                if not match.group(1).startswith('_'):
+            content = source_path.read_text(encoding="utf-8")
+            for match in re.finditer(r"^\s*def (\w+)\((.*?)\)", content, re.MULTILINE):
+                if not match.group(1).startswith("_"):
                     func_name = match.group(1)
                     params = match.group(2).strip()
                     # Parse parameters to get default values
                     param_list = []
-                    for p in params.split(','):
+                    for p in params.split(","):
                         p = p.strip()
                         if p:
-                            if '=' in p:
-                                name, default = p.split('=', 1)
+                            if "=" in p:
+                                name, default = p.split("=", 1)
                                 param_list.append((name.strip(), default.strip()))
                             else:
-                                param_list.append((p.split(':')[0].strip(), None))
+                                param_list.append((p.split(":")[0].strip(), None))
                     functions.append((func_name, param_list))
 
         if not functions:
-            functions = [('main', [])]
+            functions = [("main", [])]
 
         test_content = f'''"""
 Tests for {module_name}
@@ -345,20 +369,24 @@ import pytest
                 if default is not None:
                     args.append(f"{param_name}={default}")
                 # Provide sensible defaults based on param name/type hints
-                elif 'name' in param_name.lower():
+                elif "name" in param_name.lower():
                     args.append('"test"')
-                elif 'id' in param_name.lower() or 'num' in param_name.lower() or 'count' in param_name.lower():
-                    args.append('1')
-                elif 'list' in param_name.lower() or 'items' in param_name.lower():
-                    args.append('[]')
-                elif 'dict' in param_name.lower() or 'map' in param_name.lower():
-                    args.append('{}')
-                elif 'bool' in param_name.lower() or 'flag' in param_name.lower():
-                    args.append('True')
+                elif (
+                    "id" in param_name.lower()
+                    or "num" in param_name.lower()
+                    or "count" in param_name.lower()
+                ):
+                    args.append("1")
+                elif "list" in param_name.lower() or "items" in param_name.lower():
+                    args.append("[]")
+                elif "dict" in param_name.lower() or "map" in param_name.lower():
+                    args.append("{}")
+                elif "bool" in param_name.lower() or "flag" in param_name.lower():
+                    args.append("True")
                 else:
                     args.append('"test_value"')
 
-            call_args = ', '.join(args)
+            call_args = ", ".join(args)
 
             test_content += f'''def test_{func_name}():
     """Test {func_name} function"""
@@ -368,9 +396,9 @@ import pytest
 
 '''
 
-        test_content += '''if __name__ == "__main__":
+        test_content += """if __name__ == "__main__":
     pytest.main([__file__, "-v"])
-'''
+"""
 
         return test_content
 
@@ -379,20 +407,27 @@ import pytest
         if existing:
             return existing + f"\n\n# === Auto-generated test for: {step.title} ===\n"
         else:
-            return self._generate_python_test_file(step.assigned_files[0] if step.assigned_files else "module.py", "", context)
+            return self._generate_python_test_file(
+                step.assigned_files[0] if step.assigned_files else "module.py", "", context
+            )
 
-    def _generate_js_ts_task_code(self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]) -> str:
+    def _generate_js_ts_task_code(
+        self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]
+    ) -> str:
         """JavaScript/TypeScript 작업별 코드 생성"""
         ext = Path(file_path).suffix.lower()
-        is_ts = ext in ('.ts', '.tsx')
+        is_ts = ext in (".ts", ".tsx")
 
         full_path = self.workspace / file_path
         existing_content = ""
         if full_path.exists():
-            existing_content = full_path.read_text(encoding='utf-8')
+            existing_content = full_path.read_text(encoding="utf-8")
 
         if existing_content:
-            return existing_content + f"\n\n// === Auto-generated for: {step.title} ===\n// TODO: Implement based on goal\n"
+            return (
+                existing_content
+                + f"\n\n// === Auto-generated for: {step.title} ===\n// TODO: Implement based on goal\n"
+            )
 
         return self._generate_js_ts_module(step, is_ts, goal)
 
@@ -432,15 +467,17 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def _generate_go_task_code(self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]) -> str:
+    def _generate_go_task_code(
+        self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]
+    ) -> str:
         """Go 작업별 코드 생성"""
-        if file_path.endswith('_test.go'):
+        if file_path.endswith("_test.go"):
             return self._generate_go_test(step, goal)
         else:
             return self._generate_go_module(step, goal)
 
     def _generate_go_module(self, step: PlanStep, goal: str) -> str:
-        template = '''// Package autogenerated - Auto-generated for: {title}
+        template = """// Package autogenerated - Auto-generated for: {title}
 // {desc}
 
 package autogenerated
@@ -472,16 +509,16 @@ func (a *AutoGeneratedStruct) Execute() map[string]interface{ob} {ob
 	}
 cb
 cb
-'''
+"""
         return template.format(
             title=step.title,
             desc=goal[:200],
-            ob='{',
-            cb='}',
+            ob="{",
+            cb="}",
         )
 
     def _generate_go_test(self, step: PlanStep, goal: str) -> str:
-        template = '''// Auto-generated test for: {title}
+        template = """// Auto-generated test for: {title}
 
 package autogenerated
 
@@ -509,22 +546,24 @@ func TestAutoGeneratedStruct_ExecuteWithConfig(t *testing.T) {ob
 	cb
 cb
 }}
-'''
+"""
         return template.format(
             title=step.title,
-            ob='{',
-            cb='}',
+            ob="{",
+            cb="}",
         )
 
-    def _generate_rust_task_code(self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]) -> str:
+    def _generate_rust_task_code(
+        self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]
+    ) -> str:
         """Rust 작업별 코드 생성"""
-        if '_test' in file_path or '/tests/' in file_path:
+        if "_test" in file_path or "/tests/" in file_path:
             return self._generate_rust_module(step, goal)
         else:
             return self._generate_rust_module(step, goal)
 
     def _generate_rust_module(self, step: PlanStep, goal: str) -> str:
-        return f'''// Auto-generated module for: {step.title}
+        return f"""// Auto-generated module for: {step.title}
 // {goal[:200]}
 
 use std::collections::HashMap;
@@ -576,16 +615,18 @@ mod tests {{
         assert_eq!(result.get("status"), Some(&serde_json::json!("completed")));
     }}
 }}
-'''
+"""
 
-    def _generate_generic_code(self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]) -> str:
+    def _generate_generic_code(
+        self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]
+    ) -> str:
         """범용 코드 생성"""
-        return f'''# Auto-generated for: {step.title}
+        return f"""# Auto-generated for: {step.title}
 # Goal: {goal[:200]}
 
 # TODO: Implement based on goal
 # File: {file_path}
-'''
+"""
 
     def _backup_file(self, file_path: str) -> None:
         """파일 백업"""
@@ -593,16 +634,16 @@ mod tests {{
         if full_path.exists():
             backup_path = self._backup_dir / f"{file_path.replace('/', '_')}.bak"
             backup_path.parent.mkdir(parents=True, exist_ok=True)
-            backup_path.write_text(full_path.read_text(encoding='utf-8'), encoding='utf-8')
+            backup_path.write_text(full_path.read_text(encoding="utf-8"), encoding="utf-8")
 
     def _apply_patch(self, file_path: str, new_content: str, step: PlanStep) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
-        existing = full_path.read_text(encoding='utf-8')
+        existing = full_path.read_text(encoding="utf-8")
 
         # 간단한 전략: 파일이 짧으면 전체 교체, 길면 패치 시도
-        if len(existing.split('\n')) < 100:
-            full_path.write_text(new_content, encoding='utf-8')
+        if len(existing.split("\n")) < 100:
+            full_path.write_text(new_content, encoding="utf-8")
         else:
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
@@ -612,23 +653,25 @@ mod tests {{
         import difflib
 
         # diff 생성
-        diff = list(difflib.unified_diff(
-            old_content.splitlines(keepends=True),
-            new_content.splitlines(keepends=True),
-            fromfile=f"a/{file_path}",
-            tofile=f"b/{file_path}",
-        ))
+        diff = list(
+            difflib.unified_diff(
+                old_content.splitlines(keepends=True),
+                new_content.splitlines(keepends=True),
+                fromfile=f"a/{file_path}",
+                tofile=f"b/{file_path}",
+            )
+        )
 
         if diff:
             # 임시 파일에 패치 저장
-            with tempfile.NamedTemporaryFile(mode='w', suffix='.patch', delete=False) as f:
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".patch", delete=False) as f:
                 f.writelines(diff)
                 patch_file = f.name
 
             try:
                 # patch 적용
                 result = subprocess.run(
-                    ['patch', '-p1', '-i', patch_file],
+                    ["patch", "-p1", "-i", patch_file],
                     cwd=self.workspace,
                     capture_output=True,
                     text=True,
@@ -636,10 +679,10 @@ mod tests {{
                 )
                 if result.returncode != 0:
                     # 패치 실패 시 전체 교체
-                    (self.workspace / file_path).write_text(new_content, encoding='utf-8')
+                    (self.workspace / file_path).write_text(new_content, encoding="utf-8")
             except Exception:
                 # 실패 시 전체 교체
-                (self.workspace / file_path).write_text(new_content, encoding='utf-8')
+                (self.workspace / file_path).write_text(new_content, encoding="utf-8")
             finally:
                 Path(patch_file).unlink(missing_ok=True)
         else:
@@ -650,7 +693,7 @@ mod tests {{
         """파일 생성"""
         full_path = self.workspace / file_path
         full_path.parent.mkdir(parents=True, exist_ok=True)
-        full_path.write_text(content, encoding='utf-8')
+        full_path.write_text(content, encoding="utf-8")
 
     def rollback(self, file_paths: list[str]) -> None:
         """백업에서 롤백"""
@@ -660,7 +703,7 @@ mod tests {{
 
             if backup_path.exists():
                 full_path.parent.mkdir(parents=True, exist_ok=True)
-                full_path.write_text(backup_path.read_text(encoding='utf-8'), encoding='utf-8')
+                full_path.write_text(backup_path.read_text(encoding="utf-8"), encoding="utf-8")
                 log.info(f"롤백: {file_path}")
 
 

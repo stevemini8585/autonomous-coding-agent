@@ -147,9 +147,7 @@ class IssueParser:
         # 작업 유형 패턴
         for task_type, keywords in self.TASK_TYPE_KEYWORDS.items():
             pattern = r"\b(" + "|".join(re.escape(k) for k in keywords) + r")\b"
-            patterns[f"task_type_{task_type.value}"] = re.compile(
-                pattern, re.IGNORECASE
-            )
+            patterns[f"task_type_{task_type.value}"] = re.compile(pattern, re.IGNORECASE)
 
         # 기술 스택 패턴
         for stack, keywords in self.TECH_STACK_PATTERNS.items():
@@ -201,9 +199,7 @@ class IssueParser:
 
         # 5. 복잡도 및 예상 시간 계산
         analysis.complexity = self._assess_complexity(analysis.parsed_tasks)
-        analysis.estimated_total_hours = sum(
-            t.estimated_hours for t in analysis.parsed_tasks
-        )
+        analysis.estimated_total_hours = sum(t.estimated_hours for t in analysis.parsed_tasks)
 
         log.info(f"이슈 #{issue_number} 파싱 완료: {len(analysis.parsed_tasks)}개 작업")
 

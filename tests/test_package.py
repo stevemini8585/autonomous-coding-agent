@@ -59,6 +59,7 @@ def test_imports():
 def test_version():
     """Test version is accessible"""
     import autonomous_coding_agent
+
     assert autonomous_coding_agent.__version__ == "0.1.0"
 
 
@@ -78,7 +79,7 @@ def test_edge_case_analyzer():
     assert -1 in int_cases
     assert 1 in int_cases
     assert 2**31 - 1 in int_cases
-    assert -2**31 in int_cases
+    assert -(2**31) in int_cases
 
 
 def test_parameter_combination_generator():
@@ -118,8 +119,8 @@ def test_mock_generator():
     mocks = gen.generate_mocks_for_imports(["httpx.AsyncClient", "redis.asyncio.Redis"])
     assert len(mocks) >= 1
     for mock in mocks:
-        assert hasattr(mock, 'target')
-        assert hasattr(mock, 'return_value')
+        assert hasattr(mock, "target")
+        assert hasattr(mock, "return_value")
 
 
 def test_test_generator():

@@ -19,6 +19,7 @@ log = logging.getLogger("autonomous_coding_agent.github")
 @dataclass
 class GitHubIssue:
     """GitHub Issue"""
+
     number: int
     title: str
     body: str
@@ -33,6 +34,7 @@ class GitHubIssue:
 @dataclass
 class GitHubPR:
     """GitHub Pull Request"""
+
     number: int
     title: str
     body: str
@@ -100,7 +102,9 @@ class GitHubClient:
 
     def get_issue(self, number: int) -> GitHubIssue | None:
         """이슈 조회"""
-        data = self._run_json(f"gh issue view {number} --json number,title,body,state,labels,assignees,createdAt,updatedAt,url")
+        data = self._run_json(
+            f"gh issue view {number} --json number,title,body,state,labels,assignees,createdAt,updatedAt,url"
+        )
         if not data:
             return None
 
@@ -116,7 +120,9 @@ class GitHubClient:
             url=data["url"],
         )
 
-    def list_issues(self, state: str = "open", labels: list[str] | None = None, limit: int = 20) -> list[GitHubIssue]:
+    def list_issues(
+        self, state: str = "open", labels: list[str] | None = None, limit: int = 20
+    ) -> list[GitHubIssue]:
         """이슈 목록 조회"""
         cmd = f"gh issue list --state {state} --limit {limit}"
         if labels:
@@ -142,7 +148,13 @@ class GitHubClient:
             for d in data
         ]
 
-    def create_issue(self, title: str, body: str, labels: list[str] | None = None, assignees: list[str] | None = None) -> int | None:
+    def create_issue(
+        self,
+        title: str,
+        body: str,
+        labels: list[str] | None = None,
+        assignees: list[str] | None = None,
+    ) -> int | None:
         """이슈 생성"""
         cmd = f'gh issue create --title "{title}" --body "{body}"'
         if labels:
@@ -194,7 +206,9 @@ class GitHubClient:
 
     # === PR 관련 ===
 
-    def create_pr(self, title: str, body: str, head: str, base: str = "main", draft: bool = False) -> int | None:
+    def create_pr(
+        self, title: str, body: str, head: str, base: str = "main", draft: bool = False
+    ) -> int | None:
         """PR 생성"""
         cmd = f'gh pr create --title "{title}" --body "{body}" --head {head} --base {base}'
         if draft:
@@ -243,7 +257,9 @@ class GitHubClient:
             changed_files=data.get("changedFiles", 0),
         )
 
-    def list_prs(self, state: str = "open", base: str | None = None, limit: int = 20) -> list[GitHubPR]:
+    def list_prs(
+        self, state: str = "open", base: str | None = None, limit: int = 20
+    ) -> list[GitHubPR]:
         """PR 목록 조회"""
         cmd = f"gh pr list --state {state} --limit {limit} --json number,title,body,state,headRefName,baseRefName,isDraft,createdAt,updatedAt,url,additions,deletions,changedFiles"
         if base:
@@ -290,7 +306,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def add_review_comment(self, number: int, body: str, path: str, line: int, side: str = "RIGHT") -> bool:
+    def add_review_comment(
+        self, number: int, body: str, path: str, line: int, side: str = "RIGHT"
+    ) -> bool:
         """PR 리뷰 코멘트 추가"""
         # gh api를 사용한 코멘트 추가
         comment_data = {
@@ -300,7 +318,7 @@ class GitHubClient:
             "side": side,
         }
         result = subprocess.run(
-            f'gh api repos/{{owner}}/{{repo}}/pulls/{number}/comments --input -',
+            f"gh api repos/{{owner}}/{{repo}}/pulls/{number}/comments --input -",
             input=json.dumps(comment_data),
             shell=True,
             cwd=self.workspace,
@@ -331,6 +349,7 @@ class GitHubClient:
         try:
             data = json.loads(result.stdout)
             import base64
+
             return base64.b64decode(data["content"]).decode("utf-8")
         except Exception:
             return None

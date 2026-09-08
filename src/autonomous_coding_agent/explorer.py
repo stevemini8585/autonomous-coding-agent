@@ -60,7 +60,9 @@ class CodeExplorer:
         result.config_files = self._find_config_files(result.files)
         result.test_files = self._find_test_files(result.files)
 
-        log.info(f"  심볼: {len(result.symbols)}개, 임포트 엣지: {sum(len(v) for v in result.import_graph.values())}개")
+        log.info(
+            f"  심볼: {len(result.symbols)}개, 임포트 엣지: {sum(len(v) for v in result.import_graph.values())}개"
+        )
 
         return result
 
@@ -70,18 +72,46 @@ class CodeExplorer:
 
         # 제외 패턴
         exclude_dirs = {
-            '__pycache__', '.git', '.venv', 'venv', 'env', 'node_modules',
-            'dist', 'build', '.pytest_cache', '.mypy_cache', '.ruff_cache',
-            'target', 'vendor', '.idea', '.vscode', '__MACOSX'
+            "__pycache__",
+            ".git",
+            ".venv",
+            "venv",
+            "env",
+            "node_modules",
+            "dist",
+            "build",
+            ".pytest_cache",
+            ".mypy_cache",
+            ".ruff_cache",
+            "target",
+            "vendor",
+            ".idea",
+            ".vscode",
+            "__MACOSX",
         }
         exclude_patterns = {
-            '*.pyc', '*.pyo', '*.pyd', '*.so', '*.dll', '*.dylib',
-            '*.min.js', '*.min.css', '*.map', '*.lock',
-            'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml',
-            'Cargo.lock', 'go.sum', 'poetry.lock', 'uv.lock'
+            "*.pyc",
+            "*.pyo",
+            "*.pyd",
+            "*.so",
+            "*.dll",
+            "*.dylib",
+            "*.min.js",
+            "*.min.css",
+            "*.map",
+            "*.lock",
+            "package-lock.json",
+            "yarn.lock",
+            "pnpm-lock.yaml",
+            "Cargo.lock",
+            "go.sum",
+            "poetry.lock",
+            "uv.lock",
         }
 
-        search_paths = [self.workspace / p for p in target_paths] if target_paths else [self.workspace]
+        search_paths = (
+            [self.workspace / p for p in target_paths] if target_paths else [self.workspace]
+        )
 
         for search_path in search_paths:
             if not search_path.exists():
@@ -110,27 +140,76 @@ class CodeExplorer:
     def _match_pattern(self, filename: str, pattern: str) -> bool:
         """글로브 패턴 매칭"""
         import fnmatch
+
         return fnmatch.fnmatch(filename, pattern)
 
     def _is_code_file(self, filename: str) -> bool:
         """코드 파일 여부"""
         code_extensions = {
-            '.py', '.js', '.jsx', '.ts', '.tsx', '.vue', '.svelte',
-            '.go', '.rs', '.java', '.kt', '.kts', '.scala',
-            '.cpp', '.cc', '.cxx', '.c', '.h', '.hpp',
-            '.cs', '.fs', '.vb',
-            '.rb', '.php', '.pl', '.pm',
-            '.swift', '.m', '.mm',
-            '.r', '.R', '.jl',
-            '.sh', '.bash', '.zsh', '.fish',
-            '.ps1', '.bat', '.cmd',
-            '.sql', '.graphql', '.gql',
-            '.yaml', '.yml', '.toml', '.ini', '.cfg', '.conf',
-            '.json', '.jsonc', '.xml', '.html', '.htm',
-            '.css', '.scss', '.sass', '.less',
-            '.md', '.rst', '.txt',
-            '.dockerfile', '.Dockerfile',
-            '.tf', '.tfvars',
+            ".py",
+            ".js",
+            ".jsx",
+            ".ts",
+            ".tsx",
+            ".vue",
+            ".svelte",
+            ".go",
+            ".rs",
+            ".java",
+            ".kt",
+            ".kts",
+            ".scala",
+            ".cpp",
+            ".cc",
+            ".cxx",
+            ".c",
+            ".h",
+            ".hpp",
+            ".cs",
+            ".fs",
+            ".vb",
+            ".rb",
+            ".php",
+            ".pl",
+            ".pm",
+            ".swift",
+            ".m",
+            ".mm",
+            ".r",
+            ".R",
+            ".jl",
+            ".sh",
+            ".bash",
+            ".zsh",
+            ".fish",
+            ".ps1",
+            ".bat",
+            ".cmd",
+            ".sql",
+            ".graphql",
+            ".gql",
+            ".yaml",
+            ".yml",
+            ".toml",
+            ".ini",
+            ".cfg",
+            ".conf",
+            ".json",
+            ".jsonc",
+            ".xml",
+            ".html",
+            ".htm",
+            ".css",
+            ".scss",
+            ".sass",
+            ".less",
+            ".md",
+            ".rst",
+            ".txt",
+            ".dockerfile",
+            ".Dockerfile",
+            ".tf",
+            ".tfvars",
         }
         return any(filename.endswith(ext) for ext in code_extensions)
 
@@ -144,14 +223,14 @@ class CodeExplorer:
 
         # 파일 내용 읽기
         try:
-            content = file_path.read_text(encoding='utf-8')
+            content = file_path.read_text(encoding="utf-8")
         except UnicodeDecodeError:
             try:
-                content = file_path.read_text(encoding='latin-1')
+                content = file_path.read_text(encoding="latin-1")
             except Exception:
                 content = ""
 
-        lines = content.count('\n') + 1 if content else 0
+        lines = content.count("\n") + 1 if content else 0
 
         # 임포트 추출
         imports = self._extract_imports(file_path, content, language)
@@ -168,44 +247,72 @@ class CodeExplorer:
         """언어 감지"""
         ext = file_path.suffix.lower()
         language_map = {
-            '.py': 'python',
-            '.js': 'javascript', '.jsx': 'javascript',
-            '.ts': 'typescript', '.tsx': 'typescript',
-            '.vue': 'vue', '.svelte': 'svelte',
-            '.go': 'go',
-            '.rs': 'rust',
-            '.java': 'java',
-            '.kt': 'kotlin', '.kts': 'kotlin',
-            '.scala': 'scala',
-            '.cpp': 'cpp', '.cc': 'cpp', '.cxx': 'cpp', '.c': 'c', '.h': 'c', '.hpp': 'cpp',
-            '.cs': 'csharp',
-            '.fs': 'fsharp', '.vb': 'vbnet',
-            '.rb': 'ruby',
-            '.php': 'php',
-            '.swift': 'swift',
-            '.r': 'r', '.R': 'r', '.jl': 'julia',
-            '.sh': 'bash', '.bash': 'bash', '.zsh': 'zsh', '.fish': 'fish',
-            '.ps1': 'powershell', '.bat': 'batch', '.cmd': 'batch',
-            '.sql': 'sql',
-            '.graphql': 'graphql', '.gql': 'graphql',
-            '.yaml': 'yaml', '.yml': 'yaml',
-            '.toml': 'toml',
-            '.ini': 'ini', '.cfg': 'ini', '.conf': 'ini',
-            '.json': 'json', '.jsonc': 'json',
-            '.xml': 'xml',
-            '.html': 'html', '.htm': 'html',
-            '.css': 'css', '.scss': 'scss', '.sass': 'sass', '.less': 'less',
-            '.md': 'markdown', '.rst': 'rst',
-            '.dockerfile': 'dockerfile',
-            '.tf': 'terraform', '.tfvars': 'terraform',
+            ".py": "python",
+            ".js": "javascript",
+            ".jsx": "javascript",
+            ".ts": "typescript",
+            ".tsx": "typescript",
+            ".vue": "vue",
+            ".svelte": "svelte",
+            ".go": "go",
+            ".rs": "rust",
+            ".java": "java",
+            ".kt": "kotlin",
+            ".kts": "kotlin",
+            ".scala": "scala",
+            ".cpp": "cpp",
+            ".cc": "cpp",
+            ".cxx": "cpp",
+            ".c": "c",
+            ".h": "c",
+            ".hpp": "cpp",
+            ".cs": "csharp",
+            ".fs": "fsharp",
+            ".vb": "vbnet",
+            ".rb": "ruby",
+            ".php": "php",
+            ".swift": "swift",
+            ".r": "r",
+            ".R": "r",
+            ".jl": "julia",
+            ".sh": "bash",
+            ".bash": "bash",
+            ".zsh": "zsh",
+            ".fish": "fish",
+            ".ps1": "powershell",
+            ".bat": "batch",
+            ".cmd": "batch",
+            ".sql": "sql",
+            ".graphql": "graphql",
+            ".gql": "graphql",
+            ".yaml": "yaml",
+            ".yml": "yaml",
+            ".toml": "toml",
+            ".ini": "ini",
+            ".cfg": "ini",
+            ".conf": "ini",
+            ".json": "json",
+            ".jsonc": "json",
+            ".xml": "xml",
+            ".html": "html",
+            ".htm": "html",
+            ".css": "css",
+            ".scss": "scss",
+            ".sass": "sass",
+            ".less": "less",
+            ".md": "markdown",
+            ".rst": "rst",
+            ".dockerfile": "dockerfile",
+            ".tf": "terraform",
+            ".tfvars": "terraform",
         }
-        return language_map.get(ext, 'unknown')
+        return language_map.get(ext, "unknown")
 
     def _extract_imports(self, file_path: Path, content: str, language: str) -> list[str]:
         """임포트 구문 추출"""
         imports = []
 
-        if language == 'python':
+        if language == "python":
             try:
                 tree = ast.parse(content)
                 for node in ast.walk(tree):
@@ -213,36 +320,41 @@ class CodeExplorer:
                         for alias in node.names:
                             imports.append(alias.name)
                     elif isinstance(node, ast.ImportFrom):
-                        module = node.module or ''
+                        module = node.module or ""
                         for alias in node.names:
                             imports.append(f"{module}.{alias.name}" if module else alias.name)
             except SyntaxError:
                 pass
 
-        elif language in ('javascript', 'typescript'):
+        elif language in ("javascript", "typescript"):
             # 간단한 regex 기반 추출
             import re
+
             # import ... from ...
-            for match in re.finditer(r'import\s+(?:[^;\n]*\s+from\s+)?[\'"]([^\'"]+)[\'"]', content):
+            for match in re.finditer(
+                r'import\s+(?:[^;\n]*\s+from\s+)?[\'"]([^\'"]+)[\'"]', content
+            ):
                 imports.append(match.group(1))
             # require(...)
             for match in re.finditer(r'require\s*\(\s*[\'"]([^\'"]+)[\'"]\s*\)', content):
                 imports.append(match.group(1))
 
-        elif language == 'go':
+        elif language == "go":
             import re
+
             for match in re.finditer(r'import\s+(?:\(([^)]+)\)|[\'"]([^\'"]+)[\'"])', content):
                 if match.group(1):
-                    for line in match.group(1).split('\n'):
+                    for line in match.group(1).split("\n"):
                         line = line.strip().strip('"')
                         if line:
                             imports.append(line)
                 elif match.group(2):
                     imports.append(match.group(2))
 
-        elif language == 'rust':
+        elif language == "rust":
             import re
-            for match in re.finditer(r'use\s+([^;]+);', content):
+
+            for match in re.finditer(r"use\s+([^;]+);", content):
                 imports.append(match.group(1).strip())
 
         return imports
@@ -252,17 +364,17 @@ class CodeExplorer:
         symbols = []
 
         try:
-            content = file_path.read_text(encoding='utf-8')
+            content = file_path.read_text(encoding="utf-8")
         except Exception:
             return symbols
 
-        if file_info.language == 'python':
+        if file_info.language == "python":
             symbols.extend(self._extract_python_symbols(file_path, content))
-        elif file_info.language in ('javascript', 'typescript'):
+        elif file_info.language in ("javascript", "typescript"):
             symbols.extend(self._extract_js_ts_symbols(file_path, content, file_info.language))
-        elif file_info.language == 'go':
+        elif file_info.language == "go":
             symbols.extend(self._extract_go_symbols(file_path, content))
-        elif file_info.language == 'rust':
+        elif file_info.language == "rust":
             symbols.extend(self._extract_rust_symbols(file_path, content))
 
         return symbols
@@ -279,35 +391,43 @@ class CodeExplorer:
 
         for node in ast.walk(tree):
             if isinstance(node, ast.FunctionDef):
-                symbols.append(CodeSymbol(
-                    name=node.name,
-                    type='function' if not self._is_method(node, tree) else 'method',
-                    file_path=str(rel_path),
-                    line_start=node.lineno,
-                    line_end=node.end_lineno or node.lineno,
-                    signature=self._get_function_signature(node),
-                    docstring=ast.get_docstring(node) or '',
-                ))
+                symbols.append(
+                    CodeSymbol(
+                        name=node.name,
+                        type="function" if not self._is_method(node, tree) else "method",
+                        file_path=str(rel_path),
+                        line_start=node.lineno,
+                        line_end=node.end_lineno or node.lineno,
+                        signature=self._get_function_signature(node),
+                        docstring=ast.get_docstring(node) or "",
+                    )
+                )
             elif isinstance(node, ast.ClassDef):
-                symbols.append(CodeSymbol(
-                    name=node.name,
-                    type='class',
-                    file_path=str(rel_path),
-                    line_start=node.lineno,
-                    line_end=node.end_lineno or node.lineno,
-                    signature=f"class {node.name}",
-                    docstring=ast.get_docstring(node) or '',
-                ))
+                symbols.append(
+                    CodeSymbol(
+                        name=node.name,
+                        type="class",
+                        file_path=str(rel_path),
+                        line_start=node.lineno,
+                        line_end=node.end_lineno or node.lineno,
+                        signature=f"class {node.name}",
+                        docstring=ast.get_docstring(node) or "",
+                    )
+                )
             elif isinstance(node, ast.AsyncFunctionDef):
-                symbols.append(CodeSymbol(
-                    name=node.name,
-                    type='async_function' if not self._is_method(node, tree) else 'async_method',
-                    file_path=str(rel_path),
-                    line_start=node.lineno,
-                    line_end=node.end_lineno or node.lineno,
-                    signature=self._get_async_function_signature(node),
-                    docstring=ast.get_docstring(node) or '',
-                ))
+                symbols.append(
+                    CodeSymbol(
+                        name=node.name,
+                        type=(
+                            "async_function" if not self._is_method(node, tree) else "async_method"
+                        ),
+                        file_path=str(rel_path),
+                        line_start=node.lineno,
+                        line_end=node.end_lineno or node.lineno,
+                        signature=self._get_async_function_signature(node),
+                        docstring=ast.get_docstring(node) or "",
+                    )
+                )
 
         return symbols
 
@@ -334,7 +454,9 @@ class CodeExplorer:
         if node.args.kwarg:
             args.append(f"**{node.args.kwarg.arg}")
 
-        returns = f" -> {ast.unparse(node.returns)}" if node.returns and hasattr(ast, 'unparse') else ""
+        returns = (
+            f" -> {ast.unparse(node.returns)}" if node.returns and hasattr(ast, "unparse") else ""
+        )
 
         return f"def {node.name}({', '.join(args)}){returns}"
 
@@ -342,7 +464,9 @@ class CodeExplorer:
         """비동기 함수 시그니처"""
         return "async " + self._get_function_signature(node)
 
-    def _extract_js_ts_symbols(self, file_path: Path, content: str, language: str) -> list[CodeSymbol]:
+    def _extract_js_ts_symbols(
+        self, file_path: Path, content: str, language: str
+    ) -> list[CodeSymbol]:
         """JavaScript/TypeScript 심볼 추출 (간단한 regex)"""
         symbols = []
         rel_path = file_path.relative_to(self.workspace)
@@ -350,45 +474,46 @@ class CodeExplorer:
 
         # function 선언
         for match in re.finditer(
-            r'(?:export\s+)?(?:async\s+)?function\s+(\w+)\s*\(([^)]*)\)',
-            content
+            r"(?:export\s+)?(?:async\s+)?function\s+(\w+)\s*\(([^)]*)\)", content
         ):
-            symbols.append(CodeSymbol(
-                name=match.group(1),
-                type='function',
-                file_path=str(rel_path),
-                line_start=content[:match.start()].count('\n') + 1,
-                line_end=content[:match.end()].count('\n') + 1,
-                signature=f"function {match.group(1)}({match.group(2)})",
-            ))
+            symbols.append(
+                CodeSymbol(
+                    name=match.group(1),
+                    type="function",
+                    file_path=str(rel_path),
+                    line_start=content[: match.start()].count("\n") + 1,
+                    line_end=content[: match.end()].count("\n") + 1,
+                    signature=f"function {match.group(1)}({match.group(2)})",
+                )
+            )
 
         # 화살표 함수 (const/let/var)
         for match in re.finditer(
-            r'(?:export\s+)?(?:const|let|var)\s+(\w+)\s*=\s*(?:async\s+)?\(([^)]*)\)\s*=>',
-            content
+            r"(?:export\s+)?(?:const|let|var)\s+(\w+)\s*=\s*(?:async\s+)?\(([^)]*)\)\s*=>", content
         ):
-            symbols.append(CodeSymbol(
-                name=match.group(1),
-                type='arrow_function',
-                file_path=str(rel_path),
-                line_start=content[:match.start()].count('\n') + 1,
-                line_end=content[:match.end()].count('\n') + 1,
-                signature=f"const {match.group(1)} = ({match.group(2)}) =>",
-            ))
+            symbols.append(
+                CodeSymbol(
+                    name=match.group(1),
+                    type="arrow_function",
+                    file_path=str(rel_path),
+                    line_start=content[: match.start()].count("\n") + 1,
+                    line_end=content[: match.end()].count("\n") + 1,
+                    signature=f"const {match.group(1)} = ({match.group(2)}) =>",
+                )
+            )
 
         # 클래스
-        for match in re.finditer(
-            r'(?:export\s+)?class\s+(\w+)(?:\s+extends\s+\w+)?\s*\{',
-            content
-        ):
-            symbols.append(CodeSymbol(
-                name=match.group(1),
-                type='class',
-                file_path=str(rel_path),
-                line_start=content[:match.start()].count('\n') + 1,
-                line_end=content[:match.end()].count('\n') + 1,
-                signature=f"class {match.group(1)}",
-            ))
+        for match in re.finditer(r"(?:export\s+)?class\s+(\w+)(?:\s+extends\s+\w+)?\s*\{", content):
+            symbols.append(
+                CodeSymbol(
+                    name=match.group(1),
+                    type="class",
+                    file_path=str(rel_path),
+                    line_start=content[: match.start()].count("\n") + 1,
+                    line_end=content[: match.end()].count("\n") + 1,
+                    signature=f"class {match.group(1)}",
+                )
+            )
 
         return symbols
 
@@ -399,46 +524,43 @@ class CodeExplorer:
         import re
 
         # 함수
-        for match in re.finditer(
-            r'func\s+(?:\([^)]+\)\s+)?(\w+)\s*\(([^)]*)\)',
-            content
-        ):
-            symbols.append(CodeSymbol(
-                name=match.group(1),
-                type='function',
-                file_path=str(rel_path),
-                line_start=content[:match.start()].count('\n') + 1,
-                line_end=content[:match.end()].count('\n') + 1,
-                signature=f"func {match.group(1)}({match.group(2)})",
-            ))
+        for match in re.finditer(r"func\s+(?:\([^)]+\)\s+)?(\w+)\s*\(([^)]*)\)", content):
+            symbols.append(
+                CodeSymbol(
+                    name=match.group(1),
+                    type="function",
+                    file_path=str(rel_path),
+                    line_start=content[: match.start()].count("\n") + 1,
+                    line_end=content[: match.end()].count("\n") + 1,
+                    signature=f"func {match.group(1)}({match.group(2)})",
+                )
+            )
 
         # 구조체
-        for match in re.finditer(
-            r'type\s+(\w+)\s+struct\s*\{',
-            content
-        ):
-            symbols.append(CodeSymbol(
-                name=match.group(1),
-                type='struct',
-                file_path=str(rel_path),
-                line_start=content[:match.start()].count('\n') + 1,
-                line_end=content[:match.end()].count('\n') + 1,
-                signature=f"type {match.group(1)} struct",
-            ))
+        for match in re.finditer(r"type\s+(\w+)\s+struct\s*\{", content):
+            symbols.append(
+                CodeSymbol(
+                    name=match.group(1),
+                    type="struct",
+                    file_path=str(rel_path),
+                    line_start=content[: match.start()].count("\n") + 1,
+                    line_end=content[: match.end()].count("\n") + 1,
+                    signature=f"type {match.group(1)} struct",
+                )
+            )
 
         # 인터페이스
-        for match in re.finditer(
-            r'type\s+(\w+)\s+interface\s*\{',
-            content
-        ):
-            symbols.append(CodeSymbol(
-                name=match.group(1),
-                type='interface',
-                file_path=str(rel_path),
-                line_start=content[:match.start()].count('\n') + 1,
-                line_end=content[:match.end()].count('\n') + 1,
-                signature=f"type {match.group(1)} interface",
-            ))
+        for match in re.finditer(r"type\s+(\w+)\s+interface\s*\{", content):
+            symbols.append(
+                CodeSymbol(
+                    name=match.group(1),
+                    type="interface",
+                    file_path=str(rel_path),
+                    line_start=content[: match.start()].count("\n") + 1,
+                    line_end=content[: match.end()].count("\n") + 1,
+                    signature=f"type {match.group(1)} interface",
+                )
+            )
 
         return symbols
 
@@ -449,60 +571,56 @@ class CodeExplorer:
         import re
 
         # 함수
-        for match in re.finditer(
-            r'(?:pub\s+)?(?:async\s+)?fn\s+(\w+)\s*\(([^)]*)\)',
-            content
-        ):
-            symbols.append(CodeSymbol(
-                name=match.group(1),
-                type='function',
-                file_path=str(rel_path),
-                line_start=content[:match.start()].count('\n') + 1,
-                line_end=content[:match.end()].count('\n') + 1,
-                signature=f"fn {match.group(1)}({match.group(2)})",
-            ))
+        for match in re.finditer(r"(?:pub\s+)?(?:async\s+)?fn\s+(\w+)\s*\(([^)]*)\)", content):
+            symbols.append(
+                CodeSymbol(
+                    name=match.group(1),
+                    type="function",
+                    file_path=str(rel_path),
+                    line_start=content[: match.start()].count("\n") + 1,
+                    line_end=content[: match.end()].count("\n") + 1,
+                    signature=f"fn {match.group(1)}({match.group(2)})",
+                )
+            )
 
         # 구조체
-        for match in re.finditer(
-            r'(?:pub\s+)?struct\s+(\w+)',
-            content
-        ):
-            symbols.append(CodeSymbol(
-                name=match.group(1),
-                type='struct',
-                file_path=str(rel_path),
-                line_start=content[:match.start()].count('\n') + 1,
-                line_end=content[:match.end()].count('\n') + 1,
-                signature=f"struct {match.group(1)}",
-            ))
+        for match in re.finditer(r"(?:pub\s+)?struct\s+(\w+)", content):
+            symbols.append(
+                CodeSymbol(
+                    name=match.group(1),
+                    type="struct",
+                    file_path=str(rel_path),
+                    line_start=content[: match.start()].count("\n") + 1,
+                    line_end=content[: match.end()].count("\n") + 1,
+                    signature=f"struct {match.group(1)}",
+                )
+            )
 
         # 열거형
-        for match in re.finditer(
-            r'(?:pub\s+)?enum\s+(\w+)',
-            content
-        ):
-            symbols.append(CodeSymbol(
-                name=match.group(1),
-                type='enum',
-                file_path=str(rel_path),
-                line_start=content[:match.start()].count('\n') + 1,
-                line_end=content[:match.end()].count('\n') + 1,
-                signature=f"enum {match.group(1)}",
-            ))
+        for match in re.finditer(r"(?:pub\s+)?enum\s+(\w+)", content):
+            symbols.append(
+                CodeSymbol(
+                    name=match.group(1),
+                    type="enum",
+                    file_path=str(rel_path),
+                    line_start=content[: match.start()].count("\n") + 1,
+                    line_end=content[: match.end()].count("\n") + 1,
+                    signature=f"enum {match.group(1)}",
+                )
+            )
 
         # 트레이트
-        for match in re.finditer(
-            r'(?:pub\s+)?trait\s+(\w+)',
-            content
-        ):
-            symbols.append(CodeSymbol(
-                name=match.group(1),
-                type='trait',
-                file_path=str(rel_path),
-                line_start=content[:match.start()].count('\n') + 1,
-                line_end=content[:match.end()].count('\n') + 1,
-                signature=f"trait {match.group(1)}",
-            ))
+        for match in re.finditer(r"(?:pub\s+)?trait\s+(\w+)", content):
+            symbols.append(
+                CodeSymbol(
+                    name=match.group(1),
+                    type="trait",
+                    file_path=str(rel_path),
+                    line_start=content[: match.start()].count("\n") + 1,
+                    line_end=content[: match.end()].count("\n") + 1,
+                    signature=f"trait {match.group(1)}",
+                )
+            )
 
         return symbols
 
@@ -519,12 +637,12 @@ class CodeExplorer:
         for file_path, syms in file_symbols.items():
             full_path = self.workspace / file_path
             try:
-                content = full_path.read_text(encoding='utf-8')
+                content = full_path.read_text(encoding="utf-8")
             except Exception:
                 continue
 
             for sym in syms:
-                if sym.type in ('function', 'method', 'async_function', 'async_method'):
+                if sym.type in ("function", "method", "async_function", "async_method"):
                     # 함수 내부에서 다른 심볼 이름 호출 패턴 찾기
                     # 간단화: 심볼 이름이 코드에 나타나는지 체크
                     for other_sym in symbols:
@@ -540,15 +658,15 @@ class CodeExplorer:
 
         for sym in symbols:
             name_lower = sym.name.lower()
-            if name_lower in ('main', 'run', 'cli', 'execute', 'handler', 'lambda_handler'):
+            if name_lower in ("main", "run", "cli", "execute", "handler", "lambda_handler"):
                 entry_points.append(f"{sym.file_path}:{sym.name}")
 
         # 파일명 기반
         for file_info in files:
             name_lower = Path(file_info.path).stem.lower()
-            if name_lower in ('main', 'cli', 'app', 'server', 'worker', 'handler', 'lambda'):
+            if name_lower in ("main", "cli", "app", "server", "worker", "handler", "lambda"):
                 entry_points.append(file_info.path)
-            if name_lower.startswith('test_') or name_lower.endswith('_test'):
+            if name_lower.startswith("test_") or name_lower.endswith("_test"):
                 entry_points.append(file_info.path)
 
         return list(set(entry_points))
@@ -556,14 +674,37 @@ class CodeExplorer:
     def _find_config_files(self, files: list[FileInfo]) -> list[str]:
         """설정 파일 찾기"""
         config_names = {
-            'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', 'poetry.lock',
-            'package.json', 'tsconfig.json', 'eslint.config.js', 'prettier.config.js',
-            'Cargo.toml', 'go.mod', 'pom.xml', 'build.gradle', 'build.gradle.kts',
-            '.env', '.env.example', '.env.local',
-            'docker-compose.yml', 'docker-compose.yaml', 'Dockerfile',
-            '.github/workflows', '.gitlab-ci.yml', 'jenkinsfile',
-            'pyrightconfig.json', 'mypy.ini', 'ruff.toml', '.ruff.toml',
-            'jest.config.js', 'vitest.config.ts', 'playwright.config.ts',
+            "pyproject.toml",
+            "setup.py",
+            "setup.cfg",
+            "requirements.txt",
+            "Pipfile",
+            "poetry.lock",
+            "package.json",
+            "tsconfig.json",
+            "eslint.config.js",
+            "prettier.config.js",
+            "Cargo.toml",
+            "go.mod",
+            "pom.xml",
+            "build.gradle",
+            "build.gradle.kts",
+            ".env",
+            ".env.example",
+            ".env.local",
+            "docker-compose.yml",
+            "docker-compose.yaml",
+            "Dockerfile",
+            ".github/workflows",
+            ".gitlab-ci.yml",
+            "jenkinsfile",
+            "pyrightconfig.json",
+            "mypy.ini",
+            "ruff.toml",
+            ".ruff.toml",
+            "jest.config.js",
+            "vitest.config.ts",
+            "playwright.config.ts",
         }
 
         configs = []
@@ -588,17 +729,17 @@ class CodeExplorer:
 
             # 패턴 매칭
             is_test = (
-                name.startswith('test_') or
-                name.endswith('_test.py') or
-                name.endswith('.test.js') or
-                name.endswith('.test.ts') or
-                name.endswith('.spec.js') or
-                name.endswith('.spec.ts') or
-                stem.endswith('_test') or
-                stem.endswith('Test') or
-                'test' in Path(file_info.path).parts or
-                '__tests__' in Path(file_info.path).parts or
-                'tests' in Path(file_info.path).parts
+                name.startswith("test_")
+                or name.endswith("_test.py")
+                or name.endswith(".test.js")
+                or name.endswith(".test.ts")
+                or name.endswith(".spec.js")
+                or name.endswith(".spec.ts")
+                or stem.endswith("_test")
+                or stem.endswith("Test")
+                or "test" in Path(file_info.path).parts
+                or "__tests__" in Path(file_info.path).parts
+                or "tests" in Path(file_info.path).parts
             )
 
             if is_test:
@@ -638,7 +779,7 @@ class CodeExplorer:
 
         full_path = self.workspace / file_path
         try:
-            content = full_path.read_text(encoding='utf-8')
+            content = full_path.read_text(encoding="utf-8")
             self._file_cache[file_path] = content
             return content
         except Exception as e:

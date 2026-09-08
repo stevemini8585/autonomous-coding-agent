@@ -157,9 +157,7 @@ class WebSearcher:
 
         return results
 
-    def _search_google(
-        self, query: str, max_results: int, **kwargs
-    ) -> list[SearchResult]:
+    def _search_google(self, query: str, max_results: int, **kwargs) -> list[SearchResult]:
         """Google Custom Search API (API 키 필요)"""
         results = []
         api_key = kwargs.get("api_key")
@@ -176,10 +174,7 @@ class WebSearcher:
                 "cx": cse_id,
                 "num": min(max_results, 10),
             }
-            url = (
-                "https://www.googleapis.com/customsearch/v1?"
-                + urllib.parse.urlencode(params)
-            )
+            url = "https://www.googleapis.com/customsearch/v1?" + urllib.parse.urlencode(params)
 
             with self._opener.open(url, timeout=self.timeout) as response:
                 data = json.loads(response.read().decode())
@@ -212,10 +207,7 @@ class WebSearcher:
                 "order": "desc",
                 "per_page": max_results,
             }
-            url = (
-                "https://api.github.com/search/repositories?"
-                + urllib.parse.urlencode(params)
-            )
+            url = "https://api.github.com/search/repositories?" + urllib.parse.urlencode(params)
 
             req = urllib.request.Request(
                 url,
@@ -309,8 +301,7 @@ class WebSearcher:
                         url=f"https://www.npmjs.com/package/{pkg_info.get('name', '')}",
                         snippet=pkg_info.get("description", "") or "",
                         source="npm",
-                        relevance_score=pkg.get("score", {}).get("final", 1.0)
-                        - (i * 0.1),
+                        relevance_score=pkg.get("score", {}).get("final", 1.0) - (i * 0.1),
                         metadata={
                             "name": pkg_info.get("name", ""),
                             "version": pkg_info.get("version", ""),
@@ -346,9 +337,7 @@ class WebSearcher:
         # 관련도 점수로 정렬 후 중복 제거
         seen_urls = set()
         unique_results = []
-        for result in sorted(
-            all_results, key=lambda r: r.relevance_score, reverse=True
-        ):
+        for result in sorted(all_results, key=lambda r: r.relevance_score, reverse=True):
             if result.url not in seen_urls:
                 seen_urls.add(result.url)
                 unique_results.append(result)
@@ -602,35 +591,24 @@ class DocumentationParser:
         )
 
         # 리스트 변환
-        html = re.sub(
-            r"<li[^>]*>(.*?)</li>", r"- \1", html, flags=re.DOTALL | re.IGNORECASE
-        )
+        html = re.sub(r"<li[^>]*>(.*?)</li>", r"- \1", html, flags=re.DOTALL | re.IGNORECASE)
         html = re.sub(r"</?(ul|ol)[^>]*>", "", html, flags=re.IGNORECASE)
 
         # 단락
-        html = re.sub(
-            r"<p[^>]*>(.*?)</p>", r"\1\n\n", html, flags=re.DOTALL | re.IGNORECASE
-        )
+        html = re.sub(r"<p[^>]*>(.*?)</p>", r"\1\n\n", html, flags=re.DOTALL | re.IGNORECASE)
         html = re.sub(r"<br[^>]*>", "\n", html, flags=re.IGNORECASE)
 
         # 굵게/기울임
         html = re.sub(
             r"<(strong|b)[^>]*>(.*?)</\1>", r"**\2**", html, flags=re.DOTALL | re.IGNORECASE
         )
-        html = re.sub(
-            r"<(em|i)[^>]*>(.*?)</\1>", r"*\2*", html, flags=re.DOTALL | re.IGNORECASE
-        )
+        html = re.sub(r"<(em|i)[^>]*>(.*?)</\1>", r"*\2*", html, flags=re.DOTALL | re.IGNORECASE)
 
         # 나머지 태그 제거
         html = re.sub(r"<[^>]+>", " ", html)
 
         # 엔티티 디코딩
-        html = (
-            html.replace("&nbsp;", " ")
-            .replace("<", "<")
-            .replace(">", ">")
-            .replace("&", "&")
-        )
+        html = html.replace("&nbsp;", " ").replace("<", "<").replace(">", ">").replace("&", "&")
 
         # 코드 블록 복원
         for i, code in enumerate(code_blocks):
@@ -660,21 +638,12 @@ class DocumentationParser:
     def _strip_html(self, html: str) -> str:
         """HTML 태그 제거 및 텍스트 정리"""
         # 스크립트/스타일 제거
-        html = re.sub(
-            r"<script[^>]*>.*?</script>", "", html, flags=re.DOTALL | re.IGNORECASE
-        )
-        html = re.sub(
-            r"<style[^>]*>.*?</style>", "", html, flags=re.DOTALL | re.IGNORECASE
-        )
+        html = re.sub(r"<script[^>]*>.*?</script>", "", html, flags=re.DOTALL | re.IGNORECASE)
+        html = re.sub(r"<style[^>]*>.*?</style>", "", html, flags=re.DOTALL | re.IGNORECASE)
         # 태그 제거
         text = re.sub(r"<[^>]+>", " ", html)
         # 엔티티 디코딩
-        text = (
-            text.replace("&nbsp;", " ")
-            .replace("<", "<")
-            .replace(">", ">")
-            .replace("&", "&")
-        )
+        text = text.replace("&nbsp;", " ").replace("<", "<").replace(">", ">").replace("&", "&")
         # 공백 정리
         text = re.sub(r"\s+", " ", text)
         return text.strip()
@@ -815,7 +784,9 @@ class VersionChecker:
 
             # 최신 안정 버전 (pre-release 제외)
             versions = list(releases.keys())
-            stable_versions = [v for v in versions if not any(x in v for x in ["a", "b", "rc", "dev"])]
+            stable_versions = [
+                v for v in versions if not any(x in v for x in ["a", "b", "rc", "dev"])
+            ]
 
             def version_key(v: str) -> tuple:
                 """버전 문자열을 비교 가능한 튜플로 변환"""
@@ -828,7 +799,9 @@ class VersionChecker:
                         parts.append(0)
                 return tuple(parts)
 
-            latest_stable = max(stable_versions, key=version_key) if stable_versions else info.get("version")
+            latest_stable = (
+                max(stable_versions, key=version_key) if stable_versions else info.get("version")
+            )
 
             return {
                 "name": info.get("name"),
@@ -894,7 +867,10 @@ class VersionChecker:
             url = f"https://api.github.com/repos/{owner}/{repo}/releases?per_page=5"
             req = urllib.request.Request(
                 url,
-                headers={"Accept": "application/vnd.github.v3+json", "User-Agent": "AutonomousCodingAgent/1.0"},
+                headers={
+                    "Accept": "application/vnd.github.v3+json",
+                    "User-Agent": "AutonomousCodingAgent/1.0",
+                },
             )
             with self._opener.open(req, timeout=self.timeout) as response:
                 releases = json.loads(response.read().decode())
@@ -906,7 +882,10 @@ class VersionChecker:
             url = f"https://api.github.com/repos/{owner}/{repo}"
             req = urllib.request.Request(
                 url,
-                headers={"Accept": "application/vnd.github.v3+json", "User-Agent": "AutonomousCodingAgent/1.0"},
+                headers={
+                    "Accept": "application/vnd.github.v3+json",
+                    "User-Agent": "AutonomousCodingAgent/1.0",
+                },
             )
             with self._opener.open(req, timeout=self.timeout) as response:
                 repo_info = json.loads(response.read().decode())
@@ -918,7 +897,11 @@ class VersionChecker:
                 "description": repo_info.get("description"),
                 "stars": repo_info.get("stargazers_count"),
                 "language": repo_info.get("language"),
-                "license": repo_info.get("license", {}).get("spdx_id") if repo_info.get("license") else None,
+                "license": (
+                    repo_info.get("license", {}).get("spdx_id")
+                    if repo_info.get("license")
+                    else None
+                ),
                 "latest_release": {
                     "tag": latest_release.get("tag_name") if latest_release else None,
                     "name": latest_release.get("name") if latest_release else None,
@@ -935,7 +918,9 @@ class VersionChecker:
 
     def check_compatibility(
         self,
-        packages: list[dict[str, str]],  # [{"name": "fastapi", "type": "pypi", "current_version": "0.68.0"}]
+        packages: list[
+            dict[str, str]
+        ],  # [{"name": "fastapi", "type": "pypi", "current_version": "0.68.0"}]
     ) -> dict[str, Any]:
         """여러 패키지의 호환성 종합 확인"""
         results = {
@@ -977,14 +962,16 @@ class VersionChecker:
                     except ValueError:
                         version_status = "unknown"
 
-                results["packages"].append({
-                    "name": name,
-                    "type": pkg_type,
-                    "current_version": current_version,
-                    "latest_version": latest,
-                    "version_status": version_status,
-                    "info": info,
-                })
+                results["packages"].append(
+                    {
+                        "name": name,
+                        "type": pkg_type,
+                        "current_version": current_version,
+                        "latest_version": latest,
+                        "version_status": version_status,
+                        "info": info,
+                    }
+                )
 
                 # 경고 생성
                 if version_status == "outdated":

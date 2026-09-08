@@ -173,10 +173,7 @@ class AutonomousCodingAgent:
         """실행 루프"""
         log.info("3️⃣ 실행 루프 시작...")
 
-        while (
-            not self.state.plan.is_complete()
-            and self.state.iteration < self.max_iterations
-        ):
+        while not self.state.plan.is_complete() and self.state.iteration < self.max_iterations:
             self.state.iteration += 1
             log.info(f"--- 반복 {self.state.iteration}/{self.max_iterations} ---")
 
@@ -203,9 +200,7 @@ class AutonomousCodingAgent:
 
             # 중간 체크포인트
             if self.state.iteration % 2 == 0:
-                self.state_manager.create_checkpoint(
-                    self.state, f"iter_{self.state.iteration}"
-                )
+                self.state_manager.create_checkpoint(self.state, f"iter_{self.state.iteration}")
 
         log.info(f"실행 루프 완료: {self.state.iteration}회 반복")
 
@@ -259,10 +254,7 @@ class AutonomousCodingAgent:
                         step.artifacts["critique"] = critique.__dict__
 
                         # 재시도 로직
-                        if (
-                            critique.should_retry
-                            and step.retry_count < step.max_retries
-                        ):
+                        if critique.should_retry and step.retry_count < step.max_retries:
                             step.retry_count += 1
                             step.status = StepStatus.PENDING
                             log.info(
@@ -272,18 +264,14 @@ class AutonomousCodingAgent:
 
                 # 3. 비평 (검증 통과한 경우에도)
                 if step.type == StepType.CODE and verification.passed:
-                    verification_obj = VerificationResult(
-                        **step.artifacts.get("verification", {})
-                    )
+                    verification_obj = VerificationResult(**step.artifacts.get("verification", {}))
                     critique = self.critic.critique(step, verification_obj, context)
                     step.artifacts["critique"] = critique.__dict__
 
                     if critique.should_retry and step.retry_count < step.max_retries:
                         step.retry_count += 1
                         step.status = StepStatus.PENDING
-                        log.info(
-                            f"  🔄 [병렬] 재시도 예정 ({step.retry_count}/{step.max_retries})"
-                        )
+                        log.info(f"  🔄 [병렬] 재시도 예정 ({step.retry_count}/{step.max_retries})")
                         return step, None
 
                 step.status = StepStatus.COMPLETED
@@ -300,9 +288,7 @@ class AutonomousCodingAgent:
         max_workers = min(4, len(steps))
         with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
             # 모든 단계 제출
-            future_to_step = {
-                executor.submit(run_step_in_thread, step): step for step in steps
-            }
+            future_to_step = {executor.submit(run_step_in_thread, step): step for step in steps}
 
             # 완료 순서대로 결과 수집
             for future in concurrent.futures.as_completed(future_to_step):
@@ -363,25 +349,19 @@ class AutonomousCodingAgent:
                     if critique.should_retry and step.retry_count < step.max_retries:
                         step.retry_count += 1
                         step.status = StepStatus.PENDING
-                        log.info(
-                            f"  🔄 재시도 예정 ({step.retry_count}/{step.max_retries})"
-                        )
+                        log.info(f"  🔄 재시도 예정 ({step.retry_count}/{step.max_retries})")
                     return
 
             # 3. 비평 (검증 통과한 경우에도)
             if step.type == StepType.CODE and verification.passed:
-                verification_obj = VerificationResult(
-                    **step.artifacts.get("verification", {})
-                )
+                verification_obj = VerificationResult(**step.artifacts.get("verification", {}))
                 critique = self.critic.critique(step, verification_obj, context)
                 step.artifacts["critique"] = critique.__dict__
 
                 if critique.should_retry and step.retry_count < step.max_retries:
                     step.retry_count += 1
                     step.status = StepStatus.PENDING
-                    log.info(
-                        f"  🔄 품질 개선 위해 재시도 ({step.retry_count}/{step.max_retries})"
-                    )
+                    log.info(f"  🔄 품질 개선 위해 재시도 ({step.retry_count}/{step.max_retries})")
                     return
 
             step.status = StepStatus.COMPLETED
@@ -434,9 +414,7 @@ class AutonomousCodingAgent:
 
         for check_name, v in final_verification.items():
             status = "✅" if v.passed else "❌"
-            summary_parts.append(
-                f"{status} {check_name}: {'통과' if v.passed else '실패'}"
-            )
+            summary_parts.append(f"{status} {check_name}: {'통과' if v.passed else '실패'}")
 
         return {
             "success": all_passed,
@@ -455,12 +433,8 @@ class AutonomousCodingAgent:
             "iteration": self.state.iteration,
             "max_iterations": self.max_iterations,
             "current_step": self.state.current_step_id,
-            "plan_complete": (
-                self.state.plan.is_complete() if self.state.plan else False
-            ),
-            "plan_has_failures": (
-                self.state.plan.has_failures() if self.state.plan else False
-            ),
+            "plan_complete": (self.state.plan.is_complete() if self.state.plan else False),
+            "plan_has_failures": (self.state.plan.has_failures() if self.state.plan else False),
             "steps": [
                 {
                     "id": s.id,

@@ -116,7 +116,7 @@ def test_session_record():
                 "language": "python",
                 "framework": "fastapi",
                 "test_framework": "pytest",
-            }
+            },
         )
 
         # Check session recorded
@@ -145,9 +145,7 @@ def test_learning_agent_pattern_application():
         )
 
         # Get relevant patterns
-        patterns = agent.get_relevant_patterns(
-            {"language": "python", "framework": "fastapi"}
-        )
+        patterns = agent.get_relevant_patterns({"language": "python", "framework": "fastapi"})
         assert len(patterns) > 0
 
         # Apply pattern

@@ -31,6 +31,7 @@ class StepType(Enum):
 @dataclass
 class CodeSymbol:
     """코드 심볼 (함수, 클래스, 변수 등)"""
+
     name: str
     type: str  # function, class, method, variable, import
     file_path: str
@@ -44,6 +45,7 @@ class CodeSymbol:
 @dataclass
 class FileInfo:
     """파일 메타데이터"""
+
     path: str
     language: str
     size: int
@@ -56,10 +58,11 @@ class FileInfo:
 @dataclass
 class ExploreResult:
     """탐색 결과"""
+
     symbols: list[CodeSymbol] = field(default_factory=list)
     files: list[FileInfo] = field(default_factory=list)
     import_graph: dict[str, list[str]] = field(default_factory=dict)  # file -> imported files
-    call_graph: dict[str, list[str]] = field(default_factory=dict)    # function -> called functions
+    call_graph: dict[str, list[str]] = field(default_factory=dict)  # function -> called functions
     entry_points: list[str] = field(default_factory=list)  # main, cli, test entry points
     config_files: list[str] = field(default_factory=list)
     test_files: list[str] = field(default_factory=list)
@@ -68,6 +71,7 @@ class ExploreResult:
 @dataclass
 class PlanStep:
     """계획 단계"""
+
     id: str
     type: StepType
     title: str
@@ -88,6 +92,7 @@ class PlanStep:
 @dataclass
 class Plan:
     """실행 계획"""
+
     goal: str
     steps: list[PlanStep] = field(default_factory=list)
     created_at: datetime = field(default_factory=datetime.now)
@@ -119,6 +124,7 @@ class Plan:
 @dataclass
 class VerificationResult:
     """검증 결과"""
+
     step_id: str
     passed: bool = False
     test_results: dict[str, Any] = field(default_factory=dict)
@@ -135,9 +141,12 @@ class VerificationResult:
 @dataclass
 class CritiqueResult:
     """비평 결과"""
+
     step_id: str
     score: float = 0.0  # 0.0 ~ 1.0
-    issues: list[dict[str, Any]] = field(default_factory=list)  # {type, severity, file, line, message, suggestion}
+    issues: list[dict[str, Any]] = field(
+        default_factory=list
+    )  # {type, severity, file, line, message, suggestion}
     improvements: list[str] = field(default_factory=list)
     should_retry: bool = False
     retry_feedback: str = ""
@@ -146,6 +155,7 @@ class CritiqueResult:
 @dataclass
 class AgentState:
     """에이전트 전체 상태"""
+
     session_id: str
     workspace: Path
     goal: str
@@ -159,20 +169,26 @@ class AgentState:
     checkpoints: list[dict[str, Any]] = field(default_factory=list)  # 롤백용
 
     def to_json(self) -> str:
-        return json.dumps({
-            "session_id": self.session_id,
-            "workspace": str(self.workspace),
-            "goal": self.goal,
-            "iteration": self.iteration,
-            "max_iterations": self.max_iterations,
-            "current_step_id": self.current_step_id,
-            "plan": self.plan.__dict__ if self.plan else None,
-        }, default=str, ensure_ascii=False, indent=2)
+        return json.dumps(
+            {
+                "session_id": self.session_id,
+                "workspace": str(self.workspace),
+                "goal": self.goal,
+                "iteration": self.iteration,
+                "max_iterations": self.max_iterations,
+                "current_step_id": self.current_step_id,
+                "plan": self.plan.__dict__ if self.plan else None,
+            },
+            default=str,
+            ensure_ascii=False,
+            indent=2,
+        )
 
 
 @dataclass
 class AgentResult:
     """에이전트 실행 최종 결과"""
+
     success: bool
     summary: str
     files_changed: list[str] = field(default_factory=list)

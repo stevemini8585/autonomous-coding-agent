@@ -17,6 +17,7 @@ log = logging.getLogger("autonomous_coding_agent.test_generator")
 @dataclass
 class TestCase:
     """단일 테스트 케이스"""
+
     name: str
     description: str
     inputs: dict[str, Any]
@@ -29,6 +30,7 @@ class TestCase:
 @dataclass
 class ParameterizedTest:
     """파라미터화된 테스트"""
+
     function_name: str
     params: list[str]  # 파라미터 이름들
     test_cases: list[TestCase]
@@ -38,6 +40,7 @@ class ParameterizedTest:
 @dataclass
 class MockSpec:
     """목 사양"""
+
     target: str  # 모킹할 대상 (예: "httpx.AsyncClient.get")
     return_value: Any = None
     side_effect: Any = None
@@ -48,6 +51,7 @@ class MockSpec:
 @dataclass
 class GeneratedTestModule:
     """생성된 테스트 모듈"""
+
     source_file: str
     test_file: str
     imports: list[str]
@@ -78,9 +82,9 @@ class EdgeCaseAnalyzer:
             0,
             -1,
             1,
-            -2**31,
+            -(2**31),
             2**31 - 1,
-            -2**63,
+            -(2**63),
             2**63 - 1,
             999999999,
         ],
@@ -276,7 +280,7 @@ class ParameterCombinationGenerator:
     def _get_boundary_values(self, param_type: str) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
-            return [0, 1, -1, 2**31 - 1, -2**31, 2**63 - 1, -2**63]
+            return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
         elif "float" in param_type:
             return [0.0, -0.0, 1.0, -1.0, float("inf"), float("-inf"), 1e-10, 1e10]
         elif "str" in param_type:
@@ -297,7 +301,11 @@ class MockGenerator:
         ),
         "sqlalchemy.ext.asyncio.AsyncSession.execute": MockSpec(
             target="sqlalchemy.ext.asyncio.AsyncSession.execute",
-            return_value={"scalars": {"all": [], "first": None, "one": None}, "fetchone": None, "fetchall": []},
+            return_value={
+                "scalars": {"all": [], "first": None, "one": None},
+                "fetchone": None,
+                "fetchall": [],
+            },
         ),
         "redis.asyncio.Redis.get": MockSpec(
             target="redis.asyncio.Redis.get",
@@ -376,7 +384,13 @@ class MockGenerator:
         fixtures = []
 
         for mock in mocks:
-            fixture_name = mock.target.replace(".", "_").replace("(", "").replace(")", "").replace("[", "").replace("]", "")
+            fixture_name = (
+                mock.target.replace(".", "_")
+                .replace("(", "")
+                .replace(")", "")
+                .replace("[", "")
+                .replace("]", "")
+            )
             fixture_name = "mock_" + fixture_name[-50:]  # 길이 제한
 
             # return_value를 문자열로 직렬화 가능한 형태로 변환
@@ -400,7 +414,7 @@ def {fixture_name}(mocker):
 
             # AsyncClient.get/post인 경우 async context manager 체인 모킹
             if "AsyncClient" in mock.target:
-                fixture_code += '''
+                fixture_code += """
     # AsyncClient의 async context manager 체인 모킹
     async_client = AsyncMock()
     async_client.__aenter__ = AsyncMock(return_value=async_client)
@@ -419,15 +433,15 @@ def {fixture_name}(mocker):
     async_client.put = AsyncMock(return_value=mock_response)
     async_client.delete = AsyncMock(return_value=mock_response)
     
-    mock_obj.return_value = async_client'''
+    mock_obj.return_value = async_client"""
             elif mock.return_value is not None:
-                fixture_code += f'\n    mock_obj.return_value = {return_value_repr}'
+                fixture_code += f"\n    mock_obj.return_value = {return_value_repr}"
             if mock.side_effect is not None:
-                fixture_code += f'\n    mock_obj.side_effect = {repr(mock.side_effect)}'
+                fixture_code += f"\n    mock_obj.side_effect = {repr(mock.side_effect)}"
             if mock.autospec:
-                fixture_code += '\n    mock_obj.autospec = True'
+                fixture_code += "\n    mock_obj.autospec = True"
 
-            fixture_code += '\n    return mock_obj'
+            fixture_code += "\n    return mock_obj"
 
             fixtures.append(fixture_code)
 
@@ -487,16 +501,12 @@ class TestGenerator:
                 )
 
             # 파라미터 조합 생성
-            combinations = self.param_generator.generate_combinations(
-                func, edge_cases
-            )
+            combinations = self.param_generator.generate_combinations(func, edge_cases)
             boundary_combos = self.param_generator.generate_boundary_combinations(func)
             all_combos = combinations + boundary_combos
 
             # 테스트 케이스 생성
-            test_cases = self._create_test_cases(
-                func, all_combos, validation_cases
-            )
+            test_cases = self._create_test_cases(func, all_combos, validation_cases)
 
             # 파라미터화된 테스트 생성
             if test_cases:
@@ -556,13 +566,17 @@ class TestGenerator:
                     default = None
                     default_index = i - (num_args - num_defaults)
                     if default_index >= 0:
-                        default = ast.unparse(defaults[default_index]) if hasattr(ast, "unparse") else ""
+                        default = (
+                            ast.unparse(defaults[default_index]) if hasattr(ast, "unparse") else ""
+                        )
 
-                    params.append({
-                        "name": arg.arg,
-                        "type": param_type,
-                        "default": default,
-                    })
+                    params.append(
+                        {
+                            "name": arg.arg,
+                            "type": param_type,
+                            "default": default,
+                        }
+                    )
 
                 # 반환 타입
                 return_type = ""
@@ -578,16 +592,22 @@ class TestGenerator:
                     if hasattr(ast, "unparse"):
                         decorators.append(ast.unparse(dec))
 
-                functions.append({
-                    "name": node.name,
-                    "params": params,
-                    "return_type": return_type,
-                    "docstring": docstring,
-                    "decorators": decorators,
-                    "is_async": isinstance(node, ast.AsyncFunctionDef),
-                    "lineno": node.lineno,
-                    "source": ast.get_source_segment(source_code, node) if hasattr(ast, "get_source_segment") else "",
-                })
+                functions.append(
+                    {
+                        "name": node.name,
+                        "params": params,
+                        "return_type": return_type,
+                        "docstring": docstring,
+                        "decorators": decorators,
+                        "is_async": isinstance(node, ast.AsyncFunctionDef),
+                        "lineno": node.lineno,
+                        "source": (
+                            ast.get_source_segment(source_code, node)
+                            if hasattr(ast, "get_source_segment")
+                            else ""
+                        ),
+                    }
+                )
 
         return functions
 
@@ -603,12 +623,16 @@ class TestGenerator:
                     if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):
                         methods.append(item.name)
 
-                classes.append({
-                    "name": node.name,
-                    "methods": methods,
-                    "bases": [ast.unparse(b) if hasattr(ast, "unparse") else "" for b in node.bases],
-                    "lineno": node.lineno,
-                })
+                classes.append(
+                    {
+                        "name": node.name,
+                        "methods": methods,
+                        "bases": [
+                            ast.unparse(b) if hasattr(ast, "unparse") else "" for b in node.bases
+                        ],
+                        "lineno": node.lineno,
+                    }
+                )
 
         return classes
 
@@ -637,14 +661,16 @@ class TestGenerator:
                                 marks_set.add("pytest.mark.xfail")
                             break
 
-            test_cases.append(TestCase(
-                name=f"test_{func['name']}_case_{i}",
-                description=f"Test {func['name']} with {combo}",
-                inputs=combo,
-                expected=expected,
-                raises=raises,
-                marks=list(marks_set),
-            ))
+            test_cases.append(
+                TestCase(
+                    name=f"test_{func['name']}_case_{i}",
+                    description=f"Test {func['name']} with {combo}",
+                    inputs=combo,
+                    expected=expected,
+                    raises=raises,
+                    marks=list(marks_set),
+                )
+            )
 
         return test_cases[:30]  # 최대 30개
 
@@ -711,8 +737,8 @@ class TestGenerator:
             all_params = param_names + fixture_params
             all_params_str = ", ".join(all_params)
 
-            test_code = f'''{marks_str}@pytest.mark.parametrize("{params_str}", {test_data})
-{async_prefix}def test_{func_name}({all_params_str}):'''
+            test_code = f"""{marks_str}@pytest.mark.parametrize("{params_str}", {test_data})
+{async_prefix}def test_{func_name}({all_params_str}):"""
 
             # 함수 바디
             body_lines = []
@@ -725,12 +751,18 @@ class TestGenerator:
                         if "AsyncClient" in mock.target:
                             # AsyncClient 모킹: 클래스를 패치하므로 async with 필요 없음
                             # mock fixture는 자동으로 적용됨 (pytest-mock)
-                            body_lines.append(f"    # {mock.target} is mocked via {fixture_name} fixture")
+                            body_lines.append(
+                                f"    # {mock.target} is mocked via {fixture_name} fixture"
+                            )
                             continue
-                        body_lines.append(f"    # {mock.target} is mocked via {fixture_name} fixture")
+                        body_lines.append(
+                            f"    # {mock.target} is mocked via {fixture_name} fixture"
+                        )
 
             if not any("async with" in line for line in body_lines):
-                body_lines.append(f"    result = {await_prefix}{func_name}({', '.join(param_names)})")
+                body_lines.append(
+                    f"    result = {await_prefix}{func_name}({', '.join(param_names)})"
+                )
             body_lines.append("    assert result is not None  # TODO: 구체적 검증 추가")
 
             test_code += "\n" + "\n".join(f"    {line}" for line in body_lines)
@@ -848,7 +880,7 @@ class TestGenerator:
         """테스트 모듈 코드 렌더링"""
         lines = [
             '"""',
-            f'Auto-generated tests for {module.source_file}',
+            f"Auto-generated tests for {module.source_file}",
             '"""',
             "",
         ]

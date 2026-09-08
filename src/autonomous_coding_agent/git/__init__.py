@@ -16,6 +16,7 @@ log = logging.getLogger("autonomous_coding_agent.git")
 @dataclass
 class GitStatus:
     """Git 상태 정보"""
+
     branch: str
     is_clean: bool
     staged_files: list[str]
@@ -28,6 +29,7 @@ class GitStatus:
 @dataclass
 class CommitInfo:
     """커밋 정보"""
+
     hash: str
     short_hash: str
     message: str
@@ -64,7 +66,7 @@ class GitManager:
 
         # 상태
         status_result = self._run("git status --porcelain")
-        lines = status_result.stdout.strip().split('\n') if status_result.stdout.strip() else []
+        lines = status_result.stdout.strip().split("\n") if status_result.stdout.strip() else []
 
         staged = []
         unstaged = []
@@ -75,16 +77,18 @@ class GitManager:
                 continue
             status = line[:2]
             filepath = line[3:]
-            if status[0] in ('M', 'A', 'D', 'R', 'C'):
+            if status[0] in ("M", "A", "D", "R", "C"):
                 staged.append(filepath)
-            if status[1] in ('M', 'D'):
+            if status[1] in ("M", "D"):
                 unstaged.append(filepath)
-            if status == '??':
+            if status == "??":
                 untracked.append(filepath)
 
         # ahead/behind
-        ahead_behind = self._run("git rev-list --left-right --count @{u}...HEAD 2>/dev/null || echo '0\t0'")
-        behind, ahead = map(int, ahead_behind.stdout.strip().split('\t'))
+        ahead_behind = self._run(
+            "git rev-list --left-right --count @{u}...HEAD 2>/dev/null || echo '0\t0'"
+        )
+        behind, ahead = map(int, ahead_behind.stdout.strip().split("\t"))
 
         return GitStatus(
             branch=branch,
@@ -149,21 +153,25 @@ class GitManager:
 
     def get_log(self, limit: int = 10) -> list[CommitInfo]:
         """커밋 로그"""
-        result = self._run(f"git log --oneline -{limit} --pretty=format:'%h|%s|%an|%ad' --date=short")
+        result = self._run(
+            f"git log --oneline -{limit} --pretty=format:'%h|%s|%an|%ad' --date=short"
+        )
         commits = []
-        for line in result.stdout.strip().split('\n'):
+        for line in result.stdout.strip().split("\n"):
             if not line:
                 continue
-            parts = line.split('|', 3)
+            parts = line.split("|", 3)
             if len(parts) == 4:
-                commits.append(CommitInfo(
-                    hash=parts[0],
-                    short_hash=parts[0],
-                    message=parts[1],
-                    author=parts[2],
-                    date=parts[3],
-                    files_changed=[],
-                ))
+                commits.append(
+                    CommitInfo(
+                        hash=parts[0],
+                        short_hash=parts[0],
+                        message=parts[1],
+                        author=parts[2],
+                        date=parts[3],
+                        files_changed=[],
+                    )
+                )
         return commits
 
     def get_file_diff(self, filepath: str, staged: bool = False) -> str:

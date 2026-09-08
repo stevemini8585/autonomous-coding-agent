@@ -280,9 +280,7 @@ class PRReviewer:
     ]
 
     # 유지보수성 패턴
-    MAINTAINABILITY_PATTERNS: ClassVar[
-        list[tuple[str, ReviewCategory, str, str, str]]
-    ] = [
+    MAINTAINABILITY_PATTERNS: ClassVar[list[tuple[str, ReviewCategory, str, str, str]]] = [
         # 긴 함수
         (
             r"(?m)^def\s+\w+\([^)]*\):",
@@ -362,9 +360,7 @@ class PRReviewer:
         ):
             severity = self._get_severity_for_category(category)
             compiled = re.compile(pattern_str, re.MULTILINE)
-            self.all_patterns.append(
-                (compiled, category, rule_id, message, severity, suggestion)
-            )
+            self.all_patterns.append((compiled, category, rule_id, message, severity, suggestion))
 
     def _get_severity_for_category(self, category: ReviewCategory) -> ReviewSeverity:
         """카테고리별 기본 심각도"""
@@ -380,9 +376,7 @@ class PRReviewer:
         }
         return severity_map.get(category, ReviewSeverity.INFO)
 
-    def review_pr(
-        self, pr_number: int, repo: str, base_branch: str = "main"
-    ) -> PRReviewResult:
+    def review_pr(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -415,9 +409,7 @@ class PRReviewer:
         all_comments.extend(tool_comments)
 
         # 5. 결과 집계
-        result = self._aggregate_results(
-            pr_number, repo, all_comments, list(changed_files.keys())
-        )
+        result = self._aggregate_results(pr_number, repo, all_comments, list(changed_files.keys()))
 
         log.info(
             f"PR #{pr_number} 리뷰 완료: {result.total_comments}개 코멘트 (Critical: {result.critical_count}, Error: {result.error_count}, Warning: {result.warning_count})"
@@ -557,9 +549,7 @@ class PRReviewer:
                             file_path=issue["filename"],
                             line_start=line_start,
                             line_end=line_end,
-                            severity=self._map_ruff_severity(
-                                issue.get("level", "warning")
-                            ),
+                            severity=self._map_ruff_severity(issue.get("level", "warning")),
                             category=ReviewCategory.STYLE,
                             title=f"[RUFF] {issue['code']}",
                             message=issue["message"],
@@ -653,9 +643,7 @@ class PRReviewer:
             files_reviewed=files_reviewed,
         )
 
-    def post_review_to_github(
-        self, result: PRReviewResult, event: str = "COMMENT"
-    ) -> bool:
+    def post_review_to_github(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -710,9 +698,7 @@ class PRReviewer:
             # gh api 호출
             import tempfile
 
-            with tempfile.NamedTemporaryFile(
-                mode="w", suffix=".json", delete=False
-            ) as f:
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
                 json.dump(review_data, f)
                 temp_path = f.name
 
@@ -802,6 +788,4 @@ if __name__ == "__main__":
         print()
         comments = reviewer._analyze_file(fp, fd)
         for c in comments:
-            print(
-                f"  Line {c.line_start}: [{c.severity.value}] {c.title} - {c.message}"
-            )
+            print(f"  Line {c.line_start}: [{c.severity.value}] {c.title} - {c.message}")

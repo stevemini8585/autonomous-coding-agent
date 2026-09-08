@@ -18,6 +18,7 @@ log = logging.getLogger("autonomous_coding_agent.memory")
 @dataclass
 class SuccessPattern:
     """성공 패턴"""
+
     pattern_id: str
     pattern_type: str  # code, test, fix, refactor, review
     context: dict[str, Any]  # 언어, 프레임워크, 문제 유형 등
@@ -32,6 +33,7 @@ class SuccessPattern:
 @dataclass
 class SessionRecord:
     """세션 기록"""
+
     session_id: str
     goal: str
     workspace: str
@@ -75,7 +77,9 @@ class PatternMemory:
                         success_metrics=p["success_metrics"],
                         created_at=datetime.fromisoformat(p["created_at"]),
                         use_count=p.get("use_count", 0),
-                        last_used=datetime.fromisoformat(p["last_used"]) if p.get("last_used") else None,
+                        last_used=(
+                            datetime.fromisoformat(p["last_used"]) if p.get("last_used") else None
+                        ),
                         tags=p.get("tags", []),
                     )
                     self.patterns[pattern.pattern_id] = pattern
@@ -88,7 +92,9 @@ class PatternMemory:
                         goal=s["goal"],
                         workspace=s["workspace"],
                         start_time=datetime.fromisoformat(s["start_time"]),
-                        end_time=datetime.fromisoformat(s["end_time"]) if s.get("end_time") else None,
+                        end_time=(
+                            datetime.fromisoformat(s["end_time"]) if s.get("end_time") else None
+                        ),
                         success=s.get("success", False),
                         steps_completed=s.get("steps_completed", 0),
                         total_steps=s.get("total_steps", 0),
@@ -110,42 +116,44 @@ class PatternMemory:
             # 패턴 저장
             patterns_data = []
             for p in self.patterns.values():
-                patterns_data.append({
-                    "pattern_id": p.pattern_id,
-                    "pattern_type": p.pattern_type,
-                    "context": p.context,
-                    "solution": p.solution,
-                    "success_metrics": p.success_metrics,
-                    "created_at": p.created_at.isoformat(),
-                    "use_count": p.use_count,
-                    "last_used": p.last_used.isoformat() if p.last_used else None,
-                    "tags": p.tags,
-                })
+                patterns_data.append(
+                    {
+                        "pattern_id": p.pattern_id,
+                        "pattern_type": p.pattern_type,
+                        "context": p.context,
+                        "solution": p.solution,
+                        "success_metrics": p.success_metrics,
+                        "created_at": p.created_at.isoformat(),
+                        "use_count": p.use_count,
+                        "last_used": p.last_used.isoformat() if p.last_used else None,
+                        "tags": p.tags,
+                    }
+                )
             self.patterns_file.write_text(
-                json.dumps(patterns_data, ensure_ascii=False, indent=2),
-                encoding="utf-8"
+                json.dumps(patterns_data, ensure_ascii=False, indent=2), encoding="utf-8"
             )
 
             # 세션 저장
             sessions_data = []
             for s in self.sessions:
-                sessions_data.append({
-                    "session_id": s.session_id,
-                    "goal": s.goal,
-                    "workspace": s.workspace,
-                    "start_time": s.start_time.isoformat(),
-                    "end_time": s.end_time.isoformat() if s.end_time else None,
-                    "success": s.success,
-                    "steps_completed": s.steps_completed,
-                    "total_steps": s.total_steps,
-                    "patterns_used": s.patterns_used,
-                    "patterns_created": s.patterns_created,
-                    "errors": s.errors,
-                    "metrics": s.metrics,
-                })
+                sessions_data.append(
+                    {
+                        "session_id": s.session_id,
+                        "goal": s.goal,
+                        "workspace": s.workspace,
+                        "start_time": s.start_time.isoformat(),
+                        "end_time": s.end_time.isoformat() if s.end_time else None,
+                        "success": s.success,
+                        "steps_completed": s.steps_completed,
+                        "total_steps": s.total_steps,
+                        "patterns_used": s.patterns_used,
+                        "patterns_created": s.patterns_created,
+                        "errors": s.errors,
+                        "metrics": s.metrics,
+                    }
+                )
             self.sessions_file.write_text(
-                json.dumps(sessions_data, ensure_ascii=False, indent=2),
-                encoding="utf-8"
+                json.dumps(sessions_data, ensure_ascii=False, indent=2), encoding="utf-8"
             )
 
         except Exception as e:
@@ -161,6 +169,7 @@ class PatternMemory:
     ) -> str:
         """성공 패턴 저장"""
         import uuid
+
         pattern_id = f"{pattern_type}_{uuid.uuid4().hex[:8]}"
 
         pattern = SuccessPattern(
@@ -214,7 +223,7 @@ class PatternMemory:
             results.append(pattern)
 
         # 유사도 내림차순, 사용 횟수 내림차순 정렬
-        results.sort(key=lambda p: (getattr(p, '_similarity', 0), p.use_count), reverse=True)
+        results.sort(key=lambda p: (getattr(p, "_similarity", 0), p.use_count), reverse=True)
 
         return results[:limit]
 
@@ -272,9 +281,7 @@ class PatternMemory:
             "success_rate": successful_sessions / max(total_sessions, 1),
             "pattern_types": dict(pattern_types),
             "most_used_patterns": sorted(
-                self.patterns.values(),
-                key=lambda p: p.use_count,
-                reverse=True
+                self.patterns.values(), key=lambda p: p.use_count, reverse=True
             )[:5],
         }
 
@@ -289,6 +296,7 @@ class LearningAgent:
     def start_session(self, goal: str, workspace: str) -> SessionRecord:
         """세션 시작"""
         import uuid
+
         session = SessionRecord(
             session_id=f"session_{uuid.uuid4().hex[:8]}",
             goal=goal,
@@ -351,7 +359,13 @@ class LearningAgent:
                     "language": self.current_session.metrics.get("language", "python"),
                 },
                 solution={
-                    "categories": ["security", "performance", "correctness", "maintainability", "style"],
+                    "categories": [
+                        "security",
+                        "performance",
+                        "correctness",
+                        "maintainability",
+                        "style",
+                    ],
                     "auto_fix_suggestions": True,
                 },
                 success_metrics={
@@ -384,7 +398,9 @@ class LearningAgent:
         """현재 컨텍스트에 맞는 패턴 조회"""
         return self.memory.find_patterns(context=context, limit=3)
 
-    def apply_pattern(self, pattern_id: str, target_context: dict[str, Any]) -> dict[str, Any] | None:
+    def apply_pattern(
+        self, pattern_id: str, target_context: dict[str, Any]
+    ) -> dict[str, Any] | None:
         """패턴 적용"""
         pattern = self.memory.use_pattern(pattern_id)
         if not pattern:

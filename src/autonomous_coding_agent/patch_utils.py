@@ -18,6 +18,7 @@ log = logging.getLogger("autonomous_coding_agent.patch")
 @dataclass
 class PatchResult:
     """패치 적용 결과"""
+
     success: bool
     file_path: str
     applied: bool
@@ -29,6 +30,7 @@ class PatchResult:
 @dataclass
 class PatchOperation:
     """단일 패치 작업"""
+
     file_path: str
     old_content: str
     new_content: str
@@ -63,8 +65,8 @@ class PatchManager:
         if full_path.exists():
             backup_path = self._backup_dir / f"{file_path.replace('/', '_')}.bak"
             backup_path.parent.mkdir(parents=True, exist_ok=True)
-            content = full_path.read_text(encoding='utf-8')
-            backup_path.write_text(content, encoding='utf-8')
+            content = full_path.read_text(encoding="utf-8")
+            backup_path.write_text(content, encoding="utf-8")
             self._transaction_backups[file_path] = str(backup_path)
             return str(backup_path)
         return ""
@@ -124,7 +126,7 @@ class PatchManager:
         new_content = op.new_content
 
         full_path = self.workspace / file_path
-        existing = full_path.read_text(encoding='utf-8') if full_path.exists() else ""
+        existing = full_path.read_text(encoding="utf-8") if full_path.exists() else ""
 
         # 내용이 같으면 스킵
         if existing == new_content:
@@ -136,8 +138,8 @@ class PatchManager:
             )
 
         # 1. 파일이 짧으면 전체 교체 (100줄 미만)
-        if len(existing.split('\n')) < 100:
-            full_path.write_text(new_content, encoding='utf-8')
+        if len(existing.split("\n")) < 100:
+            full_path.write_text(new_content, encoding="utf-8")
             return PatchResult(
                 success=True,
                 file_path=file_path,
@@ -148,16 +150,20 @@ class PatchManager:
         # 2. difflib로 unified diff 생성 + fuzzy matching
         return self._apply_with_fuzzy_match(file_path, existing, new_content)
 
-    def _apply_with_fuzzy_match(self, file_path: str, old_content: str, new_content: str) -> PatchResult:
+    def _apply_with_fuzzy_match(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> PatchResult:
         """퍼지 매칭으로 패치 적용"""
         # 1차: 표준 unified diff 시도
-        diff = list(difflib.unified_diff(
-            old_content.splitlines(keepends=True),
-            new_content.splitlines(keepends=True),
-            fromfile=f"a/{file_path}",
-            tofile=f"b/{file_path}",
-            n=3,  # 컨텍스트 라인 수
-        ))
+        diff = list(
+            difflib.unified_diff(
+                old_content.splitlines(keepends=True),
+                new_content.splitlines(keepends=True),
+                fromfile=f"a/{file_path}",
+                tofile=f"b/{file_path}",
+                n=3,  # 컨텍스트 라인 수
+            )
+        )
 
         if diff:
             result = self._apply_diff(file_path, diff)
@@ -166,13 +172,15 @@ class PatchManager:
 
         # 2차: 퍼지 매칭으로 hunks 재구성 (컨텍스트 줄 늘리기)
         for context_lines in [5, 8, 10, 15]:
-            diff = list(difflib.unified_diff(
-                old_content.splitlines(keepends=True),
-                new_content.splitlines(keepends=True),
-                fromfile=f"a/{file_path}",
-                tofile=f"b/{file_path}",
-                n=context_lines,
-            ))
+            diff = list(
+                difflib.unified_diff(
+                    old_content.splitlines(keepends=True),
+                    new_content.splitlines(keepends=True),
+                    fromfile=f"a/{file_path}",
+                    tofile=f"b/{file_path}",
+                    n=context_lines,
+                )
+            )
             if diff:
                 result = self._apply_diff(file_path, diff)
                 if result.success:
@@ -192,14 +200,14 @@ class PatchManager:
             )
 
         # 임시 패치 파일 생성
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.patch', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".patch", delete=False) as f:
             f.writelines(diff)
             patch_file = f.name
 
         try:
             # patch 명령어 실행
             result = subprocess.run(
-                ['patch', '-p1', '-i', patch_file, '--no-backup-if-mismatch'],
+                ["patch", "-p1", "-i", patch_file, "--no-backup-if-mismatch"],
                 cwd=self.workspace,
                 capture_output=True,
                 text=True,
@@ -208,7 +216,7 @@ class PatchManager:
 
             if result.returncode == 0:
                 # 성공 시 적용된 hunks 수 계산
-                hunks = sum(1 for line in diff if line.startswith('@@'))
+                hunks = sum(1 for line in diff if line.startswith("@@"))
                 return PatchResult(
                     success=True,
                     file_path=file_path,
@@ -233,14 +241,18 @@ class PatchManager:
         finally:
             Path(patch_file).unlink(missing_ok=True)
 
-    def _apply_with_sequence_matcher(self, file_path: str, old_content: str, new_content: str) -> PatchResult:
+    def _apply_with_sequence_matcher(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> PatchResult:
         """SequenceMatcher로 블록 단위 매칭 후 적용"""
         try:
-            matcher = difflib.SequenceMatcher(None, old_content.splitlines(keepends=True), new_content.splitlines(keepends=True))
+            matcher = difflib.SequenceMatcher(
+                None, old_content.splitlines(keepends=True), new_content.splitlines(keepends=True)
+            )
 
             # 전체 교체로 폴백 (안전)
             full_path = self.workspace / file_path
-            full_path.write_text(new_content, encoding='utf-8')
+            full_path.write_text(new_content, encoding="utf-8")
 
             return PatchResult(
                 success=True,
@@ -267,7 +279,7 @@ def create_patch(old_content: str, new_content: str, file_path: str) -> str:
         tofile=f"b/{file_path}",
         n=3,
     )
-    return ''.join(diff)
+    return "".join(diff)
 
 
 def apply_patch(content: str, patch_text: str) -> str:
@@ -279,8 +291,8 @@ def apply_patch(content: str, patch_text: str) -> str:
 
 def generate_unified_diff(old_file: Path, new_file: Path) -> str:
     """두 파일 간 unified diff 생성"""
-    old_content = old_file.read_text(encoding='utf-8')
-    new_content = new_file.read_text(encoding='utf-8')
+    old_content = old_file.read_text(encoding="utf-8")
+    new_content = new_file.read_text(encoding="utf-8")
     return create_patch(old_content, new_content, old_file.name)
 
 
@@ -289,6 +301,6 @@ def patch_file(workspace: Path, file_path: str, new_content: str) -> bool:
     """파일 패치 적용 (편의 함수)"""
     manager = PatchManager(Path(workspace))
     full_path = Path(workspace) / file_path
-    old_content = full_path.read_text(encoding='utf-8') if full_path.exists() else ""
+    old_content = full_path.read_text(encoding="utf-8") if full_path.exists() else ""
     result = manager.apply_single_patch(file_path, old_content, new_content)
     return result.success
