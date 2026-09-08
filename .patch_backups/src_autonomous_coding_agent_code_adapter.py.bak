@@ -776,3 +776,44 @@ def adapt_and_apply_examples(
     return applier.apply_batch(all_adapted, dry_run)
 
 
+if __name__ == "__main__":
+    # 테스트
+    import tempfile
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        tmp_path = Path(tmpdir)
+
+        # 가상 프로젝트 생성
+        (tmp_path / "pyproject.toml").write_text("""
+[project]
+name = "myapp"
+dependencies = ["fastapi", "pydantic", "httpx"]
+
+[tool.ruff]
+line-length = 100
+""")
+
+        (tmp_path / "main.py").write_text("""
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class Item(BaseModel):
+    name: str
+    price: float
+
+@app.post("/items/")
+def create_item(item: Item):
+    return {"name": item.name, "price": item.price}
+""")
+
+        # 분석 테스트
+        analyzer = ProjectAnalyzer(tmp_path)
+        context = analyzer.analyze()
+        print(f"Language: {context.language}")
+        print(f"Framework: {context.framework}")
+        print(f"Package manager: {context.package_manager}")
+        print(f"Naming: {context.naming_convention}")
+        print(f"Type hints: {context.type_hints}")
+        print(f"Async pattern: {context.async_pattern}")

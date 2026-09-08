@@ -341,9 +341,9 @@ class AutonomousCodingAgent:
 
                 # 2. 검증
                 if step.type in (StepType.CODE, StepType.VERIFY):
-                    project_files = step.assigned_files or [
-                        f.path for f in self.state.explore_result.files
-                    ]
+                    project_files = step.assigned_files or step.artifacts.get("files_modified", [])
+                    if not project_files and self.state.explore_result is not None:
+                        project_files = [f.path for f in self.state.explore_result.files]
                     verification = self.verifier.verify_step(step, project_files)
                     step.artifacts["verification"] = verification.__dict__
 
@@ -459,9 +459,10 @@ class AutonomousCodingAgent:
 
             # 2. 검증
             if step.type in (StepType.CODE, StepType.VERIFY):
-                project_files = step.assigned_files or [
-                    f.path for f in self.state.explore_result.files
-                ]
+                # Only verify the assigned/modified files, not all project files
+                project_files = step.assigned_files or step.artifacts.get("files_modified", [])
+                if not project_files and self.state.explore_result:
+                    project_files = [f.path for f in self.state.explore_result.files]
                 verification = self.verifier.verify_step(step, project_files)
                 # Merge verification with existing artifacts (preserve files_created/files_modified)
                 step.artifacts["verification"] = verification.__dict__

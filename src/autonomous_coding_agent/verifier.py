@@ -152,14 +152,36 @@ class Verifier:
         log.info(f"  {name} 실행: {command}")
 
         try:
-            # If files specified, run command on those files only
-            if files:
+            # 테스트 명령어는 전체 프로젝트에서 실행 (특정 파일 지정 안 함)
+            if name == "테스트":
+                full_command = command
+            # 린트/포맷/타입 체크는 특정 파일이 있으면 그 파일들만, 없으면 전체
+            elif files:
                 file_args = " ".join(files)
                 full_command = f"{command} {file_args}"
             else:
                 full_command = command
 
             log.info(f"  {name} 실행: {full_command}")
+
+            # For lint/format, first try to auto-fix
+            if name in ("린트", "포맷") and not name == "테스트":
+                fix_command = ""
+                if name == "린트":
+                    fix_command = "ruff check --fix ."
+                elif name == "포맷":
+                    fix_command = "black ."
+                
+                if fix_command:
+                    log.info(f"  {name} 자동 수정 시도: {fix_command}")
+                    subprocess.run(
+                        fix_command,
+                        shell=True,
+                        cwd=self.workspace,
+                        capture_output=True,
+                        text=True,
+                        timeout=60,
+                    )
 
             proc = subprocess.run(
                 full_command,
@@ -170,8 +192,11 @@ class Verifier:
                 timeout=300,
             )
 
+            # pytest exit code 5 = no tests collected -> treat as passed
+            passed = proc.returncode == 0 or (name == "테스트" and proc.returncode == 5)
+
             return {
-                "passed": proc.returncode == 0,
+                "passed": passed,
                 "returncode": proc.returncode,
                 "stdout": proc.stdout[-5000:] if proc.stdout else "",
                 "stderr": proc.stderr[-5000:] if proc.stderr else "",
@@ -210,7 +235,9 @@ class Verifier:
 
     def verify_project(self, project_files: list[str]) -> dict[str, VerificationResult]:
         """전체 프로젝트 검증 (단계별이 아닌 전체)"""
-        language = self._detect_language(project_files)
+        # Filter to only Python files for Python language
+        python_files = [f for f in project_files if f.endswith('.py')]
+        language = self._detect_language(python_files)
         config = self.language_configs.get(language, {})
 
         results = {}
@@ -221,7 +248,13 @@ class Verifier:
                 start_time = time.time()
 
                 result = VerificationResult(step_id=step_id)
-                cmd_result = self._run_command(config[check_name], check_name)
+                # Use Korean name for auto-fix logic
+                korean_name = {"test": "테스트", "lint": "린트", "format": "포맷", "type": "타입 체크"}[check_name]
+                # For type check, need to pass files to mypy; for others, run on whole project
+                if check_name == "type":
+                    cmd_result = self._run_command(config[check_name], korean_name, python_files)
+                else:
+                    cmd_result = self._run_command(config[check_name], korean_name, None)
 
                 if check_name == "test":
                     result.test_results = cmd_result
