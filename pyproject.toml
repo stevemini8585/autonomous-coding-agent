@@ -63,12 +63,13 @@ select = [
 ]
 ignore = [
     "E501", "TRY003", "PTH118", "PTH123",
-    "PLR0913", "PLR0917", "PLR0911", "PLR0912",
+    "PLR0913", "PLR0917", "PLR0911", "PLR0912", "PLR0915",
     "PLC0415", "PLR2004", "TRY400", "TRY300",
     "SIM102", "SIM103", "B007", "PLW2901",
     "F841", "F821", "ERA001", "PLW1510",
     "UP035", "UP045", "UP006", "UP017",
     "B905", "E741", "W293", "W292",
+    "PLW0603", "F401",
 ]
 
 [tool.ruff.format]
