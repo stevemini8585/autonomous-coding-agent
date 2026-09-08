@@ -171,7 +171,7 @@ class Verifier:
                     fix_command = "ruff check --fix ."
                 elif name == "포맷":
                     fix_command = "black ."
-                
+
                 if fix_command:
                     log.info(f"  {name} 자동 수정 시도: {fix_command}")
                     subprocess.run(
@@ -236,7 +236,7 @@ class Verifier:
     def verify_project(self, project_files: list[str]) -> dict[str, VerificationResult]:
         """전체 프로젝트 검증 (단계별이 아닌 전체)"""
         # Filter to only Python files for Python language
-        python_files = [f for f in project_files if f.endswith('.py')]
+        python_files = [f for f in project_files if f.endswith(".py")]
         language = self._detect_language(python_files)
         config = self.language_configs.get(language, {})
 
@@ -249,7 +249,12 @@ class Verifier:
 
                 result = VerificationResult(step_id=step_id)
                 # Use Korean name for auto-fix logic
-                korean_name = {"test": "테스트", "lint": "린트", "format": "포맷", "type": "타입 체크"}[check_name]
+                korean_name = {
+                    "test": "테스트",
+                    "lint": "린트",
+                    "format": "포맷",
+                    "type": "타입 체크",
+                }[check_name]
                 # For type check, need to pass files to mypy; for others, run on whole project
                 if check_name == "type":
                     cmd_result = self._run_command(config[check_name], korean_name, python_files)

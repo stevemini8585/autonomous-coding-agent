@@ -172,47 +172,47 @@ class CodeGenerator:
         """기존 파일에 기능 구현 추가 (목표 분석 후 코드 삽입)"""
         goal_lower = goal.lower()
         lines = content.split("\n")
-        
+
         # FastAPI 프로젝트에서 endpoint 추가 감지
         if ("endpoint" in goal_lower or "api" in goal_lower) and "fastapi" in content.lower():
             return self._add_fastapi_endpoint(content, goal, file_path)
-        
+
         # 기본적으로는 파일 개선 (docstring 추가 등)
         return self._enhance_python_file(content, goal)
 
     def _add_fastapi_endpoint(self, content: str, goal: str, file_path: str) -> str:
-            """FastAPI 파일에 새 엔드포인트 추가"""
-            import re
+        """FastAPI 파일에 새 엔드포인트 추가"""
+        import re
 
-            # 목표에서 경로와 응답 추출
-            path_match = re.search(r'GET\s+(/\w+)', goal, re.IGNORECASE)
-            if not path_match:
-                path_match = re.search(r'(/\w+)', goal)
-            endpoint_path = path_match.group(1) if path_match else "/hello"
+        # 목표에서 경로와 응답 추출
+        path_match = re.search(r"GET\s+(/\w+)", goal, re.IGNORECASE)
+        if not path_match:
+            path_match = re.search(r"(/\w+)", goal)
+        endpoint_path = path_match.group(1) if path_match else "/hello"
 
-            # 응답 메시지 추출
-            msg_match = re.search(r'message\s*[:=]\s*["\']([^"\']+)["\']', goal, re.IGNORECASE)
-            message = msg_match.group(1) if msg_match else "Hello World"
+        # 응답 메시지 추출
+        msg_match = re.search(r'message\s*[:=]\s*["\']([^"\']+)["\']', goal, re.IGNORECASE)
+        message = msg_match.group(1) if msg_match else "Hello World"
 
-            # app = FastAPI(...) 라인 찾기
-            lines = content.split("\n")
-            insert_idx = -1
+        # app = FastAPI(...) 라인 찾기
+        lines = content.split("\n")
+        insert_idx = -1
+        for i, line in enumerate(lines):
+            if line.strip().startswith("app = FastAPI"):
+                insert_idx = i + 1
+                break
+
+        if insert_idx == -1:
+            # Fallback: 마지막 import 이후
             for i, line in enumerate(lines):
-                if line.strip().startswith("app = FastAPI"):
+                if line.strip().startswith("from ") or line.strip().startswith("import "):
                     insert_idx = i + 1
-                    break
 
-            if insert_idx == -1:
-                # Fallback: 마지막 import 이후
-                for i, line in enumerate(lines):
-                    if line.strip().startswith("from ") or line.strip().startswith("import "):
-                        insert_idx = i + 1
+        if insert_idx == -1:
+            insert_idx = 0
 
-            if insert_idx == -1:
-                insert_idx = 0
-
-            # 엔드포인트 코드 생성
-            endpoint_code = f'''@app.get("{endpoint_path}")
+        # 엔드포인트 코드 생성
+        endpoint_code = f'''@app.get("{endpoint_path}")
 def read_hello():
     """{endpoint_path} 엔드포인트.
 
@@ -221,9 +221,9 @@ def read_hello():
     """
     return {{"message": "{message}"}}'''
 
-            # 삽입
-            new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
-            return "\n".join(new_lines)
+        # 삽입
+        new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
+        return "\n".join(new_lines)
 
     def _enhance_python_file(self, content: str, goal: str) -> str:
         """기존 Python 파일 개선 (docstring, type hints, 문서화 추가)"""

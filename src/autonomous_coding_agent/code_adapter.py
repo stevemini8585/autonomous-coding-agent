@@ -774,5 +774,3 @@ def adapt_and_apply_examples(
 
     # 적용
     return applier.apply_batch(all_adapted, dry_run)
-
-
