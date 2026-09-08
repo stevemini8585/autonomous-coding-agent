@@ -17,6 +17,7 @@ from .explorer import CodeExplorer
 from .models import (
     AgentResult,
     AgentState,
+    CritiqueResult,
     PlanStep,
     StepStatus,
     StepType,
@@ -116,6 +117,8 @@ class AutonomousCodingAgent:
                 files_created=final_result.get("files_created", []),
                 files_modified=final_result.get("files_modified", []),
                 test_results=final_result.get("test_results", {}),
+                verification_results=final_result.get("verification_results", []),
+                critique_results=final_result.get("critique_results", []),
                 duration_seconds=duration,
                 iterations_used=self.state.iteration,
             )
@@ -397,11 +400,21 @@ class AutonomousCodingAgent:
         files_created = []
         files_modified = []
 
+        all_verification_results = []
+        all_critique_results = []
+
         for step in self.state.plan.steps:
             if step.status == StepStatus.COMPLETED:
                 artifacts = step.artifacts
                 files_created.extend(artifacts.get("files_created", []))
                 files_modified.extend(artifacts.get("files_modified", []))
+
+                # Collect verification results
+                if "verification" in artifacts:
+                    all_verification_results.append(VerificationResult(**artifacts["verification"]))
+                # Collect critique results
+                if "critique" in artifacts:
+                    all_critique_results.append(CritiqueResult(**artifacts["critique"]))
 
         files_changed = list(set(files_created + files_modified))
 
@@ -423,6 +436,8 @@ class AutonomousCodingAgent:
             "files_created": files_created,
             "files_modified": files_modified,
             "test_results": {k: v.__dict__ for k, v in final_verification.items()},
+            "verification_results": all_verification_results,
+            "critique_results": all_critique_results,
         }
 
     def get_status(self) -> dict[str, Any]:
