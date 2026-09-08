@@ -130,19 +130,14 @@ def test_test_generator():
 
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp_path = Path(tmpdir)
-        (tmp_path / "sample.py").write_text("""
-def add(a: int, b: int) -> int:
+        sample_code = '''def add(a: int, b: int) -> int:
     """add 함수."""
-    Args:
-        a: 매개변수 설명.
-        b: 매개변수 설명.
-    Returns:
-        결과값.
     return a + b
 
 async def fetch_data(url: str) -> dict:
     return {"data": url}
-""")
+'''
+        (tmp_path / "sample.py").write_text(sample_code)
 
         generator = TestGenerator(tmp_path)
         module = generator.generate_tests_for_file("sample.py")
