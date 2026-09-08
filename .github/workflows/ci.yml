@@ -113,7 +113,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -e .
-          pip install pytest pytest-asyncio pytest-mock httpx pydantic github-api ghapi uvicorn fastapi jinja2
+          pip install pytest pytest-asyncio pytest-mock httpx pydantic ghapi uvicorn fastapi jinja2
 
       - name: Verify agent imports
         run: |
