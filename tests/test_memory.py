@@ -10,6 +10,11 @@ from autonomous_coding_agent import (
     PatternMemory,
 )
 
+# Test constants
+EXPECTED_PATTERNS = 2
+EXPECTED_TESTS_GENERATED = 15
+EXPECTED_CONFIDENCE = 0.95
+
 
 def test_pattern_memory_basic():
     """Test basic pattern memory operations"""
@@ -79,7 +84,7 @@ def test_pattern_memory_similarity():
         )
 
         # Should find both fastapi patterns (test and fix)
-        assert len(patterns) >= 2
+        assert len(patterns) >= EXPECTED_PATTERNS
         # Fastapi patterns should have higher similarity
         for p in patterns:
             assert p.context.get("framework") == "fastapi" or p.context.get("framework") == "django"
@@ -106,7 +111,7 @@ def test_session_record():
         agent.end_session(
             success=True,
             metrics={
-                "tests_generated": 15,
+                "tests_generated": EXPECTED_TESTS_GENERATED,
                 "coverage": 85.5,
                 "language": "python",
                 "framework": "fastapi",
@@ -118,7 +123,7 @@ def test_session_record():
         assert len(memory.sessions) == 1
         recorded = memory.sessions[0]
         assert recorded.success is True
-        assert recorded.metrics["tests_generated"] == 15
+        assert recorded.metrics["tests_generated"] == EXPECTED_TESTS_GENERATED
 
         # Should have created patterns
         assert len(memory.patterns) > 0
@@ -135,7 +140,7 @@ def test_learning_agent_pattern_application():
             pattern_type="test",
             context={"language": "python", "framework": "fastapi"},
             solution={"method": "ast_based", "edge_cases": True, "mocking": True},
-            success_metrics={"success_rate": 0.95},
+            success_metrics={"success_rate": EXPECTED_CONFIDENCE},
             tags=["test_generation"],
         )
 
@@ -154,7 +159,7 @@ def test_learning_agent_pattern_application():
         assert "adapted_solution" in result
         assert result["adapted_solution"]["framework_adapted"] is True
         assert result["adapted_solution"]["target_framework"] == "django"
-        assert result["confidence"] == 0.95
+        assert result["confidence"] == EXPECTED_CONFIDENCE
 
 
 def test_statistics():
@@ -176,7 +181,7 @@ def test_statistics():
         )
 
         stats = memory.get_statistics()
-        assert stats["total_patterns"] == 2
+        assert stats["total_patterns"] == EXPECTED_PATTERNS
         assert stats["pattern_types"]["test"] == 1
         assert stats["pattern_types"]["fix"] == 1
 

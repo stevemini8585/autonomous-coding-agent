@@ -8,12 +8,24 @@ from .code_adapter import (
 )
 from .coder import CodeGenerator
 from .critic import Critic as CodeCritic
+from .dashboard import (
+    DashboardServer,
+    SessionProgress,
+    StepProgress,
+    get_dashboard,
+    start_dashboard,
+)
 from .explorer import CodeExplorer
 from .git import GitManager
 from .git_integration import GitWorkflow
 from .github import GitHubClient
 from .issue_parser import IssueParser
-from .memory import LearningAgent, PatternMemory, SessionRecord, SuccessPattern
+from .memory import (
+    LearningAgent,
+    PatternMemory,
+    SessionRecord,
+    SuccessPattern,
+)
 from .models import (
     AgentState,
     CodeSymbol,
@@ -27,7 +39,13 @@ from .models import (
 )
 from .patch_utils import PatchManager
 from .planner import WorkPlanner
-from .pr_reviewer import PRReviewer, PRReviewResult, ReviewCategory, ReviewComment, ReviewSeverity
+from .pr_reviewer import (
+    PRReviewer,
+    PRReviewResult,
+    ReviewCategory,
+    ReviewComment,
+    ReviewSeverity,
+)
 from .state import StateManager
 from .test_generator import (
     EdgeCaseAnalyzer,
@@ -37,7 +55,6 @@ from .test_generator import (
 )
 from .verifier import Verifier
 from .web_search import DocumentationParser, VersionChecker, WebSearcher
-from .dashboard import DashboardServer, get_dashboard, start_dashboard, SessionProgress, StepProgress
 
 __all__ = [
     "AutonomousCodingAgent",
@@ -81,10 +98,10 @@ __all__ = [
     "SuccessPattern",
     "SessionRecord",
     "DashboardServer",
-    "get_dashboard",
-    "start_dashboard",
     "SessionProgress",
     "StepProgress",
+    "get_dashboard",
+    "start_dashboard",
 ]
 
 __version__ = "0.1.0"
