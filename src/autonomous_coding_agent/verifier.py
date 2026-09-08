@@ -165,7 +165,7 @@ class Verifier:
             log.info(f"  {name} 실행: {full_command}")
 
             # For lint/format, first try to auto-fix
-            if name in ("린트", "포맷") and not name == "테스트":
+            if name in ("린트", "포맷") and name != "테스트":
                 fix_command = ""
                 if name == "린트":
                     fix_command = "ruff check --fix ."
