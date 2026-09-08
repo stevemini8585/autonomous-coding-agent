@@ -10,7 +10,7 @@ import re
 import subprocess
 import tempfile
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from .models import PlanStep, StepStatus, StepType
 from .patch_utils import PatchManager, PatchOperation
@@ -20,18 +20,18 @@ log = logging.getLogger("autonomous_coding_agent.coder")
 
 class CodeGenerator:
     """코드 생성 및 수정 - 작업 목표에 맞게 구체적 구현"""
-    
+
     def __init__(self, workspace: Path):
         self.workspace = Path(workspace).resolve()
         self._backup_dir = self.workspace / ".autonomous_backups"
         self._backup_dir.mkdir(exist_ok=True)
-    
-    def execute_step(self, step: PlanStep, context: Dict[str, Any]) -> Dict[str, Any]:
+
+    def execute_step(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
-        
+
         step.status = StepStatus.IN_PROGRESS
-        
+
         try:
             if step.type == StepType.CODE:
                 result = self._implement_code(step, context)
@@ -45,41 +45,41 @@ class CodeGenerator:
                 result = {"action": "critique", "message": "비평은 별도 모듈에서 수행"}
             else:
                 result = {"action": "unknown", "message": f"알 수 없는 단계 유형: {step.type}"}
-            
+
             step.status = StepStatus.COMPLETED
             step.artifacts = result
-            
+
         except Exception as e:
             step.status = StepStatus.FAILED
             step.error = str(e)
             log.error(f"단계 실행 실패 {step.id}: {e}")
             result = {"error": str(e)}
-        
+
         return result
-    
-    def _implement_code(self, step: PlanStep, context: Dict[str, Any]) -> Dict[str, Any]:
+
+    def _implement_code(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
             "files_modified": [],
             "patches_applied": [],
         }
-        
+
         # 1. 기존 파일 백업
         for file_path in step.assigned_files:
             self._backup_file(file_path)
-        
+
         # 2. 작업 목표 분석하여 구체적 구현 생성
         goal = context.get('goal', '')
         implementation = self._generate_task_specific_implementation(step, goal, context)
-        
+
         # 3. 파일 적용 - PatchManager 사용
         patch_manager = PatchManager(self.workspace)
         operations = []
-        
+
         for file_path, content in implementation.items():
             full_path = self.workspace / file_path
-            
+
             if full_path.exists():
                 operations.append(PatchOperation(
                     file_path=file_path,
@@ -92,7 +92,7 @@ class CodeGenerator:
                 full_path.parent.mkdir(parents=True, exist_ok=True)
                 full_path.write_text(content, encoding='utf-8')
                 artifacts["files_created"].append(file_path)
-        
+
         # 패치 적용 (트랜잭션으로 원자적 적용)
         if operations:
             results = patch_manager.apply_patches(operations)
@@ -102,26 +102,26 @@ class CodeGenerator:
                 elif not result.success:
                     log.error(f"패치 실패: {result.file_path} - {result.error}")
                     # 실패 시 롤백됨
-        
+
         artifacts["patches_applied"] = [
             {"file": r.file_path, "applied": r.applied, "hunks": r.hunks_applied}
             for r in results if r.applied
         ]
-        
+
         return artifacts
-    
+
     def _generate_task_specific_implementation(
-        self, 
-        step: PlanStep, 
-        goal: str, 
-        context: Dict[str, Any]
-    ) -> Dict[str, str]:
+        self,
+        step: PlanStep,
+        goal: str,
+        context: dict[str, Any]
+    ) -> dict[str, str]:
         """작업 목표에 맞춘 구체적 구현 생성"""
         implementations = {}
-        
+
         for file_path in step.assigned_files:
             ext = Path(file_path).suffix.lower()
-            
+
             if ext == '.py':
                 implementations[file_path] = self._generate_python_task_code(step, file_path, goal, context)
             elif ext in ('.js', '.ts', '.tsx'):
@@ -132,49 +132,49 @@ class CodeGenerator:
                 implementations[file_path] = self._generate_rust_task_code(step, file_path, goal, context)
             else:
                 implementations[file_path] = self._generate_generic_code(step, file_path, goal, context)
-        
+
         # 테스트 파일도 생성 (목표에 '테스트' 포함시)
         if '테스트' in goal or 'test' in goal.lower():
             test_files = self._generate_test_files(step, goal, context)
             implementations.update(test_files)
-        
+
         return implementations
-    
-    def _generate_python_task_code(self, step: PlanStep, file_path: str, goal: str, context: Dict[str, Any]) -> str:
+
+    def _generate_python_task_code(self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]) -> str:
         """Python 작업별 코드 생성"""
         full_path = self.workspace / file_path
         existing_content = ""
         if full_path.exists():
             existing_content = full_path.read_text(encoding='utf-8')
-        
+
         # 기존 파일이 있으면 수정 (docstring, type hints 추가)
         if existing_content:
             return self._enhance_python_file(existing_content, goal)
         else:
             # 새 파일 생성
             return self._generate_python_module(step, file_path, goal, context)
-    
+
     def _enhance_python_file(self, content: str, goal: str) -> str:
             """기존 Python 파일 개선 (docstring, type hints, 문서화 추가)"""
             lines = content.split('\n')
             enhanced = []
-        
+
             i = 0
             while i < len(lines):
                 line = lines[i]
-            
+
                 # 함수 정의 다음에 docstring 추가
                 if line.strip().startswith('def ') and not line.strip().startswith('def _'):
                     # 이미 docstring이 있는지 확인 (다음 non-empty 라인 확인)
                     next_idx = i + 1
                     while next_idx < len(lines) and lines[next_idx].strip() == '':
                         next_idx += 1
-                
+
                     has_docstring = False
                     if next_idx < len(lines):
                         if '"""' in lines[next_idx] or "'''" in lines[next_idx]:
                             has_docstring = True
-                
+
                     if not has_docstring:
                         # 함수 시그니처에서 인자 추출
                         func_match = re.match(r'(\s*)def (\w+)\((.*?)\)', line)
@@ -182,7 +182,7 @@ class CodeGenerator:
                             indent = func_match.group(1)
                             func_name = func_match.group(2)
                             params = func_match.group(3)
-                        
+
                             # docstring 생성 (Google style - ruff/black 호환)
                             docstring_lines = [f'{indent}    """{func_name} 함수."""']
                             if params.strip():
@@ -195,37 +195,37 @@ class CodeGenerator:
                             docstring_lines.append(f'{indent}    Returns:')
                             docstring_lines.append(f'{indent}        결과값.')
                             docstring = '\n'.join(docstring_lines)
-                        
+
                             # 현재 라인(함수 정의)을 추가하고, docstring을 그 다음에 삽입
                             enhanced.append(line)
-                        
+
                             # 빈 줄들 복사
                             j = i + 1
                             while j < len(lines) and lines[j].strip() == '':
                                 enhanced.append(lines[j])
                                 j += 1
-                        
+
                             # docstring 삽입
                             enhanced.append(docstring)
-                        
+
                             # 남은 줄들(j부터)을 enhanced에 추가하고 인덱스 업데이트
                             while j < len(lines):
                                 enhanced.append(lines[j])
                                 j += 1
-                        
+
                             i = j  # 다음 루프는 j부터
                             continue  # while 루프 계속
-            
+
                 # 일반 라인 처리
                 enhanced.append(line)
                 i += 1
-        
+
             return '\n'.join(enhanced)
-    
-    def _generate_python_module(self, step: PlanStep, file_path: str, goal: str, context: Dict[str, Any]) -> str:
+
+    def _generate_python_module(self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]) -> str:
         """Python 모듈 생성"""
         module_name = Path(file_path).stem
-        
+
         # 목표에 맞춘 구체적 구현
         if '타입 힌트' in goal and '문서화' in goal:
             return f'''"""
@@ -286,23 +286,23 @@ def main():
 if __name__ == "__main__":
     main()
 '''
-    
-    def _generate_test_files(self, step: PlanStep, goal: str, context: Dict[str, Any]) -> Dict[str, str]:
+
+    def _generate_test_files(self, step: PlanStep, goal: str, context: dict[str, Any]) -> dict[str, str]:
         """테스트 파일 생성"""
         test_files = {}
-        
+
         for file_path in step.assigned_files:
             if file_path.endswith('.py') and not file_path.endswith('_test.py'):
                 test_path = file_path.replace('.py', '_test.py')
                 test_files[test_path] = self._generate_python_test_file(file_path, goal, context)
-        
+
         return test_files
-    
-    def _generate_python_test_file(self, source_file: str, goal: str, context: Dict[str, Any]) -> str:
+
+    def _generate_python_test_file(self, source_file: str, goal: str, context: dict[str, Any]) -> str:
         """소스 파일에 대한 테스트 파일 생성"""
         module_name = Path(source_file).stem
         test_path = f"{module_name}_test.py"
-        
+
         # 소스 파일 읽어서 함수들 파악
         source_path = self.workspace / source_file
         functions = []  # list of (name, params)
@@ -323,10 +323,10 @@ if __name__ == "__main__":
                             else:
                                 param_list.append((p.split(':')[0].strip(), None))
                     functions.append((func_name, param_list))
-        
+
         if not functions:
             functions = [('main', [])]
-        
+
         test_content = f'''"""
 Tests for {module_name}
 Auto-generated test for: {goal}
@@ -337,30 +337,29 @@ import pytest
 
 
 '''
-        
+
         for func_name, params in functions:
             # Build function call with arguments
             args = []
             for param_name, default in params:
                 if default is not None:
                     args.append(f"{param_name}={default}")
+                # Provide sensible defaults based on param name/type hints
+                elif 'name' in param_name.lower():
+                    args.append('"test"')
+                elif 'id' in param_name.lower() or 'num' in param_name.lower() or 'count' in param_name.lower():
+                    args.append('1')
+                elif 'list' in param_name.lower() or 'items' in param_name.lower():
+                    args.append('[]')
+                elif 'dict' in param_name.lower() or 'map' in param_name.lower():
+                    args.append('{}')
+                elif 'bool' in param_name.lower() or 'flag' in param_name.lower():
+                    args.append('True')
                 else:
-                    # Provide sensible defaults based on param name/type hints
-                    if 'name' in param_name.lower():
-                        args.append('"test"')
-                    elif 'id' in param_name.lower() or 'num' in param_name.lower() or 'count' in param_name.lower():
-                        args.append('1')
-                    elif 'list' in param_name.lower() or 'items' in param_name.lower():
-                        args.append('[]')
-                    elif 'dict' in param_name.lower() or 'map' in param_name.lower():
-                        args.append('{}')
-                    elif 'bool' in param_name.lower() or 'flag' in param_name.lower():
-                        args.append('True')
-                    else:
-                        args.append('"test_value"')
-            
+                    args.append('"test_value"')
+
             call_args = ', '.join(args)
-            
+
             test_content += f'''def test_{func_name}():
     """Test {func_name} function"""
     result = {func_name}({call_args})
@@ -368,39 +367,39 @@ import pytest
     # TODO: 구체적 테스트 케이스 추가
 
 '''
-        
+
         test_content += '''if __name__ == "__main__":
     pytest.main([__file__, "-v"])
 '''
-        
+
         return test_content
-    
-    def _generate_python_test(self, step: PlanStep, existing: str, context: Dict[str, Any]) -> str:
+
+    def _generate_python_test(self, step: PlanStep, existing: str, context: dict[str, Any]) -> str:
         """기존 테스트 파일 수정"""
         if existing:
             return existing + f"\n\n# === Auto-generated test for: {step.title} ===\n"
         else:
             return self._generate_python_test_file(step.assigned_files[0] if step.assigned_files else "module.py", "", context)
-    
-    def _generate_js_ts_task_code(self, step: PlanStep, file_path: str, goal: str, context: Dict[str, Any]) -> str:
+
+    def _generate_js_ts_task_code(self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]) -> str:
         """JavaScript/TypeScript 작업별 코드 생성"""
         ext = Path(file_path).suffix.lower()
         is_ts = ext in ('.ts', '.tsx')
-        
+
         full_path = self.workspace / file_path
         existing_content = ""
         if full_path.exists():
             existing_content = full_path.read_text(encoding='utf-8')
-        
+
         if existing_content:
             return existing_content + f"\n\n// === Auto-generated for: {step.title} ===\n// TODO: Implement based on goal\n"
-        
+
         return self._generate_js_ts_module(step, is_ts, goal)
-    
+
     def _generate_js_ts_module(self, step: PlanStep, is_ts: bool, goal: str) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else ""
-        
+
         template = """/**
  * Auto-generated module for: {goal}
  */
@@ -426,20 +425,20 @@ export default AutoGeneratedClass;
         interface = ""
         if is_ts:
             interface = "interface Config {\n  [key: string]: any;\n}"
-        
+
         return template.format(
             goal=goal[:100],
             type_ann=type_ann,
             interface=interface,
         )
-    
-    def _generate_go_task_code(self, step: PlanStep, file_path: str, goal: str, context: Dict[str, Any]) -> str:
+
+    def _generate_go_task_code(self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]) -> str:
         """Go 작업별 코드 생성"""
         if file_path.endswith('_test.go'):
             return self._generate_go_test(step, goal)
         else:
             return self._generate_go_module(step, goal)
-    
+
     def _generate_go_module(self, step: PlanStep, goal: str) -> str:
         template = '''// Package autogenerated - Auto-generated for: {title}
 // {desc}
@@ -480,7 +479,7 @@ cb
             ob='{',
             cb='}',
         )
-    
+
     def _generate_go_test(self, step: PlanStep, goal: str) -> str:
         template = '''// Auto-generated test for: {title}
 
@@ -516,14 +515,14 @@ cb
             ob='{',
             cb='}',
         )
-    
-    def _generate_rust_task_code(self, step: PlanStep, file_path: str, goal: str, context: Dict[str, Any]) -> str:
+
+    def _generate_rust_task_code(self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]) -> str:
         """Rust 작업별 코드 생성"""
         if '_test' in file_path or '/tests/' in file_path:
             return self._generate_rust_module(step, goal)
         else:
             return self._generate_rust_module(step, goal)
-    
+
     def _generate_rust_module(self, step: PlanStep, goal: str) -> str:
         return f'''// Auto-generated module for: {step.title}
 // {goal[:200]}
@@ -578,8 +577,8 @@ mod tests {{
     }}
 }}
 '''
-    
-    def _generate_generic_code(self, step: PlanStep, file_path: str, goal: str, context: Dict[str, Any]) -> str:
+
+    def _generate_generic_code(self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]) -> str:
         """범용 코드 생성"""
         return f'''# Auto-generated for: {step.title}
 # Goal: {goal[:200]}
@@ -587,7 +586,7 @@ mod tests {{
 # TODO: Implement based on goal
 # File: {file_path}
 '''
-    
+
     def _backup_file(self, file_path: str) -> None:
         """파일 백업"""
         full_path = self.workspace / file_path
@@ -595,24 +594,23 @@ mod tests {{
             backup_path = self._backup_dir / f"{file_path.replace('/', '_')}.bak"
             backup_path.parent.mkdir(parents=True, exist_ok=True)
             backup_path.write_text(full_path.read_text(encoding='utf-8'), encoding='utf-8')
-    
+
     def _apply_patch(self, file_path: str, new_content: str, step: PlanStep) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding='utf-8')
-        
+
         # 간단한 전략: 파일이 짧으면 전체 교체, 길면 패치 시도
         if len(existing.split('\n')) < 100:
             full_path.write_text(new_content, encoding='utf-8')
         else:
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
-    
+
     def _try_patch_tool(self, file_path: str, old_content: str, new_content: str) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
-        import subprocess
-        
+
         # diff 생성
         diff = list(difflib.unified_diff(
             old_content.splitlines(keepends=True),
@@ -620,13 +618,13 @@ mod tests {{
             fromfile=f"a/{file_path}",
             tofile=f"b/{file_path}",
         ))
-        
+
         if diff:
             # 임시 파일에 패치 저장
             with tempfile.NamedTemporaryFile(mode='w', suffix='.patch', delete=False) as f:
                 f.writelines(diff)
                 patch_file = f.name
-            
+
             try:
                 # patch 적용
                 result = subprocess.run(
@@ -647,26 +645,26 @@ mod tests {{
         else:
             # 변경사항 없음
             pass
-    
+
     def _write_file(self, file_path: str, content: str) -> None:
         """파일 생성"""
         full_path = self.workspace / file_path
         full_path.parent.mkdir(parents=True, exist_ok=True)
         full_path.write_text(content, encoding='utf-8')
-    
-    def rollback(self, file_paths: List[str]) -> None:
+
+    def rollback(self, file_paths: list[str]) -> None:
         """백업에서 롤백"""
         for file_path in file_paths:
             backup_path = self._backup_dir / f"{file_path.replace('/', '_')}.bak"
             full_path = self.workspace / file_path
-            
+
             if backup_path.exists():
                 full_path.parent.mkdir(parents=True, exist_ok=True)
                 full_path.write_text(backup_path.read_text(encoding='utf-8'), encoding='utf-8')
                 log.info(f"롤백: {file_path}")
 
 
-def generate_code(workspace: Path, step: PlanStep, context: Dict[str, Any]) -> Dict[str, Any]:
+def generate_code(workspace: Path, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
     """코드 생성 헬퍼"""
     generator = CodeGenerator(workspace)
     return generator.execute_step(step, context)

@@ -1,15 +1,14 @@
 """Tests for memory/learning module"""
 
-import pytest
 import tempfile
 from pathlib import Path
+
+import pytest
+
 from autonomous_coding_agent import (
-    PatternMemory,
     LearningAgent,
-    SuccessPattern,
-    SessionRecord,
+    PatternMemory,
 )
-from datetime import datetime
 
 
 def test_pattern_memory_basic():

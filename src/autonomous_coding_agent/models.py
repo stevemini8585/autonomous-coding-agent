@@ -4,12 +4,12 @@
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Set
-import json
+from typing import Any
 
 
 class StepStatus(Enum):
@@ -38,7 +38,7 @@ class CodeSymbol:
     line_end: int
     signature: str = ""
     docstring: str = ""
-    references: List[str] = field(default_factory=list)  # 이 심볼을 참조하는 파일들
+    references: list[str] = field(default_factory=list)  # 이 심볼을 참조하는 파일들
 
 
 @dataclass
@@ -48,21 +48,21 @@ class FileInfo:
     language: str
     size: int
     lines: int
-    imports: List[str] = field(default_factory=list)
-    exports: List[str] = field(default_factory=list)  # export되는 심볼들
+    imports: list[str] = field(default_factory=list)
+    exports: list[str] = field(default_factory=list)  # export되는 심볼들
     last_modified: datetime = field(default_factory=datetime.now)
 
 
 @dataclass
 class ExploreResult:
     """탐색 결과"""
-    symbols: List[CodeSymbol] = field(default_factory=list)
-    files: List[FileInfo] = field(default_factory=list)
-    import_graph: Dict[str, List[str]] = field(default_factory=dict)  # file -> imported files
-    call_graph: Dict[str, List[str]] = field(default_factory=dict)    # function -> called functions
-    entry_points: List[str] = field(default_factory=list)  # main, cli, test entry points
-    config_files: List[str] = field(default_factory=list)
-    test_files: List[str] = field(default_factory=list)
+    symbols: list[CodeSymbol] = field(default_factory=list)
+    files: list[FileInfo] = field(default_factory=list)
+    import_graph: dict[str, list[str]] = field(default_factory=dict)  # file -> imported files
+    call_graph: dict[str, list[str]] = field(default_factory=dict)    # function -> called functions
+    entry_points: list[str] = field(default_factory=list)  # main, cli, test entry points
+    config_files: list[str] = field(default_factory=list)
+    test_files: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -72,34 +72,34 @@ class PlanStep:
     type: StepType
     title: str
     description: str
-    dependencies: List[str] = field(default_factory=list)  # 선행 단계 ID들
+    dependencies: list[str] = field(default_factory=list)  # 선행 단계 ID들
     status: StepStatus = StepStatus.PENDING
-    assigned_files: List[str] = field(default_factory=list)
-    expected_outputs: List[str] = field(default_factory=list)
-    verification_criteria: List[str] = field(default_factory=list)
+    assigned_files: list[str] = field(default_factory=list)
+    expected_outputs: list[str] = field(default_factory=list)
+    verification_criteria: list[str] = field(default_factory=list)
     max_retries: int = 3
     retry_count: int = 0
-    started_at: Optional[datetime] = None
-    completed_at: Optional[datetime] = None
-    error: Optional[str] = None
-    artifacts: Dict[str, Any] = field(default_factory=dict)  # 생성된 파일, 테스트 결과 등
+    started_at: datetime | None = None
+    completed_at: datetime | None = None
+    error: str | None = None
+    artifacts: dict[str, Any] = field(default_factory=dict)  # 생성된 파일, 테스트 결과 등
 
 
 @dataclass
 class Plan:
     """실행 계획"""
     goal: str
-    steps: List[PlanStep] = field(default_factory=list)
+    steps: list[PlanStep] = field(default_factory=list)
     created_at: datetime = field(default_factory=datetime.now)
     updated_at: datetime = field(default_factory=datetime.now)
-    
-    def get_step(self, step_id: str) -> Optional[PlanStep]:
+
+    def get_step(self, step_id: str) -> PlanStep | None:
         for step in self.steps:
             if step.id == step_id:
                 return step
         return None
-    
-    def get_ready_steps(self) -> List[PlanStep]:
+
+    def get_ready_steps(self) -> list[PlanStep]:
         """실행 가능한 단계들 반환 (의존성 완료된 것들)"""
         ready = []
         completed_ids = {s.id for s in self.steps if s.status == StepStatus.COMPLETED}
@@ -108,10 +108,10 @@ class Plan:
                 if all(dep in completed_ids for dep in step.dependencies):
                     ready.append(step)
         return ready
-    
+
     def is_complete(self) -> bool:
         return all(s.status in (StepStatus.COMPLETED, StepStatus.SKIPPED) for s in self.steps)
-    
+
     def has_failures(self) -> bool:
         return any(s.status == StepStatus.FAILED for s in self.steps)
 
@@ -121,14 +121,14 @@ class VerificationResult:
     """검증 결과"""
     step_id: str
     passed: bool = False
-    test_results: Dict[str, Any] = field(default_factory=dict)
-    lint_results: Dict[str, Any] = field(default_factory=dict)
-    type_results: Dict[str, Any] = field(default_factory=dict)
-    format_results: Dict[str, Any] = field(default_factory=dict)
-    build_results: Dict[str, Any] = field(default_factory=dict)
+    test_results: dict[str, Any] = field(default_factory=dict)
+    lint_results: dict[str, Any] = field(default_factory=dict)
+    type_results: dict[str, Any] = field(default_factory=dict)
+    format_results: dict[str, Any] = field(default_factory=dict)
+    build_results: dict[str, Any] = field(default_factory=dict)
     coverage: float = 0.0
-    errors: List[str] = field(default_factory=list)
-    warnings: List[str] = field(default_factory=list)
+    errors: list[str] = field(default_factory=list)
+    warnings: list[str] = field(default_factory=list)
     duration_seconds: float = 0.0
 
 
@@ -137,8 +137,8 @@ class CritiqueResult:
     """비평 결과"""
     step_id: str
     score: float = 0.0  # 0.0 ~ 1.0
-    issues: List[Dict[str, Any]] = field(default_factory=list)  # {type, severity, file, line, message, suggestion}
-    improvements: List[str] = field(default_factory=list)
+    issues: list[dict[str, Any]] = field(default_factory=list)  # {type, severity, file, line, message, suggestion}
+    improvements: list[str] = field(default_factory=list)
     should_retry: bool = False
     retry_feedback: str = ""
 
@@ -149,15 +149,15 @@ class AgentState:
     session_id: str
     workspace: Path
     goal: str
-    plan: Optional[Plan] = None
-    explore_result: Optional[ExploreResult] = None
-    current_step_id: Optional[str] = None
+    plan: Plan | None = None
+    explore_result: ExploreResult | None = None
+    current_step_id: str | None = None
     iteration: int = 0
     max_iterations: int = 5
     started_at: datetime = field(default_factory=datetime.now)
     updated_at: datetime = field(default_factory=datetime.now)
-    checkpoints: List[Dict[str, Any]] = field(default_factory=list)  # 롤백용
-    
+    checkpoints: list[dict[str, Any]] = field(default_factory=list)  # 롤백용
+
     def to_json(self) -> str:
         return json.dumps({
             "session_id": self.session_id,
@@ -175,12 +175,12 @@ class AgentResult:
     """에이전트 실행 최종 결과"""
     success: bool
     summary: str
-    files_changed: List[str] = field(default_factory=list)
-    files_created: List[str] = field(default_factory=list)
-    files_modified: List[str] = field(default_factory=list)
-    test_results: Dict[str, Any] = field(default_factory=dict)
-    verification_results: List[VerificationResult] = field(default_factory=list)
-    critique_results: List[CritiqueResult] = field(default_factory=list)
+    files_changed: list[str] = field(default_factory=list)
+    files_created: list[str] = field(default_factory=list)
+    files_modified: list[str] = field(default_factory=list)
+    test_results: dict[str, Any] = field(default_factory=dict)
+    verification_results: list[VerificationResult] = field(default_factory=list)
+    critique_results: list[CritiqueResult] = field(default_factory=list)
     duration_seconds: float = 0.0
     iterations_used: int = 0
-    error: Optional[str] = None
+    error: str | None = None

@@ -11,7 +11,7 @@ import re
 import urllib.parse
 import urllib.request
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any, ClassVar
 from urllib.error import HTTPError, URLError
 
@@ -939,7 +939,7 @@ class VersionChecker:
     ) -> dict[str, Any]:
         """여러 패키지의 호환성 종합 확인"""
         results = {
-            "checked_at": datetime.now(timezone.utc).isoformat(),
+            "checked_at": datetime.now(UTC).isoformat(),
             "packages": [],
             "warnings": [],
             "recommendations": [],

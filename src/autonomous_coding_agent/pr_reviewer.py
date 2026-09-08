@@ -618,7 +618,7 @@ class PRReviewer:
         files_reviewed: list[str],
     ) -> PRReviewResult:
         """결과 집계"""
-        severity_counts = {s: 0 for s in ReviewSeverity}
+        severity_counts = dict.fromkeys(ReviewSeverity, 0)
         for comment in comments:
             severity_counts[comment.severity] += 1
 

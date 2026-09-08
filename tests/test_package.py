@@ -1,30 +1,31 @@
 """Tests for autonomous coding agent package"""
 
 import pytest
+
 from autonomous_coding_agent import (
     AutonomousCodingAgent,
-    CodeExplorer,
-    WorkPlanner,
-    CodeGenerator,
-    Verifier,
     CodeCritic,
-    StateManager,
-    GitManager,
-    GitHubClient,
-    GitWorkflow,
-    PatchManager,
-    IssueParser,
-    PRReviewer,
-    WebSearcher,
-    DocumentationParser,
-    VersionChecker,
-    ProjectAnalyzer,
     CodeExampleAdapter,
     CodeExampleApplier,
-    TestGenerator,
+    CodeExplorer,
+    CodeGenerator,
+    DocumentationParser,
     EdgeCaseAnalyzer,
-    ParameterCombinationGenerator,
+    GitHubClient,
+    GitManager,
+    GitWorkflow,
+    IssueParser,
     MockGenerator,
+    ParameterCombinationGenerator,
+    PatchManager,
+    ProjectAnalyzer,
+    PRReviewer,
+    StateManager,
+    TestGenerator,
+    Verifier,
+    VersionChecker,
+    WebSearcher,
+    WorkPlanner,
 )
 
 
@@ -64,13 +65,13 @@ def test_version():
 def test_edge_case_analyzer():
     """Test edge case analyzer"""
     analyzer = EdgeCaseAnalyzer()
-    
+
     # String edge cases
     str_cases = analyzer.get_edge_cases_for_type("str")
     assert "" in str_cases
     assert " " in str_cases
     assert "unicode: 日本語" in str_cases
-    
+
     # Int edge cases
     int_cases = analyzer.get_edge_cases_for_type("int")
     assert 0 in int_cases
@@ -83,19 +84,19 @@ def test_edge_case_analyzer():
 def test_parameter_combination_generator():
     """Test parameter combination generator"""
     gen = ParameterCombinationGenerator(max_combinations=10)
-    
+
     func_sig = {
         "params": [
             {"name": "x", "type": "int", "default": 0},
             {"name": "y", "type": "str", "default": "test"},
         ]
     }
-    
+
     edge_cases = {
         "x": [0, 1, -1, 100],
         "y": ["", "a", "test"],
     }
-    
+
     combos = gen.generate_combinations(func_sig, edge_cases)
     assert len(combos) > 0
     assert len(combos) <= 10
@@ -107,12 +108,12 @@ def test_parameter_combination_generator():
 def test_mock_generator():
     """Test mock generator"""
     gen = MockGenerator()
-    
+
     # Test import analysis
     imports = gen.analyze_imports("import httpx\nfrom sqlalchemy import AsyncSession")
     assert "httpx" in imports
     assert "sqlalchemy.AsyncSession" in imports
-    
+
     # Test mock generation
     mocks = gen.generate_mocks_for_imports(["httpx.AsyncClient", "redis.asyncio.Redis"])
     assert len(mocks) >= 1
@@ -125,7 +126,7 @@ def test_test_generator():
     """Test test generator basic functionality"""
     import tempfile
     from pathlib import Path
-    
+
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp_path = Path(tmpdir)
         (tmp_path / "sample.py").write_text("""
@@ -135,10 +136,10 @@ def add(a: int, b: int) -> int:
 async def fetch_data(url: str) -> dict:
     return {"data": url}
 """)
-        
+
         generator = TestGenerator(tmp_path)
         module = generator.generate_tests_for_file("sample.py")
-        
+
         assert module.source_file == "sample.py"
         assert len(module.test_functions) > 0
         assert "add" in str(module.test_functions)
@@ -149,7 +150,7 @@ def test_project_analyzer():
     """Test project analyzer"""
     import tempfile
     from pathlib import Path
-    
+
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp_path = Path(tmpdir)
         (tmp_path / "pyproject.toml").write_text("""
@@ -157,10 +158,10 @@ def test_project_analyzer():
 name = "test"
 dependencies = ["httpx", "pydantic"]
 """)
-        
+
         analyzer = ProjectAnalyzer(tmp_path)
         context = analyzer.analyze()
-        
+
         assert context.language == "python"
         assert context.package_manager in ["pip", "poetry"]
 

@@ -7,7 +7,7 @@ from __future__ import annotations
 import logging
 import time
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -234,7 +234,7 @@ class AutonomousCodingAgent:
 
                 log.info(f"  ▶ [병렬] {step.id}: {step.title}")
                 step.status = StepStatus.IN_PROGRESS
-                step.started_at = datetime.now(timezone.utc)
+                step.started_at = datetime.now(UTC)
 
                 # 1. 코드 실행
                 if step.type == StepType.CODE:
@@ -287,7 +287,7 @@ class AutonomousCodingAgent:
                         return step, None
 
                 step.status = StepStatus.COMPLETED
-                step.completed_at = datetime.now(timezone.utc)
+                step.completed_at = datetime.now(UTC)
                 return step, None
 
             except (OSError, RuntimeError, ValueError) as e:
@@ -318,7 +318,7 @@ class AutonomousCodingAgent:
 
         self.state.current_step_id = step.id
         step.status = StepStatus.IN_PROGRESS
-        step.started_at = datetime.now(timezone.utc)
+        step.started_at = datetime.now(UTC)
 
         try:
             # 컨텍스트 구성
@@ -385,13 +385,13 @@ class AutonomousCodingAgent:
                     return
 
             step.status = StepStatus.COMPLETED
-            step.completed_at = datetime.now(timezone.utc)
+            step.completed_at = datetime.now(UTC)
             log.info(f"  ✅ 완료: {step.id}")
 
         except (OSError, RuntimeError, ValueError) as e:
             step.status = StepStatus.FAILED
             step.error = str(e)
-            step.completed_at = datetime.now(timezone.utc)
+            step.completed_at = datetime.now(UTC)
             log.error(f"  ❌ 단계 실패 {step.id}: {e}")
 
     def _final_verification(self) -> dict[str, Any]:

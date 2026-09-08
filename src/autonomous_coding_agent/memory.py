@@ -6,13 +6,11 @@ from __future__ import annotations
 
 import json
 import logging
-import pickle
-import time
+from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Optional
-from collections import defaultdict
+from typing import Any
 
 log = logging.getLogger("autonomous_coding_agent.memory")
 
@@ -27,7 +25,7 @@ class SuccessPattern:
     success_metrics: dict[str, float]  # 테스트 통과율, 커버리지, 실행 시간 등
     created_at: datetime = field(default_factory=datetime.now)
     use_count: int = 0
-    last_used: Optional[datetime] = None
+    last_used: datetime | None = None
     tags: list[str] = field(default_factory=list)
 
 
@@ -38,7 +36,7 @@ class SessionRecord:
     goal: str
     workspace: str
     start_time: datetime
-    end_time: Optional[datetime] = None
+    end_time: datetime | None = None
     success: bool = False
     steps_completed: int = 0
     total_steps: int = 0
@@ -242,7 +240,7 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def use_pattern(self, pattern_id: str) -> Optional[SuccessPattern]:
+    def use_pattern(self, pattern_id: str) -> SuccessPattern | None:
         """패턴 사용 기록"""
         if pattern_id in self.patterns:
             pattern = self.patterns[pattern_id]
@@ -286,7 +284,7 @@ class LearningAgent:
 
     def __init__(self, memory: PatternMemory):
         self.memory = memory
-        self.current_session: Optional[SessionRecord] = None
+        self.current_session: SessionRecord | None = None
 
     def start_session(self, goal: str, workspace: str) -> SessionRecord:
         """세션 시작"""

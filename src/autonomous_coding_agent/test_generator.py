@@ -7,7 +7,6 @@ from __future__ import annotations
 
 import ast
 import logging
-import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, ClassVar
@@ -119,7 +118,7 @@ class EdgeCaseAnalyzer:
             b"",
             b"hello",
             b"\x00\xff",
-            "hello".encode("utf-8"),
+            b"hello",
         ],
     }
 
@@ -755,7 +754,7 @@ class TestGenerator:
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
         target = mock.target
-        
+
         # httpx.AsyncClient가 함수에서 사용되는지 확인
         if "AsyncClient" in target:
             # async with httpx.AsyncClient() as client: 패턴 확인
@@ -765,7 +764,7 @@ class TestGenerator:
             if "httpx.AsyncClient" in func_source or "httpx.AsyncClient(" in func_source:
                 return True
             return False
-            
+
         # 다른 모킹도 대상 사용 여부 확인
         # 모듈/클래스 이름이 함수 소스에 있는지 확인
         parts = target.split(".")
@@ -774,7 +773,7 @@ class TestGenerator:
             class_name = parts[-1] if not parts[-1].startswith("__") else parts[-2]
             if class_name in func_source:
                 return True
-                
+
         return False
 
     def _get_test_file_path(self, source_file: str) -> str:

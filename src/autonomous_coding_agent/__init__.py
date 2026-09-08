@@ -1,38 +1,43 @@
 """Autonomous Coding Agent - Codex/Claude Code 수준의 자율 코딩 에이전트 파이프라인"""
 
 from .agent import AutonomousCodingAgent
-from .models import (
-    PlanStep,
-    StepStatus,
-    VerificationResult,
-    Plan,
-    AgentState,
-    StepType,
-    CodeSymbol,
-    FileInfo,
-    ExploreResult,
+from .code_adapter import (
+    CodeExampleAdapter,
+    CodeExampleApplier,
+    ProjectAnalyzer,
 )
-from .pr_reviewer import ReviewCategory, ReviewSeverity, ReviewComment, PRReviewResult
-from .explorer import CodeExplorer
-from .planner import WorkPlanner
 from .coder import CodeGenerator
-from .verifier import Verifier
 from .critic import Critic as CodeCritic
-from .state import StateManager
-from .patch_utils import PatchManager
+from .explorer import CodeExplorer
 from .git import GitManager
 from .git_integration import GitWorkflow
 from .github import GitHubClient
 from .issue_parser import IssueParser
-from .pr_reviewer import PRReviewer
-from .web_search import WebSearcher, DocumentationParser, VersionChecker
-from .code_adapter import (
-    ProjectAnalyzer,
-    CodeExampleAdapter,
-    CodeExampleApplier,
+from .memory import LearningAgent, PatternMemory, SessionRecord, SuccessPattern
+from .models import (
+    AgentState,
+    CodeSymbol,
+    ExploreResult,
+    FileInfo,
+    Plan,
+    PlanStep,
+    StepStatus,
+    StepType,
+    VerificationResult,
 )
-from .test_generator import TestGenerator, EdgeCaseAnalyzer, ParameterCombinationGenerator, MockGenerator
-from .memory import PatternMemory, LearningAgent, SuccessPattern, SessionRecord
+from .patch_utils import PatchManager
+from .planner import WorkPlanner
+from .pr_reviewer import PRReviewer, PRReviewResult, ReviewCategory, ReviewComment, ReviewSeverity
+from .state import StateManager
+from .test_generator import (
+    EdgeCaseAnalyzer,
+    MockGenerator,
+    ParameterCombinationGenerator,
+    TestGenerator,
+)
+from .verifier import Verifier
+from .web_search import DocumentationParser, VersionChecker, WebSearcher
+from .dashboard import DashboardServer, get_dashboard, start_dashboard, SessionProgress, StepProgress
 
 __all__ = [
     "AutonomousCodingAgent",
@@ -75,6 +80,11 @@ __all__ = [
     "LearningAgent",
     "SuccessPattern",
     "SessionRecord",
+    "DashboardServer",
+    "get_dashboard",
+    "start_dashboard",
+    "SessionProgress",
+    "StepProgress",
 ]
 
 __version__ = "0.1.0"

@@ -6,9 +6,9 @@ from __future__ import annotations
 
 import logging
 import subprocess
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional
-from dataclasses import dataclass
 
 log = logging.getLogger("autonomous_coding_agent.git")
 
@@ -18,9 +18,9 @@ class GitStatus:
     """Git 상태 정보"""
     branch: str
     is_clean: bool
-    staged_files: List[str]
-    unstaged_files: List[str]
-    untracked_files: List[str]
+    staged_files: list[str]
+    unstaged_files: list[str]
+    untracked_files: list[str]
     ahead: int
     behind: int
 
@@ -33,17 +33,17 @@ class CommitInfo:
     message: str
     author: str
     date: str
-    files_changed: List[str]
+    files_changed: list[str]
 
 
 class GitManager:
     """Git 작업 관리자"""
-    
+
     def __init__(self, workspace: Path):
         self.workspace = Path(workspace).resolve()
         if not (self.workspace / ".git").exists():
             raise ValueError(f"Git 저장소가 아님: {workspace}")
-    
+
     def _run(self, cmd: str) -> subprocess.CompletedProcess:
         """Git 명령 실행"""
         log.info(f"Git 실행: {cmd}")
@@ -55,21 +55,21 @@ class GitManager:
             text=True,
             timeout=60,
         )
-    
+
     def get_status(self) -> GitStatus:
         """작업 트리 상태 조회"""
         # 현재 브랜치
         branch_result = self._run("git branch --show-current")
         branch = branch_result.stdout.strip()
-        
+
         # 상태
         status_result = self._run("git status --porcelain")
         lines = status_result.stdout.strip().split('\n') if status_result.stdout.strip() else []
-        
+
         staged = []
         unstaged = []
         untracked = []
-        
+
         for line in lines:
             if not line:
                 continue
@@ -81,11 +81,11 @@ class GitManager:
                 unstaged.append(filepath)
             if status == '??':
                 untracked.append(filepath)
-        
+
         # ahead/behind
         ahead_behind = self._run("git rev-list --left-right --count @{u}...HEAD 2>/dev/null || echo '0\t0'")
         behind, ahead = map(int, ahead_behind.stdout.strip().split('\t'))
-        
+
         return GitStatus(
             branch=branch,
             is_clean=len(lines) == 0,
@@ -95,15 +95,15 @@ class GitManager:
             ahead=ahead,
             behind=behind,
         )
-    
-    def add(self, files: List[str]) -> bool:
+
+    def add(self, files: list[str]) -> bool:
         """파일 스테이징"""
         if not files:
             return True
         result = self._run(f"git add {' '.join(files)}")
         return result.returncode == 0
-    
-    def commit(self, message: str, files: Optional[List[str]] = None) -> Optional[str]:
+
+    def commit(self, message: str, files: list[str] | None = None) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -112,24 +112,24 @@ class GitManager:
             result = self._run("git add -A")
             if result.returncode != 0:
                 return None
-        
+
         result = self._run(f'git commit -m "{message}"')
         if result.returncode != 0:
             return None
-        
+
         # 커밋 해시 반환
         hash_result = self._run("git rev-parse HEAD")
         return hash_result.stdout.strip()
-    
-    def create_branch(self, branch_name: str, base: Optional[str] = None) -> bool:
+
+    def create_branch(self, branch_name: str, base: str | None = None) -> bool:
         """브랜치 생성"""
         cmd = f"git checkout -b {branch_name}"
         if base:
             cmd = f"git checkout -b {branch_name} {base}"
         result = self._run(cmd)
         return result.returncode == 0
-    
-    def push(self, branch: Optional[str] = None, force: bool = False) -> bool:
+
+    def push(self, branch: str | None = None, force: bool = False) -> bool:
         """푸시"""
         cmd = "git push"
         if branch:
@@ -138,7 +138,7 @@ class GitManager:
             cmd += " --force"
         result = self._run(cmd)
         return result.returncode == 0
-    
+
     def get_diff(self, staged: bool = False) -> str:
         """변경사항 diff"""
         cmd = "git diff"
@@ -146,8 +146,8 @@ class GitManager:
             cmd += " --cached"
         result = self._run(cmd)
         return result.stdout
-    
-    def get_log(self, limit: int = 10) -> List[CommitInfo]:
+
+    def get_log(self, limit: int = 10) -> list[CommitInfo]:
         """커밋 로그"""
         result = self._run(f"git log --oneline -{limit} --pretty=format:'%h|%s|%an|%ad' --date=short")
         commits = []
@@ -165,7 +165,7 @@ class GitManager:
                     files_changed=[],
                 ))
         return commits
-    
+
     def get_file_diff(self, filepath: str, staged: bool = False) -> str:
         """특정 파일 diff"""
         cmd = f"git diff {'--cached ' if staged else ''}{filepath}"
