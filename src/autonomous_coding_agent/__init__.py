@@ -17,6 +17,20 @@ from .dashboard import (
     get_dashboard,
     start_dashboard,
 )
+from .dataflow import (
+    AnalysisResult,
+    Definition,
+    DefUseChain,
+    DependencyEdge,
+    Use,
+    create_dataflow_analyzer,
+)
+from .dataflow import (
+    analyze_file as analyze_dataflow_file,
+)
+from .dataflow import (
+    analyze_source as analyze_dataflow_source,
+)
 from .explorer import CodeExplorer
 from .git import GitManager
 from .git_integration import GitWorkflow
@@ -143,6 +157,14 @@ __all__ = [
     "infer_file",
     "join_types",
     "create_type_analyzer",
+    "AnalysisResult",
+    "Definition",
+    "Use",
+    "DefUseChain",
+    "DependencyEdge",
+    "analyze_dataflow_source",
+    "analyze_dataflow_file",
+    "create_dataflow_analyzer",
     "DashboardServer",
     "SessionProgress",
     "StepProgress",
