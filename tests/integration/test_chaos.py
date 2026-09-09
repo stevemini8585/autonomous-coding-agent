@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Chaos Testing - 장애 주입 테스트"""
 
+import json
 import os
 import shutil
 import signal
@@ -310,7 +311,7 @@ class TestChaosCorruptedState:
             cp_file.write_text("{ corrupted }")
 
             # 복구 시도 시 JSONDecodeError 발생
-            with pytest.raises(Exception):
+            with pytest.raises(json.JSONDecodeError):
                 state_manager.restore_checkpoint(state.session_id, cp_id)
 
 

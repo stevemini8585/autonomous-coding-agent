@@ -174,8 +174,8 @@ class StateManager:
         lock_path.parent.mkdir(parents=True, exist_ok=True)
 
         try:
-            # 락 파일을 열고 유지 (with 문 밖에서 관리)
-            self._lock_file = open(lock_path, "w")
+            # 락 파일을 열고 유지 (with 문 밖에서 관리) - fcntl 락 유지를 위해 파일 핸들 유지 필요
+            self._lock_file = open(lock_path, "w")  # noqa: SIM115
             fcntl.flock(self._lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
             self._lock_file.write(str(os.getpid()))
             self._lock_file.flush()
@@ -208,7 +208,7 @@ class StateManager:
         if not lock_path.exists():
             return False
         try:
-            with open(lock_path, "r") as f:
+            with open(lock_path) as f:
                 fcntl.flock(f.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
                 fcntl.flock(f.fileno(), fcntl.LOCK_UN)
                 return False
