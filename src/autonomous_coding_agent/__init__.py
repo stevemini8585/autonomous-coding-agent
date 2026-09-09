@@ -53,6 +53,13 @@ from .test_generator import (
     ParameterCombinationGenerator,
     TestGenerator,
 )
+from .vector_memory import (
+    VectorLearningAgent,
+    VectorPattern,
+    VectorPatternMemory,
+    create_vector_learning_agent,
+    create_vector_memory,
+)
 from .verifier import Verifier
 from .web_search import DocumentationParser, VersionChecker, WebSearcher
 
@@ -97,6 +104,11 @@ __all__ = [
     "LearningAgent",
     "SuccessPattern",
     "SessionRecord",
+    "VectorPatternMemory",
+    "VectorLearningAgent",
+    "VectorPattern",
+    "create_vector_memory",
+    "create_vector_learning_agent",
     "DashboardServer",
     "SessionProgress",
     "StepProgress",

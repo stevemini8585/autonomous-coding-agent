@@ -334,7 +334,7 @@ class LearningAgent:
 
         # 테스트 생성 패턴
         if self.current_session.metrics.get("tests_generated", 0) > 0:
-            self.memory.store_pattern(
+            pattern_id = self.memory.store_pattern(
                 pattern_type="test",
                 context={
                     "language": self.current_session.metrics.get("language", "python"),
@@ -354,10 +354,11 @@ class LearningAgent:
                 },
                 tags=["test_generation", "ast", "edge_cases"],
             )
+            self.current_session.patterns_created.append(pattern_id)
 
         # PR 리뷰 패턴
         if self.current_session.metrics.get("pr_reviewed", False):
-            self.memory.store_pattern(
+            pattern_id = self.memory.store_pattern(
                 pattern_type="review",
                 context={
                     "language": self.current_session.metrics.get("language", "python"),
@@ -378,10 +379,11 @@ class LearningAgent:
                 },
                 tags=["pr_review", "auto_fix"],
             )
+            self.current_session.patterns_created.append(pattern_id)
 
         # 코드 수정 패턴
         if self.current_session.metrics.get("files_modified", 0) > 0:
-            self.memory.store_pattern(
+            pattern_id = self.memory.store_pattern(
                 pattern_type="fix",
                 context={
                     "language": self.current_session.metrics.get("language", "python"),
@@ -397,6 +399,7 @@ class LearningAgent:
                 },
                 tags=["auto_fix", "patch", "validation"],
             )
+            self.current_session.patterns_created.append(pattern_id)
 
     def get_relevant_patterns(self, context: dict[str, Any]) -> list[SuccessPattern]:
         """현재 컨텍스트에 맞는 패턴 조회"""
