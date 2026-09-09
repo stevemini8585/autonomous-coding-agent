@@ -65,6 +65,15 @@ from .test_generator import (
     ParameterCombinationGenerator,
     TestGenerator,
 )
+from .type_inference import (
+    InferenceResult,
+    TypeInferenceVisitor,
+    TypeInfo,
+    create_type_analyzer,
+    infer_file,
+    infer_source,
+    join_types,
+)
 from .vector_memory import (
     VectorLearningAgent,
     VectorPattern,
@@ -127,6 +136,13 @@ __all__ = [
     "LLMCritic",
     "LLMCriticWithMemory",
     "create_llm_critic",
+    "TypeInfo",
+    "InferenceResult",
+    "TypeInferenceVisitor",
+    "infer_source",
+    "infer_file",
+    "join_types",
+    "create_type_analyzer",
     "DashboardServer",
     "SessionProgress",
     "StepProgress",
