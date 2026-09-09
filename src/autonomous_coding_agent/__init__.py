@@ -1,4 +1,6 @@
-"""Autonomous Coding Agent - Codex/Claude Code 수준의 자율 코딩 에이전트 파이프라인"""
+"""
+Autonomous Coding Agent - Codex/Claude Code 수준의 자율 코딩 에이전트 파이프라인
+"""
 
 from .agent import AutonomousCodingAgent
 from .code_adapter import (
@@ -20,6 +22,16 @@ from .git import GitManager
 from .git_integration import GitWorkflow
 from .github import GitHubClient
 from .issue_parser import IssueParser
+from .llm_critic import (
+    LLMCritic,
+    LLMCriticWithMemory,
+    create_llm_critic,
+)
+from .llm_planner import (
+    LLMPlanner,
+    LLMPlannerWithMemory,
+    create_llm_planner,
+)
 from .memory import (
     LearningAgent,
     PatternMemory,
@@ -109,6 +121,12 @@ __all__ = [
     "VectorPattern",
     "create_vector_memory",
     "create_vector_learning_agent",
+    "LLMPlanner",
+    "LLMPlannerWithMemory",
+    "create_llm_planner",
+    "LLMCritic",
+    "LLMCriticWithMemory",
+    "create_llm_critic",
     "DashboardServer",
     "SessionProgress",
     "StepProgress",
