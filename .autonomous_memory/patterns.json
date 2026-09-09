@@ -2247,5 +2247,109 @@
       "patch",
       "validation"
     ]
+  },
+  {
+    "pattern_id": "test_6b768681",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-10T08:52:47.536369",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_e84e629a",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-10T08:52:47.537531",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_bb4d0f01",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-10T08:54:07.905475",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_0f9670e5",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-10T08:54:07.908986",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
   }
 ]

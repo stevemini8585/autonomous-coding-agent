@@ -52,6 +52,18 @@ from .memory import (
     SessionRecord,
     SuccessPattern,
 )
+from .metrics import (
+    ClassMetrics,
+    FunctionMetrics,
+    MetricsResult,
+    risk_rank,
+)
+from .metrics import (
+    analyze_file as analyze_metrics_file,
+)
+from .metrics import (
+    analyze_source as analyze_metrics_source,
+)
 from .models import (
     AgentState,
     CodeSymbol,
@@ -165,6 +177,12 @@ __all__ = [
     "analyze_dataflow_source",
     "analyze_dataflow_file",
     "create_dataflow_analyzer",
+    "FunctionMetrics",
+    "ClassMetrics",
+    "MetricsResult",
+    "analyze_metrics_source",
+    "analyze_metrics_file",
+    "risk_rank",
     "DashboardServer",
     "SessionProgress",
     "StepProgress",
