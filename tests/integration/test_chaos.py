@@ -1,29 +1,31 @@
 #!/usr/bin/env python3
 """Chaos Testing - 장애 주입 테스트"""
 
-import pytest
-import tempfile
-import shutil
 import os
+import shutil
 import signal
-import time
+import tempfile
 import threading
+import time
+from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import TimeoutError as FuturesTimeoutError
 from pathlib import Path
-from unittest.mock import patch, MagicMock
-from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError
+from unittest.mock import MagicMock, patch
+
+import pytest
 
 from autonomous_coding_agent import (
     AutonomousCodingAgent,
-    CodeExplorer,
-    WorkPlanner,
-    CodeGenerator,
-    Verifier,
     CodeCritic,
-    StateManager,
-    PatternMemory,
+    CodeExplorer,
+    CodeGenerator,
     LearningAgent,
+    PatternMemory,
+    StateManager,
+    Verifier,
+    WorkPlanner,
 )
-from autonomous_coding_agent.models import StepStatus, StepType, PlanStep, Plan, VerificationResult
+from autonomous_coding_agent.models import Plan, PlanStep, StepStatus, StepType, VerificationResult
 
 
 class TestChaosNetworkFailure:
@@ -44,12 +46,13 @@ class TestChaosNetworkFailure:
 
             # GitHubClient 모킹하여 네트워크 에러 시뮬레이션
             from autonomous_coding_agent.github import GitHubClient
+
             original_get_pr = GitHubClient.get_pr
 
             def mock_get_pr(*args, **kwargs):
                 raise ConnectionError("Network unreachable")
 
-            with patch.object(GitHubClient, 'get_pr', side_effect=mock_get_pr):
+            with patch.object(GitHubClient, "get_pr", side_effect=mock_get_pr):
                 # 에러가 전파되지 않고 처리되어야 함
                 try:
                     # PR 리뷰 관련 기능이 네트워크 에러를 처리하는지 확인
@@ -68,7 +71,7 @@ class TestChaosNetworkFailure:
             searcher = WebSearcher()
 
             # 네트워크 에러 시 빈 결과 반환 확인
-            with patch('urllib.request.urlopen', side_effect=ConnectionError("Network down")):
+            with patch("urllib.request.urlopen", side_effect=ConnectionError("Network down")):
                 results = searcher.search("test query", limit=5)
                 assert isinstance(results, list)
                 # 에러 시 빈 리스트 또는 적절한 에러 처리
@@ -84,17 +87,14 @@ class TestChaosDiskFull:
             state_manager = StateManager(tmp_path)
 
             from autonomous_coding_agent.models import AgentState
-            state = AgentState(
-                session_id="test_session",
-                workspace=tmp_path,
-                goal="Test goal"
-            )
+
+            state = AgentState(session_id="test_session", workspace=tmp_path, goal="Test goal")
 
             # 디스크 풀 시뮬레이션 (OSError with errno=ENOSPC)
             def mock_open_disk_full(*args, **kwargs):
                 raise OSError(28, "No space left on device")
 
-            with patch('builtins.open', side_effect=mock_open_disk_full):
+            with patch("builtins.open", side_effect=mock_open_disk_full):
                 # 에러가 로그만 남기고 예외를 전파하지 않아야 함
                 state_manager.save_state(state)
                 # 예외 없이 완료되어야 함 (단, 로그에 에러 기록)
@@ -106,16 +106,13 @@ class TestChaosDiskFull:
             state_manager = StateManager(tmp_path)
 
             from autonomous_coding_agent.models import AgentState
-            state = AgentState(
-                session_id="test_session",
-                workspace=tmp_path,
-                goal="Test goal"
-            )
+
+            state = AgentState(session_id="test_session", workspace=tmp_path, goal="Test goal")
 
             def mock_open_disk_full(*args, **kwargs):
                 raise OSError(28, "No space left on device")
 
-            with patch('builtins.open', side_effect=mock_open_disk_full):
+            with patch("builtins.open", side_effect=mock_open_disk_full):
                 result = state_manager.create_checkpoint(state, "test")
                 # 빈 문자열 반환 또는 적절한 에러 처리
                 assert result == ""
@@ -143,9 +140,7 @@ class TestChaosProcessKill:
 
             # 강제 종료 시뮬레이션 (상태 저장 안 된 상황)
             # 새 에이전트 인스턴스로 복구 테스트
-            restored_state = agent.state_manager.restore_checkpoint(
-                agent.state.session_id, cp_id
-            )
+            restored_state = agent.state_manager.restore_checkpoint(agent.state.session_id, cp_id)
 
             assert restored_state.plan is not None
             assert restored_state.plan.goal == "Add hello function"
@@ -162,10 +157,9 @@ class TestChaosConcurrency:
             state_manager = StateManager(tmp_path)
 
             from autonomous_coding_agent.models import AgentState
+
             state = AgentState(
-                session_id="concurrent_test",
-                workspace=tmp_path,
-                goal="Concurrent test"
+                session_id="concurrent_test", workspace=tmp_path, goal="Concurrent test"
             )
 
             # 첫 번째 락 획득
@@ -228,7 +222,12 @@ class TestChaosVerificationFailure:
                 "explore_result": agent.state.explore_result,
                 "plan": agent.state.plan,
                 "workspace": tmp_path,
-                "config": {"verify_tests": True, "verify_lint": True, "verify_types": True, "coverage_threshold": 80.0},
+                "config": {
+                    "verify_tests": True,
+                    "verify_lint": True,
+                    "verify_types": True,
+                    "coverage_threshold": 80.0,
+                },
             }
 
             # 단계 실행 (검증 실패 예상)
@@ -261,7 +260,7 @@ class TestChaosTimeout:
                 time.sleep(2)  # 타임아웃보다 길게
                 return original_execute(*args, **kwargs)
 
-            with patch.object(agent.coder, 'execute_step', side_effect=slow_execute):
+            with patch.object(agent.coder, "execute_step", side_effect=slow_execute):
                 code_steps = [s for s in agent.state.plan.steps if s.type == StepType.CODE]
                 if code_steps:
                     step = code_steps[0]
@@ -299,11 +298,8 @@ class TestChaosCorruptedState:
             state_manager = StateManager(tmp_path)
 
             from autonomous_coding_agent.models import AgentState
-            state = AgentState(
-                session_id="test_session",
-                workspace=tmp_path,
-                goal="Test"
-            )
+
+            state = AgentState(session_id="test_session", workspace=tmp_path, goal="Test")
 
             # 정상 체크포인트 생성
             cp_id = state_manager.create_checkpoint(state, "good")
@@ -313,7 +309,7 @@ class TestChaosCorruptedState:
             cp_file = state_manager.state_dir / f"{state.session_id}_{cp_id}.json"
             cp_file.write_text("{ corrupted }")
 
-            # 복구 시도 시 예외 발생
+            # 복구 시도 시 JSONDecodeError 발생
             with pytest.raises(Exception):
                 state_manager.restore_checkpoint(state.session_id, cp_id)
 
@@ -328,7 +324,9 @@ class TestChaosMemoryPressure:
 
             # 많은 파일 생성 (메모리 압박 시뮬레이션)
             for i in range(100):
-                (tmp_path / f"module_{i}.py").write_text(f"# Module {i}\n" + "def func():\n    pass\n" * 50)
+                (tmp_path / f"module_{i}.py").write_text(
+                    f"# Module {i}\n" + "def func():\n    pass\n" * 50
+                )
 
             explorer = CodeExplorer(tmp_path)
             # 메모리 이슈 없이 완료되어야 함
@@ -368,7 +366,9 @@ class TestChaosAutoRecovery:
             agent1.state_manager.save_state(agent1.state)
 
             # 두 번째 에이전트로 복구 실행
-            agent2 = AutonomousCodingAgent(tmp_path, max_iterations=2, resume_session=agent1.state.session_id)
+            agent2 = AutonomousCodingAgent(
+                tmp_path, max_iterations=2, resume_session=agent1.state.session_id
+            )
 
             # 체크포인트에서 복구
             restored = agent2.state_manager.restore_checkpoint(agent2.state.session_id, cp_id)
@@ -389,5 +389,5 @@ class TestChaosAutoRecovery:
             assert len(ready) > 0
 
 
-if __name__ == '__main__':
-    pytest.main([__file__, '-v', '--tb=short'])
+if __name__ == "__main__":
+    pytest.main([__file__, "-v", "--tb=short"])

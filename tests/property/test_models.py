@@ -1,20 +1,30 @@
 #!/usr/bin/env python3
 """Property-based tests for autonomous coding agent models and utilities."""
 
-import pytest
-from hypothesis import given, strategies as st, settings, assume
-from pathlib import Path
 import tempfile
+from pathlib import Path
 
-from autonomous_coding_agent.models import (
-    StepStatus, StepType, CodeSymbol, FileInfo, ExploreResult,
-    PlanStep, Plan, VerificationResult, CritiqueResult, AgentState, AgentResult
-)
-from autonomous_coding_agent.explorer import CodeExplorer
-from autonomous_coding_agent.planner import WorkPlanner
+import pytest
+from hypothesis import assume, given, settings
+from hypothesis import strategies as st
+
 from autonomous_coding_agent.coder import CodeGenerator
+from autonomous_coding_agent.explorer import CodeExplorer
+from autonomous_coding_agent.models import (
+    AgentResult,
+    AgentState,
+    CodeSymbol,
+    CritiqueResult,
+    ExploreResult,
+    FileInfo,
+    Plan,
+    PlanStep,
+    StepStatus,
+    StepType,
+    VerificationResult,
+)
+from autonomous_coding_agent.planner import WorkPlanner
 from autonomous_coding_agent.verifier import Verifier
-
 
 # ============================================================
 # Hypothesis Strategies
@@ -22,14 +32,14 @@ from autonomous_coding_agent.verifier import Verifier
 
 # Valid identifier characters (letters, digits, underscore)
 IDENTIFIER_CHARS = st.characters(
-    whitelist_categories=('Ll', 'Lu', 'Nd'),
-    blacklist_characters=''
-) | st.just('_')
+    whitelist_categories=("Ll", "Lu", "Nd"), blacklist_characters=""
+) | st.just("_")
+
 
 @st.composite
 def valid_identifier(draw):
     """유효한 식별자 생성 (시작은 문자나 _)"""
-    first = draw(st.characters(whitelist_categories=('Ll', 'Lu')) | st.just('_'))
+    first = draw(st.characters(whitelist_categories=("Ll", "Lu")) | st.just("_"))
     rest = draw(st.text(alphabet=IDENTIFIER_CHARS, min_size=0, max_size=49))
     return first + rest
 
@@ -39,8 +49,8 @@ def valid_file_path(draw):
     """유효한 파일 경로 생성"""
     parts = draw(st.lists(valid_identifier(), min_size=1, max_size=4))
     name = draw(valid_identifier())
-    ext = draw(st.sampled_from(['.py', '.js', '.ts', '.json', '.yaml', '.md']))
-    return '/'.join(parts) + '/' + name + ext
+    ext = draw(st.sampled_from([".py", ".js", ".ts", ".json", ".yaml", ".md"]))
+    return "/".join(parts) + "/" + name + ext
 
 
 @st.composite
@@ -50,13 +60,13 @@ def code_symbol(draw):
     line_end = draw(st.integers(min_value=line_start, max_value=1000))
     return CodeSymbol(
         name=draw(valid_identifier()),
-        type=draw(st.sampled_from(['function', 'class', 'method', 'variable', 'import'])),
+        type=draw(st.sampled_from(["function", "class", "method", "variable", "import"])),
         file_path=draw(valid_file_path()),
         line_start=line_start,
         line_end=line_end,
         signature=draw(st.text(max_size=200)),
         docstring=draw(st.text(max_size=500)),
-        references=draw(st.lists(valid_file_path(), max_size=5))
+        references=draw(st.lists(valid_file_path(), max_size=5)),
     )
 
 
@@ -65,7 +75,9 @@ def file_info(draw):
     """FileInfo 전략"""
     return FileInfo(
         path=draw(valid_file_path()),
-        language=draw(st.sampled_from(['python', 'javascript', 'typescript', 'json', 'yaml', 'markdown'])),
+        language=draw(
+            st.sampled_from(["python", "javascript", "typescript", "json", "yaml", "markdown"])
+        ),
         size=draw(st.integers(min_value=0, max_value=1000000)),
         lines=draw(st.integers(min_value=0, max_value=50000)),
         imports=draw(st.lists(st.text(max_size=100), max_size=20)),
@@ -81,8 +93,16 @@ def explore_result(draw):
     return ExploreResult(
         symbols=symbols,
         files=files,
-        import_graph=draw(st.dictionaries(valid_file_path(), st.lists(valid_file_path(), max_size=10), max_size=20)),
-        call_graph=draw(st.dictionaries(st.text(max_size=50), st.lists(st.text(max_size=50), max_size=10), max_size=20)),
+        import_graph=draw(
+            st.dictionaries(
+                valid_file_path(), st.lists(valid_file_path(), max_size=10), max_size=20
+            )
+        ),
+        call_graph=draw(
+            st.dictionaries(
+                st.text(max_size=50), st.lists(st.text(max_size=50), max_size=10), max_size=20
+            )
+        ),
         entry_points=draw(st.lists(st.text(max_size=50), max_size=10)),
         config_files=draw(st.lists(valid_file_path(), max_size=10)),
         test_files=draw(st.lists(valid_file_path(), max_size=10)),
@@ -131,11 +151,21 @@ def verification_result(draw):
     return VerificationResult(
         step_id=draw(st.text(max_size=50)),
         passed=draw(st.booleans()),
-        test_results=draw(st.dictionaries(st.text(max_size=50), st.text(max_size=100), max_size=10)),
-        lint_results=draw(st.dictionaries(st.text(max_size=50), st.text(max_size=100), max_size=10)),
-        type_results=draw(st.dictionaries(st.text(max_size=50), st.text(max_size=100), max_size=10)),
-        format_results=draw(st.dictionaries(st.text(max_size=50), st.text(max_size=100), max_size=10)),
-        build_results=draw(st.dictionaries(st.text(max_size=50), st.text(max_size=100), max_size=10)),
+        test_results=draw(
+            st.dictionaries(st.text(max_size=50), st.text(max_size=100), max_size=10)
+        ),
+        lint_results=draw(
+            st.dictionaries(st.text(max_size=50), st.text(max_size=100), max_size=10)
+        ),
+        type_results=draw(
+            st.dictionaries(st.text(max_size=50), st.text(max_size=100), max_size=10)
+        ),
+        format_results=draw(
+            st.dictionaries(st.text(max_size=50), st.text(max_size=100), max_size=10)
+        ),
+        build_results=draw(
+            st.dictionaries(st.text(max_size=50), st.text(max_size=100), max_size=10)
+        ),
         coverage=draw(st.floats(min_value=0.0, max_value=100.0)),
         errors=draw(st.lists(st.text(max_size=200), max_size=10)),
         warnings=draw(st.lists(st.text(max_size=200), max_size=10)),
@@ -149,16 +179,23 @@ def critique_result(draw):
     return CritiqueResult(
         step_id=draw(st.text(max_size=50)),
         score=draw(st.floats(min_value=0.0, max_value=1.0)),
-        issues=draw(st.lists(
-            st.fixed_dictionaries({
-                'type': st.text(max_size=50),
-                'severity': st.sampled_from(['critical', 'error', 'warning', 'info', 'nit']),
-                'file': st.text(max_size=100),
-                'line': st.integers(min_value=0, max_value=10000),
-                'message': st.text(max_size=500),
-                'suggestion': st.text(max_size=500),
-            }), max_size=10
-        )),
+        issues=draw(
+            st.lists(
+                st.fixed_dictionaries(
+                    {
+                        "type": st.text(max_size=50),
+                        "severity": st.sampled_from(
+                            ["critical", "error", "warning", "info", "nit"]
+                        ),
+                        "file": st.text(max_size=100),
+                        "line": st.integers(min_value=0, max_value=10000),
+                        "message": st.text(max_size=500),
+                        "suggestion": st.text(max_size=500),
+                    }
+                ),
+                max_size=10,
+            )
+        ),
         improvements=draw(st.lists(st.text(max_size=200), max_size=10)),
         should_retry=draw(st.booleans()),
         retry_feedback=draw(st.text(max_size=1000)),
@@ -174,7 +211,9 @@ def agent_result(draw):
         files_changed=draw(st.lists(valid_file_path(), max_size=20)),
         files_created=draw(st.lists(valid_file_path(), max_size=20)),
         files_modified=draw(st.lists(valid_file_path(), max_size=20)),
-        test_results=draw(st.dictionaries(st.text(max_size=50), st.text(max_size=100), max_size=20)),
+        test_results=draw(
+            st.dictionaries(st.text(max_size=50), st.text(max_size=100), max_size=20)
+        ),
         verification_results=draw(st.lists(verification_result(), max_size=10)),
         critique_results=draw(st.lists(critique_result(), max_size=10)),
         duration_seconds=draw(st.floats(min_value=0.0, max_value=7200.0)),
@@ -187,6 +226,7 @@ def agent_result(draw):
 # Property Tests for Models
 # ============================================================
 
+
 class TestModelProperties:
     """데이터 모델의 불변식 및 속성 검증"""
 
@@ -194,7 +234,9 @@ class TestModelProperties:
     @settings(max_examples=100)
     def test_code_symbol_line_order(self, symbol: CodeSymbol):
         """line_start <= line_end 불변식"""
-        assert symbol.line_start <= symbol.line_end, f"line_start({symbol.line_start}) > line_end({symbol.line_end})"
+        assert (
+            symbol.line_start <= symbol.line_end
+        ), f"line_start({symbol.line_start}) > line_end({symbol.line_end})"
 
     @given(code_symbol())
     @settings(max_examples=100)
@@ -216,8 +258,8 @@ class TestModelProperties:
         for symbol in result.symbols:
             assert symbol.file_path is not None
             assert len(symbol.name) > 0
-        
-        for file_path in result.import_graph.keys():
+
+        for file_path in result.import_graph:
             assert len(file_path) > 0
 
     @given(plan())
@@ -241,7 +283,7 @@ class TestModelProperties:
         """준비된 단계의 의존성은 모두 완료됨"""
         ready = plan_obj.get_ready_steps()
         completed_ids = {s.id for s in plan_obj.steps if s.status == StepStatus.COMPLETED}
-        
+
         for step in ready:
             for dep in step.dependencies:
                 assert dep in completed_ids, f"의존성 {dep} 미완료"
@@ -261,7 +303,7 @@ class TestModelProperties:
         if plan_obj.steps:
             plan_obj.steps[0].status = StepStatus.FAILED
             assert plan_obj.has_failures()
-        
+
         for step in plan_obj.steps:
             step.status = StepStatus.COMPLETED
         assert not plan_obj.has_failures()
@@ -282,9 +324,9 @@ class TestModelProperties:
     @settings(max_examples=50)
     def test_critique_issue_severity_valid(self, result: CritiqueResult):
         """이슈 심각도는 유효한 값"""
-        valid_severities = {'critical', 'error', 'warning', 'info', 'nit'}
+        valid_severities = {"critical", "error", "warning", "info", "nit"}
         for issue in result.issues:
-            assert issue['severity'] in valid_severities
+            assert issue["severity"] in valid_severities
 
     @given(agent_result())
     @settings(max_examples=50)
@@ -298,6 +340,7 @@ class TestModelProperties:
 # Property Tests for Explorer
 # ============================================================
 
+
 class TestExplorerProperties:
     """CodeExplorer 속성 테스트"""
 
@@ -309,7 +352,7 @@ class TestExplorerProperties:
             tmp_path = Path(tmpdir)
             test_file = tmp_path / "test.py"
             test_file.write_text(code)
-            
+
             explorer = CodeExplorer(tmp_path)
             result = explorer.explore()
             assert isinstance(result, ExploreResult)
@@ -322,7 +365,7 @@ class TestExplorerProperties:
             tmp_path = Path(tmpdir)
             for i, content in enumerate(file_contents):
                 (tmp_path / f"file_{i}.py").write_text(content)
-            
+
             explorer = CodeExplorer(tmp_path)
             result = explorer.explore()
             assert isinstance(result, ExploreResult)
@@ -332,6 +375,7 @@ class TestExplorerProperties:
 # ============================================================
 # Property Tests for Planner
 # ============================================================
+
 
 class TestPlannerProperties:
     """WorkPlanner 속성 테스트"""
@@ -343,13 +387,15 @@ class TestPlannerProperties:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
             (tmp_path / "main.py").write_text("# Sample\nprint('hello')")
-            
+
             explorer = CodeExplorer(tmp_path)
             explore_result = explorer.explore()
-            
+
             planner = WorkPlanner(tmp_path)
-            plan = planner.create_plan(goal=goal, explore_result=explore_result, task_type='feature')
-            
+            plan = planner.create_plan(
+                goal=goal, explore_result=explore_result, task_type="feature"
+            )
+
             assert isinstance(plan, Plan)
             assert plan.goal == goal
             assert len(plan.steps) > 0
@@ -364,14 +410,16 @@ class TestPlannerProperties:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
             (tmp_path / "main.py").write_text("# Sample")
-            
+
             explorer = CodeExplorer(tmp_path)
             explore_result = explorer.explore()
-            
+
             planner = WorkPlanner(tmp_path)
-            
-            for task_type in ['feature', 'bugfix', 'refactor', 'test', 'docs']:
-                plan = planner.create_plan(goal=goal, explore_result=explore_result, task_type=task_type)
+
+            for task_type in ["feature", "bugfix", "refactor", "test", "docs"]:
+                plan = planner.create_plan(
+                    goal=goal, explore_result=explore_result, task_type=task_type
+                )
                 assert isinstance(plan, Plan)
                 assert len(plan.steps) > 0
 
@@ -379,6 +427,7 @@ class TestPlannerProperties:
 # ============================================================
 # Property Tests for Verifier
 # ============================================================
+
 
 class TestVerifierProperties:
     """Verifier 속성 테스트"""
@@ -390,24 +439,21 @@ class TestVerifierProperties:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
             (tmp_path / "main.py").write_text("def hello():\n    return 'world'\n")
-            
+
             verifier = Verifier(tmp_path)
-            
-            from autonomous_coding_agent.models import PlanStep, StepType, StepStatus
-            step = PlanStep(
-                id=step_id,
-                type=StepType.CODE,
-                title="Test",
-                description="Test step"
-            )
-            
-            result = verifier.verify_step(step, ['main.py'])
+
+            from autonomous_coding_agent.models import PlanStep, StepStatus, StepType
+
+            step = PlanStep(id=step_id, type=StepType.CODE, title="Test", description="Test step")
+
+            result = verifier.verify_step(step, ["main.py"])
             assert result.step_id == step_id
 
 
 # ============================================================
 # Property Tests for Coder (CodeGenerator)
 # ============================================================
+
 
 class TestCoderProperties:
     """CodeGenerator 속성 테스트"""
@@ -419,32 +465,35 @@ class TestCoderProperties:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
             (tmp_path / "main.py").write_text("# Existing code\n")
-            
+
             explorer = CodeExplorer(tmp_path)
             explore_result = explorer.explore()
-            
+
             planner = WorkPlanner(tmp_path)
-            plan = planner.create_plan(goal=goal, explore_result=explore_result, task_type='feature')
-            
+            plan = planner.create_plan(
+                goal=goal, explore_result=explore_result, task_type="feature"
+            )
+
             coder = CodeGenerator(tmp_path)
             code_step = plan.get_ready_steps()[0] if plan.get_ready_steps() else plan.steps[0]
-            
+
             context = {
-                'goal': goal,
-                'explore_result': explore_result,
-                'plan': plan,
-                'workspace': tmp_path,
-                'config': {'verify_tests': True, 'verify_lint': True, 'verify_types': True}
+                "goal": goal,
+                "explore_result": explore_result,
+                "plan": plan,
+                "workspace": tmp_path,
+                "config": {"verify_tests": True, "verify_lint": True, "verify_types": True},
             }
-            
+
             result = coder.execute_step(code_step, context)
-            
+
             # 생성된 파일들 파싱 가능 확인
-            artifacts = result.get('artifacts', {}) if isinstance(result, dict) else {}
-            for file_path in artifacts.get('files_created', []):
+            artifacts = result.get("artifacts", {}) if isinstance(result, dict) else {}
+            for file_path in artifacts.get("files_created", []):
                 full_path = tmp_path / file_path
-                if full_path.exists() and file_path.endswith('.py'):
+                if full_path.exists() and file_path.endswith(".py"):
                     import ast
+
                     try:
                         ast.parse(full_path.read_text())
                     except SyntaxError:
@@ -455,6 +504,7 @@ class TestCoderProperties:
 # Round-trip Serialization Tests
 # ============================================================
 
+
 class TestSerializationProperties:
     """직렬화/역직렬화 라운드트립 테스트"""
 
@@ -463,58 +513,60 @@ class TestSerializationProperties:
     def test_code_symbol_json_roundtrip(self, symbol: CodeSymbol):
         """CodeSymbol JSON 직렬화 라운드트립"""
         import json
+
         data = {
-            'name': symbol.name,
-            'type': symbol.type,
-            'file_path': symbol.file_path,
-            'line_start': symbol.line_start,
-            'line_end': symbol.line_end,
-            'signature': symbol.signature,
-            'docstring': symbol.docstring,
-            'references': symbol.references,
+            "name": symbol.name,
+            "type": symbol.type,
+            "file_path": symbol.file_path,
+            "line_start": symbol.line_start,
+            "line_end": symbol.line_end,
+            "signature": symbol.signature,
+            "docstring": symbol.docstring,
+            "references": symbol.references,
         }
         json_str = json.dumps(data, ensure_ascii=False)
         restored = json.loads(json_str)
-        
-        assert restored['name'] == symbol.name
-        assert restored['type'] == symbol.type
-        assert restored['file_path'] == symbol.file_path
-        assert restored['line_start'] == symbol.line_start
-        assert restored['line_end'] == symbol.line_end
+
+        assert restored["name"] == symbol.name
+        assert restored["type"] == symbol.type
+        assert restored["file_path"] == symbol.file_path
+        assert restored["line_start"] == symbol.line_start
+        assert restored["line_end"] == symbol.line_end
 
     @given(plan())
     @settings(max_examples=20)
     def test_plan_json_roundtrip(self, plan_obj: Plan):
         """Plan JSON 직렬화 라운드트립"""
         import json
+
         data = {
-            'goal': plan_obj.goal,
-            'steps': [
+            "goal": plan_obj.goal,
+            "steps": [
                 {
-                    'id': s.id,
-                    'type': s.type.value,
-                    'title': s.title,
-                    'description': s.description,
-                    'dependencies': s.dependencies,
-                    'status': s.status.value,
-                    'assigned_files': s.assigned_files,
-                    'expected_outputs': s.expected_outputs,
-                    'verification_criteria': s.verification_criteria,
-                    'max_retries': s.max_retries,
-                    'retry_count': s.retry_count,
+                    "id": s.id,
+                    "type": s.type.value,
+                    "title": s.title,
+                    "description": s.description,
+                    "dependencies": s.dependencies,
+                    "status": s.status.value,
+                    "assigned_files": s.assigned_files,
+                    "expected_outputs": s.expected_outputs,
+                    "verification_criteria": s.verification_criteria,
+                    "max_retries": s.max_retries,
+                    "retry_count": s.retry_count,
                 }
                 for s in plan_obj.steps
             ],
         }
         json_str = json.dumps(data, ensure_ascii=False, default=str)
         restored = json.loads(json_str)
-        
-        assert restored['goal'] == plan_obj.goal
-        assert len(restored['steps']) == len(plan_obj.steps)
-        for orig, rest in zip(plan_obj.steps, restored['steps']):
-            assert rest['id'] == orig.id
-            assert rest['type'] == orig.type.value
+
+        assert restored["goal"] == plan_obj.goal
+        assert len(restored["steps"]) == len(plan_obj.steps)
+        for orig, rest in zip(plan_obj.steps, restored["steps"]):
+            assert rest["id"] == orig.id
+            assert rest["type"] == orig.type.value
 
 
-if __name__ == '__main__':
-    pytest.main([__file__, '-v', '--tb=short'])
+if __name__ == "__main__":
+    pytest.main([__file__, "-v", "--tb=short"])

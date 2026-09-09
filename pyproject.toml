@@ -71,6 +71,14 @@ ignore = [
     "B905", "E741", "W293", "W292",
     "PLW0603", "F401",
 ]
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+    "mutants",
+]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -83,11 +91,12 @@ target-version = ["py311"]
 include = "\\.pyi?$"
 exclude = '''
 /(
-    \\.git
-  | \\.venv
+    \.git
+  | \.venv
   | __pycache__
   | build
   | dist
+  | mutants
 )/
 '''
 
@@ -104,6 +113,9 @@ implicit_reexport = true
 explicit_package_bases = true
 namespace_packages = true
 ignore_missing_imports = true
+exclude = [
+    "mutants",
+]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

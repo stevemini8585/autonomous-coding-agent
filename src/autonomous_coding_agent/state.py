@@ -174,16 +174,17 @@ class StateManager:
         lock_path.parent.mkdir(parents=True, exist_ok=True)
 
         try:
+            # 락 파일을 열고 유지 (with 문 밖에서 관리)
             self._lock_file = open(lock_path, "w")
             fcntl.flock(self._lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
             self._lock_file.write(str(os.getpid()))
             self._lock_file.flush()
             log.debug(f"락 획득: {lock_path}")
             return True
-        except (IOError, OSError):
+        except OSError:
             if self._lock_file:
                 self._lock_file.close()
-                self._lock_file = None
+            self._lock_file = None
             log.warning(f"락 획득 실패 (이미 다른 프로세스가 사용 중): {lock_path}")
             return False
 
@@ -211,7 +212,7 @@ class StateManager:
                 fcntl.flock(f.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
                 fcntl.flock(f.fileno(), fcntl.LOCK_UN)
                 return False
-        except (IOError, OSError):
+        except OSError:
             return True
 
     def _serialize_state(self, state: AgentState) -> dict[str, Any]:
@@ -321,7 +322,8 @@ class StateManager:
 
     def _deserialize_plan(self, data: dict[str, Any]) -> Plan:
         """계획 역직렬화"""
-        from .models import StepType, StepStatus
+        from .models import StepType
+
         plan = Plan(goal=data["goal"])
         plan.created_at = datetime.fromisoformat(data["created_at"])
         plan.updated_at = datetime.fromisoformat(data["updated_at"])
