@@ -15,6 +15,7 @@ from .coder import CodeGenerator
 from .critic import Critic
 from .dashboard import DashboardServer, get_dashboard
 from .explorer import CodeExplorer
+from .memory import LearningAgent, PatternMemory
 from .models import (
     AgentResult,
     AgentState,
@@ -158,6 +159,10 @@ class AutonomousCodingAgent:
         self.verifier = Verifier(self.workspace)
         self.critic = Critic(self.workspace)
 
+        # 학습/메모리 초기화
+        self.pattern_memory = PatternMemory()
+        self.learning_agent = LearningAgent(self.pattern_memory)
+
         # 대시보드 클라이언트 초기화
         self.dashboard_client = DashboardClient(self.state.session_id)
 
@@ -175,6 +180,9 @@ class AutonomousCodingAgent:
 
         # 대시보드 세션 시작
         self.dashboard_client.start_session(goal, total_steps=0)  # plan이 생성된 후 업데이트
+
+        # 학습 에이전트 세션 시작
+        self.learning_agent.start_session(goal, str(self.workspace))
 
         try:
             # 1. 탐색 (최초 1회 또는 세션 복원 시 건너뛰기)
@@ -217,6 +225,28 @@ class AutonomousCodingAgent:
             self.dashboard_client.complete_session(
                 status="completed" if self._result.success else "failed",
                 metrics={"duration": duration, "iterations": self.state.iteration},
+            )
+
+            # 학습 에이전트 세션 종료 (패턴 추출)
+            self.learning_agent.end_session(
+                success=self._result.success,
+                metrics={
+                    "language": (
+                        self.state.explore_result.files[0].language
+                        if self.state.explore_result and self.state.explore_result.files
+                        else "python"
+                    ),
+                    "framework": (
+                        "fastapi"
+                        if self.state.explore_result
+                        and any("fastapi" in f.path for f in self.state.explore_result.files)
+                        else None
+                    ),
+                    "tests_generated": len(self._result.files_created),
+                    "files_modified": len(self._result.files_modified),
+                    "files_created": len(self._result.files_created),
+                    "coverage": 0.0,  # TODO: extract from test results
+                },
             )
 
         except (OSError, RuntimeError, ValueError) as e:

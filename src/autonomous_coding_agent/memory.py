@@ -51,7 +51,11 @@ class SessionRecord:
 class PatternMemory:
     """패턴 메모리 - 성공 패턴 저장 및 검색"""
 
-    def __init__(self, memory_dir: str | Path = ".autonomous_memory"):
+    def __init__(self, memory_dir: str | Path | None = None):
+        if memory_dir is None:
+            # 워크스페이스 내부에 저장 (격리된 메모리)
+            workspace = Path.cwd().resolve()
+            memory_dir = workspace / ".autonomous_memory"
         self.memory_dir = Path(memory_dir).resolve()
         self.memory_dir.mkdir(parents=True, exist_ok=True)
 

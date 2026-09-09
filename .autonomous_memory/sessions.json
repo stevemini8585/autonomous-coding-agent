@@ -1,0 +1,44 @@
+[
+  {
+    "session_id": "session_ca53563a",
+    "goal": "Add a GET /hello endpoint that returns {\"message\": \"Hello World\"}",
+    "workspace": "/private/var/folders/_k/1zvf_npd5cdgpgbrm8_vg2040000gn/T/tmpnx3_zco_",
+    "start_time": "2026-09-09T11:57:01.551666",
+    "end_time": "2026-09-09T11:57:03.256184",
+    "success": true,
+    "steps_completed": 0,
+    "total_steps": 0,
+    "patterns_used": [],
+    "patterns_created": [],
+    "errors": [],
+    "metrics": {
+      "language": "unknown",
+      "framework": null,
+      "tests_generated": 0,
+      "files_modified": 1,
+      "files_created": 0,
+      "coverage": 0.0
+    }
+  },
+  {
+    "session_id": "session_71839b63",
+    "goal": "Add a GET /hello endpoint that returns {\"message\": \"Hello World\"}",
+    "workspace": "/private/var/folders/_k/1zvf_npd5cdgpgbrm8_vg2040000gn/T/tmpfuxd4h2m",
+    "start_time": "2026-09-09T11:58:30.232096",
+    "end_time": "2026-09-09T11:58:31.924759",
+    "success": true,
+    "steps_completed": 0,
+    "total_steps": 0,
+    "patterns_used": [],
+    "patterns_created": [],
+    "errors": [],
+    "metrics": {
+      "language": "unknown",
+      "framework": null,
+      "tests_generated": 0,
+      "files_modified": 1,
+      "files_created": 0,
+      "coverage": 0.0
+    }
+  }
+]

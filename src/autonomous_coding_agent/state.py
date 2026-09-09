@@ -22,7 +22,7 @@ class StateManager:
     def __init__(self, workspace: Path):
         self.workspace = Path(workspace).resolve()
         self.state_dir = self.workspace / ".autonomous_state"
-        self.state_dir.mkdir(exist_ok=True)
+        self.state_dir.mkdir(parents=True, exist_ok=True)
 
     def save_state(self, state: AgentState) -> None:
         """상태 저장"""
