@@ -1,0 +1,141 @@
+Metadata-Version: 2.4
+Name: autonomous-coding-agent
+Version: 0.1.0
+Summary: Codex/Claude Code 수준의 자율 코딩 에이전트 파이프라인
+Author-email: Steve <steve@mini.local>
+License: MIT
+Project-URL: Homepage, https://github.com/stevemini8585/autonomous-coding-agent
+Project-URL: Repository, https://github.com/stevemini8585/autonomous-coding-agent
+Project-URL: Issues, https://github.com/stevemini8585/autonomous-coding-agent/issues
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: httpx>=0.27
+Requires-Dist: pydantic>=2.10
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: gitpython>=3.1
+Requires-Dist: ghapi>=2.1
+Requires-Dist: pytest>=8.0
+Requires-Dist: pytest-asyncio>=0.23
+Requires-Dist: pytest-mock>=3.14
+Requires-Dist: ruff>=0.6
+Requires-Dist: black>=24.0
+Requires-Dist: mypy>=1.10
+Provides-Extra: dev
+Requires-Dist: pytest-cov>=4.1; extra == "dev"
+Requires-Dist: pytest-html>=4.1; extra == "dev"
+Requires-Dist: pip-audit>=2.7; extra == "dev"
+Requires-Dist: safety>=3.0; extra == "dev"
+Requires-Dist: bandit>=1.7; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx>=7.0; extra == "docs"
+Requires-Dist: furo>=2024.0; extra == "docs"
+
+# Autonomous Coding Agent
+
+Codex/Claude Code 수준의 자율 코딩 에이전트 파이프라인
+
+## 개요
+
+이 프로젝트는 GitHub Issue부터 PR 병합까지의 전체 개발 사이클을 자동화하는 자율 코딩 에이전트입니다.
+
+## 주요 기능
+
+- **이슈 파싱**: GitHub 이슈에서 작업 추출 및 의존성 그래프 생성
+- **프로젝트 분석**: 언어, 프레임워크, 패키지 매니저, 코드 스타일 자동 감지
+- **웹 검색/문서 조회**: DuckDuckGo, GitHub, PyPI, npm 검색 및 문서 파싱
+- **코드 생성**: 계획 기반 병렬 코드 생성 (최대 4 workers)
+- **검증**: pytest, ruff, black, mypy 자동 실행
+- **자동 테스트 생성**: 엣지 케이스, 파라미터 조합, 모킹 자동화
+- **PR 리뷰**: 보안/성능/정확성/유지보수성/스타일 이슈 탐지 + 수정 제안
+- **CI/CD**: GitHub Actions 워크플로 자동 생성
+
+## 설치
+
+```bash
+pip install -e .
+# 개발 의존성 포함
+pip install -e ".[dev]"
+```
+
+## 사용법
+
+### 자율 에이전트 실행
+
+```python
+from autonomous_coding_agent import AutonomousCodingAgent
+
+agent = AutonomousCodingAgent(workspace=".")
+result = await agent.execute_issue("https://github.com/owner/repo/issues/123")
+```
+
+### 테스트 생성
+
+```python
+from autonomous_coding_agent import TestGenerator
+from pathlib import Path
+
+generator = TestGenerator(Path("."))
+module = generator.generate_tests_for_file("service.py")
+test_path = generator.write_test_file(module)
+```
+
+### PR 리뷰
+
+```python
+from autonomous_coding_agent import PRReviewer
+
+reviewer = PRReviewer("owner", "repo")
+result = reviewer.review_pr(123)
+reviewer.post_review_to_github(123, result)
+```
+
+## 프로젝트 구조
+
+```
+src/autonomous_coding_agent/
+├── agent.py              # 메인 에이전트 오케스트레이터
+├── explorer.py           # 코드 탐색 (AST 심볼 추출)
+├── planner.py            # 작업 계획 (위상 정렬)
+├── coder.py              # 코드 생성 (PatchManager 통합)
+├── verifier.py           # 검증 (pytest/ruff/black/mypy)
+├── critic.py             # 코드 비평
+├── state.py              # 상태 관리 (체크포인트/롤백)
+├── models.py             # 데이터 모델
+├── patch_utils.py        # 퍼지 매칭 패치 매니저
+├── git/                  # Git 통합
+│   ├── __init__.py       # GitManager
+│   └── integration.py    # GitWorkflow
+├── github/               # GitHub 통합
+│   └── __init__.py       # GitHubClient
+├── issue_parser.py       # 이슈 파싱 & 의존성 해결
+├── pr_reviewer.py        # PR 리뷰 자동화
+├── web_search.py         # 웹 검색 & 문서 파싱
+├── code_adapter.py       # 코드 예제 변환/적용
+└── test_generator.py     # 테스트 생성 고도화
+```
+
+## CI/CD 파이프라인
+
+`.github/workflows/ci.yml`에 정의된 워크플로:
+
+1. **Lint & Format** - ruff, black, mypy
+2. **Test Suite** - pytest with asyncio
+3. **Agent Pipeline** - 자율 에이전트 자체 검증
+4. **PR Review** - 자동화된 코드 리뷰
+5. **Security Scan** - pip-audit, safety, bandit
+6. **Build** - 패키지 빌드 및 검증
+
+## 요구사항
+
+- Python 3.11+
+- Git
+- GitHub CLI (gh) - GitHub 연동 시
+
+## 라이선스
+
+MIT

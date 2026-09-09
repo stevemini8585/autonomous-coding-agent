@@ -1,0 +1,2218 @@
+[
+  {
+    "pattern_id": "test_f912a877",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:36.689366",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_e199f9e3",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:36.689675",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_4295c537",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:36.691820",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_fb7bc1d8",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:36.692287",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_330d421c",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:36.704739",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_56e74bb9",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:36.705300",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_3c840c30",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:36.710714",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_62e21530",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:36.711197",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_7105910e",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:36.732830",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_057186ce",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:36.733360",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_0a5d7d5b",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:36.775567",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_20d74d15",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:36.777073",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_5d9a60d2",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:36.792835",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_2d211961",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:36.793867",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_1fd74d97",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:36.800922",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_d0e3e151",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:36.801688",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_a91f1ac9",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:36.807460",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_4065ddf1",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:36.808185",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_2a4266d2",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:36.851880",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "test_b872dca4",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:36.853655",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_82d5d4dc",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:36.854247",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_f667b572",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:36.898141",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_39c56e8d",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:36.899113",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_77209c5f",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:36.901433",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_99b586a0",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:36.902373",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_1d957f9b",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:36.924565",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_c935f913",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:36.925686",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_3315baa3",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:36.936879",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_30fb47d9",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:36.937793",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_c773aef8",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:36.992318",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_780f956b",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:36.993092",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_70e3a1de",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.005280",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_b39eccde",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.007000",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_a72e75ea",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.017235",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_49fd0ae9",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.018816",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_e25c5944",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.033174",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_2646cd7f",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.033996",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_eaf5ea35",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.060006",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_32886ccd",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.061113",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_13cbe881",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.074945",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_a73791b8",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.076645",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_eee84929",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.108267",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_e7e5e0da",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.110047",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_3962dbaa",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.146936",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "test_cefbe411",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.149260",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_d76dba66",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.151883",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_cda7d0c8",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.161039",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_96fdbb98",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.162621",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_98fd63fc",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.165257",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_7a2d837b",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.166191",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_5daccabc",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.200954",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_fd45f3c9",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.201887",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_d28d78bc",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.215613",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_aa5cdcca",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.216586",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_3d8a48bc",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.219996",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_d81e4f99",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.221515",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_1e2d7b62",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.248763",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_7598e346",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.250118",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_aa655315",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.288266",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_79d6ae24",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.289298",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_0aa1f4f5",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.323887",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_bd545145",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.325206",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_92e6105d",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.364542",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_1ba5882a",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.366095",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_a2b3d64b",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.369838",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_75879150",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.370885",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_bcbacc6a",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.380346",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_3aa18ee9",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.381450",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_8edbcdec",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.383400",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_61ccf599",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.384511",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_bfecc8e1",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.395076",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_d1585437",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.396895",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_0d192b24",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.412664",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_6e5d5cc4",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.413933",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_42b320de",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.435529",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_aca6cf61",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.437111",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_a21ce9a9d",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.475924",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_40bb4c26b",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.477296",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  },
+  {
+    "pattern_id": "test_99960a2b",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.549592",
+    "use_count": 0,
+    "last_used": null,
+    "tags": null
+  },
+  {
+    "pattern_id": "fix_b3ea6cef",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.550854",
+    "use_count": 0,
+    "last_used": null,
+    "tags": null
+  },
+  {
+    "pattern_id": "test_b3162f24",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.587713",
+    "use_count": 0,
+    "last_used": null,
+    "tags": []
+  },
+  {
+    "pattern_id": "fix_ed26f2ca",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.589014",
+    "use_count": 0,
+    "last_used": null,
+    "tags": []
+  },
+  {
+    "pattern_id": "test_41e927b6",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.610439",
+    "use_count": 0,
+    "last_used": null,
+    "tags": []
+  },
+  {
+    "pattern_id": "fix_fff177d9",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.611739",
+    "use_count": 0,
+    "last_used": null,
+    "tags": []
+  },
+  {
+    "pattern_id": "test_02729123",
+    "pattern_type": "test",
+    "context": {
+      "language": "python",
+      "framework": "fastapi",
+      "test_framework": "pytest"
+    },
+    "solution": {
+      "method": "ast_based_generation",
+      "edge_cases": true,
+      "parameter_combinations": true,
+      "mocking": true
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "tests_generated": 5,
+      "coverage": 0
+    },
+    "created_at": "2026-09-09T17:15:37.622316",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "test_generation",
+      "ast",
+      "edge_cases"
+    ]
+  },
+  {
+    "pattern_id": "fix_dcce3c19",
+    "pattern_type": "fix",
+    "context": {
+      "language": "python",
+      "error_types": []
+    },
+    "solution": {
+      "method": "patch_based_fix",
+      "validation": "ruff + black + mypy + pytest"
+    },
+    "success_metrics": {
+      "success_rate": 1.0,
+      "files_fixed": 1
+    },
+    "created_at": "2026-09-09T17:15:37.623584",
+    "use_count": 0,
+    "last_used": null,
+    "tags": [
+      "auto_fix",
+      "patch",
+      "validation"
+    ]
+  }
+]

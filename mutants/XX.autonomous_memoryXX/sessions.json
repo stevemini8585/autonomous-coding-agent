@@ -1,0 +1,22 @@
+[
+  {
+    "session_id": "session_587bf0e9",
+    "goal": "Add hello endpoint",
+    "workspace": "/var/folders/_k/1zvf_npd5cdgpgbrm8_vg2040000gn/T/e2e_test_d6jhblmr/test_project",
+    "start_time": "2026-09-09T17:15:32.819470",
+    "end_time": "2026-09-09T17:15:32.819647",
+    "success": true,
+    "steps_completed": 0,
+    "total_steps": 0,
+    "patterns_used": [],
+    "patterns_created": [],
+    "errors": [],
+    "metrics": {
+      "language": "python",
+      "framework": "fastapi",
+      "tests_generated": 5,
+      "files_modified": 1,
+      "files_created": 0
+    }
+  }
+]
