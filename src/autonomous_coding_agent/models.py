@@ -150,6 +150,7 @@ class CritiqueResult:
     improvements: list[str] = field(default_factory=list)
     should_retry: bool = False
     retry_feedback: str = ""
+    artifacts: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass
