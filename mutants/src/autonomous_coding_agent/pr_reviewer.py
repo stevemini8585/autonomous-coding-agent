@@ -17,7 +17,8 @@ from typing import ClassVar
 log = logging.getLogger("autonomous_coding_agent.pr_reviewer")
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
 
 
 class ReviewSeverity(Enum):
@@ -74,6 +75,8 @@ class PRReviewResult:
     summary: str = ""
     reviewed_at: datetime = field(default_factory=datetime.now)
     files_reviewed: list[str] = field(default_factory=list)
+
+
 mutants_xǁPRReviewerǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁPRReviewerǁ_compile_patterns__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁPRReviewerǁ_get_severity_for_category__mutmut: MutantDict = {}  # type: ignore
@@ -429,7 +432,8 @@ class PRReviewer:
             self.SECURITY_PATTERNS
             + self.PERFORMANCE_PATTERNS
             + self.CORRECTNESS_PATTERNS
-            + self.MAINTAINABILITY_PATTERNS - self.STYLE_PATTERNS
+            + self.MAINTAINABILITY_PATTERNS
+            - self.STYLE_PATTERNS
         ):
             severity = self._get_severity_for_category(category)
             compiled = re.compile(pattern_str, re.MULTILINE)
@@ -442,7 +446,8 @@ class PRReviewer:
         for pattern_str, category, rule_id, message, suggestion in (
             self.SECURITY_PATTERNS
             + self.PERFORMANCE_PATTERNS
-            + self.CORRECTNESS_PATTERNS - self.MAINTAINABILITY_PATTERNS
+            + self.CORRECTNESS_PATTERNS
+            - self.MAINTAINABILITY_PATTERNS
             + self.STYLE_PATTERNS
         ):
             severity = self._get_severity_for_category(category)
@@ -455,7 +460,8 @@ class PRReviewer:
 
         for pattern_str, category, rule_id, message, suggestion in (
             self.SECURITY_PATTERNS
-            + self.PERFORMANCE_PATTERNS - self.CORRECTNESS_PATTERNS
+            + self.PERFORMANCE_PATTERNS
+            - self.CORRECTNESS_PATTERNS
             + self.MAINTAINABILITY_PATTERNS
             + self.STYLE_PATTERNS
         ):
@@ -468,7 +474,8 @@ class PRReviewer:
         self.all_patterns = []
 
         for pattern_str, category, rule_id, message, suggestion in (
-            self.SECURITY_PATTERNS - self.PERFORMANCE_PATTERNS
+            self.SECURITY_PATTERNS
+            - self.PERFORMANCE_PATTERNS
             + self.CORRECTNESS_PATTERNS
             + self.MAINTAINABILITY_PATTERNS
             + self.STYLE_PATTERNS
@@ -579,7 +586,9 @@ class PRReviewer:
             + self.STYLE_PATTERNS
         ):
             severity = self._get_severity_for_category(category)
-            compiled = re.compile(pattern_str, )
+            compiled = re.compile(
+                pattern_str,
+            )
             self.all_patterns.append((compiled, category, rule_id, message, severity, suggestion))
 
     def xǁPRReviewerǁ_compile_patterns__mutmut_13(self) -> None:
@@ -612,7 +621,9 @@ class PRReviewer:
         }
         return severity_map.get(category, ReviewSeverity.INFO)
 
-    def xǁPRReviewerǁ_get_severity_for_category__mutmut_orig(self, category: ReviewCategory) -> ReviewSeverity:
+    def xǁPRReviewerǁ_get_severity_for_category__mutmut_orig(
+        self, category: ReviewCategory
+    ) -> ReviewSeverity:
         """카테고리별 기본 심각도"""
         severity_map = {
             ReviewCategory.SECURITY: ReviewSeverity.CRITICAL,
@@ -626,12 +637,16 @@ class PRReviewer:
         }
         return severity_map.get(category, ReviewSeverity.INFO)
 
-    def xǁPRReviewerǁ_get_severity_for_category__mutmut_1(self, category: ReviewCategory) -> ReviewSeverity:
+    def xǁPRReviewerǁ_get_severity_for_category__mutmut_1(
+        self, category: ReviewCategory
+    ) -> ReviewSeverity:
         """카테고리별 기본 심각도"""
         severity_map = None
         return severity_map.get(category, ReviewSeverity.INFO)
 
-    def xǁPRReviewerǁ_get_severity_for_category__mutmut_2(self, category: ReviewCategory) -> ReviewSeverity:
+    def xǁPRReviewerǁ_get_severity_for_category__mutmut_2(
+        self, category: ReviewCategory
+    ) -> ReviewSeverity:
         """카테고리별 기본 심각도"""
         severity_map = {
             ReviewCategory.SECURITY: ReviewSeverity.CRITICAL,
@@ -645,7 +660,9 @@ class PRReviewer:
         }
         return severity_map.get(None, ReviewSeverity.INFO)
 
-    def xǁPRReviewerǁ_get_severity_for_category__mutmut_3(self, category: ReviewCategory) -> ReviewSeverity:
+    def xǁPRReviewerǁ_get_severity_for_category__mutmut_3(
+        self, category: ReviewCategory
+    ) -> ReviewSeverity:
         """카테고리별 기본 심각도"""
         severity_map = {
             ReviewCategory.SECURITY: ReviewSeverity.CRITICAL,
@@ -657,9 +674,11 @@ class PRReviewer:
             ReviewCategory.DOCUMENTATION: ReviewSeverity.NIT,
             ReviewCategory.DEPENDENCY: ReviewSeverity.WARNING,
         }
-        return severity_map.get(category, None)
+        return severity_map.get(category)
 
-    def xǁPRReviewerǁ_get_severity_for_category__mutmut_4(self, category: ReviewCategory) -> ReviewSeverity:
+    def xǁPRReviewerǁ_get_severity_for_category__mutmut_4(
+        self, category: ReviewCategory
+    ) -> ReviewSeverity:
         """카테고리별 기본 심각도"""
         severity_map = {
             ReviewCategory.SECURITY: ReviewSeverity.CRITICAL,
@@ -673,7 +692,9 @@ class PRReviewer:
         }
         return severity_map.get(ReviewSeverity.INFO)
 
-    def xǁPRReviewerǁ_get_severity_for_category__mutmut_5(self, category: ReviewCategory) -> ReviewSeverity:
+    def xǁPRReviewerǁ_get_severity_for_category__mutmut_5(
+        self, category: ReviewCategory
+    ) -> ReviewSeverity:
         """카테고리별 기본 심각도"""
         severity_map = {
             ReviewCategory.SECURITY: ReviewSeverity.CRITICAL,
@@ -685,7 +706,9 @@ class PRReviewer:
             ReviewCategory.DOCUMENTATION: ReviewSeverity.NIT,
             ReviewCategory.DEPENDENCY: ReviewSeverity.WARNING,
         }
-        return severity_map.get(category, )
+        return severity_map.get(
+            category,
+        )
 
     @_mutmut_mutated(mutants_xǁPRReviewerǁreview_pr__mutmut)
     def review_pr(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
@@ -729,7 +752,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_orig(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_orig(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -770,7 +795,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_1(self, pr_number: int, repo: str, base_branch: str = "XXmainXX") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_1(
+        self, pr_number: int, repo: str, base_branch: str = "XXmainXX"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -811,7 +838,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_2(self, pr_number: int, repo: str, base_branch: str = "MAIN") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_2(
+        self, pr_number: int, repo: str, base_branch: str = "MAIN"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -852,7 +881,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_3(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_3(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(None)
 
@@ -893,7 +924,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_4(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_4(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -934,7 +967,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_5(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_5(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -975,7 +1010,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_6(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_6(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1016,7 +1053,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_7(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_7(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1057,12 +1096,16 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_8(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_8(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
         # 1. PR 변경사항 가져오기
-        diff = self._get_pr_diff(pr_number, )
+        diff = self._get_pr_diff(
+            pr_number,
+        )
         if not diff:
             return PRReviewResult(
                 pr_number=pr_number,
@@ -1098,7 +1141,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_9(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_9(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1139,7 +1184,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_10(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_10(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1180,7 +1227,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_11(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_11(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1221,7 +1270,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_12(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_12(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1262,7 +1313,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_13(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_13(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1303,7 +1356,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_14(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_14(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1344,7 +1399,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_15(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_15(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1385,7 +1442,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_16(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_16(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1426,7 +1485,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_17(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_17(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1467,7 +1528,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_18(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_18(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1508,7 +1571,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_19(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_19(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1548,7 +1613,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_20(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_20(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1588,7 +1655,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_21(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_21(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1628,7 +1697,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_22(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_22(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1668,7 +1739,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_23(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_23(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1708,7 +1781,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_24(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_24(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1748,7 +1823,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_25(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_25(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1788,7 +1865,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_26(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_26(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1828,7 +1907,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_27(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_27(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1844,7 +1925,7 @@ class PRReviewer:
                 warning_count=0,
                 info_count=0,
                 nit_count=0,
-                )
+            )
 
         # 2. 변경된 파일 파싱
         changed_files = self._parse_diff(diff)
@@ -1868,7 +1949,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_28(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_28(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1909,7 +1992,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_29(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_29(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1950,7 +2035,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_30(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_30(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -1991,7 +2078,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_31(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_31(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2032,7 +2121,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_32(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_32(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2073,7 +2164,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_33(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_33(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2114,7 +2207,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_34(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_34(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2155,7 +2250,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_35(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_35(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2196,7 +2293,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_36(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_36(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2237,7 +2336,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_37(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_37(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2278,7 +2379,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_38(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_38(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2319,7 +2422,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_39(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_39(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2360,7 +2465,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_40(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_40(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2401,7 +2508,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_41(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_41(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2442,7 +2551,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_42(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_42(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2483,7 +2594,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_43(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_43(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2524,7 +2637,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_44(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_44(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2549,7 +2664,9 @@ class PRReviewer:
         # 3. 각 파일 분석
         all_comments = []
         for file_path, file_diff in changed_files.items():
-            comments = self._analyze_file(file_path, )
+            comments = self._analyze_file(
+                file_path,
+            )
             all_comments.extend(comments)
 
         # 4. 정적 분석 도구 실행 (ruff, mypy)
@@ -2565,7 +2682,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_45(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_45(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2606,7 +2725,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_46(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_46(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2647,7 +2768,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_47(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_47(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2688,7 +2811,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_48(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_48(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2729,7 +2854,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_49(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_49(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2770,7 +2897,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_50(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_50(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2811,7 +2940,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_51(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_51(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2852,7 +2983,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_52(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_52(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2893,7 +3026,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_53(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_53(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2934,7 +3069,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_54(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_54(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -2975,7 +3112,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_55(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_55(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -3016,7 +3155,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_56(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_56(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -3057,7 +3198,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_57(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_57(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -3098,7 +3241,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_58(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_58(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -3131,7 +3276,11 @@ class PRReviewer:
         all_comments.extend(tool_comments)
 
         # 5. 결과 집계
-        result = self._aggregate_results(pr_number, repo, all_comments, )
+        result = self._aggregate_results(
+            pr_number,
+            repo,
+            all_comments,
+        )
 
         log.info(
             f"PR #{pr_number} 리뷰 완료: {result.total_comments}개 코멘트 (Critical: {result.critical_count}, Error: {result.error_count}, Warning: {result.warning_count})"
@@ -3139,7 +3288,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_59(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_59(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -3180,7 +3331,9 @@ class PRReviewer:
 
         return result
 
-    def xǁPRReviewerǁreview_pr__mutmut_60(self, pr_number: int, repo: str, base_branch: str = "main") -> PRReviewResult:
+    def xǁPRReviewerǁreview_pr__mutmut_60(
+        self, pr_number: int, repo: str, base_branch: str = "main"
+    ) -> PRReviewResult:
         """PR 리뷰 수행"""
         log.info(f"PR #{pr_number} 리뷰 시작: {repo}")
 
@@ -3215,9 +3368,7 @@ class PRReviewer:
         # 5. 결과 집계
         result = self._aggregate_results(pr_number, repo, all_comments, list(changed_files.keys()))
 
-        log.info(
-            None
-        )
+        log.info(None)
 
         return result
 
@@ -3527,7 +3678,7 @@ class PRReviewer:
                 text=True,
                 timeout=60,
                 cwd=self.workspace,
-                )
+            )
             if result.returncode == 0:
                 return result.stdout
             log.error(f"PR diff 가져오기 실패: {result.stderr}")
@@ -4636,7 +4787,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_orig(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_orig(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -4671,7 +4824,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_1(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_1(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = None
 
@@ -4706,7 +4861,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_2(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_2(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -4741,7 +4898,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_3(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_3(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -4776,7 +4935,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_4(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_4(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -4811,7 +4972,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_5(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_5(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -4846,7 +5009,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_6(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_6(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -4865,13 +5030,13 @@ class PRReviewer:
             ) in self.all_patterns:
                 matches = pattern.finditer(line_content)
                 for match in matches:
-                    comments.append(
-                        None
-                    )
+                    comments.append(None)
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_7(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_7(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -4906,7 +5071,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_8(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_8(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -4941,7 +5108,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_9(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_9(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -4976,7 +5145,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_10(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_10(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -5011,7 +5182,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_11(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_11(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -5046,7 +5219,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_12(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_12(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -5081,7 +5256,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_13(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_13(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -5116,7 +5293,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_14(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_14(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -5151,7 +5330,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_15(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_15(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -5186,7 +5367,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_16(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_16(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -5220,7 +5403,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_17(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_17(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -5254,7 +5439,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_18(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_18(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -5288,7 +5475,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_19(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_19(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -5322,7 +5511,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_20(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_20(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -5356,7 +5547,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_21(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_21(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -5390,7 +5583,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_22(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_22(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -5424,7 +5619,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_23(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_23(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -5458,7 +5655,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_24(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_24(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -5487,12 +5686,14 @@ class PRReviewer:
                             title=f"[{category.value.upper()}] {rule_id}",
                             message=message,
                             suggestion=suggestion,
-                            )
+                        )
                     )
 
         return comments
 
-    def xǁPRReviewerǁ_analyze_file__mutmut_25(self, file_path: str, diff: str) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_analyze_file__mutmut_25(
+        self, file_path: str, diff: str
+    ) -> list[ReviewComment]:
         """단일 파일 분석"""
         comments = []
 
@@ -5848,7 +6049,9 @@ class PRReviewer:
         for line in diff.split("\n"):
             if line.startswith("@@"):
                 # @@ -old_start,old_count +new_start,new_count @@
-                match = re.search(r"\+(\d+)", )
+                match = re.search(
+                    r"\+(\d+)",
+                )
                 if match:
                     current_line = int(match.group(1)) - 1
             elif line.startswith("+"):
@@ -6463,7 +6666,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_orig(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_orig(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -6533,7 +6738,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_1(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_1(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = None
 
@@ -6603,7 +6810,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_2(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_2(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -6666,7 +6875,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_3(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_3(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -6736,7 +6947,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_4(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_4(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -6806,7 +7019,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_5(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_5(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -6876,7 +7091,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_6(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_6(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -6946,7 +7163,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_7(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_7(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -7016,7 +7235,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_8(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_8(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -7086,7 +7307,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_9(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_9(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -7155,76 +7378,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_10(self, file_paths: list[str]) -> list[ReviewComment]:
-        """정적 분석 도구 실행 (ruff, mypy)"""
-        comments = []
-
-        # ruff 실행
-        try:
-            result = subprocess.run(
-                ["ruff", "check", "--output-format=json"] + file_paths,
-                text=True,
-                timeout=120,
-                cwd=self.workspace,
-                check=False,
-            )
-            if result.stdout:
-                import json
-
-                issues = json.loads(result.stdout)
-                for issue in issues:
-                    loc = issue.get("location", {})
-                    end_loc = issue.get("end_location", {})
-                    line_start = loc.get("row", 1)
-                    line_end = end_loc.get("row", line_start)
-                    comments.append(
-                        ReviewComment(
-                            file_path=issue["filename"],
-                            line_start=line_start,
-                            line_end=line_end,
-                            severity=self._map_ruff_severity(issue.get("level", "warning")),
-                            category=ReviewCategory.STYLE,
-                            title=f"[RUFF] {issue['code']}",
-                            message=issue["message"],
-                            rule_id=issue["code"],
-                        )
-                    )
-        except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as e:
-            log.warning(f"ruff 실행 실패: {e}")
-
-        # mypy 실행
-        try:
-            result = subprocess.run(
-                ["mypy", "--explicit-package-bases", "--json"] + file_paths,
-                capture_output=True,
-                text=True,
-                timeout=120,
-                cwd=self.workspace,
-                check=False,
-            )
-            if result.stdout:
-                import json
-
-                issues = json.loads(result.stdout)
-                for issue in issues:
-                    comments.append(
-                        ReviewComment(
-                            file_path=issue["file"],
-                            line_start=issue["line"],
-                            line_end=issue.get("end_line", issue["line"]),
-                            severity=ReviewSeverity.WARNING,
-                            category=ReviewCategory.STYLE,
-                            title=f"[MYPY] {issue.get('code', 'type-error')}",
-                            message=issue["message"],
-                            rule_id=issue.get("code", "type-error"),
-                        )
-                    )
-        except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as e:
-            log.warning(f"mypy 실행 실패: {e}")
-
-        return comments
-
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_11(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_10(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -7232,7 +7388,7 @@ class PRReviewer:
         try:
             result = subprocess.run(
                 ["ruff", "check", "--output-format=json"] + file_paths,
-                capture_output=True,
+                text=True,
                 timeout=120,
                 cwd=self.workspace,
                 check=False,
@@ -7293,7 +7449,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_12(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_11(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -7302,7 +7460,7 @@ class PRReviewer:
             result = subprocess.run(
                 ["ruff", "check", "--output-format=json"] + file_paths,
                 capture_output=True,
-                text=True,
+                timeout=120,
                 cwd=self.workspace,
                 check=False,
             )
@@ -7362,7 +7520,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_13(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_12(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -7372,7 +7532,7 @@ class PRReviewer:
                 ["ruff", "check", "--output-format=json"] + file_paths,
                 capture_output=True,
                 text=True,
-                timeout=120,
+                cwd=self.workspace,
                 check=False,
             )
             if result.stdout:
@@ -7431,7 +7591,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_14(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_13(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -7442,8 +7604,8 @@ class PRReviewer:
                 capture_output=True,
                 text=True,
                 timeout=120,
-                cwd=self.workspace,
-                )
+                check=False,
+            )
             if result.stdout:
                 import json
 
@@ -7500,7 +7662,80 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_15(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_14(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
+        """정적 분석 도구 실행 (ruff, mypy)"""
+        comments = []
+
+        # ruff 실행
+        try:
+            result = subprocess.run(
+                ["ruff", "check", "--output-format=json"] + file_paths,
+                capture_output=True,
+                text=True,
+                timeout=120,
+                cwd=self.workspace,
+            )
+            if result.stdout:
+                import json
+
+                issues = json.loads(result.stdout)
+                for issue in issues:
+                    loc = issue.get("location", {})
+                    end_loc = issue.get("end_location", {})
+                    line_start = loc.get("row", 1)
+                    line_end = end_loc.get("row", line_start)
+                    comments.append(
+                        ReviewComment(
+                            file_path=issue["filename"],
+                            line_start=line_start,
+                            line_end=line_end,
+                            severity=self._map_ruff_severity(issue.get("level", "warning")),
+                            category=ReviewCategory.STYLE,
+                            title=f"[RUFF] {issue['code']}",
+                            message=issue["message"],
+                            rule_id=issue["code"],
+                        )
+                    )
+        except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as e:
+            log.warning(f"ruff 실행 실패: {e}")
+
+        # mypy 실행
+        try:
+            result = subprocess.run(
+                ["mypy", "--explicit-package-bases", "--json"] + file_paths,
+                capture_output=True,
+                text=True,
+                timeout=120,
+                cwd=self.workspace,
+                check=False,
+            )
+            if result.stdout:
+                import json
+
+                issues = json.loads(result.stdout)
+                for issue in issues:
+                    comments.append(
+                        ReviewComment(
+                            file_path=issue["file"],
+                            line_start=issue["line"],
+                            line_end=issue.get("end_line", issue["line"]),
+                            severity=ReviewSeverity.WARNING,
+                            category=ReviewCategory.STYLE,
+                            title=f"[MYPY] {issue.get('code', 'type-error')}",
+                            message=issue["message"],
+                            rule_id=issue.get("code", "type-error"),
+                        )
+                    )
+        except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as e:
+            log.warning(f"mypy 실행 실패: {e}")
+
+        return comments
+
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_15(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -7570,7 +7805,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_16(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_16(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -7640,7 +7877,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_17(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_17(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -7710,7 +7949,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_18(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_18(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -7780,7 +8021,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_19(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_19(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -7850,7 +8093,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_20(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_20(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -7920,7 +8165,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_21(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_21(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -7990,7 +8237,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_22(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_22(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -8060,7 +8309,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_23(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_23(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -8130,7 +8381,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_24(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_24(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -8200,7 +8453,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_25(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_25(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -8270,7 +8525,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_26(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_26(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -8340,7 +8597,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_27(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_27(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -8410,7 +8669,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_28(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_28(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -8480,7 +8741,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_29(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_29(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -8550,7 +8813,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_30(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_30(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -8620,7 +8885,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_31(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_31(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -8690,7 +8957,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_32(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_32(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -8709,7 +8978,9 @@ class PRReviewer:
 
                 issues = json.loads(result.stdout)
                 for issue in issues:
-                    loc = issue.get("location", )
+                    loc = issue.get(
+                        "location",
+                    )
                     end_loc = issue.get("end_location", {})
                     line_start = loc.get("row", 1)
                     line_end = end_loc.get("row", line_start)
@@ -8760,7 +9031,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_33(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_33(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -8830,7 +9103,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_34(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_34(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -8900,7 +9175,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_35(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_35(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -8970,7 +9247,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_36(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_36(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -9040,7 +9319,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_37(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_37(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -9110,7 +9391,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_38(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_38(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -9180,7 +9463,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_39(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_39(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -9200,7 +9485,9 @@ class PRReviewer:
                 issues = json.loads(result.stdout)
                 for issue in issues:
                     loc = issue.get("location", {})
-                    end_loc = issue.get("end_location", )
+                    end_loc = issue.get(
+                        "end_location",
+                    )
                     line_start = loc.get("row", 1)
                     line_end = end_loc.get("row", line_start)
                     comments.append(
@@ -9250,7 +9537,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_40(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_40(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -9320,7 +9609,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_41(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_41(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -9390,7 +9681,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_42(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_42(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -9460,7 +9753,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_43(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_43(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -9530,7 +9825,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_44(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_44(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -9600,7 +9897,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_45(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_45(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -9670,7 +9969,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_46(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_46(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -9691,7 +9992,9 @@ class PRReviewer:
                 for issue in issues:
                     loc = issue.get("location", {})
                     end_loc = issue.get("end_location", {})
-                    line_start = loc.get("row", )
+                    line_start = loc.get(
+                        "row",
+                    )
                     line_end = end_loc.get("row", line_start)
                     comments.append(
                         ReviewComment(
@@ -9740,7 +10043,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_47(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_47(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -9810,7 +10115,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_48(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_48(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -9880,7 +10187,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_49(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_49(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -9950,7 +10259,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_50(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_50(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -10020,7 +10331,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_51(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_51(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -10090,7 +10403,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_52(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_52(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -10160,7 +10475,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_53(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_53(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -10230,7 +10547,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_54(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_54(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -10252,7 +10571,9 @@ class PRReviewer:
                     loc = issue.get("location", {})
                     end_loc = issue.get("end_location", {})
                     line_start = loc.get("row", 1)
-                    line_end = end_loc.get("row", )
+                    line_end = end_loc.get(
+                        "row",
+                    )
                     comments.append(
                         ReviewComment(
                             file_path=issue["filename"],
@@ -10300,7 +10621,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_55(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_55(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -10370,7 +10693,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_56(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_56(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -10440,7 +10765,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_57(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_57(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -10463,9 +10790,7 @@ class PRReviewer:
                     end_loc = issue.get("end_location", {})
                     line_start = loc.get("row", 1)
                     line_end = end_loc.get("row", line_start)
-                    comments.append(
-                        None
-                    )
+                    comments.append(None)
         except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as e:
             log.warning(f"ruff 실행 실패: {e}")
 
@@ -10501,7 +10826,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_58(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_58(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -10571,7 +10898,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_59(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_59(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -10641,7 +10970,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_60(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_60(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -10711,7 +11042,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_61(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_61(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -10781,7 +11114,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_62(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_62(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -10851,7 +11186,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_63(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_63(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -10921,7 +11258,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_64(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_64(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -10991,7 +11330,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_65(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_65(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -11061,7 +11402,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_66(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_66(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -11130,7 +11473,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_67(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_67(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -11199,7 +11544,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_68(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_68(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -11268,7 +11615,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_69(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_69(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -11337,7 +11686,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_70(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_70(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -11406,7 +11757,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_71(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_71(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -11475,7 +11828,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_72(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_72(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -11544,7 +11899,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_73(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_73(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -11576,7 +11933,7 @@ class PRReviewer:
                             category=ReviewCategory.STYLE,
                             title=f"[RUFF] {issue['code']}",
                             message=issue["message"],
-                            )
+                        )
                     )
         except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as e:
             log.warning(f"ruff 실행 실패: {e}")
@@ -11613,7 +11970,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_74(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_74(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -11683,7 +12042,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_75(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_75(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -11753,7 +12114,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_76(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_76(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -11823,7 +12186,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_77(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_77(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -11893,7 +12258,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_78(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_78(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -11963,7 +12330,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_79(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_79(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -12033,7 +12402,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_80(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_80(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -12061,7 +12432,11 @@ class PRReviewer:
                             file_path=issue["filename"],
                             line_start=line_start,
                             line_end=line_end,
-                            severity=self._map_ruff_severity(issue.get("level", )),
+                            severity=self._map_ruff_severity(
+                                issue.get(
+                                    "level",
+                                )
+                            ),
                             category=ReviewCategory.STYLE,
                             title=f"[RUFF] {issue['code']}",
                             message=issue["message"],
@@ -12103,7 +12478,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_81(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_81(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -12173,7 +12550,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_82(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_82(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -12243,7 +12622,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_83(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_83(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -12313,7 +12694,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_84(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_84(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -12383,7 +12766,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_85(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_85(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -12453,7 +12838,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_86(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_86(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -12523,7 +12910,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_87(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_87(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -12593,7 +12982,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_88(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_88(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -12663,7 +13054,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_89(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_89(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -12733,7 +13126,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_90(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_90(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -12803,7 +13198,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_91(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_91(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -12873,7 +13270,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_92(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_92(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -12936,7 +13335,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_93(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_93(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -13006,7 +13407,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_94(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_94(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -13076,7 +13479,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_95(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_95(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -13146,7 +13551,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_96(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_96(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -13216,7 +13623,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_97(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_97(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -13286,7 +13695,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_98(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_98(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -13356,7 +13767,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_99(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_99(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -13425,76 +13838,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_100(self, file_paths: list[str]) -> list[ReviewComment]:
-        """정적 분석 도구 실행 (ruff, mypy)"""
-        comments = []
-
-        # ruff 실행
-        try:
-            result = subprocess.run(
-                ["ruff", "check", "--output-format=json"] + file_paths,
-                capture_output=True,
-                text=True,
-                timeout=120,
-                cwd=self.workspace,
-                check=False,
-            )
-            if result.stdout:
-                import json
-
-                issues = json.loads(result.stdout)
-                for issue in issues:
-                    loc = issue.get("location", {})
-                    end_loc = issue.get("end_location", {})
-                    line_start = loc.get("row", 1)
-                    line_end = end_loc.get("row", line_start)
-                    comments.append(
-                        ReviewComment(
-                            file_path=issue["filename"],
-                            line_start=line_start,
-                            line_end=line_end,
-                            severity=self._map_ruff_severity(issue.get("level", "warning")),
-                            category=ReviewCategory.STYLE,
-                            title=f"[RUFF] {issue['code']}",
-                            message=issue["message"],
-                            rule_id=issue["code"],
-                        )
-                    )
-        except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as e:
-            log.warning(f"ruff 실행 실패: {e}")
-
-        # mypy 실행
-        try:
-            result = subprocess.run(
-                ["mypy", "--explicit-package-bases", "--json"] + file_paths,
-                text=True,
-                timeout=120,
-                cwd=self.workspace,
-                check=False,
-            )
-            if result.stdout:
-                import json
-
-                issues = json.loads(result.stdout)
-                for issue in issues:
-                    comments.append(
-                        ReviewComment(
-                            file_path=issue["file"],
-                            line_start=issue["line"],
-                            line_end=issue.get("end_line", issue["line"]),
-                            severity=ReviewSeverity.WARNING,
-                            category=ReviewCategory.STYLE,
-                            title=f"[MYPY] {issue.get('code', 'type-error')}",
-                            message=issue["message"],
-                            rule_id=issue.get("code", "type-error"),
-                        )
-                    )
-        except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as e:
-            log.warning(f"mypy 실행 실패: {e}")
-
-        return comments
-
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_101(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_100(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -13536,7 +13882,7 @@ class PRReviewer:
         try:
             result = subprocess.run(
                 ["mypy", "--explicit-package-bases", "--json"] + file_paths,
-                capture_output=True,
+                text=True,
                 timeout=120,
                 cwd=self.workspace,
                 check=False,
@@ -13563,7 +13909,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_102(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_101(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -13606,7 +13954,7 @@ class PRReviewer:
             result = subprocess.run(
                 ["mypy", "--explicit-package-bases", "--json"] + file_paths,
                 capture_output=True,
-                text=True,
+                timeout=120,
                 cwd=self.workspace,
                 check=False,
             )
@@ -13632,7 +13980,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_103(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_102(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -13676,7 +14026,7 @@ class PRReviewer:
                 ["mypy", "--explicit-package-bases", "--json"] + file_paths,
                 capture_output=True,
                 text=True,
-                timeout=120,
+                cwd=self.workspace,
                 check=False,
             )
             if result.stdout:
@@ -13701,7 +14051,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_104(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_103(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -13746,8 +14098,8 @@ class PRReviewer:
                 capture_output=True,
                 text=True,
                 timeout=120,
-                cwd=self.workspace,
-                )
+                check=False,
+            )
             if result.stdout:
                 import json
 
@@ -13770,7 +14122,80 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_105(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_104(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
+        """정적 분석 도구 실행 (ruff, mypy)"""
+        comments = []
+
+        # ruff 실행
+        try:
+            result = subprocess.run(
+                ["ruff", "check", "--output-format=json"] + file_paths,
+                capture_output=True,
+                text=True,
+                timeout=120,
+                cwd=self.workspace,
+                check=False,
+            )
+            if result.stdout:
+                import json
+
+                issues = json.loads(result.stdout)
+                for issue in issues:
+                    loc = issue.get("location", {})
+                    end_loc = issue.get("end_location", {})
+                    line_start = loc.get("row", 1)
+                    line_end = end_loc.get("row", line_start)
+                    comments.append(
+                        ReviewComment(
+                            file_path=issue["filename"],
+                            line_start=line_start,
+                            line_end=line_end,
+                            severity=self._map_ruff_severity(issue.get("level", "warning")),
+                            category=ReviewCategory.STYLE,
+                            title=f"[RUFF] {issue['code']}",
+                            message=issue["message"],
+                            rule_id=issue["code"],
+                        )
+                    )
+        except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as e:
+            log.warning(f"ruff 실행 실패: {e}")
+
+        # mypy 실행
+        try:
+            result = subprocess.run(
+                ["mypy", "--explicit-package-bases", "--json"] + file_paths,
+                capture_output=True,
+                text=True,
+                timeout=120,
+                cwd=self.workspace,
+            )
+            if result.stdout:
+                import json
+
+                issues = json.loads(result.stdout)
+                for issue in issues:
+                    comments.append(
+                        ReviewComment(
+                            file_path=issue["file"],
+                            line_start=issue["line"],
+                            line_end=issue.get("end_line", issue["line"]),
+                            severity=ReviewSeverity.WARNING,
+                            category=ReviewCategory.STYLE,
+                            title=f"[MYPY] {issue.get('code', 'type-error')}",
+                            message=issue["message"],
+                            rule_id=issue.get("code", "type-error"),
+                        )
+                    )
+        except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as e:
+            log.warning(f"mypy 실행 실패: {e}")
+
+        return comments
+
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_105(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -13840,7 +14265,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_106(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_106(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -13910,7 +14337,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_107(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_107(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -13980,7 +14409,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_108(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_108(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -14050,7 +14481,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_109(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_109(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -14120,7 +14553,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_110(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_110(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -14190,7 +14625,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_111(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_111(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -14260,7 +14697,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_112(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_112(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -14330,7 +14769,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_113(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_113(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -14400,7 +14841,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_114(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_114(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -14470,7 +14913,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_115(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_115(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -14540,7 +14985,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_116(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_116(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -14610,7 +15057,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_117(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_117(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -14680,7 +15129,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_118(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_118(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -14733,15 +15184,15 @@ class PRReviewer:
 
                 issues = json.loads(result.stdout)
                 for issue in issues:
-                    comments.append(
-                        None
-                    )
+                    comments.append(None)
         except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as e:
             log.warning(f"mypy 실행 실패: {e}")
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_119(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_119(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -14811,7 +15262,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_120(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_120(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -14881,7 +15334,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_121(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_121(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -14951,7 +15406,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_122(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_122(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -15021,7 +15478,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_123(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_123(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -15091,7 +15550,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_124(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_124(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -15161,7 +15622,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_125(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_125(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -15231,7 +15694,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_126(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_126(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -15301,7 +15766,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_127(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_127(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -15370,7 +15837,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_128(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_128(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -15439,7 +15908,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_129(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_129(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -15508,7 +15979,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_130(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_130(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -15577,7 +16050,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_131(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_131(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -15646,7 +16121,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_132(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_132(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -15715,7 +16192,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_133(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_133(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -15784,7 +16263,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_134(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_134(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -15846,14 +16327,16 @@ class PRReviewer:
                             category=ReviewCategory.STYLE,
                             title=f"[MYPY] {issue.get('code', 'type-error')}",
                             message=issue["message"],
-                            )
+                        )
                     )
         except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as e:
             log.warning(f"mypy 실행 실패: {e}")
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_135(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_135(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -15923,7 +16406,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_136(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_136(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -15993,7 +16478,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_137(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_137(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -16063,7 +16550,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_138(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_138(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -16133,7 +16622,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_139(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_139(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -16203,7 +16694,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_140(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_140(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -16273,7 +16766,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_141(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_141(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -16343,7 +16838,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_142(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_142(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -16400,7 +16897,9 @@ class PRReviewer:
                         ReviewComment(
                             file_path=issue["file"],
                             line_start=issue["line"],
-                            line_end=issue.get("end_line", ),
+                            line_end=issue.get(
+                                "end_line",
+                            ),
                             severity=ReviewSeverity.WARNING,
                             category=ReviewCategory.STYLE,
                             title=f"[MYPY] {issue.get('code', 'type-error')}",
@@ -16413,7 +16912,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_143(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_143(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -16483,7 +16984,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_144(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_144(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -16553,7 +17056,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_145(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_145(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -16623,7 +17128,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_146(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_146(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -16693,7 +17200,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_147(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_147(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -16763,7 +17272,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_148(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_148(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -16833,7 +17344,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_149(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_149(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -16903,7 +17416,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_150(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_150(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -16973,7 +17488,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_151(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_151(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -17043,7 +17560,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_152(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_152(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -17113,7 +17632,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_153(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_153(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -17183,7 +17704,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_154(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_154(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -17253,7 +17776,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_155(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_155(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -17323,7 +17848,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_156(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_156(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -17393,7 +17920,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_157(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_157(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -17463,7 +17992,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_158(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_158(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -17533,7 +18064,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_159(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_159(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -17603,7 +18136,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_160(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_160(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -17665,7 +18200,9 @@ class PRReviewer:
                             category=ReviewCategory.STYLE,
                             title=f"[MYPY] {issue.get('code', 'type-error')}",
                             message=issue["message"],
-                            rule_id=issue.get("code", ),
+                            rule_id=issue.get(
+                                "code",
+                            ),
                         )
                     )
         except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as e:
@@ -17673,7 +18210,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_161(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_161(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -17743,7 +18282,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_162(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_162(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -17813,7 +18354,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_163(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_163(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -17883,7 +18426,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_164(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_164(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -17953,7 +18498,9 @@ class PRReviewer:
 
         return comments
 
-    def xǁPRReviewerǁ_run_static_analysis__mutmut_165(self, file_paths: list[str]) -> list[ReviewComment]:
+    def xǁPRReviewerǁ_run_static_analysis__mutmut_165(
+        self, file_paths: list[str]
+    ) -> list[ReviewComment]:
         """정적 분석 도구 실행 (ruff, mypy)"""
         comments = []
 
@@ -18117,7 +18664,7 @@ class PRReviewer:
             "warning": ReviewSeverity.WARNING,
             "info": ReviewSeverity.INFO,
         }
-        return mapping.get(level.lower(), None)
+        return mapping.get(level.lower())
 
     def xǁPRReviewerǁ_map_ruff_severity__mutmut_10(self, level: str) -> ReviewSeverity:
         """ruff 레벨을 ReviewSeverity로 매핑"""
@@ -18135,7 +18682,9 @@ class PRReviewer:
             "warning": ReviewSeverity.WARNING,
             "info": ReviewSeverity.INFO,
         }
-        return mapping.get(level.lower(), )
+        return mapping.get(
+            level.lower(),
+        )
 
     def xǁPRReviewerǁ_map_ruff_severity__mutmut_12(self, level: str) -> ReviewSeverity:
         """ruff 레벨을 ReviewSeverity로 매핑"""
@@ -18413,7 +18962,9 @@ class PRReviewer:
         files_reviewed: list[str],
     ) -> PRReviewResult:
         """결과 집계"""
-        severity_counts = dict.fromkeys(ReviewSeverity, )
+        severity_counts = dict.fromkeys(
+            ReviewSeverity,
+        )
         for comment in comments:
             severity_counts[comment.severity] += 1
 
@@ -19757,7 +20308,7 @@ class PRReviewer:
             nit_count=severity_counts[ReviewSeverity.NIT],
             comments=comments,
             summary="\n".join(summary_lines),
-            )
+        )
 
     def xǁPRReviewerǁ_aggregate_results__mutmut_37(
         self,
@@ -19931,7 +20482,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_orig(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_orig(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -20016,7 +20569,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_1(self, result: PRReviewResult, event: str = "XXCOMMENTXX") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_1(
+        self, result: PRReviewResult, event: str = "XXCOMMENTXX"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -20101,7 +20656,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_2(self, result: PRReviewResult, event: str = "comment") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_2(
+        self, result: PRReviewResult, event: str = "comment"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -20186,7 +20743,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_3(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_3(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -20271,7 +20830,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_4(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_4(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info(None)
@@ -20356,7 +20917,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_5(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_5(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("XX게시할 코멘트가 없습니다.XX")
@@ -20441,7 +21004,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_6(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_6(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -20526,7 +21091,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_7(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_7(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -20611,7 +21178,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_8(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_8(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -20696,7 +21265,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_9(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_9(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -20781,7 +21352,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_10(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_10(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -20866,7 +21439,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_11(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_11(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -20951,7 +21526,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_12(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_12(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -21036,7 +21613,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_13(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_13(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -21121,7 +21700,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_14(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_14(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -21206,7 +21787,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_15(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_15(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -21285,7 +21868,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_16(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_16(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -21370,7 +21955,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_17(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_17(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -21455,7 +22042,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_18(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_18(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -21540,7 +22129,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_19(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_19(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -21625,7 +22216,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_20(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_20(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -21710,7 +22303,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_21(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_21(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -21795,7 +22390,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_22(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_22(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -21880,7 +22477,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_23(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_23(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -21906,7 +22505,7 @@ class PRReviewer:
                     ReviewSeverity.INFO: "🔵",
                     ReviewSeverity.NIT: "⚪",
                 }
-                emoji = severity_emoji.get(comment.severity, None)
+                emoji = severity_emoji.get(comment.severity)
                 body += f"{emoji} **Line {comment.line_start}** [{comment.category.value.upper()}] {comment.title}\n"
                 body += f"> {comment.message}\n"
                 if comment.suggestion:
@@ -21965,7 +22564,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_24(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_24(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -22050,7 +22651,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_25(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_25(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -22076,7 +22679,9 @@ class PRReviewer:
                     ReviewSeverity.INFO: "🔵",
                     ReviewSeverity.NIT: "⚪",
                 }
-                emoji = severity_emoji.get(comment.severity, )
+                emoji = severity_emoji.get(
+                    comment.severity,
+                )
                 body += f"{emoji} **Line {comment.line_start}** [{comment.category.value.upper()}] {comment.title}\n"
                 body += f"> {comment.message}\n"
                 if comment.suggestion:
@@ -22135,7 +22740,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_26(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_26(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -22220,7 +22827,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_27(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_27(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -22305,7 +22914,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_28(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_28(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -22390,7 +23001,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_29(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_29(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -22475,7 +23088,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_30(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_30(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -22560,7 +23175,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_31(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_31(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -22645,7 +23262,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_32(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_32(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -22730,7 +23349,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_33(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_33(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -22815,7 +23436,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_34(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_34(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -22900,7 +23523,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_35(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_35(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -22985,7 +23610,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_36(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_36(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -23070,7 +23697,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_37(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_37(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -23142,7 +23771,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_38(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_38(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -23227,7 +23858,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_39(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_39(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -23312,7 +23945,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_40(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_40(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -23397,7 +24032,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_41(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_41(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -23482,7 +24119,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_42(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_42(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -23567,7 +24206,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_43(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_43(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -23652,7 +24293,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_44(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_44(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -23737,7 +24380,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_45(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_45(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -23822,7 +24467,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_46(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_46(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -23907,7 +24554,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_47(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_47(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -23992,7 +24641,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_48(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_48(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -24077,7 +24728,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_49(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_49(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -24162,7 +24815,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_50(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_50(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -24206,7 +24861,8 @@ class PRReviewer:
                     {
                         "path": c.file_path,
                         "line": c.line_start,
-                        "body": f"{emoji} **[{c.category.value.upper()}] {c.title}**\n{c.message}" - (f"\n💡 제안: {c.suggestion}" if c.suggestion else ""),
+                        "body": f"{emoji} **[{c.category.value.upper()}] {c.title}**\n{c.message}"
+                        - (f"\n💡 제안: {c.suggestion}" if c.suggestion else ""),
                     }
                     for c in result.comments
                     for emoji in [severity_emoji.get(c.severity, "")]
@@ -24246,7 +24902,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_51(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_51(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -24331,7 +24989,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_52(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_52(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -24416,7 +25076,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_53(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_53(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -24501,7 +25163,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_54(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_54(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -24549,7 +25213,7 @@ class PRReviewer:
                         + (f"\n💡 제안: {c.suggestion}" if c.suggestion else ""),
                     }
                     for c in result.comments
-                    for emoji in [severity_emoji.get(c.severity, None)]
+                    for emoji in [severity_emoji.get(c.severity)]
                 ],
             }
 
@@ -24586,7 +25250,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_55(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_55(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -24671,7 +25337,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_56(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_56(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -24719,7 +25387,11 @@ class PRReviewer:
                         + (f"\n💡 제안: {c.suggestion}" if c.suggestion else ""),
                     }
                     for c in result.comments
-                    for emoji in [severity_emoji.get(c.severity, )]
+                    for emoji in [
+                        severity_emoji.get(
+                            c.severity,
+                        )
+                    ]
                 ],
             }
 
@@ -24756,7 +25428,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_57(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_57(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -24841,7 +25515,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_58(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_58(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -24926,7 +25602,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_59(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_59(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -25011,7 +25689,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_60(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_60(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -25096,7 +25776,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_61(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_61(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -25181,7 +25863,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_62(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_62(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -25266,7 +25950,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_63(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_63(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -25321,7 +26007,10 @@ class PRReviewer:
             # gh api 호출
             import tempfile
 
-            with tempfile.NamedTemporaryFile(mode="w", suffix=".json", ) as f:
+            with tempfile.NamedTemporaryFile(
+                mode="w",
+                suffix=".json",
+            ) as f:
                 json.dump(review_data, f)
                 temp_path = f.name
 
@@ -25351,7 +26040,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_64(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_64(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -25436,7 +26127,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_65(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_65(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -25521,7 +26214,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_66(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_66(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -25606,7 +26301,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_67(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_67(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -25691,7 +26388,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_68(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_68(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -25776,7 +26475,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_69(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_69(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -25861,7 +26562,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_70(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_70(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -25946,7 +26649,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_71(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_71(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -26031,7 +26736,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_72(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_72(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -26087,7 +26794,9 @@ class PRReviewer:
             import tempfile
 
             with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
-                json.dump(review_data, )
+                json.dump(
+                    review_data,
+                )
                 temp_path = f.name
 
             try:
@@ -26116,7 +26825,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_73(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_73(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -26201,7 +26912,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_74(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_74(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -26278,7 +26991,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_75(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_75(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -26363,7 +27078,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_76(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_76(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -26448,7 +27165,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_77(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_77(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -26533,7 +27252,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_78(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_78(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -26618,7 +27339,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_79(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_79(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -26703,7 +27426,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_80(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_80(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -26779,7 +27504,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_81(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_81(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -26863,7 +27590,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_82(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_82(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -26947,7 +27676,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_83(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_83(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -27031,7 +27762,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_84(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_84(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -27115,7 +27848,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_85(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_85(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -27189,7 +27924,7 @@ class PRReviewer:
                     text=True,
                     timeout=60,
                     cwd=self.workspace,
-                    )
+                )
                 log.info(f"PR #{result.pr_number} 리뷰 게시 완료")
                 return True
             finally:
@@ -27199,7 +27934,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_86(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_86(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -27284,7 +28021,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_87(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_87(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -27369,7 +28108,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_88(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_88(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -27454,7 +28195,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_89(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_89(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -27539,7 +28282,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_90(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_90(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -27624,7 +28369,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_91(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_91(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -27709,7 +28456,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_92(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_92(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -27794,7 +28543,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_93(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_93(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -27879,7 +28630,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_94(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_94(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -27964,7 +28717,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_95(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_95(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -28049,7 +28804,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_96(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_96(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -28134,7 +28891,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_97(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_97(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -28219,7 +28978,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_98(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_98(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -28304,7 +29065,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_99(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_99(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -28389,7 +29152,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_100(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_100(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -28474,7 +29239,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_101(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_101(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -28559,7 +29326,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_102(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_102(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -28644,7 +29413,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_103(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_103(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -28729,7 +29500,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_104(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_104(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -28814,7 +29587,9 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_105(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_105(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -28899,7 +29674,9 @@ class PRReviewer:
             log.error(None)
             return False
 
-    def xǁPRReviewerǁpost_review_to_github__mutmut_106(self, result: PRReviewResult, event: str = "COMMENT") -> bool:
+    def xǁPRReviewerǁpost_review_to_github__mutmut_106(
+        self, result: PRReviewResult, event: str = "COMMENT"
+    ) -> bool:
         """GitHub에 리뷰 게시"""
         if not result.comments:
             log.info("게시할 코멘트가 없습니다.")
@@ -28984,547 +29761,548 @@ class PRReviewer:
             log.error(f"GitHub 리뷰 게시 실패: {e}")
             return True
 
-mutants_xǁPRReviewerǁ__init____mutmut['_mutmut_orig'] = PRReviewer.xǁPRReviewerǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ__init____mutmut['xǁPRReviewerǁ__init____mutmut_1'] = PRReviewer.xǁPRReviewerǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ__init____mutmut['xǁPRReviewerǁ__init____mutmut_2'] = PRReviewer.xǁPRReviewerǁ__init____mutmut_2 # type: ignore # mutmut generated
 
-mutants_xǁPRReviewerǁ_compile_patterns__mutmut['_mutmut_orig'] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_compile_patterns__mutmut['xǁPRReviewerǁ_compile_patterns__mutmut_1'] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_compile_patterns__mutmut['xǁPRReviewerǁ_compile_patterns__mutmut_2'] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_compile_patterns__mutmut['xǁPRReviewerǁ_compile_patterns__mutmut_3'] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_compile_patterns__mutmut['xǁPRReviewerǁ_compile_patterns__mutmut_4'] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_compile_patterns__mutmut['xǁPRReviewerǁ_compile_patterns__mutmut_5'] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_compile_patterns__mutmut['xǁPRReviewerǁ_compile_patterns__mutmut_6'] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_compile_patterns__mutmut['xǁPRReviewerǁ_compile_patterns__mutmut_7'] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_compile_patterns__mutmut['xǁPRReviewerǁ_compile_patterns__mutmut_8'] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_compile_patterns__mutmut['xǁPRReviewerǁ_compile_patterns__mutmut_9'] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_compile_patterns__mutmut['xǁPRReviewerǁ_compile_patterns__mutmut_10'] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_compile_patterns__mutmut['xǁPRReviewerǁ_compile_patterns__mutmut_11'] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_compile_patterns__mutmut['xǁPRReviewerǁ_compile_patterns__mutmut_12'] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_compile_patterns__mutmut['xǁPRReviewerǁ_compile_patterns__mutmut_13'] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_13 # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ__init____mutmut["_mutmut_orig"] = PRReviewer.xǁPRReviewerǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ__init____mutmut["xǁPRReviewerǁ__init____mutmut_1"] = PRReviewer.xǁPRReviewerǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ__init____mutmut["xǁPRReviewerǁ__init____mutmut_2"] = PRReviewer.xǁPRReviewerǁ__init____mutmut_2  # type: ignore # mutmut generated
 
-mutants_xǁPRReviewerǁ_get_severity_for_category__mutmut['_mutmut_orig'] = PRReviewer.xǁPRReviewerǁ_get_severity_for_category__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_severity_for_category__mutmut['xǁPRReviewerǁ_get_severity_for_category__mutmut_1'] = PRReviewer.xǁPRReviewerǁ_get_severity_for_category__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_severity_for_category__mutmut['xǁPRReviewerǁ_get_severity_for_category__mutmut_2'] = PRReviewer.xǁPRReviewerǁ_get_severity_for_category__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_severity_for_category__mutmut['xǁPRReviewerǁ_get_severity_for_category__mutmut_3'] = PRReviewer.xǁPRReviewerǁ_get_severity_for_category__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_severity_for_category__mutmut['xǁPRReviewerǁ_get_severity_for_category__mutmut_4'] = PRReviewer.xǁPRReviewerǁ_get_severity_for_category__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_severity_for_category__mutmut['xǁPRReviewerǁ_get_severity_for_category__mutmut_5'] = PRReviewer.xǁPRReviewerǁ_get_severity_for_category__mutmut_5 # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_compile_patterns__mutmut["_mutmut_orig"] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_compile_patterns__mutmut["xǁPRReviewerǁ_compile_patterns__mutmut_1"] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_compile_patterns__mutmut["xǁPRReviewerǁ_compile_patterns__mutmut_2"] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_compile_patterns__mutmut["xǁPRReviewerǁ_compile_patterns__mutmut_3"] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_compile_patterns__mutmut["xǁPRReviewerǁ_compile_patterns__mutmut_4"] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_compile_patterns__mutmut["xǁPRReviewerǁ_compile_patterns__mutmut_5"] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_compile_patterns__mutmut["xǁPRReviewerǁ_compile_patterns__mutmut_6"] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_compile_patterns__mutmut["xǁPRReviewerǁ_compile_patterns__mutmut_7"] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_compile_patterns__mutmut["xǁPRReviewerǁ_compile_patterns__mutmut_8"] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_compile_patterns__mutmut["xǁPRReviewerǁ_compile_patterns__mutmut_9"] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_compile_patterns__mutmut["xǁPRReviewerǁ_compile_patterns__mutmut_10"] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_compile_patterns__mutmut["xǁPRReviewerǁ_compile_patterns__mutmut_11"] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_compile_patterns__mutmut["xǁPRReviewerǁ_compile_patterns__mutmut_12"] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_compile_patterns__mutmut["xǁPRReviewerǁ_compile_patterns__mutmut_13"] = PRReviewer.xǁPRReviewerǁ_compile_patterns__mutmut_13  # type: ignore # mutmut generated
 
-mutants_xǁPRReviewerǁreview_pr__mutmut['_mutmut_orig'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_1'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_2'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_3'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_4'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_5'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_6'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_7'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_8'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_9'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_10'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_11'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_12'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_13'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_14'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_15'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_16'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_17'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_18'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_19'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_20'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_21'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_22'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_23'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_24'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_25'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_26'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_27'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_28'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_29'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_30'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_31'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_32'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_33'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_34'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_35'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_36'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_37'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_38'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_39'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_40'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_41'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_42'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_43'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_44'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_45'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_46'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_47'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_48'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_49'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_50'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_51'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_52'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_53'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_54'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_55'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_56'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_57'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_58'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_59'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁreview_pr__mutmut['xǁPRReviewerǁreview_pr__mutmut_60'] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_60 # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_severity_for_category__mutmut["_mutmut_orig"] = PRReviewer.xǁPRReviewerǁ_get_severity_for_category__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_severity_for_category__mutmut["xǁPRReviewerǁ_get_severity_for_category__mutmut_1"] = PRReviewer.xǁPRReviewerǁ_get_severity_for_category__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_severity_for_category__mutmut["xǁPRReviewerǁ_get_severity_for_category__mutmut_2"] = PRReviewer.xǁPRReviewerǁ_get_severity_for_category__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_severity_for_category__mutmut["xǁPRReviewerǁ_get_severity_for_category__mutmut_3"] = PRReviewer.xǁPRReviewerǁ_get_severity_for_category__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_severity_for_category__mutmut["xǁPRReviewerǁ_get_severity_for_category__mutmut_4"] = PRReviewer.xǁPRReviewerǁ_get_severity_for_category__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_severity_for_category__mutmut["xǁPRReviewerǁ_get_severity_for_category__mutmut_5"] = PRReviewer.xǁPRReviewerǁ_get_severity_for_category__mutmut_5  # type: ignore # mutmut generated
 
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['_mutmut_orig'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_1'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_2'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_3'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_4'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_5'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_6'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_7'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_8'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_9'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_10'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_11'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_12'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_13'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_14'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_15'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_16'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_17'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_18'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_19'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_20'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_21'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_22'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_23'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_24'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_25'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_26'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_27'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_28'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_29'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_30'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_31'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_32'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_33'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_get_pr_diff__mutmut['xǁPRReviewerǁ_get_pr_diff__mutmut_34'] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_34 # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["_mutmut_orig"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_1"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_2"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_3"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_4"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_5"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_6"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_7"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_8"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_9"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_10"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_11"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_12"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_13"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_14"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_15"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_16"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_17"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_18"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_19"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_20"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_21"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_22"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_23"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_24"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_25"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_26"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_27"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_28"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_29"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_30"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_31"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_32"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_33"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_34"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_35"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_36"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_37"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_38"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_39"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_40"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_41"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_42"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_43"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_44"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_45"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_46"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_47"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_48"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_49"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_50"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_51"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_52"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_53"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_54"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_55"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_56"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_57"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_58"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_59"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁreview_pr__mutmut["xǁPRReviewerǁreview_pr__mutmut_60"] = PRReviewer.xǁPRReviewerǁreview_pr__mutmut_60  # type: ignore # mutmut generated
 
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['_mutmut_orig'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_1'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_2'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_3'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_4'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_5'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_6'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_7'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_8'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_9'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_10'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_11'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_12'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_13'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_14'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_15'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_16'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_17'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_18'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_19'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_20'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_21'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_22'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_23'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_parse_diff__mutmut['xǁPRReviewerǁ_parse_diff__mutmut_24'] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_24 # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["_mutmut_orig"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_1"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_2"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_3"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_4"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_5"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_6"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_7"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_8"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_9"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_10"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_11"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_12"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_13"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_14"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_15"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_16"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_17"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_18"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_19"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_20"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_21"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_22"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_23"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_24"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_25"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_26"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_27"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_28"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_29"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_30"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_31"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_32"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_33"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_get_pr_diff__mutmut["xǁPRReviewerǁ_get_pr_diff__mutmut_34"] = PRReviewer.xǁPRReviewerǁ_get_pr_diff__mutmut_34  # type: ignore # mutmut generated
 
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['_mutmut_orig'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_1'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_2'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_3'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_4'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_5'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_6'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_7'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_8'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_9'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_10'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_11'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_12'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_13'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_14'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_15'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_16'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_17'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_18'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_19'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_20'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_21'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_22'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_23'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_24'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_analyze_file__mutmut['xǁPRReviewerǁ_analyze_file__mutmut_25'] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_25 # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["_mutmut_orig"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_1"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_2"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_3"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_4"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_5"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_6"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_7"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_8"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_9"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_10"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_11"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_12"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_13"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_14"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_15"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_16"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_17"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_18"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_19"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_20"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_21"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_22"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_23"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_parse_diff__mutmut["xǁPRReviewerǁ_parse_diff__mutmut_24"] = PRReviewer.xǁPRReviewerǁ_parse_diff__mutmut_24  # type: ignore # mutmut generated
 
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['_mutmut_orig'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_1'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_2'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_3'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_4'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_5'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_6'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_7'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_8'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_9'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_10'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_11'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_12'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_13'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_14'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_15'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_16'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_17'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_18'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_19'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_20'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_21'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_22'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_23'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_24'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_25'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_26'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_27'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_28'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_29'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_30'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_31'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_32'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_33'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_extract_added_lines__mutmut['xǁPRReviewerǁ_extract_added_lines__mutmut_34'] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_34 # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["_mutmut_orig"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_1"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_2"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_3"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_4"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_5"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_6"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_7"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_8"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_9"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_10"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_11"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_12"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_13"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_14"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_15"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_16"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_17"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_18"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_19"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_20"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_21"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_22"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_23"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_24"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_analyze_file__mutmut["xǁPRReviewerǁ_analyze_file__mutmut_25"] = PRReviewer.xǁPRReviewerǁ_analyze_file__mutmut_25  # type: ignore # mutmut generated
 
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['_mutmut_orig'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_1'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_2'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_3'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_4'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_5'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_6'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_7'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_8'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_9'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_10'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_11'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_12'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_13'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_14'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_15'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_16'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_17'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_18'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_19'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_20'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_21'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_22'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_23'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_24'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_25'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_26'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_27'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_28'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_29'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_30'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_31'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_32'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_33'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_34'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_35'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_36'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_37'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_38'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_39'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_40'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_41'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_42'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_43'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_44'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_45'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_46'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_47'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_48'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_49'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_50'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_51'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_52'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_53'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_54'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_55'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_56'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_57'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_58'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_59'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_60'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_61'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_62'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_63'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_64'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_65'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_66'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_67'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_68'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_69'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_70'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_71'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_72'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_73'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_74'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_75'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_76'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_77'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_78'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_79'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_80'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_81'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_82'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_83'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_84'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_85'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_86'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_87'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_88'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_89'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_90'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_91'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_92'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_93'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_94'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_95'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_96'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_96 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_97'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_97 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_98'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_98 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_99'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_99 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_100'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_100 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_101'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_101 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_102'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_102 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_103'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_103 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_104'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_104 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_105'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_105 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_106'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_106 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_107'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_107 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_108'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_108 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_109'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_109 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_110'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_110 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_111'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_111 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_112'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_112 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_113'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_113 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_114'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_114 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_115'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_115 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_116'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_116 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_117'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_117 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_118'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_118 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_119'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_119 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_120'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_120 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_121'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_121 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_122'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_122 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_123'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_123 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_124'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_124 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_125'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_125 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_126'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_126 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_127'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_127 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_128'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_128 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_129'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_129 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_130'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_130 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_131'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_131 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_132'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_132 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_133'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_133 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_134'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_134 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_135'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_135 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_136'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_136 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_137'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_137 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_138'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_138 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_139'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_139 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_140'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_140 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_141'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_141 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_142'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_142 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_143'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_143 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_144'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_144 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_145'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_145 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_146'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_146 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_147'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_147 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_148'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_148 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_149'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_149 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_150'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_150 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_151'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_151 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_152'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_152 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_153'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_153 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_154'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_154 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_155'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_155 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_156'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_156 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_157'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_157 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_158'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_158 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_159'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_159 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_160'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_160 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_161'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_161 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_162'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_162 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_163'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_163 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_164'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_164 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_run_static_analysis__mutmut['xǁPRReviewerǁ_run_static_analysis__mutmut_165'] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_165 # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["_mutmut_orig"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_1"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_2"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_3"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_4"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_5"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_6"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_7"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_8"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_9"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_10"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_11"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_12"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_13"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_14"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_15"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_16"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_17"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_18"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_19"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_20"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_21"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_22"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_23"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_24"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_25"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_26"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_27"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_28"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_29"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_30"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_31"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_32"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_33"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_extract_added_lines__mutmut["xǁPRReviewerǁ_extract_added_lines__mutmut_34"] = PRReviewer.xǁPRReviewerǁ_extract_added_lines__mutmut_34  # type: ignore # mutmut generated
 
-mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut['_mutmut_orig'] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut['xǁPRReviewerǁ_map_ruff_severity__mutmut_1'] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut['xǁPRReviewerǁ_map_ruff_severity__mutmut_2'] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut['xǁPRReviewerǁ_map_ruff_severity__mutmut_3'] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut['xǁPRReviewerǁ_map_ruff_severity__mutmut_4'] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut['xǁPRReviewerǁ_map_ruff_severity__mutmut_5'] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut['xǁPRReviewerǁ_map_ruff_severity__mutmut_6'] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut['xǁPRReviewerǁ_map_ruff_severity__mutmut_7'] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut['xǁPRReviewerǁ_map_ruff_severity__mutmut_8'] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut['xǁPRReviewerǁ_map_ruff_severity__mutmut_9'] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut['xǁPRReviewerǁ_map_ruff_severity__mutmut_10'] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut['xǁPRReviewerǁ_map_ruff_severity__mutmut_11'] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut['xǁPRReviewerǁ_map_ruff_severity__mutmut_12'] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_12 # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["_mutmut_orig"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_1"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_2"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_3"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_4"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_5"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_6"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_7"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_8"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_9"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_10"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_11"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_12"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_13"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_14"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_15"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_16"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_17"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_18"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_19"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_20"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_21"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_22"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_23"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_24"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_25"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_26"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_27"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_28"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_29"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_30"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_31"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_32"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_33"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_34"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_35"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_36"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_37"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_38"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_39"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_40"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_41"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_42"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_43"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_44"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_45"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_46"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_47"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_48"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_49"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_50"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_51"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_52"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_53"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_54"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_55"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_56"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_57"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_58"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_59"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_60"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_61"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_62"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_63"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_64"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_65"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_66"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_67"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_68"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_69"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_70"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_71"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_72"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_73"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_74"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_75"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_76"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_77"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_78"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_79"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_80"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_81"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_82"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_83"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_84"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_85"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_86"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_87"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_88"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_89"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_90"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_91"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_92"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_93"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_94"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_95"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_96"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_96  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_97"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_97  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_98"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_98  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_99"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_99  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_100"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_100  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_101"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_101  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_102"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_102  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_103"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_103  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_104"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_104  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_105"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_105  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_106"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_106  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_107"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_107  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_108"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_108  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_109"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_109  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_110"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_110  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_111"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_111  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_112"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_112  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_113"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_113  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_114"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_114  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_115"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_115  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_116"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_116  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_117"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_117  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_118"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_118  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_119"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_119  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_120"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_120  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_121"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_121  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_122"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_122  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_123"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_123  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_124"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_124  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_125"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_125  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_126"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_126  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_127"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_127  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_128"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_128  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_129"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_129  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_130"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_130  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_131"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_131  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_132"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_132  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_133"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_133  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_134"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_134  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_135"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_135  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_136"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_136  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_137"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_137  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_138"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_138  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_139"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_139  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_140"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_140  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_141"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_141  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_142"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_142  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_143"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_143  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_144"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_144  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_145"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_145  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_146"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_146  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_147"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_147  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_148"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_148  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_149"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_149  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_150"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_150  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_151"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_151  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_152"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_152  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_153"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_153  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_154"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_154  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_155"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_155  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_156"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_156  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_157"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_157  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_158"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_158  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_159"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_159  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_160"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_160  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_161"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_161  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_162"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_162  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_163"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_163  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_164"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_164  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_run_static_analysis__mutmut["xǁPRReviewerǁ_run_static_analysis__mutmut_165"] = PRReviewer.xǁPRReviewerǁ_run_static_analysis__mutmut_165  # type: ignore # mutmut generated
 
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['_mutmut_orig'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_1'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_2'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_3'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_4'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_5'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_6'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_7'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_8'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_9'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_10'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_11'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_12'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_13'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_14'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_15'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_16'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_17'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_18'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_19'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_20'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_21'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_22'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_23'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_24'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_25'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_26'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_27'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_28'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_29'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_30'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_31'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_32'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_33'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_34'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_35'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_36'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_37'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁ_aggregate_results__mutmut['xǁPRReviewerǁ_aggregate_results__mutmut_38'] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_38 # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut["_mutmut_orig"] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut["xǁPRReviewerǁ_map_ruff_severity__mutmut_1"] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut["xǁPRReviewerǁ_map_ruff_severity__mutmut_2"] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut["xǁPRReviewerǁ_map_ruff_severity__mutmut_3"] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut["xǁPRReviewerǁ_map_ruff_severity__mutmut_4"] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut["xǁPRReviewerǁ_map_ruff_severity__mutmut_5"] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut["xǁPRReviewerǁ_map_ruff_severity__mutmut_6"] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut["xǁPRReviewerǁ_map_ruff_severity__mutmut_7"] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut["xǁPRReviewerǁ_map_ruff_severity__mutmut_8"] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut["xǁPRReviewerǁ_map_ruff_severity__mutmut_9"] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut["xǁPRReviewerǁ_map_ruff_severity__mutmut_10"] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut["xǁPRReviewerǁ_map_ruff_severity__mutmut_11"] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_map_ruff_severity__mutmut["xǁPRReviewerǁ_map_ruff_severity__mutmut_12"] = PRReviewer.xǁPRReviewerǁ_map_ruff_severity__mutmut_12  # type: ignore # mutmut generated
 
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['_mutmut_orig'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_1'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_2'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_3'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_4'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_5'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_6'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_7'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_8'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_9'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_10'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_11'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_12'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_13'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_14'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_15'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_16'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_17'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_18'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_19'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_20'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_21'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_22'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_23'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_24'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_25'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_26'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_27'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_28'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_29'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_30'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_31'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_32'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_33'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_34'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_35'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_36'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_37'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_38'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_39'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_40'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_41'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_42'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_43'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_44'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_45'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_46'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_47'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_48'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_49'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_50'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_51'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_52'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_53'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_54'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_55'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_56'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_57'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_58'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_59'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_60'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_61'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_62'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_63'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_64'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_65'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_66'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_67'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_68'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_69'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_70'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_71'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_72'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_73'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_74'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_75'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_76'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_77'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_78'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_79'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_80'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_81'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_82'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_83'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_84'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_85'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_86'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_87'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_88'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_89'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_90'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_91'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_92'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_93'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_94'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_95'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_96'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_96 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_97'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_97 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_98'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_98 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_99'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_99 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_100'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_100 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_101'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_101 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_102'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_102 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_103'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_103 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_104'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_104 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_105'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_105 # type: ignore # mutmut generated
-mutants_xǁPRReviewerǁpost_review_to_github__mutmut['xǁPRReviewerǁpost_review_to_github__mutmut_106'] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_106 # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["_mutmut_orig"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_1"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_2"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_3"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_4"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_5"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_6"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_7"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_8"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_9"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_10"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_11"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_12"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_13"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_14"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_15"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_16"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_17"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_18"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_19"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_20"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_21"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_22"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_23"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_24"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_25"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_26"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_27"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_28"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_29"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_30"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_31"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_32"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_33"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_34"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_35"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_36"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_37"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁ_aggregate_results__mutmut["xǁPRReviewerǁ_aggregate_results__mutmut_38"] = PRReviewer.xǁPRReviewerǁ_aggregate_results__mutmut_38  # type: ignore # mutmut generated
+
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["_mutmut_orig"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_1"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_2"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_3"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_4"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_5"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_6"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_7"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_8"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_9"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_10"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_11"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_12"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_13"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_14"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_15"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_16"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_17"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_18"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_19"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_20"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_21"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_22"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_23"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_24"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_25"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_26"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_27"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_28"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_29"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_30"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_31"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_32"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_33"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_34"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_35"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_36"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_37"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_38"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_39"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_40"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_41"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_42"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_43"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_44"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_45"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_46"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_47"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_48"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_49"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_50"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_51"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_52"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_53"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_54"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_55"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_56"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_57"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_58"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_59"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_60"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_61"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_62"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_63"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_64"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_65"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_66"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_67"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_68"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_69"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_70"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_71"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_72"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_73"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_74"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_75"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_76"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_77"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_78"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_79"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_80"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_81"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_82"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_83"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_84"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_85"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_86"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_87"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_88"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_89"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_90"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_91"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_92"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_93"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_94"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_95"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_96"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_96  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_97"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_97  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_98"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_98  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_99"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_99  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_100"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_100  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_101"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_101  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_102"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_102  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_103"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_103  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_104"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_104  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_105"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_105  # type: ignore # mutmut generated
+mutants_xǁPRReviewerǁpost_review_to_github__mutmut["xǁPRReviewerǁpost_review_to_github__mutmut_106"] = PRReviewer.xǁPRReviewerǁpost_review_to_github__mutmut_106  # type: ignore # mutmut generated
 mutants_x_review_pr__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -29661,7 +30439,9 @@ def x_review_pr__mutmut_8(
 ) -> PRReviewResult:
     """PR 리뷰 편의 함수"""
     reviewer = PRReviewer(workspace)
-    result = reviewer.review_pr(pr_number, )
+    result = reviewer.review_pr(
+        pr_number,
+    )
 
     if post:
         reviewer.post_review_to_github(result)
@@ -29682,16 +30462,17 @@ def x_review_pr__mutmut_9(
 
     return result
 
-mutants_x_review_pr__mutmut['_mutmut_orig'] = x_review_pr__mutmut_orig # type: ignore # mutmut generated
-mutants_x_review_pr__mutmut['x_review_pr__mutmut_1'] = x_review_pr__mutmut_1 # type: ignore # mutmut generated
-mutants_x_review_pr__mutmut['x_review_pr__mutmut_2'] = x_review_pr__mutmut_2 # type: ignore # mutmut generated
-mutants_x_review_pr__mutmut['x_review_pr__mutmut_3'] = x_review_pr__mutmut_3 # type: ignore # mutmut generated
-mutants_x_review_pr__mutmut['x_review_pr__mutmut_4'] = x_review_pr__mutmut_4 # type: ignore # mutmut generated
-mutants_x_review_pr__mutmut['x_review_pr__mutmut_5'] = x_review_pr__mutmut_5 # type: ignore # mutmut generated
-mutants_x_review_pr__mutmut['x_review_pr__mutmut_6'] = x_review_pr__mutmut_6 # type: ignore # mutmut generated
-mutants_x_review_pr__mutmut['x_review_pr__mutmut_7'] = x_review_pr__mutmut_7 # type: ignore # mutmut generated
-mutants_x_review_pr__mutmut['x_review_pr__mutmut_8'] = x_review_pr__mutmut_8 # type: ignore # mutmut generated
-mutants_x_review_pr__mutmut['x_review_pr__mutmut_9'] = x_review_pr__mutmut_9 # type: ignore # mutmut generated
+
+mutants_x_review_pr__mutmut["_mutmut_orig"] = x_review_pr__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_review_pr__mutmut["x_review_pr__mutmut_1"] = x_review_pr__mutmut_1  # type: ignore # mutmut generated
+mutants_x_review_pr__mutmut["x_review_pr__mutmut_2"] = x_review_pr__mutmut_2  # type: ignore # mutmut generated
+mutants_x_review_pr__mutmut["x_review_pr__mutmut_3"] = x_review_pr__mutmut_3  # type: ignore # mutmut generated
+mutants_x_review_pr__mutmut["x_review_pr__mutmut_4"] = x_review_pr__mutmut_4  # type: ignore # mutmut generated
+mutants_x_review_pr__mutmut["x_review_pr__mutmut_5"] = x_review_pr__mutmut_5  # type: ignore # mutmut generated
+mutants_x_review_pr__mutmut["x_review_pr__mutmut_6"] = x_review_pr__mutmut_6  # type: ignore # mutmut generated
+mutants_x_review_pr__mutmut["x_review_pr__mutmut_7"] = x_review_pr__mutmut_7  # type: ignore # mutmut generated
+mutants_x_review_pr__mutmut["x_review_pr__mutmut_8"] = x_review_pr__mutmut_8  # type: ignore # mutmut generated
+mutants_x_review_pr__mutmut["x_review_pr__mutmut_9"] = x_review_pr__mutmut_9  # type: ignore # mutmut generated
 
 
 if __name__ == "__main__":

@@ -243,12 +243,16 @@ jobs:
   security-scan:
     name: Security Scan
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -263,6 +267,30 @@ jobs:
       - name: Run pip-audit
         run: pip-audit --desc --format=json --output=pip-audit.json || true
 
+      - name: Run pip-audit with fix (auto PR)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          # Check for fixable vulnerabilities
+          pip-audit --fix --dry-run --desc --format=json --output=pip-audit-fix.json || true
+          
+          # If there are fixable vulnerabilities, create a PR
+          if [ -f pip-audit-fix.json ]; then
+            FIXABLE=$(cat pip-audit-fix.json | jq -r '.vulnerabilities[]? | select(.fix_versions != null) | .package' | sort -u)
+            if [ -n "$FIXABLE" ]; then
+              echo "Fixable vulnerabilities found: $FIXABLE"
+              # Create branch and PR for fixes
+              git config user.name "github-actions[bot]"
+              git config user.email "github-actions[bot]@users.noreply.github.com"
+              BRANCH="security/pip-audit-fixes-$(date +%s)"
+              git checkout -b "$BRANCH"
+              pip-audit --fix --desc || true
+              git add -A
+              git commit -m "security: auto-fix vulnerable dependencies via pip-audit" || true
+              git push origin "$BRANCH"
+              gh pr create --title "Security: Auto-fix vulnerable dependencies" --body "Automated fix for vulnerabilities detected by pip-audit" --label "security,dependencies" || true
+            fi
+          fi
+
       - name: Run safety
         run: safety check --json --output=screen --output=safety.json || true
 
@@ -275,6 +303,7 @@ jobs:
           name: security-reports
           path: |
             pip-audit.json
+            pip-audit-fix.json
             safety.json
             bandit.json
           retention-days: 30

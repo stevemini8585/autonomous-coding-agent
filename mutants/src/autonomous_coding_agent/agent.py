@@ -32,7 +32,9 @@ from .verifier import Verifier
 log = logging.getLogger("autonomous_coding_agent.agent")
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
+
 mutants_xǁDashboardClientǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁDashboardClientǁ_post__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁDashboardClientǁstart_session__mutmut: MutantDict = {}  # type: ignore
@@ -52,73 +54,97 @@ class DashboardClient:
         self.enabled = True
         self._session_started = False
 
-    def xǁDashboardClientǁ__init____mutmut_orig(self, session_id: str, dashboard_url: str = "http://localhost:8899"):
+    def xǁDashboardClientǁ__init____mutmut_orig(
+        self, session_id: str, dashboard_url: str = "http://localhost:8899"
+    ):
         self.session_id = session_id
         self.dashboard_url = dashboard_url.rstrip("/")
         self.enabled = True
         self._session_started = False
 
-    def xǁDashboardClientǁ__init____mutmut_1(self, session_id: str, dashboard_url: str = "XXhttp://localhost:8899XX"):
+    def xǁDashboardClientǁ__init____mutmut_1(
+        self, session_id: str, dashboard_url: str = "XXhttp://localhost:8899XX"
+    ):
         self.session_id = session_id
         self.dashboard_url = dashboard_url.rstrip("/")
         self.enabled = True
         self._session_started = False
 
-    def xǁDashboardClientǁ__init____mutmut_2(self, session_id: str, dashboard_url: str = "HTTP://LOCALHOST:8899"):
+    def xǁDashboardClientǁ__init____mutmut_2(
+        self, session_id: str, dashboard_url: str = "HTTP://LOCALHOST:8899"
+    ):
         self.session_id = session_id
         self.dashboard_url = dashboard_url.rstrip("/")
         self.enabled = True
         self._session_started = False
 
-    def xǁDashboardClientǁ__init____mutmut_3(self, session_id: str, dashboard_url: str = "http://localhost:8899"):
+    def xǁDashboardClientǁ__init____mutmut_3(
+        self, session_id: str, dashboard_url: str = "http://localhost:8899"
+    ):
         self.session_id = None
         self.dashboard_url = dashboard_url.rstrip("/")
         self.enabled = True
         self._session_started = False
 
-    def xǁDashboardClientǁ__init____mutmut_4(self, session_id: str, dashboard_url: str = "http://localhost:8899"):
+    def xǁDashboardClientǁ__init____mutmut_4(
+        self, session_id: str, dashboard_url: str = "http://localhost:8899"
+    ):
         self.session_id = session_id
         self.dashboard_url = None
         self.enabled = True
         self._session_started = False
 
-    def xǁDashboardClientǁ__init____mutmut_5(self, session_id: str, dashboard_url: str = "http://localhost:8899"):
+    def xǁDashboardClientǁ__init____mutmut_5(
+        self, session_id: str, dashboard_url: str = "http://localhost:8899"
+    ):
         self.session_id = session_id
         self.dashboard_url = dashboard_url.rstrip(None)
         self.enabled = True
         self._session_started = False
 
-    def xǁDashboardClientǁ__init____mutmut_6(self, session_id: str, dashboard_url: str = "http://localhost:8899"):
+    def xǁDashboardClientǁ__init____mutmut_6(
+        self, session_id: str, dashboard_url: str = "http://localhost:8899"
+    ):
         self.session_id = session_id
         self.dashboard_url = dashboard_url.lstrip("/")
         self.enabled = True
         self._session_started = False
 
-    def xǁDashboardClientǁ__init____mutmut_7(self, session_id: str, dashboard_url: str = "http://localhost:8899"):
+    def xǁDashboardClientǁ__init____mutmut_7(
+        self, session_id: str, dashboard_url: str = "http://localhost:8899"
+    ):
         self.session_id = session_id
         self.dashboard_url = dashboard_url.rstrip("XX/XX")
         self.enabled = True
         self._session_started = False
 
-    def xǁDashboardClientǁ__init____mutmut_8(self, session_id: str, dashboard_url: str = "http://localhost:8899"):
+    def xǁDashboardClientǁ__init____mutmut_8(
+        self, session_id: str, dashboard_url: str = "http://localhost:8899"
+    ):
         self.session_id = session_id
         self.dashboard_url = dashboard_url.rstrip("/")
         self.enabled = None
         self._session_started = False
 
-    def xǁDashboardClientǁ__init____mutmut_9(self, session_id: str, dashboard_url: str = "http://localhost:8899"):
+    def xǁDashboardClientǁ__init____mutmut_9(
+        self, session_id: str, dashboard_url: str = "http://localhost:8899"
+    ):
         self.session_id = session_id
         self.dashboard_url = dashboard_url.rstrip("/")
         self.enabled = False
         self._session_started = False
 
-    def xǁDashboardClientǁ__init____mutmut_10(self, session_id: str, dashboard_url: str = "http://localhost:8899"):
+    def xǁDashboardClientǁ__init____mutmut_10(
+        self, session_id: str, dashboard_url: str = "http://localhost:8899"
+    ):
         self.session_id = session_id
         self.dashboard_url = dashboard_url.rstrip("/")
         self.enabled = True
         self._session_started = None
 
-    def xǁDashboardClientǁ__init____mutmut_11(self, session_id: str, dashboard_url: str = "http://localhost:8899"):
+    def xǁDashboardClientǁ__init____mutmut_11(
+        self, session_id: str, dashboard_url: str = "http://localhost:8899"
+    ):
         self.session_id = session_id
         self.dashboard_url = dashboard_url.rstrip("/")
         self.enabled = True
@@ -403,7 +429,7 @@ class DashboardClient:
                 url,
                 data=json.dumps(data).encode("utf-8"),
                 headers={"Content-Type": "application/json"},
-                )
+            )
             urllib.request.urlopen(req, timeout=2).read()
             return True
         except Exception as e:
@@ -719,7 +745,9 @@ class DashboardClient:
                 headers={"Content-Type": "application/json"},
                 method="POST",
             )
-            urllib.request.urlopen(req, ).read()
+            urllib.request.urlopen(
+                req,
+            ).read()
             return True
         except Exception as e:
             log.debug(f"Dashboard update failed: {e}")
@@ -875,7 +903,7 @@ class DashboardClient:
             return
         self._post(
             f"/api/sessions/{self.session_id}/start",
-            )
+        )
         self._session_started = True
 
     def xǁDashboardClientǁstart_session__mutmut_6(self, goal: str, total_steps: int = 0) -> None:
@@ -977,7 +1005,7 @@ class DashboardClient:
         """단계 시작 알림"""
         self._post(
             f"/api/sessions/{self.session_id}/step/{step_id}/start",
-            )
+        )
 
     def xǁDashboardClientǁstart_step__mutmut_5(self, step_id: str, title: str) -> None:
         """단계 시작 알림"""
@@ -1157,7 +1185,9 @@ class DashboardClient:
             data["log"] = log
         if metrics:
             data["metrics"] = metrics
-        self._post(f"/api/sessions/{self.session_id}/step/{step_id}/progress", )
+        self._post(
+            f"/api/sessions/{self.session_id}/step/{step_id}/progress",
+        )
 
     @_mutmut_mutated(mutants_xǁDashboardClientǁcomplete_step__mutmut)
     def complete_step(
@@ -1284,7 +1314,9 @@ class DashboardClient:
         data = {"status": status}
         if metrics:
             data["metrics"] = metrics
-        self._post(f"/api/sessions/{self.session_id}/step/{step_id}/complete", )
+        self._post(
+            f"/api/sessions/{self.session_id}/step/{step_id}/complete",
+        )
 
     @_mutmut_mutated(mutants_xǁDashboardClientǁcomplete_session__mutmut)
     def complete_session(self, status: str = "completed", metrics: dict | None = None) -> None:
@@ -1294,206 +1326,235 @@ class DashboardClient:
             data["metrics"] = metrics
         self._post(f"/api/sessions/{self.session_id}/complete", data)
 
-    def xǁDashboardClientǁcomplete_session__mutmut_orig(self, status: str = "completed", metrics: dict | None = None) -> None:
+    def xǁDashboardClientǁcomplete_session__mutmut_orig(
+        self, status: str = "completed", metrics: dict | None = None
+    ) -> None:
         """세션 완료 알림"""
         data = {"status": status}
         if metrics:
             data["metrics"] = metrics
         self._post(f"/api/sessions/{self.session_id}/complete", data)
 
-    def xǁDashboardClientǁcomplete_session__mutmut_1(self, status: str = "XXcompletedXX", metrics: dict | None = None) -> None:
+    def xǁDashboardClientǁcomplete_session__mutmut_1(
+        self, status: str = "XXcompletedXX", metrics: dict | None = None
+    ) -> None:
         """세션 완료 알림"""
         data = {"status": status}
         if metrics:
             data["metrics"] = metrics
         self._post(f"/api/sessions/{self.session_id}/complete", data)
 
-    def xǁDashboardClientǁcomplete_session__mutmut_2(self, status: str = "COMPLETED", metrics: dict | None = None) -> None:
+    def xǁDashboardClientǁcomplete_session__mutmut_2(
+        self, status: str = "COMPLETED", metrics: dict | None = None
+    ) -> None:
         """세션 완료 알림"""
         data = {"status": status}
         if metrics:
             data["metrics"] = metrics
         self._post(f"/api/sessions/{self.session_id}/complete", data)
 
-    def xǁDashboardClientǁcomplete_session__mutmut_3(self, status: str = "completed", metrics: dict | None = None) -> None:
+    def xǁDashboardClientǁcomplete_session__mutmut_3(
+        self, status: str = "completed", metrics: dict | None = None
+    ) -> None:
         """세션 완료 알림"""
         data = None
         if metrics:
             data["metrics"] = metrics
         self._post(f"/api/sessions/{self.session_id}/complete", data)
 
-    def xǁDashboardClientǁcomplete_session__mutmut_4(self, status: str = "completed", metrics: dict | None = None) -> None:
+    def xǁDashboardClientǁcomplete_session__mutmut_4(
+        self, status: str = "completed", metrics: dict | None = None
+    ) -> None:
         """세션 완료 알림"""
         data = {"XXstatusXX": status}
         if metrics:
             data["metrics"] = metrics
         self._post(f"/api/sessions/{self.session_id}/complete", data)
 
-    def xǁDashboardClientǁcomplete_session__mutmut_5(self, status: str = "completed", metrics: dict | None = None) -> None:
+    def xǁDashboardClientǁcomplete_session__mutmut_5(
+        self, status: str = "completed", metrics: dict | None = None
+    ) -> None:
         """세션 완료 알림"""
         data = {"STATUS": status}
         if metrics:
             data["metrics"] = metrics
         self._post(f"/api/sessions/{self.session_id}/complete", data)
 
-    def xǁDashboardClientǁcomplete_session__mutmut_6(self, status: str = "completed", metrics: dict | None = None) -> None:
+    def xǁDashboardClientǁcomplete_session__mutmut_6(
+        self, status: str = "completed", metrics: dict | None = None
+    ) -> None:
         """세션 완료 알림"""
         data = {"status": status}
         if metrics:
             data["metrics"] = None
         self._post(f"/api/sessions/{self.session_id}/complete", data)
 
-    def xǁDashboardClientǁcomplete_session__mutmut_7(self, status: str = "completed", metrics: dict | None = None) -> None:
+    def xǁDashboardClientǁcomplete_session__mutmut_7(
+        self, status: str = "completed", metrics: dict | None = None
+    ) -> None:
         """세션 완료 알림"""
         data = {"status": status}
         if metrics:
             data["XXmetricsXX"] = metrics
         self._post(f"/api/sessions/{self.session_id}/complete", data)
 
-    def xǁDashboardClientǁcomplete_session__mutmut_8(self, status: str = "completed", metrics: dict | None = None) -> None:
+    def xǁDashboardClientǁcomplete_session__mutmut_8(
+        self, status: str = "completed", metrics: dict | None = None
+    ) -> None:
         """세션 완료 알림"""
         data = {"status": status}
         if metrics:
             data["METRICS"] = metrics
         self._post(f"/api/sessions/{self.session_id}/complete", data)
 
-    def xǁDashboardClientǁcomplete_session__mutmut_9(self, status: str = "completed", metrics: dict | None = None) -> None:
+    def xǁDashboardClientǁcomplete_session__mutmut_9(
+        self, status: str = "completed", metrics: dict | None = None
+    ) -> None:
         """세션 완료 알림"""
         data = {"status": status}
         if metrics:
             data["metrics"] = metrics
         self._post(None, data)
 
-    def xǁDashboardClientǁcomplete_session__mutmut_10(self, status: str = "completed", metrics: dict | None = None) -> None:
+    def xǁDashboardClientǁcomplete_session__mutmut_10(
+        self, status: str = "completed", metrics: dict | None = None
+    ) -> None:
         """세션 완료 알림"""
         data = {"status": status}
         if metrics:
             data["metrics"] = metrics
         self._post(f"/api/sessions/{self.session_id}/complete", None)
 
-    def xǁDashboardClientǁcomplete_session__mutmut_11(self, status: str = "completed", metrics: dict | None = None) -> None:
+    def xǁDashboardClientǁcomplete_session__mutmut_11(
+        self, status: str = "completed", metrics: dict | None = None
+    ) -> None:
         """세션 완료 알림"""
         data = {"status": status}
         if metrics:
             data["metrics"] = metrics
         self._post(data)
 
-    def xǁDashboardClientǁcomplete_session__mutmut_12(self, status: str = "completed", metrics: dict | None = None) -> None:
+    def xǁDashboardClientǁcomplete_session__mutmut_12(
+        self, status: str = "completed", metrics: dict | None = None
+    ) -> None:
         """세션 완료 알림"""
         data = {"status": status}
         if metrics:
             data["metrics"] = metrics
-        self._post(f"/api/sessions/{self.session_id}/complete", )
+        self._post(
+            f"/api/sessions/{self.session_id}/complete",
+        )
 
-mutants_xǁDashboardClientǁ__init____mutmut['_mutmut_orig'] = DashboardClient.xǁDashboardClientǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ__init____mutmut['xǁDashboardClientǁ__init____mutmut_1'] = DashboardClient.xǁDashboardClientǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ__init____mutmut['xǁDashboardClientǁ__init____mutmut_2'] = DashboardClient.xǁDashboardClientǁ__init____mutmut_2 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ__init____mutmut['xǁDashboardClientǁ__init____mutmut_3'] = DashboardClient.xǁDashboardClientǁ__init____mutmut_3 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ__init____mutmut['xǁDashboardClientǁ__init____mutmut_4'] = DashboardClient.xǁDashboardClientǁ__init____mutmut_4 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ__init____mutmut['xǁDashboardClientǁ__init____mutmut_5'] = DashboardClient.xǁDashboardClientǁ__init____mutmut_5 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ__init____mutmut['xǁDashboardClientǁ__init____mutmut_6'] = DashboardClient.xǁDashboardClientǁ__init____mutmut_6 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ__init____mutmut['xǁDashboardClientǁ__init____mutmut_7'] = DashboardClient.xǁDashboardClientǁ__init____mutmut_7 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ__init____mutmut['xǁDashboardClientǁ__init____mutmut_8'] = DashboardClient.xǁDashboardClientǁ__init____mutmut_8 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ__init____mutmut['xǁDashboardClientǁ__init____mutmut_9'] = DashboardClient.xǁDashboardClientǁ__init____mutmut_9 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ__init____mutmut['xǁDashboardClientǁ__init____mutmut_10'] = DashboardClient.xǁDashboardClientǁ__init____mutmut_10 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ__init____mutmut['xǁDashboardClientǁ__init____mutmut_11'] = DashboardClient.xǁDashboardClientǁ__init____mutmut_11 # type: ignore # mutmut generated
 
-mutants_xǁDashboardClientǁ_post__mutmut['_mutmut_orig'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_1'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_2'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_3'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_4'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_5'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_6'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_7'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_8'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_9'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_10'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_11'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_12'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_13'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_14'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_15'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_16'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_17'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_18'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_19'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_20'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_21'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_22'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_23'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_24'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_25'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_26'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_27'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_28'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_29'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_30'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁ_post__mutmut['xǁDashboardClientǁ_post__mutmut_31'] = DashboardClient.xǁDashboardClientǁ_post__mutmut_31 # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ__init____mutmut["_mutmut_orig"] = DashboardClient.xǁDashboardClientǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ__init____mutmut["xǁDashboardClientǁ__init____mutmut_1"] = DashboardClient.xǁDashboardClientǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ__init____mutmut["xǁDashboardClientǁ__init____mutmut_2"] = DashboardClient.xǁDashboardClientǁ__init____mutmut_2  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ__init____mutmut["xǁDashboardClientǁ__init____mutmut_3"] = DashboardClient.xǁDashboardClientǁ__init____mutmut_3  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ__init____mutmut["xǁDashboardClientǁ__init____mutmut_4"] = DashboardClient.xǁDashboardClientǁ__init____mutmut_4  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ__init____mutmut["xǁDashboardClientǁ__init____mutmut_5"] = DashboardClient.xǁDashboardClientǁ__init____mutmut_5  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ__init____mutmut["xǁDashboardClientǁ__init____mutmut_6"] = DashboardClient.xǁDashboardClientǁ__init____mutmut_6  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ__init____mutmut["xǁDashboardClientǁ__init____mutmut_7"] = DashboardClient.xǁDashboardClientǁ__init____mutmut_7  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ__init____mutmut["xǁDashboardClientǁ__init____mutmut_8"] = DashboardClient.xǁDashboardClientǁ__init____mutmut_8  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ__init____mutmut["xǁDashboardClientǁ__init____mutmut_9"] = DashboardClient.xǁDashboardClientǁ__init____mutmut_9  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ__init____mutmut["xǁDashboardClientǁ__init____mutmut_10"] = DashboardClient.xǁDashboardClientǁ__init____mutmut_10  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ__init____mutmut["xǁDashboardClientǁ__init____mutmut_11"] = DashboardClient.xǁDashboardClientǁ__init____mutmut_11  # type: ignore # mutmut generated
 
-mutants_xǁDashboardClientǁstart_session__mutmut['_mutmut_orig'] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_session__mutmut['xǁDashboardClientǁstart_session__mutmut_1'] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_session__mutmut['xǁDashboardClientǁstart_session__mutmut_2'] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_session__mutmut['xǁDashboardClientǁstart_session__mutmut_3'] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_session__mutmut['xǁDashboardClientǁstart_session__mutmut_4'] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_session__mutmut['xǁDashboardClientǁstart_session__mutmut_5'] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_session__mutmut['xǁDashboardClientǁstart_session__mutmut_6'] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_session__mutmut['xǁDashboardClientǁstart_session__mutmut_7'] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_session__mutmut['xǁDashboardClientǁstart_session__mutmut_8'] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_session__mutmut['xǁDashboardClientǁstart_session__mutmut_9'] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_session__mutmut['xǁDashboardClientǁstart_session__mutmut_10'] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_session__mutmut['xǁDashboardClientǁstart_session__mutmut_11'] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_11 # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["_mutmut_orig"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_1"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_2"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_3"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_4"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_5"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_6"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_7"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_8"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_9"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_10"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_11"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_12"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_13"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_14"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_15"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_16"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_17"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_18"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_19"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_20"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_21"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_22"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_23"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_24"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_25"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_26"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_27"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_28"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_29"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_30"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁ_post__mutmut["xǁDashboardClientǁ_post__mutmut_31"] = DashboardClient.xǁDashboardClientǁ_post__mutmut_31  # type: ignore # mutmut generated
 
-mutants_xǁDashboardClientǁstart_step__mutmut['_mutmut_orig'] = DashboardClient.xǁDashboardClientǁstart_step__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_step__mutmut['xǁDashboardClientǁstart_step__mutmut_1'] = DashboardClient.xǁDashboardClientǁstart_step__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_step__mutmut['xǁDashboardClientǁstart_step__mutmut_2'] = DashboardClient.xǁDashboardClientǁstart_step__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_step__mutmut['xǁDashboardClientǁstart_step__mutmut_3'] = DashboardClient.xǁDashboardClientǁstart_step__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_step__mutmut['xǁDashboardClientǁstart_step__mutmut_4'] = DashboardClient.xǁDashboardClientǁstart_step__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_step__mutmut['xǁDashboardClientǁstart_step__mutmut_5'] = DashboardClient.xǁDashboardClientǁstart_step__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁstart_step__mutmut['xǁDashboardClientǁstart_step__mutmut_6'] = DashboardClient.xǁDashboardClientǁstart_step__mutmut_6 # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_session__mutmut["_mutmut_orig"] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_session__mutmut["xǁDashboardClientǁstart_session__mutmut_1"] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_session__mutmut["xǁDashboardClientǁstart_session__mutmut_2"] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_session__mutmut["xǁDashboardClientǁstart_session__mutmut_3"] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_session__mutmut["xǁDashboardClientǁstart_session__mutmut_4"] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_session__mutmut["xǁDashboardClientǁstart_session__mutmut_5"] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_session__mutmut["xǁDashboardClientǁstart_session__mutmut_6"] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_session__mutmut["xǁDashboardClientǁstart_session__mutmut_7"] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_session__mutmut["xǁDashboardClientǁstart_session__mutmut_8"] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_session__mutmut["xǁDashboardClientǁstart_session__mutmut_9"] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_session__mutmut["xǁDashboardClientǁstart_session__mutmut_10"] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_session__mutmut["xǁDashboardClientǁstart_session__mutmut_11"] = DashboardClient.xǁDashboardClientǁstart_session__mutmut_11  # type: ignore # mutmut generated
 
-mutants_xǁDashboardClientǁupdate_step_progress__mutmut['_mutmut_orig'] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁupdate_step_progress__mutmut['xǁDashboardClientǁupdate_step_progress__mutmut_1'] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁupdate_step_progress__mutmut['xǁDashboardClientǁupdate_step_progress__mutmut_2'] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁupdate_step_progress__mutmut['xǁDashboardClientǁupdate_step_progress__mutmut_3'] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁupdate_step_progress__mutmut['xǁDashboardClientǁupdate_step_progress__mutmut_4'] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁupdate_step_progress__mutmut['xǁDashboardClientǁupdate_step_progress__mutmut_5'] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁupdate_step_progress__mutmut['xǁDashboardClientǁupdate_step_progress__mutmut_6'] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁupdate_step_progress__mutmut['xǁDashboardClientǁupdate_step_progress__mutmut_7'] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁupdate_step_progress__mutmut['xǁDashboardClientǁupdate_step_progress__mutmut_8'] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁupdate_step_progress__mutmut['xǁDashboardClientǁupdate_step_progress__mutmut_9'] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁupdate_step_progress__mutmut['xǁDashboardClientǁupdate_step_progress__mutmut_10'] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁupdate_step_progress__mutmut['xǁDashboardClientǁupdate_step_progress__mutmut_11'] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁupdate_step_progress__mutmut['xǁDashboardClientǁupdate_step_progress__mutmut_12'] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁupdate_step_progress__mutmut['xǁDashboardClientǁupdate_step_progress__mutmut_13'] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_13 # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_step__mutmut["_mutmut_orig"] = DashboardClient.xǁDashboardClientǁstart_step__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_step__mutmut["xǁDashboardClientǁstart_step__mutmut_1"] = DashboardClient.xǁDashboardClientǁstart_step__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_step__mutmut["xǁDashboardClientǁstart_step__mutmut_2"] = DashboardClient.xǁDashboardClientǁstart_step__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_step__mutmut["xǁDashboardClientǁstart_step__mutmut_3"] = DashboardClient.xǁDashboardClientǁstart_step__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_step__mutmut["xǁDashboardClientǁstart_step__mutmut_4"] = DashboardClient.xǁDashboardClientǁstart_step__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_step__mutmut["xǁDashboardClientǁstart_step__mutmut_5"] = DashboardClient.xǁDashboardClientǁstart_step__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁstart_step__mutmut["xǁDashboardClientǁstart_step__mutmut_6"] = DashboardClient.xǁDashboardClientǁstart_step__mutmut_6  # type: ignore # mutmut generated
 
-mutants_xǁDashboardClientǁcomplete_step__mutmut['_mutmut_orig'] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_step__mutmut['xǁDashboardClientǁcomplete_step__mutmut_1'] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_step__mutmut['xǁDashboardClientǁcomplete_step__mutmut_2'] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_step__mutmut['xǁDashboardClientǁcomplete_step__mutmut_3'] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_step__mutmut['xǁDashboardClientǁcomplete_step__mutmut_4'] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_step__mutmut['xǁDashboardClientǁcomplete_step__mutmut_5'] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_step__mutmut['xǁDashboardClientǁcomplete_step__mutmut_6'] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_step__mutmut['xǁDashboardClientǁcomplete_step__mutmut_7'] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_step__mutmut['xǁDashboardClientǁcomplete_step__mutmut_8'] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_step__mutmut['xǁDashboardClientǁcomplete_step__mutmut_9'] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_step__mutmut['xǁDashboardClientǁcomplete_step__mutmut_10'] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_step__mutmut['xǁDashboardClientǁcomplete_step__mutmut_11'] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_step__mutmut['xǁDashboardClientǁcomplete_step__mutmut_12'] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_12 # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁupdate_step_progress__mutmut["_mutmut_orig"] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁupdate_step_progress__mutmut["xǁDashboardClientǁupdate_step_progress__mutmut_1"] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁupdate_step_progress__mutmut["xǁDashboardClientǁupdate_step_progress__mutmut_2"] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁupdate_step_progress__mutmut["xǁDashboardClientǁupdate_step_progress__mutmut_3"] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁupdate_step_progress__mutmut["xǁDashboardClientǁupdate_step_progress__mutmut_4"] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁupdate_step_progress__mutmut["xǁDashboardClientǁupdate_step_progress__mutmut_5"] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁupdate_step_progress__mutmut["xǁDashboardClientǁupdate_step_progress__mutmut_6"] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁupdate_step_progress__mutmut["xǁDashboardClientǁupdate_step_progress__mutmut_7"] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁupdate_step_progress__mutmut["xǁDashboardClientǁupdate_step_progress__mutmut_8"] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁupdate_step_progress__mutmut["xǁDashboardClientǁupdate_step_progress__mutmut_9"] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁupdate_step_progress__mutmut["xǁDashboardClientǁupdate_step_progress__mutmut_10"] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁupdate_step_progress__mutmut["xǁDashboardClientǁupdate_step_progress__mutmut_11"] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁupdate_step_progress__mutmut["xǁDashboardClientǁupdate_step_progress__mutmut_12"] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁupdate_step_progress__mutmut["xǁDashboardClientǁupdate_step_progress__mutmut_13"] = DashboardClient.xǁDashboardClientǁupdate_step_progress__mutmut_13  # type: ignore # mutmut generated
 
-mutants_xǁDashboardClientǁcomplete_session__mutmut['_mutmut_orig'] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_session__mutmut['xǁDashboardClientǁcomplete_session__mutmut_1'] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_session__mutmut['xǁDashboardClientǁcomplete_session__mutmut_2'] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_session__mutmut['xǁDashboardClientǁcomplete_session__mutmut_3'] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_session__mutmut['xǁDashboardClientǁcomplete_session__mutmut_4'] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_session__mutmut['xǁDashboardClientǁcomplete_session__mutmut_5'] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_session__mutmut['xǁDashboardClientǁcomplete_session__mutmut_6'] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_session__mutmut['xǁDashboardClientǁcomplete_session__mutmut_7'] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_session__mutmut['xǁDashboardClientǁcomplete_session__mutmut_8'] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_session__mutmut['xǁDashboardClientǁcomplete_session__mutmut_9'] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_session__mutmut['xǁDashboardClientǁcomplete_session__mutmut_10'] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_session__mutmut['xǁDashboardClientǁcomplete_session__mutmut_11'] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁDashboardClientǁcomplete_session__mutmut['xǁDashboardClientǁcomplete_session__mutmut_12'] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_12 # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_step__mutmut["_mutmut_orig"] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_step__mutmut["xǁDashboardClientǁcomplete_step__mutmut_1"] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_step__mutmut["xǁDashboardClientǁcomplete_step__mutmut_2"] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_step__mutmut["xǁDashboardClientǁcomplete_step__mutmut_3"] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_step__mutmut["xǁDashboardClientǁcomplete_step__mutmut_4"] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_step__mutmut["xǁDashboardClientǁcomplete_step__mutmut_5"] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_step__mutmut["xǁDashboardClientǁcomplete_step__mutmut_6"] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_step__mutmut["xǁDashboardClientǁcomplete_step__mutmut_7"] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_step__mutmut["xǁDashboardClientǁcomplete_step__mutmut_8"] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_step__mutmut["xǁDashboardClientǁcomplete_step__mutmut_9"] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_step__mutmut["xǁDashboardClientǁcomplete_step__mutmut_10"] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_step__mutmut["xǁDashboardClientǁcomplete_step__mutmut_11"] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_step__mutmut["xǁDashboardClientǁcomplete_step__mutmut_12"] = DashboardClient.xǁDashboardClientǁcomplete_step__mutmut_12  # type: ignore # mutmut generated
+
+mutants_xǁDashboardClientǁcomplete_session__mutmut["_mutmut_orig"] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_session__mutmut["xǁDashboardClientǁcomplete_session__mutmut_1"] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_session__mutmut["xǁDashboardClientǁcomplete_session__mutmut_2"] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_session__mutmut["xǁDashboardClientǁcomplete_session__mutmut_3"] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_session__mutmut["xǁDashboardClientǁcomplete_session__mutmut_4"] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_session__mutmut["xǁDashboardClientǁcomplete_session__mutmut_5"] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_session__mutmut["xǁDashboardClientǁcomplete_session__mutmut_6"] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_session__mutmut["xǁDashboardClientǁcomplete_session__mutmut_7"] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_session__mutmut["xǁDashboardClientǁcomplete_session__mutmut_8"] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_session__mutmut["xǁDashboardClientǁcomplete_session__mutmut_9"] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_session__mutmut["xǁDashboardClientǁcomplete_session__mutmut_10"] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_session__mutmut["xǁDashboardClientǁcomplete_session__mutmut_11"] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁDashboardClientǁcomplete_session__mutmut["xǁDashboardClientǁcomplete_session__mutmut_12"] = DashboardClient.xǁDashboardClientǁcomplete_session__mutmut_12  # type: ignore # mutmut generated
 mutants_xǁAutonomousCodingAgentǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁAutonomousCodingAgentǁrun__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁAutonomousCodingAgentǁ_run_explore__mutmut: MutantDict = {}  # type: ignore
@@ -3726,7 +3787,7 @@ class AutonomousCodingAgent:
                 session_id=f"session_{uuid.uuid4().hex[:8]}",
                 workspace=self.workspace,
                 goal="",
-                )
+            )
 
         # 모듈 초기화
         self.explorer = CodeExplorer(self.workspace)
@@ -4905,7 +4966,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_orig(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_orig(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -5002,7 +5065,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_1(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_1(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(None)
         log.info(f"세션: {self.state.session_id}")
@@ -5099,7 +5164,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_2(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_2(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:101]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -5196,7 +5263,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_3(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_3(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(None)
@@ -5293,7 +5362,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_4(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_4(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -5390,7 +5461,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_5(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_5(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -5487,7 +5560,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_6(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_6(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -5584,7 +5659,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_7(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_7(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -5681,7 +5758,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_8(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_8(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -5778,7 +5857,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_9(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_9(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -5875,7 +5956,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_10(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_10(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -5885,7 +5968,9 @@ class AutonomousCodingAgent:
         self.state.goal = goal
 
         # 대시보드 세션 시작
-        self.dashboard_client.start_session(goal, )  # plan이 생성된 후 업데이트
+        self.dashboard_client.start_session(
+            goal,
+        )  # plan이 생성된 후 업데이트
 
         # 학습 에이전트 세션 시작
         self.learning_agent.start_session(goal, str(self.workspace))
@@ -5972,7 +6057,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_11(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_11(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -6069,7 +6156,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_12(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_12(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -6166,7 +6255,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_13(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_13(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -6263,7 +6354,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_14(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_14(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -6360,7 +6453,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_15(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_15(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -6373,7 +6468,9 @@ class AutonomousCodingAgent:
         self.dashboard_client.start_session(goal, total_steps=0)  # plan이 생성된 후 업데이트
 
         # 학습 에이전트 세션 시작
-        self.learning_agent.start_session(goal, )
+        self.learning_agent.start_session(
+            goal,
+        )
 
         try:
             # 1. 탐색 (최초 1회 또는 세션 복원 시 건너뛰기)
@@ -6457,7 +6554,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_16(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_16(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -6554,7 +6653,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_17(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_17(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -6651,7 +6752,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_18(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_18(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -6748,7 +6851,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_19(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_19(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -6845,7 +6950,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_20(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_20(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -6942,7 +7049,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_21(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_21(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -7039,7 +7148,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_22(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_22(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -7136,7 +7247,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_23(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_23(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -7162,7 +7275,9 @@ class AutonomousCodingAgent:
 
             # 대시보드 총 단계 수 업데이트
             if self.state.plan:
-                self.dashboard_client.start_session(goal, )
+                self.dashboard_client.start_session(
+                    goal,
+                )
 
             # 3. 실행 루프
             self._run_execution_loop()
@@ -7233,7 +7348,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_24(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_24(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -7330,7 +7447,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_25(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_25(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -7427,7 +7546,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_26(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_26(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -7524,7 +7645,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_27(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_27(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -7610,7 +7733,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_28(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_28(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -7707,7 +7832,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_29(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_29(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -7804,7 +7931,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_30(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_30(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -7901,7 +8030,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_31(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_31(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -7998,7 +8129,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_32(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_32(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -8095,7 +8228,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_33(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_33(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -8192,7 +8327,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_34(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_34(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -8289,7 +8426,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_35(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_35(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -8386,7 +8525,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_36(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_36(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -8483,7 +8624,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_37(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_37(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -8580,7 +8723,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_38(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_38(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -8676,7 +8821,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_39(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_39(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -8772,7 +8919,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_40(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_40(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -8868,7 +9017,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_41(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_41(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -8964,7 +9115,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_42(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_42(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -9060,7 +9213,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_43(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_43(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -9156,7 +9311,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_44(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_44(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -9252,7 +9409,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_45(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_45(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -9348,7 +9507,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_46(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_46(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -9444,7 +9605,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_47(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_47(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -9489,7 +9652,7 @@ class AutonomousCodingAgent:
                 verification_results=final_result.get("verification_results", []),
                 critique_results=final_result.get("critique_results", []),
                 duration_seconds=duration,
-                )
+            )
 
             log.info(
                 f"자율 에이전트 완료: {'성공' if self._result.success else '실패'} ({duration:.1f}초)"
@@ -9540,7 +9703,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_48(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_48(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -9637,7 +9802,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_49(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_49(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -9734,7 +9901,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_50(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_50(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -9831,7 +10000,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_51(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_51(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -9867,7 +10038,9 @@ class AutonomousCodingAgent:
 
             duration = time.time() - start_time
             self._result = AgentResult(
-                success=final_result.get("success", ),
+                success=final_result.get(
+                    "success",
+                ),
                 summary=final_result.get("summary", ""),
                 files_changed=final_result.get("files_changed", []),
                 files_created=final_result.get("files_created", []),
@@ -9928,7 +10101,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_52(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_52(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -10025,7 +10200,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_53(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_53(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -10122,7 +10299,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_54(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_54(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -10219,7 +10398,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_55(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_55(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -10316,7 +10497,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_56(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_56(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -10413,7 +10596,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_57(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_57(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -10510,7 +10695,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_58(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_58(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -10547,7 +10734,9 @@ class AutonomousCodingAgent:
             duration = time.time() - start_time
             self._result = AgentResult(
                 success=final_result.get("success", False),
-                summary=final_result.get("summary", ),
+                summary=final_result.get(
+                    "summary",
+                ),
                 files_changed=final_result.get("files_changed", []),
                 files_created=final_result.get("files_created", []),
                 files_modified=final_result.get("files_modified", []),
@@ -10607,7 +10796,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_59(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_59(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -10704,7 +10895,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_60(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_60(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -10801,7 +10994,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_61(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_61(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -10898,7 +11093,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_62(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_62(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -10995,7 +11192,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_63(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_63(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -11092,7 +11291,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_64(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_64(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -11189,7 +11390,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_65(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_65(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -11227,7 +11430,9 @@ class AutonomousCodingAgent:
             self._result = AgentResult(
                 success=final_result.get("success", False),
                 summary=final_result.get("summary", ""),
-                files_changed=final_result.get("files_changed", ),
+                files_changed=final_result.get(
+                    "files_changed",
+                ),
                 files_created=final_result.get("files_created", []),
                 files_modified=final_result.get("files_modified", []),
                 test_results=final_result.get("test_results", {}),
@@ -11286,7 +11491,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_66(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_66(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -11383,7 +11590,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_67(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_67(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -11480,7 +11689,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_68(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_68(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -11577,7 +11788,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_69(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_69(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -11674,7 +11887,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_70(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_70(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -11771,7 +11986,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_71(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_71(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -11810,7 +12027,9 @@ class AutonomousCodingAgent:
                 success=final_result.get("success", False),
                 summary=final_result.get("summary", ""),
                 files_changed=final_result.get("files_changed", []),
-                files_created=final_result.get("files_created", ),
+                files_created=final_result.get(
+                    "files_created",
+                ),
                 files_modified=final_result.get("files_modified", []),
                 test_results=final_result.get("test_results", {}),
                 verification_results=final_result.get("verification_results", []),
@@ -11868,7 +12087,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_72(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_72(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -11965,7 +12186,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_73(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_73(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -12062,7 +12285,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_74(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_74(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -12159,7 +12384,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_75(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_75(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -12256,7 +12483,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_76(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_76(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -12353,7 +12582,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_77(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_77(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -12393,7 +12624,9 @@ class AutonomousCodingAgent:
                 summary=final_result.get("summary", ""),
                 files_changed=final_result.get("files_changed", []),
                 files_created=final_result.get("files_created", []),
-                files_modified=final_result.get("files_modified", ),
+                files_modified=final_result.get(
+                    "files_modified",
+                ),
                 test_results=final_result.get("test_results", {}),
                 verification_results=final_result.get("verification_results", []),
                 critique_results=final_result.get("critique_results", []),
@@ -12450,7 +12683,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_78(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_78(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -12547,7 +12782,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_79(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_79(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -12644,7 +12881,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_80(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_80(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -12741,7 +12980,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_81(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_81(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -12838,7 +13079,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_82(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_82(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -12935,7 +13178,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_83(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_83(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -12976,7 +13221,9 @@ class AutonomousCodingAgent:
                 files_changed=final_result.get("files_changed", []),
                 files_created=final_result.get("files_created", []),
                 files_modified=final_result.get("files_modified", []),
-                test_results=final_result.get("test_results", ),
+                test_results=final_result.get(
+                    "test_results",
+                ),
                 verification_results=final_result.get("verification_results", []),
                 critique_results=final_result.get("critique_results", []),
                 duration_seconds=duration,
@@ -13032,7 +13279,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_84(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_84(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -13129,7 +13378,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_85(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_85(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -13226,7 +13477,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_86(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_86(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -13323,7 +13576,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_87(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_87(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -13420,7 +13675,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_88(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_88(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -13517,7 +13774,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_89(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_89(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -13559,7 +13818,9 @@ class AutonomousCodingAgent:
                 files_created=final_result.get("files_created", []),
                 files_modified=final_result.get("files_modified", []),
                 test_results=final_result.get("test_results", {}),
-                verification_results=final_result.get("verification_results", ),
+                verification_results=final_result.get(
+                    "verification_results",
+                ),
                 critique_results=final_result.get("critique_results", []),
                 duration_seconds=duration,
                 iterations_used=self.state.iteration,
@@ -13614,7 +13875,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_90(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_90(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -13711,7 +13974,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_91(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_91(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -13808,7 +14073,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_92(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_92(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -13905,7 +14172,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_93(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_93(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -14002,7 +14271,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_94(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_94(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -14099,7 +14370,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_95(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_95(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -14142,7 +14415,9 @@ class AutonomousCodingAgent:
                 files_modified=final_result.get("files_modified", []),
                 test_results=final_result.get("test_results", {}),
                 verification_results=final_result.get("verification_results", []),
-                critique_results=final_result.get("critique_results", ),
+                critique_results=final_result.get(
+                    "critique_results",
+                ),
                 duration_seconds=duration,
                 iterations_used=self.state.iteration,
             )
@@ -14196,7 +14471,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_96(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_96(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -14293,7 +14570,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_97(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_97(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -14390,7 +14669,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_98(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_98(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -14438,9 +14719,7 @@ class AutonomousCodingAgent:
                 iterations_used=self.state.iteration,
             )
 
-            log.info(
-                None
-            )
+            log.info(None)
 
             # 대시보드 세션 완료
             self.dashboard_client.complete_session(
@@ -14487,7 +14766,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_99(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_99(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -14584,7 +14865,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_100(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_100(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -14681,7 +14964,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_101(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_101(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -14778,7 +15063,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_102(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_102(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -14875,7 +15162,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_103(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_103(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -14971,7 +15260,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_104(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_104(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -15026,7 +15317,7 @@ class AutonomousCodingAgent:
             # 대시보드 세션 완료
             self.dashboard_client.complete_session(
                 status="completed" if self._result.success else "failed",
-                )
+            )
 
             # 학습 에이전트 세션 종료 (패턴 추출)
             self.learning_agent.end_session(
@@ -15067,7 +15358,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_105(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_105(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -15164,7 +15457,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_106(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_106(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -15261,7 +15556,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_107(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_107(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -15358,7 +15655,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_108(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_108(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -15455,7 +15754,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_109(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_109(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -15552,7 +15853,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_110(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_110(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -15649,7 +15952,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_111(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_111(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -15746,7 +16051,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_112(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_112(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -15843,7 +16150,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_113(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_113(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -15940,7 +16249,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_114(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_114(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -16021,7 +16332,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_115(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_115(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -16117,7 +16430,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_116(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_116(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -16178,7 +16493,7 @@ class AutonomousCodingAgent:
             # 학습 에이전트 세션 종료 (패턴 추출)
             self.learning_agent.end_session(
                 success=self._result.success,
-                )
+            )
 
         except (OSError, RuntimeError, ValueError) as e:
             log.error(f"자율 에이전트 오류: {e}")
@@ -16197,7 +16512,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_117(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_117(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -16294,7 +16611,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_118(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_118(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -16391,7 +16710,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_119(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_119(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -16488,7 +16809,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_120(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_120(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -16585,7 +16908,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_121(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_121(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -16682,7 +17007,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_122(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_122(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -16779,7 +17106,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_123(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_123(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -16876,7 +17205,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_124(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_124(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -16973,7 +17304,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_125(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_125(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -17070,7 +17403,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_126(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_126(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -17167,103 +17502,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_127(self, goal: str, task_type: str | None = None) -> AgentResult:
-        """자율 실행 메인 루프"""
-        log.info(f"자율 에이전트 시작: {goal[:100]}...")
-        log.info(f"세션: {self.state.session_id}")
-        log.info(f"워크스페이스: {self.workspace}")
-
-        start_time = time.time()
-        self.state.goal = goal
-
-        # 대시보드 세션 시작
-        self.dashboard_client.start_session(goal, total_steps=0)  # plan이 생성된 후 업데이트
-
-        # 학습 에이전트 세션 시작
-        self.learning_agent.start_session(goal, str(self.workspace))
-
-        try:
-            # 1. 탐색 (최초 1회 또는 세션 복원 시 건너뛰기)
-            if self.state.explore_result is None:
-                self._run_explore()
-
-            # 2. 계획 수립
-            if self.state.plan is None:
-                self._create_plan(task_type)
-
-            # 대시보드 총 단계 수 업데이트
-            if self.state.plan:
-                self.dashboard_client.start_session(goal, total_steps=len(self.state.plan.steps))
-
-            # 3. 실행 루프
-            self._run_execution_loop()
-
-            # 4. 최종 검증
-            final_result = self._final_verification()
-
-            duration = time.time() - start_time
-            self._result = AgentResult(
-                success=final_result.get("success", False),
-                summary=final_result.get("summary", ""),
-                files_changed=final_result.get("files_changed", []),
-                files_created=final_result.get("files_created", []),
-                files_modified=final_result.get("files_modified", []),
-                test_results=final_result.get("test_results", {}),
-                verification_results=final_result.get("verification_results", []),
-                critique_results=final_result.get("critique_results", []),
-                duration_seconds=duration,
-                iterations_used=self.state.iteration,
-            )
-
-            log.info(
-                f"자율 에이전트 완료: {'성공' if self._result.success else '실패'} ({duration:.1f}초)"
-            )
-
-            # 대시보드 세션 완료
-            self.dashboard_client.complete_session(
-                status="completed" if self._result.success else "failed",
-                metrics={"duration": duration, "iterations": self.state.iteration},
-            )
-
-            # 학습 에이전트 세션 종료 (패턴 추출)
-            self.learning_agent.end_session(
-                success=self._result.success,
-                metrics={
-                    "language": (
-                        self.state.explore_result.files[0].language
-                        if self.state.explore_result and self.state.explore_result.files
-                        else "python"
-                    ),
-                    "framework": (
-                        "fastapi"
-                        if self.state.explore_result or any("fastapi" in f.path for f in self.state.explore_result.files)
-                        else None
-                    ),
-                    "tests_generated": len(self._result.files_created),
-                    "files_modified": len(self._result.files_modified),
-                    "files_created": len(self._result.files_created),
-                    "coverage": 0.0,  # TODO: extract from test results
-                },
-            )
-
-        except (OSError, RuntimeError, ValueError) as e:
-            log.error(f"자율 에이전트 오류: {e}")
-            self._result = AgentResult(
-                success=False,
-                summary=f"실행 중 오류: {e}",
-                error=str(e),
-                duration_seconds=time.time() - start_time,
-                iterations_used=self.state.iteration,
-            )
-            # 대시보드 세션 완료 (실패)
-            self.dashboard_client.complete_session(status="failed", metrics={"error": str(e)})
-
-        # 최종 상태 저장
-        self.state_manager.save_state(self.state)
-
-        return self._result
-
-    def xǁAutonomousCodingAgentǁrun__mutmut_128(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_127(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -17333,7 +17574,7 @@ class AutonomousCodingAgent:
                     "framework": (
                         "fastapi"
                         if self.state.explore_result
-                        and any(None)
+                        or any("fastapi" in f.path for f in self.state.explore_result.files)
                         else None
                     ),
                     "tests_generated": len(self._result.files_created),
@@ -17360,7 +17601,103 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_129(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_128(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
+        """자율 실행 메인 루프"""
+        log.info(f"자율 에이전트 시작: {goal[:100]}...")
+        log.info(f"세션: {self.state.session_id}")
+        log.info(f"워크스페이스: {self.workspace}")
+
+        start_time = time.time()
+        self.state.goal = goal
+
+        # 대시보드 세션 시작
+        self.dashboard_client.start_session(goal, total_steps=0)  # plan이 생성된 후 업데이트
+
+        # 학습 에이전트 세션 시작
+        self.learning_agent.start_session(goal, str(self.workspace))
+
+        try:
+            # 1. 탐색 (최초 1회 또는 세션 복원 시 건너뛰기)
+            if self.state.explore_result is None:
+                self._run_explore()
+
+            # 2. 계획 수립
+            if self.state.plan is None:
+                self._create_plan(task_type)
+
+            # 대시보드 총 단계 수 업데이트
+            if self.state.plan:
+                self.dashboard_client.start_session(goal, total_steps=len(self.state.plan.steps))
+
+            # 3. 실행 루프
+            self._run_execution_loop()
+
+            # 4. 최종 검증
+            final_result = self._final_verification()
+
+            duration = time.time() - start_time
+            self._result = AgentResult(
+                success=final_result.get("success", False),
+                summary=final_result.get("summary", ""),
+                files_changed=final_result.get("files_changed", []),
+                files_created=final_result.get("files_created", []),
+                files_modified=final_result.get("files_modified", []),
+                test_results=final_result.get("test_results", {}),
+                verification_results=final_result.get("verification_results", []),
+                critique_results=final_result.get("critique_results", []),
+                duration_seconds=duration,
+                iterations_used=self.state.iteration,
+            )
+
+            log.info(
+                f"자율 에이전트 완료: {'성공' if self._result.success else '실패'} ({duration:.1f}초)"
+            )
+
+            # 대시보드 세션 완료
+            self.dashboard_client.complete_session(
+                status="completed" if self._result.success else "failed",
+                metrics={"duration": duration, "iterations": self.state.iteration},
+            )
+
+            # 학습 에이전트 세션 종료 (패턴 추출)
+            self.learning_agent.end_session(
+                success=self._result.success,
+                metrics={
+                    "language": (
+                        self.state.explore_result.files[0].language
+                        if self.state.explore_result and self.state.explore_result.files
+                        else "python"
+                    ),
+                    "framework": ("fastapi" if self.state.explore_result and any(None) else None),
+                    "tests_generated": len(self._result.files_created),
+                    "files_modified": len(self._result.files_modified),
+                    "files_created": len(self._result.files_created),
+                    "coverage": 0.0,  # TODO: extract from test results
+                },
+            )
+
+        except (OSError, RuntimeError, ValueError) as e:
+            log.error(f"자율 에이전트 오류: {e}")
+            self._result = AgentResult(
+                success=False,
+                summary=f"실행 중 오류: {e}",
+                error=str(e),
+                duration_seconds=time.time() - start_time,
+                iterations_used=self.state.iteration,
+            )
+            # 대시보드 세션 완료 (실패)
+            self.dashboard_client.complete_session(status="failed", metrics={"error": str(e)})
+
+        # 최종 상태 저장
+        self.state_manager.save_state(self.state)
+
+        return self._result
+
+    def xǁAutonomousCodingAgentǁrun__mutmut_129(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -17457,7 +17794,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_130(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_130(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -17554,7 +17893,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_131(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_131(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -17651,7 +17992,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_132(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_132(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -17748,7 +18091,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_133(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_133(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -17845,7 +18190,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_134(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_134(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -17942,7 +18289,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_135(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_135(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -18039,7 +18388,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_136(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_136(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -18136,7 +18487,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_137(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_137(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -18233,7 +18586,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_138(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_138(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -18330,7 +18685,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_139(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_139(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -18427,7 +18784,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_140(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_140(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -18524,7 +18883,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_141(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_141(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -18621,7 +18982,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_142(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_142(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -18712,7 +19075,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_143(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_143(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -18809,7 +19174,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_144(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_144(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -18906,7 +19273,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_145(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_145(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -19003,7 +19372,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_146(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_146(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -19100,7 +19471,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_147(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_147(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -19197,7 +19570,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_148(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_148(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -19293,7 +19668,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_149(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_149(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -19389,7 +19766,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_150(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_150(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -19485,7 +19864,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_151(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_151(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -19581,7 +19962,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_152(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_152(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -19668,7 +20051,7 @@ class AutonomousCodingAgent:
                 summary=f"실행 중 오류: {e}",
                 error=str(e),
                 duration_seconds=time.time() - start_time,
-                )
+            )
             # 대시보드 세션 완료 (실패)
             self.dashboard_client.complete_session(status="failed", metrics={"error": str(e)})
 
@@ -19677,7 +20060,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_153(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_153(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -19774,7 +20159,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_154(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_154(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -19871,7 +20258,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_155(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_155(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -19968,7 +20357,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_156(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_156(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -20065,7 +20456,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_157(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_157(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -20162,7 +20555,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_158(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_158(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -20259,7 +20654,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_159(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_159(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -20349,14 +20746,18 @@ class AutonomousCodingAgent:
                 iterations_used=self.state.iteration,
             )
             # 대시보드 세션 완료 (실패)
-            self.dashboard_client.complete_session(status="failed", )
+            self.dashboard_client.complete_session(
+                status="failed",
+            )
 
         # 최종 상태 저장
         self.state_manager.save_state(self.state)
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_160(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_160(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -20453,7 +20854,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_161(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_161(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -20550,7 +20953,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_162(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_162(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -20647,7 +21052,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_163(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_163(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -20744,7 +21151,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_164(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_164(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -20841,7 +21250,9 @@ class AutonomousCodingAgent:
 
         return self._result
 
-    def xǁAutonomousCodingAgentǁrun__mutmut_165(self, goal: str, task_type: str | None = None) -> AgentResult:
+    def xǁAutonomousCodingAgentǁrun__mutmut_165(
+        self, goal: str, task_type: str | None = None
+    ) -> AgentResult:
         """자율 실행 메인 루프"""
         log.info(f"자율 에이전트 시작: {goal[:100]}...")
         log.info(f"세션: {self.state.session_id}")
@@ -21030,9 +21441,7 @@ class AutonomousCodingAgent:
         explore_result = self.explorer.explore()
         self.state.explore_result = explore_result
 
-        log.info(
-            None
-        )
+        log.info(None)
 
         # 상태 저장
         self.state_manager.save_state(self.state)
@@ -21068,7 +21477,9 @@ class AutonomousCodingAgent:
         # 상태 저장
         self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_create_plan__mutmut_orig(self, task_type: str | None = None) -> None:
+    def xǁAutonomousCodingAgentǁ_create_plan__mutmut_orig(
+        self, task_type: str | None = None
+    ) -> None:
         """실행 계획 수립"""
         log.info("2️⃣ 실행 계획 수립 중...")
 
@@ -21213,7 +21624,7 @@ class AutonomousCodingAgent:
         plan = self.planner.create_plan(
             goal=self.state.goal,
             explore_result=self.state.explore_result,
-            )
+        )
         self.state.plan = plan
 
         log.info(f"  계획 완료: {len(plan.steps)}개 단계")
@@ -22421,7 +22832,9 @@ class AutonomousCodingAgent:
 
             # 중간 체크포인트
             if self.state.iteration % 2 == 0:
-                self.state_manager.create_checkpoint(self.state, )
+                self.state_manager.create_checkpoint(
+                    self.state,
+                )
 
         log.info(f"실행 루프 완료: {self.state.iteration}회 반복")
 
@@ -22582,7 +22995,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_orig(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_orig(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -25987,7 +26402,9 @@ class AutonomousCodingAgent:
                 step.started_at = datetime.now(UTC)
 
                 # 대시보드: 단계 시작 (병렬)
-                self.dashboard_client.start_step(step.id, )
+                self.dashboard_client.start_step(
+                    step.id,
+                )
 
                 # 1. 코드 실행
                 if step.type == StepType.CODE:
@@ -26717,7 +27134,9 @@ class AutonomousCodingAgent:
 
                 # 1. 코드 실행
                 if step.type == StepType.CODE:
-                    code_result = self.coder.execute_step(step, )
+                    code_result = self.coder.execute_step(
+                        step,
+                    )
                     step.artifacts.update(code_result)
 
                     # 대시보드: 진행률 업데이트 (병렬)
@@ -27568,7 +27987,10 @@ class AutonomousCodingAgent:
                     step.artifacts.update(code_result)
 
                     # 대시보드: 진행률 업데이트 (병렬)
-                    self.dashboard_client.update_step_progress(step.id, 0.5, )
+                    self.dashboard_client.update_step_progress(
+                        step.id,
+                        0.5,
+                    )
 
                 # 2. 검증
                 if step.type in (StepType.CODE, StepType.VERIFY):
@@ -27810,7 +28232,9 @@ class AutonomousCodingAgent:
                     step.artifacts.update(code_result)
 
                     # 대시보드: 진행률 업데이트 (병렬)
-                    self.dashboard_client.update_step_progress(step.id, 0.5, log="XX코드 생성 중...XX")
+                    self.dashboard_client.update_step_progress(
+                        step.id, 0.5, log="XX코드 생성 중...XX"
+                    )
 
                 # 2. 검증
                 if step.type in (StepType.CODE, StepType.VERIFY):
@@ -28419,7 +28843,9 @@ class AutonomousCodingAgent:
 
                 # 2. 검증
                 if step.type in (StepType.CODE, StepType.VERIFY):
-                    project_files = step.assigned_files or step.artifacts.get("files_modified", None)
+                    project_files = step.assigned_files or step.artifacts.get(
+                        "files_modified", None
+                    )
                     if not project_files and self.state.explore_result is not None:
                         project_files = [f.path for f in self.state.explore_result.files]
                     verification = self.verifier.verify_step(step, project_files)
@@ -28661,7 +29087,9 @@ class AutonomousCodingAgent:
 
                 # 2. 검증
                 if step.type in (StepType.CODE, StepType.VERIFY):
-                    project_files = step.assigned_files or step.artifacts.get("files_modified", )
+                    project_files = step.assigned_files or step.artifacts.get(
+                        "files_modified",
+                    )
                     if not project_files and self.state.explore_result is not None:
                         project_files = [f.path for f in self.state.explore_result.files]
                     verification = self.verifier.verify_step(step, project_files)
@@ -28782,7 +29210,9 @@ class AutonomousCodingAgent:
 
                 # 2. 검증
                 if step.type in (StepType.CODE, StepType.VERIFY):
-                    project_files = step.assigned_files or step.artifacts.get("XXfiles_modifiedXX", [])
+                    project_files = step.assigned_files or step.artifacts.get(
+                        "XXfiles_modifiedXX", []
+                    )
                     if not project_files and self.state.explore_result is not None:
                         project_files = [f.path for f in self.state.explore_result.files]
                     verification = self.verifier.verify_step(step, project_files)
@@ -29995,7 +30425,9 @@ class AutonomousCodingAgent:
                     project_files = step.assigned_files or step.artifacts.get("files_modified", [])
                     if not project_files and self.state.explore_result is not None:
                         project_files = [f.path for f in self.state.explore_result.files]
-                    verification = self.verifier.verify_step(step, )
+                    verification = self.verifier.verify_step(
+                        step,
+                    )
                     step.artifacts["verification"] = verification.__dict__
 
                     # 대시보드: 검증 진행 (병렬)
@@ -31088,7 +31520,10 @@ class AutonomousCodingAgent:
                     step.artifacts["verification"] = verification.__dict__
 
                     # 대시보드: 검증 진행 (병렬)
-                    self.dashboard_client.update_step_progress(step.id, 0.8, )
+                    self.dashboard_client.update_step_progress(
+                        step.id,
+                        0.8,
+                    )
 
                     if not verification.passed:
                         step.status = StepStatus.FAILED
@@ -32185,9 +32620,7 @@ class AutonomousCodingAgent:
                         log.warning(f"  ❌ [병렬] 검증 실패: {step.id}")
 
                         # 대시보드: 단계 실패 (병렬 - 검증)
-                        self.dashboard_client.complete_step(
-                            step.id, "failed", metrics=None
-                        )
+                        self.dashboard_client.complete_step(step.id, "failed", metrics=None)
 
                         # 비평 수행
                         critique = self.critic.critique(step, verification, context)
@@ -32549,7 +32982,9 @@ class AutonomousCodingAgent:
 
                         # 대시보드: 단계 실패 (병렬 - 검증)
                         self.dashboard_client.complete_step(
-                            step.id, "failed", )
+                            step.id,
+                            "failed",
+                        )
 
                         # 비평 수행
                         critique = self.critic.critique(step, verification, context)
@@ -33883,7 +34318,10 @@ class AutonomousCodingAgent:
                         )
 
                         # 비평 수행
-                        critique = self.critic.critique(step, verification, )
+                        critique = self.critic.critique(
+                            step,
+                            verification,
+                        )
                         step.artifacts["critique"] = critique.__dict__
 
                         # 재시도 로직
@@ -34670,7 +35108,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_100(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_100(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -34791,7 +35231,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_101(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_101(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -34912,7 +35354,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_102(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_102(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -35033,7 +35477,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_103(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_103(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -35100,9 +35546,7 @@ class AutonomousCodingAgent:
                         if critique.should_retry and step.retry_count < step.max_retries:
                             step.retry_count += 1
                             step.status = StepStatus.PENDING
-                            log.info(
-                                None
-                            )
+                            log.info(None)
                         return step, None
 
                 # 3. 비평 (검증 통과한 경우에도)
@@ -35154,7 +35598,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_104(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_104(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -35275,7 +35721,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_105(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_105(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -35396,7 +35844,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_106(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_106(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -35517,7 +35967,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_107(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_107(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -35638,7 +36090,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_108(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_108(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -35712,7 +36166,9 @@ class AutonomousCodingAgent:
 
                 # 3. 비평 (검증 통과한 경우에도)
                 if step.type == StepType.CODE and verification.passed:
-                    verification_obj = VerificationResult(**step.artifacts.get("verification", None))
+                    verification_obj = VerificationResult(
+                        **step.artifacts.get("verification", None)
+                    )
                     critique = self.critic.critique(step, verification_obj, context)
                     step.artifacts["critique"] = critique.__dict__
 
@@ -35759,7 +36215,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_109(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_109(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -35880,7 +36338,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_110(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_110(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -35954,7 +36414,11 @@ class AutonomousCodingAgent:
 
                 # 3. 비평 (검증 통과한 경우에도)
                 if step.type == StepType.CODE and verification.passed:
-                    verification_obj = VerificationResult(**step.artifacts.get("verification", ))
+                    verification_obj = VerificationResult(
+                        **step.artifacts.get(
+                            "verification",
+                        )
+                    )
                     critique = self.critic.critique(step, verification_obj, context)
                     step.artifacts["critique"] = critique.__dict__
 
@@ -36001,7 +36465,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_111(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_111(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -36075,7 +36541,9 @@ class AutonomousCodingAgent:
 
                 # 3. 비평 (검증 통과한 경우에도)
                 if step.type == StepType.CODE and verification.passed:
-                    verification_obj = VerificationResult(**step.artifacts.get("XXverificationXX", {}))
+                    verification_obj = VerificationResult(
+                        **step.artifacts.get("XXverificationXX", {})
+                    )
                     critique = self.critic.critique(step, verification_obj, context)
                     step.artifacts["critique"] = critique.__dict__
 
@@ -36122,7 +36590,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_112(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_112(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -36243,7 +36713,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_113(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_113(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -36364,7 +36836,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_114(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_114(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -36485,7 +36959,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_115(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_115(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -36606,7 +37082,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_116(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_116(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -36727,7 +37205,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_117(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_117(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -36848,7 +37328,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_118(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_118(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -36969,7 +37451,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_119(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_119(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -37044,7 +37528,10 @@ class AutonomousCodingAgent:
                 # 3. 비평 (검증 통과한 경우에도)
                 if step.type == StepType.CODE and verification.passed:
                     verification_obj = VerificationResult(**step.artifacts.get("verification", {}))
-                    critique = self.critic.critique(step, verification_obj, )
+                    critique = self.critic.critique(
+                        step,
+                        verification_obj,
+                    )
                     step.artifacts["critique"] = critique.__dict__
 
                     if critique.should_retry and step.retry_count < step.max_retries:
@@ -37090,7 +37577,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_120(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_120(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -37211,7 +37700,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_121(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_121(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -37332,7 +37823,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_122(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_122(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -37453,7 +37946,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_123(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_123(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -37574,7 +38069,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_124(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_124(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -37695,7 +38192,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_125(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_125(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -37816,7 +38315,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_126(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_126(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -37937,7 +38438,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_127(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_127(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -38058,7 +38561,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_128(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_128(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -38179,7 +38684,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_129(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_129(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -38300,7 +38807,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_130(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_130(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -38421,7 +38930,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_131(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_131(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -38542,7 +39053,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_132(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_132(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -38663,7 +39176,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_133(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_133(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -38784,7 +39299,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_134(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_134(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -38905,7 +39422,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_135(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_135(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -39023,7 +39542,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_136(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_136(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -39143,7 +39664,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_137(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_137(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -39263,7 +39786,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_138(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_138(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -39354,7 +39879,7 @@ class AutonomousCodingAgent:
                 self.dashboard_client.complete_step(
                     step.id,
                     "completed",
-                    )
+                )
                 return step, None
 
             except (OSError, RuntimeError, ValueError) as e:
@@ -39380,7 +39905,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_139(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_139(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -39501,7 +40028,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_140(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_140(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -39622,7 +40151,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_141(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_141(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -39743,7 +40274,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_142(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_142(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -39864,7 +40397,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_143(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_143(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -39985,7 +40520,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_144(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_144(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -40106,7 +40643,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_145(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_145(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -40227,7 +40766,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_146(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_146(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -40319,7 +40860,9 @@ class AutonomousCodingAgent:
                     step.id,
                     "completed",
                     metrics={
-                        "files_created": step.artifacts.get("files_created", ),
+                        "files_created": step.artifacts.get(
+                            "files_created",
+                        ),
                         "files_modified": step.artifacts.get("files_modified", []),
                     },
                 )
@@ -40348,7 +40891,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_147(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_147(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -40469,7 +41014,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_148(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_148(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -40590,7 +41137,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_149(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_149(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -40711,7 +41260,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_150(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_150(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -40832,7 +41383,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_151(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_151(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -40953,7 +41506,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_152(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_152(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -41074,7 +41629,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_153(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_153(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -41195,7 +41752,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_154(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_154(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -41288,7 +41847,9 @@ class AutonomousCodingAgent:
                     "completed",
                     metrics={
                         "files_created": step.artifacts.get("files_created", []),
-                        "files_modified": step.artifacts.get("files_modified", ),
+                        "files_modified": step.artifacts.get(
+                            "files_modified",
+                        ),
                     },
                 )
                 return step, None
@@ -41316,7 +41877,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_155(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_155(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -41437,7 +42000,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_156(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_156(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -41558,7 +42123,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_157(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_157(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -41679,7 +42246,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_158(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_158(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -41800,7 +42369,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_159(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_159(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -41921,7 +42492,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_160(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_160(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -42042,7 +42615,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_161(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_161(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -42163,7 +42738,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_162(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_162(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -42284,7 +42861,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_163(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_163(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -42405,7 +42984,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_164(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_164(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -42526,7 +43107,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_165(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_165(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -42647,7 +43230,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_166(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_166(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -42751,7 +43336,10 @@ class AutonomousCodingAgent:
                 log.error(f"  ❌ [병렬] 단계 실행 오류: {step.id} - {e}")
 
                 # 대시보드: 단계 실패 (병렬)
-                self.dashboard_client.complete_step(step.id, "failed", )
+                self.dashboard_client.complete_step(
+                    step.id,
+                    "failed",
+                )
                 return step, e
 
         # ThreadPoolExecutor로 병렬 실행 (최대 4개 동시)
@@ -42768,7 +43356,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_167(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_167(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -42872,7 +43462,9 @@ class AutonomousCodingAgent:
                 log.error(f"  ❌ [병렬] 단계 실행 오류: {step.id} - {e}")
 
                 # 대시보드: 단계 실패 (병렬)
-                self.dashboard_client.complete_step(step.id, "XXfailedXX", metrics={"error": str(e)})
+                self.dashboard_client.complete_step(
+                    step.id, "XXfailedXX", metrics={"error": str(e)}
+                )
                 return step, e
 
         # ThreadPoolExecutor로 병렬 실행 (최대 4개 동시)
@@ -42889,7 +43481,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_168(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_168(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -43010,7 +43604,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_169(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_169(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -43114,7 +43710,9 @@ class AutonomousCodingAgent:
                 log.error(f"  ❌ [병렬] 단계 실행 오류: {step.id} - {e}")
 
                 # 대시보드: 단계 실패 (병렬)
-                self.dashboard_client.complete_step(step.id, "failed", metrics={"XXerrorXX": str(e)})
+                self.dashboard_client.complete_step(
+                    step.id, "failed", metrics={"XXerrorXX": str(e)}
+                )
                 return step, e
 
         # ThreadPoolExecutor로 병렬 실행 (최대 4개 동시)
@@ -43131,7 +43729,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_170(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_170(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -43252,7 +43852,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_171(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_171(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -43373,7 +43975,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_172(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_172(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -43494,7 +44098,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_173(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_173(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -43615,7 +44221,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_174(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_174(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -43736,7 +44344,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_175(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_175(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -43857,7 +44467,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_176(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_176(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -43965,7 +44577,9 @@ class AutonomousCodingAgent:
                 return step, e
 
         # ThreadPoolExecutor로 병렬 실행 (최대 4개 동시)
-        max_workers = min(4, )
+        max_workers = min(
+            4,
+        )
         with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
             # 모든 단계 제출
             future_to_step = {executor.submit(run_step_in_thread, step): step for step in steps}
@@ -43978,7 +44592,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_177(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_177(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -44099,7 +44715,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_178(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_178(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -44220,7 +44838,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_179(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_179(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -44341,7 +44961,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_180(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_180(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -44462,7 +45084,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_181(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_181(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -44583,7 +45207,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_182(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_182(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -44704,7 +45330,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_183(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_183(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -44815,7 +45443,12 @@ class AutonomousCodingAgent:
         max_workers = min(4, len(steps))
         with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
             # 모든 단계 제출
-            future_to_step = {executor.submit(run_step_in_thread, ): step for step in steps}
+            future_to_step = {
+                executor.submit(
+                    run_step_in_thread,
+                ): step
+                for step in steps
+            }
 
             # 완료 순서대로 결과 수집
             for future in concurrent.futures.as_completed(future_to_step):
@@ -44825,7 +45458,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_184(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_184(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -44946,7 +45581,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_185(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_185(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -45067,7 +45704,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_186(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_186(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -45188,7 +45827,9 @@ class AutonomousCodingAgent:
                 # 상태 저장 (메인 스레드에서)
                 self.state_manager.save_state(self.state)
 
-    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_187(self, steps: list[PlanStep]) -> None:
+    def xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_187(
+        self, steps: list[PlanStep]
+    ) -> None:
         """병렬 단계 실행 - 독립적인 단계들을 동시에 실행"""
         import concurrent.futures
 
@@ -46359,7 +47000,9 @@ class AutonomousCodingAgent:
         step.started_at = datetime.now(UTC)
 
         # 대시보드: 단계 시작
-        self.dashboard_client.start_step(step.id, )
+        self.dashboard_client.start_step(
+            step.id,
+        )
 
         try:
             # 컨텍스트 구성
@@ -48967,7 +49610,9 @@ class AutonomousCodingAgent:
 
             # 1. 코드 실행
             if step.type == StepType.CODE:
-                code_result = self.coder.execute_step(step, )
+                code_result = self.coder.execute_step(
+                    step,
+                )
                 # Merge code result into artifacts (preserve any existing)
                 step.artifacts.update(code_result)
 
@@ -49700,7 +50345,10 @@ class AutonomousCodingAgent:
                 step.artifacts.update(code_result)
 
                 # 대시보드: 진행률 업데이트
-                self.dashboard_client.update_step_progress(step.id, 0.5, )
+                self.dashboard_client.update_step_progress(
+                    step.id,
+                    0.5,
+                )
 
             # 2. 검증
             if step.type in (StepType.CODE, StepType.VERIFY):
@@ -50641,7 +51289,9 @@ class AutonomousCodingAgent:
             # 2. 검증
             if step.type in (StepType.CODE, StepType.VERIFY):
                 # Only verify the assigned/modified files, not all project files
-                project_files = step.assigned_files or step.artifacts.get("files_modified", )
+                project_files = step.assigned_files or step.artifacts.get(
+                    "files_modified",
+                )
                 if not project_files and self.state.explore_result:
                     project_files = [f.path for f in self.state.explore_result.files]
                 verification = self.verifier.verify_step(step, project_files)
@@ -51684,7 +52334,9 @@ class AutonomousCodingAgent:
                 project_files = step.assigned_files or step.artifacts.get("files_modified", [])
                 if not project_files and self.state.explore_result:
                     project_files = [f.path for f in self.state.explore_result.files]
-                verification = self.verifier.verify_step(step, )
+                verification = self.verifier.verify_step(
+                    step,
+                )
                 # Merge verification with existing artifacts (preserve files_created/files_modified)
                 step.artifacts["verification"] = verification.__dict__
 
@@ -52625,7 +53277,10 @@ class AutonomousCodingAgent:
                 step.artifacts["verification"] = verification.__dict__
 
                 # 대시보드: 검증 진행
-                self.dashboard_client.update_step_progress(step.id, 0.8, )
+                self.dashboard_client.update_step_progress(
+                    step.id,
+                    0.8,
+                )
 
                 if not verification.passed:
                     step.status = StepStatus.FAILED
@@ -53569,9 +54224,7 @@ class AutonomousCodingAgent:
                     log.warning(f"  ❌ 검증 실패: {step.id}")
 
                     # 대시보드: 단계 실패
-                    self.dashboard_client.complete_step(
-                        step.id, "failed", metrics=None
-                    )
+                    self.dashboard_client.complete_step(step.id, "failed", metrics=None)
 
                     # 비평 수행
                     critique = self.critic.critique(step, verification, context)
@@ -53882,7 +54535,9 @@ class AutonomousCodingAgent:
 
                     # 대시보드: 단계 실패
                     self.dashboard_client.complete_step(
-                        step.id, "failed", )
+                        step.id,
+                        "failed",
+                    )
 
                     # 비평 수행
                     critique = self.critic.critique(step, verification, context)
@@ -55029,7 +55684,10 @@ class AutonomousCodingAgent:
                     )
 
                     # 비평 수행
-                    critique = self.critic.critique(step, verification, )
+                    critique = self.critic.critique(
+                        step,
+                        verification,
+                    )
                     step.artifacts["critique"] = critique.__dict__
 
                     # 재시도 로직
@@ -56809,7 +57467,11 @@ class AutonomousCodingAgent:
 
             # 3. 비평 (검증 통과한 경우에도)
             if step.type == StepType.CODE and verification.passed:
-                verification_obj = VerificationResult(**step.artifacts.get("verification", ))
+                verification_obj = VerificationResult(
+                    **step.artifacts.get(
+                        "verification",
+                    )
+                )
                 critique = self.critic.critique(step, verification_obj, context)
                 step.artifacts["critique"] = critique.__dict__
 
@@ -57746,7 +58408,10 @@ class AutonomousCodingAgent:
             # 3. 비평 (검증 통과한 경우에도)
             if step.type == StepType.CODE and verification.passed:
                 verification_obj = VerificationResult(**step.artifacts.get("verification", {}))
-                critique = self.critic.critique(step, verification_obj, )
+                critique = self.critic.critique(
+                    step,
+                    verification_obj,
+                )
                 step.artifacts["critique"] = critique.__dict__
 
                 if critique.should_retry and step.retry_count < step.max_retries:
@@ -59838,7 +60503,7 @@ class AutonomousCodingAgent:
             self.dashboard_client.complete_step(
                 step.id,
                 "completed",
-                )
+            )
 
         except (OSError, RuntimeError, ValueError) as e:
             step.status = StepStatus.FAILED
@@ -60667,7 +61332,9 @@ class AutonomousCodingAgent:
                 step.id,
                 "completed",
                 metrics={
-                    "files_created": step.artifacts.get("files_created", ),
+                    "files_created": step.artifacts.get(
+                        "files_created",
+                    ),
                     "files_modified": step.artifacts.get("files_modified", []),
                 },
             )
@@ -61500,7 +62167,9 @@ class AutonomousCodingAgent:
                 "completed",
                 metrics={
                     "files_created": step.artifacts.get("files_created", []),
-                    "files_modified": step.artifacts.get("files_modified", ),
+                    "files_modified": step.artifacts.get(
+                        "files_modified",
+                    ),
                 },
             )
 
@@ -62967,7 +63636,10 @@ class AutonomousCodingAgent:
             log.error(f"  ❌ 단계 실패 {step.id}: {e}")
 
             # 대시보드: 단계 실패
-            self.dashboard_client.complete_step(step.id, "failed", )
+            self.dashboard_client.complete_step(
+                step.id,
+                "failed",
+            )
 
     def xǁAutonomousCodingAgentǁ_run_single_step__mutmut_169(self, step: PlanStep) -> None:
         """단일 단계 실행"""
@@ -64193,7 +64865,11 @@ class AutonomousCodingAgent:
         for step in self.state.plan.steps:
             if step.status == StepStatus.COMPLETED:
                 artifacts = step.artifacts
-                all_files.update(artifacts.get("files_created", ))
+                all_files.update(
+                    artifacts.get(
+                        "files_created",
+                    )
+                )
                 all_files.update(artifacts.get("files_modified", []))
 
         all_files_list = list(all_files)
@@ -64635,7 +65311,11 @@ class AutonomousCodingAgent:
             if step.status == StepStatus.COMPLETED:
                 artifacts = step.artifacts
                 all_files.update(artifacts.get("files_created", []))
-                all_files.update(artifacts.get("files_modified", ))
+                all_files.update(
+                    artifacts.get(
+                        "files_modified",
+                    )
+                )
 
         all_files_list = list(all_files)
         final_verification = self.verifier.verify_project(all_files_list)
@@ -65913,7 +66593,11 @@ class AutonomousCodingAgent:
         for step in self.state.plan.steps:
             if step.status == StepStatus.COMPLETED:
                 artifacts = step.artifacts
-                files_created.extend(artifacts.get("files_created", ))
+                files_created.extend(
+                    artifacts.get(
+                        "files_created",
+                    )
+                )
                 files_modified.extend(artifacts.get("files_modified", []))
 
                 # Collect verification results
@@ -66355,7 +67039,11 @@ class AutonomousCodingAgent:
             if step.status == StepStatus.COMPLETED:
                 artifacts = step.artifacts
                 files_created.extend(artifacts.get("files_created", []))
-                files_modified.extend(artifacts.get("files_modified", ))
+                files_modified.extend(
+                    artifacts.get(
+                        "files_modified",
+                    )
+                )
 
                 # Collect verification results
                 if "verification" in artifacts:
@@ -66800,7 +67488,9 @@ class AutonomousCodingAgent:
 
                 # Collect verification results
                 if "verification" in artifacts:
-                    all_verification_results.append(VerificationResult(**artifacts["XXverificationXX"]))
+                    all_verification_results.append(
+                        VerificationResult(**artifacts["XXverificationXX"])
+                    )
                 # Collect critique results
                 if "critique" in artifacts:
                     all_critique_results.append(CritiqueResult(**artifacts["critique"]))
@@ -69948,781 +70638,782 @@ class AutonomousCodingAgent:
         self.state_manager.save_state(self.state)
         log.info(None)
 
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['_mutmut_orig'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_1'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_2'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_2 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_3'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_3 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_4'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_4 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_5'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_5 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_6'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_6 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_7'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_7 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_8'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_8 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_9'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_9 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_10'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_10 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_11'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_11 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_12'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_12 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_13'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_13 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_14'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_14 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_15'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_15 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_16'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_16 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_17'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_17 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_18'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_18 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_19'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_19 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_20'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_20 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_21'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_21 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_22'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_22 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_23'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_23 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_24'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_24 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_25'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_25 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_26'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_26 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_27'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_27 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_28'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_28 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_29'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_29 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_30'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_30 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_31'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_31 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_32'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_32 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_33'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_33 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_34'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_34 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_35'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_35 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_36'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_36 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_37'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_37 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_38'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_38 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_39'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_39 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_40'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_40 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_41'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_41 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_42'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_42 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_43'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_43 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_44'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_44 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_45'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_45 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_46'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_46 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_47'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_47 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_48'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_48 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_49'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_49 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_50'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_50 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_51'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_51 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_52'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_52 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_53'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_53 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ__init____mutmut['xǁAutonomousCodingAgentǁ__init____mutmut_54'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_54 # type: ignore # mutmut generated
 
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['_mutmut_orig'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_1'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_2'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_3'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_4'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_5'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_6'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_7'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_8'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_9'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_10'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_11'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_12'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_13'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_14'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_15'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_16'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_17'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_18'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_19'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_20'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_21'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_22'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_23'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_24'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_25'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_26'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_27'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_28'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_29'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_30'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_31'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_32'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_33'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_34'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_35'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_36'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_37'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_38'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_39'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_40'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_41'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_42'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_43'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_44'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_45'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_46'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_47'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_48'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_49'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_50'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_51'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_52'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_53'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_54'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_55'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_56'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_57'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_58'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_59'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_60'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_61'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_62'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_63'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_64'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_65'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_66'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_67'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_68'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_69'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_70'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_71'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_72'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_73'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_74'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_75'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_76'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_77'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_78'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_79'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_80'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_81'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_82'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_83'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_84'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_85'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_86'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_87'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_88'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_89'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_90'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_91'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_92'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_93'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_94'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_95'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_96'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_96 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_97'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_97 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_98'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_98 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_99'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_99 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_100'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_100 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_101'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_101 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_102'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_102 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_103'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_103 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_104'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_104 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_105'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_105 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_106'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_106 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_107'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_107 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_108'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_108 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_109'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_109 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_110'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_110 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_111'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_111 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_112'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_112 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_113'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_113 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_114'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_114 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_115'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_115 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_116'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_116 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_117'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_117 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_118'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_118 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_119'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_119 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_120'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_120 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_121'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_121 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_122'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_122 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_123'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_123 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_124'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_124 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_125'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_125 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_126'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_126 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_127'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_127 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_128'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_128 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_129'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_129 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_130'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_130 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_131'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_131 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_132'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_132 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_133'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_133 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_134'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_134 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_135'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_135 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_136'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_136 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_137'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_137 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_138'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_138 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_139'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_139 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_140'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_140 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_141'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_141 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_142'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_142 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_143'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_143 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_144'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_144 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_145'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_145 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_146'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_146 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_147'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_147 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_148'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_148 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_149'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_149 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_150'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_150 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_151'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_151 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_152'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_152 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_153'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_153 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_154'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_154 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_155'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_155 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_156'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_156 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_157'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_157 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_158'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_158 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_159'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_159 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_160'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_160 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_161'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_161 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_162'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_162 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_163'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_163 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_164'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_164 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁrun__mutmut['xǁAutonomousCodingAgentǁrun__mutmut_165'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_165 # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["_mutmut_orig"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_1"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_2"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_2  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_3"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_3  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_4"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_4  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_5"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_5  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_6"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_6  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_7"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_7  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_8"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_8  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_9"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_9  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_10"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_10  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_11"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_11  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_12"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_12  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_13"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_13  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_14"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_14  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_15"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_15  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_16"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_16  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_17"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_17  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_18"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_18  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_19"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_19  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_20"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_20  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_21"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_21  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_22"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_22  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_23"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_23  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_24"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_24  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_25"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_25  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_26"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_26  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_27"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_27  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_28"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_28  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_29"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_29  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_30"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_30  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_31"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_31  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_32"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_32  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_33"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_33  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_34"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_34  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_35"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_35  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_36"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_36  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_37"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_37  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_38"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_38  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_39"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_39  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_40"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_40  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_41"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_41  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_42"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_42  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_43"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_43  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_44"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_44  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_45"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_45  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_46"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_46  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_47"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_47  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_48"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_48  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_49"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_49  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_50"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_50  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_51"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_51  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_52"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_52  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_53"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_53  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ__init____mutmut["xǁAutonomousCodingAgentǁ__init____mutmut_54"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ__init____mutmut_54  # type: ignore # mutmut generated
 
-mutants_xǁAutonomousCodingAgentǁ_run_explore__mutmut['_mutmut_orig'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_explore__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_explore__mutmut['xǁAutonomousCodingAgentǁ_run_explore__mutmut_1'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_explore__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_explore__mutmut['xǁAutonomousCodingAgentǁ_run_explore__mutmut_2'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_explore__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_explore__mutmut['xǁAutonomousCodingAgentǁ_run_explore__mutmut_3'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_explore__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_explore__mutmut['xǁAutonomousCodingAgentǁ_run_explore__mutmut_4'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_explore__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_explore__mutmut['xǁAutonomousCodingAgentǁ_run_explore__mutmut_5'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_explore__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_explore__mutmut['xǁAutonomousCodingAgentǁ_run_explore__mutmut_6'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_explore__mutmut_6 # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["_mutmut_orig"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_1"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_2"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_3"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_4"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_5"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_6"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_7"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_8"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_9"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_10"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_11"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_12"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_13"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_14"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_15"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_16"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_17"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_18"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_19"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_20"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_21"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_22"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_23"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_24"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_25"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_26"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_27"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_28"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_29"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_30"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_31"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_32"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_33"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_34"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_35"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_36"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_37"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_38"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_39"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_40"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_41"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_42"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_43"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_44"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_45"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_46"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_47"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_48"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_49"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_50"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_51"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_52"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_53"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_54"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_55"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_56"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_57"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_58"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_59"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_60"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_61"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_62"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_63"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_64"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_65"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_66"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_67"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_68"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_69"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_70"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_71"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_72"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_73"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_74"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_75"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_76"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_77"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_78"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_79"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_80"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_81"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_82"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_83"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_84"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_85"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_86"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_87"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_88"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_89"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_90"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_91"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_92"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_93"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_94"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_95"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_96"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_96  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_97"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_97  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_98"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_98  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_99"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_99  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_100"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_100  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_101"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_101  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_102"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_102  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_103"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_103  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_104"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_104  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_105"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_105  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_106"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_106  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_107"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_107  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_108"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_108  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_109"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_109  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_110"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_110  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_111"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_111  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_112"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_112  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_113"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_113  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_114"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_114  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_115"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_115  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_116"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_116  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_117"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_117  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_118"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_118  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_119"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_119  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_120"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_120  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_121"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_121  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_122"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_122  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_123"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_123  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_124"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_124  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_125"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_125  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_126"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_126  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_127"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_127  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_128"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_128  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_129"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_129  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_130"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_130  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_131"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_131  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_132"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_132  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_133"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_133  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_134"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_134  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_135"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_135  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_136"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_136  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_137"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_137  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_138"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_138  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_139"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_139  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_140"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_140  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_141"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_141  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_142"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_142  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_143"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_143  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_144"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_144  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_145"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_145  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_146"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_146  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_147"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_147  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_148"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_148  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_149"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_149  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_150"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_150  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_151"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_151  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_152"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_152  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_153"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_153  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_154"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_154  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_155"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_155  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_156"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_156  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_157"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_157  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_158"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_158  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_159"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_159  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_160"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_160  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_161"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_161  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_162"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_162  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_163"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_163  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_164"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_164  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁrun__mutmut["xǁAutonomousCodingAgentǁrun__mutmut_165"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁrun__mutmut_165  # type: ignore # mutmut generated
 
-mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut['_mutmut_orig'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut['xǁAutonomousCodingAgentǁ_create_plan__mutmut_1'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut['xǁAutonomousCodingAgentǁ_create_plan__mutmut_2'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut['xǁAutonomousCodingAgentǁ_create_plan__mutmut_3'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut['xǁAutonomousCodingAgentǁ_create_plan__mutmut_4'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut['xǁAutonomousCodingAgentǁ_create_plan__mutmut_5'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut['xǁAutonomousCodingAgentǁ_create_plan__mutmut_6'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut['xǁAutonomousCodingAgentǁ_create_plan__mutmut_7'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut['xǁAutonomousCodingAgentǁ_create_plan__mutmut_8'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut['xǁAutonomousCodingAgentǁ_create_plan__mutmut_9'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut['xǁAutonomousCodingAgentǁ_create_plan__mutmut_10'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut['xǁAutonomousCodingAgentǁ_create_plan__mutmut_11'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut['xǁAutonomousCodingAgentǁ_create_plan__mutmut_12'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_12 # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_explore__mutmut["_mutmut_orig"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_explore__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_explore__mutmut["xǁAutonomousCodingAgentǁ_run_explore__mutmut_1"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_explore__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_explore__mutmut["xǁAutonomousCodingAgentǁ_run_explore__mutmut_2"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_explore__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_explore__mutmut["xǁAutonomousCodingAgentǁ_run_explore__mutmut_3"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_explore__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_explore__mutmut["xǁAutonomousCodingAgentǁ_run_explore__mutmut_4"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_explore__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_explore__mutmut["xǁAutonomousCodingAgentǁ_run_explore__mutmut_5"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_explore__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_explore__mutmut["xǁAutonomousCodingAgentǁ_run_explore__mutmut_6"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_explore__mutmut_6  # type: ignore # mutmut generated
 
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['_mutmut_orig'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_1'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_2'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_3'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_4'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_5'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_6'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_7'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_8'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_9'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_10'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_11'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_12'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_13'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_14'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_15'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_16'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_17'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_18'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_19'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_20'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_21'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_22'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_23'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_24'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_25'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_26'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_27'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_28'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_29'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_30'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_31'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut['xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_32'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_32 # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut["_mutmut_orig"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut["xǁAutonomousCodingAgentǁ_create_plan__mutmut_1"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut["xǁAutonomousCodingAgentǁ_create_plan__mutmut_2"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut["xǁAutonomousCodingAgentǁ_create_plan__mutmut_3"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut["xǁAutonomousCodingAgentǁ_create_plan__mutmut_4"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut["xǁAutonomousCodingAgentǁ_create_plan__mutmut_5"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut["xǁAutonomousCodingAgentǁ_create_plan__mutmut_6"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut["xǁAutonomousCodingAgentǁ_create_plan__mutmut_7"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut["xǁAutonomousCodingAgentǁ_create_plan__mutmut_8"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut["xǁAutonomousCodingAgentǁ_create_plan__mutmut_9"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut["xǁAutonomousCodingAgentǁ_create_plan__mutmut_10"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut["xǁAutonomousCodingAgentǁ_create_plan__mutmut_11"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_create_plan__mutmut["xǁAutonomousCodingAgentǁ_create_plan__mutmut_12"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_create_plan__mutmut_12  # type: ignore # mutmut generated
 
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['_mutmut_orig'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_1'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_2'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_3'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_4'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_5'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_6'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_7'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_8'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_9'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_10'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_11'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_12'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_13'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_14'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_15'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_16'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_17'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_18'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_19'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_20'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_21'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_22'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_23'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_24'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_25'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_26'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_27'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_28'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_29'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_30'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_31'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_32'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_33'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_34'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_35'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_36'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_37'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_38'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_39'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_40'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_41'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_42'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_43'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_44'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_45'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_46'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_47'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_48'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_49'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_50'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_51'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_52'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_53'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_54'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_55'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_56'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_57'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_58'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_59'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_60'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_61'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_62'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_63'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_64'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_65'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_66'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_67'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_68'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_69'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_70'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_71'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_72'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_73'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_74'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_75'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_76'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_77'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_78'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_79'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_80'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_81'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_82'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_83'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_84'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_85'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_86'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_87'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_88'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_89'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_90'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_91'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_92'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_93'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_94'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_95'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_96'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_96 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_97'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_97 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_98'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_98 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_99'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_99 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_100'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_100 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_101'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_101 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_102'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_102 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_103'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_103 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_104'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_104 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_105'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_105 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_106'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_106 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_107'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_107 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_108'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_108 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_109'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_109 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_110'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_110 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_111'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_111 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_112'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_112 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_113'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_113 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_114'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_114 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_115'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_115 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_116'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_116 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_117'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_117 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_118'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_118 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_119'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_119 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_120'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_120 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_121'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_121 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_122'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_122 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_123'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_123 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_124'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_124 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_125'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_125 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_126'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_126 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_127'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_127 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_128'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_128 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_129'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_129 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_130'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_130 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_131'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_131 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_132'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_132 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_133'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_133 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_134'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_134 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_135'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_135 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_136'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_136 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_137'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_137 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_138'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_138 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_139'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_139 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_140'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_140 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_141'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_141 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_142'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_142 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_143'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_143 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_144'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_144 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_145'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_145 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_146'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_146 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_147'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_147 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_148'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_148 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_149'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_149 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_150'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_150 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_151'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_151 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_152'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_152 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_153'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_153 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_154'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_154 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_155'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_155 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_156'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_156 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_157'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_157 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_158'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_158 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_159'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_159 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_160'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_160 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_161'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_161 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_162'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_162 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_163'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_163 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_164'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_164 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_165'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_165 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_166'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_166 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_167'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_167 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_168'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_168 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_169'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_169 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_170'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_170 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_171'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_171 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_172'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_172 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_173'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_173 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_174'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_174 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_175'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_175 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_176'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_176 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_177'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_177 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_178'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_178 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_179'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_179 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_180'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_180 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_181'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_181 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_182'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_182 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_183'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_183 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_184'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_184 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_185'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_185 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_186'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_186 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut['xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_187'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_187 # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["_mutmut_orig"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_1"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_2"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_3"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_4"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_5"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_6"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_7"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_8"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_9"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_10"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_11"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_12"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_13"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_14"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_15"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_16"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_17"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_18"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_19"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_20"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_21"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_22"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_23"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_24"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_25"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_26"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_27"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_28"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_29"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_30"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_31"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut["xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_32"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_execution_loop__mutmut_32  # type: ignore # mutmut generated
 
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['_mutmut_orig'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_1'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_2'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_3'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_4'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_5'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_6'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_7'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_8'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_9'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_10'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_11'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_12'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_13'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_14'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_15'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_16'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_17'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_18'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_19'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_20'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_21'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_22'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_23'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_24'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_25'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_26'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_27'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_28'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_29'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_30'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_31'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_32'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_33'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_34'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_35'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_36'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_37'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_38'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_39'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_40'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_41'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_42'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_43'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_44'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_45'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_46'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_47'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_48'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_49'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_50'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_51'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_52'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_53'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_54'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_55'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_56'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_57'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_58'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_59'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_60'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_61'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_62'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_63'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_64'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_65'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_66'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_67'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_68'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_69'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_70'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_71'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_72'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_73'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_74'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_75'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_76'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_77'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_78'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_79'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_80'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_81'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_82'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_83'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_84'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_85'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_86'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_87'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_88'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_89'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_90'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_91'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_92'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_93'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_94'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_95'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_96'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_96 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_97'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_97 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_98'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_98 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_99'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_99 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_100'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_100 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_101'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_101 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_102'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_102 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_103'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_103 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_104'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_104 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_105'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_105 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_106'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_106 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_107'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_107 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_108'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_108 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_109'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_109 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_110'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_110 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_111'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_111 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_112'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_112 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_113'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_113 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_114'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_114 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_115'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_115 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_116'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_116 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_117'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_117 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_118'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_118 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_119'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_119 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_120'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_120 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_121'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_121 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_122'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_122 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_123'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_123 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_124'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_124 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_125'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_125 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_126'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_126 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_127'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_127 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_128'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_128 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_129'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_129 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_130'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_130 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_131'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_131 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_132'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_132 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_133'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_133 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_134'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_134 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_135'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_135 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_136'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_136 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_137'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_137 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_138'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_138 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_139'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_139 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_140'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_140 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_141'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_141 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_142'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_142 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_143'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_143 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_144'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_144 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_145'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_145 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_146'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_146 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_147'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_147 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_148'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_148 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_149'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_149 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_150'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_150 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_151'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_151 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_152'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_152 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_153'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_153 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_154'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_154 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_155'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_155 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_156'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_156 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_157'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_157 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_158'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_158 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_159'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_159 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_160'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_160 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_161'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_161 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_162'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_162 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_163'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_163 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_164'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_164 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_165'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_165 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_166'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_166 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_167'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_167 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_168'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_168 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_169'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_169 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_170'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_170 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_171'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_171 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_172'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_172 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut['xǁAutonomousCodingAgentǁ_run_single_step__mutmut_173'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_173 # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["_mutmut_orig"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_1"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_2"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_3"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_4"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_5"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_6"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_7"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_8"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_9"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_10"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_11"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_12"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_13"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_14"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_15"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_16"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_17"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_18"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_19"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_20"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_21"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_22"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_23"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_24"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_25"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_26"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_27"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_28"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_29"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_30"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_31"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_32"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_33"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_34"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_35"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_36"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_37"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_38"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_39"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_40"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_41"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_42"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_43"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_44"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_45"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_46"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_47"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_48"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_49"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_50"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_51"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_52"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_53"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_54"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_55"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_56"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_57"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_58"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_59"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_60"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_61"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_62"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_63"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_64"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_65"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_66"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_67"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_68"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_69"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_70"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_71"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_72"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_73"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_74"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_75"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_76"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_77"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_78"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_79"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_80"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_81"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_82"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_83"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_84"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_85"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_86"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_87"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_88"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_89"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_90"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_91"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_92"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_93"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_94"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_95"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_96"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_96  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_97"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_97  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_98"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_98  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_99"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_99  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_100"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_100  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_101"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_101  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_102"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_102  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_103"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_103  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_104"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_104  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_105"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_105  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_106"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_106  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_107"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_107  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_108"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_108  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_109"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_109  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_110"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_110  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_111"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_111  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_112"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_112  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_113"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_113  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_114"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_114  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_115"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_115  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_116"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_116  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_117"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_117  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_118"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_118  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_119"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_119  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_120"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_120  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_121"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_121  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_122"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_122  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_123"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_123  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_124"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_124  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_125"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_125  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_126"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_126  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_127"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_127  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_128"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_128  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_129"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_129  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_130"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_130  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_131"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_131  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_132"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_132  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_133"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_133  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_134"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_134  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_135"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_135  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_136"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_136  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_137"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_137  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_138"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_138  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_139"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_139  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_140"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_140  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_141"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_141  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_142"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_142  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_143"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_143  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_144"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_144  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_145"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_145  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_146"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_146  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_147"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_147  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_148"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_148  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_149"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_149  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_150"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_150  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_151"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_151  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_152"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_152  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_153"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_153  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_154"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_154  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_155"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_155  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_156"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_156  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_157"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_157  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_158"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_158  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_159"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_159  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_160"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_160  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_161"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_161  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_162"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_162  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_163"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_163  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_164"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_164  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_165"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_165  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_166"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_166  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_167"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_167  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_168"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_168  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_169"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_169  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_170"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_170  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_171"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_171  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_172"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_172  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_173"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_173  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_174"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_174  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_175"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_175  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_176"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_176  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_177"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_177  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_178"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_178  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_179"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_179  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_180"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_180  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_181"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_181  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_182"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_182  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_183"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_183  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_184"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_184  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_185"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_185  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_186"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_186  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut["xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_187"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_steps_parallel__mutmut_187  # type: ignore # mutmut generated
 
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['_mutmut_orig'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_1'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_2'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_3'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_4'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_5'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_6'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_7'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_8'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_9'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_10'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_11'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_12'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_13'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_14'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_15'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_16'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_17'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_18'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_19'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_20'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_21'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_22'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_23'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_24'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_25'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_26'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_27'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_28'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_29'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_30'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_31'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_32'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_33'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_34'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_35'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_36'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_37'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_38'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_39'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_40'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_41'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_42'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_43'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_44'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_45'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_46'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_47'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_48'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_49'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_50'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_51'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_52'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_53'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_54'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_55'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_56'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_57'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_58'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_59'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_60'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_61'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_62'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_63'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_64'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_65'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_66'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_67'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_68'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_69'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_70'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_71'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_72'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_73'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_74'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_75'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_76'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_77'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_78'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_79'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_80'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_81'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_82'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_83'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_84'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_85'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_86'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_87'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut['xǁAutonomousCodingAgentǁ_final_verification__mutmut_88'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_88 # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["_mutmut_orig"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_1"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_2"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_3"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_4"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_5"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_6"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_7"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_8"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_9"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_10"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_11"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_12"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_13"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_14"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_15"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_16"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_17"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_18"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_19"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_20"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_21"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_22"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_23"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_24"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_25"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_26"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_27"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_28"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_29"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_30"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_31"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_32"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_33"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_34"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_35"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_36"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_37"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_38"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_39"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_40"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_41"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_42"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_43"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_44"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_45"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_46"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_47"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_48"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_49"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_50"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_51"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_52"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_53"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_54"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_55"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_56"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_57"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_58"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_59"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_60"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_61"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_62"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_63"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_64"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_65"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_66"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_67"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_68"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_69"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_70"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_71"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_72"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_73"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_74"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_75"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_76"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_77"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_78"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_79"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_80"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_81"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_82"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_83"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_84"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_85"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_86"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_87"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_88"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_89"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_90"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_91"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_92"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_93"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_94"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_95"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_96"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_96  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_97"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_97  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_98"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_98  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_99"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_99  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_100"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_100  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_101"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_101  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_102"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_102  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_103"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_103  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_104"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_104  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_105"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_105  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_106"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_106  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_107"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_107  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_108"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_108  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_109"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_109  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_110"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_110  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_111"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_111  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_112"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_112  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_113"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_113  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_114"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_114  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_115"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_115  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_116"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_116  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_117"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_117  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_118"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_118  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_119"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_119  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_120"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_120  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_121"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_121  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_122"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_122  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_123"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_123  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_124"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_124  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_125"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_125  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_126"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_126  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_127"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_127  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_128"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_128  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_129"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_129  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_130"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_130  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_131"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_131  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_132"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_132  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_133"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_133  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_134"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_134  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_135"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_135  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_136"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_136  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_137"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_137  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_138"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_138  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_139"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_139  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_140"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_140  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_141"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_141  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_142"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_142  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_143"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_143  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_144"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_144  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_145"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_145  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_146"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_146  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_147"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_147  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_148"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_148  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_149"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_149  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_150"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_150  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_151"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_151  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_152"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_152  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_153"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_153  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_154"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_154  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_155"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_155  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_156"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_156  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_157"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_157  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_158"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_158  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_159"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_159  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_160"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_160  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_161"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_161  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_162"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_162  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_163"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_163  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_164"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_164  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_165"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_165  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_166"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_166  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_167"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_167  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_168"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_168  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_169"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_169  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_170"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_170  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_171"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_171  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_172"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_172  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_run_single_step__mutmut["xǁAutonomousCodingAgentǁ_run_single_step__mutmut_173"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_run_single_step__mutmut_173  # type: ignore # mutmut generated
 
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['_mutmut_orig'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_1'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_2'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_3'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_4'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_5'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_6'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_7'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_8'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_9'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_10'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_11'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_12'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_13'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_14'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_15'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_16'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_17'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_18'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_19'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_20'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_21'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_22'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_23'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_24'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_25'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_26'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_27'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_28'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_29'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁget_status__mutmut['xǁAutonomousCodingAgentǁget_status__mutmut_30'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_30 # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["_mutmut_orig"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_1"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_2"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_3"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_4"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_5"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_6"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_7"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_8"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_9"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_10"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_11"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_12"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_13"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_14"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_15"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_16"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_17"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_18"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_19"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_20"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_21"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_22"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_23"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_24"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_25"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_26"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_27"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_28"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_29"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_30"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_31"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_32"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_33"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_34"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_35"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_36"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_37"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_38"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_39"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_40"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_41"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_42"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_43"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_44"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_45"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_46"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_47"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_48"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_49"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_50"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_51"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_52"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_53"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_54"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_55"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_56"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_57"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_58"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_59"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_60"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_61"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_62"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_63"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_64"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_65"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_66"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_67"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_68"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_69"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_70"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_71"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_72"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_73"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_74"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_75"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_76"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_77"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_78"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_79"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_80"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_81"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_82"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_83"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_84"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_85"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_86"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_87"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁ_final_verification__mutmut["xǁAutonomousCodingAgentǁ_final_verification__mutmut_88"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁ_final_verification__mutmut_88  # type: ignore # mutmut generated
 
-mutants_xǁAutonomousCodingAgentǁpause__mutmut['_mutmut_orig'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁpause__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁpause__mutmut['xǁAutonomousCodingAgentǁpause__mutmut_1'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁpause__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁpause__mutmut['xǁAutonomousCodingAgentǁpause__mutmut_2'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁpause__mutmut_2 # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["_mutmut_orig"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_1"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_2"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_3"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_4"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_5"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_6"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_7"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_8"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_9"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_10"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_11"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_12"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_13"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_14"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_15"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_16"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_17"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_18"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_19"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_20"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_21"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_22"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_23"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_24"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_25"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_26"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_27"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_28"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_29"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁget_status__mutmut["xǁAutonomousCodingAgentǁget_status__mutmut_30"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁget_status__mutmut_30  # type: ignore # mutmut generated
 
-mutants_xǁAutonomousCodingAgentǁresume__mutmut['_mutmut_orig'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁresume__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁresume__mutmut['xǁAutonomousCodingAgentǁresume__mutmut_1'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁresume__mutmut_1 # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁpause__mutmut["_mutmut_orig"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁpause__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁpause__mutmut["xǁAutonomousCodingAgentǁpause__mutmut_1"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁpause__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁpause__mutmut["xǁAutonomousCodingAgentǁpause__mutmut_2"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁpause__mutmut_2  # type: ignore # mutmut generated
 
-mutants_xǁAutonomousCodingAgentǁcancel__mutmut['_mutmut_orig'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁcancel__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁcancel__mutmut['xǁAutonomousCodingAgentǁcancel__mutmut_1'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁcancel__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁAutonomousCodingAgentǁcancel__mutmut['xǁAutonomousCodingAgentǁcancel__mutmut_2'] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁcancel__mutmut_2 # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁresume__mutmut["_mutmut_orig"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁresume__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁresume__mutmut["xǁAutonomousCodingAgentǁresume__mutmut_1"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁresume__mutmut_1  # type: ignore # mutmut generated
+
+mutants_xǁAutonomousCodingAgentǁcancel__mutmut["_mutmut_orig"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁcancel__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁcancel__mutmut["xǁAutonomousCodingAgentǁcancel__mutmut_1"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁcancel__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁAutonomousCodingAgentǁcancel__mutmut["xǁAutonomousCodingAgentǁcancel__mutmut_2"] = AutonomousCodingAgent.xǁAutonomousCodingAgentǁcancel__mutmut_2  # type: ignore # mutmut generated
 mutants_x_run_autonomous__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -70860,7 +71551,7 @@ def x_run_autonomous__mutmut_7(
     agent = AutonomousCodingAgent(
         workspace=workspace,
         max_iterations=max_iterations,
-        )
+    )
     return agent.run(goal, task_type)
 
 
@@ -70925,20 +71616,23 @@ def x_run_autonomous__mutmut_11(
         max_iterations=max_iterations,
         **kwargs,
     )
-    return agent.run(goal, )
+    return agent.run(
+        goal,
+    )
 
-mutants_x_run_autonomous__mutmut['_mutmut_orig'] = x_run_autonomous__mutmut_orig # type: ignore # mutmut generated
-mutants_x_run_autonomous__mutmut['x_run_autonomous__mutmut_1'] = x_run_autonomous__mutmut_1 # type: ignore # mutmut generated
-mutants_x_run_autonomous__mutmut['x_run_autonomous__mutmut_2'] = x_run_autonomous__mutmut_2 # type: ignore # mutmut generated
-mutants_x_run_autonomous__mutmut['x_run_autonomous__mutmut_3'] = x_run_autonomous__mutmut_3 # type: ignore # mutmut generated
-mutants_x_run_autonomous__mutmut['x_run_autonomous__mutmut_4'] = x_run_autonomous__mutmut_4 # type: ignore # mutmut generated
-mutants_x_run_autonomous__mutmut['x_run_autonomous__mutmut_5'] = x_run_autonomous__mutmut_5 # type: ignore # mutmut generated
-mutants_x_run_autonomous__mutmut['x_run_autonomous__mutmut_6'] = x_run_autonomous__mutmut_6 # type: ignore # mutmut generated
-mutants_x_run_autonomous__mutmut['x_run_autonomous__mutmut_7'] = x_run_autonomous__mutmut_7 # type: ignore # mutmut generated
-mutants_x_run_autonomous__mutmut['x_run_autonomous__mutmut_8'] = x_run_autonomous__mutmut_8 # type: ignore # mutmut generated
-mutants_x_run_autonomous__mutmut['x_run_autonomous__mutmut_9'] = x_run_autonomous__mutmut_9 # type: ignore # mutmut generated
-mutants_x_run_autonomous__mutmut['x_run_autonomous__mutmut_10'] = x_run_autonomous__mutmut_10 # type: ignore # mutmut generated
-mutants_x_run_autonomous__mutmut['x_run_autonomous__mutmut_11'] = x_run_autonomous__mutmut_11 # type: ignore # mutmut generated
+
+mutants_x_run_autonomous__mutmut["_mutmut_orig"] = x_run_autonomous__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_run_autonomous__mutmut["x_run_autonomous__mutmut_1"] = x_run_autonomous__mutmut_1  # type: ignore # mutmut generated
+mutants_x_run_autonomous__mutmut["x_run_autonomous__mutmut_2"] = x_run_autonomous__mutmut_2  # type: ignore # mutmut generated
+mutants_x_run_autonomous__mutmut["x_run_autonomous__mutmut_3"] = x_run_autonomous__mutmut_3  # type: ignore # mutmut generated
+mutants_x_run_autonomous__mutmut["x_run_autonomous__mutmut_4"] = x_run_autonomous__mutmut_4  # type: ignore # mutmut generated
+mutants_x_run_autonomous__mutmut["x_run_autonomous__mutmut_5"] = x_run_autonomous__mutmut_5  # type: ignore # mutmut generated
+mutants_x_run_autonomous__mutmut["x_run_autonomous__mutmut_6"] = x_run_autonomous__mutmut_6  # type: ignore # mutmut generated
+mutants_x_run_autonomous__mutmut["x_run_autonomous__mutmut_7"] = x_run_autonomous__mutmut_7  # type: ignore # mutmut generated
+mutants_x_run_autonomous__mutmut["x_run_autonomous__mutmut_8"] = x_run_autonomous__mutmut_8  # type: ignore # mutmut generated
+mutants_x_run_autonomous__mutmut["x_run_autonomous__mutmut_9"] = x_run_autonomous__mutmut_9  # type: ignore # mutmut generated
+mutants_x_run_autonomous__mutmut["x_run_autonomous__mutmut_10"] = x_run_autonomous__mutmut_10  # type: ignore # mutmut generated
+mutants_x_run_autonomous__mutmut["x_run_autonomous__mutmut_11"] = x_run_autonomous__mutmut_11  # type: ignore # mutmut generated
 
 
 if __name__ == "__main__":

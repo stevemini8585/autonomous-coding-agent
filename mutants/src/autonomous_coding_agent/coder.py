@@ -18,7 +18,9 @@ from .patch_utils import PatchManager, PatchOperation
 log = logging.getLogger("autonomous_coding_agent.coder")
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
+
 mutants_xǁCodeGeneratorǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁCodeGeneratorǁexecute_step__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁCodeGeneratorǁ_implement_code__mutmut: MutantDict = {}  # type: ignore
@@ -132,7 +134,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_orig(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_orig(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -163,7 +167,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_1(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_1(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(None)
 
@@ -194,7 +200,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_2(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_2(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -225,7 +233,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_3(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_3(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -256,7 +266,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_4(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_4(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -287,7 +299,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_5(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_5(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -318,7 +332,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_6(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_6(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -349,7 +365,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_7(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_7(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -380,7 +398,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_8(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_8(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -388,7 +408,9 @@ class CodeGenerator:
 
         try:
             if step.type == StepType.CODE:
-                result = self._implement_code(step, )
+                result = self._implement_code(
+                    step,
+                )
             elif step.type == StepType.EXPLORE:
                 result = {"action": "explore", "message": "탐색은 별도 모듈에서 수행"}
             elif step.type == StepType.PLAN:
@@ -411,7 +433,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_9(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_9(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -442,7 +466,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_10(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_10(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -473,7 +499,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_11(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_11(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -504,7 +532,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_12(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_12(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -535,7 +565,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_13(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_13(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -566,7 +598,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_14(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_14(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -597,7 +631,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_15(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_15(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -628,7 +664,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_16(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_16(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -659,7 +697,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_17(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_17(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -690,7 +730,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_18(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_18(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -721,7 +763,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_19(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_19(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -752,7 +796,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_20(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_20(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -783,7 +829,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_21(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_21(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -814,7 +862,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_22(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_22(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -845,7 +895,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_23(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_23(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -876,7 +928,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_24(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_24(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -907,7 +961,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_25(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_25(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -938,7 +994,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_26(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_26(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -969,7 +1027,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_27(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_27(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1000,7 +1060,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_28(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_28(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1031,7 +1093,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_29(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_29(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1062,7 +1126,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_30(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_30(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1093,7 +1159,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_31(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_31(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1124,7 +1192,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_32(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_32(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1155,7 +1225,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_33(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_33(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1186,7 +1258,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_34(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_34(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1217,7 +1291,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_35(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_35(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1248,7 +1324,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_36(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_36(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1279,7 +1357,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_37(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_37(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1310,7 +1390,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_38(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_38(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1341,7 +1423,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_39(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_39(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1372,7 +1456,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_40(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_40(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1403,7 +1489,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_41(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_41(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1434,7 +1522,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_42(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_42(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1465,7 +1555,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_43(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_43(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1496,7 +1588,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_44(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_44(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1527,7 +1621,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_45(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_45(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1558,7 +1654,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_46(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_46(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1589,7 +1687,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_47(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_47(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1620,7 +1720,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_48(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_48(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1651,7 +1753,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_49(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_49(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1682,7 +1786,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_50(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_50(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1713,7 +1819,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_51(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_51(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1744,7 +1852,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_52(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_52(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1775,7 +1885,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_53(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_53(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1806,7 +1918,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_54(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_54(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1837,7 +1951,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_55(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_55(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1868,7 +1984,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_56(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_56(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1899,7 +2017,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_57(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_57(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1930,7 +2050,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_58(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_58(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1961,7 +2083,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_59(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_59(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -1992,7 +2116,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_60(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_60(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -2023,7 +2149,9 @@ class CodeGenerator:
 
         return result
 
-    def xǁCodeGeneratorǁexecute_step__mutmut_61(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁexecute_step__mutmut_61(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
         log.info(f"코드 실행: {step.id} - {step.title}")
 
@@ -2111,7 +2239,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_orig(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_orig(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -2167,7 +2297,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_1(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_1(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = None
 
@@ -2219,7 +2351,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_2(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_2(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "XXfiles_createdXX": [],
@@ -2275,7 +2409,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_3(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_3(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "FILES_CREATED": [],
@@ -2331,7 +2467,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_4(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_4(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -2387,7 +2525,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_5(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_5(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -2443,7 +2583,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_6(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_6(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -2499,7 +2641,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_7(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_7(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -2555,7 +2699,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_8(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_8(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -2611,7 +2757,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_9(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_9(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -2667,7 +2815,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_10(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_10(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -2723,7 +2873,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_11(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_11(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -2736,7 +2888,7 @@ class CodeGenerator:
             self._backup_file(file_path)
 
         # 2. 작업 목표 분석하여 구체적 구현 생성
-        goal = context.get("goal", None)
+        goal = context.get("goal")
         implementation = self._generate_task_specific_implementation(step, goal, context)
 
         # 3. 파일 적용 - PatchManager 사용
@@ -2779,7 +2931,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_12(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_12(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -2835,7 +2989,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_13(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_13(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -2848,7 +3004,9 @@ class CodeGenerator:
             self._backup_file(file_path)
 
         # 2. 작업 목표 분석하여 구체적 구현 생성
-        goal = context.get("goal", )
+        goal = context.get(
+            "goal",
+        )
         implementation = self._generate_task_specific_implementation(step, goal, context)
 
         # 3. 파일 적용 - PatchManager 사용
@@ -2891,7 +3049,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_14(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_14(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -2947,7 +3107,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_15(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_15(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3003,7 +3165,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_16(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_16(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3059,7 +3223,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_17(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_17(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3115,7 +3281,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_18(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_18(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3171,7 +3339,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_19(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_19(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3227,7 +3397,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_20(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_20(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3283,7 +3455,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_21(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_21(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3339,7 +3513,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_22(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_22(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3395,7 +3571,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_23(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_23(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3409,7 +3587,10 @@ class CodeGenerator:
 
         # 2. 작업 목표 분석하여 구체적 구현 생성
         goal = context.get("goal", "")
-        implementation = self._generate_task_specific_implementation(step, goal, )
+        implementation = self._generate_task_specific_implementation(
+            step,
+            goal,
+        )
 
         # 3. 파일 적용 - PatchManager 사용
         patch_manager = PatchManager(self.workspace)
@@ -3451,7 +3632,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_24(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_24(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3507,7 +3690,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_25(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_25(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3563,7 +3748,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_26(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_26(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3619,7 +3806,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_27(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_27(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3675,7 +3864,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_28(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_28(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3731,7 +3922,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_29(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_29(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3755,9 +3948,7 @@ class CodeGenerator:
             full_path = self.workspace / file_path
 
             if full_path.exists():
-                operations.append(
-                    None
-                )
+                operations.append(None)
             else:
                 # 새 파일 생성
                 full_path.parent.mkdir(parents=True, exist_ok=True)
@@ -3782,7 +3973,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_30(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_30(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3838,7 +4031,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_31(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_31(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3894,7 +4089,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_32(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_32(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -3950,7 +4147,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_33(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_33(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4006,7 +4205,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_34(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_34(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4061,7 +4262,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_35(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_35(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4116,7 +4319,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_36(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_36(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4171,7 +4376,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_37(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_37(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4200,7 +4407,7 @@ class CodeGenerator:
                         file_path=file_path,
                         old_content=full_path.read_text(encoding="utf-8"),
                         new_content=content,
-                        )
+                    )
                 )
             else:
                 # 새 파일 생성
@@ -4226,7 +4433,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_38(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_38(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4282,7 +4491,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_39(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_39(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4338,7 +4549,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_40(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_40(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4394,7 +4607,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_41(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_41(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4450,7 +4665,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_42(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_42(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4506,7 +4723,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_43(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_43(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4562,7 +4781,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_44(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_44(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4596,7 +4817,9 @@ class CodeGenerator:
                 )
             else:
                 # 새 파일 생성
-                full_path.parent.mkdir(parents=True, )
+                full_path.parent.mkdir(
+                    parents=True,
+                )
                 full_path.write_text(content, encoding="utf-8")
                 artifacts["files_created"].append(file_path)
 
@@ -4618,7 +4841,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_45(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_45(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4674,7 +4899,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_46(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_46(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4730,7 +4957,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_47(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_47(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4786,7 +5015,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_48(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_48(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4842,7 +5073,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_49(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_49(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4898,7 +5131,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_50(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_50(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -4933,7 +5168,9 @@ class CodeGenerator:
             else:
                 # 새 파일 생성
                 full_path.parent.mkdir(parents=True, exist_ok=True)
-                full_path.write_text(content, )
+                full_path.write_text(
+                    content,
+                )
                 artifacts["files_created"].append(file_path)
 
         # 패치 적용 (트랜잭션으로 원자적 적용)
@@ -4954,7 +5191,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_51(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_51(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5010,7 +5249,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_52(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_52(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5066,7 +5307,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_53(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_53(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5122,7 +5365,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_54(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_54(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5178,7 +5423,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_55(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_55(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5234,7 +5481,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_56(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_56(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5290,7 +5539,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_57(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_57(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5346,7 +5597,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_58(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_58(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5402,7 +5655,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_59(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_59(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5458,7 +5713,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_60(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_60(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5514,7 +5771,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_61(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_61(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5570,7 +5829,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_62(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_62(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5626,7 +5887,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_63(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_63(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5682,7 +5945,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_64(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_64(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5734,7 +5999,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_65(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_65(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5790,7 +6057,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_66(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_66(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5846,7 +6115,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_67(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_67(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5902,7 +6173,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_68(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_68(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -5958,7 +6231,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_69(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_69(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -6014,7 +6289,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_70(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_70(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -6070,7 +6347,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_71(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_71(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -6126,7 +6405,9 @@ class CodeGenerator:
 
         return artifacts
 
-    def xǁCodeGeneratorǁ_implement_code__mutmut_72(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+    def xǁCodeGeneratorǁ_implement_code__mutmut_72(
+        self, step: PlanStep, context: dict[str, Any]
+    ) -> dict[str, Any]:
         """코드 구현 - 작업 목표 분석 후 구체적 구현"""
         artifacts = {
             "files_created": [],
@@ -6746,9 +7027,7 @@ class CodeGenerator:
             ext = Path(file_path).suffix.lower()
 
             if ext == ".py":
-                implementations[file_path] = self._generate_python_task_code(
-                    step, goal, context
-                )
+                implementations[file_path] = self._generate_python_task_code(step, goal, context)
             elif ext in (".js", ".ts", ".tsx"):
                 implementations[file_path] = self._generate_js_ts_task_code(
                     step, file_path, goal, context
@@ -6821,7 +7100,10 @@ class CodeGenerator:
 
             if ext == ".py":
                 implementations[file_path] = self._generate_python_task_code(
-                    step, file_path, goal, )
+                    step,
+                    file_path,
+                    goal,
+                )
             elif ext in (".js", ".ts", ".tsx"):
                 implementations[file_path] = self._generate_js_ts_task_code(
                     step, file_path, goal, context
@@ -7339,9 +7621,7 @@ class CodeGenerator:
                     step, file_path, goal, context
                 )
             elif ext in (".js", ".ts", ".tsx"):
-                implementations[file_path] = self._generate_js_ts_task_code(
-                    step, goal, context
-                )
+                implementations[file_path] = self._generate_js_ts_task_code(step, goal, context)
             elif ext == ".go":
                 implementations[file_path] = self._generate_go_task_code(
                     step, file_path, goal, context
@@ -7414,7 +7694,10 @@ class CodeGenerator:
                 )
             elif ext in (".js", ".ts", ".tsx"):
                 implementations[file_path] = self._generate_js_ts_task_code(
-                    step, file_path, goal, )
+                    step,
+                    file_path,
+                    goal,
+                )
             elif ext == ".go":
                 implementations[file_path] = self._generate_go_task_code(
                     step, file_path, goal, context
@@ -7636,9 +7919,7 @@ class CodeGenerator:
                     step, file_path, goal, context
                 )
             elif ext == ".go":
-                implementations[file_path] = self._generate_go_task_code(
-                    step, None, goal, context
-                )
+                implementations[file_path] = self._generate_go_task_code(step, None, goal, context)
             elif ext == ".rs":
                 implementations[file_path] = self._generate_rust_task_code(
                     step, file_path, goal, context
@@ -7747,9 +8028,7 @@ class CodeGenerator:
                     step, file_path, goal, context
                 )
             elif ext == ".go":
-                implementations[file_path] = self._generate_go_task_code(
-                    file_path, goal, context
-                )
+                implementations[file_path] = self._generate_go_task_code(file_path, goal, context)
             elif ext == ".rs":
                 implementations[file_path] = self._generate_rust_task_code(
                     step, file_path, goal, context
@@ -7784,9 +8063,7 @@ class CodeGenerator:
                     step, file_path, goal, context
                 )
             elif ext == ".go":
-                implementations[file_path] = self._generate_go_task_code(
-                    step, goal, context
-                )
+                implementations[file_path] = self._generate_go_task_code(step, goal, context)
             elif ext == ".rs":
                 implementations[file_path] = self._generate_rust_task_code(
                     step, file_path, goal, context
@@ -7821,9 +8098,7 @@ class CodeGenerator:
                     step, file_path, goal, context
                 )
             elif ext == ".go":
-                implementations[file_path] = self._generate_go_task_code(
-                    step, file_path, context
-                )
+                implementations[file_path] = self._generate_go_task_code(step, file_path, context)
             elif ext == ".rs":
                 implementations[file_path] = self._generate_rust_task_code(
                     step, file_path, goal, context
@@ -7859,7 +8134,10 @@ class CodeGenerator:
                 )
             elif ext == ".go":
                 implementations[file_path] = self._generate_go_task_code(
-                    step, file_path, goal, )
+                    step,
+                    file_path,
+                    goal,
+                )
             elif ext == ".rs":
                 implementations[file_path] = self._generate_rust_task_code(
                     step, file_path, goal, context
@@ -8192,9 +8470,7 @@ class CodeGenerator:
                     step, file_path, goal, context
                 )
             elif ext == ".rs":
-                implementations[file_path] = self._generate_rust_task_code(
-                    file_path, goal, context
-                )
+                implementations[file_path] = self._generate_rust_task_code(file_path, goal, context)
             else:
                 implementations[file_path] = self._generate_generic_code(
                     step, file_path, goal, context
@@ -8229,9 +8505,7 @@ class CodeGenerator:
                     step, file_path, goal, context
                 )
             elif ext == ".rs":
-                implementations[file_path] = self._generate_rust_task_code(
-                    step, goal, context
-                )
+                implementations[file_path] = self._generate_rust_task_code(step, goal, context)
             else:
                 implementations[file_path] = self._generate_generic_code(
                     step, file_path, goal, context
@@ -8266,9 +8540,7 @@ class CodeGenerator:
                     step, file_path, goal, context
                 )
             elif ext == ".rs":
-                implementations[file_path] = self._generate_rust_task_code(
-                    step, file_path, context
-                )
+                implementations[file_path] = self._generate_rust_task_code(step, file_path, context)
             else:
                 implementations[file_path] = self._generate_generic_code(
                     step, file_path, goal, context
@@ -8304,7 +8576,10 @@ class CodeGenerator:
                 )
             elif ext == ".rs":
                 implementations[file_path] = self._generate_rust_task_code(
-                    step, file_path, goal, )
+                    step,
+                    file_path,
+                    goal,
+                )
             else:
                 implementations[file_path] = self._generate_generic_code(
                     step, file_path, goal, context
@@ -8415,9 +8690,7 @@ class CodeGenerator:
                     step, file_path, goal, context
                 )
             else:
-                implementations[file_path] = self._generate_generic_code(
-                    step, None, goal, context
-                )
+                implementations[file_path] = self._generate_generic_code(step, None, goal, context)
 
         # 테스트 파일도 생성 (목표에 '테스트' 포함시)
         if "테스트" in goal or "test" in goal.lower():
@@ -8526,9 +8799,7 @@ class CodeGenerator:
                     step, file_path, goal, context
                 )
             else:
-                implementations[file_path] = self._generate_generic_code(
-                    file_path, goal, context
-                )
+                implementations[file_path] = self._generate_generic_code(file_path, goal, context)
 
         # 테스트 파일도 생성 (목표에 '테스트' 포함시)
         if "테스트" in goal or "test" in goal.lower():
@@ -8563,9 +8834,7 @@ class CodeGenerator:
                     step, file_path, goal, context
                 )
             else:
-                implementations[file_path] = self._generate_generic_code(
-                    step, goal, context
-                )
+                implementations[file_path] = self._generate_generic_code(step, goal, context)
 
         # 테스트 파일도 생성 (목표에 '테스트' 포함시)
         if "테스트" in goal or "test" in goal.lower():
@@ -8600,9 +8869,7 @@ class CodeGenerator:
                     step, file_path, goal, context
                 )
             else:
-                implementations[file_path] = self._generate_generic_code(
-                    step, file_path, context
-                )
+                implementations[file_path] = self._generate_generic_code(step, file_path, context)
 
         # 테스트 파일도 생성 (목표에 '테스트' 포함시)
         if "테스트" in goal or "test" in goal.lower():
@@ -8638,7 +8905,10 @@ class CodeGenerator:
                 )
             else:
                 implementations[file_path] = self._generate_generic_code(
-                    step, file_path, goal, )
+                    step,
+                    file_path,
+                    goal,
+                )
 
         # 테스트 파일도 생성 (목표에 '테스트' 포함시)
         if "테스트" in goal or "test" in goal.lower():
@@ -9160,7 +9430,10 @@ class CodeGenerator:
 
         # 테스트 파일도 생성 (목표에 '테스트' 포함시)
         if "테스트" in goal or "test" in goal.lower():
-            test_files = self._generate_test_files(step, goal, )
+            test_files = self._generate_test_files(
+                step,
+                goal,
+            )
             implementations.update(test_files)
 
         return implementations
@@ -9486,7 +9759,11 @@ class CodeGenerator:
 
         # 기존 파일이 있으면 목표에 맞춰 수정
         if existing_content:
-            return self._implement_feature_in_file(existing_content, goal, file_path, )
+            return self._implement_feature_in_file(
+                existing_content,
+                goal,
+                file_path,
+            )
         else:
             # 새 파일 생성
             return self._generate_python_module(step, file_path, goal, context)
@@ -9617,7 +9894,11 @@ class CodeGenerator:
             return self._implement_feature_in_file(existing_content, goal, file_path, context)
         else:
             # 새 파일 생성
-            return self._generate_python_module(step, file_path, goal, )
+            return self._generate_python_module(
+                step,
+                file_path,
+                goal,
+            )
 
     @_mutmut_mutated(mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut)
     def _implement_feature_in_file(
@@ -9965,7 +10246,10 @@ class CodeGenerator:
 
         # FastAPI 프로젝트에서 endpoint 추가 감지
         if ("endpoint" in goal_lower or "api" in goal_lower) and "fastapi" in content.lower():
-            return self._add_fastapi_endpoint(content, goal, )
+            return self._add_fastapi_endpoint(
+                content,
+                goal,
+            )
 
         # 기본적으로는 파일 개선 (docstring 추가 등)
         return self._enhance_python_file(content, goal)
@@ -10024,7 +10308,9 @@ class CodeGenerator:
             return self._add_fastapi_endpoint(content, goal, file_path)
 
         # 기본적으로는 파일 개선 (docstring 추가 등)
-        return self._enhance_python_file(content, )
+        return self._enhance_python_file(
+            content,
+        )
 
     @_mutmut_mutated(mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut)
     def _add_fastapi_endpoint(self, content: str, goal: str, file_path: str) -> str:
@@ -10078,7 +10364,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_orig(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_orig(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -10129,7 +10417,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_1(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_1(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -10180,7 +10470,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_2(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_2(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -10231,7 +10523,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_3(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_3(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -10282,7 +10576,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_4(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_4(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -10333,7 +10629,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_5(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_5(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -10384,7 +10682,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_6(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_6(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -10435,12 +10735,17 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_7(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_7(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
         # 목표에서 경로와 응답 추출
-        path_match = re.search(r"GET\s+(/\w+)", goal, )
+        path_match = re.search(
+            r"GET\s+(/\w+)",
+            goal,
+        )
         if not path_match:
             path_match = re.search(r"(//\w+)", goal)
         endpoint_path = path_match.group(1) if path_match else "/hello"
@@ -10486,7 +10791,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_8(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_8(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -10537,7 +10844,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_9(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_9(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -10588,7 +10897,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_10(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_10(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -10639,7 +10950,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_11(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_11(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -10690,7 +11003,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_12(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_12(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -10741,7 +11056,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_13(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_13(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -10792,7 +11109,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_14(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_14(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -10843,14 +11162,18 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_15(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_15(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
         # 목표에서 경로와 응답 추출
         path_match = re.search(r"GET\s+(/\w+)", goal, re.IGNORECASE)
         if not path_match:
-            path_match = re.search(r"(//\w+)", )
+            path_match = re.search(
+                r"(//\w+)",
+            )
         endpoint_path = path_match.group(1) if path_match else "/hello"
 
         # 이미 존재하는 엔드포인트인지 체크
@@ -10894,7 +11217,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_16(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_16(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -10945,7 +11270,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_17(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_17(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -10996,7 +11323,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_18(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_18(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11047,7 +11376,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_19(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_19(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11098,7 +11429,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_20(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_20(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11149,7 +11482,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_21(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_21(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11200,7 +11535,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_22(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_22(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11251,7 +11588,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_23(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_23(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11302,7 +11641,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_24(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_24(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11353,7 +11694,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_25(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_25(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11364,7 +11707,9 @@ class CodeGenerator:
         endpoint_path = path_match.group(1) if path_match else "/hello"
 
         # 이미 존재하는 엔드포인트인지 체크
-        if re.search(rf'@app\.get\(\s*["\']{re.escape(endpoint_path)}["\']\s*\)', ):
+        if re.search(
+            rf'@app\.get\(\s*["\']{re.escape(endpoint_path)}["\']\s*\)',
+        ):
             log.info(f"엔드포인트 {endpoint_path} 이미 존재함, 건너뜀")
             return content
 
@@ -11404,7 +11749,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_26(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_26(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11455,7 +11802,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_27(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_27(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11506,7 +11855,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_28(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_28(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11557,7 +11908,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_29(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_29(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11608,7 +11961,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_30(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_30(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11659,7 +12014,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_31(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_31(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11710,7 +12067,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_32(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_32(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11761,7 +12120,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_33(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_33(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11812,7 +12173,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_34(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_34(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11828,7 +12191,10 @@ class CodeGenerator:
             return content
 
         # 응답 메시지 추출
-        msg_match = re.search(r'message\s*[:=]\s*["\']([^"\']+)["\']', goal, )
+        msg_match = re.search(
+            r'message\s*[:=]\s*["\']([^"\']+)["\']',
+            goal,
+        )
         message = msg_match.group(1) if msg_match else "Hello World"
 
         # app = FastAPI(...) 라인 찾기
@@ -11863,7 +12229,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_35(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_35(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11914,7 +12282,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_36(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_36(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -11965,7 +12335,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_37(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_37(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12016,7 +12388,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_38(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_38(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12067,7 +12441,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_39(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_39(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12118,7 +12494,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_40(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_40(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12169,7 +12547,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_41(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_41(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12220,7 +12600,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_42(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_42(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12271,7 +12653,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_43(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_43(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12322,7 +12706,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_44(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_44(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12373,7 +12759,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_45(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_45(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12424,7 +12812,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_46(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_46(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12475,7 +12865,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_47(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_47(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12526,7 +12918,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_48(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_48(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12577,7 +12971,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_49(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_49(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12628,7 +13024,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_50(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_50(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12679,7 +13077,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_51(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_51(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12730,7 +13130,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_52(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_52(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12781,7 +13183,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_53(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_53(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12832,7 +13236,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_54(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_54(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12883,7 +13289,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_55(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_55(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12934,7 +13342,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_56(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_56(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -12985,7 +13395,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_57(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_57(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13036,7 +13448,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_58(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_58(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13087,7 +13501,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_59(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_59(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13138,7 +13554,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_60(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_60(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13189,7 +13607,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_61(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_61(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13240,7 +13660,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_62(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_62(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13291,7 +13713,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_63(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_63(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13342,7 +13766,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_64(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_64(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13393,7 +13819,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_65(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_65(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13444,7 +13872,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_66(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_66(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13495,7 +13925,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_67(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_67(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13546,7 +13978,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_68(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_68(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13597,7 +14031,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_69(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_69(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13648,7 +14084,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_70(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_70(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13699,7 +14137,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_71(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_71(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13750,7 +14190,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_72(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_72(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13801,7 +14243,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_73(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_73(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13852,7 +14296,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_74(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_74(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13903,7 +14349,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_75(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_75(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -13954,7 +14402,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_76(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_76(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -14005,7 +14455,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_77(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_77(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -14048,7 +14500,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_78(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_78(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -14099,7 +14553,9 @@ class CodeGenerator:
         new_lines = None
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_79(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_79(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -14150,7 +14606,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] - lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_80(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_80(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -14201,7 +14659,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] - [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_81(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_81(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -14252,7 +14712,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] - ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_82(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_82(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -14303,7 +14765,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["XXXX", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_83(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_83(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -14354,7 +14818,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + ["XXXX"] + lines[insert_idx:]
         return "\n".join(new_lines)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_84(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_84(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -14405,7 +14871,9 @@ class CodeGenerator:
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
         return "\n".join(None)
 
-    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_85(self, content: str, goal: str, file_path: str) -> str:
+    def xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_85(
+        self, content: str, goal: str, file_path: str
+    ) -> str:
         """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
@@ -17662,7 +18130,9 @@ class CodeGenerator:
 
                 if not has_docstring:
                     # 함수 시그니처에서 인자 추출
-                    func_match = re.match(r"(\s*)def (\w+)\((.*?)\)", )
+                    func_match = re.match(
+                        r"(\s*)def (\w+)\((.*?)\)",
+                    )
                     if func_match:
                         indent = func_match.group(1)
                         func_name = func_match.group(2)
@@ -19378,9 +19848,7 @@ class CodeGenerator:
                                 docstring_lines.append(f"{indent}    Args:")
                                 for param in param_list:
                                     if param and "=" not in param:
-                                        docstring_lines.append(
-                                            None
-                                        )
+                                        docstring_lines.append(None)
                         docstring_lines.append(f"{indent}    Returns:")
                         docstring_lines.append(f"{indent}        결과값.")
                         docstring = "\n".join(docstring_lines)
@@ -22647,7 +23115,9 @@ if __name__ == "__main__":
 
         for file_path in step.assigned_files:
             if file_path.endswith(".py") and not file_path.endswith("_test.py"):
-                test_path = file_path.replace(".py", )
+                test_path = file_path.replace(
+                    ".py",
+                )
                 test_files[test_path] = self._generate_python_test_file(file_path, goal, context)
 
         return test_files
@@ -22791,7 +23261,10 @@ if __name__ == "__main__":
         for file_path in step.assigned_files:
             if file_path.endswith(".py") and not file_path.endswith("_test.py"):
                 test_path = file_path.replace(".py", "_test.py")
-                test_files[test_path] = self._generate_python_test_file(file_path, goal, )
+                test_files[test_path] = self._generate_python_test_file(
+                    file_path,
+                    goal,
+                )
 
         return test_files
 
@@ -24202,7 +24675,10 @@ import pytest
         functions = []  # list of (name, params)
         if source_path.exists():
             content = source_path.read_text(encoding="utf-8")
-            for match in re.finditer(r"^\s*def (\w+)\((.*?)\)", content, ):
+            for match in re.finditer(
+                r"^\s*def (\w+)\((.*?)\)",
+                content,
+            ):
                 if not match.group(1).startswith("_"):
                     func_name = match.group(1)
                     params = match.group(2).strip()
@@ -26180,7 +26656,9 @@ import pytest
                         p = p.strip()
                         if p:
                             if "=" in p:
-                                name, default = p.split("=", )
+                                name, default = p.split(
+                                    "=",
+                                )
                                 param_list.append((name.strip(), default.strip()))
                             else:
                                 param_list.append((p.split(":")[0].strip(), None))
@@ -28744,7 +29222,8 @@ import pytest
                     args.append('"test"')
                 elif (
                     "id" in param_name.lower()
-                    or "num" in param_name.lower() and "count" in param_name.lower()
+                    or "num" in param_name.lower()
+                    and "count" in param_name.lower()
                 ):
                     args.append("1")
                 elif "list" in param_name.lower() or "items" in param_name.lower():
@@ -28824,7 +29303,8 @@ import pytest
                 elif "name" in param_name.lower():
                     args.append('"test"')
                 elif (
-                    "id" in param_name.lower() and "num" in param_name.lower()
+                    "id" in param_name.lower()
+                    and "num" in param_name.lower()
                     or "count" in param_name.lower()
                 ):
                     args.append("1")
@@ -33701,7 +34181,9 @@ import pytest
                 step.assigned_files[0] if step.assigned_files else "module.py", "", context
             )
 
-    def xǁCodeGeneratorǁ_generate_python_test__mutmut_orig(self, step: PlanStep, existing: str, context: dict[str, Any]) -> str:
+    def xǁCodeGeneratorǁ_generate_python_test__mutmut_orig(
+        self, step: PlanStep, existing: str, context: dict[str, Any]
+    ) -> str:
         """기존 테스트 파일 수정"""
         if existing:
             return existing + f"\n\n# === Auto-generated test for: {step.title} ===\n"
@@ -33710,7 +34192,9 @@ import pytest
                 step.assigned_files[0] if step.assigned_files else "module.py", "", context
             )
 
-    def xǁCodeGeneratorǁ_generate_python_test__mutmut_1(self, step: PlanStep, existing: str, context: dict[str, Any]) -> str:
+    def xǁCodeGeneratorǁ_generate_python_test__mutmut_1(
+        self, step: PlanStep, existing: str, context: dict[str, Any]
+    ) -> str:
         """기존 테스트 파일 수정"""
         if existing:
             return existing - f"\n\n# === Auto-generated test for: {step.title} ===\n"
@@ -33719,16 +34203,18 @@ import pytest
                 step.assigned_files[0] if step.assigned_files else "module.py", "", context
             )
 
-    def xǁCodeGeneratorǁ_generate_python_test__mutmut_2(self, step: PlanStep, existing: str, context: dict[str, Any]) -> str:
+    def xǁCodeGeneratorǁ_generate_python_test__mutmut_2(
+        self, step: PlanStep, existing: str, context: dict[str, Any]
+    ) -> str:
         """기존 테스트 파일 수정"""
         if existing:
             return existing + f"\n\n# === Auto-generated test for: {step.title} ===\n"
         else:
-            return self._generate_python_test_file(
-                None, "", context
-            )
+            return self._generate_python_test_file(None, "", context)
 
-    def xǁCodeGeneratorǁ_generate_python_test__mutmut_3(self, step: PlanStep, existing: str, context: dict[str, Any]) -> str:
+    def xǁCodeGeneratorǁ_generate_python_test__mutmut_3(
+        self, step: PlanStep, existing: str, context: dict[str, Any]
+    ) -> str:
         """기존 테스트 파일 수정"""
         if existing:
             return existing + f"\n\n# === Auto-generated test for: {step.title} ===\n"
@@ -33737,7 +34223,9 @@ import pytest
                 step.assigned_files[0] if step.assigned_files else "module.py", None, context
             )
 
-    def xǁCodeGeneratorǁ_generate_python_test__mutmut_4(self, step: PlanStep, existing: str, context: dict[str, Any]) -> str:
+    def xǁCodeGeneratorǁ_generate_python_test__mutmut_4(
+        self, step: PlanStep, existing: str, context: dict[str, Any]
+    ) -> str:
         """기존 테스트 파일 수정"""
         if existing:
             return existing + f"\n\n# === Auto-generated test for: {step.title} ===\n"
@@ -33746,16 +34234,18 @@ import pytest
                 step.assigned_files[0] if step.assigned_files else "module.py", "", None
             )
 
-    def xǁCodeGeneratorǁ_generate_python_test__mutmut_5(self, step: PlanStep, existing: str, context: dict[str, Any]) -> str:
+    def xǁCodeGeneratorǁ_generate_python_test__mutmut_5(
+        self, step: PlanStep, existing: str, context: dict[str, Any]
+    ) -> str:
         """기존 테스트 파일 수정"""
         if existing:
             return existing + f"\n\n# === Auto-generated test for: {step.title} ===\n"
         else:
-            return self._generate_python_test_file(
-                "", context
-            )
+            return self._generate_python_test_file("", context)
 
-    def xǁCodeGeneratorǁ_generate_python_test__mutmut_6(self, step: PlanStep, existing: str, context: dict[str, Any]) -> str:
+    def xǁCodeGeneratorǁ_generate_python_test__mutmut_6(
+        self, step: PlanStep, existing: str, context: dict[str, Any]
+    ) -> str:
         """기존 테스트 파일 수정"""
         if existing:
             return existing + f"\n\n# === Auto-generated test for: {step.title} ===\n"
@@ -33764,15 +34254,21 @@ import pytest
                 step.assigned_files[0] if step.assigned_files else "module.py", context
             )
 
-    def xǁCodeGeneratorǁ_generate_python_test__mutmut_7(self, step: PlanStep, existing: str, context: dict[str, Any]) -> str:
+    def xǁCodeGeneratorǁ_generate_python_test__mutmut_7(
+        self, step: PlanStep, existing: str, context: dict[str, Any]
+    ) -> str:
         """기존 테스트 파일 수정"""
         if existing:
             return existing + f"\n\n# === Auto-generated test for: {step.title} ===\n"
         else:
             return self._generate_python_test_file(
-                step.assigned_files[0] if step.assigned_files else "module.py", "", )
+                step.assigned_files[0] if step.assigned_files else "module.py",
+                "",
+            )
 
-    def xǁCodeGeneratorǁ_generate_python_test__mutmut_8(self, step: PlanStep, existing: str, context: dict[str, Any]) -> str:
+    def xǁCodeGeneratorǁ_generate_python_test__mutmut_8(
+        self, step: PlanStep, existing: str, context: dict[str, Any]
+    ) -> str:
         """기존 테스트 파일 수정"""
         if existing:
             return existing + f"\n\n# === Auto-generated test for: {step.title} ===\n"
@@ -33781,7 +34277,9 @@ import pytest
                 step.assigned_files[1] if step.assigned_files else "module.py", "", context
             )
 
-    def xǁCodeGeneratorǁ_generate_python_test__mutmut_9(self, step: PlanStep, existing: str, context: dict[str, Any]) -> str:
+    def xǁCodeGeneratorǁ_generate_python_test__mutmut_9(
+        self, step: PlanStep, existing: str, context: dict[str, Any]
+    ) -> str:
         """기존 테스트 파일 수정"""
         if existing:
             return existing + f"\n\n# === Auto-generated test for: {step.title} ===\n"
@@ -33790,7 +34288,9 @@ import pytest
                 step.assigned_files[0] if step.assigned_files else "XXmodule.pyXX", "", context
             )
 
-    def xǁCodeGeneratorǁ_generate_python_test__mutmut_10(self, step: PlanStep, existing: str, context: dict[str, Any]) -> str:
+    def xǁCodeGeneratorǁ_generate_python_test__mutmut_10(
+        self, step: PlanStep, existing: str, context: dict[str, Any]
+    ) -> str:
         """기존 테스트 파일 수정"""
         if existing:
             return existing + f"\n\n# === Auto-generated test for: {step.title} ===\n"
@@ -33799,7 +34299,9 @@ import pytest
                 step.assigned_files[0] if step.assigned_files else "MODULE.PY", "", context
             )
 
-    def xǁCodeGeneratorǁ_generate_python_test__mutmut_11(self, step: PlanStep, existing: str, context: dict[str, Any]) -> str:
+    def xǁCodeGeneratorǁ_generate_python_test__mutmut_11(
+        self, step: PlanStep, existing: str, context: dict[str, Any]
+    ) -> str:
         """기존 테스트 파일 수정"""
         if existing:
             return existing + f"\n\n# === Auto-generated test for: {step.title} ===\n"
@@ -34203,7 +34705,8 @@ import pytest
 
         if existing_content:
             return (
-                existing_content - f"\n\n// === Auto-generated for: {step.title} ===\n// TODO: Implement based on goal\n"
+                existing_content
+                - f"\n\n// === Auto-generated for: {step.title} ===\n// TODO: Implement based on goal\n"
             )
 
         return self._generate_js_ts_module(step, is_ts, goal)
@@ -34326,7 +34829,10 @@ import pytest
                 + f"\n\n// === Auto-generated for: {step.title} ===\n// TODO: Implement based on goal\n"
             )
 
-        return self._generate_js_ts_module(step, is_ts, )
+        return self._generate_js_ts_module(
+            step,
+            is_ts,
+        )
 
     @_mutmut_mutated(mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut)
     def _generate_js_ts_module(self, step: PlanStep, is_ts: bool, goal: str) -> str:
@@ -34365,7 +34871,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_orig(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_orig(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else ""
 
@@ -34401,7 +34909,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_1(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_1(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = None
 
@@ -34437,7 +34947,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_2(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_2(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = "XX: anyXX" if is_ts else ""
 
@@ -34473,7 +34985,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_3(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_3(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": ANY" if is_ts else ""
 
@@ -34509,7 +35023,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_4(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_4(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else "XXXX"
 
@@ -34545,7 +35061,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_5(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_5(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else ""
 
@@ -34560,7 +35078,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_6(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_6(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else ""
 
@@ -34596,7 +35116,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_7(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_7(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else ""
 
@@ -34632,7 +35154,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_8(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_8(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else ""
 
@@ -34668,7 +35192,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_9(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_9(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else ""
 
@@ -34704,7 +35230,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_10(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_10(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else ""
 
@@ -34740,7 +35268,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_11(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_11(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else ""
 
@@ -34776,7 +35306,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_12(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_12(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else ""
 
@@ -34812,7 +35344,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_13(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_13(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else ""
 
@@ -34848,7 +35382,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_14(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_14(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else ""
 
@@ -34884,7 +35420,9 @@ export default AutoGeneratedClass;
             interface=None,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_15(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_15(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else ""
 
@@ -34919,7 +35457,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_16(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_16(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else ""
 
@@ -34954,7 +35494,9 @@ export default AutoGeneratedClass;
             interface=interface,
         )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_17(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_17(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else ""
 
@@ -34987,9 +35529,11 @@ export default AutoGeneratedClass;
         return template.format(
             goal=goal[:100],
             type_ann=type_ann,
-            )
+        )
 
-    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_18(self, step: PlanStep, is_ts: bool, goal: str) -> str:
+    def xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_18(
+        self, step: PlanStep, is_ts: bool, goal: str
+    ) -> str:
         """JavaScript/TypeScript 모듈 생성 (f-string 이스케이프 문제 해결)"""
         type_ann = ": any" if is_ts else ""
 
@@ -35103,7 +35647,9 @@ export default AutoGeneratedClass;
     ) -> str:
         """Go 작업별 코드 생성"""
         if file_path.endswith("_test.go"):
-            return self._generate_go_test(step, )
+            return self._generate_go_test(
+                step,
+            )
         else:
             return self._generate_go_module(step, goal)
 
@@ -35141,7 +35687,9 @@ export default AutoGeneratedClass;
         if file_path.endswith("_test.go"):
             return self._generate_go_test(step, goal)
         else:
-            return self._generate_go_module(step, )
+            return self._generate_go_module(
+                step,
+            )
 
     @_mutmut_mutated(mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut)
     def _generate_go_module(self, step: PlanStep, goal: str) -> str:
@@ -35557,7 +36105,7 @@ cb
             title=step.title,
             desc=goal[:200],
             ob="{",
-            )
+        )
 
     def xǁCodeGeneratorǁ_generate_go_module__mutmut_10(self, step: PlanStep, goal: str) -> str:
         template = """// Package autogenerated - Auto-generated for: {title}
@@ -35974,7 +36522,7 @@ cb
         return template.format(
             title=step.title,
             ob="{",
-            )
+        )
 
     def xǁCodeGeneratorǁ_generate_go_test__mutmut_8(self, step: PlanStep, goal: str) -> str:
         template = """// Auto-generated test for: {title}
@@ -36162,7 +36710,9 @@ cb
     ) -> str:
         """Rust 작업별 코드 생성"""
         if "_test" in file_path or "/tests/" in file_path:
-            return self._generate_rust_module(step, )
+            return self._generate_rust_module(
+                step,
+            )
         else:
             return self._generate_rust_module(step, goal)
 
@@ -36200,7 +36750,9 @@ cb
         if "_test" in file_path or "/tests/" in file_path:
             return self._generate_rust_module(step, goal)
         else:
-            return self._generate_rust_module(step, )
+            return self._generate_rust_module(
+                step,
+            )
 
     @_mutmut_mutated(mutants_xǁCodeGeneratorǁ_generate_rust_module__mutmut)
     def _generate_rust_module(self, step: PlanStep, goal: str) -> str:
@@ -36528,7 +37080,9 @@ mod tests {{
         full_path = self.workspace / file_path
         if full_path.exists():
             backup_path = self._backup_dir / f"{file_path.replace('/', '_')}.bak"
-            backup_path.parent.mkdir(parents=True, )
+            backup_path.parent.mkdir(
+                parents=True,
+            )
             backup_path.write_text(full_path.read_text(encoding="utf-8"), encoding="utf-8")
 
     def xǁCodeGeneratorǁ_backup_file__mutmut_15(self, file_path: str) -> None:
@@ -36577,7 +37131,9 @@ mod tests {{
         if full_path.exists():
             backup_path = self._backup_dir / f"{file_path.replace('/', '_')}.bak"
             backup_path.parent.mkdir(parents=True, exist_ok=True)
-            backup_path.write_text(full_path.read_text(encoding="utf-8"), )
+            backup_path.write_text(
+                full_path.read_text(encoding="utf-8"),
+            )
 
     def xǁCodeGeneratorǁ_backup_file__mutmut_21(self, file_path: str) -> None:
         """파일 백업"""
@@ -36632,7 +37188,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_orig(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_orig(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="utf-8")
@@ -36644,7 +37202,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_1(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_1(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = None
         existing = full_path.read_text(encoding="utf-8")
@@ -36656,7 +37216,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_2(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_2(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace * file_path
         existing = full_path.read_text(encoding="utf-8")
@@ -36668,7 +37230,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_3(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_3(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = None
@@ -36680,7 +37244,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_4(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_4(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding=None)
@@ -36692,7 +37258,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_5(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_5(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="XXutf-8XX")
@@ -36704,7 +37272,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_6(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_6(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="UTF-8")
@@ -36716,7 +37286,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_7(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_7(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="utf-8")
@@ -36728,7 +37300,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_8(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_8(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="utf-8")
@@ -36740,7 +37314,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_9(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_9(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="utf-8")
@@ -36752,7 +37328,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_10(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_10(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="utf-8")
@@ -36764,7 +37342,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_11(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_11(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="utf-8")
@@ -36776,19 +37356,25 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_12(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_12(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="utf-8")
 
         # 간단한 전략: 파일이 짧으면 전체 교체, 길면 패치 시도
         if len(existing.split("\n")) < 100:
-            full_path.write_text(new_content, )
+            full_path.write_text(
+                new_content,
+            )
         else:
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_13(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_13(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="utf-8")
@@ -36800,7 +37386,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_14(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_14(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="utf-8")
@@ -36812,7 +37400,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_15(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_15(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="utf-8")
@@ -36824,7 +37414,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(None, existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_16(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_16(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="utf-8")
@@ -36836,7 +37428,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, None, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_17(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_17(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="utf-8")
@@ -36848,7 +37442,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, existing, None)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_18(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_18(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="utf-8")
@@ -36860,7 +37456,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(existing, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_19(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_19(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="utf-8")
@@ -36872,7 +37470,9 @@ mod tests {{
             # patch 도구 사용 시도
             self._try_patch_tool(file_path, new_content)
 
-    def xǁCodeGeneratorǁ_apply_patch__mutmut_20(self, file_path: str, new_content: str, step: PlanStep) -> None:
+    def xǁCodeGeneratorǁ_apply_patch__mutmut_20(
+        self, file_path: str, new_content: str, step: PlanStep
+    ) -> None:
         """패치 적용 (기존 파일 수정)"""
         full_path = self.workspace / file_path
         existing = full_path.read_text(encoding="utf-8")
@@ -36882,7 +37482,10 @@ mod tests {{
             full_path.write_text(new_content, encoding="utf-8")
         else:
             # patch 도구 사용 시도
-            self._try_patch_tool(file_path, existing, )
+            self._try_patch_tool(
+                file_path,
+                existing,
+            )
 
     @_mutmut_mutated(mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut)
     def _try_patch_tool(self, file_path: str, old_content: str, new_content: str) -> None:
@@ -36926,7 +37529,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_orig(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_orig(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -36967,7 +37572,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_1(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_1(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37001,14 +37608,14 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_2(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_2(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
         # diff 생성
-        diff = list(
-            None
-        )
+        diff = list(None)
 
         if diff:
             # 임시 파일에 패치 저장
@@ -37037,7 +37644,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_3(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_3(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37078,7 +37687,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_4(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_4(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37119,7 +37730,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_5(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_5(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37160,7 +37773,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_6(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_6(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37201,7 +37816,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_7(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_7(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37241,7 +37858,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_8(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_8(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37281,7 +37900,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_9(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_9(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37321,7 +37942,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_10(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_10(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37331,7 +37954,7 @@ mod tests {{
                 old_content.splitlines(keepends=True),
                 new_content.splitlines(keepends=True),
                 fromfile=f"a/{file_path}",
-                )
+            )
         )
 
         if diff:
@@ -37361,7 +37984,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_11(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_11(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37402,7 +38027,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_12(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_12(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37443,7 +38070,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_13(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_13(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37484,7 +38113,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_14(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_14(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37525,7 +38156,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_15(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_15(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37566,7 +38199,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_16(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_16(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37607,7 +38242,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_17(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_17(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37648,7 +38285,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_18(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_18(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37689,7 +38328,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_19(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_19(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37730,7 +38371,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_20(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_20(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37746,7 +38389,10 @@ mod tests {{
 
         if diff:
             # 임시 파일에 패치 저장
-            with tempfile.NamedTemporaryFile(mode="w", suffix=".patch", ) as f:
+            with tempfile.NamedTemporaryFile(
+                mode="w",
+                suffix=".patch",
+            ) as f:
                 f.writelines(diff)
                 patch_file = f.name
 
@@ -37771,7 +38417,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_21(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_21(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37812,7 +38460,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_22(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_22(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37853,7 +38503,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_23(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_23(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37894,7 +38546,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_24(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_24(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37935,7 +38589,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_25(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_25(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -37976,7 +38632,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_26(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_26(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38017,7 +38675,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_27(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_27(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38058,7 +38718,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_28(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_28(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38093,7 +38755,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_29(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_29(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38134,7 +38798,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_30(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_30(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38175,7 +38841,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_31(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_31(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38216,7 +38884,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_32(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_32(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38257,7 +38927,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_33(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_33(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38298,7 +38970,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_34(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_34(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38338,7 +39012,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_35(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_35(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38378,7 +39054,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_36(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_36(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38418,7 +39096,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_37(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_37(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38458,7 +39138,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_38(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_38(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38485,7 +39167,7 @@ mod tests {{
                     cwd=self.workspace,
                     capture_output=True,
                     text=True,
-                    )
+                )
                 if result.returncode != 0:
                     # 패치 실패 시 전체 교체
                     (self.workspace / file_path).write_text(new_content, encoding="utf-8")
@@ -38498,7 +39180,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_39(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_39(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38539,7 +39223,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_40(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_40(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38580,7 +39266,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_41(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_41(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38621,7 +39309,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_42(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_42(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38662,7 +39352,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_43(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_43(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38703,7 +39395,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_44(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_44(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38744,7 +39438,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_45(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_45(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38785,7 +39481,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_46(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_46(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38826,7 +39524,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_47(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_47(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38867,7 +39567,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_48(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_48(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38908,7 +39610,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_49(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_49(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38949,7 +39653,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_50(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_50(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -38990,7 +39696,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_51(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_51(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -39031,7 +39739,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_52(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_52(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -39072,7 +39782,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_53(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_53(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -39103,7 +39815,9 @@ mod tests {{
                 )
                 if result.returncode != 0:
                     # 패치 실패 시 전체 교체
-                    (self.workspace / file_path).write_text(new_content, )
+                    (self.workspace / file_path).write_text(
+                        new_content,
+                    )
             except Exception:
                 # 실패 시 전체 교체
                 (self.workspace / file_path).write_text(new_content, encoding="utf-8")
@@ -39113,7 +39827,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_54(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_54(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -39154,7 +39870,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_55(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_55(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -39195,7 +39913,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_56(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_56(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -39236,7 +39956,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_57(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_57(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -39277,7 +39999,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_58(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_58(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -39318,7 +40042,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_59(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_59(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -39359,7 +40085,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_60(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_60(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -39393,14 +40121,18 @@ mod tests {{
                     (self.workspace / file_path).write_text(new_content, encoding="utf-8")
             except Exception:
                 # 실패 시 전체 교체
-                (self.workspace / file_path).write_text(new_content, )
+                (self.workspace / file_path).write_text(
+                    new_content,
+                )
             finally:
                 Path(patch_file).unlink(missing_ok=True)
         else:
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_61(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_61(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -39441,7 +40173,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_62(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_62(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -39482,7 +40216,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_63(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_63(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -39523,7 +40259,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_64(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_64(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -39564,7 +40302,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_65(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_65(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -39605,7 +40345,9 @@ mod tests {{
             # 변경사항 없음
             pass
 
-    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_66(self, file_path: str, old_content: str, new_content: str) -> None:
+    def xǁCodeGeneratorǁ_try_patch_tool__mutmut_66(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> None:
         """patch 명령어로 패치 적용"""
         import difflib
 
@@ -39692,7 +40434,9 @@ mod tests {{
     def xǁCodeGeneratorǁ_write_file__mutmut_6(self, file_path: str, content: str) -> None:
         """파일 생성"""
         full_path = self.workspace / file_path
-        full_path.parent.mkdir(parents=True, )
+        full_path.parent.mkdir(
+            parents=True,
+        )
         full_path.write_text(content, encoding="utf-8")
 
     def xǁCodeGeneratorǁ_write_file__mutmut_7(self, file_path: str, content: str) -> None:
@@ -39729,7 +40473,9 @@ mod tests {{
         """파일 생성"""
         full_path = self.workspace / file_path
         full_path.parent.mkdir(parents=True, exist_ok=True)
-        full_path.write_text(content, )
+        full_path.write_text(
+            content,
+        )
 
     def xǁCodeGeneratorǁ_write_file__mutmut_13(self, file_path: str, content: str) -> None:
         """파일 생성"""
@@ -39916,7 +40662,9 @@ mod tests {{
             full_path = self.workspace / file_path
 
             if backup_path.exists():
-                full_path.parent.mkdir(parents=True, )
+                full_path.parent.mkdir(
+                    parents=True,
+                )
                 full_path.write_text(backup_path.read_text(encoding="utf-8"), encoding="utf-8")
                 log.info(f"롤백: {file_path}")
 
@@ -39983,7 +40731,9 @@ mod tests {{
 
             if backup_path.exists():
                 full_path.parent.mkdir(parents=True, exist_ok=True)
-                full_path.write_text(backup_path.read_text(encoding="utf-8"), )
+                full_path.write_text(
+                    backup_path.read_text(encoding="utf-8"),
+                )
                 log.info(f"롤백: {file_path}")
 
     def xǁCodeGeneratorǁrollback__mutmut_21(self, file_paths: list[str]) -> None:
@@ -40052,926 +40802,927 @@ mod tests {{
                 full_path.write_text(backup_path.read_text(encoding="utf-8"), encoding="utf-8")
                 log.info(None)
 
-mutants_xǁCodeGeneratorǁ__init____mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ__init____mutmut['xǁCodeGeneratorǁ__init____mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ__init____mutmut['xǁCodeGeneratorǁ__init____mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ__init____mutmut['xǁCodeGeneratorǁ__init____mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ__init____mutmut['xǁCodeGeneratorǁ__init____mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ__init____mutmut['xǁCodeGeneratorǁ__init____mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ__init____mutmut['xǁCodeGeneratorǁ__init____mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ__init____mutmut['xǁCodeGeneratorǁ__init____mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ__init____mutmut['xǁCodeGeneratorǁ__init____mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_8 # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_15'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_16'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_17'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_18'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_19'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_20'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_21'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_22'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_23'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_24'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_25'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_26'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_27'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_28'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_29'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_30'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_31'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_32'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_33'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_34'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_35'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_36'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_37'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_38'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_39'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_40'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_41'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_42'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_43'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_44'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_45'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_46'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_47'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_48'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_49'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_50'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_51'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_52'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_53'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_54'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_55'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_56'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_57'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_58'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_59'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_60'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁexecute_step__mutmut['xǁCodeGeneratorǁexecute_step__mutmut_61'] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_61 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ__init____mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ__init____mutmut["xǁCodeGeneratorǁ__init____mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ__init____mutmut["xǁCodeGeneratorǁ__init____mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ__init____mutmut["xǁCodeGeneratorǁ__init____mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ__init____mutmut["xǁCodeGeneratorǁ__init____mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ__init____mutmut["xǁCodeGeneratorǁ__init____mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ__init____mutmut["xǁCodeGeneratorǁ__init____mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ__init____mutmut["xǁCodeGeneratorǁ__init____mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ__init____mutmut["xǁCodeGeneratorǁ__init____mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ__init____mutmut_8  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_15'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_16'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_17'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_18'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_19'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_20'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_21'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_22'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_23'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_24'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_25'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_26'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_27'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_28'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_29'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_30'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_31'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_32'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_33'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_34'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_35'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_36'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_37'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_38'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_39'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_40'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_41'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_42'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_43'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_44'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_45'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_46'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_47'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_48'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_49'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_50'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_51'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_52'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_53'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_54'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_55'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_56'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_57'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_58'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_59'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_60'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_61'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_62'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_63'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_64'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_65'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_66'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_67'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_68'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_69'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_70'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_71'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_code__mutmut['xǁCodeGeneratorǁ_implement_code__mutmut_72'] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_72 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_15"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_16"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_17"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_18"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_19"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_20"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_21"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_22"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_23"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_24"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_25"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_26"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_27"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_28"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_29"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_30"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_31"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_32"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_33"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_34"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_35"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_36"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_37"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_38"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_39"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_40"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_41"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_42"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_43"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_44"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_45"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_46"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_47"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_48"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_49"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_50"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_51"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_52"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_53"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_54"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_55"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_56"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_57"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_58"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_59"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_60"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁexecute_step__mutmut["xǁCodeGeneratorǁexecute_step__mutmut_61"] = CodeGenerator.xǁCodeGeneratorǁexecute_step__mutmut_61  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_15'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_16'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_17'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_18'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_19'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_20'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_21'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_22'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_23'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_24'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_25'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_26'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_27'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_28'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_29'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_30'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_31'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_32'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_33'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_34'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_35'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_36'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_37'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_38'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_39'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_40'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_41'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_42'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_43'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_44'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_45'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_46'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_47'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_48'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_49'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_50'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_51'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_52'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_53'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_54'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_55'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_56'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_57'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_58'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_59'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_60'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_61'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_62'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_63'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_64'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_65'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_66'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_67'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_68'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_69'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_70'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_71'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_72'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_73'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_74'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_75'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_76'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_77'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_78'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_79'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut['xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_80'] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_80 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_15"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_16"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_17"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_18"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_19"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_20"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_21"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_22"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_23"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_24"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_25"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_26"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_27"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_28"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_29"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_30"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_31"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_32"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_33"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_34"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_35"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_36"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_37"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_38"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_39"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_40"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_41"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_42"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_43"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_44"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_45"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_46"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_47"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_48"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_49"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_50"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_51"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_52"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_53"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_54"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_55"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_56"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_57"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_58"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_59"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_60"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_61"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_62"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_63"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_64"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_65"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_66"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_67"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_68"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_69"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_70"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_71"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_code__mutmut["xǁCodeGeneratorǁ_implement_code__mutmut_72"] = CodeGenerator.xǁCodeGeneratorǁ_implement_code__mutmut_72  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_15'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_16'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_17'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_18'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_19'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_20'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_21'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_22'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_23'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut['xǁCodeGeneratorǁ_generate_python_task_code__mutmut_24'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_24 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_15"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_16"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_17"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_18"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_19"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_20"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_21"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_22"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_23"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_24"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_25"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_26"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_27"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_28"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_29"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_30"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_31"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_32"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_33"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_34"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_35"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_36"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_37"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_38"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_39"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_40"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_41"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_42"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_43"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_44"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_45"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_46"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_47"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_48"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_49"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_50"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_51"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_52"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_53"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_54"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_55"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_56"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_57"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_58"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_59"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_60"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_61"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_62"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_63"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_64"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_65"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_66"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_67"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_68"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_69"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_70"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_71"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_72"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_73"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_74"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_75"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_76"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_77"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_78"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_79"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut["xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_80"] = CodeGenerator.xǁCodeGeneratorǁ_generate_task_specific_implementation__mutmut_80  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_15'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_16'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_17'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_18'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_19'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_20'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_21'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_22'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_23'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_24'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_25'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_26'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut['xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_27'] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_27 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_15"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_16"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_17"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_18"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_19"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_20"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_21"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_22"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_23"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_task_code__mutmut["xǁCodeGeneratorǁ_generate_python_task_code__mutmut_24"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_task_code__mutmut_24  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_15'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_16'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_17'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_18'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_19'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_20'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_21'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_22'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_23'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_24'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_25'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_26'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_27'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_28'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_29'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_30'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_31'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_32'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_33'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_34'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_35'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_36'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_37'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_38'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_39'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_40'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_41'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_42'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_43'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_44'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_45'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_46'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_47'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_48'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_49'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_50'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_51'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_52'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_53'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_54'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_55'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_56'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_57'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_58'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_59'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_60'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_61'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_62'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_63'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_64'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_65'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_66'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_67'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_68'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_69'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_70'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_71'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_72'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_73'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_74'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_75'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_76'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_77'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_78'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_79'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_80'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_81'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_82'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_83'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_84'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut['xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_85'] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_85 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_15"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_16"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_17"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_18"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_19"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_20"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_21"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_22"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_23"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_24"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_25"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_26"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_implement_feature_in_file__mutmut["xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_27"] = CodeGenerator.xǁCodeGeneratorǁ_implement_feature_in_file__mutmut_27  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_15'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_16'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_17'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_18'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_19'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_20'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_21'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_22'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_23'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_24'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_25'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_26'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_27'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_28'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_29'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_30'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_31'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_32'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_33'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_34'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_35'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_36'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_37'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_38'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_39'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_40'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_41'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_42'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_43'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_44'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_45'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_46'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_47'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_48'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_49'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_50'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_51'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_52'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_53'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_54'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_55'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_56'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_57'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_58'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_59'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_60'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_61'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_62'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_63'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_64'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_65'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_66'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_67'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_68'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_69'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_70'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_71'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_72'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_73'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_74'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_75'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_76'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_77'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_78'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_79'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_80'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_81'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_82'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_83'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_84'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_85'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_86'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_87'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_88'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_89'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_90'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_91'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_92'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_93'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_94'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_95'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut['xǁCodeGeneratorǁ_enhance_python_file__mutmut_96'] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_96 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_15"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_16"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_17"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_18"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_19"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_20"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_21"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_22"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_23"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_24"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_25"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_26"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_27"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_28"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_29"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_30"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_31"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_32"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_33"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_34"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_35"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_36"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_37"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_38"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_39"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_40"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_41"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_42"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_43"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_44"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_45"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_46"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_47"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_48"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_49"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_50"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_51"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_52"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_53"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_54"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_55"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_56"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_57"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_58"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_59"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_60"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_61"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_62"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_63"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_64"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_65"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_66"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_67"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_68"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_69"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_70"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_71"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_72"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_73"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_74"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_75"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_76"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_77"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_78"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_79"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_80"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_81"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_82"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_83"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_84"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut["xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_85"] = CodeGenerator.xǁCodeGeneratorǁ_add_fastapi_endpoint__mutmut_85  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut['xǁCodeGeneratorǁ_generate_python_module__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut['xǁCodeGeneratorǁ_generate_python_module__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut['xǁCodeGeneratorǁ_generate_python_module__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut['xǁCodeGeneratorǁ_generate_python_module__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut['xǁCodeGeneratorǁ_generate_python_module__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut['xǁCodeGeneratorǁ_generate_python_module__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut['xǁCodeGeneratorǁ_generate_python_module__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut['xǁCodeGeneratorǁ_generate_python_module__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut['xǁCodeGeneratorǁ_generate_python_module__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_9 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_15"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_16"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_17"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_18"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_19"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_20"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_21"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_22"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_23"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_24"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_25"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_26"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_27"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_28"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_29"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_30"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_31"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_32"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_33"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_34"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_35"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_36"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_37"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_38"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_39"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_40"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_41"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_42"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_43"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_44"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_45"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_46"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_47"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_48"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_49"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_50"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_51"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_52"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_53"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_54"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_55"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_56"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_57"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_58"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_59"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_60"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_61"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_62"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_63"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_64"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_65"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_66"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_67"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_68"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_69"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_70"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_71"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_72"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_73"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_74"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_75"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_76"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_77"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_78"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_79"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_80"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_81"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_82"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_83"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_84"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_85"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_86"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_87"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_88"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_89"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_90"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_91"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_92"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_93"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_94"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_95"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_enhance_python_file__mutmut["xǁCodeGeneratorǁ_enhance_python_file__mutmut_96"] = CodeGenerator.xǁCodeGeneratorǁ_enhance_python_file__mutmut_96  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_15'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_16'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_17'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_18'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_19'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_20'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_21'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_22'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_23'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_24'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut['xǁCodeGeneratorǁ_generate_test_files__mutmut_25'] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_25 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut["xǁCodeGeneratorǁ_generate_python_module__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut["xǁCodeGeneratorǁ_generate_python_module__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut["xǁCodeGeneratorǁ_generate_python_module__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut["xǁCodeGeneratorǁ_generate_python_module__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut["xǁCodeGeneratorǁ_generate_python_module__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut["xǁCodeGeneratorǁ_generate_python_module__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut["xǁCodeGeneratorǁ_generate_python_module__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut["xǁCodeGeneratorǁ_generate_python_module__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_module__mutmut["xǁCodeGeneratorǁ_generate_python_module__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_module__mutmut_9  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_15'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_16'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_17'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_18'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_19'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_20'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_21'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_22'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_23'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_24'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_25'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_26'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_27'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_28'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_29'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_30'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_31'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_32'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_33'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_34'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_35'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_36'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_37'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_38'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_39'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_40'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_41'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_42'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_43'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_44'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_45'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_46'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_47'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_48'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_49'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_50'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_51'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_52'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_53'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_54'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_55'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_56'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_57'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_58'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_59'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_60'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_61'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_62'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_63'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_64'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_65'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_66'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_67'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_68'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_69'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_70'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_71'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_72'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_73'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_74'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_75'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_76'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_77'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_78'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_79'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_80'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_81'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_82'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_83'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_84'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_85'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_86'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_87'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_88'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_89'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_90'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_91'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_92'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_93'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_94'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_95'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_96'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_96 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_97'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_97 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_98'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_98 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_99'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_99 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_100'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_100 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_101'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_101 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_102'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_102 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_103'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_103 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_104'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_104 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_105'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_105 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_106'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_106 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_107'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_107 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_108'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_108 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_109'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_109 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_110'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_110 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_111'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_111 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_112'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_112 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_113'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_113 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_114'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_114 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_115'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_115 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_116'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_116 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_117'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_117 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_118'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_118 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_119'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_119 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_120'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_120 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_121'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_121 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_122'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_122 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_123'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_123 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_124'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_124 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_125'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_125 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_126'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_126 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_127'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_127 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_128'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_128 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_129'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_129 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_130'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_130 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut['xǁCodeGeneratorǁ_generate_python_test_file__mutmut_131'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_131 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_15"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_16"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_17"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_18"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_19"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_20"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_21"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_22"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_23"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_24"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_test_files__mutmut["xǁCodeGeneratorǁ_generate_test_files__mutmut_25"] = CodeGenerator.xǁCodeGeneratorǁ_generate_test_files__mutmut_25  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut['xǁCodeGeneratorǁ_generate_python_test__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut['xǁCodeGeneratorǁ_generate_python_test__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut['xǁCodeGeneratorǁ_generate_python_test__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut['xǁCodeGeneratorǁ_generate_python_test__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut['xǁCodeGeneratorǁ_generate_python_test__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut['xǁCodeGeneratorǁ_generate_python_test__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut['xǁCodeGeneratorǁ_generate_python_test__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut['xǁCodeGeneratorǁ_generate_python_test__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut['xǁCodeGeneratorǁ_generate_python_test__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut['xǁCodeGeneratorǁ_generate_python_test__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut['xǁCodeGeneratorǁ_generate_python_test__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_11 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_15"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_16"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_17"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_18"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_19"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_20"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_21"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_22"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_23"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_24"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_25"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_26"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_27"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_28"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_29"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_30"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_31"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_32"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_33"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_34"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_35"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_36"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_37"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_38"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_39"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_40"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_41"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_42"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_43"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_44"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_45"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_46"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_47"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_48"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_49"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_50"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_51"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_52"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_53"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_54"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_55"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_56"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_57"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_58"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_59"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_60"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_61"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_62"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_63"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_64"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_65"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_66"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_67"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_68"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_69"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_70"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_71"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_72"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_73"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_74"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_75"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_76"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_77"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_78"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_79"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_80"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_81"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_82"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_83"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_84"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_85"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_86"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_87"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_88"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_89"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_90"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_91"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_92"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_93"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_94"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_95"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_96"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_96  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_97"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_97  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_98"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_98  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_99"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_99  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_100"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_100  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_101"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_101  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_102"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_102  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_103"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_103  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_104"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_104  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_105"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_105  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_106"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_106  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_107"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_107  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_108"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_108  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_109"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_109  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_110"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_110  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_111"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_111  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_112"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_112  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_113"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_113  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_114"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_114  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_115"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_115  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_116"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_116  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_117"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_117  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_118"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_118  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_119"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_119  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_120"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_120  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_121"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_121  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_122"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_122  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_123"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_123  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_124"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_124  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_125"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_125  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_126"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_126  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_127"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_127  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_128"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_128  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_129"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_129  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_130"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_130  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test_file__mutmut["xǁCodeGeneratorǁ_generate_python_test_file__mutmut_131"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test_file__mutmut_131  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_15'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_16'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_17'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_18'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_19'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_20'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_21'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_22'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_23'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut['xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_24'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_24 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut["xǁCodeGeneratorǁ_generate_python_test__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut["xǁCodeGeneratorǁ_generate_python_test__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut["xǁCodeGeneratorǁ_generate_python_test__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut["xǁCodeGeneratorǁ_generate_python_test__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut["xǁCodeGeneratorǁ_generate_python_test__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut["xǁCodeGeneratorǁ_generate_python_test__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut["xǁCodeGeneratorǁ_generate_python_test__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut["xǁCodeGeneratorǁ_generate_python_test__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut["xǁCodeGeneratorǁ_generate_python_test__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut["xǁCodeGeneratorǁ_generate_python_test__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_python_test__mutmut["xǁCodeGeneratorǁ_generate_python_test__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_generate_python_test__mutmut_11  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_15'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_16'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_17'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut['xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_18'] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_18 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_15"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_16"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_17"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_18"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_19"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_20"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_21"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_22"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_23"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut["xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_24"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_task_code__mutmut_24  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut['xǁCodeGeneratorǁ_generate_go_task_code__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut['xǁCodeGeneratorǁ_generate_go_task_code__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut['xǁCodeGeneratorǁ_generate_go_task_code__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut['xǁCodeGeneratorǁ_generate_go_task_code__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut['xǁCodeGeneratorǁ_generate_go_task_code__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut['xǁCodeGeneratorǁ_generate_go_task_code__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut['xǁCodeGeneratorǁ_generate_go_task_code__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut['xǁCodeGeneratorǁ_generate_go_task_code__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut['xǁCodeGeneratorǁ_generate_go_task_code__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut['xǁCodeGeneratorǁ_generate_go_task_code__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut['xǁCodeGeneratorǁ_generate_go_task_code__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_11 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_15"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_16"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_17"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_js_ts_module__mutmut["xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_18"] = CodeGenerator.xǁCodeGeneratorǁ_generate_js_ts_module__mutmut_18  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut['xǁCodeGeneratorǁ_generate_go_module__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut['xǁCodeGeneratorǁ_generate_go_module__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut['xǁCodeGeneratorǁ_generate_go_module__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut['xǁCodeGeneratorǁ_generate_go_module__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut['xǁCodeGeneratorǁ_generate_go_module__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut['xǁCodeGeneratorǁ_generate_go_module__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut['xǁCodeGeneratorǁ_generate_go_module__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut['xǁCodeGeneratorǁ_generate_go_module__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut['xǁCodeGeneratorǁ_generate_go_module__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut['xǁCodeGeneratorǁ_generate_go_module__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut['xǁCodeGeneratorǁ_generate_go_module__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut['xǁCodeGeneratorǁ_generate_go_module__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_12 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut["xǁCodeGeneratorǁ_generate_go_task_code__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut["xǁCodeGeneratorǁ_generate_go_task_code__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut["xǁCodeGeneratorǁ_generate_go_task_code__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut["xǁCodeGeneratorǁ_generate_go_task_code__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut["xǁCodeGeneratorǁ_generate_go_task_code__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut["xǁCodeGeneratorǁ_generate_go_task_code__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut["xǁCodeGeneratorǁ_generate_go_task_code__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut["xǁCodeGeneratorǁ_generate_go_task_code__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut["xǁCodeGeneratorǁ_generate_go_task_code__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut["xǁCodeGeneratorǁ_generate_go_task_code__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_task_code__mutmut["xǁCodeGeneratorǁ_generate_go_task_code__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_task_code__mutmut_11  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut['xǁCodeGeneratorǁ_generate_go_test__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut['xǁCodeGeneratorǁ_generate_go_test__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut['xǁCodeGeneratorǁ_generate_go_test__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut['xǁCodeGeneratorǁ_generate_go_test__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut['xǁCodeGeneratorǁ_generate_go_test__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut['xǁCodeGeneratorǁ_generate_go_test__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut['xǁCodeGeneratorǁ_generate_go_test__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut['xǁCodeGeneratorǁ_generate_go_test__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut['xǁCodeGeneratorǁ_generate_go_test__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_9 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut["xǁCodeGeneratorǁ_generate_go_module__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut["xǁCodeGeneratorǁ_generate_go_module__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut["xǁCodeGeneratorǁ_generate_go_module__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut["xǁCodeGeneratorǁ_generate_go_module__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut["xǁCodeGeneratorǁ_generate_go_module__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut["xǁCodeGeneratorǁ_generate_go_module__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut["xǁCodeGeneratorǁ_generate_go_module__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut["xǁCodeGeneratorǁ_generate_go_module__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut["xǁCodeGeneratorǁ_generate_go_module__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut["xǁCodeGeneratorǁ_generate_go_module__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut["xǁCodeGeneratorǁ_generate_go_module__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_module__mutmut["xǁCodeGeneratorǁ_generate_go_module__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_module__mutmut_12  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut['xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut['xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut['xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut['xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut['xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut['xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut['xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut['xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut['xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut['xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut['xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut['xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut['xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut['xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut['xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_15'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_15 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut["xǁCodeGeneratorǁ_generate_go_test__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut["xǁCodeGeneratorǁ_generate_go_test__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut["xǁCodeGeneratorǁ_generate_go_test__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut["xǁCodeGeneratorǁ_generate_go_test__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut["xǁCodeGeneratorǁ_generate_go_test__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut["xǁCodeGeneratorǁ_generate_go_test__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut["xǁCodeGeneratorǁ_generate_go_test__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut["xǁCodeGeneratorǁ_generate_go_test__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_go_test__mutmut["xǁCodeGeneratorǁ_generate_go_test__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_generate_go_test__mutmut_9  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_generate_rust_module__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_module__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_rust_module__mutmut['xǁCodeGeneratorǁ_generate_rust_module__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_module__mutmut_1 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut["xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut["xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut["xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut["xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut["xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut["xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut["xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut["xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut["xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut["xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut["xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut["xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut["xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut["xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_task_code__mutmut["xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_15"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_task_code__mutmut_15  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_generate_generic_code__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_generate_generic_code__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_generate_generic_code__mutmut['xǁCodeGeneratorǁ_generate_generic_code__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_generate_generic_code__mutmut_1 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_module__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_module__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_rust_module__mutmut["xǁCodeGeneratorǁ_generate_rust_module__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_generate_rust_module__mutmut_1  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_15'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_16'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_17'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_18'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_19'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_20'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_21'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_22'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_23'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_24'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_backup_file__mutmut['xǁCodeGeneratorǁ_backup_file__mutmut_25'] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_25 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_generic_code__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_generate_generic_code__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_generate_generic_code__mutmut["xǁCodeGeneratorǁ_generate_generic_code__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_generate_generic_code__mutmut_1  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_15'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_16'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_17'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_18'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_19'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_apply_patch__mutmut['xǁCodeGeneratorǁ_apply_patch__mutmut_20'] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_20 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_15"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_16"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_17"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_18"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_19"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_20"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_21"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_22"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_23"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_24"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_backup_file__mutmut["xǁCodeGeneratorǁ_backup_file__mutmut_25"] = CodeGenerator.xǁCodeGeneratorǁ_backup_file__mutmut_25  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_15'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_16'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_17'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_18'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_19'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_20'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_21'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_22'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_23'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_24'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_25'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_26'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_27'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_28'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_29'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_30'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_31'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_32'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_33'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_34'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_35'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_36'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_37'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_38'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_39'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_40'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_41'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_42'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_43'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_44'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_45'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_46'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_47'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_48'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_49'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_50'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_51'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_52'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_53'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_54'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_55'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_56'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_57'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_58'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_59'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_60'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_61'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_62'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_63'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_64'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_65'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut['xǁCodeGeneratorǁ_try_patch_tool__mutmut_66'] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_66 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_15"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_16"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_17"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_18"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_19"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_apply_patch__mutmut["xǁCodeGeneratorǁ_apply_patch__mutmut_20"] = CodeGenerator.xǁCodeGeneratorǁ_apply_patch__mutmut_20  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁ_write_file__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_write_file__mutmut['xǁCodeGeneratorǁ_write_file__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_write_file__mutmut['xǁCodeGeneratorǁ_write_file__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_write_file__mutmut['xǁCodeGeneratorǁ_write_file__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_write_file__mutmut['xǁCodeGeneratorǁ_write_file__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_write_file__mutmut['xǁCodeGeneratorǁ_write_file__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_write_file__mutmut['xǁCodeGeneratorǁ_write_file__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_write_file__mutmut['xǁCodeGeneratorǁ_write_file__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_write_file__mutmut['xǁCodeGeneratorǁ_write_file__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_write_file__mutmut['xǁCodeGeneratorǁ_write_file__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_write_file__mutmut['xǁCodeGeneratorǁ_write_file__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_write_file__mutmut['xǁCodeGeneratorǁ_write_file__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_write_file__mutmut['xǁCodeGeneratorǁ_write_file__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_write_file__mutmut['xǁCodeGeneratorǁ_write_file__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁ_write_file__mutmut['xǁCodeGeneratorǁ_write_file__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_14 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_15"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_16"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_17"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_18"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_19"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_20"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_21"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_22"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_23"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_24"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_25"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_26"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_27"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_28"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_29"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_30"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_31"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_32"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_33"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_34"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_35"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_36"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_37"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_38"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_39"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_40"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_41"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_42"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_43"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_44"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_45"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_46"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_47"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_48"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_49"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_50"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_51"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_52"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_53"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_54"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_55"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_56"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_57"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_58"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_59"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_60"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_61"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_62"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_63"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_64"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_65"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_try_patch_tool__mutmut["xǁCodeGeneratorǁ_try_patch_tool__mutmut_66"] = CodeGenerator.xǁCodeGeneratorǁ_try_patch_tool__mutmut_66  # type: ignore # mutmut generated
 
-mutants_xǁCodeGeneratorǁrollback__mutmut['_mutmut_orig'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_1'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_2'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_3'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_4'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_5'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_6'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_7'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_8'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_9'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_10'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_11'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_12'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_13'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_14'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_15'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_16'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_17'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_18'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_19'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_20'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_21'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_22'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_23'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_24'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_25'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeGeneratorǁrollback__mutmut['xǁCodeGeneratorǁrollback__mutmut_26'] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_26 # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_write_file__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_write_file__mutmut["xǁCodeGeneratorǁ_write_file__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_write_file__mutmut["xǁCodeGeneratorǁ_write_file__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_write_file__mutmut["xǁCodeGeneratorǁ_write_file__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_write_file__mutmut["xǁCodeGeneratorǁ_write_file__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_write_file__mutmut["xǁCodeGeneratorǁ_write_file__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_write_file__mutmut["xǁCodeGeneratorǁ_write_file__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_write_file__mutmut["xǁCodeGeneratorǁ_write_file__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_write_file__mutmut["xǁCodeGeneratorǁ_write_file__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_write_file__mutmut["xǁCodeGeneratorǁ_write_file__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_write_file__mutmut["xǁCodeGeneratorǁ_write_file__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_write_file__mutmut["xǁCodeGeneratorǁ_write_file__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_write_file__mutmut["xǁCodeGeneratorǁ_write_file__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_write_file__mutmut["xǁCodeGeneratorǁ_write_file__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁ_write_file__mutmut["xǁCodeGeneratorǁ_write_file__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁ_write_file__mutmut_14  # type: ignore # mutmut generated
+
+mutants_xǁCodeGeneratorǁrollback__mutmut["_mutmut_orig"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_1"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_2"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_3"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_4"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_5"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_6"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_7"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_8"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_9"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_10"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_11"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_12"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_13"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_14"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_15"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_16"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_17"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_18"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_19"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_20"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_21"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_22"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_23"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_24"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_25"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeGeneratorǁrollback__mutmut["xǁCodeGeneratorǁrollback__mutmut_26"] = CodeGenerator.xǁCodeGeneratorǁrollback__mutmut_26  # type: ignore # mutmut generated
 mutants_x_generate_code__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -40982,51 +41733,68 @@ def generate_code(workspace: Path, step: PlanStep, context: dict[str, Any]) -> d
     return generator.execute_step(step, context)
 
 
-def x_generate_code__mutmut_orig(workspace: Path, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+def x_generate_code__mutmut_orig(
+    workspace: Path, step: PlanStep, context: dict[str, Any]
+) -> dict[str, Any]:
     """코드 생성 헬퍼"""
     generator = CodeGenerator(workspace)
     return generator.execute_step(step, context)
 
 
-def x_generate_code__mutmut_1(workspace: Path, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+def x_generate_code__mutmut_1(
+    workspace: Path, step: PlanStep, context: dict[str, Any]
+) -> dict[str, Any]:
     """코드 생성 헬퍼"""
     generator = None
     return generator.execute_step(step, context)
 
 
-def x_generate_code__mutmut_2(workspace: Path, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+def x_generate_code__mutmut_2(
+    workspace: Path, step: PlanStep, context: dict[str, Any]
+) -> dict[str, Any]:
     """코드 생성 헬퍼"""
     generator = CodeGenerator(None)
     return generator.execute_step(step, context)
 
 
-def x_generate_code__mutmut_3(workspace: Path, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+def x_generate_code__mutmut_3(
+    workspace: Path, step: PlanStep, context: dict[str, Any]
+) -> dict[str, Any]:
     """코드 생성 헬퍼"""
     generator = CodeGenerator(workspace)
     return generator.execute_step(None, context)
 
 
-def x_generate_code__mutmut_4(workspace: Path, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+def x_generate_code__mutmut_4(
+    workspace: Path, step: PlanStep, context: dict[str, Any]
+) -> dict[str, Any]:
     """코드 생성 헬퍼"""
     generator = CodeGenerator(workspace)
     return generator.execute_step(step, None)
 
 
-def x_generate_code__mutmut_5(workspace: Path, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+def x_generate_code__mutmut_5(
+    workspace: Path, step: PlanStep, context: dict[str, Any]
+) -> dict[str, Any]:
     """코드 생성 헬퍼"""
     generator = CodeGenerator(workspace)
     return generator.execute_step(context)
 
 
-def x_generate_code__mutmut_6(workspace: Path, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
+def x_generate_code__mutmut_6(
+    workspace: Path, step: PlanStep, context: dict[str, Any]
+) -> dict[str, Any]:
     """코드 생성 헬퍼"""
     generator = CodeGenerator(workspace)
-    return generator.execute_step(step, )
+    return generator.execute_step(
+        step,
+    )
 
-mutants_x_generate_code__mutmut['_mutmut_orig'] = x_generate_code__mutmut_orig # type: ignore # mutmut generated
-mutants_x_generate_code__mutmut['x_generate_code__mutmut_1'] = x_generate_code__mutmut_1 # type: ignore # mutmut generated
-mutants_x_generate_code__mutmut['x_generate_code__mutmut_2'] = x_generate_code__mutmut_2 # type: ignore # mutmut generated
-mutants_x_generate_code__mutmut['x_generate_code__mutmut_3'] = x_generate_code__mutmut_3 # type: ignore # mutmut generated
-mutants_x_generate_code__mutmut['x_generate_code__mutmut_4'] = x_generate_code__mutmut_4 # type: ignore # mutmut generated
-mutants_x_generate_code__mutmut['x_generate_code__mutmut_5'] = x_generate_code__mutmut_5 # type: ignore # mutmut generated
-mutants_x_generate_code__mutmut['x_generate_code__mutmut_6'] = x_generate_code__mutmut_6 # type: ignore # mutmut generated
+
+mutants_x_generate_code__mutmut["_mutmut_orig"] = x_generate_code__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_generate_code__mutmut["x_generate_code__mutmut_1"] = x_generate_code__mutmut_1  # type: ignore # mutmut generated
+mutants_x_generate_code__mutmut["x_generate_code__mutmut_2"] = x_generate_code__mutmut_2  # type: ignore # mutmut generated
+mutants_x_generate_code__mutmut["x_generate_code__mutmut_3"] = x_generate_code__mutmut_3  # type: ignore # mutmut generated
+mutants_x_generate_code__mutmut["x_generate_code__mutmut_4"] = x_generate_code__mutmut_4  # type: ignore # mutmut generated
+mutants_x_generate_code__mutmut["x_generate_code__mutmut_5"] = x_generate_code__mutmut_5  # type: ignore # mutmut generated
+mutants_x_generate_code__mutmut["x_generate_code__mutmut_6"] = x_generate_code__mutmut_6  # type: ignore # mutmut generated

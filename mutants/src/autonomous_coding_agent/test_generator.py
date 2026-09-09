@@ -14,7 +14,8 @@ from typing import Any, ClassVar
 log = logging.getLogger("autonomous_coding_agent.test_generator")
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
 
 
 @dataclass
@@ -63,6 +64,8 @@ class GeneratedTestModule:
     parameterized_tests: list[ParameterizedTest]
     mocks: list[MockSpec]
     coverage_targets: list[str] = field(default_factory=list)
+
+
 mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut: MutantDict = {}  # type: ignore
 
@@ -506,7 +509,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_orig(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_orig(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -544,7 +549,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_1(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_1(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = None
 
@@ -582,7 +589,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_2(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_2(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.upper()
 
@@ -620,7 +629,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_3(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_3(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -658,7 +669,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_4(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_4(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -696,7 +709,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_5(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_5(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -734,7 +749,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_6(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_6(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -772,7 +789,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_7(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_7(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -810,7 +829,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_8(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_8(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -848,7 +869,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_9(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_9(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -886,7 +909,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_10(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_10(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -924,7 +949,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_11(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_11(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -962,7 +989,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_12(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_12(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1000,7 +1029,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_13(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_13(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1038,7 +1069,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_14(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_14(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1076,7 +1109,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_15(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_15(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1114,7 +1149,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_16(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_16(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1152,7 +1189,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_17(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_17(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1190,7 +1229,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_18(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_18(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1228,7 +1269,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_19(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_19(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1266,7 +1309,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_20(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_20(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1304,7 +1349,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_21(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_21(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1342,7 +1389,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_22(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_22(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1380,7 +1429,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_23(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_23(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1418,7 +1469,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_24(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_24(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1456,7 +1509,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_25(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_25(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1494,7 +1549,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_26(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_26(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1532,7 +1589,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_27(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_27(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1570,7 +1629,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_28(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_28(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1608,7 +1669,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_29(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_29(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1646,7 +1709,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_30(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_30(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1684,7 +1749,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_31(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_31(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1722,7 +1789,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_32(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_32(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1760,7 +1829,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_33(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_33(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1798,7 +1869,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_34(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_34(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1836,7 +1909,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_35(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_35(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1874,7 +1949,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_36(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_36(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1912,7 +1989,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_37(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_37(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1950,7 +2029,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_38(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_38(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -1988,7 +2069,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_39(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_39(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2026,7 +2109,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_40(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_40(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2064,7 +2149,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_41(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_41(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2102,7 +2189,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_42(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_42(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2140,7 +2229,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_43(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_43(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2178,7 +2269,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_44(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_44(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2216,7 +2309,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_45(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_45(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2254,7 +2349,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_46(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_46(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2292,7 +2389,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_47(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_47(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2330,7 +2429,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_48(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_48(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2368,7 +2469,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_49(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_49(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2406,7 +2509,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_50(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_50(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2444,7 +2549,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_51(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_51(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2482,7 +2589,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_52(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_52(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2520,7 +2629,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_53(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_53(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2558,7 +2669,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_54(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_54(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2596,7 +2709,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_55(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_55(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2634,7 +2749,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_56(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_56(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2672,7 +2789,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_57(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_57(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2710,7 +2829,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_58(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_58(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2748,7 +2869,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_59(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_59(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2786,7 +2909,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_60(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_60(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2824,7 +2949,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_61(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_61(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2862,7 +2989,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_62(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_62(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2900,7 +3029,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_63(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_63(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2938,7 +3069,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_64(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_64(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -2976,7 +3109,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_65(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_65(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3014,7 +3149,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_66(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_66(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3052,7 +3189,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_67(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_67(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3090,7 +3229,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_68(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_68(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3128,7 +3269,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_69(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_69(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3166,7 +3309,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_70(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_70(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3204,7 +3349,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_71(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_71(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3242,7 +3389,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_72(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_72(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3280,7 +3429,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_73(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_73(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3318,7 +3469,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_74(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_74(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3356,7 +3509,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_75(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_75(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3394,7 +3549,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_76(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_76(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3432,7 +3589,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_77(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_77(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3470,7 +3629,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_78(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_78(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3508,7 +3669,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_79(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_79(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3546,7 +3709,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_80(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_80(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3584,7 +3749,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_81(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_81(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3622,7 +3789,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_82(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_82(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3660,7 +3829,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_83(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_83(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3698,7 +3869,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_84(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_84(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3736,7 +3909,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_85(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_85(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3774,7 +3949,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_86(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_86(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3812,7 +3989,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_87(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_87(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3850,7 +4029,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_88(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_88(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3888,7 +4069,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_89(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_89(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3926,7 +4109,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_90(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_90(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -3964,7 +4149,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_91(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_91(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4002,7 +4189,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_92(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_92(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4040,7 +4229,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_93(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_93(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4078,7 +4269,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_94(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_94(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4116,7 +4309,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_95(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_95(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4154,7 +4349,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_96(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_96(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4192,7 +4389,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_97(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_97(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4230,7 +4429,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_98(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_98(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4268,7 +4469,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_99(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_99(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4306,7 +4509,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_100(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_100(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4344,7 +4549,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_101(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_101(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4382,7 +4589,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_102(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_102(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4420,7 +4629,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_103(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_103(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4458,7 +4669,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_104(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_104(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4496,7 +4709,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_105(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_105(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4534,7 +4749,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_106(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_106(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4572,7 +4789,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_107(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_107(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4610,7 +4829,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_108(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_108(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4648,7 +4869,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_109(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_109(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4686,7 +4909,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_110(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_110(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4724,7 +4949,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_111(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_111(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4762,7 +4989,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_112(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_112(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4800,7 +5029,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_113(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_113(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4838,7 +5069,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_114(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_114(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4876,7 +5109,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_115(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_115(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4914,7 +5149,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_116(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_116(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4952,7 +5189,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_117(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_117(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -4990,7 +5229,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_118(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_118(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5028,7 +5269,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_119(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_119(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5066,7 +5309,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_120(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_120(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5104,7 +5349,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_121(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_121(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5142,7 +5389,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_122(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_122(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5180,7 +5429,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_123(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_123(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5218,7 +5469,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_124(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_124(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5256,7 +5509,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_125(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_125(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5294,7 +5549,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_126(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_126(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5332,7 +5589,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_127(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_127(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5370,7 +5629,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_128(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_128(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5408,7 +5669,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_129(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_129(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5446,7 +5709,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_130(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_130(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5484,7 +5749,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_131(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_131(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5522,7 +5789,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_132(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_132(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5560,7 +5829,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_133(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_133(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5598,7 +5869,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_134(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_134(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5636,7 +5909,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_135(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_135(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5674,7 +5949,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_136(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_136(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5712,7 +5989,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_137(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_137(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5750,7 +6029,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_138(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_138(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5788,7 +6069,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_139(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_139(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5826,7 +6109,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_140(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_140(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5864,7 +6149,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_141(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_141(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5902,7 +6189,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_142(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_142(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5940,7 +6229,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_143(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_143(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -5978,7 +6269,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_144(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_144(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -6016,7 +6309,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_145(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_145(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -6054,7 +6349,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_146(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_146(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -6092,7 +6389,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_147(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_147(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -6130,7 +6429,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_148(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_148(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -6168,7 +6469,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_149(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_149(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -6206,7 +6509,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_150(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_150(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -6244,7 +6549,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_151(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_151(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -6282,7 +6589,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_152(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_152(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -6320,7 +6629,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_153(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_153(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -6358,7 +6669,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_154(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_154(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -6396,7 +6709,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_155(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_155(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -6434,7 +6749,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_156(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_156(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -6472,7 +6789,9 @@ class EdgeCaseAnalyzer:
 
         return []
 
-    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_157(self, field_name: str) -> list[dict[str, Any]]:
+    def xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_157(
+        self, field_name: str
+    ) -> list[dict[str, Any]]:
         """필드명으로 검증 케이스 추출"""
         field_lower = field_name.lower()
 
@@ -6510,182 +6829,183 @@ class EdgeCaseAnalyzer:
 
         return []
 
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['_mutmut_orig'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_1'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_2'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_3'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_4'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_5'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_6'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_7'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_8'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_9'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_10'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_11'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_12'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_13'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_14'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_15'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut['xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_16'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_16 # type: ignore # mutmut generated
 
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['_mutmut_orig'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_1'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_2'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_3'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_4'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_5'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_6'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_7'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_8'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_9'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_10'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_11'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_12'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_13'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_14'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_15'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_16'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_17'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_18'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_19'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_20'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_21'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_22'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_23'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_24'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_25'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_26'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_27'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_28'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_29'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_30'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_31'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_32'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_33'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_34'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_35'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_36'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_37'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_38'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_39'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_40'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_41'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_42'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_43'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_44'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_45'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_46'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_47'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_48'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_49'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_50'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_51'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_52'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_53'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_54'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_55'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_56'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_57'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_58'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_59'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_60'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_61'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_62'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_63'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_64'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_65'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_66'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_67'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_68'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_69'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_70'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_71'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_72'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_73'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_74'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_75'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_76'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_77'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_78'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_79'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_80'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_81'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_82'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_83'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_84'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_85'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_86'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_87'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_88'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_89'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_90'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_91'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_92'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_93'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_94'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_95'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_96'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_96 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_97'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_97 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_98'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_98 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_99'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_99 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_100'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_100 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_101'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_101 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_102'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_102 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_103'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_103 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_104'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_104 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_105'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_105 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_106'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_106 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_107'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_107 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_108'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_108 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_109'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_109 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_110'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_110 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_111'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_111 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_112'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_112 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_113'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_113 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_114'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_114 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_115'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_115 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_116'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_116 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_117'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_117 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_118'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_118 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_119'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_119 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_120'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_120 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_121'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_121 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_122'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_122 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_123'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_123 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_124'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_124 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_125'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_125 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_126'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_126 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_127'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_127 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_128'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_128 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_129'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_129 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_130'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_130 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_131'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_131 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_132'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_132 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_133'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_133 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_134'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_134 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_135'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_135 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_136'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_136 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_137'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_137 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_138'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_138 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_139'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_139 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_140'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_140 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_141'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_141 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_142'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_142 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_143'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_143 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_144'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_144 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_145'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_145 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_146'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_146 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_147'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_147 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_148'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_148 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_149'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_149 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_150'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_150 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_151'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_151 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_152'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_152 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_153'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_153 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_154'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_154 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_155'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_155 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_156'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_156 # type: ignore # mutmut generated
-mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut['xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_157'] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_157 # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["_mutmut_orig"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_1"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_2"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_3"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_4"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_5"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_6"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_7"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_8"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_9"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_10"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_11"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_12"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_13"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_14"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_15"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut["xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_16"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_edge_cases_for_type__mutmut_16  # type: ignore # mutmut generated
+
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["_mutmut_orig"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_1"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_2"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_3"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_4"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_5"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_6"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_7"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_8"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_9"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_10"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_11"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_12"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_13"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_14"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_15"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_16"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_17"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_18"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_19"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_20"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_21"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_22"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_23"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_24"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_25"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_26"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_27"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_28"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_29"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_30"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_31"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_32"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_33"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_34"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_35"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_36"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_37"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_38"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_39"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_40"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_41"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_42"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_43"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_44"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_45"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_46"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_47"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_48"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_49"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_50"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_51"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_52"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_53"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_54"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_55"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_56"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_57"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_58"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_59"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_60"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_61"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_62"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_63"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_64"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_65"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_66"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_67"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_68"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_69"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_70"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_71"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_72"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_73"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_74"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_75"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_76"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_77"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_78"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_79"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_80"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_81"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_82"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_83"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_84"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_85"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_86"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_87"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_88"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_89"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_90"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_91"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_92"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_93"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_94"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_95"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_96"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_96  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_97"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_97  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_98"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_98  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_99"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_99  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_100"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_100  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_101"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_101  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_102"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_102  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_103"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_103  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_104"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_104  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_105"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_105  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_106"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_106  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_107"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_107  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_108"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_108  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_109"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_109  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_110"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_110  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_111"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_111  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_112"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_112  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_113"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_113  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_114"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_114  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_115"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_115  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_116"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_116  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_117"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_117  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_118"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_118  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_119"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_119  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_120"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_120  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_121"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_121  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_122"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_122  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_123"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_123  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_124"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_124  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_125"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_125  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_126"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_126  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_127"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_127  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_128"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_128  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_129"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_129  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_130"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_130  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_131"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_131  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_132"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_132  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_133"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_133  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_134"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_134  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_135"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_135  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_136"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_136  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_137"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_137  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_138"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_138  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_139"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_139  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_140"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_140  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_141"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_141  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_142"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_142  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_143"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_143  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_144"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_144  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_145"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_145  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_146"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_146  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_147"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_147  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_148"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_148  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_149"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_149  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_150"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_150  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_151"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_151  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_152"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_152  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_153"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_153  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_154"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_154  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_155"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_155  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_156"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_156  # type: ignore # mutmut generated
+mutants_xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut["xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_157"] = EdgeCaseAnalyzer.xǁEdgeCaseAnalyzerǁget_validation_cases__mutmut_157  # type: ignore # mutmut generated
 mutants_xǁParameterCombinationGeneratorǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut: MutantDict = {}  # type: ignore
@@ -6873,7 +7193,7 @@ class ParameterCombinationGenerator:
         """함수 시그니처와 엣지 케이스로 조합 생성"""
         import itertools
 
-        params = func_signature.get("params", None)
+        params = func_signature.get("params")
         param_names = [p["name"] for p in params]
 
         # 각 파라미터별 테스트 값 수집
@@ -6951,7 +7271,9 @@ class ParameterCombinationGenerator:
         """함수 시그니처와 엣지 케이스로 조합 생성"""
         import itertools
 
-        params = func_signature.get("params", )
+        params = func_signature.get(
+            "params",
+        )
         param_names = [p["name"] for p in params]
 
         # 각 파라미터별 테스트 값 수집
@@ -7468,7 +7790,9 @@ class ParameterCombinationGenerator:
                 param_values[name] = edge_cases[name]
             else:
                 # 타입 힌트에서 추출
-                param_type = next((p.get("type", "") for p in params if p["name"] == name), )
+                param_type = next(
+                    (p.get("type", "") for p in params if p["name"] == name),
+                )
                 analyzer = EdgeCaseAnalyzer()
                 param_values[name] = analyzer.get_edge_cases_for_type(param_type)
 
@@ -7624,7 +7948,16 @@ class ParameterCombinationGenerator:
                 param_values[name] = edge_cases[name]
             else:
                 # 타입 힌트에서 추출
-                param_type = next((p.get("type", ) for p in params if p["name"] == name), "")
+                param_type = next(
+                    (
+                        p.get(
+                            "type",
+                        )
+                        for p in params
+                        if p["name"] == name
+                    ),
+                    "",
+                )
                 analyzer = EdgeCaseAnalyzer()
                 param_values[name] = analyzer.get_edge_cases_for_type(param_type)
 
@@ -8175,7 +8508,9 @@ class ParameterCombinationGenerator:
                 param_values[name] = analyzer.get_edge_cases_for_type(param_type)
 
             # 기본값이 있으면 추가
-            default = next((p.get("default") for p in params if p["name"] == name), )
+            default = next(
+                (p.get("default") for p in params if p["name"] == name),
+            )
             if default is not None and default not in param_values[name]:
                 param_values[name].insert(0, default)
 
@@ -8684,7 +9019,9 @@ class ParameterCombinationGenerator:
             # 기본값이 있으면 추가
             default = next((p.get("default") for p in params if p["name"] == name), None)
             if default is not None and default not in param_values[name]:
-                param_values[name].insert(0, )
+                param_values[name].insert(
+                    0,
+                )
 
         # 카르테시안 곱 생성 (최대 제한)
         combinations = []
@@ -9121,7 +9458,13 @@ class ParameterCombinationGenerator:
         values_lists = [param_values[k] for k in keys]
 
         for combo in itertools.product(*values_lists):
-            combinations.append(dict(zip(keys, )))
+            combinations.append(
+                dict(
+                    zip(
+                        keys,
+                    )
+                )
+            )
             if len(combinations) >= self.max_combinations:
                 break
 
@@ -9295,7 +9638,7 @@ class ParameterCombinationGenerator:
         func_signature: dict[str, Any],
     ) -> list[dict[str, Any]]:
         """경계값 분석 기반 조합 생성"""
-        params = func_signature.get("params", None)
+        params = func_signature.get("params")
         combinations = []
 
         for param in params:
@@ -9337,7 +9680,9 @@ class ParameterCombinationGenerator:
         func_signature: dict[str, Any],
     ) -> list[dict[str, Any]]:
         """경계값 분석 기반 조합 생성"""
-        params = func_signature.get("params", )
+        params = func_signature.get(
+            "params",
+        )
         combinations = []
 
         for param in params:
@@ -9594,7 +9939,9 @@ class ParameterCombinationGenerator:
 
         for param in params:
             name = param["name"]
-            param_type = param.get("type", ).lower()
+            param_type = param.get(
+                "type",
+            ).lower()
 
             boundary_values = self._get_boundary_values(param_type)
             if boundary_values:
@@ -9912,7 +10259,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_orig(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_orig(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -9924,7 +10273,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_1(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_1(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "XXintXX" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -9936,7 +10287,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_2(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_2(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "INT" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -9948,7 +10301,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_3(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_3(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" not in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -9960,7 +10315,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_4(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_4(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [1, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -9972,7 +10329,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_5(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_5(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 2, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -9984,7 +10343,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_6(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_6(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, +1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -9996,7 +10357,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_7(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_7(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -2, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10008,7 +10371,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_8(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_8(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 + 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10020,7 +10385,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_9(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_9(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2 * 31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10032,7 +10399,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_10(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_10(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 3**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10044,7 +10413,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_11(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_11(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**32 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10056,7 +10427,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_12(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_12(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 2, -(2**31), 2**63 - 1, -(2**63)]
@@ -10068,7 +10441,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_13(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_13(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, +(2**31), 2**63 - 1, -(2**63)]
@@ -10080,7 +10455,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_14(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_14(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2 * 31), 2**63 - 1, -(2**63)]
@@ -10092,7 +10469,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_15(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_15(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(3**31), 2**63 - 1, -(2**63)]
@@ -10104,7 +10483,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_16(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_16(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**32), 2**63 - 1, -(2**63)]
@@ -10116,7 +10497,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_17(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_17(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 + 1, -(2**63)]
@@ -10128,7 +10511,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_18(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_18(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2 * 63 - 1, -(2**63)]
@@ -10140,7 +10525,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_19(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_19(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 3**63 - 1, -(2**63)]
@@ -10152,7 +10539,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_20(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_20(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**64 - 1, -(2**63)]
@@ -10164,7 +10553,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_21(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_21(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 2, -(2**63)]
@@ -10176,7 +10567,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_22(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_22(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, +(2**63)]
@@ -10188,7 +10581,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_23(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_23(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2 * 63)]
@@ -10200,7 +10595,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_24(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_24(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(3**63)]
@@ -10212,7 +10609,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_25(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_25(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**64)]
@@ -10224,7 +10623,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_26(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_26(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10236,7 +10637,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_27(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_27(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10248,7 +10651,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_28(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_28(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10260,7 +10665,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_29(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_29(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10272,7 +10679,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_30(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_30(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10284,7 +10693,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_31(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_31(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10296,7 +10707,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_32(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_32(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10308,7 +10721,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_33(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_33(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10320,7 +10735,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_34(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_34(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10332,7 +10749,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_35(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_35(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10344,7 +10763,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_36(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_36(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10356,7 +10777,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_37(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_37(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10368,7 +10791,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_38(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_38(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10380,7 +10805,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_39(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_39(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10392,7 +10819,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_40(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_40(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10404,7 +10833,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_41(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_41(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10416,7 +10847,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_42(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_42(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10428,7 +10861,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_43(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_43(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10440,7 +10875,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_44(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_44(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10452,7 +10889,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_45(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_45(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10464,7 +10903,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_46(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_46(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10476,7 +10917,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_47(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_47(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10488,7 +10931,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_48(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_48(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10500,7 +10945,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_49(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_49(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10512,7 +10959,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_50(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_50(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10524,7 +10973,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_51(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_51(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10536,7 +10987,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_52(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_52(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10548,7 +11001,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_53(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_53(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10560,7 +11015,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_54(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_54(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10572,7 +11029,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_55(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_55(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10584,7 +11043,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_56(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_56(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10596,7 +11057,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_57(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_57(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10608,7 +11071,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_58(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_58(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10620,7 +11085,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_59(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_59(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10632,7 +11099,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_60(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_60(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10644,7 +11113,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_61(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_61(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10656,7 +11127,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_62(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_62(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10668,7 +11141,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_63(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_63(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10680,7 +11155,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_64(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_64(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10692,7 +11169,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_65(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_65(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10704,7 +11183,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_66(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_66(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10716,7 +11197,9 @@ class ParameterCombinationGenerator:
             return [[], [2], [1] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_67(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_67(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10728,7 +11211,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] / 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_68(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_68(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10740,7 +11225,9 @@ class ParameterCombinationGenerator:
             return [[], [1], [2] * 1000]
         return []
 
-    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_69(self, param_type: str) -> list[Any]:
+    def xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_69(
+        self, param_type: str
+    ) -> list[Any]:
         """타입별 경계값"""
         if "int" in param_type:
             return [0, 1, -1, 2**31 - 1, -(2**31), 2**63 - 1, -(2**63)]
@@ -10752,177 +11239,178 @@ class ParameterCombinationGenerator:
             return [[], [1], [1] * 1001]
         return []
 
-mutants_xǁParameterCombinationGeneratorǁ__init____mutmut['_mutmut_orig'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ__init____mutmut['xǁParameterCombinationGeneratorǁ__init____mutmut_1'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ__init____mutmut['xǁParameterCombinationGeneratorǁ__init____mutmut_2'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ__init____mutmut_2 # type: ignore # mutmut generated
 
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['_mutmut_orig'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_1'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_2'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_3'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_4'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_5'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_6'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_7'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_8'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_9'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_10'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_11'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_12'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_13'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_14'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_15'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_16'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_17'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_18'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_19'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_20'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_21'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_22'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_23'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_24'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_25'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_26'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_27'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_28'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_29'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_30'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_31'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_32'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_33'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_34'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_35'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_36'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_37'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_38'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_39'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_40'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_41'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_42'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_43'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_44'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_45'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_46'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_47'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_48'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_49'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_50'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_51'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_52'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_53'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_54'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_55'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_56'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_57'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_58'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_59'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_60'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_61'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_62'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_62 # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ__init____mutmut["_mutmut_orig"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ__init____mutmut["xǁParameterCombinationGeneratorǁ__init____mutmut_1"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ__init____mutmut["xǁParameterCombinationGeneratorǁ__init____mutmut_2"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ__init____mutmut_2  # type: ignore # mutmut generated
 
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['_mutmut_orig'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_1'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_2'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_3'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_4'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_5'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_6'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_7'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_8'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_9'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_10'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_11'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_12'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_13'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_14'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_15'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_16'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_17'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_18'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_19'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_20'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_21'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_22'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_23'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_24'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_25'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_26'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_27'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_28'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_29'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_30'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut['xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_31'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_31 # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["_mutmut_orig"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_1"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_2"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_3"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_4"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_5"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_6"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_7"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_8"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_9"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_10"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_11"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_12"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_13"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_14"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_15"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_16"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_17"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_18"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_19"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_20"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_21"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_22"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_23"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_24"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_25"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_26"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_27"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_28"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_29"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_30"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_31"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_32"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_33"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_34"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_35"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_36"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_37"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_38"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_39"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_40"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_41"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_42"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_43"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_44"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_45"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_46"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_47"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_48"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_49"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_50"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_51"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_52"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_53"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_54"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_55"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_56"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_57"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_58"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_59"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_60"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_61"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_62"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_combinations__mutmut_62  # type: ignore # mutmut generated
 
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['_mutmut_orig'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_1'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_2'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_3'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_4'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_5'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_6'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_7'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_8'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_9'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_10'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_11'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_12'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_13'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_14'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_15'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_16'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_17'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_18'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_19'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_20'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_21'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_22'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_23'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_24'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_25'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_26'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_27'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_28'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_29'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_30'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_31'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_32'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_33'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_34'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_35'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_36'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_37'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_38'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_39'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_40'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_41'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_42'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_43'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_44'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_45'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_46'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_47'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_48'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_49'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_50'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_51'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_52'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_53'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_54'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_55'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_56'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_57'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_58'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_59'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_60'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_61'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_62'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_63'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_64'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_65'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_66'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_67'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_68'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut['xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_69'] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_69 # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["_mutmut_orig"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_1"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_2"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_3"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_4"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_5"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_6"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_7"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_8"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_9"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_10"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_11"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_12"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_13"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_14"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_15"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_16"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_17"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_18"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_19"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_20"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_21"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_22"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_23"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_24"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_25"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_26"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_27"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_28"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_29"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_30"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut["xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_31"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁgenerate_boundary_combinations__mutmut_31  # type: ignore # mutmut generated
+
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["_mutmut_orig"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_1"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_2"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_3"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_4"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_5"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_6"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_7"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_8"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_9"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_10"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_11"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_12"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_13"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_14"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_15"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_16"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_17"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_18"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_19"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_20"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_21"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_22"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_23"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_24"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_25"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_26"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_27"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_28"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_29"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_30"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_31"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_32"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_33"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_34"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_35"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_36"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_37"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_38"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_39"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_40"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_41"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_42"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_43"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_44"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_45"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_46"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_47"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_48"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_49"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_50"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_51"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_52"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_53"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_54"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_55"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_56"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_57"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_58"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_59"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_60"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_61"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_62"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_63"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_64"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_65"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_66"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_67"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_68"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut["xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_69"] = ParameterCombinationGenerator.xǁParameterCombinationGeneratorǁ_get_boundary_values__mutmut_69  # type: ignore # mutmut generated
 mutants_xǁMockGeneratorǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁMockGeneratorǁanalyze_imports__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut: MutantDict = {}  # type: ignore
@@ -11166,7 +11654,9 @@ class MockGenerator:
 
         return mocks
 
-    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_orig(self, imports: list[str]) -> list[MockSpec]:
+    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_orig(
+        self, imports: list[str]
+    ) -> list[MockSpec]:
         """import 목록에서 필요한 모킹 생성"""
         mocks = []
 
@@ -11183,7 +11673,9 @@ class MockGenerator:
 
         return mocks
 
-    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_1(self, imports: list[str]) -> list[MockSpec]:
+    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_1(
+        self, imports: list[str]
+    ) -> list[MockSpec]:
         """import 목록에서 필요한 모킹 생성"""
         mocks = None
 
@@ -11200,7 +11692,9 @@ class MockGenerator:
 
         return mocks
 
-    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_2(self, imports: list[str]) -> list[MockSpec]:
+    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_2(
+        self, imports: list[str]
+    ) -> list[MockSpec]:
         """import 목록에서 필요한 모킹 생성"""
         mocks = []
 
@@ -11217,7 +11711,9 @@ class MockGenerator:
 
         return mocks
 
-    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_3(self, imports: list[str]) -> list[MockSpec]:
+    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_3(
+        self, imports: list[str]
+    ) -> list[MockSpec]:
         """import 목록에서 필요한 모킹 생성"""
         mocks = []
 
@@ -11234,7 +11730,9 @@ class MockGenerator:
 
         return mocks
 
-    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_4(self, imports: list[str]) -> list[MockSpec]:
+    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_4(
+        self, imports: list[str]
+    ) -> list[MockSpec]:
         """import 목록에서 필요한 모킹 생성"""
         mocks = []
 
@@ -11251,7 +11749,9 @@ class MockGenerator:
 
         return mocks
 
-    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_5(self, imports: list[str]) -> list[MockSpec]:
+    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_5(
+        self, imports: list[str]
+    ) -> list[MockSpec]:
         """import 목록에서 필요한 모킹 생성"""
         mocks = []
 
@@ -11268,7 +11768,9 @@ class MockGenerator:
 
         return mocks
 
-    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_6(self, imports: list[str]) -> list[MockSpec]:
+    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_6(
+        self, imports: list[str]
+    ) -> list[MockSpec]:
         """import 목록에서 필요한 모킹 생성"""
         mocks = []
 
@@ -11285,7 +11787,9 @@ class MockGenerator:
 
         return mocks
 
-    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_7(self, imports: list[str]) -> list[MockSpec]:
+    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_7(
+        self, imports: list[str]
+    ) -> list[MockSpec]:
         """import 목록에서 필요한 모킹 생성"""
         mocks = []
 
@@ -11302,7 +11806,9 @@ class MockGenerator:
 
         return mocks
 
-    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_8(self, imports: list[str]) -> list[MockSpec]:
+    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_8(
+        self, imports: list[str]
+    ) -> list[MockSpec]:
         """import 목록에서 필요한 모킹 생성"""
         mocks = []
 
@@ -11314,12 +11820,16 @@ class MockGenerator:
 
             # 패턴 매칭
             for pattern, mock_spec in self.COMMON_MOCKS.items():
-                if self._match_import(imp, ):
+                if self._match_import(
+                    imp,
+                ):
                     mocks.append(mock_spec)
 
         return mocks
 
-    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_9(self, imports: list[str]) -> list[MockSpec]:
+    def xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_9(
+        self, imports: list[str]
+    ) -> list[MockSpec]:
         """import 목록에서 필요한 모킹 생성"""
         mocks = []
 
@@ -11912,7 +12422,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_orig(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_orig(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -11980,7 +12492,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_1(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_1(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = None
 
@@ -12048,7 +12562,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_2(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_2(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -12110,7 +12626,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_3(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_3(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -12178,7 +12696,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_4(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_4(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -12246,7 +12766,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_5(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_5(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -12314,7 +12836,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_6(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_6(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -12324,7 +12848,9 @@ def {fixture_name}(mocker):
                 .replace("(", "")
                 .replace(")", "")
                 .replace("[", "")
-                .replace("]", )
+                .replace(
+                    "]",
+                )
             )
             fixture_name = "mock_" + fixture_name[-50:]  # 길이 제한
 
@@ -12382,7 +12908,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_7(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_7(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -12450,7 +12978,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_8(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_8(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -12518,7 +13048,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_9(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_9(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -12586,7 +13118,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_10(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_10(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -12595,7 +13129,9 @@ def {fixture_name}(mocker):
                 mock.target.replace(".", "_")
                 .replace("(", "")
                 .replace(")", "")
-                .replace("[", )
+                .replace(
+                    "[",
+                )
                 .replace("]", "")
             )
             fixture_name = "mock_" + fixture_name[-50:]  # 길이 제한
@@ -12654,7 +13190,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_11(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_11(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -12722,7 +13260,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_12(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_12(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -12790,7 +13330,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_13(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_13(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -12858,7 +13400,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_14(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_14(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -12866,7 +13410,9 @@ def {fixture_name}(mocker):
             fixture_name = (
                 mock.target.replace(".", "_")
                 .replace("(", "")
-                .replace(")", )
+                .replace(
+                    ")",
+                )
                 .replace("[", "")
                 .replace("]", "")
             )
@@ -12926,7 +13472,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_15(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_15(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -12994,7 +13542,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_16(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_16(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -13062,7 +13612,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_17(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_17(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -13130,14 +13682,18 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_18(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_18(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
         for mock in mocks:
             fixture_name = (
                 mock.target.replace(".", "_")
-                .replace("(", )
+                .replace(
+                    "(",
+                )
                 .replace(")", "")
                 .replace("[", "")
                 .replace("]", "")
@@ -13198,7 +13754,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_19(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_19(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -13266,7 +13824,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_20(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_20(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -13334,7 +13894,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_21(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_21(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -13402,13 +13964,17 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_22(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_22(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
         for mock in mocks:
             fixture_name = (
-                mock.target.replace(".", )
+                mock.target.replace(
+                    ".",
+                )
                 .replace("(", "")
                 .replace(")", "")
                 .replace("[", "")
@@ -13470,7 +14036,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_23(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_23(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -13538,7 +14106,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_24(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_24(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -13606,7 +14176,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_25(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_25(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -13674,7 +14246,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_26(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_26(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -13742,7 +14316,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_27(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_27(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -13810,7 +14386,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_28(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_28(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -13878,7 +14456,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_29(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_29(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -13946,7 +14526,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_30(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_30(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -14014,7 +14596,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_31(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_31(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -14082,7 +14666,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_32(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_32(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -14150,7 +14736,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_33(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_33(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -14218,7 +14806,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_34(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_34(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -14286,7 +14876,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_35(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_35(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -14354,7 +14946,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_36(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_36(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -14422,7 +15016,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_37(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_37(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -14490,7 +15086,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_38(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_38(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -14558,7 +15156,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_39(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_39(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -14626,7 +15226,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_40(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_40(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -14694,7 +15296,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_41(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_41(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -14762,7 +15366,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_42(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_42(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -14830,7 +15436,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_43(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_43(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -14898,7 +15506,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_44(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_44(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -14966,7 +15576,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_45(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_45(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -15034,7 +15646,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_46(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_46(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -15102,7 +15716,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_47(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_47(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -15170,7 +15786,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_48(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_48(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -15238,7 +15856,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_49(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_49(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -15306,7 +15926,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_50(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_50(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -15374,7 +15996,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_51(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_51(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -15442,7 +16066,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_52(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_52(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -15510,7 +16136,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_53(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_53(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -15578,7 +16206,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_54(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_54(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -15646,7 +16276,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_55(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_55(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -15714,7 +16346,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_56(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_56(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -15782,7 +16416,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_57(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_57(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -15850,7 +16486,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_58(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_58(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -15918,7 +16556,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_59(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_59(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -15982,7 +16622,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_60(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_60(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -16050,7 +16692,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_61(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_61(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -16118,7 +16762,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_62(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_62(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -16186,7 +16832,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_63(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_63(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -16254,7 +16902,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_64(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_64(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -16322,7 +16972,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_65(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_65(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -16390,7 +17042,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_66(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_66(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -16458,7 +17112,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_67(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_67(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -16526,7 +17182,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_68(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_68(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -16594,7 +17252,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_69(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_69(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -16662,7 +17322,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_70(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_70(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -16730,7 +17392,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_71(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_71(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -16798,7 +17462,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_72(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_72(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -16866,7 +17532,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_73(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_73(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -16934,7 +17602,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_74(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_74(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -17002,7 +17672,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_75(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_75(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -17070,7 +17742,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_76(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_76(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -17138,7 +17812,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_77(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_77(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -17206,7 +17882,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_78(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_78(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -17274,7 +17952,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_79(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_79(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -17342,7 +18022,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_80(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_80(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -17410,7 +18092,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_81(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_81(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -17478,7 +18162,9 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_82(self, mocks: list[MockSpec]) -> list[str]:
+    def xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_82(
+        self, mocks: list[MockSpec]
+    ) -> list[str]:
         """pytest fixture 형태의 모킹 코드 생성"""
         fixtures = []
 
@@ -17546,137 +18232,138 @@ def {fixture_name}(mocker):
 
         return fixtures
 
-mutants_xǁMockGeneratorǁ__init____mutmut['_mutmut_orig'] = MockGenerator.xǁMockGeneratorǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ__init____mutmut['xǁMockGeneratorǁ__init____mutmut_1'] = MockGenerator.xǁMockGeneratorǁ__init____mutmut_1 # type: ignore # mutmut generated
 
-mutants_xǁMockGeneratorǁanalyze_imports__mutmut['_mutmut_orig'] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁanalyze_imports__mutmut['xǁMockGeneratorǁanalyze_imports__mutmut_1'] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁanalyze_imports__mutmut['xǁMockGeneratorǁanalyze_imports__mutmut_2'] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁanalyze_imports__mutmut['xǁMockGeneratorǁanalyze_imports__mutmut_3'] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁanalyze_imports__mutmut['xǁMockGeneratorǁanalyze_imports__mutmut_4'] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁanalyze_imports__mutmut['xǁMockGeneratorǁanalyze_imports__mutmut_5'] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁanalyze_imports__mutmut['xǁMockGeneratorǁanalyze_imports__mutmut_6'] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁanalyze_imports__mutmut['xǁMockGeneratorǁanalyze_imports__mutmut_7'] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁanalyze_imports__mutmut['xǁMockGeneratorǁanalyze_imports__mutmut_8'] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁanalyze_imports__mutmut['xǁMockGeneratorǁanalyze_imports__mutmut_9'] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_9 # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ__init____mutmut["_mutmut_orig"] = MockGenerator.xǁMockGeneratorǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ__init____mutmut["xǁMockGeneratorǁ__init____mutmut_1"] = MockGenerator.xǁMockGeneratorǁ__init____mutmut_1  # type: ignore # mutmut generated
 
-mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut['_mutmut_orig'] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut['xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_1'] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut['xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_2'] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut['xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_3'] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut['xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_4'] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut['xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_5'] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut['xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_6'] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut['xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_7'] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut['xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_8'] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut['xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_9'] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_9 # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁanalyze_imports__mutmut["_mutmut_orig"] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁanalyze_imports__mutmut["xǁMockGeneratorǁanalyze_imports__mutmut_1"] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁanalyze_imports__mutmut["xǁMockGeneratorǁanalyze_imports__mutmut_2"] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁanalyze_imports__mutmut["xǁMockGeneratorǁanalyze_imports__mutmut_3"] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁanalyze_imports__mutmut["xǁMockGeneratorǁanalyze_imports__mutmut_4"] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁanalyze_imports__mutmut["xǁMockGeneratorǁanalyze_imports__mutmut_5"] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁanalyze_imports__mutmut["xǁMockGeneratorǁanalyze_imports__mutmut_6"] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁanalyze_imports__mutmut["xǁMockGeneratorǁanalyze_imports__mutmut_7"] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁanalyze_imports__mutmut["xǁMockGeneratorǁanalyze_imports__mutmut_8"] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁanalyze_imports__mutmut["xǁMockGeneratorǁanalyze_imports__mutmut_9"] = MockGenerator.xǁMockGeneratorǁanalyze_imports__mutmut_9  # type: ignore # mutmut generated
 
-mutants_xǁMockGeneratorǁ_match_import__mutmut['_mutmut_orig'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_1'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_2'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_3'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_4'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_5'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_6'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_7'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_8'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_9'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_10'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_11'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_12'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_13'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_14'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_15'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_16'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_17'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_18'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_19'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_20'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁ_match_import__mutmut['xǁMockGeneratorǁ_match_import__mutmut_21'] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_21 # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut["_mutmut_orig"] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut["xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_1"] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut["xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_2"] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut["xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_3"] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut["xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_4"] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut["xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_5"] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut["xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_6"] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut["xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_7"] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut["xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_8"] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut["xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_9"] = MockGenerator.xǁMockGeneratorǁgenerate_mocks_for_imports__mutmut_9  # type: ignore # mutmut generated
 
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['_mutmut_orig'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_1'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_2'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_3'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_4'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_5'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_6'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_7'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_8'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_9'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_10'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_11'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_12'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_13'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_14'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_15'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_16'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_17'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_18'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_19'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_20'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_21'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_22'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_23'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_24'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_25'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_26'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_27'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_28'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_29'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_30'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_31'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_32'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_33'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_34'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_35'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_36'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_37'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_38'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_39'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_40'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_41'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_42'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_43'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_44'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_45'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_46'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_47'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_48'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_49'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_50'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_51'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_52'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_53'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_54'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_55'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_56'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_57'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_58'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_59'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_60'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_61'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_62'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_63'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_64'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_65'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_66'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_67'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_68'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_69'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_70'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_71'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_72'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_73'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_74'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_75'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_76'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_77'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_78'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_79'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_80'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_81'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut['xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_82'] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_82 # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["_mutmut_orig"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_1"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_2"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_3"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_4"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_5"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_6"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_7"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_8"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_9"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_10"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_11"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_12"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_13"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_14"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_15"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_16"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_17"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_18"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_19"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_20"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁ_match_import__mutmut["xǁMockGeneratorǁ_match_import__mutmut_21"] = MockGenerator.xǁMockGeneratorǁ_match_import__mutmut_21  # type: ignore # mutmut generated
+
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["_mutmut_orig"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_1"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_2"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_3"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_4"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_5"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_6"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_7"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_8"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_9"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_10"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_11"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_12"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_13"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_14"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_15"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_16"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_17"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_18"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_19"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_20"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_21"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_22"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_23"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_24"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_25"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_26"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_27"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_28"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_29"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_30"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_31"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_32"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_33"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_34"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_35"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_36"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_37"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_38"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_39"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_40"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_41"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_42"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_43"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_44"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_45"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_46"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_47"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_48"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_49"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_50"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_51"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_52"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_53"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_54"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_55"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_56"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_57"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_58"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_59"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_60"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_61"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_62"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_63"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_64"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_65"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_66"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_67"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_68"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_69"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_70"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_71"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_72"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_73"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_74"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_75"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_76"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_77"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_78"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_79"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_80"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_81"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut["xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_82"] = MockGenerator.xǁMockGeneratorǁgenerate_pytest_mock_fixtures__mutmut_82  # type: ignore # mutmut generated
 mutants_xǁTestGeneratorǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁTestGeneratorǁ_extract_functions__mutmut: MutantDict = {}  # type: ignore
@@ -20521,7 +21208,9 @@ class TestGenerator:
 
             # 엣지 케이스 분석
             edge_cases = {}
-            for param in func.get("params", ):
+            for param in func.get(
+                "params",
+            ):
                 edge_cases[param["name"]] = self.edge_analyzer.get_edge_cases_for_type(
                     param.get("type", "")
                 )
@@ -21036,9 +21725,7 @@ class TestGenerator:
             # 엣지 케이스 분석
             edge_cases = {}
             for param in func.get("params", []):
-                edge_cases[param["name"]] = self.edge_analyzer.get_edge_cases_for_type(
-                    None
-                )
+                edge_cases[param["name"]] = self.edge_analyzer.get_edge_cases_for_type(None)
 
             # 검증 필드 체크
             validation_cases = {}
@@ -21381,7 +22068,9 @@ class TestGenerator:
             edge_cases = {}
             for param in func.get("params", []):
                 edge_cases[param["name"]] = self.edge_analyzer.get_edge_cases_for_type(
-                    param.get("type", )
+                    param.get(
+                        "type",
+                    )
                 )
 
             # 검증 필드 체크
@@ -22074,7 +22763,9 @@ class TestGenerator:
 
             # 검증 필드 체크
             validation_cases = {}
-            for param in func.get("params", ):
+            for param in func.get(
+                "params",
+            ):
                 validation_cases[param["name"]] = self.edge_analyzer.get_validation_cases(
                     param["name"]
                 )
@@ -22589,9 +23280,7 @@ class TestGenerator:
             # 검증 필드 체크
             validation_cases = {}
             for param in func.get("params", []):
-                validation_cases[param["name"]] = self.edge_analyzer.get_validation_cases(
-                    None
-                )
+                validation_cases[param["name"]] = self.edge_analyzer.get_validation_cases(None)
 
             # 파라미터 조합 생성
             combinations = self.param_generator.generate_combinations(func, edge_cases)
@@ -23196,7 +23885,9 @@ class TestGenerator:
                 )
 
             # 파라미터 조합 생성
-            combinations = self.param_generator.generate_combinations(func, )
+            combinations = self.param_generator.generate_combinations(
+                func,
+            )
             boundary_combos = self.param_generator.generate_boundary_combinations(func)
             all_combos = combinations + boundary_combos
 
@@ -24147,7 +24838,10 @@ class TestGenerator:
             all_combos = combinations + boundary_combos
 
             # 테스트 케이스 생성
-            test_cases = self._create_test_cases(func, all_combos, )
+            test_cases = self._create_test_cases(
+                func,
+                all_combos,
+            )
 
             # 파라미터화된 테스트 생성
             if test_cases:
@@ -24921,7 +25615,7 @@ class TestGenerator:
                     function_name=func["name"],
                     params=list(func.get("params", [{}])[0].keys()) if func.get("params") else [],
                     test_cases=test_cases,
-                    )
+                )
                 parameterized_tests.append(param_test)
 
             # 일반 테스트 함수 생성
@@ -25520,7 +26214,15 @@ class TestGenerator:
             if test_cases:
                 param_test = ParameterizedTest(
                     function_name=func["name"],
-                    params=list(func.get("params", )[0].keys()) if func.get("params") else [],
+                    params=(
+                        list(
+                            func.get(
+                                "params",
+                            )[0].keys()
+                        )
+                        if func.get("params")
+                        else []
+                    ),
                     test_cases=test_cases,
                     fixture_deps=[m.target for m in mocks if self._is_relevant_mock(m, func)],
                 )
@@ -25606,7 +26308,9 @@ class TestGenerator:
             if test_cases:
                 param_test = ParameterizedTest(
                     function_name=func["name"],
-                    params=list(func.get("XXparamsXX", [{}])[0].keys()) if func.get("params") else [],
+                    params=(
+                        list(func.get("XXparamsXX", [{}])[0].keys()) if func.get("params") else []
+                    ),
                     test_cases=test_cases,
                     fixture_deps=[m.target for m in mocks if self._is_relevant_mock(m, func)],
                 )
@@ -25950,7 +26654,9 @@ class TestGenerator:
             if test_cases:
                 param_test = ParameterizedTest(
                     function_name=func["name"],
-                    params=list(func.get("params", [{}])[0].keys()) if func.get("XXparamsXX") else [],
+                    params=(
+                        list(func.get("params", [{}])[0].keys()) if func.get("XXparamsXX") else []
+                    ),
                     test_cases=test_cases,
                     fixture_deps=[m.target for m in mocks if self._is_relevant_mock(m, func)],
                 )
@@ -26382,7 +27088,13 @@ class TestGenerator:
                     function_name=func["name"],
                     params=list(func.get("params", [{}])[0].keys()) if func.get("params") else [],
                     test_cases=test_cases,
-                    fixture_deps=[m.target for m in mocks if self._is_relevant_mock(m, )],
+                    fixture_deps=[
+                        m.target
+                        for m in mocks
+                        if self._is_relevant_mock(
+                            m,
+                        )
+                    ],
                 )
                 parameterized_tests.append(param_test)
 
@@ -27075,7 +27787,10 @@ class TestGenerator:
                 parameterized_tests.append(param_test)
 
             # 일반 테스트 함수 생성
-            test_func = self._generate_test_function(func, test_cases, )
+            test_func = self._generate_test_function(
+                func,
+                test_cases,
+            )
             test_functions.append(test_func)
             coverage_targets.append(func["name"])
 
@@ -28201,7 +28916,10 @@ class TestGenerator:
         test_file = self._get_test_file_path(source_file)
 
         # 5. import 문 생성
-        imports = self._generate_imports(source_code, mocks, )
+        imports = self._generate_imports(
+            source_code,
+            mocks,
+        )
 
         # 6. fixture 생성
         fixtures = self.mock_generator.generate_pytest_mock_fixtures(mocks)
@@ -29755,7 +30473,7 @@ class TestGenerator:
             test_functions=test_functions,
             parameterized_tests=parameterized_tests,
             mocks=mocks,
-            )
+        )
 
     @_mutmut_mutated(mutants_xǁTestGeneratorǁ_extract_functions__mutmut)
     def _extract_functions(self, source_code: str) -> list[dict[str, Any]]:
@@ -29826,7 +30544,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_orig(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_orig(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -29894,7 +30614,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_1(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_1(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = None
         tree = ast.parse(source_code)
@@ -29962,7 +30684,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_2(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_2(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = None
@@ -30030,7 +30754,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_3(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_3(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(None)
@@ -30098,7 +30824,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_4(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_4(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -30166,7 +30894,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_5(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_5(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -30234,7 +30964,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_6(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_6(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -30302,7 +31034,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_7(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_7(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -30370,7 +31104,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_8(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_8(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -30438,7 +31174,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_9(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_9(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -30506,7 +31244,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_10(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_10(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -30574,7 +31314,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_11(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_11(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -30642,7 +31384,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_12(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_12(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -30710,7 +31454,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_13(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_13(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -30778,7 +31524,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_14(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_14(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -30846,7 +31594,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_15(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_15(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -30914,7 +31664,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_16(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_16(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -30982,7 +31734,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_17(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_17(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -31050,7 +31804,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_18(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_18(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -31067,7 +31823,13 @@ class TestGenerator:
                 for i, arg in enumerate(args):
                     param_type = ""
                     if arg.annotation:
-                        param_type = ast.unparse(arg.annotation) if hasattr(ast, ) else ""
+                        param_type = (
+                            ast.unparse(arg.annotation)
+                            if hasattr(
+                                ast,
+                            )
+                            else ""
+                        )
 
                     # 기본값 확인 (뒤쪽부터 매핑)
                     default = None
@@ -31118,7 +31880,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_19(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_19(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -31135,7 +31899,9 @@ class TestGenerator:
                 for i, arg in enumerate(args):
                     param_type = ""
                     if arg.annotation:
-                        param_type = ast.unparse(arg.annotation) if hasattr(ast, "XXunparseXX") else ""
+                        param_type = (
+                            ast.unparse(arg.annotation) if hasattr(ast, "XXunparseXX") else ""
+                        )
 
                     # 기본값 확인 (뒤쪽부터 매핑)
                     default = None
@@ -31186,7 +31952,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_20(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_20(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -31254,7 +32022,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_21(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_21(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -31271,7 +32041,9 @@ class TestGenerator:
                 for i, arg in enumerate(args):
                     param_type = ""
                     if arg.annotation:
-                        param_type = ast.unparse(arg.annotation) if hasattr(ast, "unparse") else "XXXX"
+                        param_type = (
+                            ast.unparse(arg.annotation) if hasattr(ast, "unparse") else "XXXX"
+                        )
 
                     # 기본값 확인 (뒤쪽부터 매핑)
                     default = None
@@ -31322,7 +32094,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_22(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_22(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -31390,7 +32164,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_23(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_23(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -31458,7 +32234,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_24(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_24(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -31526,7 +32304,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_25(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_25(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -31594,7 +32374,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_26(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_26(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -31662,7 +32444,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_27(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_27(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -31730,7 +32514,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_28(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_28(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -31796,7 +32582,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_29(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_29(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -31819,9 +32607,7 @@ class TestGenerator:
                     default = None
                     default_index = i - (num_args - num_defaults)
                     if default_index >= 0:
-                        default = (
-                            ast.unparse(None) if hasattr(ast, "unparse") else ""
-                        )
+                        default = ast.unparse(None) if hasattr(ast, "unparse") else ""
 
                     params.append(
                         {
@@ -31864,7 +32650,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_30(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_30(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -31932,7 +32720,145 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_31(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_31(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
+        """AST로 함수 추출"""
+        functions = []
+        tree = ast.parse(source_code)
+
+        for node in ast.walk(tree):
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                params = []
+                args = node.args.args
+                defaults = node.args.defaults
+                # defaults는 뒤쪽 파라미터부터 매핑됨
+                num_defaults = len(defaults)
+                num_args = len(args)
+
+                for i, arg in enumerate(args):
+                    param_type = ""
+                    if arg.annotation:
+                        param_type = ast.unparse(arg.annotation) if hasattr(ast, "unparse") else ""
+
+                    # 기본값 확인 (뒤쪽부터 매핑)
+                    default = None
+                    default_index = i - (num_args - num_defaults)
+                    if default_index >= 0:
+                        default = ast.unparse(defaults[default_index]) if hasattr(ast, None) else ""
+
+                    params.append(
+                        {
+                            "name": arg.arg,
+                            "type": param_type,
+                            "default": default,
+                        }
+                    )
+
+                # 반환 타입
+                return_type = ""
+                if node.returns:
+                    return_type = ast.unparse(node.returns) if hasattr(ast, "unparse") else ""
+
+                # docstring
+                docstring = ast.get_docstring(node)
+
+                # 데코레이터
+                decorators = []
+                for dec in node.decorator_list:
+                    if hasattr(ast, "unparse"):
+                        decorators.append(ast.unparse(dec))
+
+                functions.append(
+                    {
+                        "name": node.name,
+                        "params": params,
+                        "return_type": return_type,
+                        "docstring": docstring,
+                        "decorators": decorators,
+                        "is_async": isinstance(node, ast.AsyncFunctionDef),
+                        "lineno": node.lineno,
+                        "source": (
+                            ast.get_source_segment(source_code, node)
+                            if hasattr(ast, "get_source_segment")
+                            else ""
+                        ),
+                    }
+                )
+
+        return functions
+
+    def xǁTestGeneratorǁ_extract_functions__mutmut_32(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
+        """AST로 함수 추출"""
+        functions = []
+        tree = ast.parse(source_code)
+
+        for node in ast.walk(tree):
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                params = []
+                args = node.args.args
+                defaults = node.args.defaults
+                # defaults는 뒤쪽 파라미터부터 매핑됨
+                num_defaults = len(defaults)
+                num_args = len(args)
+
+                for i, arg in enumerate(args):
+                    param_type = ""
+                    if arg.annotation:
+                        param_type = ast.unparse(arg.annotation) if hasattr(ast, "unparse") else ""
+
+                    # 기본값 확인 (뒤쪽부터 매핑)
+                    default = None
+                    default_index = i - (num_args - num_defaults)
+                    if default_index >= 0:
+                        default = ast.unparse(defaults[default_index]) if hasattr("unparse") else ""
+
+                    params.append(
+                        {
+                            "name": arg.arg,
+                            "type": param_type,
+                            "default": default,
+                        }
+                    )
+
+                # 반환 타입
+                return_type = ""
+                if node.returns:
+                    return_type = ast.unparse(node.returns) if hasattr(ast, "unparse") else ""
+
+                # docstring
+                docstring = ast.get_docstring(node)
+
+                # 데코레이터
+                decorators = []
+                for dec in node.decorator_list:
+                    if hasattr(ast, "unparse"):
+                        decorators.append(ast.unparse(dec))
+
+                functions.append(
+                    {
+                        "name": node.name,
+                        "params": params,
+                        "return_type": return_type,
+                        "docstring": docstring,
+                        "decorators": decorators,
+                        "is_async": isinstance(node, ast.AsyncFunctionDef),
+                        "lineno": node.lineno,
+                        "source": (
+                            ast.get_source_segment(source_code, node)
+                            if hasattr(ast, "get_source_segment")
+                            else ""
+                        ),
+                    }
+                )
+
+        return functions
+
+    def xǁTestGeneratorǁ_extract_functions__mutmut_33(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -31956,7 +32882,11 @@ class TestGenerator:
                     default_index = i - (num_args - num_defaults)
                     if default_index >= 0:
                         default = (
-                            ast.unparse(defaults[default_index]) if hasattr(ast, None) else ""
+                            ast.unparse(defaults[default_index])
+                            if hasattr(
+                                ast,
+                            )
+                            else ""
                         )
 
                     params.append(
@@ -32000,7 +32930,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_32(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_34(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -32024,7 +32956,9 @@ class TestGenerator:
                     default_index = i - (num_args - num_defaults)
                     if default_index >= 0:
                         default = (
-                            ast.unparse(defaults[default_index]) if hasattr("unparse") else ""
+                            ast.unparse(defaults[default_index])
+                            if hasattr(ast, "XXunparseXX")
+                            else ""
                         )
 
                     params.append(
@@ -32068,143 +33002,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_33(self, source_code: str) -> list[dict[str, Any]]:
-        """AST로 함수 추출"""
-        functions = []
-        tree = ast.parse(source_code)
-
-        for node in ast.walk(tree):
-            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
-                params = []
-                args = node.args.args
-                defaults = node.args.defaults
-                # defaults는 뒤쪽 파라미터부터 매핑됨
-                num_defaults = len(defaults)
-                num_args = len(args)
-
-                for i, arg in enumerate(args):
-                    param_type = ""
-                    if arg.annotation:
-                        param_type = ast.unparse(arg.annotation) if hasattr(ast, "unparse") else ""
-
-                    # 기본값 확인 (뒤쪽부터 매핑)
-                    default = None
-                    default_index = i - (num_args - num_defaults)
-                    if default_index >= 0:
-                        default = (
-                            ast.unparse(defaults[default_index]) if hasattr(ast, ) else ""
-                        )
-
-                    params.append(
-                        {
-                            "name": arg.arg,
-                            "type": param_type,
-                            "default": default,
-                        }
-                    )
-
-                # 반환 타입
-                return_type = ""
-                if node.returns:
-                    return_type = ast.unparse(node.returns) if hasattr(ast, "unparse") else ""
-
-                # docstring
-                docstring = ast.get_docstring(node)
-
-                # 데코레이터
-                decorators = []
-                for dec in node.decorator_list:
-                    if hasattr(ast, "unparse"):
-                        decorators.append(ast.unparse(dec))
-
-                functions.append(
-                    {
-                        "name": node.name,
-                        "params": params,
-                        "return_type": return_type,
-                        "docstring": docstring,
-                        "decorators": decorators,
-                        "is_async": isinstance(node, ast.AsyncFunctionDef),
-                        "lineno": node.lineno,
-                        "source": (
-                            ast.get_source_segment(source_code, node)
-                            if hasattr(ast, "get_source_segment")
-                            else ""
-                        ),
-                    }
-                )
-
-        return functions
-
-    def xǁTestGeneratorǁ_extract_functions__mutmut_34(self, source_code: str) -> list[dict[str, Any]]:
-        """AST로 함수 추출"""
-        functions = []
-        tree = ast.parse(source_code)
-
-        for node in ast.walk(tree):
-            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
-                params = []
-                args = node.args.args
-                defaults = node.args.defaults
-                # defaults는 뒤쪽 파라미터부터 매핑됨
-                num_defaults = len(defaults)
-                num_args = len(args)
-
-                for i, arg in enumerate(args):
-                    param_type = ""
-                    if arg.annotation:
-                        param_type = ast.unparse(arg.annotation) if hasattr(ast, "unparse") else ""
-
-                    # 기본값 확인 (뒤쪽부터 매핑)
-                    default = None
-                    default_index = i - (num_args - num_defaults)
-                    if default_index >= 0:
-                        default = (
-                            ast.unparse(defaults[default_index]) if hasattr(ast, "XXunparseXX") else ""
-                        )
-
-                    params.append(
-                        {
-                            "name": arg.arg,
-                            "type": param_type,
-                            "default": default,
-                        }
-                    )
-
-                # 반환 타입
-                return_type = ""
-                if node.returns:
-                    return_type = ast.unparse(node.returns) if hasattr(ast, "unparse") else ""
-
-                # docstring
-                docstring = ast.get_docstring(node)
-
-                # 데코레이터
-                decorators = []
-                for dec in node.decorator_list:
-                    if hasattr(ast, "unparse"):
-                        decorators.append(ast.unparse(dec))
-
-                functions.append(
-                    {
-                        "name": node.name,
-                        "params": params,
-                        "return_type": return_type,
-                        "docstring": docstring,
-                        "decorators": decorators,
-                        "is_async": isinstance(node, ast.AsyncFunctionDef),
-                        "lineno": node.lineno,
-                        "source": (
-                            ast.get_source_segment(source_code, node)
-                            if hasattr(ast, "get_source_segment")
-                            else ""
-                        ),
-                    }
-                )
-
-        return functions
-
-    def xǁTestGeneratorǁ_extract_functions__mutmut_35(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_35(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -32272,7 +33072,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_36(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_36(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -32296,7 +33098,9 @@ class TestGenerator:
                     default_index = i - (num_args - num_defaults)
                     if default_index >= 0:
                         default = (
-                            ast.unparse(defaults[default_index]) if hasattr(ast, "unparse") else "XXXX"
+                            ast.unparse(defaults[default_index])
+                            if hasattr(ast, "unparse")
+                            else "XXXX"
                         )
 
                     params.append(
@@ -32340,7 +33144,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_37(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_37(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -32367,9 +33173,7 @@ class TestGenerator:
                             ast.unparse(defaults[default_index]) if hasattr(ast, "unparse") else ""
                         )
 
-                    params.append(
-                        None
-                    )
+                    params.append(None)
 
                 # 반환 타입
                 return_type = ""
@@ -32404,7 +33208,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_38(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_38(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -32472,7 +33278,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_39(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_39(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -32540,7 +33348,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_40(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_40(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -32608,7 +33418,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_41(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_41(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -32676,7 +33488,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_42(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_42(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -32744,7 +33558,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_43(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_43(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -32812,7 +33628,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_44(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_44(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -32880,7 +33698,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_45(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_45(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -32948,7 +33768,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_46(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_46(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -33016,7 +33838,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_47(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_47(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -33084,7 +33908,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_48(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_48(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -33152,7 +33978,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_49(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_49(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -33220,7 +34048,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_50(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_50(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -33288,7 +34118,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_51(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_51(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -33326,7 +34158,13 @@ class TestGenerator:
                 # 반환 타입
                 return_type = ""
                 if node.returns:
-                    return_type = ast.unparse(node.returns) if hasattr(ast, ) else ""
+                    return_type = (
+                        ast.unparse(node.returns)
+                        if hasattr(
+                            ast,
+                        )
+                        else ""
+                    )
 
                 # docstring
                 docstring = ast.get_docstring(node)
@@ -33356,7 +34194,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_52(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_52(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -33424,7 +34264,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_53(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_53(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -33492,7 +34334,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_54(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_54(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -33560,7 +34404,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_55(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_55(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -33628,7 +34474,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_56(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_56(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -33696,7 +34544,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_57(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_57(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -33764,7 +34614,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_58(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_58(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -33832,7 +34684,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_59(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_59(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -33900,7 +34754,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_60(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_60(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -33968,7 +34824,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_61(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_61(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -34014,7 +34872,9 @@ class TestGenerator:
                 # 데코레이터
                 decorators = []
                 for dec in node.decorator_list:
-                    if hasattr(ast, ):
+                    if hasattr(
+                        ast,
+                    ):
                         decorators.append(ast.unparse(dec))
 
                 functions.append(
@@ -34036,7 +34896,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_62(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_62(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -34104,7 +34966,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_63(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_63(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -34172,7 +35036,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_64(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_64(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -34240,7 +35106,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_65(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_65(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -34308,7 +35176,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_66(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_66(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -34357,13 +35227,13 @@ class TestGenerator:
                     if hasattr(ast, "unparse"):
                         decorators.append(ast.unparse(dec))
 
-                functions.append(
-                    None
-                )
+                functions.append(None)
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_67(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_67(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -34431,7 +35301,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_68(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_68(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -34499,7 +35371,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_69(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_69(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -34567,7 +35441,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_70(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_70(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -34635,7 +35511,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_71(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_71(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -34703,7 +35581,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_72(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_72(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -34771,7 +35651,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_73(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_73(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -34839,7 +35721,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_74(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_74(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -34907,7 +35791,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_75(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_75(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -34975,7 +35861,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_76(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_76(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -35043,7 +35931,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_77(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_77(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -35111,7 +36001,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_78(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_78(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -35179,7 +36071,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_79(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_79(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -35247,7 +36141,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_80(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_80(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -35315,7 +36211,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_81(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_81(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -35383,7 +36281,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_82(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_82(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -35451,7 +36351,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_83(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_83(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -35519,7 +36421,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_84(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_84(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -35587,7 +36491,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_85(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_85(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -35655,7 +36561,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_86(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_86(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -35714,7 +36622,9 @@ class TestGenerator:
                         "is_async": isinstance(node, ast.AsyncFunctionDef),
                         "lineno": node.lineno,
                         "source": (
-                            ast.get_source_segment(source_code, )
+                            ast.get_source_segment(
+                                source_code,
+                            )
                             if hasattr(ast, "get_source_segment")
                             else ""
                         ),
@@ -35723,7 +36633,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_87(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_87(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -35791,7 +36703,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_88(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_88(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -35850,16 +36764,16 @@ class TestGenerator:
                         "is_async": isinstance(node, ast.AsyncFunctionDef),
                         "lineno": node.lineno,
                         "source": (
-                            ast.get_source_segment(source_code, node)
-                            if hasattr(ast, None)
-                            else ""
+                            ast.get_source_segment(source_code, node) if hasattr(ast, None) else ""
                         ),
                     }
                 )
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_89(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_89(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -35927,7 +36841,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_90(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_90(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -35987,7 +36903,9 @@ class TestGenerator:
                         "lineno": node.lineno,
                         "source": (
                             ast.get_source_segment(source_code, node)
-                            if hasattr(ast, )
+                            if hasattr(
+                                ast,
+                            )
                             else ""
                         ),
                     }
@@ -35995,7 +36913,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_91(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_91(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -36063,7 +36983,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_92(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_92(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -36131,7 +37053,9 @@ class TestGenerator:
 
         return functions
 
-    def xǁTestGeneratorǁ_extract_functions__mutmut_93(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_functions__mutmut_93(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 함수 추출"""
         functions = []
         tree = ast.parse(source_code)
@@ -36225,7 +37149,9 @@ class TestGenerator:
 
         return classes
 
-    def xǁTestGeneratorǁ_extract_classes__mutmut_orig(self, source_code: str) -> list[dict[str, Any]]:
+    def xǁTestGeneratorǁ_extract_classes__mutmut_orig(
+        self, source_code: str
+    ) -> list[dict[str, Any]]:
         """AST로 클래스 추출"""
         classes = []
         tree = ast.parse(source_code)
@@ -36412,9 +37338,7 @@ class TestGenerator:
                     if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):
                         methods.append(item.name)
 
-                classes.append(
-                    None
-                )
+                classes.append(None)
 
         return classes
 
@@ -36634,9 +37558,7 @@ class TestGenerator:
                     {
                         "name": node.name,
                         "methods": methods,
-                        "bases": [
-                            ast.unparse(b) if hasattr(ast, None) else "" for b in node.bases
-                        ],
+                        "bases": [ast.unparse(b) if hasattr(ast, None) else "" for b in node.bases],
                         "lineno": node.lineno,
                     }
                 )
@@ -36659,9 +37581,7 @@ class TestGenerator:
                     {
                         "name": node.name,
                         "methods": methods,
-                        "bases": [
-                            ast.unparse(b) if hasattr("unparse") else "" for b in node.bases
-                        ],
+                        "bases": [ast.unparse(b) if hasattr("unparse") else "" for b in node.bases],
                         "lineno": node.lineno,
                     }
                 )
@@ -36685,7 +37605,14 @@ class TestGenerator:
                         "name": node.name,
                         "methods": methods,
                         "bases": [
-                            ast.unparse(b) if hasattr(ast, ) else "" for b in node.bases
+                            (
+                                ast.unparse(b)
+                                if hasattr(
+                                    ast,
+                                )
+                                else ""
+                            )
+                            for b in node.bases
                         ],
                         "lineno": node.lineno,
                     }
@@ -36710,7 +37637,8 @@ class TestGenerator:
                         "name": node.name,
                         "methods": methods,
                         "bases": [
-                            ast.unparse(b) if hasattr(ast, "XXunparseXX") else "" for b in node.bases
+                            ast.unparse(b) if hasattr(ast, "XXunparseXX") else ""
+                            for b in node.bases
                         ],
                         "lineno": node.lineno,
                     }
@@ -36760,7 +37688,8 @@ class TestGenerator:
                         "name": node.name,
                         "methods": methods,
                         "bases": [
-                            ast.unparse(b) if hasattr(ast, "unparse") else "XXXX" for b in node.bases
+                            ast.unparse(b) if hasattr(ast, "unparse") else "XXXX"
+                            for b in node.bases
                         ],
                         "lineno": node.lineno,
                     }
@@ -37604,9 +38533,7 @@ class TestGenerator:
                                 marks_set.add("pytest.mark.xfail")
                             break
 
-            test_cases.append(
-                None
-            )
+            test_cases.append(None)
 
         return test_cases[:30]  # 최대 30개
 
@@ -38055,7 +38982,7 @@ class TestGenerator:
                     inputs=combo,
                     expected=expected,
                     raises=raises,
-                    )
+                )
             )
 
         return test_cases[:30]  # 최대 30개
@@ -39046,7 +39973,7 @@ class TestGenerator:
     ) -> str:
         """단일 테스트 함수 코드 생성"""
         func_name = func["name"]
-        is_async = func.get("is_async", None)
+        is_async = func.get("is_async")
 
         # 파라미터화된 테스트가 있으면 pytest.mark.parametrize 사용
         if test_cases:
@@ -39260,7 +40187,9 @@ class TestGenerator:
     ) -> str:
         """단일 테스트 함수 코드 생성"""
         func_name = func["name"]
-        is_async = func.get("is_async", )
+        is_async = func.get(
+            "is_async",
+        )
 
         # 파라미터화된 테스트가 있으면 pytest.mark.parametrize 사용
         if test_cases:
@@ -41201,7 +42130,9 @@ class TestGenerator:
             # fixture 파라미터 추가 (mock fixture들)
             fixture_params = []
             for mock in mocks:
-                if self._is_relevant_mock(mock, ):
+                if self._is_relevant_mock(
+                    mock,
+                ):
                     fixture_name = "mock_" + mock.target.replace(".", "_")[-30:]
                     fixture_params.append(fixture_name)
 
@@ -42058,7 +42989,12 @@ class TestGenerator:
             fixture_params = []
             for mock in mocks:
                 if self._is_relevant_mock(mock, func):
-                    fixture_name = "mock_" + mock.target.replace(".", )[-30:]
+                    fixture_name = (
+                        "mock_"
+                        + mock.target.replace(
+                            ".",
+                        )[-30:]
+                    )
                     fixture_params.append(fixture_name)
 
             # parametrize에는 실제 함수 파라미터만 포함
@@ -46706,7 +47642,9 @@ class TestGenerator:
             if mocks:
                 # 관련 모킹 fixture 사용 - async context manager 체인 모킹
                 for mock in mocks:
-                    if self._is_relevant_mock(mock, ):
+                    if self._is_relevant_mock(
+                        mock,
+                    ):
                         fixture_name = "mock_" + mock.target.replace(".", "_")[-30:]
                         if "AsyncClient" in mock.target:
                             # AsyncClient 모킹: 클래스를 패치하므로 async with 필요 없음
@@ -47563,7 +48501,12 @@ class TestGenerator:
                 # 관련 모킹 fixture 사용 - async context manager 체인 모킹
                 for mock in mocks:
                     if self._is_relevant_mock(mock, func):
-                        fixture_name = "mock_" + mock.target.replace(".", )[-30:]
+                        fixture_name = (
+                            "mock_"
+                            + mock.target.replace(
+                                ".",
+                            )[-30:]
+                        )
                         if "AsyncClient" in mock.target:
                             # AsyncClient 모킹: 클래스를 패치하므로 async with 필요 없음
                             # mock fixture는 자동으로 적용됨 (pytest-mock)
@@ -48530,9 +49473,7 @@ class TestGenerator:
                         if "AsyncClient" in mock.target:
                             # AsyncClient 모킹: 클래스를 패치하므로 async with 필요 없음
                             # mock fixture는 자동으로 적용됨 (pytest-mock)
-                            body_lines.append(
-                                None
-                            )
+                            body_lines.append(None)
                             continue
                         body_lines.append(
                             f"    # {mock.target} is mocked via {fixture_name} fixture"
@@ -48748,9 +49689,7 @@ class TestGenerator:
                                 f"    # {mock.target} is mocked via {fixture_name} fixture"
                             )
                             continue
-                        body_lines.append(
-                            None
-                        )
+                        body_lines.append(None)
 
             if not any("async with" in line for line in body_lines):
                 body_lines.append(
@@ -49395,9 +50334,7 @@ class TestGenerator:
                         )
 
             if not any("async with" in line for line in body_lines):
-                body_lines.append(
-                    None
-                )
+                body_lines.append(None)
             body_lines.append("    assert result is not None  # TODO: 구체적 검증 추가")
 
             test_code += "\n" + "\n".join(f"    {line}" for line in body_lines)
@@ -49502,9 +50439,7 @@ class TestGenerator:
                         )
 
             if not any("async with" in line for line in body_lines):
-                body_lines.append(
-                    f"    result = {await_prefix}{func_name}({', '.join(None)})"
-                )
+                body_lines.append(f"    result = {await_prefix}{func_name}({', '.join(None)})")
             body_lines.append("    assert result is not None  # TODO: 구체적 검증 추가")
 
             test_code += "\n" + "\n".join(f"    {line}" for line in body_lines)
@@ -51687,7 +52622,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_orig(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_orig(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -51714,7 +52651,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_1(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_1(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = None
@@ -51741,7 +52680,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_2(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_2(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get(None, "")
@@ -51768,10 +52709,12 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_3(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_3(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
-        func_source = func.get("source", None)
+        func_source = func.get("source")
         target = mock.target
 
         # httpx.AsyncClient가 함수에서 사용되는지 확인
@@ -51795,7 +52738,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_4(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_4(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("")
@@ -51822,10 +52767,14 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_5(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_5(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
-        func_source = func.get("source", )
+        func_source = func.get(
+            "source",
+        )
         target = mock.target
 
         # httpx.AsyncClient가 함수에서 사용되는지 확인
@@ -51849,7 +52798,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_6(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_6(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("XXsourceXX", "")
@@ -51876,7 +52827,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_7(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_7(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("SOURCE", "")
@@ -51903,7 +52856,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_8(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_8(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "XXXX")
@@ -51930,7 +52885,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_9(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_9(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -51957,7 +52914,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_10(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_10(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -51984,7 +52943,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_11(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_11(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52011,7 +52972,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_12(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_12(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52038,7 +53001,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_13(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_13(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52065,7 +53030,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_14(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_14(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52092,7 +53059,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_15(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_15(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52119,7 +53088,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_16(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_16(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52146,7 +53117,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_17(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_17(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52173,7 +53146,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_18(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_18(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52200,7 +53175,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_19(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_19(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52227,7 +53204,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_20(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_20(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52254,7 +53233,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_21(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_21(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52281,7 +53262,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_22(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_22(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52308,7 +53291,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_23(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_23(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52335,7 +53320,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_24(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_24(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52362,7 +53349,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_25(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_25(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52389,7 +53378,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_26(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_26(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52416,7 +53407,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_27(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_27(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52443,7 +53436,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_28(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_28(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52470,7 +53465,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_29(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_29(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52497,7 +53494,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_30(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_30(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52524,7 +53523,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_31(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_31(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52551,7 +53552,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_32(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_32(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52578,7 +53581,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_33(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_33(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52605,7 +53610,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_34(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_34(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52632,7 +53639,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_35(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_35(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52659,7 +53668,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_36(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_36(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52686,7 +53697,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_37(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_37(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52713,7 +53726,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_38(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_38(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52740,7 +53755,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_39(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_39(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52767,7 +53784,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_40(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_40(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52794,7 +53813,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_41(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_41(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52821,7 +53842,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_42(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_42(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52848,7 +53871,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_43(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_43(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52875,7 +53900,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_44(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_44(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52902,7 +53929,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_45(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_45(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52929,7 +53958,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_46(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_46(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -52956,7 +53987,9 @@ class TestGenerator:
 
         return False
 
-    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_47(self, mock: MockSpec, func: dict[str, Any]) -> bool:
+    def xǁTestGeneratorǁ_is_relevant_mock__mutmut_47(
+        self, mock: MockSpec, func: dict[str, Any]
+    ) -> bool:
         """함수에 관련된 모킹인지 확인"""
         # 함수 본문에서 모킹 대상 사용 여부 확인
         func_source = func.get("source", "")
@@ -54143,7 +55176,9 @@ class TestGenerator:
     def xǁTestGeneratorǁwrite_test_file__mutmut_6(self, module: GeneratedTestModule) -> Path:
         """테스트 파일 작성"""
         test_path = self.workspace / module.test_file
-        test_path.parent.mkdir(parents=True, )
+        test_path.parent.mkdir(
+            parents=True,
+        )
 
         content = self._render_test_module(module)
         test_path.write_text(content, encoding="utf-8")
@@ -54226,7 +55261,9 @@ class TestGenerator:
         test_path.parent.mkdir(parents=True, exist_ok=True)
 
         content = self._render_test_module(module)
-        test_path.write_text(content, )
+        test_path.write_text(
+            content,
+        )
         log.info(f"테스트 파일 생성: {test_path}")
         return test_path
 
@@ -54698,574 +55735,575 @@ class TestGenerator:
 
         return "XX\nXX".join(lines)
 
-mutants_xǁTestGeneratorǁ__init____mutmut['_mutmut_orig'] = TestGenerator.xǁTestGeneratorǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ__init____mutmut['xǁTestGeneratorǁ__init____mutmut_1'] = TestGenerator.xǁTestGeneratorǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ__init____mutmut['xǁTestGeneratorǁ__init____mutmut_2'] = TestGenerator.xǁTestGeneratorǁ__init____mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ__init____mutmut['xǁTestGeneratorǁ__init____mutmut_3'] = TestGenerator.xǁTestGeneratorǁ__init____mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ__init____mutmut['xǁTestGeneratorǁ__init____mutmut_4'] = TestGenerator.xǁTestGeneratorǁ__init____mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ__init____mutmut['xǁTestGeneratorǁ__init____mutmut_5'] = TestGenerator.xǁTestGeneratorǁ__init____mutmut_5 # type: ignore # mutmut generated
 
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['_mutmut_orig'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_1'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_2'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_3'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_4'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_5'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_6'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_7'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_8'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_9'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_10'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_11'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_12'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_13'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_14'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_15'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_16'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_17'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_18'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_19'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_20'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_21'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_22'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_23'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_24'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_25'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_26'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_27'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_28'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_29'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_30'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_31'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_32'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_33'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_34'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_35'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_36'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_37'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_38'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_39'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_40'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_41'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_42'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_43'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_44'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_45'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_46'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_47'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_48'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_49'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_50'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_51'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_52'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_53'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_54'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_55'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_56'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_57'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_58'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_59'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_60'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_61'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_62'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_63'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_64'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_65'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_66'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_67'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_68'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_69'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_70'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_71'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_72'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_73'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_74'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_75'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_76'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_77'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_78'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_79'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_80'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_81'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_82'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_83'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_84'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_85'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_86'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_87'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_88'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_89'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_90'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_91'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_92'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_93'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_94'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_95'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_96'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_96 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_97'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_97 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_98'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_98 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_99'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_99 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_100'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_100 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_101'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_101 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_102'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_102 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_103'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_103 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_104'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_104 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_105'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_105 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_106'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_106 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_107'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_107 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_108'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_108 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_109'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_109 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_110'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_110 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_111'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_111 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_112'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_112 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_113'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_113 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_114'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_114 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_115'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_115 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_116'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_116 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_117'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_117 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_118'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_118 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_119'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_119 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_120'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_120 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_121'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_121 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_122'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_122 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_123'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_123 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_124'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_124 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_125'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_125 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_126'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_126 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_127'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_127 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_128'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_128 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_129'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_129 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_130'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_130 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_131'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_131 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_132'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_132 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_133'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_133 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_134'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_134 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_135'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_135 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_136'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_136 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_137'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_137 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut['xǁTestGeneratorǁgenerate_tests_for_file__mutmut_138'] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_138 # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ__init____mutmut["_mutmut_orig"] = TestGenerator.xǁTestGeneratorǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ__init____mutmut["xǁTestGeneratorǁ__init____mutmut_1"] = TestGenerator.xǁTestGeneratorǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ__init____mutmut["xǁTestGeneratorǁ__init____mutmut_2"] = TestGenerator.xǁTestGeneratorǁ__init____mutmut_2  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ__init____mutmut["xǁTestGeneratorǁ__init____mutmut_3"] = TestGenerator.xǁTestGeneratorǁ__init____mutmut_3  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ__init____mutmut["xǁTestGeneratorǁ__init____mutmut_4"] = TestGenerator.xǁTestGeneratorǁ__init____mutmut_4  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ__init____mutmut["xǁTestGeneratorǁ__init____mutmut_5"] = TestGenerator.xǁTestGeneratorǁ__init____mutmut_5  # type: ignore # mutmut generated
 
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['_mutmut_orig'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_1'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_2'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_3'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_4'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_5'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_6'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_7'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_8'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_9'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_10'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_11'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_12'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_13'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_14'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_15'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_16'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_17'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_18'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_19'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_20'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_21'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_22'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_23'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_24'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_25'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_26'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_27'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_28'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_29'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_30'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_31'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_32'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_33'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_34'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_35'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_36'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_37'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_38'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_39'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_40'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_41'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_42'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_43'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_44'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_45'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_46'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_47'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_48'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_49'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_50'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_51'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_52'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_53'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_54'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_55'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_56'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_57'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_58'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_59'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_60'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_61'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_62'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_63'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_64'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_65'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_66'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_67'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_68'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_69'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_70'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_71'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_72'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_73'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_74'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_75'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_76'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_77'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_78'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_79'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_80'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_81'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_82'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_83'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_84'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_85'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_86'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_87'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_88'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_89'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_90'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_91'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_92'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_functions__mutmut['xǁTestGeneratorǁ_extract_functions__mutmut_93'] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_93 # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["_mutmut_orig"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_1"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_2"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_3"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_4"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_5"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_6"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_7"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_8"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_9"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_10"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_11"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_12"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_13"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_14"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_15"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_16"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_17"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_18"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_19"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_20"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_21"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_22"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_23"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_24"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_25"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_26"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_27"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_28"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_29"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_30"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_31"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_32"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_33"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_34"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_35"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_36"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_37"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_38"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_39"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_40"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_41"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_42"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_43"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_44"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_45"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_46"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_47"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_48"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_49"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_50"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_51"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_52"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_53"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_54"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_55"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_56"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_57"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_58"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_59"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_60"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_61"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_62"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_63"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_64"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_65"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_66"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_67"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_68"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_69"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_70"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_71"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_72"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_73"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_74"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_75"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_76"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_77"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_78"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_79"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_80"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_81"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_82"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_83"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_84"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_85"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_86"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_87"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_88"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_89"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_90"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_91"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_92"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_93"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_94"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_95"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_96"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_96  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_97"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_97  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_98"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_98  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_99"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_99  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_100"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_100  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_101"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_101  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_102"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_102  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_103"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_103  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_104"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_104  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_105"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_105  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_106"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_106  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_107"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_107  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_108"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_108  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_109"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_109  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_110"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_110  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_111"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_111  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_112"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_112  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_113"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_113  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_114"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_114  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_115"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_115  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_116"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_116  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_117"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_117  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_118"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_118  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_119"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_119  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_120"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_120  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_121"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_121  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_122"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_122  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_123"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_123  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_124"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_124  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_125"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_125  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_126"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_126  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_127"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_127  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_128"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_128  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_129"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_129  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_130"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_130  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_131"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_131  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_132"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_132  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_133"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_133  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_134"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_134  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_135"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_135  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_136"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_136  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_137"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_137  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁgenerate_tests_for_file__mutmut["xǁTestGeneratorǁgenerate_tests_for_file__mutmut_138"] = TestGenerator.xǁTestGeneratorǁgenerate_tests_for_file__mutmut_138  # type: ignore # mutmut generated
 
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['_mutmut_orig'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_1'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_2'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_3'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_4'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_5'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_6'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_7'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_8'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_9'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_10'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_11'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_12'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_13'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_14'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_15'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_16'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_17'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_18'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_19'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_20'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_21'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_22'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_classes__mutmut['xǁTestGeneratorǁ_extract_classes__mutmut_23'] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_23 # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["_mutmut_orig"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_1"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_2"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_3"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_4"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_5"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_6"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_7"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_8"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_9"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_10"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_11"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_12"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_13"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_14"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_15"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_16"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_17"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_18"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_19"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_20"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_21"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_22"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_23"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_24"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_25"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_26"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_27"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_28"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_29"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_30"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_31"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_32"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_33"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_34"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_35"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_36"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_37"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_38"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_39"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_40"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_41"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_42"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_43"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_44"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_45"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_46"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_47"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_48"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_49"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_50"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_51"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_52"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_53"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_54"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_55"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_56"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_57"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_58"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_59"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_60"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_61"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_62"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_63"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_64"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_65"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_66"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_67"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_68"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_69"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_70"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_71"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_72"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_73"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_74"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_75"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_76"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_77"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_78"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_79"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_80"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_81"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_82"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_83"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_84"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_85"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_86"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_87"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_88"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_89"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_90"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_91"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_92"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_functions__mutmut["xǁTestGeneratorǁ_extract_functions__mutmut_93"] = TestGenerator.xǁTestGeneratorǁ_extract_functions__mutmut_93  # type: ignore # mutmut generated
 
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['_mutmut_orig'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_1'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_2'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_3'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_4'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_5'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_6'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_7'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_8'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_9'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_10'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_11'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_12'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_13'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_14'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_15'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_16'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_17'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_18'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_19'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_20'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_21'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_22'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_23'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_24'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_25'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_26'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_27'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_28'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_29'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_30'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_31'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_32'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_33'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_34'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_35'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_36'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_create_test_cases__mutmut['xǁTestGeneratorǁ_create_test_cases__mutmut_37'] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_37 # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["_mutmut_orig"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_1"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_2"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_3"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_4"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_5"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_6"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_7"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_8"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_9"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_10"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_11"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_12"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_13"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_14"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_15"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_16"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_17"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_18"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_19"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_20"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_21"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_22"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_classes__mutmut["xǁTestGeneratorǁ_extract_classes__mutmut_23"] = TestGenerator.xǁTestGeneratorǁ_extract_classes__mutmut_23  # type: ignore # mutmut generated
 
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['_mutmut_orig'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_1'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_2'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_3'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_4'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_5'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_6'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_7'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_8'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_9'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_10'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_11'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_12'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_13'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_14'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_15'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_16'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_17'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_18'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_19'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_20'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_21'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_22'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_23'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_24'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_25'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_26'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_27'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_28'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_29'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_30'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_31'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_32'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_33'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_34'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_35'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_36'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_37'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_38'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_39'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_40'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_41'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_42'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_43'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_44'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_45'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_46'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_47'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_48'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_49'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_50'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_51'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_52'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_53'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_54'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_55'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_56'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_57'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_58'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_59'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_60'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_61'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_62'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_63'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_64'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_65'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_66'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_67'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_68'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_69'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_70'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_71'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_72'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_73'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_74'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_75'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_76'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_77'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_78'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_79'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_80'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_81'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_82'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_83'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_84'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_85'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_86'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_87'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_88'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_89'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_90'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_91'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_92'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_93'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_94'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_95'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_96'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_96 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_97'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_97 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_98'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_98 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_99'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_99 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_100'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_100 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_101'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_101 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_102'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_102 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_103'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_103 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_104'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_104 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_105'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_105 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_106'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_106 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_107'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_107 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_108'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_108 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_109'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_109 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_110'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_110 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_111'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_111 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_112'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_112 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_113'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_113 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_114'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_114 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_115'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_115 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_116'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_116 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_117'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_117 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_118'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_118 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_119'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_119 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_120'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_120 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_121'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_121 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_122'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_122 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_test_function__mutmut['xǁTestGeneratorǁ_generate_test_function__mutmut_123'] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_123 # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["_mutmut_orig"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_1"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_2"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_3"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_4"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_5"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_6"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_7"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_8"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_9"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_10"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_11"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_12"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_13"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_14"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_15"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_16"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_17"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_18"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_19"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_20"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_21"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_22"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_23"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_24"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_25"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_26"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_27"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_28"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_29"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_30"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_31"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_32"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_33"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_34"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_35"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_36"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_create_test_cases__mutmut["xǁTestGeneratorǁ_create_test_cases__mutmut_37"] = TestGenerator.xǁTestGeneratorǁ_create_test_cases__mutmut_37  # type: ignore # mutmut generated
 
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['_mutmut_orig'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_1'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_2'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_3'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_4'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_5'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_6'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_7'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_8'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_9'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_10'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_11'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_12'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_13'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_14'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_15'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_16'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_17'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_18'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_19'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_20'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_21'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_22'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_23'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_24'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_25'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_26'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_27'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_28'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_29'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_30'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_31'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_32'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_33'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_34'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_35'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_36'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_37'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_38'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_39'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_40'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_41'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_42'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_43'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_44'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_45'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_46'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut['xǁTestGeneratorǁ_is_relevant_mock__mutmut_47'] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_47 # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["_mutmut_orig"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_1"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_2"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_3"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_4"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_5"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_6"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_7"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_8"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_9"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_10"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_11"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_12"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_13"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_14"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_15"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_16"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_17"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_18"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_19"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_20"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_21"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_22"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_23"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_24"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_25"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_26"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_27"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_28"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_29"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_30"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_31"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_32"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_33"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_34"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_35"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_36"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_37"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_38"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_39"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_40"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_41"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_42"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_43"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_44"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_45"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_46"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_47"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_48"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_49"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_50"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_51"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_52"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_53"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_54"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_55"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_56"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_57"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_58"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_59"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_60"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_61"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_62"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_63"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_64"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_65"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_66"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_67"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_68"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_69"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_70"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_71"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_72"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_73"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_74"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_75"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_76"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_77"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_78"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_79"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_80"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_81"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_82"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_83"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_84"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_85"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_86"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_87"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_88"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_89"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_90"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_91"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_92"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_93"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_94"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_95"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_96"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_96  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_97"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_97  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_98"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_98  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_99"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_99  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_100"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_100  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_101"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_101  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_102"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_102  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_103"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_103  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_104"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_104  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_105"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_105  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_106"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_106  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_107"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_107  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_108"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_108  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_109"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_109  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_110"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_110  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_111"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_111  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_112"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_112  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_113"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_113  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_114"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_114  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_115"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_115  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_116"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_116  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_117"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_117  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_118"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_118  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_119"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_119  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_120"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_120  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_121"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_121  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_122"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_122  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_test_function__mutmut["xǁTestGeneratorǁ_generate_test_function__mutmut_123"] = TestGenerator.xǁTestGeneratorǁ_generate_test_function__mutmut_123  # type: ignore # mutmut generated
 
-mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut['_mutmut_orig'] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut['xǁTestGeneratorǁ_get_test_file_path__mutmut_1'] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut['xǁTestGeneratorǁ_get_test_file_path__mutmut_2'] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut['xǁTestGeneratorǁ_get_test_file_path__mutmut_3'] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut['xǁTestGeneratorǁ_get_test_file_path__mutmut_4'] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut['xǁTestGeneratorǁ_get_test_file_path__mutmut_5'] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut['xǁTestGeneratorǁ_get_test_file_path__mutmut_6'] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut['xǁTestGeneratorǁ_get_test_file_path__mutmut_7'] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut['xǁTestGeneratorǁ_get_test_file_path__mutmut_8'] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut['xǁTestGeneratorǁ_get_test_file_path__mutmut_9'] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut['xǁTestGeneratorǁ_get_test_file_path__mutmut_10'] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_10 # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["_mutmut_orig"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_1"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_2"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_3"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_4"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_5"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_6"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_7"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_8"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_9"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_10"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_11"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_12"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_13"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_14"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_15"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_16"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_17"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_18"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_19"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_20"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_21"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_22"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_23"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_24"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_25"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_26"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_27"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_28"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_29"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_30"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_31"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_32"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_33"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_34"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_35"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_36"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_37"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_38"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_39"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_40"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_41"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_42"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_43"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_44"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_45"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_46"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_is_relevant_mock__mutmut["xǁTestGeneratorǁ_is_relevant_mock__mutmut_47"] = TestGenerator.xǁTestGeneratorǁ_is_relevant_mock__mutmut_47  # type: ignore # mutmut generated
 
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['_mutmut_orig'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_1'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_2'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_3'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_4'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_5'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_6'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_7'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_8'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_9'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_10'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_11'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_12'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_13'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_14'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_15'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_16'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_17'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_18'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_generate_imports__mutmut['xǁTestGeneratorǁ_generate_imports__mutmut_19'] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_19 # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut["_mutmut_orig"] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut["xǁTestGeneratorǁ_get_test_file_path__mutmut_1"] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut["xǁTestGeneratorǁ_get_test_file_path__mutmut_2"] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut["xǁTestGeneratorǁ_get_test_file_path__mutmut_3"] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut["xǁTestGeneratorǁ_get_test_file_path__mutmut_4"] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut["xǁTestGeneratorǁ_get_test_file_path__mutmut_5"] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut["xǁTestGeneratorǁ_get_test_file_path__mutmut_6"] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut["xǁTestGeneratorǁ_get_test_file_path__mutmut_7"] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut["xǁTestGeneratorǁ_get_test_file_path__mutmut_8"] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut["xǁTestGeneratorǁ_get_test_file_path__mutmut_9"] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_get_test_file_path__mutmut["xǁTestGeneratorǁ_get_test_file_path__mutmut_10"] = TestGenerator.xǁTestGeneratorǁ_get_test_file_path__mutmut_10  # type: ignore # mutmut generated
 
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['_mutmut_orig'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_1'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_2'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_3'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_4'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_5'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_6'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_7'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_8'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_9'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_10'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_11'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_12'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_13'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_14'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_15'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_16'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_17'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut['xǁTestGeneratorǁ_extract_source_imports__mutmut_18'] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_18 # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["_mutmut_orig"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_1"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_2"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_3"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_4"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_5"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_6"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_7"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_8"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_9"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_10"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_11"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_12"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_13"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_14"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_15"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_16"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_17"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_18"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_generate_imports__mutmut["xǁTestGeneratorǁ_generate_imports__mutmut_19"] = TestGenerator.xǁTestGeneratorǁ_generate_imports__mutmut_19  # type: ignore # mutmut generated
 
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['_mutmut_orig'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_1'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_2'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_3'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_4'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_5'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_6'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_7'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_8'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_9'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_10'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_11'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_12'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_13'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_14'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_15'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_16'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁwrite_test_file__mutmut['xǁTestGeneratorǁwrite_test_file__mutmut_17'] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_17 # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["_mutmut_orig"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_1"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_2"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_3"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_4"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_5"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_6"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_7"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_8"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_9"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_10"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_11"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_12"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_13"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_14"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_15"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_16"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_17"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_extract_source_imports__mutmut["xǁTestGeneratorǁ_extract_source_imports__mutmut_18"] = TestGenerator.xǁTestGeneratorǁ_extract_source_imports__mutmut_18  # type: ignore # mutmut generated
 
-mutants_xǁTestGeneratorǁ_render_test_module__mutmut['_mutmut_orig'] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_render_test_module__mutmut['xǁTestGeneratorǁ_render_test_module__mutmut_1'] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_render_test_module__mutmut['xǁTestGeneratorǁ_render_test_module__mutmut_2'] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_render_test_module__mutmut['xǁTestGeneratorǁ_render_test_module__mutmut_3'] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_render_test_module__mutmut['xǁTestGeneratorǁ_render_test_module__mutmut_4'] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_render_test_module__mutmut['xǁTestGeneratorǁ_render_test_module__mutmut_5'] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_render_test_module__mutmut['xǁTestGeneratorǁ_render_test_module__mutmut_6'] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_render_test_module__mutmut['xǁTestGeneratorǁ_render_test_module__mutmut_7'] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_render_test_module__mutmut['xǁTestGeneratorǁ_render_test_module__mutmut_8'] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_render_test_module__mutmut['xǁTestGeneratorǁ_render_test_module__mutmut_9'] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_render_test_module__mutmut['xǁTestGeneratorǁ_render_test_module__mutmut_10'] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_render_test_module__mutmut['xǁTestGeneratorǁ_render_test_module__mutmut_11'] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_render_test_module__mutmut['xǁTestGeneratorǁ_render_test_module__mutmut_12'] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_render_test_module__mutmut['xǁTestGeneratorǁ_render_test_module__mutmut_13'] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_render_test_module__mutmut['xǁTestGeneratorǁ_render_test_module__mutmut_14'] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁTestGeneratorǁ_render_test_module__mutmut['xǁTestGeneratorǁ_render_test_module__mutmut_15'] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_15 # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["_mutmut_orig"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_1"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_2"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_3"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_4"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_5"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_6"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_7"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_8"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_9"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_10"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_11"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_12"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_13"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_14"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_15"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_16"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁwrite_test_file__mutmut["xǁTestGeneratorǁwrite_test_file__mutmut_17"] = TestGenerator.xǁTestGeneratorǁwrite_test_file__mutmut_17  # type: ignore # mutmut generated
+
+mutants_xǁTestGeneratorǁ_render_test_module__mutmut["_mutmut_orig"] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_render_test_module__mutmut["xǁTestGeneratorǁ_render_test_module__mutmut_1"] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_render_test_module__mutmut["xǁTestGeneratorǁ_render_test_module__mutmut_2"] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_render_test_module__mutmut["xǁTestGeneratorǁ_render_test_module__mutmut_3"] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_render_test_module__mutmut["xǁTestGeneratorǁ_render_test_module__mutmut_4"] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_render_test_module__mutmut["xǁTestGeneratorǁ_render_test_module__mutmut_5"] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_render_test_module__mutmut["xǁTestGeneratorǁ_render_test_module__mutmut_6"] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_render_test_module__mutmut["xǁTestGeneratorǁ_render_test_module__mutmut_7"] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_render_test_module__mutmut["xǁTestGeneratorǁ_render_test_module__mutmut_8"] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_render_test_module__mutmut["xǁTestGeneratorǁ_render_test_module__mutmut_9"] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_render_test_module__mutmut["xǁTestGeneratorǁ_render_test_module__mutmut_10"] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_render_test_module__mutmut["xǁTestGeneratorǁ_render_test_module__mutmut_11"] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_render_test_module__mutmut["xǁTestGeneratorǁ_render_test_module__mutmut_12"] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_render_test_module__mutmut["xǁTestGeneratorǁ_render_test_module__mutmut_13"] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_render_test_module__mutmut["xǁTestGeneratorǁ_render_test_module__mutmut_14"] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁTestGeneratorǁ_render_test_module__mutmut["xǁTestGeneratorǁ_render_test_module__mutmut_15"] = TestGenerator.xǁTestGeneratorǁ_render_test_module__mutmut_15  # type: ignore # mutmut generated
 mutants_x_generate_tests__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -55367,17 +56405,20 @@ def x_generate_tests__mutmut_8(
 ) -> GeneratedTestModule:
     """테스트 생성 편의 함수"""
     generator = TestGenerator(workspace)
-    return generator.generate_tests_for_file(source_file, )
+    return generator.generate_tests_for_file(
+        source_file,
+    )
 
-mutants_x_generate_tests__mutmut['_mutmut_orig'] = x_generate_tests__mutmut_orig # type: ignore # mutmut generated
-mutants_x_generate_tests__mutmut['x_generate_tests__mutmut_1'] = x_generate_tests__mutmut_1 # type: ignore # mutmut generated
-mutants_x_generate_tests__mutmut['x_generate_tests__mutmut_2'] = x_generate_tests__mutmut_2 # type: ignore # mutmut generated
-mutants_x_generate_tests__mutmut['x_generate_tests__mutmut_3'] = x_generate_tests__mutmut_3 # type: ignore # mutmut generated
-mutants_x_generate_tests__mutmut['x_generate_tests__mutmut_4'] = x_generate_tests__mutmut_4 # type: ignore # mutmut generated
-mutants_x_generate_tests__mutmut['x_generate_tests__mutmut_5'] = x_generate_tests__mutmut_5 # type: ignore # mutmut generated
-mutants_x_generate_tests__mutmut['x_generate_tests__mutmut_6'] = x_generate_tests__mutmut_6 # type: ignore # mutmut generated
-mutants_x_generate_tests__mutmut['x_generate_tests__mutmut_7'] = x_generate_tests__mutmut_7 # type: ignore # mutmut generated
-mutants_x_generate_tests__mutmut['x_generate_tests__mutmut_8'] = x_generate_tests__mutmut_8 # type: ignore # mutmut generated
+
+mutants_x_generate_tests__mutmut["_mutmut_orig"] = x_generate_tests__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_generate_tests__mutmut["x_generate_tests__mutmut_1"] = x_generate_tests__mutmut_1  # type: ignore # mutmut generated
+mutants_x_generate_tests__mutmut["x_generate_tests__mutmut_2"] = x_generate_tests__mutmut_2  # type: ignore # mutmut generated
+mutants_x_generate_tests__mutmut["x_generate_tests__mutmut_3"] = x_generate_tests__mutmut_3  # type: ignore # mutmut generated
+mutants_x_generate_tests__mutmut["x_generate_tests__mutmut_4"] = x_generate_tests__mutmut_4  # type: ignore # mutmut generated
+mutants_x_generate_tests__mutmut["x_generate_tests__mutmut_5"] = x_generate_tests__mutmut_5  # type: ignore # mutmut generated
+mutants_x_generate_tests__mutmut["x_generate_tests__mutmut_6"] = x_generate_tests__mutmut_6  # type: ignore # mutmut generated
+mutants_x_generate_tests__mutmut["x_generate_tests__mutmut_7"] = x_generate_tests__mutmut_7  # type: ignore # mutmut generated
+mutants_x_generate_tests__mutmut["x_generate_tests__mutmut_8"] = x_generate_tests__mutmut_8  # type: ignore # mutmut generated
 
 
 if __name__ == "__main__":

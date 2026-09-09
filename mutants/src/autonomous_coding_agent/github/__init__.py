@@ -16,7 +16,8 @@ from typing import Any, Dict, List, Optional
 log = logging.getLogger("autonomous_coding_agent.github")
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
 
 
 @dataclass
@@ -53,6 +54,8 @@ class GitHubPR:
     additions: int
     deletions: int
     changed_files: int
+
+
 mutants_xǁGitHubClientǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁGitHubClientǁ_check_gh_cli__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁGitHubClientǁ_run__mutmut: MutantDict = {}  # type: ignore
@@ -210,7 +213,7 @@ class GitHubClient:
             "gh --version",
             shell=True,
             capture_output=True,
-            )
+        )
         if result.returncode != 0:
             raise RuntimeError("GitHub CLI (gh)가 설치되지 않음: https://cli.github.com")
         log.info(f"GitHub CLI 사용 가능: {result.stdout.strip()}")
@@ -532,7 +535,7 @@ class GitHubClient:
             cwd=self.workspace,
             capture_output=True,
             text=True,
-            )
+        )
 
     def xǁGitHubClientǁ_run__mutmut_14(self, cmd: str) -> subprocess.CompletedProcess:
         """gh 명령 실행"""
@@ -907,9 +910,7 @@ class GitHubClient:
 
     def xǁGitHubClientǁget_issue__mutmut_2(self, number: int) -> GitHubIssue | None:
         """이슈 조회"""
-        data = self._run_json(
-            None
-        )
+        data = self._run_json(None)
         if not data:
             return None
 
@@ -1332,7 +1333,7 @@ class GitHubClient:
             assignees=[a["login"] for a in data.get("assignees", [])],
             created_at=data["createdAt"],
             updated_at=data["updatedAt"],
-            )
+        )
 
     # === Issue 관련 ===
 
@@ -1501,7 +1502,9 @@ class GitHubClient:
         return GitHubIssue(
             number=data["number"],
             title=data["title"],
-            body=data.get("body", ),
+            body=data.get(
+                "body",
+            ),
             state=data["state"],
             labels=[l["name"] for l in data.get("labels", [])],
             assignees=[a["login"] for a in data.get("assignees", [])],
@@ -1745,7 +1748,12 @@ class GitHubClient:
             title=data["title"],
             body=data.get("body", ""),
             state=data["state"],
-            labels=[l["name"] for l in data.get("labels", )],
+            labels=[
+                l["name"]
+                for l in data.get(
+                    "labels",
+                )
+            ],
             assignees=[a["login"] for a in data.get("assignees", [])],
             created_at=data["createdAt"],
             updated_at=data["updatedAt"],
@@ -1922,7 +1930,12 @@ class GitHubClient:
             body=data.get("body", ""),
             state=data["state"],
             labels=[l["name"] for l in data.get("labels", [])],
-            assignees=[a["login"] for a in data.get("assignees", )],
+            assignees=[
+                a["login"]
+                for a in data.get(
+                    "assignees",
+                )
+            ],
             created_at=data["createdAt"],
             updated_at=data["updatedAt"],
             url=data["url"],
@@ -3256,7 +3269,7 @@ class GitHubClient:
                 assignees=[a["login"] for a in d.get("assignees", [])],
                 created_at=d["createdAt"],
                 updated_at=d["updatedAt"],
-                )
+            )
             for d in data
         ]
 
@@ -3473,7 +3486,9 @@ class GitHubClient:
             GitHubIssue(
                 number=d["number"],
                 title=d["title"],
-                body=d.get("body", ),
+                body=d.get(
+                    "body",
+                ),
                 state=d["state"],
                 labels=[l["name"] for l in d.get("labels", [])],
                 assignees=[a["login"] for a in d.get("assignees", [])],
@@ -3783,7 +3798,12 @@ class GitHubClient:
                 title=d["title"],
                 body=d.get("body", ""),
                 state=d["state"],
-                labels=[l["name"] for l in d.get("labels", )],
+                labels=[
+                    l["name"]
+                    for l in d.get(
+                        "labels",
+                    )
+                ],
                 assignees=[a["login"] for a in d.get("assignees", [])],
                 created_at=d["createdAt"],
                 updated_at=d["updatedAt"],
@@ -4008,7 +4028,12 @@ class GitHubClient:
                 body=d.get("body", ""),
                 state=d["state"],
                 labels=[l["name"] for l in d.get("labels", [])],
-                assignees=[a["login"] for a in d.get("assignees", )],
+                assignees=[
+                    a["login"]
+                    for a in d.get(
+                        "assignees",
+                    )
+                ],
                 created_at=d["createdAt"],
                 updated_at=d["updatedAt"],
                 url=d["url"],
@@ -5297,7 +5322,7 @@ class GitHubClient:
             cwd=self.workspace,
             capture_output=True,
             text=True,
-            )
+        )
         if result.returncode != 0:
             log.error(f"이슈 생성 실패: {result.stderr}")
             return None
@@ -5865,7 +5890,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁclose_issue__mutmut_orig(self, number: int, reason: str = "completed") -> bool:
+    def xǁGitHubClientǁclose_issue__mutmut_orig(
+        self, number: int, reason: str = "completed"
+    ) -> bool:
         """이슈 닫기"""
         result = subprocess.run(
             f"gh issue close {number} --reason {reason}",
@@ -5877,7 +5904,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁclose_issue__mutmut_1(self, number: int, reason: str = "XXcompletedXX") -> bool:
+    def xǁGitHubClientǁclose_issue__mutmut_1(
+        self, number: int, reason: str = "XXcompletedXX"
+    ) -> bool:
         """이슈 닫기"""
         result = subprocess.run(
             f"gh issue close {number} --reason {reason}",
@@ -6041,7 +6070,7 @@ class GitHubClient:
             cwd=self.workspace,
             capture_output=True,
             text=True,
-            )
+        )
         return result.returncode == 0
 
     def xǁGitHubClientǁclose_issue__mutmut_16(self, number: int, reason: str = "completed") -> bool:
@@ -6281,7 +6310,7 @@ class GitHubClient:
             cwd=self.workspace,
             capture_output=True,
             text=True,
-            )
+        )
         return result.returncode == 0
 
     def xǁGitHubClientǁadd_comment__mutmut_14(self, number: int, body: str) -> bool:
@@ -6955,7 +6984,7 @@ class GitHubClient:
             cwd=self.workspace,
             capture_output=True,
             text=True,
-            )
+        )
         if result.returncode != 0:
             log.error(f"PR 생성 실패: {result.stderr}")
             return None
@@ -7503,9 +7532,7 @@ class GitHubClient:
 
     def xǁGitHubClientǁget_pr__mutmut_2(self, number: int) -> GitHubPR | None:
         """PR 조회"""
-        data = self._run_json(
-            None
-        )
+        data = self._run_json(None)
         if not data:
             return None
 
@@ -8316,7 +8343,7 @@ class GitHubClient:
             base_sha="",
             additions=data.get("additions", 0),
             deletions=data.get("deletions", 0),
-            )
+        )
 
     def xǁGitHubClientǁget_pr__mutmut_34(self, number: int) -> GitHubPR | None:
         """PR 조회"""
@@ -8511,7 +8538,9 @@ class GitHubClient:
         return GitHubPR(
             number=data["number"],
             title=data["title"],
-            body=data.get("body", ),
+            body=data.get(
+                "body",
+            ),
             state=data["state"],
             head_branch=data.get("headRefName", ""),
             base_branch=data.get("baseRefName", ""),
@@ -8747,7 +8776,9 @@ class GitHubClient:
             title=data["title"],
             body=data.get("body", ""),
             state=data["state"],
-            head_branch=data.get("headRefName", ),
+            head_branch=data.get(
+                "headRefName",
+            ),
             base_branch=data.get("baseRefName", ""),
             draft=data.get("isDraft", False),
             created_at=data["createdAt"],
@@ -8956,7 +8987,9 @@ class GitHubClient:
             body=data.get("body", ""),
             state=data["state"],
             head_branch=data.get("headRefName", ""),
-            base_branch=data.get("baseRefName", ),
+            base_branch=data.get(
+                "baseRefName",
+            ),
             draft=data.get("isDraft", False),
             created_at=data["createdAt"],
             updated_at=data["updatedAt"],
@@ -9165,7 +9198,9 @@ class GitHubClient:
             state=data["state"],
             head_branch=data.get("headRefName", ""),
             base_branch=data.get("baseRefName", ""),
-            draft=data.get("isDraft", ),
+            draft=data.get(
+                "isDraft",
+            ),
             created_at=data["createdAt"],
             updated_at=data["updatedAt"],
             url=data["url"],
@@ -9639,7 +9674,9 @@ class GitHubClient:
             url=data["url"],
             head_sha="",
             base_sha="",
-            additions=data.get("additions", ),
+            additions=data.get(
+                "additions",
+            ),
             deletions=data.get("deletions", 0),
             changed_files=data.get("changedFiles", 0),
         )
@@ -9822,7 +9859,9 @@ class GitHubClient:
             head_sha="",
             base_sha="",
             additions=data.get("additions", 0),
-            deletions=data.get("deletions", ),
+            deletions=data.get(
+                "deletions",
+            ),
             changed_files=data.get("changedFiles", 0),
         )
 
@@ -10005,7 +10044,9 @@ class GitHubClient:
             base_sha="",
             additions=data.get("additions", 0),
             deletions=data.get("deletions", 0),
-            changed_files=data.get("changedFiles", ),
+            changed_files=data.get(
+                "changedFiles",
+            ),
         )
 
     def xǁGitHubClientǁget_pr__mutmut_99(self, number: int) -> GitHubPR | None:
@@ -11447,7 +11488,7 @@ class GitHubClient:
                 base_sha="",
                 additions=d.get("additions", 0),
                 deletions=d.get("deletions", 0),
-                )
+            )
             for d in data
         ]
 
@@ -11698,7 +11739,9 @@ class GitHubClient:
             GitHubPR(
                 number=d["number"],
                 title=d["title"],
-                body=d.get("body", ),
+                body=d.get(
+                    "body",
+                ),
                 state=d["state"],
                 head_branch=d.get("headRefName", ""),
                 base_branch=d.get("baseRefName", ""),
@@ -11997,7 +12040,9 @@ class GitHubClient:
                 title=d["title"],
                 body=d.get("body", ""),
                 state=d["state"],
-                head_branch=d.get("headRefName", ),
+                head_branch=d.get(
+                    "headRefName",
+                ),
                 base_branch=d.get("baseRefName", ""),
                 draft=d.get("isDraft", False),
                 created_at=d["createdAt"],
@@ -12262,7 +12307,9 @@ class GitHubClient:
                 body=d.get("body", ""),
                 state=d["state"],
                 head_branch=d.get("headRefName", ""),
-                base_branch=d.get("baseRefName", ),
+                base_branch=d.get(
+                    "baseRefName",
+                ),
                 draft=d.get("isDraft", False),
                 created_at=d["createdAt"],
                 updated_at=d["updatedAt"],
@@ -12527,7 +12574,9 @@ class GitHubClient:
                 state=d["state"],
                 head_branch=d.get("headRefName", ""),
                 base_branch=d.get("baseRefName", ""),
-                draft=d.get("isDraft", ),
+                draft=d.get(
+                    "isDraft",
+                ),
                 created_at=d["createdAt"],
                 updated_at=d["updatedAt"],
                 url=d["url"],
@@ -13127,7 +13176,9 @@ class GitHubClient:
                 url=d["url"],
                 head_sha="",
                 base_sha="",
-                additions=d.get("additions", ),
+                additions=d.get(
+                    "additions",
+                ),
                 deletions=d.get("deletions", 0),
                 changed_files=d.get("changedFiles", 0),
             )
@@ -13359,7 +13410,9 @@ class GitHubClient:
                 head_sha="",
                 base_sha="",
                 additions=d.get("additions", 0),
-                deletions=d.get("deletions", ),
+                deletions=d.get(
+                    "deletions",
+                ),
                 changed_files=d.get("changedFiles", 0),
             )
             for d in data
@@ -13591,7 +13644,9 @@ class GitHubClient:
                 base_sha="",
                 additions=d.get("additions", 0),
                 deletions=d.get("deletions", 0),
-                changed_files=d.get("changedFiles", ),
+                changed_files=d.get(
+                    "changedFiles",
+                ),
             )
             for d in data
         ]
@@ -13745,7 +13800,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_orig(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_orig(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -13761,7 +13818,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_1(self, number: int, method: str = "XXsquashXX", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_1(
+        self, number: int, method: str = "XXsquashXX", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -13777,7 +13836,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_2(self, number: int, method: str = "SQUASH", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_2(
+        self, number: int, method: str = "SQUASH", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -13793,7 +13854,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_3(self, number: int, method: str = "squash", delete_branch: bool = False) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_3(
+        self, number: int, method: str = "squash", delete_branch: bool = False
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -13809,7 +13872,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_4(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_4(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = None
         if delete_branch:
@@ -13825,7 +13890,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_5(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_5(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -13841,7 +13908,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_6(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_6(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -13857,7 +13926,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_7(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_7(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -13873,7 +13944,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_8(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_8(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -13889,7 +13962,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_9(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_9(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -13898,7 +13973,9 @@ class GitHubClient:
         result = None
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_10(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_10(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -13914,7 +13991,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_11(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_11(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -13930,7 +14009,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_12(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_12(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -13946,7 +14027,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_13(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_13(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -13962,7 +14045,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_14(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_14(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -13978,7 +14063,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_15(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_15(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -13994,7 +14081,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_16(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_16(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -14009,7 +14098,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_17(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_17(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -14024,7 +14115,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_18(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_18(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -14039,7 +14132,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_19(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_19(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -14054,7 +14149,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_20(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_20(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -14069,7 +14166,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_21(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_21(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -14081,10 +14180,12 @@ class GitHubClient:
             cwd=self.workspace,
             capture_output=True,
             text=True,
-            )
+        )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_22(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_22(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -14100,7 +14201,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_23(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_23(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -14116,7 +14219,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_24(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_24(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -14132,7 +14237,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_25(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_25(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -14148,7 +14255,9 @@ class GitHubClient:
         )
         return result.returncode == 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_26(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_26(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -14164,7 +14273,9 @@ class GitHubClient:
         )
         return result.returncode != 0
 
-    def xǁGitHubClientǁmerge_pr__mutmut_27(self, number: int, method: str = "squash", delete_branch: bool = True) -> bool:
+    def xǁGitHubClientǁmerge_pr__mutmut_27(
+        self, number: int, method: str = "squash", delete_branch: bool = True
+    ) -> bool:
         """PR 병합"""
         cmd = f"gh pr merge {number} --{method}"
         if delete_branch:
@@ -14774,7 +14885,7 @@ class GitHubClient:
             cwd=self.workspace,
             capture_output=True,
             text=True,
-            )
+        )
         return result.returncode == 0
 
     def xǁGitHubClientǁadd_review_comment__mutmut_27(
@@ -14989,7 +15100,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_orig(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_orig(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15009,7 +15122,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_1(self, path: str, ref: str = "XXHEADXX") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_1(
+        self, path: str, ref: str = "XXHEADXX"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15182,7 +15297,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_10(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_10(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             shell=True,
@@ -15201,7 +15318,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_11(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_11(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15220,7 +15339,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_12(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_12(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15239,7 +15360,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_13(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_13(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15258,7 +15381,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_14(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_14(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15277,7 +15402,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_15(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_15(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15285,7 +15412,7 @@ class GitHubClient:
             cwd=self.workspace,
             capture_output=True,
             text=True,
-            )
+        )
         if result.returncode != 0:
             return None
         try:
@@ -15296,7 +15423,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_16(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_16(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15316,7 +15445,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_17(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_17(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15336,7 +15467,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_18(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_18(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15356,7 +15489,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_19(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_19(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15376,7 +15511,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_20(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_20(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15396,7 +15533,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_21(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_21(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15416,7 +15555,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_22(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_22(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15436,7 +15577,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_23(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_23(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15456,7 +15599,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_24(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_24(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15476,7 +15621,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_25(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_25(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15496,7 +15643,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_26(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_26(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15516,7 +15665,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_27(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_27(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15536,7 +15687,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_28(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_28(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15556,7 +15709,9 @@ class GitHubClient:
         except Exception:
             return None
 
-    def xǁGitHubClientǁget_file_content__mutmut_29(self, path: str, ref: str = "HEAD") -> str | None:
+    def xǁGitHubClientǁget_file_content__mutmut_29(
+        self, path: str, ref: str = "HEAD"
+    ) -> str | None:
         """파일 내용 조회"""
         result = subprocess.run(
             f"gh api repos/{{owner}}/{{repo}}/contents/{path}?ref={ref}",
@@ -15576,653 +15731,654 @@ class GitHubClient:
         except Exception:
             return None
 
-mutants_xǁGitHubClientǁ__init____mutmut['_mutmut_orig'] = GitHubClient.xǁGitHubClientǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ__init____mutmut['xǁGitHubClientǁ__init____mutmut_1'] = GitHubClient.xǁGitHubClientǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ__init____mutmut['xǁGitHubClientǁ__init____mutmut_2'] = GitHubClient.xǁGitHubClientǁ__init____mutmut_2 # type: ignore # mutmut generated
 
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['_mutmut_orig'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_1'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_2'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_3'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_4'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_5'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_6'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_7'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_8'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_9'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_10'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_11'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_12'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_13'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_14'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_15'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_16'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_17'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_18'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_19'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_20'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_check_gh_cli__mutmut['xǁGitHubClientǁ_check_gh_cli__mutmut_21'] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_21 # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ__init____mutmut["_mutmut_orig"] = GitHubClient.xǁGitHubClientǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ__init____mutmut["xǁGitHubClientǁ__init____mutmut_1"] = GitHubClient.xǁGitHubClientǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ__init____mutmut["xǁGitHubClientǁ__init____mutmut_2"] = GitHubClient.xǁGitHubClientǁ__init____mutmut_2  # type: ignore # mutmut generated
 
-mutants_xǁGitHubClientǁ_run__mutmut['_mutmut_orig'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_1'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_2'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_3'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_4'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_5'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_6'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_7'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_8'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_9'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_10'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_11'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_12'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_13'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_14'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_15'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_16'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run__mutmut['xǁGitHubClientǁ_run__mutmut_17'] = GitHubClient.xǁGitHubClientǁ_run__mutmut_17 # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["_mutmut_orig"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_1"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_2"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_3"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_4"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_5"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_6"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_7"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_8"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_9"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_10"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_11"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_12"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_13"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_14"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_15"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_16"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_17"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_18"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_19"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_20"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_check_gh_cli__mutmut["xǁGitHubClientǁ_check_gh_cli__mutmut_21"] = GitHubClient.xǁGitHubClientǁ_check_gh_cli__mutmut_21  # type: ignore # mutmut generated
 
-mutants_xǁGitHubClientǁ_run_json__mutmut['_mutmut_orig'] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run_json__mutmut['xǁGitHubClientǁ_run_json__mutmut_1'] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run_json__mutmut['xǁGitHubClientǁ_run_json__mutmut_2'] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run_json__mutmut['xǁGitHubClientǁ_run_json__mutmut_3'] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run_json__mutmut['xǁGitHubClientǁ_run_json__mutmut_4'] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run_json__mutmut['xǁGitHubClientǁ_run_json__mutmut_5'] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run_json__mutmut['xǁGitHubClientǁ_run_json__mutmut_6'] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run_json__mutmut['xǁGitHubClientǁ_run_json__mutmut_7'] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run_json__mutmut['xǁGitHubClientǁ_run_json__mutmut_8'] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run_json__mutmut['xǁGitHubClientǁ_run_json__mutmut_9'] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run_json__mutmut['xǁGitHubClientǁ_run_json__mutmut_10'] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run_json__mutmut['xǁGitHubClientǁ_run_json__mutmut_11'] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run_json__mutmut['xǁGitHubClientǁ_run_json__mutmut_12'] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run_json__mutmut['xǁGitHubClientǁ_run_json__mutmut_13'] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run_json__mutmut['xǁGitHubClientǁ_run_json__mutmut_14'] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁ_run_json__mutmut['xǁGitHubClientǁ_run_json__mutmut_15'] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_15 # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["_mutmut_orig"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_1"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_2"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_3"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_4"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_5"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_6"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_7"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_8"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_9"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_10"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_11"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_12"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_13"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_14"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_15"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_16"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run__mutmut["xǁGitHubClientǁ_run__mutmut_17"] = GitHubClient.xǁGitHubClientǁ_run__mutmut_17  # type: ignore # mutmut generated
 
-mutants_xǁGitHubClientǁget_issue__mutmut['_mutmut_orig'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_1'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_2'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_3'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_4'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_5'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_6'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_7'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_8'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_9'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_10'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_11'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_12'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_13'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_14'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_15'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_16'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_17'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_18'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_19'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_20'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_21'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_22'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_23'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_24'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_25'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_26'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_27'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_28'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_29'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_30'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_31'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_32'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_33'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_34'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_35'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_36'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_37'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_38'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_39'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_40'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_41'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_42'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_43'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_44'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_45'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_46'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_47'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_48'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_49'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_50'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_51'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_52'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_53'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_54'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_55'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_56'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_57'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_issue__mutmut['xǁGitHubClientǁget_issue__mutmut_58'] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_58 # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run_json__mutmut["_mutmut_orig"] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run_json__mutmut["xǁGitHubClientǁ_run_json__mutmut_1"] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run_json__mutmut["xǁGitHubClientǁ_run_json__mutmut_2"] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run_json__mutmut["xǁGitHubClientǁ_run_json__mutmut_3"] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run_json__mutmut["xǁGitHubClientǁ_run_json__mutmut_4"] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run_json__mutmut["xǁGitHubClientǁ_run_json__mutmut_5"] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run_json__mutmut["xǁGitHubClientǁ_run_json__mutmut_6"] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run_json__mutmut["xǁGitHubClientǁ_run_json__mutmut_7"] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run_json__mutmut["xǁGitHubClientǁ_run_json__mutmut_8"] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run_json__mutmut["xǁGitHubClientǁ_run_json__mutmut_9"] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run_json__mutmut["xǁGitHubClientǁ_run_json__mutmut_10"] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run_json__mutmut["xǁGitHubClientǁ_run_json__mutmut_11"] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run_json__mutmut["xǁGitHubClientǁ_run_json__mutmut_12"] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run_json__mutmut["xǁGitHubClientǁ_run_json__mutmut_13"] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run_json__mutmut["xǁGitHubClientǁ_run_json__mutmut_14"] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁ_run_json__mutmut["xǁGitHubClientǁ_run_json__mutmut_15"] = GitHubClient.xǁGitHubClientǁ_run_json__mutmut_15  # type: ignore # mutmut generated
 
-mutants_xǁGitHubClientǁlist_issues__mutmut['_mutmut_orig'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_1'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_2'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_3'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_4'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_5'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_6'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_7'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_8'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_9'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_10'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_11'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_12'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_13'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_14'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_15'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_16'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_17'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_18'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_19'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_20'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_21'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_22'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_23'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_24'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_25'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_26'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_27'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_28'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_29'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_30'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_31'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_32'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_33'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_34'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_35'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_36'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_37'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_38'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_39'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_40'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_41'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_42'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_43'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_44'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_45'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_46'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_47'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_48'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_49'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_50'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_51'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_52'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_53'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_54'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_55'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_56'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_57'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_58'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_59'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_60'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_61'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_62'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_63'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_64'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_65'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_66'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_67'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_68'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_69'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_70'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_71'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_72'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_73'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_74'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_issues__mutmut['xǁGitHubClientǁlist_issues__mutmut_75'] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_75 # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["_mutmut_orig"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_1"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_2"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_3"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_4"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_5"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_6"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_7"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_8"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_9"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_10"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_11"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_12"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_13"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_14"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_15"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_16"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_17"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_18"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_19"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_20"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_21"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_22"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_23"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_24"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_25"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_26"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_27"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_28"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_29"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_30"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_31"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_32"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_33"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_34"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_35"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_36"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_37"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_38"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_39"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_40"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_41"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_42"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_43"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_44"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_45"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_46"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_47"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_48"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_49"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_50"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_51"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_52"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_53"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_54"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_55"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_56"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_57"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_issue__mutmut["xǁGitHubClientǁget_issue__mutmut_58"] = GitHubClient.xǁGitHubClientǁget_issue__mutmut_58  # type: ignore # mutmut generated
 
-mutants_xǁGitHubClientǁcreate_issue__mutmut['_mutmut_orig'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_1'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_2'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_3'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_4'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_5'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_6'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_7'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_8'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_9'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_10'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_11'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_12'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_13'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_14'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_15'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_16'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_17'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_18'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_19'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_20'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_21'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_22'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_23'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_24'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_25'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_26'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_27'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_28'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_29'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_30'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_31'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_32'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_33'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_34'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_35'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_36'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_37'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_38'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_39'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_40'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_41'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_42'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_43'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_44'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_45'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_46'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_issue__mutmut['xǁGitHubClientǁcreate_issue__mutmut_47'] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_47 # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["_mutmut_orig"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_1"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_2"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_3"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_4"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_5"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_6"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_7"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_8"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_9"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_10"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_11"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_12"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_13"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_14"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_15"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_16"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_17"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_18"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_19"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_20"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_21"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_22"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_23"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_24"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_25"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_26"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_27"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_28"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_29"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_30"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_31"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_32"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_33"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_34"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_35"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_36"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_37"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_38"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_39"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_40"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_41"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_42"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_43"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_44"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_45"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_46"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_47"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_48"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_49"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_50"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_51"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_52"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_53"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_54"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_55"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_56"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_57"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_58"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_59"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_60"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_61"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_62"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_63"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_64"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_65"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_66"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_67"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_68"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_69"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_70"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_71"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_72"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_73"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_74"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_issues__mutmut["xǁGitHubClientǁlist_issues__mutmut_75"] = GitHubClient.xǁGitHubClientǁlist_issues__mutmut_75  # type: ignore # mutmut generated
 
-mutants_xǁGitHubClientǁclose_issue__mutmut['_mutmut_orig'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_1'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_2'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_3'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_4'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_5'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_6'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_7'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_8'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_9'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_10'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_11'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_12'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_13'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_14'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_15'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_16'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_17'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_18'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_19'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_20'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁclose_issue__mutmut['xǁGitHubClientǁclose_issue__mutmut_21'] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_21 # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["_mutmut_orig"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_1"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_2"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_3"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_4"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_5"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_6"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_7"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_8"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_9"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_10"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_11"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_12"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_13"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_14"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_15"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_16"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_17"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_18"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_19"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_20"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_21"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_22"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_23"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_24"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_25"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_26"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_27"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_28"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_29"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_30"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_31"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_32"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_33"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_34"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_35"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_36"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_37"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_38"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_39"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_40"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_41"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_42"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_43"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_44"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_45"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_46"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_issue__mutmut["xǁGitHubClientǁcreate_issue__mutmut_47"] = GitHubClient.xǁGitHubClientǁcreate_issue__mutmut_47  # type: ignore # mutmut generated
 
-mutants_xǁGitHubClientǁadd_comment__mutmut['_mutmut_orig'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_1'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_2'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_3'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_4'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_5'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_6'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_7'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_8'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_9'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_10'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_11'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_12'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_13'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_14'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_15'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_16'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_17'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_18'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_comment__mutmut['xǁGitHubClientǁadd_comment__mutmut_19'] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_19 # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["_mutmut_orig"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_1"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_2"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_3"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_4"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_5"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_6"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_7"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_8"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_9"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_10"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_11"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_12"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_13"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_14"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_15"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_16"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_17"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_18"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_19"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_20"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁclose_issue__mutmut["xǁGitHubClientǁclose_issue__mutmut_21"] = GitHubClient.xǁGitHubClientǁclose_issue__mutmut_21  # type: ignore # mutmut generated
 
-mutants_xǁGitHubClientǁcreate_pr__mutmut['_mutmut_orig'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_1'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_2'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_3'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_4'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_5'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_6'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_7'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_8'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_9'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_10'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_11'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_12'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_13'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_14'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_15'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_16'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_17'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_18'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_19'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_20'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_21'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_22'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_23'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_24'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_25'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_26'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_27'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_28'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_29'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_30'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_31'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_32'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_33'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_34'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_35'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_36'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_37'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁcreate_pr__mutmut['xǁGitHubClientǁcreate_pr__mutmut_38'] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_38 # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["_mutmut_orig"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_1"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_2"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_3"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_4"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_5"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_6"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_7"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_8"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_9"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_10"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_11"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_12"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_13"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_14"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_15"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_16"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_17"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_18"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_comment__mutmut["xǁGitHubClientǁadd_comment__mutmut_19"] = GitHubClient.xǁGitHubClientǁadd_comment__mutmut_19  # type: ignore # mutmut generated
 
-mutants_xǁGitHubClientǁget_pr__mutmut['_mutmut_orig'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_1'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_2'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_3'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_4'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_5'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_6'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_7'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_8'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_9'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_10'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_11'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_12'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_13'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_14'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_15'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_16'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_17'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_18'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_19'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_20'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_21'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_22'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_23'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_24'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_25'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_26'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_27'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_28'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_29'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_30'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_31'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_32'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_33'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_34'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_35'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_36'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_37'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_38'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_39'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_40'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_41'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_42'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_43'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_44'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_45'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_46'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_47'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_48'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_49'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_50'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_51'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_52'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_53'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_54'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_55'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_56'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_57'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_58'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_59'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_60'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_61'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_62'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_63'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_64'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_65'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_66'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_67'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_68'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_69'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_70'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_71'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_72'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_73'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_74'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_75'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_76'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_77'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_78'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_79'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_80'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_81'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_82'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_83'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_84'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_85'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_86'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_87'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_88'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_89'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_90'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_91'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_92'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_93'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_94'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_95'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_96'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_96 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_97'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_97 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_98'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_98 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_99'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_99 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_100'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_100 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_101'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_101 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_pr__mutmut['xǁGitHubClientǁget_pr__mutmut_102'] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_102 # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["_mutmut_orig"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_1"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_2"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_3"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_4"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_5"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_6"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_7"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_8"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_9"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_10"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_11"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_12"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_13"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_14"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_15"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_16"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_17"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_18"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_19"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_20"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_21"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_22"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_23"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_24"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_25"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_26"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_27"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_28"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_29"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_30"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_31"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_32"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_33"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_34"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_35"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_36"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_37"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁcreate_pr__mutmut["xǁGitHubClientǁcreate_pr__mutmut_38"] = GitHubClient.xǁGitHubClientǁcreate_pr__mutmut_38  # type: ignore # mutmut generated
 
-mutants_xǁGitHubClientǁlist_prs__mutmut['_mutmut_orig'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_1'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_2'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_3'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_4'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_5'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_6'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_7'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_8'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_9'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_10'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_11'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_12'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_13'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_14'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_15'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_16'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_17'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_18'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_19'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_20'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_21'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_22'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_23'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_24'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_25'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_26'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_27'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_28'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_29'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_30'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_31'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_32'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_33'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_34'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_35'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_36'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_37'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_38'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_39'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_40'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_41'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_42'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_43'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_44'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_45'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_46'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_47'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_48'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_49'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_50'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_51'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_52'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_53'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_54'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_55'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_56'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_57'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_58'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_59'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_60'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_61'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_62'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_63'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_64'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_65'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_66'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_67'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_68'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_69'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_70'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_71'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_72'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_73'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_74'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_75'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_76'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_77'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_78'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_79'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_80'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_81'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_82'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_83'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_84'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_85'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_86'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_87'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_88'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_89'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_90'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_91'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_92'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_93'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_94'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_95'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_96'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_96 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_97'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_97 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_98'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_98 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_99'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_99 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_100'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_100 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_101'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_101 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_102'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_102 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_103'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_103 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_104'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_104 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_105'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_105 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_106'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_106 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_107'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_107 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁlist_prs__mutmut['xǁGitHubClientǁlist_prs__mutmut_108'] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_108 # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["_mutmut_orig"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_1"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_2"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_3"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_4"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_5"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_6"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_7"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_8"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_9"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_10"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_11"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_12"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_13"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_14"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_15"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_16"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_17"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_18"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_19"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_20"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_21"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_22"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_23"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_24"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_25"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_26"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_27"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_28"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_29"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_30"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_31"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_32"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_33"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_34"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_35"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_36"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_37"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_38"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_39"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_40"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_41"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_42"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_43"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_44"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_45"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_46"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_47"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_48"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_49"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_50"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_51"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_52"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_53"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_54"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_55"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_56"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_57"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_58"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_59"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_60"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_61"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_62"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_63"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_64"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_65"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_66"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_67"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_68"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_69"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_70"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_71"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_72"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_73"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_74"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_75"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_76"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_77"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_78"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_79"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_80"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_81"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_82"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_83"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_84"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_85"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_86"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_87"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_88"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_89"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_90"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_91"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_92"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_93"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_94"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_95"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_96"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_96  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_97"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_97  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_98"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_98  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_99"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_99  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_100"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_100  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_101"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_101  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_pr__mutmut["xǁGitHubClientǁget_pr__mutmut_102"] = GitHubClient.xǁGitHubClientǁget_pr__mutmut_102  # type: ignore # mutmut generated
 
-mutants_xǁGitHubClientǁmerge_pr__mutmut['_mutmut_orig'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_1'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_2'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_3'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_4'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_5'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_6'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_7'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_8'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_9'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_10'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_11'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_12'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_13'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_14'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_15'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_16'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_17'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_18'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_19'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_20'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_21'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_22'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_23'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_24'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_25'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_26'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁmerge_pr__mutmut['xǁGitHubClientǁmerge_pr__mutmut_27'] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_27 # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["_mutmut_orig"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_1"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_2"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_3"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_4"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_5"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_6"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_7"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_8"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_9"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_10"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_11"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_12"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_13"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_14"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_15"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_16"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_17"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_18"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_19"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_20"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_21"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_22"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_23"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_24"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_25"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_26"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_27"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_28"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_29"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_30"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_31"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_32"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_33"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_34"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_35"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_36"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_37"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_38"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_39"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_40"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_41"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_42"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_43"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_44"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_45"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_46"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_47"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_48"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_49"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_50"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_51"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_52"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_53"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_54"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_55"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_56"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_57"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_58"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_59"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_60"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_61"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_62"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_63"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_64"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_65"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_66"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_67"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_68"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_69"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_70"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_71"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_72"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_73"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_74"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_75"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_76"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_77"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_78"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_79"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_80"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_81"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_82"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_83"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_84"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_85"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_86"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_87"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_88"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_89"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_90"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_91"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_92"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_93"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_94"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_95"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_96"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_96  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_97"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_97  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_98"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_98  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_99"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_99  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_100"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_100  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_101"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_101  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_102"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_102  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_103"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_103  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_104"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_104  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_105"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_105  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_106"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_106  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_107"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_107  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁlist_prs__mutmut["xǁGitHubClientǁlist_prs__mutmut_108"] = GitHubClient.xǁGitHubClientǁlist_prs__mutmut_108  # type: ignore # mutmut generated
 
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['_mutmut_orig'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_1'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_2'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_3'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_4'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_5'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_6'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_7'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_8'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_9'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_10'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_11'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_12'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_13'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_14'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_15'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_16'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_17'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_18'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_19'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_20'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_21'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_22'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_23'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_24'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_25'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_26'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_27'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_28'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_29'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_30'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_31'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_32'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁadd_review_comment__mutmut['xǁGitHubClientǁadd_review_comment__mutmut_33'] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_33 # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["_mutmut_orig"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_1"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_2"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_3"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_4"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_5"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_6"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_7"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_8"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_9"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_10"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_11"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_12"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_13"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_14"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_15"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_16"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_17"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_18"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_19"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_20"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_21"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_22"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_23"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_24"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_25"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_26"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁmerge_pr__mutmut["xǁGitHubClientǁmerge_pr__mutmut_27"] = GitHubClient.xǁGitHubClientǁmerge_pr__mutmut_27  # type: ignore # mutmut generated
 
-mutants_xǁGitHubClientǁget_repo_info__mutmut['_mutmut_orig'] = GitHubClient.xǁGitHubClientǁget_repo_info__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_repo_info__mutmut['xǁGitHubClientǁget_repo_info__mutmut_1'] = GitHubClient.xǁGitHubClientǁget_repo_info__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_repo_info__mutmut['xǁGitHubClientǁget_repo_info__mutmut_2'] = GitHubClient.xǁGitHubClientǁget_repo_info__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_repo_info__mutmut['xǁGitHubClientǁget_repo_info__mutmut_3'] = GitHubClient.xǁGitHubClientǁget_repo_info__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_repo_info__mutmut['xǁGitHubClientǁget_repo_info__mutmut_4'] = GitHubClient.xǁGitHubClientǁget_repo_info__mutmut_4 # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["_mutmut_orig"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_1"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_2"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_3"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_4"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_5"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_6"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_7"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_8"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_9"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_10"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_11"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_12"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_13"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_14"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_15"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_16"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_17"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_18"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_19"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_20"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_21"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_22"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_23"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_24"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_25"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_26"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_27"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_28"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_29"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_30"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_31"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_32"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁadd_review_comment__mutmut["xǁGitHubClientǁadd_review_comment__mutmut_33"] = GitHubClient.xǁGitHubClientǁadd_review_comment__mutmut_33  # type: ignore # mutmut generated
 
-mutants_xǁGitHubClientǁget_file_content__mutmut['_mutmut_orig'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_1'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_2'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_3'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_4'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_5'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_6'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_7'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_8'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_9'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_10'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_11'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_12'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_13'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_14'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_15'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_16'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_17'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_18'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_19'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_20'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_21'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_22'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_23'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_24'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_25'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_26'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_27'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_28'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁGitHubClientǁget_file_content__mutmut['xǁGitHubClientǁget_file_content__mutmut_29'] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_29 # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_repo_info__mutmut["_mutmut_orig"] = GitHubClient.xǁGitHubClientǁget_repo_info__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_repo_info__mutmut["xǁGitHubClientǁget_repo_info__mutmut_1"] = GitHubClient.xǁGitHubClientǁget_repo_info__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_repo_info__mutmut["xǁGitHubClientǁget_repo_info__mutmut_2"] = GitHubClient.xǁGitHubClientǁget_repo_info__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_repo_info__mutmut["xǁGitHubClientǁget_repo_info__mutmut_3"] = GitHubClient.xǁGitHubClientǁget_repo_info__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_repo_info__mutmut["xǁGitHubClientǁget_repo_info__mutmut_4"] = GitHubClient.xǁGitHubClientǁget_repo_info__mutmut_4  # type: ignore # mutmut generated
+
+mutants_xǁGitHubClientǁget_file_content__mutmut["_mutmut_orig"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_1"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_2"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_3"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_4"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_5"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_6"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_7"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_8"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_9"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_10"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_11"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_12"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_13"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_14"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_15"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_16"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_17"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_18"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_19"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_20"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_21"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_22"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_23"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_24"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_25"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_26"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_27"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_28"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁGitHubClientǁget_file_content__mutmut["xǁGitHubClientǁget_file_content__mutmut_29"] = GitHubClient.xǁGitHubClientǁget_file_content__mutmut_29  # type: ignore # mutmut generated
 mutants_x_get_github_client__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -16241,5 +16397,6 @@ def x_get_github_client__mutmut_1(workspace: Path) -> GitHubClient:
     """GitHub 클라이언트 생성 헬퍼"""
     return GitHubClient(None)
 
-mutants_x_get_github_client__mutmut['_mutmut_orig'] = x_get_github_client__mutmut_orig # type: ignore # mutmut generated
-mutants_x_get_github_client__mutmut['x_get_github_client__mutmut_1'] = x_get_github_client__mutmut_1 # type: ignore # mutmut generated
+
+mutants_x_get_github_client__mutmut["_mutmut_orig"] = x_get_github_client__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_get_github_client__mutmut["x_get_github_client__mutmut_1"] = x_get_github_client__mutmut_1  # type: ignore # mutmut generated

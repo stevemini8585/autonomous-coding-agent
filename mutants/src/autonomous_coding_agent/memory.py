@@ -15,7 +15,8 @@ from typing import Any
 log = logging.getLogger("autonomous_coding_agent.memory")
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
 
 
 @dataclass
@@ -49,6 +50,8 @@ class SessionRecord:
     patterns_created: list[str] = field(default_factory=list)
     errors: list[str] = field(default_factory=list)
     metrics: dict[str, Any] = field(default_factory=dict)
+
+
 mutants_xǁPatternMemoryǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁPatternMemoryǁ_load__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁPatternMemoryǁ_save__mutmut: MutantDict = {}  # type: ignore
@@ -278,7 +281,9 @@ class PatternMemory:
             workspace = Path.cwd().resolve()
             memory_dir = workspace / ".autonomous_memory"
         self.memory_dir = Path(memory_dir).resolve()
-        self.memory_dir.mkdir(parents=True, )
+        self.memory_dir.mkdir(
+            parents=True,
+        )
 
         self.patterns_file = self.memory_dir / "patterns.json"
         self.sessions_file = self.memory_dir / "sessions.json"
@@ -1713,7 +1718,7 @@ class PatternMemory:
                         last_used=(
                             datetime.fromisoformat(p["last_used"]) if p.get("last_used") else None
                         ),
-                        )
+                    )
                     self.patterns[pattern.pattern_id] = pattern
 
             if self.sessions_file.exists():
@@ -2507,7 +2512,9 @@ class PatternMemory:
                         solution=p["solution"],
                         success_metrics=p["success_metrics"],
                         created_at=datetime.fromisoformat(p["created_at"]),
-                        use_count=p.get("use_count", ),
+                        use_count=p.get(
+                            "use_count",
+                        ),
                         last_used=(
                             datetime.fromisoformat(p["last_used"]) if p.get("last_used") else None
                         ),
@@ -2696,9 +2703,7 @@ class PatternMemory:
                         success_metrics=p["success_metrics"],
                         created_at=datetime.fromisoformat(p["created_at"]),
                         use_count=p.get("use_count", 0),
-                        last_used=(
-                            datetime.fromisoformat(None) if p.get("last_used") else None
-                        ),
+                        last_used=(datetime.fromisoformat(None) if p.get("last_used") else None),
                         tags=p.get("tags", []),
                     )
                     self.patterns[pattern.pattern_id] = pattern
@@ -2744,7 +2749,9 @@ class PatternMemory:
                         created_at=datetime.fromisoformat(p["created_at"]),
                         use_count=p.get("use_count", 0),
                         last_used=(
-                            datetime.fromisoformat(p["XXlast_usedXX"]) if p.get("last_used") else None
+                            datetime.fromisoformat(p["XXlast_usedXX"])
+                            if p.get("last_used")
+                            else None
                         ),
                         tags=p.get("tags", []),
                     )
@@ -2837,9 +2844,7 @@ class PatternMemory:
                         success_metrics=p["success_metrics"],
                         created_at=datetime.fromisoformat(p["created_at"]),
                         use_count=p.get("use_count", 0),
-                        last_used=(
-                            datetime.fromisoformat(p["last_used"]) if p.get(None) else None
-                        ),
+                        last_used=(datetime.fromisoformat(p["last_used"]) if p.get(None) else None),
                         tags=p.get("tags", []),
                     )
                     self.patterns[pattern.pattern_id] = pattern
@@ -2885,7 +2890,9 @@ class PatternMemory:
                         created_at=datetime.fromisoformat(p["created_at"]),
                         use_count=p.get("use_count", 0),
                         last_used=(
-                            datetime.fromisoformat(p["last_used"]) if p.get("XXlast_usedXX") else None
+                            datetime.fromisoformat(p["last_used"])
+                            if p.get("XXlast_usedXX")
+                            else None
                         ),
                         tags=p.get("tags", []),
                     )
@@ -3122,7 +3129,9 @@ class PatternMemory:
                         last_used=(
                             datetime.fromisoformat(p["last_used"]) if p.get("last_used") else None
                         ),
-                        tags=p.get("tags", ),
+                        tags=p.get(
+                            "tags",
+                        ),
                     )
                     self.patterns[pattern.pattern_id] = pattern
 
@@ -4664,7 +4673,7 @@ class PatternMemory:
                         patterns_used=s.get("patterns_used", []),
                         patterns_created=s.get("patterns_created", []),
                         errors=s.get("errors", []),
-                        )
+                    )
                     self.sessions.append(session)
 
             log.info(f"메모리 로드 완료: 패턴 {len(self.patterns)}개, 세션 {len(self.sessions)}개")
@@ -5124,9 +5133,7 @@ class PatternMemory:
                         goal=s["goal"],
                         workspace=s["workspace"],
                         start_time=datetime.fromisoformat(s["start_time"]),
-                        end_time=(
-                            datetime.fromisoformat(None) if s.get("end_time") else None
-                        ),
+                        end_time=(datetime.fromisoformat(None) if s.get("end_time") else None),
                         success=s.get("success", False),
                         steps_completed=s.get("steps_completed", 0),
                         total_steps=s.get("total_steps", 0),
@@ -5265,9 +5272,7 @@ class PatternMemory:
                         goal=s["goal"],
                         workspace=s["workspace"],
                         start_time=datetime.fromisoformat(s["start_time"]),
-                        end_time=(
-                            datetime.fromisoformat(s["end_time"]) if s.get(None) else None
-                        ),
+                        end_time=(datetime.fromisoformat(s["end_time"]) if s.get(None) else None),
                         success=s.get("success", False),
                         steps_completed=s.get("steps_completed", 0),
                         total_steps=s.get("total_steps", 0),
@@ -5550,7 +5555,9 @@ class PatternMemory:
                         end_time=(
                             datetime.fromisoformat(s["end_time"]) if s.get("end_time") else None
                         ),
-                        success=s.get("success", ),
+                        success=s.get(
+                            "success",
+                        ),
                         steps_completed=s.get("steps_completed", 0),
                         total_steps=s.get("total_steps", 0),
                         patterns_used=s.get("patterns_used", []),
@@ -5880,7 +5887,9 @@ class PatternMemory:
                             datetime.fromisoformat(s["end_time"]) if s.get("end_time") else None
                         ),
                         success=s.get("success", False),
-                        steps_completed=s.get("steps_completed", ),
+                        steps_completed=s.get(
+                            "steps_completed",
+                        ),
                         total_steps=s.get("total_steps", 0),
                         patterns_used=s.get("patterns_used", []),
                         patterns_created=s.get("patterns_created", []),
@@ -6210,7 +6219,9 @@ class PatternMemory:
                         ),
                         success=s.get("success", False),
                         steps_completed=s.get("steps_completed", 0),
-                        total_steps=s.get("total_steps", ),
+                        total_steps=s.get(
+                            "total_steps",
+                        ),
                         patterns_used=s.get("patterns_used", []),
                         patterns_created=s.get("patterns_created", []),
                         errors=s.get("errors", []),
@@ -6540,7 +6551,9 @@ class PatternMemory:
                         success=s.get("success", False),
                         steps_completed=s.get("steps_completed", 0),
                         total_steps=s.get("total_steps", 0),
-                        patterns_used=s.get("patterns_used", ),
+                        patterns_used=s.get(
+                            "patterns_used",
+                        ),
                         patterns_created=s.get("patterns_created", []),
                         errors=s.get("errors", []),
                         metrics=s.get("metrics", {}),
@@ -6823,7 +6836,9 @@ class PatternMemory:
                         steps_completed=s.get("steps_completed", 0),
                         total_steps=s.get("total_steps", 0),
                         patterns_used=s.get("patterns_used", []),
-                        patterns_created=s.get("patterns_created", ),
+                        patterns_created=s.get(
+                            "patterns_created",
+                        ),
                         errors=s.get("errors", []),
                         metrics=s.get("metrics", {}),
                     )
@@ -7106,7 +7121,9 @@ class PatternMemory:
                         total_steps=s.get("total_steps", 0),
                         patterns_used=s.get("patterns_used", []),
                         patterns_created=s.get("patterns_created", []),
-                        errors=s.get("errors", ),
+                        errors=s.get(
+                            "errors",
+                        ),
                         metrics=s.get("metrics", {}),
                     )
                     self.sessions.append(session)
@@ -7389,7 +7406,9 @@ class PatternMemory:
                         patterns_used=s.get("patterns_used", []),
                         patterns_created=s.get("patterns_created", []),
                         errors=s.get("errors", []),
-                        metrics=s.get("metrics", ),
+                        metrics=s.get(
+                            "metrics",
+                        ),
                     )
                     self.sessions.append(session)
 
@@ -7787,9 +7806,7 @@ class PatternMemory:
             # 패턴 저장
             patterns_data = []
             for p in self.patterns.values():
-                patterns_data.append(
-                    None
-                )
+                patterns_data.append(None)
             self.patterns_file.write_text(
                 json.dumps(patterns_data, ensure_ascii=False, indent=2), encoding="utf-8"
             )
@@ -8721,9 +8738,7 @@ class PatternMemory:
                         "tags": p.tags,
                     }
                 )
-            self.patterns_file.write_text(
-                None, encoding="utf-8"
-            )
+            self.patterns_file.write_text(None, encoding="utf-8")
 
             # 세션 저장
             sessions_data = []
@@ -8819,9 +8834,7 @@ class PatternMemory:
                         "tags": p.tags,
                     }
                 )
-            self.patterns_file.write_text(
-                encoding="utf-8"
-            )
+            self.patterns_file.write_text(encoding="utf-8")
 
             # 세션 저장
             sessions_data = []
@@ -8869,7 +8882,8 @@ class PatternMemory:
                     }
                 )
             self.patterns_file.write_text(
-                json.dumps(patterns_data, ensure_ascii=False, indent=2), )
+                json.dumps(patterns_data, ensure_ascii=False, indent=2),
+            )
 
             # 세션 저장
             sessions_data = []
@@ -9112,9 +9126,7 @@ class PatternMemory:
                         "tags": p.tags,
                     }
                 )
-            self.patterns_file.write_text(
-                json.dumps(patterns_data, indent=2), encoding="utf-8"
-            )
+            self.patterns_file.write_text(json.dumps(patterns_data, indent=2), encoding="utf-8")
 
             # 세션 저장
             sessions_data = []
@@ -9162,7 +9174,11 @@ class PatternMemory:
                     }
                 )
             self.patterns_file.write_text(
-                json.dumps(patterns_data, ensure_ascii=False, ), encoding="utf-8"
+                json.dumps(
+                    patterns_data,
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
             )
 
             # 세션 저장
@@ -9462,9 +9478,7 @@ class PatternMemory:
             # 세션 저장
             sessions_data = []
             for s in self.sessions:
-                sessions_data.append(
-                    None
-                )
+                sessions_data.append(None)
             self.sessions_file.write_text(
                 json.dumps(sessions_data, ensure_ascii=False, indent=2), encoding="utf-8"
             )
@@ -10690,9 +10704,7 @@ class PatternMemory:
                         "metrics": s.metrics,
                     }
                 )
-            self.sessions_file.write_text(
-                None, encoding="utf-8"
-            )
+            self.sessions_file.write_text(None, encoding="utf-8")
 
         except Exception as e:
             log.error(f"메모리 저장 실패: {e}")
@@ -10788,9 +10800,7 @@ class PatternMemory:
                         "metrics": s.metrics,
                     }
                 )
-            self.sessions_file.write_text(
-                encoding="utf-8"
-            )
+            self.sessions_file.write_text(encoding="utf-8")
 
         except Exception as e:
             log.error(f"메모리 저장 실패: {e}")
@@ -10838,7 +10848,8 @@ class PatternMemory:
                     }
                 )
             self.sessions_file.write_text(
-                json.dumps(sessions_data, ensure_ascii=False, indent=2), )
+                json.dumps(sessions_data, ensure_ascii=False, indent=2),
+            )
 
         except Exception as e:
             log.error(f"메모리 저장 실패: {e}")
@@ -11081,9 +11092,7 @@ class PatternMemory:
                         "metrics": s.metrics,
                     }
                 )
-            self.sessions_file.write_text(
-                json.dumps(sessions_data, indent=2), encoding="utf-8"
-            )
+            self.sessions_file.write_text(json.dumps(sessions_data, indent=2), encoding="utf-8")
 
         except Exception as e:
             log.error(f"메모리 저장 실패: {e}")
@@ -11131,7 +11140,11 @@ class PatternMemory:
                     }
                 )
             self.sessions_file.write_text(
-                json.dumps(sessions_data, ensure_ascii=False, ), encoding="utf-8"
+                json.dumps(
+                    sessions_data,
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
             )
 
         except Exception as e:
@@ -11822,7 +11835,7 @@ class PatternMemory:
             context=context,
             solution=solution,
             success_metrics=success_metrics,
-            )
+        )
 
         self.patterns[pattern_id] = pattern
         self._save()
@@ -12629,7 +12642,9 @@ class PatternMemory:
                 continue
 
             # 성공률 필터
-            success_rate = pattern.success_metrics.get("success_rate", )
+            success_rate = pattern.success_metrics.get(
+                "success_rate",
+            )
             if success_rate < min_success_rate:
                 continue
 
@@ -13045,7 +13060,9 @@ class PatternMemory:
 
             # 컨텍스트 유사도 계산
             if context:
-                similarity = self._calculate_similarity(pattern.context, )
+                similarity = self._calculate_similarity(
+                    pattern.context,
+                )
                 if similarity < 0.5:  # 50% 이상 유사
                     continue
                 pattern._similarity = similarity  # type: ignore
@@ -13506,7 +13523,9 @@ class PatternMemory:
             results.append(pattern)
 
         # 유사도 내림차순, 사용 횟수 내림차순 정렬
-        results.sort(key=lambda p: (getattr(p, "_similarity", 0), p.use_count), )
+        results.sort(
+            key=lambda p: (getattr(p, "_similarity", 0), p.use_count),
+        )
 
         return results[:limit]
 
@@ -13793,7 +13812,7 @@ class PatternMemory:
             results.append(pattern)
 
         # 유사도 내림차순, 사용 횟수 내림차순 정렬
-        results.sort(key=lambda p: (getattr(p, "_similarity", ), p.use_count), reverse=True)
+        results.sort(key=lambda p: (p._similarity, p.use_count), reverse=True)
 
         return results[:limit]
 
@@ -13984,7 +14003,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_orig(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_orig(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14006,7 +14027,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_1(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_1(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 and not ctx2:
             return 0.0
@@ -14028,7 +14051,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_2(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_2(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if ctx1 or not ctx2:
             return 0.0
@@ -14050,7 +14075,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_3(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_3(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or ctx2:
             return 0.0
@@ -14072,7 +14099,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_4(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_4(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 1.0
@@ -14094,7 +14123,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_5(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_5(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14116,7 +14147,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_6(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_6(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14138,7 +14171,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_7(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_7(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14160,7 +14195,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_8(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_8(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14182,7 +14219,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_9(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_9(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14204,7 +14243,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_10(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_10(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14226,7 +14267,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_11(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_11(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14248,7 +14291,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_12(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_12(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14270,7 +14315,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_13(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_13(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14292,7 +14339,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_14(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_14(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14314,7 +14363,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_15(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_15(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14336,7 +14387,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_16(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_16(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14358,7 +14411,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_17(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_17(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14380,7 +14435,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_18(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_18(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14402,7 +14459,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_19(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_19(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14424,7 +14483,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_20(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_20(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14446,7 +14507,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_21(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_21(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14468,7 +14531,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_22(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_22(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14490,7 +14555,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_23(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_23(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14512,7 +14579,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_24(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_24(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14534,7 +14603,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_25(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_25(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14556,7 +14627,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_26(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_26(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14578,7 +14651,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_27(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_27(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -14600,7 +14675,9 @@ class PatternMemory:
 
         return matches / len(keys)
 
-    def xǁPatternMemoryǁ_calculate_similarity__mutmut_28(self, ctx1: dict[str, Any], ctx2: dict[str, Any]) -> float:
+    def xǁPatternMemoryǁ_calculate_similarity__mutmut_28(
+        self, ctx1: dict[str, Any], ctx2: dict[str, Any]
+    ) -> float:
         """컨텍스트 유사도 계산 (0~1)"""
         if not ctx1 or not ctx2:
             return 0.0
@@ -15238,7 +15315,10 @@ class PatternMemory:
             "total_patterns": total_patterns,
             "total_sessions": total_sessions,
             "successful_sessions": successful_sessions,
-            "success_rate": successful_sessions / max(total_sessions, ),
+            "success_rate": successful_sessions
+            / max(
+                total_sessions,
+            ),
             "pattern_types": dict(pattern_types),
             "most_used_patterns": sorted(
                 self.patterns.values(), key=lambda p: p.use_count, reverse=True
@@ -15387,9 +15467,7 @@ class PatternMemory:
             "successful_sessions": successful_sessions,
             "success_rate": successful_sessions / max(total_sessions, 1),
             "pattern_types": dict(pattern_types),
-            "most_used_patterns": sorted(
-                None, key=lambda p: p.use_count, reverse=True
-            )[:5],
+            "most_used_patterns": sorted(None, key=lambda p: p.use_count, reverse=True)[:5],
         }
 
     def xǁPatternMemoryǁget_statistics__mutmut_31(self) -> dict[str, Any]:
@@ -15408,9 +15486,7 @@ class PatternMemory:
             "successful_sessions": successful_sessions,
             "success_rate": successful_sessions / max(total_sessions, 1),
             "pattern_types": dict(pattern_types),
-            "most_used_patterns": sorted(
-                self.patterns.values(), key=None, reverse=True
-            )[:5],
+            "most_used_patterns": sorted(self.patterns.values(), key=None, reverse=True)[:5],
         }
 
     def xǁPatternMemoryǁget_statistics__mutmut_32(self) -> dict[str, Any]:
@@ -15450,9 +15526,7 @@ class PatternMemory:
             "successful_sessions": successful_sessions,
             "success_rate": successful_sessions / max(total_sessions, 1),
             "pattern_types": dict(pattern_types),
-            "most_used_patterns": sorted(
-                key=lambda p: p.use_count, reverse=True
-            )[:5],
+            "most_used_patterns": sorted(key=lambda p: p.use_count, reverse=True)[:5],
         }
 
     def xǁPatternMemoryǁget_statistics__mutmut_34(self) -> dict[str, Any]:
@@ -15471,9 +15545,7 @@ class PatternMemory:
             "successful_sessions": successful_sessions,
             "success_rate": successful_sessions / max(total_sessions, 1),
             "pattern_types": dict(pattern_types),
-            "most_used_patterns": sorted(
-                self.patterns.values(), reverse=True
-            )[:5],
+            "most_used_patterns": sorted(self.patterns.values(), reverse=True)[:5],
         }
 
     def xǁPatternMemoryǁget_statistics__mutmut_35(self) -> dict[str, Any]:
@@ -15493,7 +15565,9 @@ class PatternMemory:
             "success_rate": successful_sessions / max(total_sessions, 1),
             "pattern_types": dict(pattern_types),
             "most_used_patterns": sorted(
-                self.patterns.values(), key=lambda p: p.use_count, )[:5],
+                self.patterns.values(),
+                key=lambda p: p.use_count,
+            )[:5],
         }
 
     def xǁPatternMemoryǁget_statistics__mutmut_36(self) -> dict[str, Any]:
@@ -15512,9 +15586,9 @@ class PatternMemory:
             "successful_sessions": successful_sessions,
             "success_rate": successful_sessions / max(total_sessions, 1),
             "pattern_types": dict(pattern_types),
-            "most_used_patterns": sorted(
-                self.patterns.values(), key=lambda p: None, reverse=True
-            )[:5],
+            "most_used_patterns": sorted(self.patterns.values(), key=lambda p: None, reverse=True)[
+                :5
+            ],
         }
 
     def xǁPatternMemoryǁget_statistics__mutmut_37(self) -> dict[str, Any]:
@@ -15559,415 +15633,416 @@ class PatternMemory:
             )[:6],
         }
 
-mutants_xǁPatternMemoryǁ__init____mutmut['_mutmut_orig'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_1'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_2'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_3'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_4'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_5'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_6'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_7'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_8'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_9'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_10'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_11'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_12'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_13'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_14'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_15'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_16'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_17'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_18'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_19'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_20'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_21'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_22'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_23'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_24'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_25'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_26'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_27'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ__init____mutmut['xǁPatternMemoryǁ__init____mutmut_28'] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_28 # type: ignore # mutmut generated
 
-mutants_xǁPatternMemoryǁ_load__mutmut['_mutmut_orig'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_1'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_2'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_3'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_4'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_5'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_6'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_7'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_8'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_9'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_10'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_11'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_12'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_13'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_14'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_15'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_16'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_17'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_18'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_19'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_20'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_21'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_22'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_23'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_24'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_25'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_26'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_27'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_28'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_29'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_30'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_31'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_32'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_33'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_34'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_35'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_36'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_37'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_38'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_39'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_40'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_41'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_42'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_43'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_44'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_45'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_46'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_47'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_48'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_49'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_50'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_51'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_52'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_53'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_54'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_55'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_56'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_57'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_58'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_59'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_60'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_61'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_62'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_63'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_64'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_65'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_66'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_67'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_68'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_69'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_70'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_71'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_72'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_73'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_74'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_75'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_76'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_77'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_78'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_79'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_80'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_81'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_82'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_83'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_84'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_85'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_86'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_87'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_88'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_89'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_90'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_91'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_92'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_93'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_94'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_95'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_96'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_96 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_97'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_97 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_98'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_98 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_99'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_99 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_100'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_100 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_101'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_101 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_102'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_102 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_103'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_103 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_104'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_104 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_105'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_105 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_106'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_106 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_107'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_107 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_108'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_108 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_109'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_109 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_110'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_110 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_111'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_111 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_112'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_112 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_113'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_113 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_114'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_114 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_115'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_115 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_116'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_116 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_117'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_117 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_118'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_118 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_119'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_119 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_120'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_120 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_121'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_121 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_122'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_122 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_123'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_123 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_124'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_124 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_125'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_125 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_126'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_126 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_127'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_127 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_128'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_128 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_129'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_129 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_130'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_130 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_131'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_131 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_132'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_132 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_133'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_133 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_134'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_134 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_135'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_135 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_136'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_136 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_137'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_137 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_138'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_138 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_139'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_139 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_140'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_140 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_141'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_141 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_142'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_142 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_143'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_143 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_144'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_144 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_145'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_145 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_146'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_146 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_147'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_147 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_148'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_148 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_149'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_149 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_load__mutmut['xǁPatternMemoryǁ_load__mutmut_150'] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_150 # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["_mutmut_orig"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_1"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_2"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_3"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_4"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_5"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_6"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_7"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_8"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_9"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_10"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_11"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_12"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_13"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_14"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_15"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_16"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_17"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_18"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_19"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_20"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_21"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_22"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_23"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_24"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_25"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_26"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_27"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ__init____mutmut["xǁPatternMemoryǁ__init____mutmut_28"] = PatternMemory.xǁPatternMemoryǁ__init____mutmut_28  # type: ignore # mutmut generated
 
-mutants_xǁPatternMemoryǁ_save__mutmut['_mutmut_orig'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_1'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_2'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_3'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_4'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_5'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_6'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_7'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_8'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_9'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_10'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_11'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_12'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_13'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_14'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_15'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_16'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_17'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_18'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_19'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_20'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_21'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_22'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_23'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_24'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_25'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_26'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_27'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_28'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_29'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_30'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_31'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_32'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_33'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_34'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_35'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_36'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_37'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_38'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_39'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_40'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_41'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_42'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_43'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_44'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_45'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_46'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_47'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_48'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_49'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_50'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_51'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_52'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_53'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_54'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_55'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_56'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_57'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_58'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_59'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_60'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_61'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_62'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_63'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_64'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_65'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_66'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_67'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_68'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_69'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_70'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_71'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_72'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_73'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_74'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_save__mutmut['xǁPatternMemoryǁ_save__mutmut_75'] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_75 # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["_mutmut_orig"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_1"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_2"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_3"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_4"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_5"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_6"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_7"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_8"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_9"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_10"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_11"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_12"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_13"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_14"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_15"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_16"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_17"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_18"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_19"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_20"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_21"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_22"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_23"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_24"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_25"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_26"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_27"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_28"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_29"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_30"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_31"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_32"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_33"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_34"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_35"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_36"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_37"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_38"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_39"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_40"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_41"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_42"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_43"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_44"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_45"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_46"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_47"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_48"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_49"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_50"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_51"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_52"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_53"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_54"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_55"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_56"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_57"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_58"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_59"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_60"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_61"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_62"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_63"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_64"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_65"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_66"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_67"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_68"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_69"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_70"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_71"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_72"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_73"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_74"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_75"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_76"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_77"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_78"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_79"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_80"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_81"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_82"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_83"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_84"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_85"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_86"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_87"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_88"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_89"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_90"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_91"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_92"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_93"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_94"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_95"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_96"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_96  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_97"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_97  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_98"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_98  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_99"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_99  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_100"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_100  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_101"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_101  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_102"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_102  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_103"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_103  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_104"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_104  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_105"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_105  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_106"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_106  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_107"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_107  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_108"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_108  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_109"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_109  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_110"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_110  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_111"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_111  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_112"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_112  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_113"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_113  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_114"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_114  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_115"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_115  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_116"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_116  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_117"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_117  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_118"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_118  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_119"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_119  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_120"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_120  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_121"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_121  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_122"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_122  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_123"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_123  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_124"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_124  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_125"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_125  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_126"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_126  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_127"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_127  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_128"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_128  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_129"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_129  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_130"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_130  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_131"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_131  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_132"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_132  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_133"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_133  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_134"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_134  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_135"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_135  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_136"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_136  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_137"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_137  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_138"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_138  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_139"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_139  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_140"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_140  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_141"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_141  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_142"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_142  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_143"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_143  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_144"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_144  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_145"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_145  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_146"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_146  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_147"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_147  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_148"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_148  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_149"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_149  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_load__mutmut["xǁPatternMemoryǁ_load__mutmut_150"] = PatternMemory.xǁPatternMemoryǁ_load__mutmut_150  # type: ignore # mutmut generated
 
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['_mutmut_orig'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_1'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_2'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_3'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_4'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_5'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_6'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_7'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_8'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_9'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_10'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_11'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_12'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_13'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_14'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_15'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_16'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_17'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁstore_pattern__mutmut['xǁPatternMemoryǁstore_pattern__mutmut_18'] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_18 # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["_mutmut_orig"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_1"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_2"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_3"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_4"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_5"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_6"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_7"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_8"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_9"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_10"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_11"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_12"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_13"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_14"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_15"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_16"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_17"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_18"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_19"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_20"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_21"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_22"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_23"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_24"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_25"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_26"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_27"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_28"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_29"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_30"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_31"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_32"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_33"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_34"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_35"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_36"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_37"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_38"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_39"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_40"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_41"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_42"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_43"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_44"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_45"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_46"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_47"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_48"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_49"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_50"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_51"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_52"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_53"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_54"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_55"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_56"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_57"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_58"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_59"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_60"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_61"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_62"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_63"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_64"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_65"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_66"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_67"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_68"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_69"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_70"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_71"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_72"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_73"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_74"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_save__mutmut["xǁPatternMemoryǁ_save__mutmut_75"] = PatternMemory.xǁPatternMemoryǁ_save__mutmut_75  # type: ignore # mutmut generated
 
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['_mutmut_orig'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_1'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_2'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_3'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_4'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_5'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_6'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_7'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_8'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_9'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_10'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_11'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_12'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_13'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_14'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_15'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_16'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_17'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_18'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_19'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_20'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_21'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_22'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_23'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_24'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_25'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_26'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_27'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_28'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_29'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_30'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_31'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_32'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_33'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_34'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_35'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_36'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_37'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_38'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_39'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_40'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_41'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_42'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_43'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_44'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_45'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_46'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_47'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁfind_patterns__mutmut['xǁPatternMemoryǁfind_patterns__mutmut_48'] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_48 # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["_mutmut_orig"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_1"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_2"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_3"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_4"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_5"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_6"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_7"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_8"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_9"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_10"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_11"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_12"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_13"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_14"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_15"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_16"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_17"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁstore_pattern__mutmut["xǁPatternMemoryǁstore_pattern__mutmut_18"] = PatternMemory.xǁPatternMemoryǁstore_pattern__mutmut_18  # type: ignore # mutmut generated
 
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['_mutmut_orig'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_1'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_2'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_3'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_4'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_5'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_6'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_7'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_8'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_9'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_10'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_11'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_12'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_13'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_14'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_15'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_16'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_17'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_18'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_19'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_20'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_21'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_22'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_23'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_24'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_25'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_26'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_27'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut['xǁPatternMemoryǁ_calculate_similarity__mutmut_28'] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_28 # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["_mutmut_orig"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_1"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_2"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_3"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_4"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_5"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_6"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_7"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_8"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_9"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_10"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_11"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_12"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_13"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_14"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_15"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_16"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_17"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_18"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_19"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_20"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_21"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_22"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_23"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_24"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_25"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_26"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_27"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_28"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_29"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_30"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_31"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_32"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_33"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_34"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_35"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_36"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_37"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_38"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_39"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_40"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_41"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_42"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_43"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_44"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_45"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_46"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_47"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁfind_patterns__mutmut["xǁPatternMemoryǁfind_patterns__mutmut_48"] = PatternMemory.xǁPatternMemoryǁfind_patterns__mutmut_48  # type: ignore # mutmut generated
 
-mutants_xǁPatternMemoryǁuse_pattern__mutmut['_mutmut_orig'] = PatternMemory.xǁPatternMemoryǁuse_pattern__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁuse_pattern__mutmut['xǁPatternMemoryǁuse_pattern__mutmut_1'] = PatternMemory.xǁPatternMemoryǁuse_pattern__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁuse_pattern__mutmut['xǁPatternMemoryǁuse_pattern__mutmut_2'] = PatternMemory.xǁPatternMemoryǁuse_pattern__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁuse_pattern__mutmut['xǁPatternMemoryǁuse_pattern__mutmut_3'] = PatternMemory.xǁPatternMemoryǁuse_pattern__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁuse_pattern__mutmut['xǁPatternMemoryǁuse_pattern__mutmut_4'] = PatternMemory.xǁPatternMemoryǁuse_pattern__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁuse_pattern__mutmut['xǁPatternMemoryǁuse_pattern__mutmut_5'] = PatternMemory.xǁPatternMemoryǁuse_pattern__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁuse_pattern__mutmut['xǁPatternMemoryǁuse_pattern__mutmut_6'] = PatternMemory.xǁPatternMemoryǁuse_pattern__mutmut_6 # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["_mutmut_orig"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_1"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_2"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_3"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_4"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_5"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_6"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_7"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_8"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_9"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_10"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_11"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_12"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_13"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_14"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_15"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_16"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_17"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_18"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_19"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_20"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_21"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_22"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_23"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_24"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_25"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_26"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_27"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁ_calculate_similarity__mutmut["xǁPatternMemoryǁ_calculate_similarity__mutmut_28"] = PatternMemory.xǁPatternMemoryǁ_calculate_similarity__mutmut_28  # type: ignore # mutmut generated
 
-mutants_xǁPatternMemoryǁrecord_session__mutmut['_mutmut_orig'] = PatternMemory.xǁPatternMemoryǁrecord_session__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁrecord_session__mutmut['xǁPatternMemoryǁrecord_session__mutmut_1'] = PatternMemory.xǁPatternMemoryǁrecord_session__mutmut_1 # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁuse_pattern__mutmut["_mutmut_orig"] = PatternMemory.xǁPatternMemoryǁuse_pattern__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁuse_pattern__mutmut["xǁPatternMemoryǁuse_pattern__mutmut_1"] = PatternMemory.xǁPatternMemoryǁuse_pattern__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁuse_pattern__mutmut["xǁPatternMemoryǁuse_pattern__mutmut_2"] = PatternMemory.xǁPatternMemoryǁuse_pattern__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁuse_pattern__mutmut["xǁPatternMemoryǁuse_pattern__mutmut_3"] = PatternMemory.xǁPatternMemoryǁuse_pattern__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁuse_pattern__mutmut["xǁPatternMemoryǁuse_pattern__mutmut_4"] = PatternMemory.xǁPatternMemoryǁuse_pattern__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁuse_pattern__mutmut["xǁPatternMemoryǁuse_pattern__mutmut_5"] = PatternMemory.xǁPatternMemoryǁuse_pattern__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁuse_pattern__mutmut["xǁPatternMemoryǁuse_pattern__mutmut_6"] = PatternMemory.xǁPatternMemoryǁuse_pattern__mutmut_6  # type: ignore # mutmut generated
 
-mutants_xǁPatternMemoryǁget_statistics__mutmut['_mutmut_orig'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_1'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_2'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_3'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_4'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_5'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_6'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_7'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_8'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_9'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_10'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_11'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_12'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_13'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_14'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_15'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_16'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_17'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_18'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_19'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_20'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_21'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_22'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_23'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_24'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_25'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_26'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_27'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_28'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_29'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_30'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_31'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_32'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_33'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_34'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_35'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_36'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_37'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁPatternMemoryǁget_statistics__mutmut['xǁPatternMemoryǁget_statistics__mutmut_38'] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_38 # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁrecord_session__mutmut["_mutmut_orig"] = PatternMemory.xǁPatternMemoryǁrecord_session__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁrecord_session__mutmut["xǁPatternMemoryǁrecord_session__mutmut_1"] = PatternMemory.xǁPatternMemoryǁrecord_session__mutmut_1  # type: ignore # mutmut generated
+
+mutants_xǁPatternMemoryǁget_statistics__mutmut["_mutmut_orig"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_1"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_2"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_3"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_4"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_5"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_6"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_7"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_8"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_9"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_10"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_11"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_12"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_13"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_14"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_15"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_16"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_17"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_18"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_19"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_20"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_21"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_22"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_23"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_24"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_25"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_26"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_27"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_28"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_29"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_30"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_31"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_32"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_33"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_34"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_35"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_36"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_37"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁPatternMemoryǁget_statistics__mutmut["xǁPatternMemoryǁget_statistics__mutmut_38"] = PatternMemory.xǁPatternMemoryǁget_statistics__mutmut_38  # type: ignore # mutmut generated
 mutants_xǁLearningAgentǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁLearningAgentǁstart_session__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁLearningAgentǁend_session__mutmut: MutantDict = {}  # type: ignore
@@ -16011,7 +16086,9 @@ class LearningAgent:
         self.current_session = session
         return session
 
-    def xǁLearningAgentǁstart_session__mutmut_orig(self, goal: str, workspace: str) -> SessionRecord:
+    def xǁLearningAgentǁstart_session__mutmut_orig(
+        self, goal: str, workspace: str
+    ) -> SessionRecord:
         """세션 시작"""
         import uuid
 
@@ -16128,7 +16205,7 @@ class LearningAgent:
             session_id=f"session_{uuid.uuid4().hex[:8]}",
             goal=goal,
             workspace=workspace,
-            )
+        )
         self.current_session = session
         return session
 
@@ -16176,7 +16253,9 @@ class LearningAgent:
         self.memory.record_session(self.current_session)
         self.current_session = None
 
-    def xǁLearningAgentǁend_session__mutmut_orig(self, success: bool, metrics: dict[str, Any] | None = None) -> None:
+    def xǁLearningAgentǁend_session__mutmut_orig(
+        self, success: bool, metrics: dict[str, Any] | None = None
+    ) -> None:
         """세션 종료 및 패턴 추출"""
         if not self.current_session:
             return
@@ -16193,7 +16272,9 @@ class LearningAgent:
         self.memory.record_session(self.current_session)
         self.current_session = None
 
-    def xǁLearningAgentǁend_session__mutmut_1(self, success: bool, metrics: dict[str, Any] | None = None) -> None:
+    def xǁLearningAgentǁend_session__mutmut_1(
+        self, success: bool, metrics: dict[str, Any] | None = None
+    ) -> None:
         """세션 종료 및 패턴 추출"""
         if self.current_session:
             return
@@ -16210,7 +16291,9 @@ class LearningAgent:
         self.memory.record_session(self.current_session)
         self.current_session = None
 
-    def xǁLearningAgentǁend_session__mutmut_2(self, success: bool, metrics: dict[str, Any] | None = None) -> None:
+    def xǁLearningAgentǁend_session__mutmut_2(
+        self, success: bool, metrics: dict[str, Any] | None = None
+    ) -> None:
         """세션 종료 및 패턴 추출"""
         if not self.current_session:
             return
@@ -16227,7 +16310,9 @@ class LearningAgent:
         self.memory.record_session(self.current_session)
         self.current_session = None
 
-    def xǁLearningAgentǁend_session__mutmut_3(self, success: bool, metrics: dict[str, Any] | None = None) -> None:
+    def xǁLearningAgentǁend_session__mutmut_3(
+        self, success: bool, metrics: dict[str, Any] | None = None
+    ) -> None:
         """세션 종료 및 패턴 추출"""
         if not self.current_session:
             return
@@ -16244,7 +16329,9 @@ class LearningAgent:
         self.memory.record_session(self.current_session)
         self.current_session = None
 
-    def xǁLearningAgentǁend_session__mutmut_4(self, success: bool, metrics: dict[str, Any] | None = None) -> None:
+    def xǁLearningAgentǁend_session__mutmut_4(
+        self, success: bool, metrics: dict[str, Any] | None = None
+    ) -> None:
         """세션 종료 및 패턴 추출"""
         if not self.current_session:
             return
@@ -16261,7 +16348,9 @@ class LearningAgent:
         self.memory.record_session(self.current_session)
         self.current_session = None
 
-    def xǁLearningAgentǁend_session__mutmut_5(self, success: bool, metrics: dict[str, Any] | None = None) -> None:
+    def xǁLearningAgentǁend_session__mutmut_5(
+        self, success: bool, metrics: dict[str, Any] | None = None
+    ) -> None:
         """세션 종료 및 패턴 추출"""
         if not self.current_session:
             return
@@ -16278,7 +16367,9 @@ class LearningAgent:
         self.memory.record_session(None)
         self.current_session = None
 
-    def xǁLearningAgentǁend_session__mutmut_6(self, success: bool, metrics: dict[str, Any] | None = None) -> None:
+    def xǁLearningAgentǁend_session__mutmut_6(
+        self, success: bool, metrics: dict[str, Any] | None = None
+    ) -> None:
         """세션 종료 및 패턴 추출"""
         if not self.current_session:
             return
@@ -16728,7 +16819,12 @@ class LearningAgent:
             return
 
         # 테스트 생성 패턴
-        if self.current_session.metrics.get("tests_generated", ) > 0:
+        if (
+            self.current_session.metrics.get(
+                "tests_generated",
+            )
+            > 0
+        ):
             self.memory.store_pattern(
                 pattern_type="test",
                 context={
@@ -17782,7 +17878,7 @@ class LearningAgent:
                     "tests_generated": self.current_session.metrics.get("tests_generated", 0),
                     "coverage": self.current_session.metrics.get("coverage", 0),
                 },
-                )
+            )
 
         # PR 리뷰 패턴
         if self.current_session.metrics.get("pr_reviewed", False):
@@ -18334,7 +18430,9 @@ class LearningAgent:
             self.memory.store_pattern(
                 pattern_type="test",
                 context={
-                    "language": self.current_session.metrics.get("language", ),
+                    "language": self.current_session.metrics.get(
+                        "language",
+                    ),
                     "framework": self.current_session.metrics.get("framework"),
                     "test_framework": self.current_session.metrics.get("test_framework", "pytest"),
                 },
@@ -19046,7 +19144,9 @@ class LearningAgent:
                 context={
                     "language": self.current_session.metrics.get("language", "python"),
                     "framework": self.current_session.metrics.get("framework"),
-                    "XXtest_frameworkXX": self.current_session.metrics.get("test_framework", "pytest"),
+                    "XXtest_frameworkXX": self.current_session.metrics.get(
+                        "test_framework", "pytest"
+                    ),
                 },
                 solution={
                     "method": "ast_based_generation",
@@ -19401,7 +19501,9 @@ class LearningAgent:
                 context={
                     "language": self.current_session.metrics.get("language", "python"),
                     "framework": self.current_session.metrics.get("framework"),
-                    "test_framework": self.current_session.metrics.get("test_framework", ),
+                    "test_framework": self.current_session.metrics.get(
+                        "test_framework",
+                    ),
                 },
                 solution={
                     "method": "ast_based_generation",
@@ -19472,7 +19574,9 @@ class LearningAgent:
                 context={
                     "language": self.current_session.metrics.get("language", "python"),
                     "framework": self.current_session.metrics.get("framework"),
-                    "test_framework": self.current_session.metrics.get("XXtest_frameworkXX", "pytest"),
+                    "test_framework": self.current_session.metrics.get(
+                        "XXtest_frameworkXX", "pytest"
+                    ),
                 },
                 solution={
                     "method": "ast_based_generation",
@@ -19614,7 +19718,9 @@ class LearningAgent:
                 context={
                     "language": self.current_session.metrics.get("language", "python"),
                     "framework": self.current_session.metrics.get("framework"),
-                    "test_framework": self.current_session.metrics.get("test_framework", "XXpytestXX"),
+                    "test_framework": self.current_session.metrics.get(
+                        "test_framework", "XXpytestXX"
+                    ),
                 },
                 solution={
                     "method": "ast_based_generation",
@@ -21257,7 +21363,9 @@ class LearningAgent:
                 },
                 success_metrics={
                     "success_rate": 1.0,
-                    "tests_generated": self.current_session.metrics.get("tests_generated", ),
+                    "tests_generated": self.current_session.metrics.get(
+                        "tests_generated",
+                    ),
                     "coverage": self.current_session.metrics.get("coverage", 0),
                 },
                 tags=["test_generation", "ast", "edge_cases"],
@@ -21897,7 +22005,9 @@ class LearningAgent:
                 success_metrics={
                     "success_rate": 1.0,
                     "tests_generated": self.current_session.metrics.get("tests_generated", 0),
-                    "coverage": self.current_session.metrics.get("coverage", ),
+                    "coverage": self.current_session.metrics.get(
+                        "coverage",
+                    ),
                 },
                 tags=["test_generation", "ast", "edge_cases"],
             )
@@ -22826,7 +22936,9 @@ class LearningAgent:
             )
 
         # PR 리뷰 패턴
-        if self.current_session.metrics.get("pr_reviewed", ):
+        if self.current_session.metrics.get(
+            "pr_reviewed",
+        ):
             self.memory.store_pattern(
                 pattern_type="review",
                 context={
@@ -23737,7 +23849,7 @@ class LearningAgent:
                     "success_rate": 1.0,
                     "issues_found": self.current_session.metrics.get("issues_found", 0),
                 },
-                )
+            )
 
         # 코드 수정 패턴
         if self.current_session.metrics.get("files_modified", 0) > 0:
@@ -24288,7 +24400,9 @@ class LearningAgent:
             self.memory.store_pattern(
                 pattern_type="review",
                 context={
-                    "language": self.current_session.metrics.get("language", ),
+                    "language": self.current_session.metrics.get(
+                        "language",
+                    ),
                 },
                 solution={
                     "categories": [
@@ -26290,7 +26404,9 @@ class LearningAgent:
                 },
                 success_metrics={
                     "success_rate": 1.0,
-                    "issues_found": self.current_session.metrics.get("issues_found", ),
+                    "issues_found": self.current_session.metrics.get(
+                        "issues_found",
+                    ),
                 },
                 tags=["pr_review", "auto_fix"],
             )
@@ -27077,7 +27193,12 @@ class LearningAgent:
             )
 
         # 코드 수정 패턴
-        if self.current_session.metrics.get("files_modified", ) > 0:
+        if (
+            self.current_session.metrics.get(
+                "files_modified",
+            )
+            > 0
+        ):
             self.memory.store_pattern(
                 pattern_type="fix",
                 context={
@@ -28135,7 +28256,7 @@ class LearningAgent:
                     "success_rate": 1.0,
                     "files_fixed": self.current_session.metrics.get("files_modified", 0),
                 },
-                )
+            )
 
     def xǁLearningAgentǁ_extract_patterns__mutmut_167(self) -> None:
         """세션에서 성공 패턴 추출"""
@@ -28691,7 +28812,9 @@ class LearningAgent:
             self.memory.store_pattern(
                 pattern_type="fix",
                 context={
-                    "language": self.current_session.metrics.get("language", ),
+                    "language": self.current_session.metrics.get(
+                        "language",
+                    ),
                     "error_types": self.current_session.metrics.get("error_types", []),
                 },
                 solution={
@@ -29402,7 +29525,9 @@ class LearningAgent:
                 pattern_type="fix",
                 context={
                     "language": self.current_session.metrics.get("language", "python"),
-                    "error_types": self.current_session.metrics.get("error_types", ),
+                    "error_types": self.current_session.metrics.get(
+                        "error_types",
+                    ),
                 },
                 solution={
                     "method": "patch_based_fix",
@@ -30759,7 +30884,9 @@ class LearningAgent:
                 },
                 success_metrics={
                     "success_rate": 1.0,
-                    "files_fixed": self.current_session.metrics.get("files_modified", ),
+                    "files_fixed": self.current_session.metrics.get(
+                        "files_modified",
+                    ),
                 },
                 tags=["auto_fix", "patch", "validation"],
             )
@@ -31408,27 +31535,41 @@ class LearningAgent:
         """현재 컨텍스트에 맞는 패턴 조회"""
         return self.memory.find_patterns(context=context, limit=3)
 
-    def xǁLearningAgentǁget_relevant_patterns__mutmut_orig(self, context: dict[str, Any]) -> list[SuccessPattern]:
+    def xǁLearningAgentǁget_relevant_patterns__mutmut_orig(
+        self, context: dict[str, Any]
+    ) -> list[SuccessPattern]:
         """현재 컨텍스트에 맞는 패턴 조회"""
         return self.memory.find_patterns(context=context, limit=3)
 
-    def xǁLearningAgentǁget_relevant_patterns__mutmut_1(self, context: dict[str, Any]) -> list[SuccessPattern]:
+    def xǁLearningAgentǁget_relevant_patterns__mutmut_1(
+        self, context: dict[str, Any]
+    ) -> list[SuccessPattern]:
         """현재 컨텍스트에 맞는 패턴 조회"""
         return self.memory.find_patterns(context=None, limit=3)
 
-    def xǁLearningAgentǁget_relevant_patterns__mutmut_2(self, context: dict[str, Any]) -> list[SuccessPattern]:
+    def xǁLearningAgentǁget_relevant_patterns__mutmut_2(
+        self, context: dict[str, Any]
+    ) -> list[SuccessPattern]:
         """현재 컨텍스트에 맞는 패턴 조회"""
         return self.memory.find_patterns(context=context, limit=None)
 
-    def xǁLearningAgentǁget_relevant_patterns__mutmut_3(self, context: dict[str, Any]) -> list[SuccessPattern]:
+    def xǁLearningAgentǁget_relevant_patterns__mutmut_3(
+        self, context: dict[str, Any]
+    ) -> list[SuccessPattern]:
         """현재 컨텍스트에 맞는 패턴 조회"""
         return self.memory.find_patterns(limit=3)
 
-    def xǁLearningAgentǁget_relevant_patterns__mutmut_4(self, context: dict[str, Any]) -> list[SuccessPattern]:
+    def xǁLearningAgentǁget_relevant_patterns__mutmut_4(
+        self, context: dict[str, Any]
+    ) -> list[SuccessPattern]:
         """현재 컨텍스트에 맞는 패턴 조회"""
-        return self.memory.find_patterns(context=context, )
+        return self.memory.find_patterns(
+            context=context,
+        )
 
-    def xǁLearningAgentǁget_relevant_patterns__mutmut_5(self, context: dict[str, Any]) -> list[SuccessPattern]:
+    def xǁLearningAgentǁget_relevant_patterns__mutmut_5(
+        self, context: dict[str, Any]
+    ) -> list[SuccessPattern]:
         """현재 컨텍스트에 맞는 패턴 조회"""
         return self.memory.find_patterns(context=context, limit=4)
 
@@ -31640,7 +31781,10 @@ class LearningAgent:
             return None
 
         # 컨텍스트에 맞게 솔루션 변환
-        adapted_solution = self._adapt_solution(pattern.solution, pattern.context, )
+        adapted_solution = self._adapt_solution(
+            pattern.solution,
+            pattern.context,
+        )
 
         return {
             "pattern_id": pattern_id,
@@ -31862,7 +32006,9 @@ class LearningAgent:
             "pattern_id": pattern_id,
             "original_solution": pattern.solution,
             "adapted_solution": adapted_solution,
-            "confidence": pattern.success_metrics.get("success_rate", ),
+            "confidence": pattern.success_metrics.get(
+                "success_rate",
+            ),
         }
 
     def xǁLearningAgentǁapply_pattern__mutmut_23(
@@ -32697,312 +32843,313 @@ class LearningAgent:
 
         return adapted
 
-mutants_xǁLearningAgentǁ__init____mutmut['_mutmut_orig'] = LearningAgent.xǁLearningAgentǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ__init____mutmut['xǁLearningAgentǁ__init____mutmut_1'] = LearningAgent.xǁLearningAgentǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ__init____mutmut['xǁLearningAgentǁ__init____mutmut_2'] = LearningAgent.xǁLearningAgentǁ__init____mutmut_2 # type: ignore # mutmut generated
 
-mutants_xǁLearningAgentǁstart_session__mutmut['_mutmut_orig'] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁstart_session__mutmut['xǁLearningAgentǁstart_session__mutmut_1'] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁstart_session__mutmut['xǁLearningAgentǁstart_session__mutmut_2'] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁstart_session__mutmut['xǁLearningAgentǁstart_session__mutmut_3'] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁstart_session__mutmut['xǁLearningAgentǁstart_session__mutmut_4'] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁstart_session__mutmut['xǁLearningAgentǁstart_session__mutmut_5'] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁstart_session__mutmut['xǁLearningAgentǁstart_session__mutmut_6'] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁstart_session__mutmut['xǁLearningAgentǁstart_session__mutmut_7'] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁstart_session__mutmut['xǁLearningAgentǁstart_session__mutmut_8'] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁstart_session__mutmut['xǁLearningAgentǁstart_session__mutmut_9'] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁstart_session__mutmut['xǁLearningAgentǁstart_session__mutmut_10'] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁstart_session__mutmut['xǁLearningAgentǁstart_session__mutmut_11'] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_11 # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ__init____mutmut["_mutmut_orig"] = LearningAgent.xǁLearningAgentǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ__init____mutmut["xǁLearningAgentǁ__init____mutmut_1"] = LearningAgent.xǁLearningAgentǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ__init____mutmut["xǁLearningAgentǁ__init____mutmut_2"] = LearningAgent.xǁLearningAgentǁ__init____mutmut_2  # type: ignore # mutmut generated
 
-mutants_xǁLearningAgentǁend_session__mutmut['_mutmut_orig'] = LearningAgent.xǁLearningAgentǁend_session__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁend_session__mutmut['xǁLearningAgentǁend_session__mutmut_1'] = LearningAgent.xǁLearningAgentǁend_session__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁend_session__mutmut['xǁLearningAgentǁend_session__mutmut_2'] = LearningAgent.xǁLearningAgentǁend_session__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁend_session__mutmut['xǁLearningAgentǁend_session__mutmut_3'] = LearningAgent.xǁLearningAgentǁend_session__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁend_session__mutmut['xǁLearningAgentǁend_session__mutmut_4'] = LearningAgent.xǁLearningAgentǁend_session__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁend_session__mutmut['xǁLearningAgentǁend_session__mutmut_5'] = LearningAgent.xǁLearningAgentǁend_session__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁend_session__mutmut['xǁLearningAgentǁend_session__mutmut_6'] = LearningAgent.xǁLearningAgentǁend_session__mutmut_6 # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁstart_session__mutmut["_mutmut_orig"] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁstart_session__mutmut["xǁLearningAgentǁstart_session__mutmut_1"] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁstart_session__mutmut["xǁLearningAgentǁstart_session__mutmut_2"] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁstart_session__mutmut["xǁLearningAgentǁstart_session__mutmut_3"] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁstart_session__mutmut["xǁLearningAgentǁstart_session__mutmut_4"] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁstart_session__mutmut["xǁLearningAgentǁstart_session__mutmut_5"] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁstart_session__mutmut["xǁLearningAgentǁstart_session__mutmut_6"] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁstart_session__mutmut["xǁLearningAgentǁstart_session__mutmut_7"] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁstart_session__mutmut["xǁLearningAgentǁstart_session__mutmut_8"] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁstart_session__mutmut["xǁLearningAgentǁstart_session__mutmut_9"] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁstart_session__mutmut["xǁLearningAgentǁstart_session__mutmut_10"] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁstart_session__mutmut["xǁLearningAgentǁstart_session__mutmut_11"] = LearningAgent.xǁLearningAgentǁstart_session__mutmut_11  # type: ignore # mutmut generated
 
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['_mutmut_orig'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_1'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_2'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_3'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_4'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_5'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_6'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_7'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_8'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_9'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_10'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_11'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_12'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_13'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_14'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_15'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_16'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_17'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_18'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_19'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_20'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_21'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_22'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_23'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_24'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_25'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_26'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_27'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_28'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_29'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_30'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_31'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_32'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_33'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_34'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_35'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_36'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_37'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_38'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_39'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_40'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_41'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_42'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_43'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_44'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_45'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_46'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_47'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_48'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_49'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_50'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_51'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_52'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_53'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_54'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_55'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_56'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_57'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_58'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_59'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_60'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_61'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_62'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_63'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_64'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_65'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_66'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_67'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_68'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_69'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_70'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_71'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_72'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_73'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_74'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_75'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_76'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_77'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_78'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_79'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_80'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_81'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_82'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_83'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_84'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_85'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_86'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_87'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_88'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_89'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_90'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_91'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_92'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_93'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_94'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_95'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_96'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_96 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_97'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_97 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_98'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_98 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_99'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_99 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_100'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_100 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_101'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_101 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_102'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_102 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_103'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_103 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_104'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_104 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_105'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_105 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_106'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_106 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_107'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_107 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_108'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_108 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_109'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_109 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_110'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_110 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_111'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_111 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_112'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_112 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_113'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_113 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_114'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_114 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_115'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_115 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_116'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_116 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_117'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_117 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_118'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_118 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_119'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_119 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_120'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_120 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_121'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_121 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_122'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_122 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_123'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_123 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_124'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_124 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_125'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_125 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_126'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_126 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_127'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_127 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_128'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_128 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_129'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_129 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_130'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_130 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_131'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_131 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_132'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_132 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_133'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_133 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_134'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_134 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_135'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_135 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_136'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_136 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_137'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_137 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_138'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_138 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_139'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_139 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_140'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_140 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_141'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_141 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_142'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_142 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_143'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_143 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_144'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_144 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_145'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_145 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_146'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_146 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_147'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_147 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_148'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_148 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_149'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_149 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_150'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_150 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_151'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_151 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_152'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_152 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_153'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_153 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_154'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_154 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_155'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_155 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_156'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_156 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_157'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_157 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_158'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_158 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_159'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_159 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_160'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_160 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_161'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_161 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_162'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_162 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_163'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_163 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_164'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_164 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_165'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_165 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_166'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_166 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_167'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_167 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_168'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_168 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_169'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_169 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_170'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_170 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_171'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_171 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_172'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_172 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_173'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_173 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_174'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_174 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_175'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_175 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_176'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_176 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_177'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_177 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_178'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_178 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_179'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_179 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_180'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_180 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_181'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_181 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_182'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_182 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_183'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_183 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_184'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_184 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_185'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_185 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_186'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_186 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_187'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_187 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_188'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_188 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_189'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_189 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_190'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_190 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_191'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_191 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_192'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_192 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_193'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_193 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_194'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_194 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_195'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_195 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_196'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_196 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_197'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_197 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_198'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_198 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_199'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_199 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_200'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_200 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_201'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_201 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_202'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_202 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_203'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_203 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_204'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_204 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_205'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_205 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_206'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_206 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_207'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_207 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_208'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_208 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_209'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_209 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_210'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_210 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_211'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_211 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_extract_patterns__mutmut['xǁLearningAgentǁ_extract_patterns__mutmut_212'] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_212 # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁend_session__mutmut["_mutmut_orig"] = LearningAgent.xǁLearningAgentǁend_session__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁend_session__mutmut["xǁLearningAgentǁend_session__mutmut_1"] = LearningAgent.xǁLearningAgentǁend_session__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁend_session__mutmut["xǁLearningAgentǁend_session__mutmut_2"] = LearningAgent.xǁLearningAgentǁend_session__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁend_session__mutmut["xǁLearningAgentǁend_session__mutmut_3"] = LearningAgent.xǁLearningAgentǁend_session__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁend_session__mutmut["xǁLearningAgentǁend_session__mutmut_4"] = LearningAgent.xǁLearningAgentǁend_session__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁend_session__mutmut["xǁLearningAgentǁend_session__mutmut_5"] = LearningAgent.xǁLearningAgentǁend_session__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁend_session__mutmut["xǁLearningAgentǁend_session__mutmut_6"] = LearningAgent.xǁLearningAgentǁend_session__mutmut_6  # type: ignore # mutmut generated
 
-mutants_xǁLearningAgentǁget_relevant_patterns__mutmut['_mutmut_orig'] = LearningAgent.xǁLearningAgentǁget_relevant_patterns__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁget_relevant_patterns__mutmut['xǁLearningAgentǁget_relevant_patterns__mutmut_1'] = LearningAgent.xǁLearningAgentǁget_relevant_patterns__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁget_relevant_patterns__mutmut['xǁLearningAgentǁget_relevant_patterns__mutmut_2'] = LearningAgent.xǁLearningAgentǁget_relevant_patterns__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁget_relevant_patterns__mutmut['xǁLearningAgentǁget_relevant_patterns__mutmut_3'] = LearningAgent.xǁLearningAgentǁget_relevant_patterns__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁget_relevant_patterns__mutmut['xǁLearningAgentǁget_relevant_patterns__mutmut_4'] = LearningAgent.xǁLearningAgentǁget_relevant_patterns__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁget_relevant_patterns__mutmut['xǁLearningAgentǁget_relevant_patterns__mutmut_5'] = LearningAgent.xǁLearningAgentǁget_relevant_patterns__mutmut_5 # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["_mutmut_orig"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_1"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_2"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_3"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_4"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_5"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_6"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_7"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_8"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_9"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_10"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_11"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_12"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_13"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_14"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_15"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_16"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_17"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_18"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_19"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_20"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_21"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_22"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_23"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_24"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_25"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_26"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_27"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_28"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_29"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_30"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_31"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_32"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_33"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_34"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_35"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_36"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_37"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_38"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_39"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_40"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_41"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_42"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_43"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_44"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_45"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_46"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_47"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_48"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_49"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_50"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_51"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_52"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_53"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_54"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_55"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_56"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_57"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_58"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_59"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_60"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_61"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_62"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_63"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_64"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_65"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_66"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_67"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_68"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_69"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_70"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_71"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_72"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_73"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_74"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_75"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_76"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_77"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_78"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_79"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_80"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_81"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_82"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_83"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_84"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_85"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_86"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_87"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_88"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_89"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_90"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_91"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_92"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_93"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_94"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_95"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_96"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_96  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_97"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_97  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_98"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_98  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_99"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_99  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_100"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_100  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_101"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_101  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_102"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_102  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_103"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_103  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_104"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_104  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_105"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_105  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_106"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_106  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_107"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_107  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_108"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_108  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_109"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_109  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_110"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_110  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_111"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_111  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_112"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_112  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_113"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_113  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_114"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_114  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_115"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_115  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_116"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_116  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_117"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_117  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_118"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_118  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_119"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_119  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_120"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_120  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_121"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_121  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_122"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_122  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_123"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_123  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_124"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_124  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_125"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_125  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_126"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_126  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_127"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_127  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_128"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_128  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_129"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_129  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_130"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_130  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_131"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_131  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_132"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_132  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_133"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_133  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_134"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_134  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_135"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_135  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_136"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_136  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_137"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_137  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_138"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_138  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_139"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_139  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_140"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_140  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_141"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_141  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_142"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_142  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_143"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_143  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_144"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_144  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_145"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_145  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_146"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_146  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_147"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_147  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_148"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_148  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_149"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_149  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_150"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_150  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_151"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_151  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_152"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_152  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_153"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_153  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_154"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_154  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_155"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_155  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_156"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_156  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_157"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_157  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_158"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_158  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_159"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_159  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_160"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_160  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_161"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_161  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_162"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_162  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_163"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_163  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_164"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_164  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_165"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_165  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_166"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_166  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_167"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_167  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_168"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_168  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_169"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_169  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_170"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_170  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_171"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_171  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_172"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_172  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_173"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_173  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_174"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_174  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_175"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_175  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_176"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_176  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_177"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_177  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_178"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_178  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_179"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_179  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_180"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_180  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_181"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_181  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_182"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_182  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_183"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_183  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_184"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_184  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_185"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_185  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_186"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_186  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_187"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_187  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_188"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_188  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_189"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_189  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_190"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_190  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_191"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_191  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_192"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_192  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_193"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_193  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_194"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_194  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_195"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_195  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_196"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_196  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_197"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_197  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_198"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_198  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_199"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_199  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_200"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_200  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_201"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_201  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_202"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_202  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_203"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_203  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_204"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_204  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_205"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_205  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_206"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_206  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_207"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_207  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_208"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_208  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_209"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_209  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_210"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_210  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_211"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_211  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_extract_patterns__mutmut["xǁLearningAgentǁ_extract_patterns__mutmut_212"] = LearningAgent.xǁLearningAgentǁ_extract_patterns__mutmut_212  # type: ignore # mutmut generated
 
-mutants_xǁLearningAgentǁapply_pattern__mutmut['_mutmut_orig'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_1'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_2'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_3'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_4'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_5'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_6'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_7'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_8'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_9'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_10'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_11'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_12'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_13'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_14'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_15'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_16'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_17'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_18'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_19'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_20'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_21'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_22'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_23'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_24'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁapply_pattern__mutmut['xǁLearningAgentǁapply_pattern__mutmut_25'] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_25 # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁget_relevant_patterns__mutmut["_mutmut_orig"] = LearningAgent.xǁLearningAgentǁget_relevant_patterns__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁget_relevant_patterns__mutmut["xǁLearningAgentǁget_relevant_patterns__mutmut_1"] = LearningAgent.xǁLearningAgentǁget_relevant_patterns__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁget_relevant_patterns__mutmut["xǁLearningAgentǁget_relevant_patterns__mutmut_2"] = LearningAgent.xǁLearningAgentǁget_relevant_patterns__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁget_relevant_patterns__mutmut["xǁLearningAgentǁget_relevant_patterns__mutmut_3"] = LearningAgent.xǁLearningAgentǁget_relevant_patterns__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁget_relevant_patterns__mutmut["xǁLearningAgentǁget_relevant_patterns__mutmut_4"] = LearningAgent.xǁLearningAgentǁget_relevant_patterns__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁget_relevant_patterns__mutmut["xǁLearningAgentǁget_relevant_patterns__mutmut_5"] = LearningAgent.xǁLearningAgentǁget_relevant_patterns__mutmut_5  # type: ignore # mutmut generated
 
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['_mutmut_orig'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_1'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_2'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_3'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_4'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_5'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_6'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_7'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_8'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_9'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_10'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_11'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_12'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_13'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_14'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_15'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_16'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_17'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_18'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_19'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_20'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_21'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_22'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_23'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_24'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_25'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_26'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_27'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_28'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_29'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_30'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_31'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_32'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_33'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_34'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁLearningAgentǁ_adapt_solution__mutmut['xǁLearningAgentǁ_adapt_solution__mutmut_35'] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_35 # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["_mutmut_orig"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_1"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_2"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_3"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_4"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_5"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_6"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_7"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_8"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_9"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_10"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_11"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_12"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_13"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_14"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_15"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_16"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_17"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_18"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_19"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_20"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_21"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_22"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_23"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_24"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁapply_pattern__mutmut["xǁLearningAgentǁapply_pattern__mutmut_25"] = LearningAgent.xǁLearningAgentǁapply_pattern__mutmut_25  # type: ignore # mutmut generated
+
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["_mutmut_orig"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_1"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_2"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_3"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_4"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_5"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_6"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_7"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_8"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_9"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_10"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_11"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_12"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_13"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_14"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_15"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_16"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_17"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_18"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_19"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_20"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_21"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_22"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_23"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_24"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_25"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_26"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_27"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_28"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_29"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_30"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_31"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_32"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_33"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_34"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁLearningAgentǁ_adapt_solution__mutmut["xǁLearningAgentǁ_adapt_solution__mutmut_35"] = LearningAgent.xǁLearningAgentǁ_adapt_solution__mutmut_35  # type: ignore # mutmut generated

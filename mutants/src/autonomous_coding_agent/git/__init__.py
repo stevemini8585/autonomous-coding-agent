@@ -13,7 +13,8 @@ from typing import Any, Dict, List, Optional
 log = logging.getLogger("autonomous_coding_agent.git")
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
 
 
 @dataclass
@@ -39,6 +40,8 @@ class CommitInfo:
     author: str
     date: str
     files_changed: list[str]
+
+
 mutants_xǁGitManagerǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁGitManagerǁ_run__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁGitManagerǁget_status__mutmut: MutantDict = {}  # type: ignore
@@ -273,7 +276,7 @@ class GitManager:
             cwd=self.workspace,
             capture_output=True,
             text=True,
-            )
+        )
 
     def xǁGitManagerǁ_run__mutmut_14(self, cmd: str) -> subprocess.CompletedProcess:
         """Git 명령 실행"""
@@ -2323,9 +2326,7 @@ class GitManager:
                 untracked.append(filepath)
 
         # ahead/behind
-        ahead_behind = self._run(
-            None
-        )
+        ahead_behind = self._run(None)
         behind, ahead = map(int, ahead_behind.stdout.strip().split("\t"))
 
         return GitStatus(
@@ -2662,7 +2663,9 @@ class GitManager:
         ahead_behind = self._run(
             "git rev-list --left-right --count @{u}...HEAD 2>/dev/null || echo '0\t0'"
         )
-        behind, ahead = map(int, )
+        behind, ahead = map(
+            int,
+        )
 
         return GitStatus(
             branch=branch,
@@ -3337,7 +3340,7 @@ class GitManager:
             unstaged_files=unstaged,
             untracked_files=untracked,
             ahead=ahead,
-            )
+        )
 
     def xǁGitManagerǁget_status__mutmut_71(self) -> GitStatus:
         """작업 트리 상태 조회"""
@@ -3513,7 +3516,9 @@ class GitManager:
         hash_result = self._run("git rev-parse HEAD")
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_orig(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_orig(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3531,7 +3536,9 @@ class GitManager:
         hash_result = self._run("git rev-parse HEAD")
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_1(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_1(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(None)
@@ -3549,7 +3556,9 @@ class GitManager:
         hash_result = self._run("git rev-parse HEAD")
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_2(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_2(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3567,7 +3576,9 @@ class GitManager:
         hash_result = self._run("git rev-parse HEAD")
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_3(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_3(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3585,7 +3596,9 @@ class GitManager:
         hash_result = self._run("git rev-parse HEAD")
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_4(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_4(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3603,7 +3616,9 @@ class GitManager:
         hash_result = self._run("git rev-parse HEAD")
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_5(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_5(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3621,7 +3636,9 @@ class GitManager:
         hash_result = self._run("git rev-parse HEAD")
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_6(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_6(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3639,7 +3656,9 @@ class GitManager:
         hash_result = self._run("git rev-parse HEAD")
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_7(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_7(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3657,7 +3676,9 @@ class GitManager:
         hash_result = self._run("git rev-parse HEAD")
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_8(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_8(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3675,7 +3696,9 @@ class GitManager:
         hash_result = self._run("git rev-parse HEAD")
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_9(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_9(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3693,7 +3716,9 @@ class GitManager:
         hash_result = self._run("git rev-parse HEAD")
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_10(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_10(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3711,7 +3736,9 @@ class GitManager:
         hash_result = self._run("git rev-parse HEAD")
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_11(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_11(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3729,7 +3756,9 @@ class GitManager:
         hash_result = self._run("git rev-parse HEAD")
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_12(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_12(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3747,7 +3776,9 @@ class GitManager:
         hash_result = self._run("git rev-parse HEAD")
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_13(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_13(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3765,7 +3796,9 @@ class GitManager:
         hash_result = None
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_14(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_14(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3783,7 +3816,9 @@ class GitManager:
         hash_result = self._run(None)
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_15(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_15(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3801,7 +3836,9 @@ class GitManager:
         hash_result = self._run("XXgit rev-parse HEADXX")
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_16(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_16(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3819,7 +3856,9 @@ class GitManager:
         hash_result = self._run("git rev-parse head")
         return hash_result.stdout.strip()
 
-    def xǁGitManagerǁcommit__mutmut_17(self, message: str, files: list[str] | None = None) -> str | None:
+    def xǁGitManagerǁcommit__mutmut_17(
+        self, message: str, files: list[str] | None = None
+    ) -> str | None:
         """커밋 생성"""
         if files:
             self.add(files)
@@ -3848,7 +3887,9 @@ class GitManager:
             raise RuntimeError(f"브랜치 생성 실패: {result.stderr}")
         return branch_name
 
-    def xǁGitManagerǁcreate_branch__mutmut_orig(self, branch_name: str, base: str | None = None) -> str:
+    def xǁGitManagerǁcreate_branch__mutmut_orig(
+        self, branch_name: str, base: str | None = None
+    ) -> str:
         """브랜치 생성"""
         cmd = f"git checkout -b {branch_name}"
         if base:
@@ -3858,7 +3899,9 @@ class GitManager:
             raise RuntimeError(f"브랜치 생성 실패: {result.stderr}")
         return branch_name
 
-    def xǁGitManagerǁcreate_branch__mutmut_1(self, branch_name: str, base: str | None = None) -> str:
+    def xǁGitManagerǁcreate_branch__mutmut_1(
+        self, branch_name: str, base: str | None = None
+    ) -> str:
         """브랜치 생성"""
         cmd = None
         if base:
@@ -3868,7 +3911,9 @@ class GitManager:
             raise RuntimeError(f"브랜치 생성 실패: {result.stderr}")
         return branch_name
 
-    def xǁGitManagerǁcreate_branch__mutmut_2(self, branch_name: str, base: str | None = None) -> str:
+    def xǁGitManagerǁcreate_branch__mutmut_2(
+        self, branch_name: str, base: str | None = None
+    ) -> str:
         """브랜치 생성"""
         cmd = f"git checkout -b {branch_name}"
         if base:
@@ -3878,7 +3923,9 @@ class GitManager:
             raise RuntimeError(f"브랜치 생성 실패: {result.stderr}")
         return branch_name
 
-    def xǁGitManagerǁcreate_branch__mutmut_3(self, branch_name: str, base: str | None = None) -> str:
+    def xǁGitManagerǁcreate_branch__mutmut_3(
+        self, branch_name: str, base: str | None = None
+    ) -> str:
         """브랜치 생성"""
         cmd = f"git checkout -b {branch_name}"
         if base:
@@ -3888,7 +3935,9 @@ class GitManager:
             raise RuntimeError(f"브랜치 생성 실패: {result.stderr}")
         return branch_name
 
-    def xǁGitManagerǁcreate_branch__mutmut_4(self, branch_name: str, base: str | None = None) -> str:
+    def xǁGitManagerǁcreate_branch__mutmut_4(
+        self, branch_name: str, base: str | None = None
+    ) -> str:
         """브랜치 생성"""
         cmd = f"git checkout -b {branch_name}"
         if base:
@@ -3898,7 +3947,9 @@ class GitManager:
             raise RuntimeError(f"브랜치 생성 실패: {result.stderr}")
         return branch_name
 
-    def xǁGitManagerǁcreate_branch__mutmut_5(self, branch_name: str, base: str | None = None) -> str:
+    def xǁGitManagerǁcreate_branch__mutmut_5(
+        self, branch_name: str, base: str | None = None
+    ) -> str:
         """브랜치 생성"""
         cmd = f"git checkout -b {branch_name}"
         if base:
@@ -3908,7 +3959,9 @@ class GitManager:
             raise RuntimeError(f"브랜치 생성 실패: {result.stderr}")
         return branch_name
 
-    def xǁGitManagerǁcreate_branch__mutmut_6(self, branch_name: str, base: str | None = None) -> str:
+    def xǁGitManagerǁcreate_branch__mutmut_6(
+        self, branch_name: str, base: str | None = None
+    ) -> str:
         """브랜치 생성"""
         cmd = f"git checkout -b {branch_name}"
         if base:
@@ -3918,7 +3971,9 @@ class GitManager:
             raise RuntimeError(f"브랜치 생성 실패: {result.stderr}")
         return branch_name
 
-    def xǁGitManagerǁcreate_branch__mutmut_7(self, branch_name: str, base: str | None = None) -> str:
+    def xǁGitManagerǁcreate_branch__mutmut_7(
+        self, branch_name: str, base: str | None = None
+    ) -> str:
         """브랜치 생성"""
         cmd = f"git checkout -b {branch_name}"
         if base:
@@ -3939,7 +3994,9 @@ class GitManager:
         result = self._run(cmd)
         return result.returncode == 0
 
-    def xǁGitManagerǁpush__mutmut_orig(self, branch: str | None = None, force: bool = False) -> bool:
+    def xǁGitManagerǁpush__mutmut_orig(
+        self, branch: str | None = None, force: bool = False
+    ) -> bool:
         """푸시"""
         cmd = "git push"
         if branch:
@@ -4279,9 +4336,7 @@ class GitManager:
 
     def xǁGitManagerǁget_log__mutmut_3(self, limit: int = 10) -> list[CommitInfo]:
         """커밋 로그"""
-        result = self._run(
-            None
-        )
+        result = self._run(None)
         commits = []
         for line in result.stdout.strip().split("\n"):
             if not line:
@@ -4516,7 +4571,9 @@ class GitManager:
         for line in result.stdout.strip().split("\n"):
             if not line:
                 continue
-            parts = line.split("|", )
+            parts = line.split(
+                "|",
+            )
             if len(parts) == 4:
                 commits.append(
                     CommitInfo(
@@ -4656,9 +4713,7 @@ class GitManager:
                 continue
             parts = line.split("|", 3)
             if len(parts) == 4:
-                commits.append(
-                    None
-                )
+                commits.append(None)
         return commits
 
     def xǁGitManagerǁget_log__mutmut_20(self, limit: int = 10) -> list[CommitInfo]:
@@ -4927,7 +4982,7 @@ class GitManager:
                         message=parts[1],
                         author=parts[2],
                         date=parts[3],
-                        )
+                    )
                 )
         return commits
 
@@ -5101,220 +5156,221 @@ class GitManager:
         result = self._run(None)
         return result.stdout
 
-mutants_xǁGitManagerǁ__init____mutmut['_mutmut_orig'] = GitManager.xǁGitManagerǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ__init____mutmut['xǁGitManagerǁ__init____mutmut_1'] = GitManager.xǁGitManagerǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ__init____mutmut['xǁGitManagerǁ__init____mutmut_2'] = GitManager.xǁGitManagerǁ__init____mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ__init____mutmut['xǁGitManagerǁ__init____mutmut_3'] = GitManager.xǁGitManagerǁ__init____mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ__init____mutmut['xǁGitManagerǁ__init____mutmut_4'] = GitManager.xǁGitManagerǁ__init____mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ__init____mutmut['xǁGitManagerǁ__init____mutmut_5'] = GitManager.xǁGitManagerǁ__init____mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ__init____mutmut['xǁGitManagerǁ__init____mutmut_6'] = GitManager.xǁGitManagerǁ__init____mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ__init____mutmut['xǁGitManagerǁ__init____mutmut_7'] = GitManager.xǁGitManagerǁ__init____mutmut_7 # type: ignore # mutmut generated
 
-mutants_xǁGitManagerǁ_run__mutmut['_mutmut_orig'] = GitManager.xǁGitManagerǁ_run__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_1'] = GitManager.xǁGitManagerǁ_run__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_2'] = GitManager.xǁGitManagerǁ_run__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_3'] = GitManager.xǁGitManagerǁ_run__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_4'] = GitManager.xǁGitManagerǁ_run__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_5'] = GitManager.xǁGitManagerǁ_run__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_6'] = GitManager.xǁGitManagerǁ_run__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_7'] = GitManager.xǁGitManagerǁ_run__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_8'] = GitManager.xǁGitManagerǁ_run__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_9'] = GitManager.xǁGitManagerǁ_run__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_10'] = GitManager.xǁGitManagerǁ_run__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_11'] = GitManager.xǁGitManagerǁ_run__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_12'] = GitManager.xǁGitManagerǁ_run__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_13'] = GitManager.xǁGitManagerǁ_run__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_14'] = GitManager.xǁGitManagerǁ_run__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_15'] = GitManager.xǁGitManagerǁ_run__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_16'] = GitManager.xǁGitManagerǁ_run__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁ_run__mutmut['xǁGitManagerǁ_run__mutmut_17'] = GitManager.xǁGitManagerǁ_run__mutmut_17 # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ__init____mutmut["_mutmut_orig"] = GitManager.xǁGitManagerǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ__init____mutmut["xǁGitManagerǁ__init____mutmut_1"] = GitManager.xǁGitManagerǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ__init____mutmut["xǁGitManagerǁ__init____mutmut_2"] = GitManager.xǁGitManagerǁ__init____mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ__init____mutmut["xǁGitManagerǁ__init____mutmut_3"] = GitManager.xǁGitManagerǁ__init____mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ__init____mutmut["xǁGitManagerǁ__init____mutmut_4"] = GitManager.xǁGitManagerǁ__init____mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ__init____mutmut["xǁGitManagerǁ__init____mutmut_5"] = GitManager.xǁGitManagerǁ__init____mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ__init____mutmut["xǁGitManagerǁ__init____mutmut_6"] = GitManager.xǁGitManagerǁ__init____mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ__init____mutmut["xǁGitManagerǁ__init____mutmut_7"] = GitManager.xǁGitManagerǁ__init____mutmut_7  # type: ignore # mutmut generated
 
-mutants_xǁGitManagerǁget_status__mutmut['_mutmut_orig'] = GitManager.xǁGitManagerǁget_status__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_1'] = GitManager.xǁGitManagerǁget_status__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_2'] = GitManager.xǁGitManagerǁget_status__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_3'] = GitManager.xǁGitManagerǁget_status__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_4'] = GitManager.xǁGitManagerǁget_status__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_5'] = GitManager.xǁGitManagerǁget_status__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_6'] = GitManager.xǁGitManagerǁget_status__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_7'] = GitManager.xǁGitManagerǁget_status__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_8'] = GitManager.xǁGitManagerǁget_status__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_9'] = GitManager.xǁGitManagerǁget_status__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_10'] = GitManager.xǁGitManagerǁget_status__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_11'] = GitManager.xǁGitManagerǁget_status__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_12'] = GitManager.xǁGitManagerǁget_status__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_13'] = GitManager.xǁGitManagerǁget_status__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_14'] = GitManager.xǁGitManagerǁget_status__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_15'] = GitManager.xǁGitManagerǁget_status__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_16'] = GitManager.xǁGitManagerǁget_status__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_17'] = GitManager.xǁGitManagerǁget_status__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_18'] = GitManager.xǁGitManagerǁget_status__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_19'] = GitManager.xǁGitManagerǁget_status__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_20'] = GitManager.xǁGitManagerǁget_status__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_21'] = GitManager.xǁGitManagerǁget_status__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_22'] = GitManager.xǁGitManagerǁget_status__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_23'] = GitManager.xǁGitManagerǁget_status__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_24'] = GitManager.xǁGitManagerǁget_status__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_25'] = GitManager.xǁGitManagerǁget_status__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_26'] = GitManager.xǁGitManagerǁget_status__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_27'] = GitManager.xǁGitManagerǁget_status__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_28'] = GitManager.xǁGitManagerǁget_status__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_29'] = GitManager.xǁGitManagerǁget_status__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_30'] = GitManager.xǁGitManagerǁget_status__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_31'] = GitManager.xǁGitManagerǁget_status__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_32'] = GitManager.xǁGitManagerǁget_status__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_33'] = GitManager.xǁGitManagerǁget_status__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_34'] = GitManager.xǁGitManagerǁget_status__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_35'] = GitManager.xǁGitManagerǁget_status__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_36'] = GitManager.xǁGitManagerǁget_status__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_37'] = GitManager.xǁGitManagerǁget_status__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_38'] = GitManager.xǁGitManagerǁget_status__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_39'] = GitManager.xǁGitManagerǁget_status__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_40'] = GitManager.xǁGitManagerǁget_status__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_41'] = GitManager.xǁGitManagerǁget_status__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_42'] = GitManager.xǁGitManagerǁget_status__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_43'] = GitManager.xǁGitManagerǁget_status__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_44'] = GitManager.xǁGitManagerǁget_status__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_45'] = GitManager.xǁGitManagerǁget_status__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_46'] = GitManager.xǁGitManagerǁget_status__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_47'] = GitManager.xǁGitManagerǁget_status__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_48'] = GitManager.xǁGitManagerǁget_status__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_49'] = GitManager.xǁGitManagerǁget_status__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_50'] = GitManager.xǁGitManagerǁget_status__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_51'] = GitManager.xǁGitManagerǁget_status__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_52'] = GitManager.xǁGitManagerǁget_status__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_53'] = GitManager.xǁGitManagerǁget_status__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_54'] = GitManager.xǁGitManagerǁget_status__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_55'] = GitManager.xǁGitManagerǁget_status__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_56'] = GitManager.xǁGitManagerǁget_status__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_57'] = GitManager.xǁGitManagerǁget_status__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_58'] = GitManager.xǁGitManagerǁget_status__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_59'] = GitManager.xǁGitManagerǁget_status__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_60'] = GitManager.xǁGitManagerǁget_status__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_61'] = GitManager.xǁGitManagerǁget_status__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_62'] = GitManager.xǁGitManagerǁget_status__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_63'] = GitManager.xǁGitManagerǁget_status__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_64'] = GitManager.xǁGitManagerǁget_status__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_65'] = GitManager.xǁGitManagerǁget_status__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_66'] = GitManager.xǁGitManagerǁget_status__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_67'] = GitManager.xǁGitManagerǁget_status__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_68'] = GitManager.xǁGitManagerǁget_status__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_69'] = GitManager.xǁGitManagerǁget_status__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_70'] = GitManager.xǁGitManagerǁget_status__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_71'] = GitManager.xǁGitManagerǁget_status__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_status__mutmut['xǁGitManagerǁget_status__mutmut_72'] = GitManager.xǁGitManagerǁget_status__mutmut_72 # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["_mutmut_orig"] = GitManager.xǁGitManagerǁ_run__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_1"] = GitManager.xǁGitManagerǁ_run__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_2"] = GitManager.xǁGitManagerǁ_run__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_3"] = GitManager.xǁGitManagerǁ_run__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_4"] = GitManager.xǁGitManagerǁ_run__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_5"] = GitManager.xǁGitManagerǁ_run__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_6"] = GitManager.xǁGitManagerǁ_run__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_7"] = GitManager.xǁGitManagerǁ_run__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_8"] = GitManager.xǁGitManagerǁ_run__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_9"] = GitManager.xǁGitManagerǁ_run__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_10"] = GitManager.xǁGitManagerǁ_run__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_11"] = GitManager.xǁGitManagerǁ_run__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_12"] = GitManager.xǁGitManagerǁ_run__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_13"] = GitManager.xǁGitManagerǁ_run__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_14"] = GitManager.xǁGitManagerǁ_run__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_15"] = GitManager.xǁGitManagerǁ_run__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_16"] = GitManager.xǁGitManagerǁ_run__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁ_run__mutmut["xǁGitManagerǁ_run__mutmut_17"] = GitManager.xǁGitManagerǁ_run__mutmut_17  # type: ignore # mutmut generated
 
-mutants_xǁGitManagerǁadd__mutmut['_mutmut_orig'] = GitManager.xǁGitManagerǁadd__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitManagerǁadd__mutmut['xǁGitManagerǁadd__mutmut_1'] = GitManager.xǁGitManagerǁadd__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁadd__mutmut['xǁGitManagerǁadd__mutmut_2'] = GitManager.xǁGitManagerǁadd__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁadd__mutmut['xǁGitManagerǁadd__mutmut_3'] = GitManager.xǁGitManagerǁadd__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁadd__mutmut['xǁGitManagerǁadd__mutmut_4'] = GitManager.xǁGitManagerǁadd__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁadd__mutmut['xǁGitManagerǁadd__mutmut_5'] = GitManager.xǁGitManagerǁadd__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁadd__mutmut['xǁGitManagerǁadd__mutmut_6'] = GitManager.xǁGitManagerǁadd__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁadd__mutmut['xǁGitManagerǁadd__mutmut_7'] = GitManager.xǁGitManagerǁadd__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁadd__mutmut['xǁGitManagerǁadd__mutmut_8'] = GitManager.xǁGitManagerǁadd__mutmut_8 # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["_mutmut_orig"] = GitManager.xǁGitManagerǁget_status__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_1"] = GitManager.xǁGitManagerǁget_status__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_2"] = GitManager.xǁGitManagerǁget_status__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_3"] = GitManager.xǁGitManagerǁget_status__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_4"] = GitManager.xǁGitManagerǁget_status__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_5"] = GitManager.xǁGitManagerǁget_status__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_6"] = GitManager.xǁGitManagerǁget_status__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_7"] = GitManager.xǁGitManagerǁget_status__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_8"] = GitManager.xǁGitManagerǁget_status__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_9"] = GitManager.xǁGitManagerǁget_status__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_10"] = GitManager.xǁGitManagerǁget_status__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_11"] = GitManager.xǁGitManagerǁget_status__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_12"] = GitManager.xǁGitManagerǁget_status__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_13"] = GitManager.xǁGitManagerǁget_status__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_14"] = GitManager.xǁGitManagerǁget_status__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_15"] = GitManager.xǁGitManagerǁget_status__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_16"] = GitManager.xǁGitManagerǁget_status__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_17"] = GitManager.xǁGitManagerǁget_status__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_18"] = GitManager.xǁGitManagerǁget_status__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_19"] = GitManager.xǁGitManagerǁget_status__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_20"] = GitManager.xǁGitManagerǁget_status__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_21"] = GitManager.xǁGitManagerǁget_status__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_22"] = GitManager.xǁGitManagerǁget_status__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_23"] = GitManager.xǁGitManagerǁget_status__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_24"] = GitManager.xǁGitManagerǁget_status__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_25"] = GitManager.xǁGitManagerǁget_status__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_26"] = GitManager.xǁGitManagerǁget_status__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_27"] = GitManager.xǁGitManagerǁget_status__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_28"] = GitManager.xǁGitManagerǁget_status__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_29"] = GitManager.xǁGitManagerǁget_status__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_30"] = GitManager.xǁGitManagerǁget_status__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_31"] = GitManager.xǁGitManagerǁget_status__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_32"] = GitManager.xǁGitManagerǁget_status__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_33"] = GitManager.xǁGitManagerǁget_status__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_34"] = GitManager.xǁGitManagerǁget_status__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_35"] = GitManager.xǁGitManagerǁget_status__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_36"] = GitManager.xǁGitManagerǁget_status__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_37"] = GitManager.xǁGitManagerǁget_status__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_38"] = GitManager.xǁGitManagerǁget_status__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_39"] = GitManager.xǁGitManagerǁget_status__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_40"] = GitManager.xǁGitManagerǁget_status__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_41"] = GitManager.xǁGitManagerǁget_status__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_42"] = GitManager.xǁGitManagerǁget_status__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_43"] = GitManager.xǁGitManagerǁget_status__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_44"] = GitManager.xǁGitManagerǁget_status__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_45"] = GitManager.xǁGitManagerǁget_status__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_46"] = GitManager.xǁGitManagerǁget_status__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_47"] = GitManager.xǁGitManagerǁget_status__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_48"] = GitManager.xǁGitManagerǁget_status__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_49"] = GitManager.xǁGitManagerǁget_status__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_50"] = GitManager.xǁGitManagerǁget_status__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_51"] = GitManager.xǁGitManagerǁget_status__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_52"] = GitManager.xǁGitManagerǁget_status__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_53"] = GitManager.xǁGitManagerǁget_status__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_54"] = GitManager.xǁGitManagerǁget_status__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_55"] = GitManager.xǁGitManagerǁget_status__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_56"] = GitManager.xǁGitManagerǁget_status__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_57"] = GitManager.xǁGitManagerǁget_status__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_58"] = GitManager.xǁGitManagerǁget_status__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_59"] = GitManager.xǁGitManagerǁget_status__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_60"] = GitManager.xǁGitManagerǁget_status__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_61"] = GitManager.xǁGitManagerǁget_status__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_62"] = GitManager.xǁGitManagerǁget_status__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_63"] = GitManager.xǁGitManagerǁget_status__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_64"] = GitManager.xǁGitManagerǁget_status__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_65"] = GitManager.xǁGitManagerǁget_status__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_66"] = GitManager.xǁGitManagerǁget_status__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_67"] = GitManager.xǁGitManagerǁget_status__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_68"] = GitManager.xǁGitManagerǁget_status__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_69"] = GitManager.xǁGitManagerǁget_status__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_70"] = GitManager.xǁGitManagerǁget_status__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_71"] = GitManager.xǁGitManagerǁget_status__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_status__mutmut["xǁGitManagerǁget_status__mutmut_72"] = GitManager.xǁGitManagerǁget_status__mutmut_72  # type: ignore # mutmut generated
 
-mutants_xǁGitManagerǁcommit__mutmut['_mutmut_orig'] = GitManager.xǁGitManagerǁcommit__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_1'] = GitManager.xǁGitManagerǁcommit__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_2'] = GitManager.xǁGitManagerǁcommit__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_3'] = GitManager.xǁGitManagerǁcommit__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_4'] = GitManager.xǁGitManagerǁcommit__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_5'] = GitManager.xǁGitManagerǁcommit__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_6'] = GitManager.xǁGitManagerǁcommit__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_7'] = GitManager.xǁGitManagerǁcommit__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_8'] = GitManager.xǁGitManagerǁcommit__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_9'] = GitManager.xǁGitManagerǁcommit__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_10'] = GitManager.xǁGitManagerǁcommit__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_11'] = GitManager.xǁGitManagerǁcommit__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_12'] = GitManager.xǁGitManagerǁcommit__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_13'] = GitManager.xǁGitManagerǁcommit__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_14'] = GitManager.xǁGitManagerǁcommit__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_15'] = GitManager.xǁGitManagerǁcommit__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_16'] = GitManager.xǁGitManagerǁcommit__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcommit__mutmut['xǁGitManagerǁcommit__mutmut_17'] = GitManager.xǁGitManagerǁcommit__mutmut_17 # type: ignore # mutmut generated
+mutants_xǁGitManagerǁadd__mutmut["_mutmut_orig"] = GitManager.xǁGitManagerǁadd__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁadd__mutmut["xǁGitManagerǁadd__mutmut_1"] = GitManager.xǁGitManagerǁadd__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁadd__mutmut["xǁGitManagerǁadd__mutmut_2"] = GitManager.xǁGitManagerǁadd__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁadd__mutmut["xǁGitManagerǁadd__mutmut_3"] = GitManager.xǁGitManagerǁadd__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁadd__mutmut["xǁGitManagerǁadd__mutmut_4"] = GitManager.xǁGitManagerǁadd__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁadd__mutmut["xǁGitManagerǁadd__mutmut_5"] = GitManager.xǁGitManagerǁadd__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁadd__mutmut["xǁGitManagerǁadd__mutmut_6"] = GitManager.xǁGitManagerǁadd__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁadd__mutmut["xǁGitManagerǁadd__mutmut_7"] = GitManager.xǁGitManagerǁadd__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁadd__mutmut["xǁGitManagerǁadd__mutmut_8"] = GitManager.xǁGitManagerǁadd__mutmut_8  # type: ignore # mutmut generated
 
-mutants_xǁGitManagerǁcreate_branch__mutmut['_mutmut_orig'] = GitManager.xǁGitManagerǁcreate_branch__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcreate_branch__mutmut['xǁGitManagerǁcreate_branch__mutmut_1'] = GitManager.xǁGitManagerǁcreate_branch__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcreate_branch__mutmut['xǁGitManagerǁcreate_branch__mutmut_2'] = GitManager.xǁGitManagerǁcreate_branch__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcreate_branch__mutmut['xǁGitManagerǁcreate_branch__mutmut_3'] = GitManager.xǁGitManagerǁcreate_branch__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcreate_branch__mutmut['xǁGitManagerǁcreate_branch__mutmut_4'] = GitManager.xǁGitManagerǁcreate_branch__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcreate_branch__mutmut['xǁGitManagerǁcreate_branch__mutmut_5'] = GitManager.xǁGitManagerǁcreate_branch__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcreate_branch__mutmut['xǁGitManagerǁcreate_branch__mutmut_6'] = GitManager.xǁGitManagerǁcreate_branch__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁcreate_branch__mutmut['xǁGitManagerǁcreate_branch__mutmut_7'] = GitManager.xǁGitManagerǁcreate_branch__mutmut_7 # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["_mutmut_orig"] = GitManager.xǁGitManagerǁcommit__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_1"] = GitManager.xǁGitManagerǁcommit__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_2"] = GitManager.xǁGitManagerǁcommit__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_3"] = GitManager.xǁGitManagerǁcommit__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_4"] = GitManager.xǁGitManagerǁcommit__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_5"] = GitManager.xǁGitManagerǁcommit__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_6"] = GitManager.xǁGitManagerǁcommit__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_7"] = GitManager.xǁGitManagerǁcommit__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_8"] = GitManager.xǁGitManagerǁcommit__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_9"] = GitManager.xǁGitManagerǁcommit__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_10"] = GitManager.xǁGitManagerǁcommit__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_11"] = GitManager.xǁGitManagerǁcommit__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_12"] = GitManager.xǁGitManagerǁcommit__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_13"] = GitManager.xǁGitManagerǁcommit__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_14"] = GitManager.xǁGitManagerǁcommit__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_15"] = GitManager.xǁGitManagerǁcommit__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_16"] = GitManager.xǁGitManagerǁcommit__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcommit__mutmut["xǁGitManagerǁcommit__mutmut_17"] = GitManager.xǁGitManagerǁcommit__mutmut_17  # type: ignore # mutmut generated
 
-mutants_xǁGitManagerǁpush__mutmut['_mutmut_orig'] = GitManager.xǁGitManagerǁpush__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitManagerǁpush__mutmut['xǁGitManagerǁpush__mutmut_1'] = GitManager.xǁGitManagerǁpush__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁpush__mutmut['xǁGitManagerǁpush__mutmut_2'] = GitManager.xǁGitManagerǁpush__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁpush__mutmut['xǁGitManagerǁpush__mutmut_3'] = GitManager.xǁGitManagerǁpush__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁpush__mutmut['xǁGitManagerǁpush__mutmut_4'] = GitManager.xǁGitManagerǁpush__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁpush__mutmut['xǁGitManagerǁpush__mutmut_5'] = GitManager.xǁGitManagerǁpush__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁpush__mutmut['xǁGitManagerǁpush__mutmut_6'] = GitManager.xǁGitManagerǁpush__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁpush__mutmut['xǁGitManagerǁpush__mutmut_7'] = GitManager.xǁGitManagerǁpush__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁpush__mutmut['xǁGitManagerǁpush__mutmut_8'] = GitManager.xǁGitManagerǁpush__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁpush__mutmut['xǁGitManagerǁpush__mutmut_9'] = GitManager.xǁGitManagerǁpush__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁpush__mutmut['xǁGitManagerǁpush__mutmut_10'] = GitManager.xǁGitManagerǁpush__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁpush__mutmut['xǁGitManagerǁpush__mutmut_11'] = GitManager.xǁGitManagerǁpush__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁpush__mutmut['xǁGitManagerǁpush__mutmut_12'] = GitManager.xǁGitManagerǁpush__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁpush__mutmut['xǁGitManagerǁpush__mutmut_13'] = GitManager.xǁGitManagerǁpush__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁpush__mutmut['xǁGitManagerǁpush__mutmut_14'] = GitManager.xǁGitManagerǁpush__mutmut_14 # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcreate_branch__mutmut["_mutmut_orig"] = GitManager.xǁGitManagerǁcreate_branch__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcreate_branch__mutmut["xǁGitManagerǁcreate_branch__mutmut_1"] = GitManager.xǁGitManagerǁcreate_branch__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcreate_branch__mutmut["xǁGitManagerǁcreate_branch__mutmut_2"] = GitManager.xǁGitManagerǁcreate_branch__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcreate_branch__mutmut["xǁGitManagerǁcreate_branch__mutmut_3"] = GitManager.xǁGitManagerǁcreate_branch__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcreate_branch__mutmut["xǁGitManagerǁcreate_branch__mutmut_4"] = GitManager.xǁGitManagerǁcreate_branch__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcreate_branch__mutmut["xǁGitManagerǁcreate_branch__mutmut_5"] = GitManager.xǁGitManagerǁcreate_branch__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcreate_branch__mutmut["xǁGitManagerǁcreate_branch__mutmut_6"] = GitManager.xǁGitManagerǁcreate_branch__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁcreate_branch__mutmut["xǁGitManagerǁcreate_branch__mutmut_7"] = GitManager.xǁGitManagerǁcreate_branch__mutmut_7  # type: ignore # mutmut generated
 
-mutants_xǁGitManagerǁget_diff__mutmut['_mutmut_orig'] = GitManager.xǁGitManagerǁget_diff__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_diff__mutmut['xǁGitManagerǁget_diff__mutmut_1'] = GitManager.xǁGitManagerǁget_diff__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_diff__mutmut['xǁGitManagerǁget_diff__mutmut_2'] = GitManager.xǁGitManagerǁget_diff__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_diff__mutmut['xǁGitManagerǁget_diff__mutmut_3'] = GitManager.xǁGitManagerǁget_diff__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_diff__mutmut['xǁGitManagerǁget_diff__mutmut_4'] = GitManager.xǁGitManagerǁget_diff__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_diff__mutmut['xǁGitManagerǁget_diff__mutmut_5'] = GitManager.xǁGitManagerǁget_diff__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_diff__mutmut['xǁGitManagerǁget_diff__mutmut_6'] = GitManager.xǁGitManagerǁget_diff__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_diff__mutmut['xǁGitManagerǁget_diff__mutmut_7'] = GitManager.xǁGitManagerǁget_diff__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_diff__mutmut['xǁGitManagerǁget_diff__mutmut_8'] = GitManager.xǁGitManagerǁget_diff__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_diff__mutmut['xǁGitManagerǁget_diff__mutmut_9'] = GitManager.xǁGitManagerǁget_diff__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_diff__mutmut['xǁGitManagerǁget_diff__mutmut_10'] = GitManager.xǁGitManagerǁget_diff__mutmut_10 # type: ignore # mutmut generated
+mutants_xǁGitManagerǁpush__mutmut["_mutmut_orig"] = GitManager.xǁGitManagerǁpush__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁpush__mutmut["xǁGitManagerǁpush__mutmut_1"] = GitManager.xǁGitManagerǁpush__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁpush__mutmut["xǁGitManagerǁpush__mutmut_2"] = GitManager.xǁGitManagerǁpush__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁpush__mutmut["xǁGitManagerǁpush__mutmut_3"] = GitManager.xǁGitManagerǁpush__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁpush__mutmut["xǁGitManagerǁpush__mutmut_4"] = GitManager.xǁGitManagerǁpush__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁpush__mutmut["xǁGitManagerǁpush__mutmut_5"] = GitManager.xǁGitManagerǁpush__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁpush__mutmut["xǁGitManagerǁpush__mutmut_6"] = GitManager.xǁGitManagerǁpush__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁpush__mutmut["xǁGitManagerǁpush__mutmut_7"] = GitManager.xǁGitManagerǁpush__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁpush__mutmut["xǁGitManagerǁpush__mutmut_8"] = GitManager.xǁGitManagerǁpush__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁpush__mutmut["xǁGitManagerǁpush__mutmut_9"] = GitManager.xǁGitManagerǁpush__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁpush__mutmut["xǁGitManagerǁpush__mutmut_10"] = GitManager.xǁGitManagerǁpush__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁpush__mutmut["xǁGitManagerǁpush__mutmut_11"] = GitManager.xǁGitManagerǁpush__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁpush__mutmut["xǁGitManagerǁpush__mutmut_12"] = GitManager.xǁGitManagerǁpush__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁpush__mutmut["xǁGitManagerǁpush__mutmut_13"] = GitManager.xǁGitManagerǁpush__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁpush__mutmut["xǁGitManagerǁpush__mutmut_14"] = GitManager.xǁGitManagerǁpush__mutmut_14  # type: ignore # mutmut generated
 
-mutants_xǁGitManagerǁget_log__mutmut['_mutmut_orig'] = GitManager.xǁGitManagerǁget_log__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_1'] = GitManager.xǁGitManagerǁget_log__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_2'] = GitManager.xǁGitManagerǁget_log__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_3'] = GitManager.xǁGitManagerǁget_log__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_4'] = GitManager.xǁGitManagerǁget_log__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_5'] = GitManager.xǁGitManagerǁget_log__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_6'] = GitManager.xǁGitManagerǁget_log__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_7'] = GitManager.xǁGitManagerǁget_log__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_8'] = GitManager.xǁGitManagerǁget_log__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_9'] = GitManager.xǁGitManagerǁget_log__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_10'] = GitManager.xǁGitManagerǁget_log__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_11'] = GitManager.xǁGitManagerǁget_log__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_12'] = GitManager.xǁGitManagerǁget_log__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_13'] = GitManager.xǁGitManagerǁget_log__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_14'] = GitManager.xǁGitManagerǁget_log__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_15'] = GitManager.xǁGitManagerǁget_log__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_16'] = GitManager.xǁGitManagerǁget_log__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_17'] = GitManager.xǁGitManagerǁget_log__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_18'] = GitManager.xǁGitManagerǁget_log__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_19'] = GitManager.xǁGitManagerǁget_log__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_20'] = GitManager.xǁGitManagerǁget_log__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_21'] = GitManager.xǁGitManagerǁget_log__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_22'] = GitManager.xǁGitManagerǁget_log__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_23'] = GitManager.xǁGitManagerǁget_log__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_24'] = GitManager.xǁGitManagerǁget_log__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_25'] = GitManager.xǁGitManagerǁget_log__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_26'] = GitManager.xǁGitManagerǁget_log__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_27'] = GitManager.xǁGitManagerǁget_log__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_28'] = GitManager.xǁGitManagerǁget_log__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_29'] = GitManager.xǁGitManagerǁget_log__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_30'] = GitManager.xǁGitManagerǁget_log__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_31'] = GitManager.xǁGitManagerǁget_log__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_32'] = GitManager.xǁGitManagerǁget_log__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_33'] = GitManager.xǁGitManagerǁget_log__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_34'] = GitManager.xǁGitManagerǁget_log__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_35'] = GitManager.xǁGitManagerǁget_log__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_log__mutmut['xǁGitManagerǁget_log__mutmut_36'] = GitManager.xǁGitManagerǁget_log__mutmut_36 # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_diff__mutmut["_mutmut_orig"] = GitManager.xǁGitManagerǁget_diff__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_diff__mutmut["xǁGitManagerǁget_diff__mutmut_1"] = GitManager.xǁGitManagerǁget_diff__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_diff__mutmut["xǁGitManagerǁget_diff__mutmut_2"] = GitManager.xǁGitManagerǁget_diff__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_diff__mutmut["xǁGitManagerǁget_diff__mutmut_3"] = GitManager.xǁGitManagerǁget_diff__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_diff__mutmut["xǁGitManagerǁget_diff__mutmut_4"] = GitManager.xǁGitManagerǁget_diff__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_diff__mutmut["xǁGitManagerǁget_diff__mutmut_5"] = GitManager.xǁGitManagerǁget_diff__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_diff__mutmut["xǁGitManagerǁget_diff__mutmut_6"] = GitManager.xǁGitManagerǁget_diff__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_diff__mutmut["xǁGitManagerǁget_diff__mutmut_7"] = GitManager.xǁGitManagerǁget_diff__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_diff__mutmut["xǁGitManagerǁget_diff__mutmut_8"] = GitManager.xǁGitManagerǁget_diff__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_diff__mutmut["xǁGitManagerǁget_diff__mutmut_9"] = GitManager.xǁGitManagerǁget_diff__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_diff__mutmut["xǁGitManagerǁget_diff__mutmut_10"] = GitManager.xǁGitManagerǁget_diff__mutmut_10  # type: ignore # mutmut generated
 
-mutants_xǁGitManagerǁget_file_diff__mutmut['_mutmut_orig'] = GitManager.xǁGitManagerǁget_file_diff__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_file_diff__mutmut['xǁGitManagerǁget_file_diff__mutmut_1'] = GitManager.xǁGitManagerǁget_file_diff__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_file_diff__mutmut['xǁGitManagerǁget_file_diff__mutmut_2'] = GitManager.xǁGitManagerǁget_file_diff__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_file_diff__mutmut['xǁGitManagerǁget_file_diff__mutmut_3'] = GitManager.xǁGitManagerǁget_file_diff__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_file_diff__mutmut['xǁGitManagerǁget_file_diff__mutmut_4'] = GitManager.xǁGitManagerǁget_file_diff__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_file_diff__mutmut['xǁGitManagerǁget_file_diff__mutmut_5'] = GitManager.xǁGitManagerǁget_file_diff__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_file_diff__mutmut['xǁGitManagerǁget_file_diff__mutmut_6'] = GitManager.xǁGitManagerǁget_file_diff__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁGitManagerǁget_file_diff__mutmut['xǁGitManagerǁget_file_diff__mutmut_7'] = GitManager.xǁGitManagerǁget_file_diff__mutmut_7 # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["_mutmut_orig"] = GitManager.xǁGitManagerǁget_log__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_1"] = GitManager.xǁGitManagerǁget_log__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_2"] = GitManager.xǁGitManagerǁget_log__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_3"] = GitManager.xǁGitManagerǁget_log__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_4"] = GitManager.xǁGitManagerǁget_log__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_5"] = GitManager.xǁGitManagerǁget_log__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_6"] = GitManager.xǁGitManagerǁget_log__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_7"] = GitManager.xǁGitManagerǁget_log__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_8"] = GitManager.xǁGitManagerǁget_log__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_9"] = GitManager.xǁGitManagerǁget_log__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_10"] = GitManager.xǁGitManagerǁget_log__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_11"] = GitManager.xǁGitManagerǁget_log__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_12"] = GitManager.xǁGitManagerǁget_log__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_13"] = GitManager.xǁGitManagerǁget_log__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_14"] = GitManager.xǁGitManagerǁget_log__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_15"] = GitManager.xǁGitManagerǁget_log__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_16"] = GitManager.xǁGitManagerǁget_log__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_17"] = GitManager.xǁGitManagerǁget_log__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_18"] = GitManager.xǁGitManagerǁget_log__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_19"] = GitManager.xǁGitManagerǁget_log__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_20"] = GitManager.xǁGitManagerǁget_log__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_21"] = GitManager.xǁGitManagerǁget_log__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_22"] = GitManager.xǁGitManagerǁget_log__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_23"] = GitManager.xǁGitManagerǁget_log__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_24"] = GitManager.xǁGitManagerǁget_log__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_25"] = GitManager.xǁGitManagerǁget_log__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_26"] = GitManager.xǁGitManagerǁget_log__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_27"] = GitManager.xǁGitManagerǁget_log__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_28"] = GitManager.xǁGitManagerǁget_log__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_29"] = GitManager.xǁGitManagerǁget_log__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_30"] = GitManager.xǁGitManagerǁget_log__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_31"] = GitManager.xǁGitManagerǁget_log__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_32"] = GitManager.xǁGitManagerǁget_log__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_33"] = GitManager.xǁGitManagerǁget_log__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_34"] = GitManager.xǁGitManagerǁget_log__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_35"] = GitManager.xǁGitManagerǁget_log__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_log__mutmut["xǁGitManagerǁget_log__mutmut_36"] = GitManager.xǁGitManagerǁget_log__mutmut_36  # type: ignore # mutmut generated
+
+mutants_xǁGitManagerǁget_file_diff__mutmut["_mutmut_orig"] = GitManager.xǁGitManagerǁget_file_diff__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_file_diff__mutmut["xǁGitManagerǁget_file_diff__mutmut_1"] = GitManager.xǁGitManagerǁget_file_diff__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_file_diff__mutmut["xǁGitManagerǁget_file_diff__mutmut_2"] = GitManager.xǁGitManagerǁget_file_diff__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_file_diff__mutmut["xǁGitManagerǁget_file_diff__mutmut_3"] = GitManager.xǁGitManagerǁget_file_diff__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_file_diff__mutmut["xǁGitManagerǁget_file_diff__mutmut_4"] = GitManager.xǁGitManagerǁget_file_diff__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_file_diff__mutmut["xǁGitManagerǁget_file_diff__mutmut_5"] = GitManager.xǁGitManagerǁget_file_diff__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_file_diff__mutmut["xǁGitManagerǁget_file_diff__mutmut_6"] = GitManager.xǁGitManagerǁget_file_diff__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁGitManagerǁget_file_diff__mutmut["xǁGitManagerǁget_file_diff__mutmut_7"] = GitManager.xǁGitManagerǁget_file_diff__mutmut_7  # type: ignore # mutmut generated
 mutants_x_get_git_manager__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -5333,5 +5389,6 @@ def x_get_git_manager__mutmut_1(workspace: Path) -> GitManager:
     """Git 매니저 생성 헬퍼"""
     return GitManager(None)
 
-mutants_x_get_git_manager__mutmut['_mutmut_orig'] = x_get_git_manager__mutmut_orig # type: ignore # mutmut generated
-mutants_x_get_git_manager__mutmut['x_get_git_manager__mutmut_1'] = x_get_git_manager__mutmut_1 # type: ignore # mutmut generated
+
+mutants_x_get_git_manager__mutmut["_mutmut_orig"] = x_get_git_manager__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_get_git_manager__mutmut["x_get_git_manager__mutmut_1"] = x_get_git_manager__mutmut_1  # type: ignore # mutmut generated

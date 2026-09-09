@@ -15,7 +15,8 @@ from pathlib import Path
 log = logging.getLogger("autonomous_coding_agent.patch")
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
 
 
 @dataclass
@@ -38,6 +39,8 @@ class PatchOperation:
     old_content: str
     new_content: str
     description: str = ""
+
+
 mutants_xǁPatchManagerǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁPatchManagerǁ_create_backup__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁPatchManagerǁ_rollback_all__mutmut: MutantDict = {}  # type: ignore
@@ -319,7 +322,9 @@ class PatchManager:
         full_path = self.workspace / file_path
         if full_path.exists():
             backup_path = self._backup_dir / f"{file_path.replace('/', '_')}.bak"
-            backup_path.parent.mkdir(parents=True, )
+            backup_path.parent.mkdir(
+                parents=True,
+            )
             content = full_path.read_text(encoding="utf-8")
             backup_path.write_text(content, encoding="utf-8")
             self._transaction_backups[file_path] = str(backup_path)
@@ -441,7 +446,9 @@ class PatchManager:
             backup_path = self._backup_dir / f"{file_path.replace('/', '_')}.bak"
             backup_path.parent.mkdir(parents=True, exist_ok=True)
             content = full_path.read_text(encoding="utf-8")
-            backup_path.write_text(content, )
+            backup_path.write_text(
+                content,
+            )
             self._transaction_backups[file_path] = str(backup_path)
             return str(backup_path)
         return ""
@@ -615,7 +622,9 @@ class PatchManager:
             full_path = self.workspace / file_path
             backup = Path(backup_path)
             if backup.exists():
-                full_path.parent.mkdir(parents=True, )
+                full_path.parent.mkdir(
+                    parents=True,
+                )
                 shutil.copy2(backup, full_path)
                 log.info(f"롤백: {file_path}")
 
@@ -676,7 +685,9 @@ class PatchManager:
             backup = Path(backup_path)
             if backup.exists():
                 full_path.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(backup, )
+                shutil.copy2(
+                    backup,
+                )
                 log.info(f"롤백: {file_path}")
 
     def xǁPatchManagerǁ_rollback_all__mutmut_15(self) -> None:
@@ -745,7 +756,9 @@ class PatchManager:
 
         return results
 
-    def xǁPatchManagerǁapply_patches__mutmut_orig(self, operations: list[PatchOperation]) -> list[PatchResult]:
+    def xǁPatchManagerǁapply_patches__mutmut_orig(
+        self, operations: list[PatchOperation]
+    ) -> list[PatchResult]:
         """여러 패치를 원자적으로 적용"""
         results = []
 
@@ -769,7 +782,9 @@ class PatchManager:
 
         return results
 
-    def xǁPatchManagerǁapply_patches__mutmut_1(self, operations: list[PatchOperation]) -> list[PatchResult]:
+    def xǁPatchManagerǁapply_patches__mutmut_1(
+        self, operations: list[PatchOperation]
+    ) -> list[PatchResult]:
         """여러 패치를 원자적으로 적용"""
         results = None
 
@@ -793,7 +808,9 @@ class PatchManager:
 
         return results
 
-    def xǁPatchManagerǁapply_patches__mutmut_2(self, operations: list[PatchOperation]) -> list[PatchResult]:
+    def xǁPatchManagerǁapply_patches__mutmut_2(
+        self, operations: list[PatchOperation]
+    ) -> list[PatchResult]:
         """여러 패치를 원자적으로 적용"""
         results = []
 
@@ -817,7 +834,9 @@ class PatchManager:
 
         return results
 
-    def xǁPatchManagerǁapply_patches__mutmut_3(self, operations: list[PatchOperation]) -> list[PatchResult]:
+    def xǁPatchManagerǁapply_patches__mutmut_3(
+        self, operations: list[PatchOperation]
+    ) -> list[PatchResult]:
         """여러 패치를 원자적으로 적용"""
         results = []
 
@@ -841,7 +860,9 @@ class PatchManager:
 
         return results
 
-    def xǁPatchManagerǁapply_patches__mutmut_4(self, operations: list[PatchOperation]) -> list[PatchResult]:
+    def xǁPatchManagerǁapply_patches__mutmut_4(
+        self, operations: list[PatchOperation]
+    ) -> list[PatchResult]:
         """여러 패치를 원자적으로 적용"""
         results = []
 
@@ -865,7 +886,9 @@ class PatchManager:
 
         return results
 
-    def xǁPatchManagerǁapply_patches__mutmut_5(self, operations: list[PatchOperation]) -> list[PatchResult]:
+    def xǁPatchManagerǁapply_patches__mutmut_5(
+        self, operations: list[PatchOperation]
+    ) -> list[PatchResult]:
         """여러 패치를 원자적으로 적용"""
         results = []
 
@@ -889,7 +912,9 @@ class PatchManager:
 
         return results
 
-    def xǁPatchManagerǁapply_patches__mutmut_6(self, operations: list[PatchOperation]) -> list[PatchResult]:
+    def xǁPatchManagerǁapply_patches__mutmut_6(
+        self, operations: list[PatchOperation]
+    ) -> list[PatchResult]:
         """여러 패치를 원자적으로 적용"""
         results = []
 
@@ -913,7 +938,9 @@ class PatchManager:
 
         return results
 
-    def xǁPatchManagerǁapply_patches__mutmut_7(self, operations: list[PatchOperation]) -> list[PatchResult]:
+    def xǁPatchManagerǁapply_patches__mutmut_7(
+        self, operations: list[PatchOperation]
+    ) -> list[PatchResult]:
         """여러 패치를 원자적으로 적용"""
         results = []
 
@@ -937,7 +964,9 @@ class PatchManager:
 
         return results
 
-    def xǁPatchManagerǁapply_patches__mutmut_8(self, operations: list[PatchOperation]) -> list[PatchResult]:
+    def xǁPatchManagerǁapply_patches__mutmut_8(
+        self, operations: list[PatchOperation]
+    ) -> list[PatchResult]:
         """여러 패치를 원자적으로 적용"""
         results = []
 
@@ -970,7 +999,9 @@ class PatchManager:
             self._create_backup(file_path)
             return self._apply_single_patch(op)
 
-    def xǁPatchManagerǁapply_single_patch__mutmut_orig(self, file_path: str, old_content: str, new_content: str) -> PatchResult:
+    def xǁPatchManagerǁapply_single_patch__mutmut_orig(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> PatchResult:
         """단일 패치 적용"""
         op = PatchOperation(file_path=file_path, old_content=old_content, new_content=new_content)
 
@@ -978,7 +1009,9 @@ class PatchManager:
             self._create_backup(file_path)
             return self._apply_single_patch(op)
 
-    def xǁPatchManagerǁapply_single_patch__mutmut_1(self, file_path: str, old_content: str, new_content: str) -> PatchResult:
+    def xǁPatchManagerǁapply_single_patch__mutmut_1(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> PatchResult:
         """단일 패치 적용"""
         op = None
 
@@ -986,7 +1019,9 @@ class PatchManager:
             self._create_backup(file_path)
             return self._apply_single_patch(op)
 
-    def xǁPatchManagerǁapply_single_patch__mutmut_2(self, file_path: str, old_content: str, new_content: str) -> PatchResult:
+    def xǁPatchManagerǁapply_single_patch__mutmut_2(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> PatchResult:
         """단일 패치 적용"""
         op = PatchOperation(file_path=None, old_content=old_content, new_content=new_content)
 
@@ -994,7 +1029,9 @@ class PatchManager:
             self._create_backup(file_path)
             return self._apply_single_patch(op)
 
-    def xǁPatchManagerǁapply_single_patch__mutmut_3(self, file_path: str, old_content: str, new_content: str) -> PatchResult:
+    def xǁPatchManagerǁapply_single_patch__mutmut_3(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> PatchResult:
         """단일 패치 적용"""
         op = PatchOperation(file_path=file_path, old_content=None, new_content=new_content)
 
@@ -1002,7 +1039,9 @@ class PatchManager:
             self._create_backup(file_path)
             return self._apply_single_patch(op)
 
-    def xǁPatchManagerǁapply_single_patch__mutmut_4(self, file_path: str, old_content: str, new_content: str) -> PatchResult:
+    def xǁPatchManagerǁapply_single_patch__mutmut_4(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> PatchResult:
         """단일 패치 적용"""
         op = PatchOperation(file_path=file_path, old_content=old_content, new_content=None)
 
@@ -1010,7 +1049,9 @@ class PatchManager:
             self._create_backup(file_path)
             return self._apply_single_patch(op)
 
-    def xǁPatchManagerǁapply_single_patch__mutmut_5(self, file_path: str, old_content: str, new_content: str) -> PatchResult:
+    def xǁPatchManagerǁapply_single_patch__mutmut_5(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> PatchResult:
         """단일 패치 적용"""
         op = PatchOperation(old_content=old_content, new_content=new_content)
 
@@ -1018,7 +1059,9 @@ class PatchManager:
             self._create_backup(file_path)
             return self._apply_single_patch(op)
 
-    def xǁPatchManagerǁapply_single_patch__mutmut_6(self, file_path: str, old_content: str, new_content: str) -> PatchResult:
+    def xǁPatchManagerǁapply_single_patch__mutmut_6(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> PatchResult:
         """단일 패치 적용"""
         op = PatchOperation(file_path=file_path, new_content=new_content)
 
@@ -1026,15 +1069,22 @@ class PatchManager:
             self._create_backup(file_path)
             return self._apply_single_patch(op)
 
-    def xǁPatchManagerǁapply_single_patch__mutmut_7(self, file_path: str, old_content: str, new_content: str) -> PatchResult:
+    def xǁPatchManagerǁapply_single_patch__mutmut_7(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> PatchResult:
         """단일 패치 적용"""
-        op = PatchOperation(file_path=file_path, old_content=old_content, )
+        op = PatchOperation(
+            file_path=file_path,
+            old_content=old_content,
+        )
 
         with self.transaction():
             self._create_backup(file_path)
             return self._apply_single_patch(op)
 
-    def xǁPatchManagerǁapply_single_patch__mutmut_8(self, file_path: str, old_content: str, new_content: str) -> PatchResult:
+    def xǁPatchManagerǁapply_single_patch__mutmut_8(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> PatchResult:
         """단일 패치 적용"""
         op = PatchOperation(file_path=file_path, old_content=old_content, new_content=new_content)
 
@@ -1042,7 +1092,9 @@ class PatchManager:
             self._create_backup(None)
             return self._apply_single_patch(op)
 
-    def xǁPatchManagerǁapply_single_patch__mutmut_9(self, file_path: str, old_content: str, new_content: str) -> PatchResult:
+    def xǁPatchManagerǁapply_single_patch__mutmut_9(
+        self, file_path: str, old_content: str, new_content: str
+    ) -> PatchResult:
         """단일 패치 적용"""
         op = PatchOperation(file_path=file_path, old_content=old_content, new_content=new_content)
 
@@ -1683,7 +1735,7 @@ class PatchManager:
                 success=True,
                 file_path=file_path,
                 applied=False,
-                )
+            )
 
         # 1. 파일이 짧으면 전체 교체 (100줄 미만)
         if len(existing.split("\n")) < 100:
@@ -1966,7 +2018,9 @@ class PatchManager:
 
         # 1. 파일이 짧으면 전체 교체 (100줄 미만)
         if len(existing.split("\n")) < 100:
-            full_path.write_text(new_content, )
+            full_path.write_text(
+                new_content,
+            )
             return PatchResult(
                 success=True,
                 file_path=file_path,
@@ -2278,7 +2332,7 @@ class PatchManager:
                 success=True,
                 file_path=file_path,
                 applied=True,
-                )
+            )
 
         # 2. difflib로 unified diff 생성 + fuzzy matching
         return self._apply_with_fuzzy_match(file_path, existing, new_content)
@@ -2560,7 +2614,10 @@ class PatchManager:
             )
 
         # 2. difflib로 unified diff 생성 + fuzzy matching
-        return self._apply_with_fuzzy_match(file_path, existing, )
+        return self._apply_with_fuzzy_match(
+            file_path,
+            existing,
+        )
 
     @_mutmut_mutated(mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut)
     def _apply_with_fuzzy_match(
@@ -2677,9 +2734,7 @@ class PatchManager:
     ) -> PatchResult:
         """퍼지 매칭으로 패치 적용"""
         # 1차: 표준 unified diff 시도
-        diff = list(
-            None
-        )
+        diff = list(None)
 
         if diff:
             result = self._apply_diff(file_path, diff)
@@ -3063,7 +3118,7 @@ class PatchManager:
                 new_content.splitlines(keepends=True),
                 fromfile=f"a/{file_path}",
                 tofile=f"b/{file_path}",
-                )
+            )
         )
 
         if diff:
@@ -3457,7 +3512,9 @@ class PatchManager:
         )
 
         if diff:
-            result = self._apply_diff(file_path, )
+            result = self._apply_diff(
+                file_path,
+            )
             if result.success:
                 return result
 
@@ -3689,9 +3746,7 @@ class PatchManager:
 
         # 2차: 퍼지 매칭으로 hunks 재구성 (컨텍스트 줄 늘리기)
         for context_lines in [5, 8, 10, 15]:
-            diff = list(
-                None
-            )
+            diff = list(None)
             if diff:
                 result = self._apply_diff(file_path, diff)
                 if result.success:
@@ -4075,7 +4130,7 @@ class PatchManager:
                     new_content.splitlines(keepends=True),
                     fromfile=f"a/{file_path}",
                     tofile=f"b/{file_path}",
-                    )
+                )
             )
             if diff:
                 result = self._apply_diff(file_path, diff)
@@ -4429,7 +4484,9 @@ class PatchManager:
                 )
             )
             if diff:
-                result = self._apply_diff(file_path, )
+                result = self._apply_diff(
+                    file_path,
+                )
                 if result.success:
                     return result
 
@@ -4668,7 +4725,10 @@ class PatchManager:
                     return result
 
         # 3차: SequenceMatcher로 블록 단위 매칭
-        return self._apply_with_sequence_matcher(file_path, old_content, )
+        return self._apply_with_sequence_matcher(
+            file_path,
+            old_content,
+        )
 
     @_mutmut_mutated(mutants_xǁPatchManagerǁ_apply_diff__mutmut)
     def _apply_diff(self, file_path: str, diff: list[str]) -> PatchResult:
@@ -4723,7 +4783,9 @@ class PatchManager:
         finally:
             Path(patch_file).unlink(missing_ok=True)
 
-    def xǁPatchManagerǁ_apply_diff__mutmut_orig(self, file_path: str, diff: list[str]) -> PatchResult:
+    def xǁPatchManagerǁ_apply_diff__mutmut_orig(
+        self, file_path: str, diff: list[str]
+    ) -> PatchResult:
         """diff 리스트를 patch 명령어로 적용"""
         if not diff:
             return PatchResult(
@@ -5195,7 +5257,7 @@ class PatchManager:
                 success=True,
                 file_path=file_path,
                 applied=False,
-                )
+            )
 
         # 임시 패치 파일 생성
         with tempfile.NamedTemporaryFile(mode="w", suffix=".patch", delete=False) as f:
@@ -5666,7 +5728,10 @@ class PatchManager:
             )
 
         # 임시 패치 파일 생성
-        with tempfile.NamedTemporaryFile(mode="w", suffix=".patch", ) as f:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            suffix=".patch",
+        ) as f:
             f.writelines(diff)
             patch_file = f.name
 
@@ -6603,7 +6668,7 @@ class PatchManager:
                 cwd=self.workspace,
                 capture_output=True,
                 text=True,
-                )
+            )
 
             if result.returncode == 0:
                 # 성공 시 적용된 hunks 수 계산
@@ -7961,7 +8026,7 @@ class PatchManager:
                     success=True,
                     file_path=file_path,
                     applied=True,
-                    )
+                )
             else:
                 return PatchResult(
                     success=False,
@@ -8588,7 +8653,7 @@ class PatchManager:
                     file_path=file_path,
                     applied=False,
                     error=f"patch 실패: {result.stderr}",
-                    )
+                )
         except Exception as e:
             return PatchResult(
                 success=False,
@@ -9163,7 +9228,7 @@ class PatchManager:
                 success=False,
                 file_path=file_path,
                 applied=False,
-                )
+            )
         finally:
             Path(patch_file).unlink(missing_ok=True)
 
@@ -9515,9 +9580,7 @@ class PatchManager:
     ) -> PatchResult:
         """SequenceMatcher로 블록 단위 매칭 후 적용"""
         try:
-            matcher = difflib.SequenceMatcher(
-                None, None, new_content.splitlines(keepends=True)
-            )
+            matcher = difflib.SequenceMatcher(None, None, new_content.splitlines(keepends=True))
 
             # 전체 교체로 폴백 (안전)
             full_path = self.workspace / file_path
@@ -9543,9 +9606,7 @@ class PatchManager:
     ) -> PatchResult:
         """SequenceMatcher로 블록 단위 매칭 후 적용"""
         try:
-            matcher = difflib.SequenceMatcher(
-                None, old_content.splitlines(keepends=True), None
-            )
+            matcher = difflib.SequenceMatcher(None, old_content.splitlines(keepends=True), None)
 
             # 전체 교체로 폴백 (안전)
             full_path = self.workspace / file_path
@@ -9599,9 +9660,7 @@ class PatchManager:
     ) -> PatchResult:
         """SequenceMatcher로 블록 단위 매칭 후 적용"""
         try:
-            matcher = difflib.SequenceMatcher(
-                None, new_content.splitlines(keepends=True)
-            )
+            matcher = difflib.SequenceMatcher(None, new_content.splitlines(keepends=True))
 
             # 전체 교체로 폴백 (안전)
             full_path = self.workspace / file_path
@@ -9628,7 +9687,9 @@ class PatchManager:
         """SequenceMatcher로 블록 단위 매칭 후 적용"""
         try:
             matcher = difflib.SequenceMatcher(
-                None, old_content.splitlines(keepends=True), )
+                None,
+                old_content.splitlines(keepends=True),
+            )
 
             # 전체 교체로 폴백 (안전)
             full_path = self.workspace / file_path
@@ -9912,7 +9973,9 @@ class PatchManager:
 
             # 전체 교체로 폴백 (안전)
             full_path = self.workspace / file_path
-            full_path.write_text(new_content, )
+            full_path.write_text(
+                new_content,
+            )
 
             return PatchResult(
                 success=True,
@@ -10251,7 +10314,7 @@ class PatchManager:
                 file_path=file_path,
                 applied=True,
                 error="SequenceMatcher 폴백으로 전체 교체",
-                )
+            )
         except Exception as e:
             return PatchResult(
                 success=False,
@@ -10646,7 +10709,7 @@ class PatchManager:
                 success=False,
                 file_path=file_path,
                 applied=False,
-                )
+            )
 
     def xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_43(
         self, file_path: str, old_content: str, new_content: str
@@ -10704,333 +10767,334 @@ class PatchManager:
                 error=f"SequenceMatcher 실패: {e}",
             )
 
-mutants_xǁPatchManagerǁ__init____mutmut['_mutmut_orig'] = PatchManager.xǁPatchManagerǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ__init____mutmut['xǁPatchManagerǁ__init____mutmut_1'] = PatchManager.xǁPatchManagerǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ__init____mutmut['xǁPatchManagerǁ__init____mutmut_2'] = PatchManager.xǁPatchManagerǁ__init____mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ__init____mutmut['xǁPatchManagerǁ__init____mutmut_3'] = PatchManager.xǁPatchManagerǁ__init____mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ__init____mutmut['xǁPatchManagerǁ__init____mutmut_4'] = PatchManager.xǁPatchManagerǁ__init____mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ__init____mutmut['xǁPatchManagerǁ__init____mutmut_5'] = PatchManager.xǁPatchManagerǁ__init____mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ__init____mutmut['xǁPatchManagerǁ__init____mutmut_6'] = PatchManager.xǁPatchManagerǁ__init____mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ__init____mutmut['xǁPatchManagerǁ__init____mutmut_7'] = PatchManager.xǁPatchManagerǁ__init____mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ__init____mutmut['xǁPatchManagerǁ__init____mutmut_8'] = PatchManager.xǁPatchManagerǁ__init____mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ__init____mutmut['xǁPatchManagerǁ__init____mutmut_9'] = PatchManager.xǁPatchManagerǁ__init____mutmut_9 # type: ignore # mutmut generated
 
-mutants_xǁPatchManagerǁ_create_backup__mutmut['_mutmut_orig'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_1'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_2'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_3'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_4'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_5'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_6'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_7'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_8'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_9'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_10'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_11'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_12'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_13'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_14'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_15'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_16'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_17'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_18'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_19'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_20'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_21'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_22'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_23'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_24'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_25'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_26'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_27'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_28'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_29'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_create_backup__mutmut['xǁPatchManagerǁ_create_backup__mutmut_30'] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_30 # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ__init____mutmut["_mutmut_orig"] = PatchManager.xǁPatchManagerǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ__init____mutmut["xǁPatchManagerǁ__init____mutmut_1"] = PatchManager.xǁPatchManagerǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ__init____mutmut["xǁPatchManagerǁ__init____mutmut_2"] = PatchManager.xǁPatchManagerǁ__init____mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ__init____mutmut["xǁPatchManagerǁ__init____mutmut_3"] = PatchManager.xǁPatchManagerǁ__init____mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ__init____mutmut["xǁPatchManagerǁ__init____mutmut_4"] = PatchManager.xǁPatchManagerǁ__init____mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ__init____mutmut["xǁPatchManagerǁ__init____mutmut_5"] = PatchManager.xǁPatchManagerǁ__init____mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ__init____mutmut["xǁPatchManagerǁ__init____mutmut_6"] = PatchManager.xǁPatchManagerǁ__init____mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ__init____mutmut["xǁPatchManagerǁ__init____mutmut_7"] = PatchManager.xǁPatchManagerǁ__init____mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ__init____mutmut["xǁPatchManagerǁ__init____mutmut_8"] = PatchManager.xǁPatchManagerǁ__init____mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ__init____mutmut["xǁPatchManagerǁ__init____mutmut_9"] = PatchManager.xǁPatchManagerǁ__init____mutmut_9  # type: ignore # mutmut generated
 
-mutants_xǁPatchManagerǁ_rollback_all__mutmut['_mutmut_orig'] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_rollback_all__mutmut['xǁPatchManagerǁ_rollback_all__mutmut_1'] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_rollback_all__mutmut['xǁPatchManagerǁ_rollback_all__mutmut_2'] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_rollback_all__mutmut['xǁPatchManagerǁ_rollback_all__mutmut_3'] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_rollback_all__mutmut['xǁPatchManagerǁ_rollback_all__mutmut_4'] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_rollback_all__mutmut['xǁPatchManagerǁ_rollback_all__mutmut_5'] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_rollback_all__mutmut['xǁPatchManagerǁ_rollback_all__mutmut_6'] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_rollback_all__mutmut['xǁPatchManagerǁ_rollback_all__mutmut_7'] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_rollback_all__mutmut['xǁPatchManagerǁ_rollback_all__mutmut_8'] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_rollback_all__mutmut['xǁPatchManagerǁ_rollback_all__mutmut_9'] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_rollback_all__mutmut['xǁPatchManagerǁ_rollback_all__mutmut_10'] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_rollback_all__mutmut['xǁPatchManagerǁ_rollback_all__mutmut_11'] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_rollback_all__mutmut['xǁPatchManagerǁ_rollback_all__mutmut_12'] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_rollback_all__mutmut['xǁPatchManagerǁ_rollback_all__mutmut_13'] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_rollback_all__mutmut['xǁPatchManagerǁ_rollback_all__mutmut_14'] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_rollback_all__mutmut['xǁPatchManagerǁ_rollback_all__mutmut_15'] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_15 # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["_mutmut_orig"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_1"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_2"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_3"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_4"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_5"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_6"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_7"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_8"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_9"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_10"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_11"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_12"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_13"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_14"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_15"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_16"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_17"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_18"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_19"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_20"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_21"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_22"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_23"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_24"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_25"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_26"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_27"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_28"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_29"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_create_backup__mutmut["xǁPatchManagerǁ_create_backup__mutmut_30"] = PatchManager.xǁPatchManagerǁ_create_backup__mutmut_30  # type: ignore # mutmut generated
 
-mutants_xǁPatchManagerǁ_cleanup_backups__mutmut['_mutmut_orig'] = PatchManager.xǁPatchManagerǁ_cleanup_backups__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_cleanup_backups__mutmut['xǁPatchManagerǁ_cleanup_backups__mutmut_1'] = PatchManager.xǁPatchManagerǁ_cleanup_backups__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_cleanup_backups__mutmut['xǁPatchManagerǁ_cleanup_backups__mutmut_2'] = PatchManager.xǁPatchManagerǁ_cleanup_backups__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_cleanup_backups__mutmut['xǁPatchManagerǁ_cleanup_backups__mutmut_3'] = PatchManager.xǁPatchManagerǁ_cleanup_backups__mutmut_3 # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_rollback_all__mutmut["_mutmut_orig"] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_rollback_all__mutmut["xǁPatchManagerǁ_rollback_all__mutmut_1"] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_rollback_all__mutmut["xǁPatchManagerǁ_rollback_all__mutmut_2"] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_rollback_all__mutmut["xǁPatchManagerǁ_rollback_all__mutmut_3"] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_rollback_all__mutmut["xǁPatchManagerǁ_rollback_all__mutmut_4"] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_rollback_all__mutmut["xǁPatchManagerǁ_rollback_all__mutmut_5"] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_rollback_all__mutmut["xǁPatchManagerǁ_rollback_all__mutmut_6"] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_rollback_all__mutmut["xǁPatchManagerǁ_rollback_all__mutmut_7"] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_rollback_all__mutmut["xǁPatchManagerǁ_rollback_all__mutmut_8"] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_rollback_all__mutmut["xǁPatchManagerǁ_rollback_all__mutmut_9"] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_rollback_all__mutmut["xǁPatchManagerǁ_rollback_all__mutmut_10"] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_rollback_all__mutmut["xǁPatchManagerǁ_rollback_all__mutmut_11"] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_rollback_all__mutmut["xǁPatchManagerǁ_rollback_all__mutmut_12"] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_rollback_all__mutmut["xǁPatchManagerǁ_rollback_all__mutmut_13"] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_rollback_all__mutmut["xǁPatchManagerǁ_rollback_all__mutmut_14"] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_rollback_all__mutmut["xǁPatchManagerǁ_rollback_all__mutmut_15"] = PatchManager.xǁPatchManagerǁ_rollback_all__mutmut_15  # type: ignore # mutmut generated
 
-mutants_xǁPatchManagerǁapply_patches__mutmut['_mutmut_orig'] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_patches__mutmut['xǁPatchManagerǁapply_patches__mutmut_1'] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_patches__mutmut['xǁPatchManagerǁapply_patches__mutmut_2'] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_patches__mutmut['xǁPatchManagerǁapply_patches__mutmut_3'] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_patches__mutmut['xǁPatchManagerǁapply_patches__mutmut_4'] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_patches__mutmut['xǁPatchManagerǁapply_patches__mutmut_5'] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_patches__mutmut['xǁPatchManagerǁapply_patches__mutmut_6'] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_patches__mutmut['xǁPatchManagerǁapply_patches__mutmut_7'] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_patches__mutmut['xǁPatchManagerǁapply_patches__mutmut_8'] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_8 # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_cleanup_backups__mutmut["_mutmut_orig"] = PatchManager.xǁPatchManagerǁ_cleanup_backups__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_cleanup_backups__mutmut["xǁPatchManagerǁ_cleanup_backups__mutmut_1"] = PatchManager.xǁPatchManagerǁ_cleanup_backups__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_cleanup_backups__mutmut["xǁPatchManagerǁ_cleanup_backups__mutmut_2"] = PatchManager.xǁPatchManagerǁ_cleanup_backups__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_cleanup_backups__mutmut["xǁPatchManagerǁ_cleanup_backups__mutmut_3"] = PatchManager.xǁPatchManagerǁ_cleanup_backups__mutmut_3  # type: ignore # mutmut generated
 
-mutants_xǁPatchManagerǁapply_single_patch__mutmut['_mutmut_orig'] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_single_patch__mutmut['xǁPatchManagerǁapply_single_patch__mutmut_1'] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_single_patch__mutmut['xǁPatchManagerǁapply_single_patch__mutmut_2'] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_single_patch__mutmut['xǁPatchManagerǁapply_single_patch__mutmut_3'] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_single_patch__mutmut['xǁPatchManagerǁapply_single_patch__mutmut_4'] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_single_patch__mutmut['xǁPatchManagerǁapply_single_patch__mutmut_5'] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_single_patch__mutmut['xǁPatchManagerǁapply_single_patch__mutmut_6'] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_single_patch__mutmut['xǁPatchManagerǁapply_single_patch__mutmut_7'] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_single_patch__mutmut['xǁPatchManagerǁapply_single_patch__mutmut_8'] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁapply_single_patch__mutmut['xǁPatchManagerǁapply_single_patch__mutmut_9'] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_9 # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_patches__mutmut["_mutmut_orig"] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_patches__mutmut["xǁPatchManagerǁapply_patches__mutmut_1"] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_patches__mutmut["xǁPatchManagerǁapply_patches__mutmut_2"] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_patches__mutmut["xǁPatchManagerǁapply_patches__mutmut_3"] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_patches__mutmut["xǁPatchManagerǁapply_patches__mutmut_4"] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_patches__mutmut["xǁPatchManagerǁapply_patches__mutmut_5"] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_patches__mutmut["xǁPatchManagerǁapply_patches__mutmut_6"] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_patches__mutmut["xǁPatchManagerǁapply_patches__mutmut_7"] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_patches__mutmut["xǁPatchManagerǁapply_patches__mutmut_8"] = PatchManager.xǁPatchManagerǁapply_patches__mutmut_8  # type: ignore # mutmut generated
 
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['_mutmut_orig'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_1'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_2'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_3'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_4'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_5'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_6'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_7'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_8'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_9'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_10'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_11'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_12'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_13'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_14'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_15'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_16'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_17'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_18'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_19'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_20'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_21'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_22'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_23'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_24'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_25'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_26'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_27'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_28'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_29'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_30'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_31'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_32'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_33'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_34'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_35'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_36'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_37'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_38'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_39'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_40'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_41'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_42'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_43'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_44'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_45'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_46'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_single_patch__mutmut['xǁPatchManagerǁ_apply_single_patch__mutmut_47'] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_47 # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_single_patch__mutmut["_mutmut_orig"] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_single_patch__mutmut["xǁPatchManagerǁapply_single_patch__mutmut_1"] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_single_patch__mutmut["xǁPatchManagerǁapply_single_patch__mutmut_2"] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_single_patch__mutmut["xǁPatchManagerǁapply_single_patch__mutmut_3"] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_single_patch__mutmut["xǁPatchManagerǁapply_single_patch__mutmut_4"] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_single_patch__mutmut["xǁPatchManagerǁapply_single_patch__mutmut_5"] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_single_patch__mutmut["xǁPatchManagerǁapply_single_patch__mutmut_6"] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_single_patch__mutmut["xǁPatchManagerǁapply_single_patch__mutmut_7"] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_single_patch__mutmut["xǁPatchManagerǁapply_single_patch__mutmut_8"] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁapply_single_patch__mutmut["xǁPatchManagerǁapply_single_patch__mutmut_9"] = PatchManager.xǁPatchManagerǁapply_single_patch__mutmut_9  # type: ignore # mutmut generated
 
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['_mutmut_orig'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_1'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_2'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_3'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_4'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_5'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_6'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_7'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_8'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_9'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_10'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_11'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_12'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_13'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_14'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_15'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_16'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_17'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_18'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_19'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_20'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_21'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_22'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_23'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_24'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_25'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_26'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_27'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_28'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_29'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_30'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_31'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_32'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_33'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_34'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_35'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_36'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_37'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_38'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_39'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_40'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_41'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_42'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_43'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_44'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_45'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_46'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_47'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_48'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_49'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_50'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_51'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_52'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut['xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_53'] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_53 # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["_mutmut_orig"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_1"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_2"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_3"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_4"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_5"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_6"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_7"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_8"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_9"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_10"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_11"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_12"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_13"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_14"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_15"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_16"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_17"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_18"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_19"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_20"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_21"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_22"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_23"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_24"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_25"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_26"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_27"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_28"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_29"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_30"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_31"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_32"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_33"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_34"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_35"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_36"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_37"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_38"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_39"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_40"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_41"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_42"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_43"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_44"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_45"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_46"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_single_patch__mutmut["xǁPatchManagerǁ_apply_single_patch__mutmut_47"] = PatchManager.xǁPatchManagerǁ_apply_single_patch__mutmut_47  # type: ignore # mutmut generated
 
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['_mutmut_orig'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_1'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_2'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_3'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_4'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_5'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_6'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_7'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_8'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_9'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_10'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_11'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_12'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_13'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_14'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_15'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_16'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_17'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_18'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_19'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_20'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_21'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_22'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_23'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_24'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_25'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_26'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_27'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_28'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_29'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_30'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_31'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_32'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_33'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_34'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_35'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_36'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_37'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_38'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_39'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_40'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_41'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_42'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_43'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_44'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_45'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_46'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_47'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_48'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_49'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_50'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_51'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_52'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_53'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_54'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_55'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_56'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_57'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_58'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_59'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_60'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_61'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_62'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_63'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_64'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_65'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_66'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_67'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_68'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_69'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_70'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_71'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_72'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_73'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_74'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_75'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_76'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_77'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_78'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_79'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_80'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_81'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_82'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_83'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_84'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_85'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_86'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_87'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_88'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_89'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_diff__mutmut['xǁPatchManagerǁ_apply_diff__mutmut_90'] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_90 # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["_mutmut_orig"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_1"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_2"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_3"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_4"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_5"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_6"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_7"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_8"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_9"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_10"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_11"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_12"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_13"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_14"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_15"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_16"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_17"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_18"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_19"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_20"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_21"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_22"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_23"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_24"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_25"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_26"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_27"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_28"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_29"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_30"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_31"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_32"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_33"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_34"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_35"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_36"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_37"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_38"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_39"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_40"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_41"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_42"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_43"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_44"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_45"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_46"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_47"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_48"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_49"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_50"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_51"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_52"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut["xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_53"] = PatchManager.xǁPatchManagerǁ_apply_with_fuzzy_match__mutmut_53  # type: ignore # mutmut generated
 
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['_mutmut_orig'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_1'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_2'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_3'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_4'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_5'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_6'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_7'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_8'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_9'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_10'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_11'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_12'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_13'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_14'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_15'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_16'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_17'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_18'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_19'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_20'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_21'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_22'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_23'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_24'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_25'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_26'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_27'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_28'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_29'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_30'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_31'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_32'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_33'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_34'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_35'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_36'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_37'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_38'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_39'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_40'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_41'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_42'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_43'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut['xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_44'] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_44 # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["_mutmut_orig"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_1"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_2"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_3"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_4"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_5"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_6"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_7"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_8"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_9"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_10"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_11"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_12"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_13"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_14"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_15"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_16"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_17"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_18"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_19"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_20"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_21"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_22"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_23"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_24"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_25"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_26"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_27"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_28"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_29"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_30"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_31"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_32"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_33"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_34"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_35"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_36"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_37"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_38"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_39"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_40"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_41"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_42"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_43"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_44"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_45"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_46"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_47"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_48"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_49"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_50"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_51"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_52"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_53"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_54"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_55"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_56"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_57"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_58"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_59"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_60"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_61"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_62"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_63"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_64"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_65"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_66"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_67"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_68"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_69"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_70"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_71"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_72"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_73"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_74"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_75"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_76"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_77"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_78"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_79"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_80"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_81"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_82"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_83"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_84"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_85"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_86"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_87"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_88"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_89"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_diff__mutmut["xǁPatchManagerǁ_apply_diff__mutmut_90"] = PatchManager.xǁPatchManagerǁ_apply_diff__mutmut_90  # type: ignore # mutmut generated
+
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["_mutmut_orig"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_1"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_2"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_3"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_4"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_5"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_6"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_7"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_8"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_9"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_10"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_11"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_12"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_13"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_14"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_15"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_16"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_17"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_18"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_19"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_20"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_21"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_22"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_23"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_24"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_25"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_26"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_27"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_28"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_29"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_30"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_31"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_32"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_33"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_34"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_35"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_36"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_37"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_38"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_39"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_40"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_41"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_42"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_43"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut["xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_44"] = PatchManager.xǁPatchManagerǁ_apply_with_sequence_matcher__mutmut_44  # type: ignore # mutmut generated
 mutants_x_create_patch__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -11176,7 +11240,7 @@ def x_create_patch__mutmut_11(old_content: str, new_content: str, file_path: str
         new_content.splitlines(keepends=True),
         fromfile=f"a/{file_path}",
         tofile=f"b/{file_path}",
-        )
+    )
     return "".join(diff)
 
 
@@ -11263,25 +11327,26 @@ def x_create_patch__mutmut_18(old_content: str, new_content: str, file_path: str
     )
     return "XXXX".join(diff)
 
-mutants_x_create_patch__mutmut['_mutmut_orig'] = x_create_patch__mutmut_orig # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_1'] = x_create_patch__mutmut_1 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_2'] = x_create_patch__mutmut_2 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_3'] = x_create_patch__mutmut_3 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_4'] = x_create_patch__mutmut_4 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_5'] = x_create_patch__mutmut_5 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_6'] = x_create_patch__mutmut_6 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_7'] = x_create_patch__mutmut_7 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_8'] = x_create_patch__mutmut_8 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_9'] = x_create_patch__mutmut_9 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_10'] = x_create_patch__mutmut_10 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_11'] = x_create_patch__mutmut_11 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_12'] = x_create_patch__mutmut_12 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_13'] = x_create_patch__mutmut_13 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_14'] = x_create_patch__mutmut_14 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_15'] = x_create_patch__mutmut_15 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_16'] = x_create_patch__mutmut_16 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_17'] = x_create_patch__mutmut_17 # type: ignore # mutmut generated
-mutants_x_create_patch__mutmut['x_create_patch__mutmut_18'] = x_create_patch__mutmut_18 # type: ignore # mutmut generated
+
+mutants_x_create_patch__mutmut["_mutmut_orig"] = x_create_patch__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_1"] = x_create_patch__mutmut_1  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_2"] = x_create_patch__mutmut_2  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_3"] = x_create_patch__mutmut_3  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_4"] = x_create_patch__mutmut_4  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_5"] = x_create_patch__mutmut_5  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_6"] = x_create_patch__mutmut_6  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_7"] = x_create_patch__mutmut_7  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_8"] = x_create_patch__mutmut_8  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_9"] = x_create_patch__mutmut_9  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_10"] = x_create_patch__mutmut_10  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_11"] = x_create_patch__mutmut_11  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_12"] = x_create_patch__mutmut_12  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_13"] = x_create_patch__mutmut_13  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_14"] = x_create_patch__mutmut_14  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_15"] = x_create_patch__mutmut_15  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_16"] = x_create_patch__mutmut_16  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_17"] = x_create_patch__mutmut_17  # type: ignore # mutmut generated
+mutants_x_create_patch__mutmut["x_create_patch__mutmut_18"] = x_create_patch__mutmut_18  # type: ignore # mutmut generated
 
 
 def apply_patch(content: str, patch_text: str) -> str:
@@ -11289,6 +11354,8 @@ def apply_patch(content: str, patch_text: str) -> str:
     # 간단한 구현: 전체 교체
     # 실제로는 patch 라이브러리 사용 권장
     return content  # TODO: 실제 구현
+
+
 mutants_x_generate_unified_diff__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -11402,23 +11469,27 @@ def x_generate_unified_diff__mutmut_14(old_file: Path, new_file: Path) -> str:
     """두 파일 간 unified diff 생성"""
     old_content = old_file.read_text(encoding="utf-8")
     new_content = new_file.read_text(encoding="utf-8")
-    return create_patch(old_content, new_content, )
+    return create_patch(
+        old_content,
+        new_content,
+    )
 
-mutants_x_generate_unified_diff__mutmut['_mutmut_orig'] = x_generate_unified_diff__mutmut_orig # type: ignore # mutmut generated
-mutants_x_generate_unified_diff__mutmut['x_generate_unified_diff__mutmut_1'] = x_generate_unified_diff__mutmut_1 # type: ignore # mutmut generated
-mutants_x_generate_unified_diff__mutmut['x_generate_unified_diff__mutmut_2'] = x_generate_unified_diff__mutmut_2 # type: ignore # mutmut generated
-mutants_x_generate_unified_diff__mutmut['x_generate_unified_diff__mutmut_3'] = x_generate_unified_diff__mutmut_3 # type: ignore # mutmut generated
-mutants_x_generate_unified_diff__mutmut['x_generate_unified_diff__mutmut_4'] = x_generate_unified_diff__mutmut_4 # type: ignore # mutmut generated
-mutants_x_generate_unified_diff__mutmut['x_generate_unified_diff__mutmut_5'] = x_generate_unified_diff__mutmut_5 # type: ignore # mutmut generated
-mutants_x_generate_unified_diff__mutmut['x_generate_unified_diff__mutmut_6'] = x_generate_unified_diff__mutmut_6 # type: ignore # mutmut generated
-mutants_x_generate_unified_diff__mutmut['x_generate_unified_diff__mutmut_7'] = x_generate_unified_diff__mutmut_7 # type: ignore # mutmut generated
-mutants_x_generate_unified_diff__mutmut['x_generate_unified_diff__mutmut_8'] = x_generate_unified_diff__mutmut_8 # type: ignore # mutmut generated
-mutants_x_generate_unified_diff__mutmut['x_generate_unified_diff__mutmut_9'] = x_generate_unified_diff__mutmut_9 # type: ignore # mutmut generated
-mutants_x_generate_unified_diff__mutmut['x_generate_unified_diff__mutmut_10'] = x_generate_unified_diff__mutmut_10 # type: ignore # mutmut generated
-mutants_x_generate_unified_diff__mutmut['x_generate_unified_diff__mutmut_11'] = x_generate_unified_diff__mutmut_11 # type: ignore # mutmut generated
-mutants_x_generate_unified_diff__mutmut['x_generate_unified_diff__mutmut_12'] = x_generate_unified_diff__mutmut_12 # type: ignore # mutmut generated
-mutants_x_generate_unified_diff__mutmut['x_generate_unified_diff__mutmut_13'] = x_generate_unified_diff__mutmut_13 # type: ignore # mutmut generated
-mutants_x_generate_unified_diff__mutmut['x_generate_unified_diff__mutmut_14'] = x_generate_unified_diff__mutmut_14 # type: ignore # mutmut generated
+
+mutants_x_generate_unified_diff__mutmut["_mutmut_orig"] = x_generate_unified_diff__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_generate_unified_diff__mutmut["x_generate_unified_diff__mutmut_1"] = x_generate_unified_diff__mutmut_1  # type: ignore # mutmut generated
+mutants_x_generate_unified_diff__mutmut["x_generate_unified_diff__mutmut_2"] = x_generate_unified_diff__mutmut_2  # type: ignore # mutmut generated
+mutants_x_generate_unified_diff__mutmut["x_generate_unified_diff__mutmut_3"] = x_generate_unified_diff__mutmut_3  # type: ignore # mutmut generated
+mutants_x_generate_unified_diff__mutmut["x_generate_unified_diff__mutmut_4"] = x_generate_unified_diff__mutmut_4  # type: ignore # mutmut generated
+mutants_x_generate_unified_diff__mutmut["x_generate_unified_diff__mutmut_5"] = x_generate_unified_diff__mutmut_5  # type: ignore # mutmut generated
+mutants_x_generate_unified_diff__mutmut["x_generate_unified_diff__mutmut_6"] = x_generate_unified_diff__mutmut_6  # type: ignore # mutmut generated
+mutants_x_generate_unified_diff__mutmut["x_generate_unified_diff__mutmut_7"] = x_generate_unified_diff__mutmut_7  # type: ignore # mutmut generated
+mutants_x_generate_unified_diff__mutmut["x_generate_unified_diff__mutmut_8"] = x_generate_unified_diff__mutmut_8  # type: ignore # mutmut generated
+mutants_x_generate_unified_diff__mutmut["x_generate_unified_diff__mutmut_9"] = x_generate_unified_diff__mutmut_9  # type: ignore # mutmut generated
+mutants_x_generate_unified_diff__mutmut["x_generate_unified_diff__mutmut_10"] = x_generate_unified_diff__mutmut_10  # type: ignore # mutmut generated
+mutants_x_generate_unified_diff__mutmut["x_generate_unified_diff__mutmut_11"] = x_generate_unified_diff__mutmut_11  # type: ignore # mutmut generated
+mutants_x_generate_unified_diff__mutmut["x_generate_unified_diff__mutmut_12"] = x_generate_unified_diff__mutmut_12  # type: ignore # mutmut generated
+mutants_x_generate_unified_diff__mutmut["x_generate_unified_diff__mutmut_13"] = x_generate_unified_diff__mutmut_13  # type: ignore # mutmut generated
+mutants_x_generate_unified_diff__mutmut["x_generate_unified_diff__mutmut_14"] = x_generate_unified_diff__mutmut_14  # type: ignore # mutmut generated
 mutants_x_patch_file__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -11619,25 +11690,29 @@ def x_patch_file__mutmut_18(workspace: Path, file_path: str, new_content: str) -
     manager = PatchManager(Path(workspace))
     full_path = Path(workspace) / file_path
     old_content = full_path.read_text(encoding="utf-8") if full_path.exists() else ""
-    result = manager.apply_single_patch(file_path, old_content, )
+    result = manager.apply_single_patch(
+        file_path,
+        old_content,
+    )
     return result.success
 
-mutants_x_patch_file__mutmut['_mutmut_orig'] = x_patch_file__mutmut_orig # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_1'] = x_patch_file__mutmut_1 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_2'] = x_patch_file__mutmut_2 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_3'] = x_patch_file__mutmut_3 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_4'] = x_patch_file__mutmut_4 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_5'] = x_patch_file__mutmut_5 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_6'] = x_patch_file__mutmut_6 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_7'] = x_patch_file__mutmut_7 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_8'] = x_patch_file__mutmut_8 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_9'] = x_patch_file__mutmut_9 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_10'] = x_patch_file__mutmut_10 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_11'] = x_patch_file__mutmut_11 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_12'] = x_patch_file__mutmut_12 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_13'] = x_patch_file__mutmut_13 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_14'] = x_patch_file__mutmut_14 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_15'] = x_patch_file__mutmut_15 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_16'] = x_patch_file__mutmut_16 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_17'] = x_patch_file__mutmut_17 # type: ignore # mutmut generated
-mutants_x_patch_file__mutmut['x_patch_file__mutmut_18'] = x_patch_file__mutmut_18 # type: ignore # mutmut generated
+
+mutants_x_patch_file__mutmut["_mutmut_orig"] = x_patch_file__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_1"] = x_patch_file__mutmut_1  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_2"] = x_patch_file__mutmut_2  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_3"] = x_patch_file__mutmut_3  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_4"] = x_patch_file__mutmut_4  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_5"] = x_patch_file__mutmut_5  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_6"] = x_patch_file__mutmut_6  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_7"] = x_patch_file__mutmut_7  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_8"] = x_patch_file__mutmut_8  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_9"] = x_patch_file__mutmut_9  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_10"] = x_patch_file__mutmut_10  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_11"] = x_patch_file__mutmut_11  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_12"] = x_patch_file__mutmut_12  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_13"] = x_patch_file__mutmut_13  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_14"] = x_patch_file__mutmut_14  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_15"] = x_patch_file__mutmut_15  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_16"] = x_patch_file__mutmut_16  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_17"] = x_patch_file__mutmut_17  # type: ignore # mutmut generated
+mutants_x_patch_file__mutmut["x_patch_file__mutmut_18"] = x_patch_file__mutmut_18  # type: ignore # mutmut generated

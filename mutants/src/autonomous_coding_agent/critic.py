@@ -14,7 +14,9 @@ from .models import CritiqueResult, PlanStep, VerificationResult
 log = logging.getLogger("autonomous_coding_agent.critic")
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
+
 mutants_xǁCriticǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁCriticǁcritique__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁCriticǁ_calculate_score__mutmut: MutantDict = {}  # type: ignore
@@ -437,7 +439,10 @@ class Critic:
         result.score = self._calculate_score(verification)
 
         # 2. 이슈 분석
-        result.issues = self._analyze_issues(verification, step, )
+        result.issues = self._analyze_issues(
+            verification,
+            step,
+        )
 
         # 3. 개선 제안 생성
         result.improvements = self._generate_improvements(verification, step, context)
@@ -643,7 +648,10 @@ class Critic:
         result.issues = self._analyze_issues(verification, step, context)
 
         # 3. 개선 제안 생성
-        result.improvements = self._generate_improvements(verification, step, )
+        result.improvements = self._generate_improvements(
+            verification,
+            step,
+        )
 
         # 4. 재시도 여부 결정
         result.should_retry = self._should_retry(result, verification)
@@ -791,7 +799,9 @@ class Critic:
         result.improvements = self._generate_improvements(verification, step, context)
 
         # 4. 재시도 여부 결정
-        result.should_retry = self._should_retry(result, )
+        result.should_retry = self._should_retry(
+            result,
+        )
         if result.should_retry:
             result.retry_feedback = self._generate_retry_feedback(result, verification)
 
@@ -938,7 +948,9 @@ class Critic:
         # 4. 재시도 여부 결정
         result.should_retry = self._should_retry(result, verification)
         if result.should_retry:
-            result.retry_feedback = self._generate_retry_feedback(result, )
+            result.retry_feedback = self._generate_retry_feedback(
+                result,
+            )
 
         log.info(f"  비평 완료: 점수={result.score:.2f}, 재시도={result.should_retry}")
 
@@ -1187,7 +1199,9 @@ class Critic:
         score = 1.0
 
         # 테스트 실패
-        if not verification.test_results.get("passed", ):
+        if not verification.test_results.get(
+            "passed",
+        ):
             score -= 0.4
 
         # 타입 체크 실패
@@ -1477,7 +1491,9 @@ class Critic:
             score -= 0.4
 
         # 타입 체크 실패
-        if not verification.type_results.get("passed", ):
+        if not verification.type_results.get(
+            "passed",
+        ):
             score -= 0.3
 
         # 린트 경고
@@ -1767,7 +1783,9 @@ class Critic:
             score -= 0.3
 
         # 린트 경고
-        if not verification.lint_results.get("passed", ):
+        if not verification.lint_results.get(
+            "passed",
+        ):
             score -= 0.1
 
         # 커버리지 부족
@@ -2506,7 +2524,9 @@ class Critic:
         score -= len(verification.errors) * 0.05
         score -= len(verification.warnings) * 0.02
 
-        return max(0.0, )
+        return max(
+            0.0,
+        )
 
     def xǁCriticǁ_calculate_score__mutmut_58(self, verification: VerificationResult) -> float:
         """검증 결과 기반 종합 점수 (0.0 ~ 1.0)"""
@@ -2636,7 +2656,12 @@ class Critic:
         score -= len(verification.errors) * 0.05
         score -= len(verification.warnings) * 0.02
 
-        return max(0.0, min(1.0, ))
+        return max(
+            0.0,
+            min(
+                1.0,
+            ),
+        )
 
     def xǁCriticǁ_calculate_score__mutmut_63(self, verification: VerificationResult) -> float:
         """검증 결과 기반 종합 점수 (0.0 ~ 1.0)"""
@@ -2934,7 +2959,9 @@ class Critic:
         issues = []
 
         # 테스트 실패 분석
-        if not verification.test_results.get("passed", ):
+        if not verification.test_results.get(
+            "passed",
+        ):
             stderr = verification.test_results.get("stderr", "")
             issues.extend(self._parse_test_failures(stderr))
 
@@ -3231,7 +3258,9 @@ class Critic:
 
         # 테스트 실패 분석
         if not verification.test_results.get("passed", True):
-            stderr = verification.test_results.get("stderr", )
+            stderr = verification.test_results.get(
+                "stderr",
+            )
             issues.extend(self._parse_test_failures(stderr))
 
         # 타입 에러 분석
@@ -3605,7 +3634,9 @@ class Critic:
             issues.extend(self._parse_test_failures(stderr))
 
         # 타입 에러 분석
-        if not verification.type_results.get("passed", ):
+        if not verification.type_results.get(
+            "passed",
+        ):
             stderr = verification.type_results.get("stderr", "")
             issues.extend(self._parse_type_errors(stderr))
 
@@ -3902,7 +3933,9 @@ class Critic:
 
         # 타입 에러 분석
         if not verification.type_results.get("passed", True):
-            stderr = verification.type_results.get("stderr", )
+            stderr = verification.type_results.get(
+                "stderr",
+            )
             issues.extend(self._parse_type_errors(stderr))
 
         # 린트 이슈 분석
@@ -4276,7 +4309,9 @@ class Critic:
             issues.extend(self._parse_type_errors(stderr))
 
         # 린트 이슈 분석
-        if not verification.lint_results.get("passed", ):
+        if not verification.lint_results.get(
+            "passed",
+        ):
             stderr = verification.lint_results.get("stderr", "")
             issues.extend(self._parse_lint_issues(stderr))
 
@@ -4573,7 +4608,9 @@ class Critic:
 
         # 린트 이슈 분석
         if not verification.lint_results.get("passed", True):
-            stderr = verification.lint_results.get("stderr", )
+            stderr = verification.lint_results.get(
+                "stderr",
+            )
             issues.extend(self._parse_lint_issues(stderr))
 
         # 커버리지 부족
@@ -4874,9 +4911,7 @@ class Critic:
 
         # 커버리지 부족
         if verification.coverage < 80:
-            issues.append(
-                None
-            )
+            issues.append(None)
 
         return issues
 
@@ -6143,7 +6178,9 @@ class Critic:
         ]
 
         for pattern, issue_type in patterns:
-            for match in re.finditer(pattern, ):
+            for match in re.finditer(
+                pattern,
+            ):
                 issues.append(
                     {
                         "type": issue_type,
@@ -6169,9 +6206,7 @@ class Critic:
 
         for pattern, issue_type in patterns:
             for match in re.finditer(pattern, stderr):
-                issues.append(
-                    None
-                )
+                issues.append(None)
 
         return issues
 
@@ -7181,7 +7216,10 @@ class Critic:
         ]
 
         for pattern, issue_type in patterns:
-            for match in re.finditer(pattern, stderr, ):
+            for match in re.finditer(
+                pattern,
+                stderr,
+            ):
                 issues.append(
                     {
                         "type": issue_type,
@@ -7206,9 +7244,7 @@ class Critic:
 
         for pattern, issue_type in patterns:
             for match in re.finditer(pattern, stderr, re.IGNORECASE):
-                issues.append(
-                    None
-                )
+                issues.append(None)
 
         return issues
 
@@ -8012,7 +8048,9 @@ class Critic:
         ]
 
         for pattern, issue_type in patterns:
-            for match in re.finditer(pattern, ):
+            for match in re.finditer(
+                pattern,
+            ):
                 severity = "error" if "error" in issue_type else "warning"
                 issues.append(
                     {
@@ -8230,9 +8268,7 @@ class Critic:
         for pattern, issue_type in patterns:
             for match in re.finditer(pattern, stderr):
                 severity = "error" if "error" in issue_type else "warning"
-                issues.append(
-                    None
-                )
+                issues.append(None)
 
         return issues
 
@@ -8786,7 +8822,9 @@ class Critic:
         """개선 제안 생성"""
         improvements = []
 
-        if not verification.test_results.get("passed", ):
+        if not verification.test_results.get(
+            "passed",
+        ):
             improvements.append("실패한 테스트 케이스 분석 및 수정")
             improvements.append("테스트 커버리지 향상을 위한 추가 테스트 작성")
 
@@ -9222,7 +9260,9 @@ class Critic:
             improvements.append("실패한 테스트 케이스 분석 및 수정")
             improvements.append("테스트 커버리지 향상을 위한 추가 테스트 작성")
 
-        if not verification.type_results.get("passed", ):
+        if not verification.type_results.get(
+            "passed",
+        ):
             improvements.append("타입 힌트 추가 및 타입 에러 수정")
             improvements.append("mypy/pyright 설정 검토")
 
@@ -9694,7 +9734,9 @@ class Critic:
             improvements.append("타입 힌트 추가 및 타입 에러 수정")
             improvements.append("mypy/pyright 설정 검토")
 
-        if not verification.lint_results.get("passed", ):
+        if not verification.lint_results.get(
+            "passed",
+        ):
             improvements.append("린트 규칙 준수 (포맷팅, 네이밍, 임포트 순서)")
             improvements.append("자동 포맷터 실행 (black, prettier, gofmt 등)")
 
@@ -10207,9 +10249,7 @@ class Critic:
             improvements.append("경계값, 예외 케이스 테스트 추가")
 
         # 일반적인 개선 사항
-        improvements.extend(
-            None
-        )
+        improvements.extend(None)
 
         return improvements[:5]  # 상위 5개만
 
@@ -10410,7 +10450,9 @@ class Critic:
 
         return False
 
-    def xǁCriticǁ_should_retry__mutmut_orig(self, critique: CritiqueResult, verification: VerificationResult) -> bool:
+    def xǁCriticǁ_should_retry__mutmut_orig(
+        self, critique: CritiqueResult, verification: VerificationResult
+    ) -> bool:
         """재시도 여부 결정"""
         # 점수가 낮거나 치명적 에러가 있으면 재시도
         if critique.score < 0.6:
@@ -10426,7 +10468,9 @@ class Critic:
 
         return False
 
-    def xǁCriticǁ_should_retry__mutmut_1(self, critique: CritiqueResult, verification: VerificationResult) -> bool:
+    def xǁCriticǁ_should_retry__mutmut_1(
+        self, critique: CritiqueResult, verification: VerificationResult
+    ) -> bool:
         """재시도 여부 결정"""
         # 점수가 낮거나 치명적 에러가 있으면 재시도
         if critique.score <= 0.6:
@@ -10442,7 +10486,9 @@ class Critic:
 
         return False
 
-    def xǁCriticǁ_should_retry__mutmut_2(self, critique: CritiqueResult, verification: VerificationResult) -> bool:
+    def xǁCriticǁ_should_retry__mutmut_2(
+        self, critique: CritiqueResult, verification: VerificationResult
+    ) -> bool:
         """재시도 여부 결정"""
         # 점수가 낮거나 치명적 에러가 있으면 재시도
         if critique.score < 1.6:
@@ -10458,7 +10504,9 @@ class Critic:
 
         return False
 
-    def xǁCriticǁ_should_retry__mutmut_3(self, critique: CritiqueResult, verification: VerificationResult) -> bool:
+    def xǁCriticǁ_should_retry__mutmut_3(
+        self, critique: CritiqueResult, verification: VerificationResult
+    ) -> bool:
         """재시도 여부 결정"""
         # 점수가 낮거나 치명적 에러가 있으면 재시도
         if critique.score < 0.6:
@@ -10474,7 +10522,9 @@ class Critic:
 
         return False
 
-    def xǁCriticǁ_should_retry__mutmut_4(self, critique: CritiqueResult, verification: VerificationResult) -> bool:
+    def xǁCriticǁ_should_retry__mutmut_4(
+        self, critique: CritiqueResult, verification: VerificationResult
+    ) -> bool:
         """재시도 여부 결정"""
         # 점수가 낮거나 치명적 에러가 있으면 재시도
         if critique.score < 0.6:
@@ -10490,7 +10540,9 @@ class Critic:
 
         return False
 
-    def xǁCriticǁ_should_retry__mutmut_5(self, critique: CritiqueResult, verification: VerificationResult) -> bool:
+    def xǁCriticǁ_should_retry__mutmut_5(
+        self, critique: CritiqueResult, verification: VerificationResult
+    ) -> bool:
         """재시도 여부 결정"""
         # 점수가 낮거나 치명적 에러가 있으면 재시도
         if critique.score < 0.6:
@@ -10506,7 +10558,9 @@ class Critic:
 
         return False
 
-    def xǁCriticǁ_should_retry__mutmut_6(self, critique: CritiqueResult, verification: VerificationResult) -> bool:
+    def xǁCriticǁ_should_retry__mutmut_6(
+        self, critique: CritiqueResult, verification: VerificationResult
+    ) -> bool:
         """재시도 여부 결정"""
         # 점수가 낮거나 치명적 에러가 있으면 재시도
         if critique.score < 0.6:
@@ -10522,7 +10576,9 @@ class Critic:
 
         return False
 
-    def xǁCriticǁ_should_retry__mutmut_7(self, critique: CritiqueResult, verification: VerificationResult) -> bool:
+    def xǁCriticǁ_should_retry__mutmut_7(
+        self, critique: CritiqueResult, verification: VerificationResult
+    ) -> bool:
         """재시도 여부 결정"""
         # 점수가 낮거나 치명적 에러가 있으면 재시도
         if critique.score < 0.6:
@@ -10538,7 +10594,9 @@ class Critic:
 
         return False
 
-    def xǁCriticǁ_should_retry__mutmut_8(self, critique: CritiqueResult, verification: VerificationResult) -> bool:
+    def xǁCriticǁ_should_retry__mutmut_8(
+        self, critique: CritiqueResult, verification: VerificationResult
+    ) -> bool:
         """재시도 여부 결정"""
         # 점수가 낮거나 치명적 에러가 있으면 재시도
         if critique.score < 0.6:
@@ -10554,7 +10612,9 @@ class Critic:
 
         return False
 
-    def xǁCriticǁ_should_retry__mutmut_9(self, critique: CritiqueResult, verification: VerificationResult) -> bool:
+    def xǁCriticǁ_should_retry__mutmut_9(
+        self, critique: CritiqueResult, verification: VerificationResult
+    ) -> bool:
         """재시도 여부 결정"""
         # 점수가 낮거나 치명적 에러가 있으면 재시도
         if critique.score < 0.6:
@@ -10565,12 +10625,16 @@ class Critic:
             return True
 
         # 테스트 실패가 있으면 재시도
-        if not verification.test_results.get("passed", ):
+        if not verification.test_results.get(
+            "passed",
+        ):
             return True
 
         return False
 
-    def xǁCriticǁ_should_retry__mutmut_10(self, critique: CritiqueResult, verification: VerificationResult) -> bool:
+    def xǁCriticǁ_should_retry__mutmut_10(
+        self, critique: CritiqueResult, verification: VerificationResult
+    ) -> bool:
         """재시도 여부 결정"""
         # 점수가 낮거나 치명적 에러가 있으면 재시도
         if critique.score < 0.6:
@@ -10586,7 +10650,9 @@ class Critic:
 
         return False
 
-    def xǁCriticǁ_should_retry__mutmut_11(self, critique: CritiqueResult, verification: VerificationResult) -> bool:
+    def xǁCriticǁ_should_retry__mutmut_11(
+        self, critique: CritiqueResult, verification: VerificationResult
+    ) -> bool:
         """재시도 여부 결정"""
         # 점수가 낮거나 치명적 에러가 있으면 재시도
         if critique.score < 0.6:
@@ -10602,7 +10668,9 @@ class Critic:
 
         return False
 
-    def xǁCriticǁ_should_retry__mutmut_12(self, critique: CritiqueResult, verification: VerificationResult) -> bool:
+    def xǁCriticǁ_should_retry__mutmut_12(
+        self, critique: CritiqueResult, verification: VerificationResult
+    ) -> bool:
         """재시도 여부 결정"""
         # 점수가 낮거나 치명적 에러가 있으면 재시도
         if critique.score < 0.6:
@@ -10618,7 +10686,9 @@ class Critic:
 
         return False
 
-    def xǁCriticǁ_should_retry__mutmut_13(self, critique: CritiqueResult, verification: VerificationResult) -> bool:
+    def xǁCriticǁ_should_retry__mutmut_13(
+        self, critique: CritiqueResult, verification: VerificationResult
+    ) -> bool:
         """재시도 여부 결정"""
         # 점수가 낮거나 치명적 에러가 있으면 재시도
         if critique.score < 0.6:
@@ -10634,7 +10704,9 @@ class Critic:
 
         return False
 
-    def xǁCriticǁ_should_retry__mutmut_14(self, critique: CritiqueResult, verification: VerificationResult) -> bool:
+    def xǁCriticǁ_should_retry__mutmut_14(
+        self, critique: CritiqueResult, verification: VerificationResult
+    ) -> bool:
         """재시도 여부 결정"""
         # 점수가 낮거나 치명적 에러가 있으면 재시도
         if critique.score < 0.6:
@@ -11825,7 +11897,9 @@ class Critic:
 
         metrics = {
             "total_lines": len(lines),
-            "XXcode_linesXX": len([l for l in lines if l.strip() and not l.strip().startswith("#")]),
+            "XXcode_linesXX": len(
+                [l for l in lines if l.strip() and not l.strip().startswith("#")]
+            ),
             "comment_lines": len([l for l in lines if l.strip().startswith("#")]),
             "blank_lines": len([l for l in lines if not l.strip()]),
             "max_line_length": max((len(l) for l in lines), default=0),
@@ -12345,7 +12419,9 @@ class Critic:
             "code_lines": len([l for l in lines if l.strip() and not l.strip().startswith("#")]),
             "comment_lines": len([l for l in lines if l.strip().startswith("#")]),
             "blank_lines": len([l for l in lines if not l.strip()]),
-            "max_line_length": max((len(l) for l in lines), ),
+            "max_line_length": max(
+                (len(l) for l in lines),
+            ),
             "avg_line_length": sum(len(l) for l in lines) / max(len(lines), 1),
             "functions": len(
                 [
@@ -12769,7 +12845,10 @@ class Critic:
             "comment_lines": len([l for l in lines if l.strip().startswith("#")]),
             "blank_lines": len([l for l in lines if not l.strip()]),
             "max_line_length": max((len(l) for l in lines), default=0),
-            "avg_line_length": sum(len(l) for l in lines) / max(len(lines), ),
+            "avg_line_length": sum(len(l) for l in lines)
+            / max(
+                len(lines),
+            ),
             "functions": len(
                 [
                     l
@@ -14526,468 +14605,469 @@ class Critic:
 
         return metrics
 
-mutants_xǁCriticǁ__init____mutmut['_mutmut_orig'] = Critic.xǁCriticǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCriticǁ__init____mutmut['xǁCriticǁ__init____mutmut_1'] = Critic.xǁCriticǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCriticǁ__init____mutmut['xǁCriticǁ__init____mutmut_2'] = Critic.xǁCriticǁ__init____mutmut_2 # type: ignore # mutmut generated
 
-mutants_xǁCriticǁcritique__mutmut['_mutmut_orig'] = Critic.xǁCriticǁcritique__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_1'] = Critic.xǁCriticǁcritique__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_2'] = Critic.xǁCriticǁcritique__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_3'] = Critic.xǁCriticǁcritique__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_4'] = Critic.xǁCriticǁcritique__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_5'] = Critic.xǁCriticǁcritique__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_6'] = Critic.xǁCriticǁcritique__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_7'] = Critic.xǁCriticǁcritique__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_8'] = Critic.xǁCriticǁcritique__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_9'] = Critic.xǁCriticǁcritique__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_10'] = Critic.xǁCriticǁcritique__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_11'] = Critic.xǁCriticǁcritique__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_12'] = Critic.xǁCriticǁcritique__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_13'] = Critic.xǁCriticǁcritique__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_14'] = Critic.xǁCriticǁcritique__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_15'] = Critic.xǁCriticǁcritique__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_16'] = Critic.xǁCriticǁcritique__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_17'] = Critic.xǁCriticǁcritique__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_18'] = Critic.xǁCriticǁcritique__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_19'] = Critic.xǁCriticǁcritique__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_20'] = Critic.xǁCriticǁcritique__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_21'] = Critic.xǁCriticǁcritique__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_22'] = Critic.xǁCriticǁcritique__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_23'] = Critic.xǁCriticǁcritique__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_24'] = Critic.xǁCriticǁcritique__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_25'] = Critic.xǁCriticǁcritique__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_26'] = Critic.xǁCriticǁcritique__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_27'] = Critic.xǁCriticǁcritique__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_28'] = Critic.xǁCriticǁcritique__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_29'] = Critic.xǁCriticǁcritique__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCriticǁcritique__mutmut['xǁCriticǁcritique__mutmut_30'] = Critic.xǁCriticǁcritique__mutmut_30 # type: ignore # mutmut generated
+mutants_xǁCriticǁ__init____mutmut["_mutmut_orig"] = Critic.xǁCriticǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCriticǁ__init____mutmut["xǁCriticǁ__init____mutmut_1"] = Critic.xǁCriticǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCriticǁ__init____mutmut["xǁCriticǁ__init____mutmut_2"] = Critic.xǁCriticǁ__init____mutmut_2  # type: ignore # mutmut generated
 
-mutants_xǁCriticǁ_calculate_score__mutmut['_mutmut_orig'] = Critic.xǁCriticǁ_calculate_score__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_1'] = Critic.xǁCriticǁ_calculate_score__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_2'] = Critic.xǁCriticǁ_calculate_score__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_3'] = Critic.xǁCriticǁ_calculate_score__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_4'] = Critic.xǁCriticǁ_calculate_score__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_5'] = Critic.xǁCriticǁ_calculate_score__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_6'] = Critic.xǁCriticǁ_calculate_score__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_7'] = Critic.xǁCriticǁ_calculate_score__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_8'] = Critic.xǁCriticǁ_calculate_score__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_9'] = Critic.xǁCriticǁ_calculate_score__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_10'] = Critic.xǁCriticǁ_calculate_score__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_11'] = Critic.xǁCriticǁ_calculate_score__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_12'] = Critic.xǁCriticǁ_calculate_score__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_13'] = Critic.xǁCriticǁ_calculate_score__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_14'] = Critic.xǁCriticǁ_calculate_score__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_15'] = Critic.xǁCriticǁ_calculate_score__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_16'] = Critic.xǁCriticǁ_calculate_score__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_17'] = Critic.xǁCriticǁ_calculate_score__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_18'] = Critic.xǁCriticǁ_calculate_score__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_19'] = Critic.xǁCriticǁ_calculate_score__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_20'] = Critic.xǁCriticǁ_calculate_score__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_21'] = Critic.xǁCriticǁ_calculate_score__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_22'] = Critic.xǁCriticǁ_calculate_score__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_23'] = Critic.xǁCriticǁ_calculate_score__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_24'] = Critic.xǁCriticǁ_calculate_score__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_25'] = Critic.xǁCriticǁ_calculate_score__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_26'] = Critic.xǁCriticǁ_calculate_score__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_27'] = Critic.xǁCriticǁ_calculate_score__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_28'] = Critic.xǁCriticǁ_calculate_score__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_29'] = Critic.xǁCriticǁ_calculate_score__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_30'] = Critic.xǁCriticǁ_calculate_score__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_31'] = Critic.xǁCriticǁ_calculate_score__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_32'] = Critic.xǁCriticǁ_calculate_score__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_33'] = Critic.xǁCriticǁ_calculate_score__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_34'] = Critic.xǁCriticǁ_calculate_score__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_35'] = Critic.xǁCriticǁ_calculate_score__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_36'] = Critic.xǁCriticǁ_calculate_score__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_37'] = Critic.xǁCriticǁ_calculate_score__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_38'] = Critic.xǁCriticǁ_calculate_score__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_39'] = Critic.xǁCriticǁ_calculate_score__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_40'] = Critic.xǁCriticǁ_calculate_score__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_41'] = Critic.xǁCriticǁ_calculate_score__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_42'] = Critic.xǁCriticǁ_calculate_score__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_43'] = Critic.xǁCriticǁ_calculate_score__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_44'] = Critic.xǁCriticǁ_calculate_score__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_45'] = Critic.xǁCriticǁ_calculate_score__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_46'] = Critic.xǁCriticǁ_calculate_score__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_47'] = Critic.xǁCriticǁ_calculate_score__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_48'] = Critic.xǁCriticǁ_calculate_score__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_49'] = Critic.xǁCriticǁ_calculate_score__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_50'] = Critic.xǁCriticǁ_calculate_score__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_51'] = Critic.xǁCriticǁ_calculate_score__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_52'] = Critic.xǁCriticǁ_calculate_score__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_53'] = Critic.xǁCriticǁ_calculate_score__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_54'] = Critic.xǁCriticǁ_calculate_score__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_55'] = Critic.xǁCriticǁ_calculate_score__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_56'] = Critic.xǁCriticǁ_calculate_score__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_57'] = Critic.xǁCriticǁ_calculate_score__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_58'] = Critic.xǁCriticǁ_calculate_score__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_59'] = Critic.xǁCriticǁ_calculate_score__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_60'] = Critic.xǁCriticǁ_calculate_score__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_61'] = Critic.xǁCriticǁ_calculate_score__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_62'] = Critic.xǁCriticǁ_calculate_score__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_calculate_score__mutmut['xǁCriticǁ_calculate_score__mutmut_63'] = Critic.xǁCriticǁ_calculate_score__mutmut_63 # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["_mutmut_orig"] = Critic.xǁCriticǁcritique__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_1"] = Critic.xǁCriticǁcritique__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_2"] = Critic.xǁCriticǁcritique__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_3"] = Critic.xǁCriticǁcritique__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_4"] = Critic.xǁCriticǁcritique__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_5"] = Critic.xǁCriticǁcritique__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_6"] = Critic.xǁCriticǁcritique__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_7"] = Critic.xǁCriticǁcritique__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_8"] = Critic.xǁCriticǁcritique__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_9"] = Critic.xǁCriticǁcritique__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_10"] = Critic.xǁCriticǁcritique__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_11"] = Critic.xǁCriticǁcritique__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_12"] = Critic.xǁCriticǁcritique__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_13"] = Critic.xǁCriticǁcritique__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_14"] = Critic.xǁCriticǁcritique__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_15"] = Critic.xǁCriticǁcritique__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_16"] = Critic.xǁCriticǁcritique__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_17"] = Critic.xǁCriticǁcritique__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_18"] = Critic.xǁCriticǁcritique__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_19"] = Critic.xǁCriticǁcritique__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_20"] = Critic.xǁCriticǁcritique__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_21"] = Critic.xǁCriticǁcritique__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_22"] = Critic.xǁCriticǁcritique__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_23"] = Critic.xǁCriticǁcritique__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_24"] = Critic.xǁCriticǁcritique__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_25"] = Critic.xǁCriticǁcritique__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_26"] = Critic.xǁCriticǁcritique__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_27"] = Critic.xǁCriticǁcritique__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_28"] = Critic.xǁCriticǁcritique__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_29"] = Critic.xǁCriticǁcritique__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCriticǁcritique__mutmut["xǁCriticǁcritique__mutmut_30"] = Critic.xǁCriticǁcritique__mutmut_30  # type: ignore # mutmut generated
 
-mutants_xǁCriticǁ_analyze_issues__mutmut['_mutmut_orig'] = Critic.xǁCriticǁ_analyze_issues__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_1'] = Critic.xǁCriticǁ_analyze_issues__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_2'] = Critic.xǁCriticǁ_analyze_issues__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_3'] = Critic.xǁCriticǁ_analyze_issues__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_4'] = Critic.xǁCriticǁ_analyze_issues__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_5'] = Critic.xǁCriticǁ_analyze_issues__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_6'] = Critic.xǁCriticǁ_analyze_issues__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_7'] = Critic.xǁCriticǁ_analyze_issues__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_8'] = Critic.xǁCriticǁ_analyze_issues__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_9'] = Critic.xǁCriticǁ_analyze_issues__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_10'] = Critic.xǁCriticǁ_analyze_issues__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_11'] = Critic.xǁCriticǁ_analyze_issues__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_12'] = Critic.xǁCriticǁ_analyze_issues__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_13'] = Critic.xǁCriticǁ_analyze_issues__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_14'] = Critic.xǁCriticǁ_analyze_issues__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_15'] = Critic.xǁCriticǁ_analyze_issues__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_16'] = Critic.xǁCriticǁ_analyze_issues__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_17'] = Critic.xǁCriticǁ_analyze_issues__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_18'] = Critic.xǁCriticǁ_analyze_issues__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_19'] = Critic.xǁCriticǁ_analyze_issues__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_20'] = Critic.xǁCriticǁ_analyze_issues__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_21'] = Critic.xǁCriticǁ_analyze_issues__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_22'] = Critic.xǁCriticǁ_analyze_issues__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_23'] = Critic.xǁCriticǁ_analyze_issues__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_24'] = Critic.xǁCriticǁ_analyze_issues__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_25'] = Critic.xǁCriticǁ_analyze_issues__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_26'] = Critic.xǁCriticǁ_analyze_issues__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_27'] = Critic.xǁCriticǁ_analyze_issues__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_28'] = Critic.xǁCriticǁ_analyze_issues__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_29'] = Critic.xǁCriticǁ_analyze_issues__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_30'] = Critic.xǁCriticǁ_analyze_issues__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_31'] = Critic.xǁCriticǁ_analyze_issues__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_32'] = Critic.xǁCriticǁ_analyze_issues__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_33'] = Critic.xǁCriticǁ_analyze_issues__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_34'] = Critic.xǁCriticǁ_analyze_issues__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_35'] = Critic.xǁCriticǁ_analyze_issues__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_36'] = Critic.xǁCriticǁ_analyze_issues__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_37'] = Critic.xǁCriticǁ_analyze_issues__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_38'] = Critic.xǁCriticǁ_analyze_issues__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_39'] = Critic.xǁCriticǁ_analyze_issues__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_40'] = Critic.xǁCriticǁ_analyze_issues__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_41'] = Critic.xǁCriticǁ_analyze_issues__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_42'] = Critic.xǁCriticǁ_analyze_issues__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_43'] = Critic.xǁCriticǁ_analyze_issues__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_44'] = Critic.xǁCriticǁ_analyze_issues__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_45'] = Critic.xǁCriticǁ_analyze_issues__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_46'] = Critic.xǁCriticǁ_analyze_issues__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_47'] = Critic.xǁCriticǁ_analyze_issues__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_48'] = Critic.xǁCriticǁ_analyze_issues__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_49'] = Critic.xǁCriticǁ_analyze_issues__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_50'] = Critic.xǁCriticǁ_analyze_issues__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_51'] = Critic.xǁCriticǁ_analyze_issues__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_52'] = Critic.xǁCriticǁ_analyze_issues__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_53'] = Critic.xǁCriticǁ_analyze_issues__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_54'] = Critic.xǁCriticǁ_analyze_issues__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_55'] = Critic.xǁCriticǁ_analyze_issues__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_56'] = Critic.xǁCriticǁ_analyze_issues__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_57'] = Critic.xǁCriticǁ_analyze_issues__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_58'] = Critic.xǁCriticǁ_analyze_issues__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_59'] = Critic.xǁCriticǁ_analyze_issues__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_60'] = Critic.xǁCriticǁ_analyze_issues__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_61'] = Critic.xǁCriticǁ_analyze_issues__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_62'] = Critic.xǁCriticǁ_analyze_issues__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_63'] = Critic.xǁCriticǁ_analyze_issues__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_64'] = Critic.xǁCriticǁ_analyze_issues__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_65'] = Critic.xǁCriticǁ_analyze_issues__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_66'] = Critic.xǁCriticǁ_analyze_issues__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_67'] = Critic.xǁCriticǁ_analyze_issues__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_68'] = Critic.xǁCriticǁ_analyze_issues__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_69'] = Critic.xǁCriticǁ_analyze_issues__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_70'] = Critic.xǁCriticǁ_analyze_issues__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_71'] = Critic.xǁCriticǁ_analyze_issues__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_72'] = Critic.xǁCriticǁ_analyze_issues__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_73'] = Critic.xǁCriticǁ_analyze_issues__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_74'] = Critic.xǁCriticǁ_analyze_issues__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_analyze_issues__mutmut['xǁCriticǁ_analyze_issues__mutmut_75'] = Critic.xǁCriticǁ_analyze_issues__mutmut_75 # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["_mutmut_orig"] = Critic.xǁCriticǁ_calculate_score__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_1"] = Critic.xǁCriticǁ_calculate_score__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_2"] = Critic.xǁCriticǁ_calculate_score__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_3"] = Critic.xǁCriticǁ_calculate_score__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_4"] = Critic.xǁCriticǁ_calculate_score__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_5"] = Critic.xǁCriticǁ_calculate_score__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_6"] = Critic.xǁCriticǁ_calculate_score__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_7"] = Critic.xǁCriticǁ_calculate_score__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_8"] = Critic.xǁCriticǁ_calculate_score__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_9"] = Critic.xǁCriticǁ_calculate_score__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_10"] = Critic.xǁCriticǁ_calculate_score__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_11"] = Critic.xǁCriticǁ_calculate_score__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_12"] = Critic.xǁCriticǁ_calculate_score__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_13"] = Critic.xǁCriticǁ_calculate_score__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_14"] = Critic.xǁCriticǁ_calculate_score__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_15"] = Critic.xǁCriticǁ_calculate_score__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_16"] = Critic.xǁCriticǁ_calculate_score__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_17"] = Critic.xǁCriticǁ_calculate_score__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_18"] = Critic.xǁCriticǁ_calculate_score__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_19"] = Critic.xǁCriticǁ_calculate_score__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_20"] = Critic.xǁCriticǁ_calculate_score__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_21"] = Critic.xǁCriticǁ_calculate_score__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_22"] = Critic.xǁCriticǁ_calculate_score__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_23"] = Critic.xǁCriticǁ_calculate_score__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_24"] = Critic.xǁCriticǁ_calculate_score__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_25"] = Critic.xǁCriticǁ_calculate_score__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_26"] = Critic.xǁCriticǁ_calculate_score__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_27"] = Critic.xǁCriticǁ_calculate_score__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_28"] = Critic.xǁCriticǁ_calculate_score__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_29"] = Critic.xǁCriticǁ_calculate_score__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_30"] = Critic.xǁCriticǁ_calculate_score__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_31"] = Critic.xǁCriticǁ_calculate_score__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_32"] = Critic.xǁCriticǁ_calculate_score__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_33"] = Critic.xǁCriticǁ_calculate_score__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_34"] = Critic.xǁCriticǁ_calculate_score__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_35"] = Critic.xǁCriticǁ_calculate_score__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_36"] = Critic.xǁCriticǁ_calculate_score__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_37"] = Critic.xǁCriticǁ_calculate_score__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_38"] = Critic.xǁCriticǁ_calculate_score__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_39"] = Critic.xǁCriticǁ_calculate_score__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_40"] = Critic.xǁCriticǁ_calculate_score__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_41"] = Critic.xǁCriticǁ_calculate_score__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_42"] = Critic.xǁCriticǁ_calculate_score__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_43"] = Critic.xǁCriticǁ_calculate_score__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_44"] = Critic.xǁCriticǁ_calculate_score__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_45"] = Critic.xǁCriticǁ_calculate_score__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_46"] = Critic.xǁCriticǁ_calculate_score__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_47"] = Critic.xǁCriticǁ_calculate_score__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_48"] = Critic.xǁCriticǁ_calculate_score__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_49"] = Critic.xǁCriticǁ_calculate_score__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_50"] = Critic.xǁCriticǁ_calculate_score__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_51"] = Critic.xǁCriticǁ_calculate_score__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_52"] = Critic.xǁCriticǁ_calculate_score__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_53"] = Critic.xǁCriticǁ_calculate_score__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_54"] = Critic.xǁCriticǁ_calculate_score__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_55"] = Critic.xǁCriticǁ_calculate_score__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_56"] = Critic.xǁCriticǁ_calculate_score__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_57"] = Critic.xǁCriticǁ_calculate_score__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_58"] = Critic.xǁCriticǁ_calculate_score__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_59"] = Critic.xǁCriticǁ_calculate_score__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_60"] = Critic.xǁCriticǁ_calculate_score__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_61"] = Critic.xǁCriticǁ_calculate_score__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_62"] = Critic.xǁCriticǁ_calculate_score__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_calculate_score__mutmut["xǁCriticǁ_calculate_score__mutmut_63"] = Critic.xǁCriticǁ_calculate_score__mutmut_63  # type: ignore # mutmut generated
 
-mutants_xǁCriticǁ_parse_test_failures__mutmut['_mutmut_orig'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_1'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_2'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_3'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_4'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_5'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_6'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_7'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_8'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_9'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_10'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_11'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_12'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_13'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_14'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_15'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_16'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_17'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_18'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_19'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_20'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_21'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_22'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_23'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_24'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_25'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_26'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_27'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_28'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_29'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_30'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_31'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_32'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_33'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_34'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_35'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_36'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_37'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_38'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_test_failures__mutmut['xǁCriticǁ_parse_test_failures__mutmut_39'] = Critic.xǁCriticǁ_parse_test_failures__mutmut_39 # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["_mutmut_orig"] = Critic.xǁCriticǁ_analyze_issues__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_1"] = Critic.xǁCriticǁ_analyze_issues__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_2"] = Critic.xǁCriticǁ_analyze_issues__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_3"] = Critic.xǁCriticǁ_analyze_issues__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_4"] = Critic.xǁCriticǁ_analyze_issues__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_5"] = Critic.xǁCriticǁ_analyze_issues__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_6"] = Critic.xǁCriticǁ_analyze_issues__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_7"] = Critic.xǁCriticǁ_analyze_issues__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_8"] = Critic.xǁCriticǁ_analyze_issues__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_9"] = Critic.xǁCriticǁ_analyze_issues__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_10"] = Critic.xǁCriticǁ_analyze_issues__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_11"] = Critic.xǁCriticǁ_analyze_issues__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_12"] = Critic.xǁCriticǁ_analyze_issues__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_13"] = Critic.xǁCriticǁ_analyze_issues__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_14"] = Critic.xǁCriticǁ_analyze_issues__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_15"] = Critic.xǁCriticǁ_analyze_issues__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_16"] = Critic.xǁCriticǁ_analyze_issues__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_17"] = Critic.xǁCriticǁ_analyze_issues__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_18"] = Critic.xǁCriticǁ_analyze_issues__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_19"] = Critic.xǁCriticǁ_analyze_issues__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_20"] = Critic.xǁCriticǁ_analyze_issues__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_21"] = Critic.xǁCriticǁ_analyze_issues__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_22"] = Critic.xǁCriticǁ_analyze_issues__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_23"] = Critic.xǁCriticǁ_analyze_issues__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_24"] = Critic.xǁCriticǁ_analyze_issues__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_25"] = Critic.xǁCriticǁ_analyze_issues__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_26"] = Critic.xǁCriticǁ_analyze_issues__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_27"] = Critic.xǁCriticǁ_analyze_issues__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_28"] = Critic.xǁCriticǁ_analyze_issues__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_29"] = Critic.xǁCriticǁ_analyze_issues__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_30"] = Critic.xǁCriticǁ_analyze_issues__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_31"] = Critic.xǁCriticǁ_analyze_issues__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_32"] = Critic.xǁCriticǁ_analyze_issues__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_33"] = Critic.xǁCriticǁ_analyze_issues__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_34"] = Critic.xǁCriticǁ_analyze_issues__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_35"] = Critic.xǁCriticǁ_analyze_issues__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_36"] = Critic.xǁCriticǁ_analyze_issues__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_37"] = Critic.xǁCriticǁ_analyze_issues__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_38"] = Critic.xǁCriticǁ_analyze_issues__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_39"] = Critic.xǁCriticǁ_analyze_issues__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_40"] = Critic.xǁCriticǁ_analyze_issues__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_41"] = Critic.xǁCriticǁ_analyze_issues__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_42"] = Critic.xǁCriticǁ_analyze_issues__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_43"] = Critic.xǁCriticǁ_analyze_issues__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_44"] = Critic.xǁCriticǁ_analyze_issues__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_45"] = Critic.xǁCriticǁ_analyze_issues__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_46"] = Critic.xǁCriticǁ_analyze_issues__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_47"] = Critic.xǁCriticǁ_analyze_issues__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_48"] = Critic.xǁCriticǁ_analyze_issues__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_49"] = Critic.xǁCriticǁ_analyze_issues__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_50"] = Critic.xǁCriticǁ_analyze_issues__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_51"] = Critic.xǁCriticǁ_analyze_issues__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_52"] = Critic.xǁCriticǁ_analyze_issues__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_53"] = Critic.xǁCriticǁ_analyze_issues__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_54"] = Critic.xǁCriticǁ_analyze_issues__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_55"] = Critic.xǁCriticǁ_analyze_issues__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_56"] = Critic.xǁCriticǁ_analyze_issues__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_57"] = Critic.xǁCriticǁ_analyze_issues__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_58"] = Critic.xǁCriticǁ_analyze_issues__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_59"] = Critic.xǁCriticǁ_analyze_issues__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_60"] = Critic.xǁCriticǁ_analyze_issues__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_61"] = Critic.xǁCriticǁ_analyze_issues__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_62"] = Critic.xǁCriticǁ_analyze_issues__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_63"] = Critic.xǁCriticǁ_analyze_issues__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_64"] = Critic.xǁCriticǁ_analyze_issues__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_65"] = Critic.xǁCriticǁ_analyze_issues__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_66"] = Critic.xǁCriticǁ_analyze_issues__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_67"] = Critic.xǁCriticǁ_analyze_issues__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_68"] = Critic.xǁCriticǁ_analyze_issues__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_69"] = Critic.xǁCriticǁ_analyze_issues__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_70"] = Critic.xǁCriticǁ_analyze_issues__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_71"] = Critic.xǁCriticǁ_analyze_issues__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_72"] = Critic.xǁCriticǁ_analyze_issues__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_73"] = Critic.xǁCriticǁ_analyze_issues__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_74"] = Critic.xǁCriticǁ_analyze_issues__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_analyze_issues__mutmut["xǁCriticǁ_analyze_issues__mutmut_75"] = Critic.xǁCriticǁ_analyze_issues__mutmut_75  # type: ignore # mutmut generated
 
-mutants_xǁCriticǁ_parse_type_errors__mutmut['_mutmut_orig'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_1'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_2'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_3'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_4'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_5'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_6'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_7'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_8'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_9'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_10'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_11'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_12'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_13'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_14'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_15'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_16'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_17'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_18'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_19'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_20'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_21'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_22'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_23'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_24'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_25'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_26'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_27'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_28'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_29'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_30'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_31'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_32'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_33'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_34'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_35'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_36'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_37'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_38'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_39'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_40'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_type_errors__mutmut['xǁCriticǁ_parse_type_errors__mutmut_41'] = Critic.xǁCriticǁ_parse_type_errors__mutmut_41 # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["_mutmut_orig"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_1"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_2"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_3"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_4"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_5"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_6"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_7"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_8"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_9"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_10"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_11"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_12"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_13"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_14"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_15"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_16"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_17"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_18"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_19"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_20"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_21"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_22"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_23"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_24"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_25"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_26"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_27"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_28"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_29"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_30"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_31"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_32"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_33"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_34"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_35"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_36"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_37"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_38"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_test_failures__mutmut["xǁCriticǁ_parse_test_failures__mutmut_39"] = Critic.xǁCriticǁ_parse_test_failures__mutmut_39  # type: ignore # mutmut generated
 
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['_mutmut_orig'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_1'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_2'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_3'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_4'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_5'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_6'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_7'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_8'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_9'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_10'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_11'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_12'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_13'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_14'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_15'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_16'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_17'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_18'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_19'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_20'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_21'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_22'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_23'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_24'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_25'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_26'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_27'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_28'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_29'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_30'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_31'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_32'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_33'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_34'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_35'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_36'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_37'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_38'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_parse_lint_issues__mutmut['xǁCriticǁ_parse_lint_issues__mutmut_39'] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_39 # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["_mutmut_orig"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_1"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_2"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_3"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_4"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_5"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_6"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_7"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_8"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_9"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_10"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_11"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_12"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_13"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_14"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_15"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_16"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_17"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_18"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_19"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_20"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_21"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_22"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_23"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_24"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_25"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_26"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_27"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_28"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_29"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_30"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_31"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_32"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_33"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_34"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_35"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_36"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_37"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_38"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_39"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_40"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_type_errors__mutmut["xǁCriticǁ_parse_type_errors__mutmut_41"] = Critic.xǁCriticǁ_parse_type_errors__mutmut_41  # type: ignore # mutmut generated
 
-mutants_xǁCriticǁ_generate_improvements__mutmut['_mutmut_orig'] = Critic.xǁCriticǁ_generate_improvements__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_1'] = Critic.xǁCriticǁ_generate_improvements__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_2'] = Critic.xǁCriticǁ_generate_improvements__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_3'] = Critic.xǁCriticǁ_generate_improvements__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_4'] = Critic.xǁCriticǁ_generate_improvements__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_5'] = Critic.xǁCriticǁ_generate_improvements__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_6'] = Critic.xǁCriticǁ_generate_improvements__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_7'] = Critic.xǁCriticǁ_generate_improvements__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_8'] = Critic.xǁCriticǁ_generate_improvements__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_9'] = Critic.xǁCriticǁ_generate_improvements__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_10'] = Critic.xǁCriticǁ_generate_improvements__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_11'] = Critic.xǁCriticǁ_generate_improvements__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_12'] = Critic.xǁCriticǁ_generate_improvements__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_13'] = Critic.xǁCriticǁ_generate_improvements__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_14'] = Critic.xǁCriticǁ_generate_improvements__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_15'] = Critic.xǁCriticǁ_generate_improvements__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_16'] = Critic.xǁCriticǁ_generate_improvements__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_17'] = Critic.xǁCriticǁ_generate_improvements__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_18'] = Critic.xǁCriticǁ_generate_improvements__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_19'] = Critic.xǁCriticǁ_generate_improvements__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_20'] = Critic.xǁCriticǁ_generate_improvements__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_21'] = Critic.xǁCriticǁ_generate_improvements__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_22'] = Critic.xǁCriticǁ_generate_improvements__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_23'] = Critic.xǁCriticǁ_generate_improvements__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_24'] = Critic.xǁCriticǁ_generate_improvements__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_25'] = Critic.xǁCriticǁ_generate_improvements__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_26'] = Critic.xǁCriticǁ_generate_improvements__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_27'] = Critic.xǁCriticǁ_generate_improvements__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_28'] = Critic.xǁCriticǁ_generate_improvements__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_29'] = Critic.xǁCriticǁ_generate_improvements__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_30'] = Critic.xǁCriticǁ_generate_improvements__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_31'] = Critic.xǁCriticǁ_generate_improvements__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_32'] = Critic.xǁCriticǁ_generate_improvements__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_33'] = Critic.xǁCriticǁ_generate_improvements__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_34'] = Critic.xǁCriticǁ_generate_improvements__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_35'] = Critic.xǁCriticǁ_generate_improvements__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_36'] = Critic.xǁCriticǁ_generate_improvements__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_37'] = Critic.xǁCriticǁ_generate_improvements__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_38'] = Critic.xǁCriticǁ_generate_improvements__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_39'] = Critic.xǁCriticǁ_generate_improvements__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_40'] = Critic.xǁCriticǁ_generate_improvements__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_41'] = Critic.xǁCriticǁ_generate_improvements__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_42'] = Critic.xǁCriticǁ_generate_improvements__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_43'] = Critic.xǁCriticǁ_generate_improvements__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_44'] = Critic.xǁCriticǁ_generate_improvements__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_45'] = Critic.xǁCriticǁ_generate_improvements__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_46'] = Critic.xǁCriticǁ_generate_improvements__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_47'] = Critic.xǁCriticǁ_generate_improvements__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_48'] = Critic.xǁCriticǁ_generate_improvements__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_49'] = Critic.xǁCriticǁ_generate_improvements__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_improvements__mutmut['xǁCriticǁ_generate_improvements__mutmut_50'] = Critic.xǁCriticǁ_generate_improvements__mutmut_50 # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["_mutmut_orig"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_1"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_2"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_3"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_4"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_5"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_6"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_7"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_8"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_9"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_10"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_11"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_12"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_13"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_14"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_15"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_16"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_17"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_18"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_19"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_20"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_21"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_22"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_23"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_24"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_25"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_26"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_27"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_28"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_29"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_30"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_31"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_32"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_33"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_34"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_35"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_36"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_37"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_38"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_parse_lint_issues__mutmut["xǁCriticǁ_parse_lint_issues__mutmut_39"] = Critic.xǁCriticǁ_parse_lint_issues__mutmut_39  # type: ignore # mutmut generated
 
-mutants_xǁCriticǁ_should_retry__mutmut['_mutmut_orig'] = Critic.xǁCriticǁ_should_retry__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCriticǁ_should_retry__mutmut['xǁCriticǁ_should_retry__mutmut_1'] = Critic.xǁCriticǁ_should_retry__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_should_retry__mutmut['xǁCriticǁ_should_retry__mutmut_2'] = Critic.xǁCriticǁ_should_retry__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_should_retry__mutmut['xǁCriticǁ_should_retry__mutmut_3'] = Critic.xǁCriticǁ_should_retry__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_should_retry__mutmut['xǁCriticǁ_should_retry__mutmut_4'] = Critic.xǁCriticǁ_should_retry__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_should_retry__mutmut['xǁCriticǁ_should_retry__mutmut_5'] = Critic.xǁCriticǁ_should_retry__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_should_retry__mutmut['xǁCriticǁ_should_retry__mutmut_6'] = Critic.xǁCriticǁ_should_retry__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_should_retry__mutmut['xǁCriticǁ_should_retry__mutmut_7'] = Critic.xǁCriticǁ_should_retry__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_should_retry__mutmut['xǁCriticǁ_should_retry__mutmut_8'] = Critic.xǁCriticǁ_should_retry__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_should_retry__mutmut['xǁCriticǁ_should_retry__mutmut_9'] = Critic.xǁCriticǁ_should_retry__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_should_retry__mutmut['xǁCriticǁ_should_retry__mutmut_10'] = Critic.xǁCriticǁ_should_retry__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_should_retry__mutmut['xǁCriticǁ_should_retry__mutmut_11'] = Critic.xǁCriticǁ_should_retry__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_should_retry__mutmut['xǁCriticǁ_should_retry__mutmut_12'] = Critic.xǁCriticǁ_should_retry__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_should_retry__mutmut['xǁCriticǁ_should_retry__mutmut_13'] = Critic.xǁCriticǁ_should_retry__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_should_retry__mutmut['xǁCriticǁ_should_retry__mutmut_14'] = Critic.xǁCriticǁ_should_retry__mutmut_14 # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["_mutmut_orig"] = Critic.xǁCriticǁ_generate_improvements__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_1"] = Critic.xǁCriticǁ_generate_improvements__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_2"] = Critic.xǁCriticǁ_generate_improvements__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_3"] = Critic.xǁCriticǁ_generate_improvements__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_4"] = Critic.xǁCriticǁ_generate_improvements__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_5"] = Critic.xǁCriticǁ_generate_improvements__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_6"] = Critic.xǁCriticǁ_generate_improvements__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_7"] = Critic.xǁCriticǁ_generate_improvements__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_8"] = Critic.xǁCriticǁ_generate_improvements__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_9"] = Critic.xǁCriticǁ_generate_improvements__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_10"] = Critic.xǁCriticǁ_generate_improvements__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_11"] = Critic.xǁCriticǁ_generate_improvements__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_12"] = Critic.xǁCriticǁ_generate_improvements__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_13"] = Critic.xǁCriticǁ_generate_improvements__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_14"] = Critic.xǁCriticǁ_generate_improvements__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_15"] = Critic.xǁCriticǁ_generate_improvements__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_16"] = Critic.xǁCriticǁ_generate_improvements__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_17"] = Critic.xǁCriticǁ_generate_improvements__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_18"] = Critic.xǁCriticǁ_generate_improvements__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_19"] = Critic.xǁCriticǁ_generate_improvements__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_20"] = Critic.xǁCriticǁ_generate_improvements__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_21"] = Critic.xǁCriticǁ_generate_improvements__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_22"] = Critic.xǁCriticǁ_generate_improvements__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_23"] = Critic.xǁCriticǁ_generate_improvements__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_24"] = Critic.xǁCriticǁ_generate_improvements__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_25"] = Critic.xǁCriticǁ_generate_improvements__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_26"] = Critic.xǁCriticǁ_generate_improvements__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_27"] = Critic.xǁCriticǁ_generate_improvements__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_28"] = Critic.xǁCriticǁ_generate_improvements__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_29"] = Critic.xǁCriticǁ_generate_improvements__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_30"] = Critic.xǁCriticǁ_generate_improvements__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_31"] = Critic.xǁCriticǁ_generate_improvements__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_32"] = Critic.xǁCriticǁ_generate_improvements__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_33"] = Critic.xǁCriticǁ_generate_improvements__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_34"] = Critic.xǁCriticǁ_generate_improvements__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_35"] = Critic.xǁCriticǁ_generate_improvements__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_36"] = Critic.xǁCriticǁ_generate_improvements__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_37"] = Critic.xǁCriticǁ_generate_improvements__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_38"] = Critic.xǁCriticǁ_generate_improvements__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_39"] = Critic.xǁCriticǁ_generate_improvements__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_40"] = Critic.xǁCriticǁ_generate_improvements__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_41"] = Critic.xǁCriticǁ_generate_improvements__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_42"] = Critic.xǁCriticǁ_generate_improvements__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_43"] = Critic.xǁCriticǁ_generate_improvements__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_44"] = Critic.xǁCriticǁ_generate_improvements__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_45"] = Critic.xǁCriticǁ_generate_improvements__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_46"] = Critic.xǁCriticǁ_generate_improvements__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_47"] = Critic.xǁCriticǁ_generate_improvements__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_48"] = Critic.xǁCriticǁ_generate_improvements__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_49"] = Critic.xǁCriticǁ_generate_improvements__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_improvements__mutmut["xǁCriticǁ_generate_improvements__mutmut_50"] = Critic.xǁCriticǁ_generate_improvements__mutmut_50  # type: ignore # mutmut generated
 
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['_mutmut_orig'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_1'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_2'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_3'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_4'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_5'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_6'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_7'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_8'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_9'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_10'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_11'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_12'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_13'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_14'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_15'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_16'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_17'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_18'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_19'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCriticǁ_generate_retry_feedback__mutmut['xǁCriticǁ_generate_retry_feedback__mutmut_20'] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_20 # type: ignore # mutmut generated
+mutants_xǁCriticǁ_should_retry__mutmut["_mutmut_orig"] = Critic.xǁCriticǁ_should_retry__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_should_retry__mutmut["xǁCriticǁ_should_retry__mutmut_1"] = Critic.xǁCriticǁ_should_retry__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_should_retry__mutmut["xǁCriticǁ_should_retry__mutmut_2"] = Critic.xǁCriticǁ_should_retry__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_should_retry__mutmut["xǁCriticǁ_should_retry__mutmut_3"] = Critic.xǁCriticǁ_should_retry__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_should_retry__mutmut["xǁCriticǁ_should_retry__mutmut_4"] = Critic.xǁCriticǁ_should_retry__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_should_retry__mutmut["xǁCriticǁ_should_retry__mutmut_5"] = Critic.xǁCriticǁ_should_retry__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_should_retry__mutmut["xǁCriticǁ_should_retry__mutmut_6"] = Critic.xǁCriticǁ_should_retry__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_should_retry__mutmut["xǁCriticǁ_should_retry__mutmut_7"] = Critic.xǁCriticǁ_should_retry__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_should_retry__mutmut["xǁCriticǁ_should_retry__mutmut_8"] = Critic.xǁCriticǁ_should_retry__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_should_retry__mutmut["xǁCriticǁ_should_retry__mutmut_9"] = Critic.xǁCriticǁ_should_retry__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_should_retry__mutmut["xǁCriticǁ_should_retry__mutmut_10"] = Critic.xǁCriticǁ_should_retry__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_should_retry__mutmut["xǁCriticǁ_should_retry__mutmut_11"] = Critic.xǁCriticǁ_should_retry__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_should_retry__mutmut["xǁCriticǁ_should_retry__mutmut_12"] = Critic.xǁCriticǁ_should_retry__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_should_retry__mutmut["xǁCriticǁ_should_retry__mutmut_13"] = Critic.xǁCriticǁ_should_retry__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_should_retry__mutmut["xǁCriticǁ_should_retry__mutmut_14"] = Critic.xǁCriticǁ_should_retry__mutmut_14  # type: ignore # mutmut generated
 
-mutants_xǁCriticǁanalyze_code_quality__mutmut['_mutmut_orig'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_1'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_2'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_3'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_4'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_5'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_6'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_7'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_8'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_9'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_10'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_11'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_12'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_13'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_14'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_15'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_16'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_17'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_18'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_19'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_20'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_21'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_22'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_23'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_24'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_25'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_26'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_27'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_28'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_29'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_30'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_31'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_32'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_33'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_34'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_35'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_36'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_37'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_38'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_39'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_40'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_41'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_42'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_43'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_44'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_45'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_46'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_47'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_48'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_49'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_50'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_51'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_52'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_53'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_54'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_55'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_56'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_57'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_58'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_59'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_60'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_61'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_62'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_63'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_64'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_65'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_66'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_67'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁCriticǁanalyze_code_quality__mutmut['xǁCriticǁanalyze_code_quality__mutmut_68'] = Critic.xǁCriticǁanalyze_code_quality__mutmut_68 # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["_mutmut_orig"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_1"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_2"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_3"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_4"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_5"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_6"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_7"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_8"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_9"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_10"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_11"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_12"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_13"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_14"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_15"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_16"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_17"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_18"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_19"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCriticǁ_generate_retry_feedback__mutmut["xǁCriticǁ_generate_retry_feedback__mutmut_20"] = Critic.xǁCriticǁ_generate_retry_feedback__mutmut_20  # type: ignore # mutmut generated
+
+mutants_xǁCriticǁanalyze_code_quality__mutmut["_mutmut_orig"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_1"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_2"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_3"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_4"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_5"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_6"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_7"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_8"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_9"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_10"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_11"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_12"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_13"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_14"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_15"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_16"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_17"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_18"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_19"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_20"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_21"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_22"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_23"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_24"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_25"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_26"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_27"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_28"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_29"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_30"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_31"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_32"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_33"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_34"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_35"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_36"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_37"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_38"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_39"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_40"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_41"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_42"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_43"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_44"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_45"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_46"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_47"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_48"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_49"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_50"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_51"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_52"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_53"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_54"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_55"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_56"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_57"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_58"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_59"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_60"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_61"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_62"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_63"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_64"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_65"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_66"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_67"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁCriticǁanalyze_code_quality__mutmut["xǁCriticǁanalyze_code_quality__mutmut_68"] = Critic.xǁCriticǁanalyze_code_quality__mutmut_68  # type: ignore # mutmut generated
 mutants_x_run_critique__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -15099,14 +15179,18 @@ def x_run_critique__mutmut_8(
 ) -> CritiqueResult:
     """비평 헬퍼"""
     critic = Critic(workspace)
-    return critic.critique(step, verification, )
+    return critic.critique(
+        step,
+        verification,
+    )
 
-mutants_x_run_critique__mutmut['_mutmut_orig'] = x_run_critique__mutmut_orig # type: ignore # mutmut generated
-mutants_x_run_critique__mutmut['x_run_critique__mutmut_1'] = x_run_critique__mutmut_1 # type: ignore # mutmut generated
-mutants_x_run_critique__mutmut['x_run_critique__mutmut_2'] = x_run_critique__mutmut_2 # type: ignore # mutmut generated
-mutants_x_run_critique__mutmut['x_run_critique__mutmut_3'] = x_run_critique__mutmut_3 # type: ignore # mutmut generated
-mutants_x_run_critique__mutmut['x_run_critique__mutmut_4'] = x_run_critique__mutmut_4 # type: ignore # mutmut generated
-mutants_x_run_critique__mutmut['x_run_critique__mutmut_5'] = x_run_critique__mutmut_5 # type: ignore # mutmut generated
-mutants_x_run_critique__mutmut['x_run_critique__mutmut_6'] = x_run_critique__mutmut_6 # type: ignore # mutmut generated
-mutants_x_run_critique__mutmut['x_run_critique__mutmut_7'] = x_run_critique__mutmut_7 # type: ignore # mutmut generated
-mutants_x_run_critique__mutmut['x_run_critique__mutmut_8'] = x_run_critique__mutmut_8 # type: ignore # mutmut generated
+
+mutants_x_run_critique__mutmut["_mutmut_orig"] = x_run_critique__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_run_critique__mutmut["x_run_critique__mutmut_1"] = x_run_critique__mutmut_1  # type: ignore # mutmut generated
+mutants_x_run_critique__mutmut["x_run_critique__mutmut_2"] = x_run_critique__mutmut_2  # type: ignore # mutmut generated
+mutants_x_run_critique__mutmut["x_run_critique__mutmut_3"] = x_run_critique__mutmut_3  # type: ignore # mutmut generated
+mutants_x_run_critique__mutmut["x_run_critique__mutmut_4"] = x_run_critique__mutmut_4  # type: ignore # mutmut generated
+mutants_x_run_critique__mutmut["x_run_critique__mutmut_5"] = x_run_critique__mutmut_5  # type: ignore # mutmut generated
+mutants_x_run_critique__mutmut["x_run_critique__mutmut_6"] = x_run_critique__mutmut_6  # type: ignore # mutmut generated
+mutants_x_run_critique__mutmut["x_run_critique__mutmut_7"] = x_run_critique__mutmut_7  # type: ignore # mutmut generated
+mutants_x_run_critique__mutmut["x_run_critique__mutmut_8"] = x_run_critique__mutmut_8  # type: ignore # mutmut generated

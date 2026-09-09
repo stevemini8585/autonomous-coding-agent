@@ -656,6 +656,95 @@ class AutonomousCodingAgent:
         self.state_manager.save_state(self.state)
         log.info(f"취소: {self.state.session_id}")
 
+    def resume_from_checkpoint(self, checkpoint_name: str) -> AgentResult:
+        """체크포인트에서 실행 재개"""
+        log.info(f"체크포인트에서 재개: {checkpoint_name}")
+
+        # 체크포인트에서 상태 복원
+        restored_state = self.state_manager.restore_checkpoint(
+            self.state.session_id, checkpoint_name
+        )
+
+        # 현재 상태에 복원된 내용 적용
+        self.state.plan = restored_state.plan
+        self.state.explore_result = restored_state.explore_result
+        self.state.current_step_id = restored_state.current_step_id
+        self.state.iteration = restored_state.iteration
+
+        log.info(f"복원 완료: 반복 {self.state.iteration}, 단계 {self.state.current_step_id}")
+
+        # 실행 루프 재개
+        self._run_execution_loop()
+
+        # 최종 검증
+        final_result = self._final_verification()
+
+        self._result = AgentResult(
+            success=final_result.get("success", False),
+            summary=final_result.get("summary", ""),
+            files_changed=final_result.get("files_changed", []),
+            files_created=final_result.get("files_created", []),
+            files_modified=final_result.get("files_modified", []),
+            test_results=final_result.get("test_results", {}),
+            verification_results=final_result.get("verification_results", []),
+            critique_results=final_result.get("critique_results", []),
+            duration_seconds=0.0,
+            iterations_used=self.state.iteration,
+        )
+
+        self.state_manager.save_state(self.state)
+        return self._result
+
+    def _run_with_auto_recovery(self, goal: str, max_retries: int = 3) -> AgentResult:
+        """자동 재시도/복구 로직 포함 메인 루프"""
+        last_error = None
+
+        for attempt in range(max_retries):
+            try:
+                log.info(f"자율 에이전트 실행 시도 {attempt + 1}/{max_retries}")
+                result = self.run(goal)
+
+                if result.success:
+                    log.info("자율 에이전트 성공적으로 완료")
+                    return result
+                else:
+                    last_error = result.error or "알 수 없는 실패"
+                    log.warning(f"실행 실패 (시도 {attempt + 1}): {last_error}")
+
+                    if attempt < max_retries - 1:
+                        # 마지막 체크포인트에서 재시도
+                        checkpoints = self.state_manager.list_checkpoints(self.state.session_id)
+                        if checkpoints:
+                            latest_cp = checkpoints[0]["checkpoint_id"]
+                            log.info(f"체크포인트에서 재시도: {latest_cp}")
+                            self.state = self.state_manager.restore_checkpoint(
+                                self.state.session_id, latest_cp
+                            )
+                            continue
+
+            except (OSError, RuntimeError, ValueError) as e:
+                last_error = str(e)
+                log.error(f"실행 중 예외 발생 (시도 {attempt + 1}): {e}")
+
+                if attempt < max_retries - 1:
+                    checkpoints = self.state_manager.list_checkpoints(self.state.session_id)
+                    if checkpoints:
+                        latest_cp = checkpoints[0]["checkpoint_id"]
+                        log.info(f"체크포인트에서 복구 재시도: {latest_cp}")
+                        self.state = self.state_manager.restore_checkpoint(
+                            self.state.session_id, latest_cp
+                        )
+                        continue
+
+        # 모든 재시도 실패
+        return AgentResult(
+            success=False,
+            summary=f"최대 재시도 횟수({max_retries}) 초과 후 실패",
+            error=f"마지막 오류: {last_error}",
+            duration_seconds=0.0,
+            iterations_used=self.state.iteration,
+        )
+
 
 def run_autonomous(
     goal: str,

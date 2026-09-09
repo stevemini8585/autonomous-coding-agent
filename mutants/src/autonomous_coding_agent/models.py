@@ -11,8 +11,8 @@ from enum import Enum
 from pathlib import Path
 from typing import Any
 
-
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
 
 
 class StepStatus(Enum):

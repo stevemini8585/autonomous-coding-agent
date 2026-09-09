@@ -15,7 +15,8 @@ from typing import Any, ClassVar
 log = logging.getLogger("autonomous_coding_agent.issue_parser")
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
 
 
 class TaskType(Enum):
@@ -68,6 +69,8 @@ class IssueAnalysis:
     tech_stack_hints: list[str] = field(default_factory=list)
     complexity: str = "medium"  # low, medium, high
     estimated_total_hours: float = 0.0
+
+
 mutants_xǁIssueParserǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁIssueParserǁ_compile_patterns__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁIssueParserǁparse_issue__mutmut: MutantDict = {}  # type: ignore
@@ -696,7 +699,9 @@ class IssueParser:
         # 작업 유형 패턴
         for task_type, keywords in self.TASK_TYPE_KEYWORDS.items():
             pattern = r"\b(" + "|".join(re.escape(k) for k in keywords) + r")\b"
-            patterns[f"task_type_{task_type.value}"] = re.compile(pattern, )
+            patterns[f"task_type_{task_type.value}"] = re.compile(
+                pattern,
+            )
 
         # 기술 스택 패턴
         for stack, keywords in self.TECH_STACK_PATTERNS.items():
@@ -1156,7 +1161,9 @@ class IssueParser:
         # 기술 스택 패턴
         for stack, keywords in self.TECH_STACK_PATTERNS.items():
             pattern = r"\b(" + "|".join(re.escape(k) for k in keywords) + r")\b"
-            patterns[f"tech_{stack}"] = re.compile(pattern, )
+            patterns[f"tech_{stack}"] = re.compile(
+                pattern,
+            )
 
         # 파일 유형 패턴
         for file_type, keywords in self.FILE_TYPE_PATTERNS.items():
@@ -1616,7 +1623,9 @@ class IssueParser:
         # 파일 유형 패턴
         for file_type, keywords in self.FILE_TYPE_PATTERNS.items():
             pattern = r"\b(" + "|".join(re.escape(k) for k in keywords) + r")\b"
-            patterns[f"file_{file_type}"] = re.compile(pattern, )
+            patterns[f"file_{file_type}"] = re.compile(
+                pattern,
+            )
 
         # 작업 항목 추출 패턴 (불릿 포인트, 번호 목록 등)
         patterns["task_items"] = re.compile(
@@ -1862,7 +1871,7 @@ class IssueParser:
         # 작업 항목 추출 패턴 (불릿 포인트, 번호 목록 등)
         patterns["task_items"] = re.compile(
             r"(?:^|\n)\s*[-*•\d+\.]\s*(.+?)(?=\n\s*[-*•\d+\.]|\n\n|$)",
-            )
+        )
 
         # 코드 블록/파일명 패턴
         patterns["code_blocks"] = re.compile(
@@ -2073,9 +2082,7 @@ class IssueParser:
         )
 
         # 코드 블록/파일명 패턴
-        patterns["code_blocks"] = re.compile(
-            None
-        )
+        patterns["code_blocks"] = re.compile(None)
         patterns["file_mentions"] = re.compile(
             r"(?:`([^`]+\.(?:py|js|ts|tsx|go|rs|java|yml|yaml|json|toml|ini|md|txt|sql))`|\b([a-zA-Z_][\w/.-]*\.(?:py|js|ts|tsx|go|rs|java|yml|yaml|json|toml|ini|md|txt|sql))\b)"
         )
@@ -2284,9 +2291,7 @@ class IssueParser:
         patterns["code_blocks"] = re.compile(
             r"`([^`]+\.(?:py|js|ts|tsx|go|rs|java|yml|yaml|json|toml|ini|md|txt|sql))`"
         )
-        patterns["file_mentions"] = re.compile(
-            None
-        )
+        patterns["file_mentions"] = re.compile(None)
 
         return patterns
 
@@ -2426,7 +2431,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_orig(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_orig(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2456,7 +2463,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_1(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_1(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(None)
 
@@ -2486,7 +2495,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_2(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_2(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2512,7 +2523,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_3(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_3(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2542,7 +2555,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_4(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_4(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2572,7 +2587,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_5(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_5(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2602,7 +2619,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_6(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_6(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2631,7 +2650,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_7(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_7(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2660,14 +2681,16 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_8(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_8(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
         analysis = IssueAnalysis(
             issue_number=issue_number,
             title=title,
-            )
+        )
 
         # 1. 기술 스택 힌트 추출
         analysis.tech_stack_hints = self._extract_tech_stack(body)
@@ -2689,7 +2712,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_9(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_9(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2719,7 +2744,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_10(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_10(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2749,7 +2776,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_11(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_11(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2779,7 +2808,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_12(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_12(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2809,7 +2840,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_13(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_13(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2839,7 +2872,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_14(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_14(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2869,7 +2904,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_15(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_15(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2899,7 +2936,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_16(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_16(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2929,7 +2968,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_17(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_17(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2959,7 +3000,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_18(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_18(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -2989,7 +3032,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_19(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_19(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -3019,7 +3064,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_20(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_20(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -3049,7 +3096,9 @@ class IssueParser:
 
         return analysis
 
-    def xǁIssueParserǁparse_issue__mutmut_21(self, issue_number: int, title: str, body: str) -> IssueAnalysis:
+    def xǁIssueParserǁparse_issue__mutmut_21(
+        self, issue_number: int, title: str, body: str
+    ) -> IssueAnalysis:
         """이슈 본문 파싱 및 작업 분해"""
         log.info(f"이슈 #{issue_number} 파싱 시작")
 
@@ -3269,7 +3318,11 @@ class IssueParser:
         body_lower = body.lower()
         for stack, pattern in self._compiled_patterns.items():
             if stack.startswith("tech_") and pattern.search(body_lower):
-                found.append(stack.replace("tech_", ))
+                found.append(
+                    stack.replace(
+                        "tech_",
+                    )
+                )
         return found
 
     def xǁIssueParserǁ_extract_tech_stack__mutmut_14(self, body: str) -> list[str]:
@@ -4172,7 +4225,9 @@ class IssueParser:
             if len(task_text) < 10:  # 너무 짧은 건 제외
                 continue
 
-            task = self._parse_task_text(task_text, )
+            task = self._parse_task_text(
+                task_text,
+            )
             if task:
                 tasks.append(task)
                 task_id_counter += 1
@@ -4479,7 +4534,9 @@ class IssueParser:
 
         # 2. 문장 단위로 작업 추출 (불릿 포인트가 없는 경우)
         if not tasks:
-            sentences = re.split(r"[.!?]\s+", )
+            sentences = re.split(
+                r"[.!?]\s+",
+            )
             for sent in sentences:
                 sent = sent.strip()
                 if len(sent) < 15:
@@ -4814,7 +4871,9 @@ class IssueParser:
                 sent = sent.strip()
                 if len(sent) < 15:
                     continue
-                task = self._parse_task_text(sent, )
+                task = self._parse_task_text(
+                    sent,
+                )
                 if task:
                     tasks.append(task)
                     task_id_counter += 1
@@ -4996,7 +5055,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_orig(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_orig(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5050,7 +5111,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_1(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_1(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = None  # 기본값
@@ -5104,7 +5167,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_2(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_2(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5158,7 +5223,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_3(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_3(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5212,7 +5279,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_4(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_4(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5266,7 +5335,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_5(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_5(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5320,7 +5391,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_6(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_6(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5374,7 +5447,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_7(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_7(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5428,7 +5503,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_8(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_8(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5482,7 +5559,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_9(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_9(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5536,7 +5615,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_10(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_10(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5590,7 +5671,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_11(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_11(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5644,7 +5727,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_12(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_12(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5698,7 +5783,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_13(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_13(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5752,7 +5839,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_14(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_14(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5760,7 +5849,11 @@ class IssueParser:
 
         for task_type_enum, pattern in self._compiled_patterns.items():
             if task_type_enum.startswith("task_type_") and pattern.search(text_lower):
-                task_type = TaskType(task_type_enum.replace("task_type_", ))
+                task_type = TaskType(
+                    task_type_enum.replace(
+                        "task_type_",
+                    )
+                )
                 break
 
         # 우선순위 판별
@@ -5806,7 +5899,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_15(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_15(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5860,7 +5955,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_16(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_16(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5914,7 +6011,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_17(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_17(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -5968,7 +6067,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_18(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_18(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6022,7 +6123,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_19(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_19(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6076,7 +6179,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_20(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_20(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6130,7 +6235,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_21(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_21(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6184,7 +6291,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_22(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_22(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6238,7 +6347,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_23(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_23(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6292,7 +6403,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_24(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_24(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6346,7 +6459,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_25(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_25(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6400,7 +6515,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_26(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_26(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6454,7 +6571,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_27(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_27(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6508,7 +6627,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_28(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_28(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6562,7 +6683,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_29(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_29(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6616,7 +6739,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_30(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_30(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6670,7 +6795,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_31(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_31(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6724,7 +6851,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_32(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_32(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6778,7 +6907,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_33(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_33(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6832,7 +6963,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_34(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_34(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6886,7 +7019,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_35(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_35(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6940,7 +7075,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_36(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_36(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -6994,7 +7131,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_37(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_37(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7048,7 +7187,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_38(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_38(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7102,7 +7243,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_39(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_39(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7156,7 +7299,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_40(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_40(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7210,7 +7355,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_41(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_41(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7264,7 +7411,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_42(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_42(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7318,7 +7467,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_43(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_43(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7372,7 +7523,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_44(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_44(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7426,7 +7579,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_45(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_45(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7480,7 +7635,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_46(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_46(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7534,7 +7691,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_47(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_47(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7588,7 +7747,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_48(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_48(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7642,7 +7803,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_49(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_49(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7696,7 +7859,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_50(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_50(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7750,7 +7915,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_51(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_51(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7804,7 +7971,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_52(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_52(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7858,7 +8027,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_53(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_53(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7912,7 +8083,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_54(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_54(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -7966,7 +8139,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_55(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_55(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8020,7 +8195,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_56(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_56(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8074,7 +8251,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_57(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_57(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8128,7 +8307,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_58(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_58(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8182,7 +8363,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_59(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_59(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8236,7 +8419,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_60(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_60(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8290,7 +8475,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_61(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_61(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8344,7 +8531,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_62(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_62(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8398,7 +8587,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_63(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_63(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8452,7 +8643,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_64(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_64(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8506,7 +8699,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_65(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_65(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8560,7 +8755,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_66(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_66(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8614,7 +8811,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_67(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_67(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8668,7 +8867,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_68(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_68(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8703,7 +8904,9 @@ class IssueParser:
 
         # 작업 유형에 따른 기본 파일 추론
         if not target_files:
-            target_files = self._infer_files_from_task_type(text, )
+            target_files = self._infer_files_from_task_type(
+                text,
+            )
 
         # 예상 시간 계산
         estimated_hours = self._estimate_hours(text, task_type)
@@ -8722,7 +8925,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_69(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_69(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8776,7 +8981,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_70(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_70(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8830,7 +9037,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_71(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_71(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8884,7 +9093,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_72(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_72(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8938,7 +9149,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_73(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_73(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -8976,7 +9189,9 @@ class IssueParser:
             target_files = self._infer_files_from_task_type(text, task_type)
 
         # 예상 시간 계산
-        estimated_hours = self._estimate_hours(text, )
+        estimated_hours = self._estimate_hours(
+            text,
+        )
 
         # 승인 기준 추출
         acceptance_criteria = self._extract_acceptance_criteria(text)
@@ -8992,7 +9207,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_74(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_74(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9046,7 +9263,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_75(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_75(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9100,7 +9319,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_76(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_76(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9154,7 +9375,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_77(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_77(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9208,7 +9431,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_78(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_78(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9262,7 +9487,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_79(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_79(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9316,7 +9543,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_80(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_80(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9370,7 +9599,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_81(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_81(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9424,7 +9655,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_82(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_82(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9478,7 +9711,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_83(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_83(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9532,7 +9767,9 @@ class IssueParser:
             acceptance_criteria=None,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_84(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_84(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9585,7 +9822,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_85(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_85(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9638,7 +9877,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_86(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_86(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9691,7 +9932,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_87(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_87(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9744,7 +9987,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_88(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_88(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9797,7 +10042,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_89(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_89(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9850,7 +10097,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_90(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_90(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9903,7 +10152,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_91(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_91(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -9954,9 +10205,11 @@ class IssueParser:
             priority=priority,
             target_files=list(set(target_files)),
             estimated_hours=estimated_hours,
-            )
+        )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_92(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_92(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -10010,7 +10263,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_93(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_93(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -10064,7 +10319,9 @@ class IssueParser:
             acceptance_criteria=acceptance_criteria,
         )
 
-    def xǁIssueParserǁ_parse_task_text__mutmut_94(self, text: str, task_id: int) -> ParsedTask | None:
+    def xǁIssueParserǁ_parse_task_text__mutmut_94(
+        self, text: str, task_id: int
+    ) -> ParsedTask | None:
         """텍스트에서 작업 파싱"""
         # 작업 유형 판별
         task_type = TaskType.CREATE  # 기본값
@@ -10138,7 +10395,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_orig(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_orig(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10157,7 +10416,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_1(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_1(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = None
         text_lower = text.lower()
@@ -10176,7 +10437,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_2(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_2(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = None
@@ -10195,7 +10458,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_3(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_3(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.upper()
@@ -10214,7 +10479,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_4(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_4(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10233,7 +10500,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_5(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_5(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10252,7 +10521,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_6(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_6(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10271,7 +10542,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_7(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_7(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10290,7 +10563,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_8(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_8(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10309,7 +10584,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_9(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_9(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10328,7 +10605,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_10(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_10(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10347,7 +10626,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_11(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_11(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10366,7 +10647,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_12(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_12(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10385,14 +10668,20 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_13(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_13(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
 
         for file_type, pattern in self._compiled_patterns.items():
             if file_type.startswith("file_") and pattern.search(text_lower):
-                files.append(file_type.replace("file_", ))
+                files.append(
+                    file_type.replace(
+                        "file_",
+                    )
+                )
 
         # 작업 유형별 기본 파일
         if task_type == TaskType.TEST and "test" not in files:
@@ -10404,7 +10693,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_14(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_14(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10423,7 +10714,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_15(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_15(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10442,7 +10735,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_16(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_16(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10461,7 +10756,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_17(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_17(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10480,7 +10777,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_18(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_18(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10499,7 +10798,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_19(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_19(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10518,7 +10819,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_20(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_20(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10537,7 +10840,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_21(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_21(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10556,7 +10861,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_22(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_22(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10575,7 +10882,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_23(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_23(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10594,7 +10903,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_24(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_24(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10613,7 +10924,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_25(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_25(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10632,7 +10945,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_26(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_26(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10651,7 +10966,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_27(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_27(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10670,7 +10987,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_28(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_28(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10689,7 +11008,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_29(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_29(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10708,7 +11029,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_30(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_30(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10727,7 +11050,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_31(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_31(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10746,7 +11071,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_32(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_32(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10765,7 +11092,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_33(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_33(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10784,7 +11113,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_34(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_34(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10803,7 +11134,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_35(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_35(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10822,7 +11155,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_36(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_36(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10841,7 +11176,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_37(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_37(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10860,7 +11197,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_38(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_38(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10879,7 +11218,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_39(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_39(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -10898,7 +11239,9 @@ class IssueParser:
 
         return files
 
-    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_40(self, text: str, task_type: TaskType) -> list[str]:
+    def xǁIssueParserǁ_infer_files_from_task_type__mutmut_40(
+        self, text: str, task_type: TaskType
+    ) -> list[str]:
         """작업 유형에서 파일 유형 추론"""
         files = []
         text_lower = text.lower()
@@ -11198,7 +11541,7 @@ class IssueParser:
             TaskType.DELETE: 0.5,
         }
 
-        base = base_hours.get(task_type, None)
+        base = base_hours.get(task_type)
 
         # 복잡도 키워드로 조정
         text_lower = text.lower()
@@ -11244,7 +11587,9 @@ class IssueParser:
             TaskType.DELETE: 0.5,
         }
 
-        base = base_hours.get(task_type, )
+        base = base_hours.get(
+            task_type,
+        )
 
         # 복잡도 키워드로 조정
         text_lower = text.lower()
@@ -11777,9 +12122,9 @@ class IssueParser:
 
         # 복잡도 키워드로 조정
         text_lower = text.lower()
-        if any(w in text_lower for w in ["complex", "복잡", "complex"]):
-            base *= 1.5
-        elif any(w in text_lower for w in ["simple", "간단", "simple"]):
+        if any(w in text_lower for w in ["complex", "복잡", "complex"]) or any(
+            w in text_lower for w in ["simple", "간단", "simple"]
+        ):
             base *= 1.5
 
         return round(base, 1)
@@ -11874,7 +12219,9 @@ class IssueParser:
         elif any(w in text_lower for w in ["simple", "간단", "simple"]):
             base *= 0.5
 
-        return round(base, )
+        return round(
+            base,
+        )
 
     def xǁIssueParserǁ_estimate_hours__mutmut_41(self, text: str, task_type: TaskType) -> float:
         """예상 소요 시간 계산"""
@@ -12116,7 +12463,10 @@ class IssueParser:
         ]
 
         for pattern in patterns:
-            for match in re.finditer(pattern, text, ):
+            for match in re.finditer(
+                pattern,
+                text,
+            ):
                 criteria.append(match.group(1).strip())
 
         return criteria[:5]  # 최대 5개
@@ -13454,7 +13804,7 @@ class IssueParser:
                     TaskType.CONFIG: 5,
                     TaskType.DELETE: 6,
                 }
-                file_tasks.sort(key=lambda t: type_order.get(t.task_type, None))
+                file_tasks.sort(key=lambda t: type_order.get(t.task_type))
                 for i in range(len(file_tasks) - 1):
                     if file_tasks[i + 1].id not in file_tasks[i].dependencies:
                         file_tasks[i].dependencies.append(file_tasks[i + 1].id)
@@ -13586,7 +13936,11 @@ class IssueParser:
                     TaskType.CONFIG: 5,
                     TaskType.DELETE: 6,
                 }
-                file_tasks.sort(key=lambda t: type_order.get(t.task_type, ))
+                file_tasks.sort(
+                    key=lambda t: type_order.get(
+                        t.task_type,
+                    )
+                )
                 for i in range(len(file_tasks) - 1):
                     if file_tasks[i + 1].id not in file_tasks[i].dependencies:
                         file_tasks[i].dependencies.append(file_tasks[i + 1].id)
@@ -17628,7 +17982,9 @@ class IssueParser:
                 f_lower = f.lower()
                 for key, val in layer_order.items():
                     if key in f_lower:
-                        layer = min(layer, )
+                        layer = min(
+                            layer,
+                        )
             task_layers[task.id] = layer
 
         # 레이어 순서대로 의존성 추가 (낮은 레이어가 높은 레이어의 전제조건)
@@ -17769,7 +18125,8 @@ class IssueParser:
                 if (
                     task.id != other.id
                     and task_layers[task.id] < task_layers[other.id]
-                    and not set(task.target_files) & set(other.target_files) or task.id not in other.dependencies
+                    and not set(task.target_files) & set(other.target_files)
+                    or task.id not in other.dependencies
                 ):
                     other.dependencies.append(task.id)
 
@@ -17833,7 +18190,8 @@ class IssueParser:
             for other in tasks:
                 if (
                     task.id != other.id
-                    and task_layers[task.id] < task_layers[other.id] or not set(task.target_files) & set(other.target_files)
+                    and task_layers[task.id] < task_layers[other.id]
+                    or not set(task.target_files) & set(other.target_files)
                     and task.id not in other.dependencies
                 ):
                     other.dependencies.append(task.id)
@@ -17897,7 +18255,8 @@ class IssueParser:
         for task in tasks:
             for other in tasks:
                 if (
-                    task.id != other.id or task_layers[task.id] < task_layers[other.id]
+                    task.id != other.id
+                    or task_layers[task.id] < task_layers[other.id]
                     and not set(task.target_files) & set(other.target_files)
                     and task.id not in other.dependencies
                 ):
@@ -18663,500 +19022,501 @@ class IssueParser:
             return "medium"
         return "LOW"
 
-mutants_xǁIssueParserǁ__init____mutmut['_mutmut_orig'] = IssueParser.xǁIssueParserǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ__init____mutmut['xǁIssueParserǁ__init____mutmut_1'] = IssueParser.xǁIssueParserǁ__init____mutmut_1 # type: ignore # mutmut generated
 
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['_mutmut_orig'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_1'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_2'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_3'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_4'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_5'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_6'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_7'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_8'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_9'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_10'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_11'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_12'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_13'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_14'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_15'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_16'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_17'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_18'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_19'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_20'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_21'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_22'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_23'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_24'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_25'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_26'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_27'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_28'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_29'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_30'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_31'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_32'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_33'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_34'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_35'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_36'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_37'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_38'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_39'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_40'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_41'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_42'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_43'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_44'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_45'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_46'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_47'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_48'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_49'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_50'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_51'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_52'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_53'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_54'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_55'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_56'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_57'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_58'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_59'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_60'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_61'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_compile_patterns__mutmut['xǁIssueParserǁ_compile_patterns__mutmut_62'] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_62 # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ__init____mutmut["_mutmut_orig"] = IssueParser.xǁIssueParserǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ__init____mutmut["xǁIssueParserǁ__init____mutmut_1"] = IssueParser.xǁIssueParserǁ__init____mutmut_1  # type: ignore # mutmut generated
 
-mutants_xǁIssueParserǁparse_issue__mutmut['_mutmut_orig'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_1'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_2'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_3'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_4'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_5'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_6'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_7'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_8'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_9'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_10'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_11'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_12'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_13'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_14'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_15'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_16'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_17'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_18'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_19'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_20'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁparse_issue__mutmut['xǁIssueParserǁparse_issue__mutmut_21'] = IssueParser.xǁIssueParserǁparse_issue__mutmut_21 # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["_mutmut_orig"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_1"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_2"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_3"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_4"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_5"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_6"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_7"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_8"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_9"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_10"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_11"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_12"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_13"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_14"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_15"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_16"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_17"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_18"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_19"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_20"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_21"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_22"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_23"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_24"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_25"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_26"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_27"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_28"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_29"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_30"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_31"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_32"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_33"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_34"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_35"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_36"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_37"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_38"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_39"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_40"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_41"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_42"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_43"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_44"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_45"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_46"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_47"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_48"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_49"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_50"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_51"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_52"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_53"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_54"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_55"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_56"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_57"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_58"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_59"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_60"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_61"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_compile_patterns__mutmut["xǁIssueParserǁ_compile_patterns__mutmut_62"] = IssueParser.xǁIssueParserǁ_compile_patterns__mutmut_62  # type: ignore # mutmut generated
 
-mutants_xǁIssueParserǁ_extract_summary__mutmut['_mutmut_orig'] = IssueParser.xǁIssueParserǁ_extract_summary__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_summary__mutmut['xǁIssueParserǁ_extract_summary__mutmut_1'] = IssueParser.xǁIssueParserǁ_extract_summary__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_summary__mutmut['xǁIssueParserǁ_extract_summary__mutmut_2'] = IssueParser.xǁIssueParserǁ_extract_summary__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_summary__mutmut['xǁIssueParserǁ_extract_summary__mutmut_3'] = IssueParser.xǁIssueParserǁ_extract_summary__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_summary__mutmut['xǁIssueParserǁ_extract_summary__mutmut_4'] = IssueParser.xǁIssueParserǁ_extract_summary__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_summary__mutmut['xǁIssueParserǁ_extract_summary__mutmut_5'] = IssueParser.xǁIssueParserǁ_extract_summary__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_summary__mutmut['xǁIssueParserǁ_extract_summary__mutmut_6'] = IssueParser.xǁIssueParserǁ_extract_summary__mutmut_6 # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["_mutmut_orig"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_1"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_2"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_3"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_4"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_5"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_6"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_7"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_8"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_9"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_10"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_11"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_12"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_13"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_14"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_15"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_16"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_17"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_18"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_19"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_20"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁparse_issue__mutmut["xǁIssueParserǁparse_issue__mutmut_21"] = IssueParser.xǁIssueParserǁparse_issue__mutmut_21  # type: ignore # mutmut generated
 
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['_mutmut_orig'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['xǁIssueParserǁ_extract_tech_stack__mutmut_1'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['xǁIssueParserǁ_extract_tech_stack__mutmut_2'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['xǁIssueParserǁ_extract_tech_stack__mutmut_3'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['xǁIssueParserǁ_extract_tech_stack__mutmut_4'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['xǁIssueParserǁ_extract_tech_stack__mutmut_5'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['xǁIssueParserǁ_extract_tech_stack__mutmut_6'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['xǁIssueParserǁ_extract_tech_stack__mutmut_7'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['xǁIssueParserǁ_extract_tech_stack__mutmut_8'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['xǁIssueParserǁ_extract_tech_stack__mutmut_9'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['xǁIssueParserǁ_extract_tech_stack__mutmut_10'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['xǁIssueParserǁ_extract_tech_stack__mutmut_11'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['xǁIssueParserǁ_extract_tech_stack__mutmut_12'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['xǁIssueParserǁ_extract_tech_stack__mutmut_13'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['xǁIssueParserǁ_extract_tech_stack__mutmut_14'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['xǁIssueParserǁ_extract_tech_stack__mutmut_15'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tech_stack__mutmut['xǁIssueParserǁ_extract_tech_stack__mutmut_16'] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_16 # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_summary__mutmut["_mutmut_orig"] = IssueParser.xǁIssueParserǁ_extract_summary__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_summary__mutmut["xǁIssueParserǁ_extract_summary__mutmut_1"] = IssueParser.xǁIssueParserǁ_extract_summary__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_summary__mutmut["xǁIssueParserǁ_extract_summary__mutmut_2"] = IssueParser.xǁIssueParserǁ_extract_summary__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_summary__mutmut["xǁIssueParserǁ_extract_summary__mutmut_3"] = IssueParser.xǁIssueParserǁ_extract_summary__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_summary__mutmut["xǁIssueParserǁ_extract_summary__mutmut_4"] = IssueParser.xǁIssueParserǁ_extract_summary__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_summary__mutmut["xǁIssueParserǁ_extract_summary__mutmut_5"] = IssueParser.xǁIssueParserǁ_extract_summary__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_summary__mutmut["xǁIssueParserǁ_extract_summary__mutmut_6"] = IssueParser.xǁIssueParserǁ_extract_summary__mutmut_6  # type: ignore # mutmut generated
 
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['_mutmut_orig'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_1'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_2'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_3'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_4'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_5'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_6'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_7'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_8'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_9'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_10'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_11'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_12'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_13'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_14'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_15'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_16'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_17'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_file_hints__mutmut['xǁIssueParserǁ_extract_file_hints__mutmut_18'] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_18 # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["_mutmut_orig"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["xǁIssueParserǁ_extract_tech_stack__mutmut_1"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["xǁIssueParserǁ_extract_tech_stack__mutmut_2"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["xǁIssueParserǁ_extract_tech_stack__mutmut_3"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["xǁIssueParserǁ_extract_tech_stack__mutmut_4"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["xǁIssueParserǁ_extract_tech_stack__mutmut_5"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["xǁIssueParserǁ_extract_tech_stack__mutmut_6"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["xǁIssueParserǁ_extract_tech_stack__mutmut_7"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["xǁIssueParserǁ_extract_tech_stack__mutmut_8"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["xǁIssueParserǁ_extract_tech_stack__mutmut_9"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["xǁIssueParserǁ_extract_tech_stack__mutmut_10"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["xǁIssueParserǁ_extract_tech_stack__mutmut_11"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["xǁIssueParserǁ_extract_tech_stack__mutmut_12"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["xǁIssueParserǁ_extract_tech_stack__mutmut_13"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["xǁIssueParserǁ_extract_tech_stack__mutmut_14"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["xǁIssueParserǁ_extract_tech_stack__mutmut_15"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tech_stack__mutmut["xǁIssueParserǁ_extract_tech_stack__mutmut_16"] = IssueParser.xǁIssueParserǁ_extract_tech_stack__mutmut_16  # type: ignore # mutmut generated
 
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['_mutmut_orig'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_1'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_2'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_3'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_4'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_5'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_6'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_7'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_8'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_9'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_10'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_11'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_12'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_13'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_14'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_15'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_16'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_17'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_18'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_19'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_20'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_21'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_22'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_23'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_24'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_25'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_26'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_27'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_28'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_29'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_30'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_31'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_32'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_33'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_34'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_35'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_36'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_37'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_38'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_39'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_40'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_41'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_tasks__mutmut['xǁIssueParserǁ_extract_tasks__mutmut_42'] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_42 # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["_mutmut_orig"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_1"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_2"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_3"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_4"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_5"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_6"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_7"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_8"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_9"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_10"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_11"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_12"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_13"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_14"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_15"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_16"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_17"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_file_hints__mutmut["xǁIssueParserǁ_extract_file_hints__mutmut_18"] = IssueParser.xǁIssueParserǁ_extract_file_hints__mutmut_18  # type: ignore # mutmut generated
 
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['_mutmut_orig'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_1'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_2'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_3'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_4'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_5'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_6'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_7'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_8'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_9'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_10'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_11'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_12'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_13'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_14'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_15'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_16'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_17'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_18'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_19'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_20'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_21'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_22'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_23'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_24'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_25'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_26'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_27'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_28'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_29'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_30'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_31'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_32'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_33'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_34'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_35'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_36'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_37'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_38'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_39'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_40'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_41'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_42'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_43'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_44'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_45'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_46'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_47'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_48'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_49'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_50'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_51'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_52'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_53'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_54'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_55'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_56'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_57'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_58'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_59'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_60'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_61'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_62'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_63'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_64'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_65'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_66'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_67'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_68'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_69'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_70'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_71'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_72'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_73'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_74'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_75'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_76'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_77'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_78'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_79'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_80'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_81'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_82'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_83'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_84'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_85'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_86'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_87'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_88'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_89'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_90'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_91'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_92'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_93'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_parse_task_text__mutmut['xǁIssueParserǁ_parse_task_text__mutmut_94'] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_94 # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["_mutmut_orig"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_1"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_2"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_3"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_4"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_5"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_6"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_7"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_8"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_9"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_10"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_11"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_12"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_13"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_14"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_15"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_16"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_17"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_18"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_19"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_20"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_21"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_22"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_23"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_24"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_25"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_26"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_27"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_28"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_29"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_30"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_31"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_32"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_33"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_34"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_35"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_36"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_37"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_38"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_39"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_40"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_41"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_tasks__mutmut["xǁIssueParserǁ_extract_tasks__mutmut_42"] = IssueParser.xǁIssueParserǁ_extract_tasks__mutmut_42  # type: ignore # mutmut generated
 
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['_mutmut_orig'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_1'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_2'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_3'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_4'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_5'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_6'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_7'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_8'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_9'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_10'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_11'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_12'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_13'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_14'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_15'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_16'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_17'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_18'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_19'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_20'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_21'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_22'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_23'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_24'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_25'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_26'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_27'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_28'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_29'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_30'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_31'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_32'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_33'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_34'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_35'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_36'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_37'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_38'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_39'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut['xǁIssueParserǁ_infer_files_from_task_type__mutmut_40'] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_40 # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["_mutmut_orig"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_1"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_2"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_3"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_4"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_5"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_6"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_7"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_8"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_9"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_10"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_11"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_12"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_13"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_14"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_15"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_16"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_17"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_18"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_19"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_20"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_21"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_22"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_23"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_24"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_25"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_26"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_27"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_28"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_29"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_30"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_31"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_32"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_33"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_34"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_35"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_36"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_37"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_38"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_39"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_40"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_41"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_42"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_43"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_44"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_45"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_46"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_47"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_48"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_49"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_50"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_51"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_52"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_53"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_54"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_55"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_56"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_57"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_58"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_59"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_60"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_61"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_62"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_63"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_64"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_65"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_66"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_67"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_68"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_69"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_70"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_71"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_72"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_73"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_74"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_75"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_76"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_77"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_78"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_79"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_80"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_81"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_82"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_83"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_84"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_85"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_86"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_87"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_88"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_89"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_90"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_91"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_92"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_93"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_parse_task_text__mutmut["xǁIssueParserǁ_parse_task_text__mutmut_94"] = IssueParser.xǁIssueParserǁ_parse_task_text__mutmut_94  # type: ignore # mutmut generated
 
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['_mutmut_orig'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_1'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_2'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_3'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_4'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_5'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_6'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_7'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_8'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_9'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_10'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_11'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_12'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_13'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_14'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_15'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_16'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_17'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_18'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_19'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_20'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_21'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_22'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_23'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_24'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_25'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_26'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_27'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_28'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_29'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_30'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_31'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_32'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_33'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_34'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_35'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_36'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_37'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_38'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_39'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_40'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_estimate_hours__mutmut['xǁIssueParserǁ_estimate_hours__mutmut_41'] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_41 # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["_mutmut_orig"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_1"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_2"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_3"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_4"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_5"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_6"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_7"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_8"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_9"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_10"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_11"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_12"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_13"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_14"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_15"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_16"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_17"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_18"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_19"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_20"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_21"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_22"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_23"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_24"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_25"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_26"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_27"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_28"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_29"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_30"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_31"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_32"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_33"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_34"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_35"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_36"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_37"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_38"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_39"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_files_from_task_type__mutmut["xǁIssueParserǁ_infer_files_from_task_type__mutmut_40"] = IssueParser.xǁIssueParserǁ_infer_files_from_task_type__mutmut_40  # type: ignore # mutmut generated
 
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['_mutmut_orig'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['xǁIssueParserǁ_extract_acceptance_criteria__mutmut_1'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['xǁIssueParserǁ_extract_acceptance_criteria__mutmut_2'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['xǁIssueParserǁ_extract_acceptance_criteria__mutmut_3'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['xǁIssueParserǁ_extract_acceptance_criteria__mutmut_4'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['xǁIssueParserǁ_extract_acceptance_criteria__mutmut_5'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['xǁIssueParserǁ_extract_acceptance_criteria__mutmut_6'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['xǁIssueParserǁ_extract_acceptance_criteria__mutmut_7'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['xǁIssueParserǁ_extract_acceptance_criteria__mutmut_8'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['xǁIssueParserǁ_extract_acceptance_criteria__mutmut_9'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['xǁIssueParserǁ_extract_acceptance_criteria__mutmut_10'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['xǁIssueParserǁ_extract_acceptance_criteria__mutmut_11'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['xǁIssueParserǁ_extract_acceptance_criteria__mutmut_12'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['xǁIssueParserǁ_extract_acceptance_criteria__mutmut_13'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['xǁIssueParserǁ_extract_acceptance_criteria__mutmut_14'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['xǁIssueParserǁ_extract_acceptance_criteria__mutmut_15'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut['xǁIssueParserǁ_extract_acceptance_criteria__mutmut_16'] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_16 # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["_mutmut_orig"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_1"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_2"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_3"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_4"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_5"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_6"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_7"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_8"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_9"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_10"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_11"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_12"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_13"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_14"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_15"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_16"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_17"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_18"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_19"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_20"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_21"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_22"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_23"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_24"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_25"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_26"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_27"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_28"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_29"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_30"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_31"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_32"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_33"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_34"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_35"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_36"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_37"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_38"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_39"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_40"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_estimate_hours__mutmut["xǁIssueParserǁ_estimate_hours__mutmut_41"] = IssueParser.xǁIssueParserǁ_estimate_hours__mutmut_41  # type: ignore # mutmut generated
 
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['_mutmut_orig'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_1'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_2'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_3'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_4'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_5'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_6'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_7'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_8'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_9'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_10'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_11'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_12'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_13'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_14'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_15'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_16'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_17'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_18'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_19'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_20'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_21'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_22'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_23'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_24'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_25'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_26'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_27'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_28'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_29'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_30'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_31'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_32'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_33'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_34'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_35'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_36'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_37'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_38'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_39'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_40'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_41'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_42'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_43'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_44'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_45'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_46'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_47'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_48'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_49'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_50'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_51'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_52'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_53'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_54'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_55'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_56'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_57'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_58'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_59'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_60'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_61'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_62'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_63'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_64'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_65'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_66'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_67'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_68'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_69'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_70'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_71'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_72'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_73'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_74'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_75'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_76'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_77'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_78'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_79'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_80'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_81'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_82'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_83'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_84'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_85'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_86'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_87'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_88'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_89'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_90'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_91'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_92'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_infer_dependencies__mutmut['xǁIssueParserǁ_infer_dependencies__mutmut_93'] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_93 # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["_mutmut_orig"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["xǁIssueParserǁ_extract_acceptance_criteria__mutmut_1"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["xǁIssueParserǁ_extract_acceptance_criteria__mutmut_2"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["xǁIssueParserǁ_extract_acceptance_criteria__mutmut_3"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["xǁIssueParserǁ_extract_acceptance_criteria__mutmut_4"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["xǁIssueParserǁ_extract_acceptance_criteria__mutmut_5"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["xǁIssueParserǁ_extract_acceptance_criteria__mutmut_6"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["xǁIssueParserǁ_extract_acceptance_criteria__mutmut_7"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["xǁIssueParserǁ_extract_acceptance_criteria__mutmut_8"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["xǁIssueParserǁ_extract_acceptance_criteria__mutmut_9"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["xǁIssueParserǁ_extract_acceptance_criteria__mutmut_10"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["xǁIssueParserǁ_extract_acceptance_criteria__mutmut_11"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["xǁIssueParserǁ_extract_acceptance_criteria__mutmut_12"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["xǁIssueParserǁ_extract_acceptance_criteria__mutmut_13"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["xǁIssueParserǁ_extract_acceptance_criteria__mutmut_14"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["xǁIssueParserǁ_extract_acceptance_criteria__mutmut_15"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_extract_acceptance_criteria__mutmut["xǁIssueParserǁ_extract_acceptance_criteria__mutmut_16"] = IssueParser.xǁIssueParserǁ_extract_acceptance_criteria__mutmut_16  # type: ignore # mutmut generated
 
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['_mutmut_orig'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_1'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_2'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_3'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_4'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_5'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_6'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_7'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_8'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_9'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_10'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_11'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_12'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_13'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_14'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_15'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_16'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_17'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_18'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁIssueParserǁ_assess_complexity__mutmut['xǁIssueParserǁ_assess_complexity__mutmut_19'] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_19 # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["_mutmut_orig"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_1"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_2"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_3"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_4"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_5"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_6"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_7"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_8"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_9"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_10"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_11"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_12"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_13"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_14"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_15"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_16"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_17"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_18"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_19"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_20"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_21"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_22"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_23"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_24"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_25"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_26"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_27"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_28"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_29"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_30"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_31"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_32"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_33"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_34"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_35"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_36"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_37"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_38"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_39"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_40"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_41"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_42"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_43"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_44"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_45"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_46"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_47"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_48"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_49"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_50"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_51"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_52"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_53"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_54"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_55"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_56"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_57"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_58"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_59"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_60"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_61"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_62"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_63"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_64"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_65"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_66"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_67"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_68"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_69"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_70"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_71"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_72"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_73"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_74"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_75"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_76"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_77"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_78"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_79"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_80"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_81"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_82"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_83"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_84"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_85"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_86"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_87"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_88"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_89"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_90"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_91"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_92"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_infer_dependencies__mutmut["xǁIssueParserǁ_infer_dependencies__mutmut_93"] = IssueParser.xǁIssueParserǁ_infer_dependencies__mutmut_93  # type: ignore # mutmut generated
+
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["_mutmut_orig"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_1"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_2"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_3"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_4"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_5"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_6"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_7"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_8"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_9"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_10"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_11"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_12"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_13"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_14"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_15"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_16"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_17"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_18"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁIssueParserǁ_assess_complexity__mutmut["xǁIssueParserǁ_assess_complexity__mutmut_19"] = IssueParser.xǁIssueParserǁ_assess_complexity__mutmut_19  # type: ignore # mutmut generated
 mutants_x_parse_issue__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -19221,16 +19581,20 @@ def x_parse_issue__mutmut_6(issue_number: int, title: str, body: str) -> IssueAn
 def x_parse_issue__mutmut_7(issue_number: int, title: str, body: str) -> IssueAnalysis:
     """이슈 파싱 편의 함수"""
     parser = IssueParser()
-    return parser.parse_issue(issue_number, title, )
+    return parser.parse_issue(
+        issue_number,
+        title,
+    )
 
-mutants_x_parse_issue__mutmut['_mutmut_orig'] = x_parse_issue__mutmut_orig # type: ignore # mutmut generated
-mutants_x_parse_issue__mutmut['x_parse_issue__mutmut_1'] = x_parse_issue__mutmut_1 # type: ignore # mutmut generated
-mutants_x_parse_issue__mutmut['x_parse_issue__mutmut_2'] = x_parse_issue__mutmut_2 # type: ignore # mutmut generated
-mutants_x_parse_issue__mutmut['x_parse_issue__mutmut_3'] = x_parse_issue__mutmut_3 # type: ignore # mutmut generated
-mutants_x_parse_issue__mutmut['x_parse_issue__mutmut_4'] = x_parse_issue__mutmut_4 # type: ignore # mutmut generated
-mutants_x_parse_issue__mutmut['x_parse_issue__mutmut_5'] = x_parse_issue__mutmut_5 # type: ignore # mutmut generated
-mutants_x_parse_issue__mutmut['x_parse_issue__mutmut_6'] = x_parse_issue__mutmut_6 # type: ignore # mutmut generated
-mutants_x_parse_issue__mutmut['x_parse_issue__mutmut_7'] = x_parse_issue__mutmut_7 # type: ignore # mutmut generated
+
+mutants_x_parse_issue__mutmut["_mutmut_orig"] = x_parse_issue__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_parse_issue__mutmut["x_parse_issue__mutmut_1"] = x_parse_issue__mutmut_1  # type: ignore # mutmut generated
+mutants_x_parse_issue__mutmut["x_parse_issue__mutmut_2"] = x_parse_issue__mutmut_2  # type: ignore # mutmut generated
+mutants_x_parse_issue__mutmut["x_parse_issue__mutmut_3"] = x_parse_issue__mutmut_3  # type: ignore # mutmut generated
+mutants_x_parse_issue__mutmut["x_parse_issue__mutmut_4"] = x_parse_issue__mutmut_4  # type: ignore # mutmut generated
+mutants_x_parse_issue__mutmut["x_parse_issue__mutmut_5"] = x_parse_issue__mutmut_5  # type: ignore # mutmut generated
+mutants_x_parse_issue__mutmut["x_parse_issue__mutmut_6"] = x_parse_issue__mutmut_6  # type: ignore # mutmut generated
+mutants_x_parse_issue__mutmut["x_parse_issue__mutmut_7"] = x_parse_issue__mutmut_7  # type: ignore # mutmut generated
 mutants_x_analyze_issue__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -19453,7 +19817,10 @@ def x_analyze_issue__mutmut_6(issue_number: int, title: str, body: str) -> dict[
 
 def x_analyze_issue__mutmut_7(issue_number: int, title: str, body: str) -> dict[str, Any]:
     """이슈 분석 결과 딕셔너리 반환"""
-    analysis = parse_issue(issue_number, title, )
+    analysis = parse_issue(
+        issue_number,
+        title,
+    )
     return {
         "issue_number": analysis.issue_number,
         "title": analysis.title,
@@ -20341,46 +20708,47 @@ def x_analyze_issue__mutmut_39(issue_number: int, title: str, body: str) -> dict
         ],
     }
 
-mutants_x_analyze_issue__mutmut['_mutmut_orig'] = x_analyze_issue__mutmut_orig # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_1'] = x_analyze_issue__mutmut_1 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_2'] = x_analyze_issue__mutmut_2 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_3'] = x_analyze_issue__mutmut_3 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_4'] = x_analyze_issue__mutmut_4 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_5'] = x_analyze_issue__mutmut_5 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_6'] = x_analyze_issue__mutmut_6 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_7'] = x_analyze_issue__mutmut_7 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_8'] = x_analyze_issue__mutmut_8 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_9'] = x_analyze_issue__mutmut_9 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_10'] = x_analyze_issue__mutmut_10 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_11'] = x_analyze_issue__mutmut_11 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_12'] = x_analyze_issue__mutmut_12 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_13'] = x_analyze_issue__mutmut_13 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_14'] = x_analyze_issue__mutmut_14 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_15'] = x_analyze_issue__mutmut_15 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_16'] = x_analyze_issue__mutmut_16 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_17'] = x_analyze_issue__mutmut_17 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_18'] = x_analyze_issue__mutmut_18 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_19'] = x_analyze_issue__mutmut_19 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_20'] = x_analyze_issue__mutmut_20 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_21'] = x_analyze_issue__mutmut_21 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_22'] = x_analyze_issue__mutmut_22 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_23'] = x_analyze_issue__mutmut_23 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_24'] = x_analyze_issue__mutmut_24 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_25'] = x_analyze_issue__mutmut_25 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_26'] = x_analyze_issue__mutmut_26 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_27'] = x_analyze_issue__mutmut_27 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_28'] = x_analyze_issue__mutmut_28 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_29'] = x_analyze_issue__mutmut_29 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_30'] = x_analyze_issue__mutmut_30 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_31'] = x_analyze_issue__mutmut_31 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_32'] = x_analyze_issue__mutmut_32 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_33'] = x_analyze_issue__mutmut_33 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_34'] = x_analyze_issue__mutmut_34 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_35'] = x_analyze_issue__mutmut_35 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_36'] = x_analyze_issue__mutmut_36 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_37'] = x_analyze_issue__mutmut_37 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_38'] = x_analyze_issue__mutmut_38 # type: ignore # mutmut generated
-mutants_x_analyze_issue__mutmut['x_analyze_issue__mutmut_39'] = x_analyze_issue__mutmut_39 # type: ignore # mutmut generated
+
+mutants_x_analyze_issue__mutmut["_mutmut_orig"] = x_analyze_issue__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_1"] = x_analyze_issue__mutmut_1  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_2"] = x_analyze_issue__mutmut_2  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_3"] = x_analyze_issue__mutmut_3  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_4"] = x_analyze_issue__mutmut_4  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_5"] = x_analyze_issue__mutmut_5  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_6"] = x_analyze_issue__mutmut_6  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_7"] = x_analyze_issue__mutmut_7  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_8"] = x_analyze_issue__mutmut_8  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_9"] = x_analyze_issue__mutmut_9  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_10"] = x_analyze_issue__mutmut_10  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_11"] = x_analyze_issue__mutmut_11  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_12"] = x_analyze_issue__mutmut_12  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_13"] = x_analyze_issue__mutmut_13  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_14"] = x_analyze_issue__mutmut_14  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_15"] = x_analyze_issue__mutmut_15  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_16"] = x_analyze_issue__mutmut_16  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_17"] = x_analyze_issue__mutmut_17  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_18"] = x_analyze_issue__mutmut_18  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_19"] = x_analyze_issue__mutmut_19  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_20"] = x_analyze_issue__mutmut_20  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_21"] = x_analyze_issue__mutmut_21  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_22"] = x_analyze_issue__mutmut_22  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_23"] = x_analyze_issue__mutmut_23  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_24"] = x_analyze_issue__mutmut_24  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_25"] = x_analyze_issue__mutmut_25  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_26"] = x_analyze_issue__mutmut_26  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_27"] = x_analyze_issue__mutmut_27  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_28"] = x_analyze_issue__mutmut_28  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_29"] = x_analyze_issue__mutmut_29  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_30"] = x_analyze_issue__mutmut_30  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_31"] = x_analyze_issue__mutmut_31  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_32"] = x_analyze_issue__mutmut_32  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_33"] = x_analyze_issue__mutmut_33  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_34"] = x_analyze_issue__mutmut_34  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_35"] = x_analyze_issue__mutmut_35  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_36"] = x_analyze_issue__mutmut_36  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_37"] = x_analyze_issue__mutmut_37  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_38"] = x_analyze_issue__mutmut_38  # type: ignore # mutmut generated
+mutants_x_analyze_issue__mutmut["x_analyze_issue__mutmut_39"] = x_analyze_issue__mutmut_39  # type: ignore # mutmut generated
 
 
 if __name__ == "__main__":

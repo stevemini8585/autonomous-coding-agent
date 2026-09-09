@@ -1,0 +1,93 @@
+title = "Gitleaks Configuration for Autonomous Coding Agent"
+
+[allowlist]
+description = "Allowlisted paths and patterns"
+paths = [
+    "tests/**",
+    "*.md",
+    "*.txt",
+    "*.json",
+    "*.toml",
+    "*.yaml",
+    "*.yml",
+    ".github/**",
+    "*.lock",
+]
+regexes = [
+    '''(?i)test.*["']?=.*["']?''',
+    '''(?i)mock.*["']?=.*["']?''',
+    '''(?i)fake.*["']?=.*["']?''',
+    '''(?i)dummy.*["']?=.*["']?''',
+    '''(?i)example.*["']?=.*["']?''',
+    '''(?i)placeholder.*["']?=.*["']?''',
+]
+
+[[rule]]
+description = "Generic API Key"
+regex = '''(?i)(api[_-]?key|apikey)["'\s]*[:=]\s*["']?[a-zA-Z0-9_\-]{20,}["']?'''
+tags = ["api-key", "generic"]
+
+[[rule]]
+description = "Generic Secret"
+regex = '''(?i)(secret|password|passwd|pwd)["'\s]*[:=]\s*["']?[a-zA-Z0-9_\-]{8,}["']?'''
+tags = ["secret", "generic"]
+
+[[rule]]
+description = "AWS Access Key"
+regex = '''(?i)AKIA[0-9A-Z]{16}'''
+tags = ["aws", "access-key"]
+
+[[rule]]
+description = "AWS Secret Key"
+regex = '''(?i)aws[_-]?secret[_-]?access[_-]?key["'\s]*[:=]\s*["']?[a-zA-Z0-9/+=]{40}["']?'''
+tags = ["aws", "secret-key"]
+
+[[rule]]
+description = "GitHub Token"
+regex = '''(?i)gh[pousr]_[a-zA-Z0-9]{36,}'''
+tags = ["github", "token"]
+
+[[rule]]
+description = "GitHub Personal Access Token (classic)"
+regex = '''(?i)github[_-]?token["'\s]*[:=]\s*["']?[a-zA-Z0-9]{40}["']?'''
+tags = ["github", "token"]
+
+[[rule]]
+description = "Slack Token"
+regex = '''(?i)xox[baprs]-[a-zA-Z0-9]{10,}-[a-zA-Z0-9]{10,}-[a-zA-Z0-9]{10,}'''
+tags = ["slack", "token"]
+
+[[rule]]
+description = "Generic Bearer Token"
+regex = '''(?i)bearer\s+[a-zA-Z0-9_\-]{20,}'''
+tags = ["token", "generic"]
+
+[[rule]]
+description = "Private Key"
+regex = '''-----BEGIN (RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----'''
+tags = ["private-key", "ssh"]
+
+[[rule]]
+description = "JWT Token"
+regex = '''eyJ[a-zA-Z0-9_\-]*\.[a-zA-Z0-9_\-]*\.[a-zA-Z0-9_\-]*'''
+tags = ["jwt", "token"]
+
+[[rule]]
+description = "Database Connection String"
+regex = '''(?i)(postgres|mysql|mongodb|redis)://[^\\s]+'''
+tags = ["database", "connection-string"]
+
+[[rule]]
+description = "Docker Hub Token"
+regex = '''(?i)docker[_-]?hub[_-]?token["'\s]*[:=]\s*["']?[a-zA-Z0-9]{32}["']?'''
+tags = ["docker", "token"]
+
+[[rule]]
+description = "npm Token"
+regex = '''(?i)npm[_-]?token["'\s]*[:=]\s*["']?[a-zA-Z0-9_\-]{36}["']?'''
+tags = ["npm", "token"]
+
+[[rule]]
+description = "PyPI Token"
+regex = '''(?i)pypi[_-]?token["'\s]*[:=]\s*["']?pypi-[a-zA-Z0-9_\-]{32,}["']?'''
+tags = ["pypi", "token"]

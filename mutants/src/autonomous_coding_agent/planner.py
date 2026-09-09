@@ -13,7 +13,9 @@ from .models import ExploreResult, Plan, PlanStep, StepStatus, StepType
 log = logging.getLogger("autonomous_coding_agent.planner")
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
+
 mutants_xǁWorkPlannerǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁWorkPlannerǁcreate_plan__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁWorkPlannerǁ_detect_task_type__mutmut: MutantDict = {}  # type: ignore
@@ -681,7 +683,9 @@ class WorkPlanner:
         plan = Plan(goal=goal)
 
         # 템플릿 기반 기본 단계 생성
-        template = self.STEP_TEMPLATES.get(task_type, )
+        template = self.STEP_TEMPLATES.get(
+            task_type,
+        )
 
         step_objects = []
         for i, (step_type, description) in enumerate(template):
@@ -1580,7 +1584,7 @@ class WorkPlanner:
                 title=f"{step_type.value.upper()}: {description}",
                 description=self._expand_description(step_type, description, goal, explore_result),
                 verification_criteria=self._get_verification_criteria(step_type),
-                )
+            )
             step_objects.append(step)
 
         # 의존성 설정 (순차 실행)
@@ -1982,7 +1986,11 @@ class WorkPlanner:
                 id=step_id,
                 type=step_type,
                 title=f"{step_type.value.upper()}: {description}",
-                description=self._expand_description(step_type, description, goal, ),
+                description=self._expand_description(
+                    step_type,
+                    description,
+                    goal,
+                ),
                 verification_criteria=self._get_verification_criteria(step_type),
                 max_retries=3,
             )
@@ -2669,7 +2677,10 @@ class WorkPlanner:
                 step.dependencies = [step_objects[i - 1].id]
 
         # 탐색 결과 기반 파일 할당
-        self._assign_files_to_steps(step_objects, explore_result, )
+        self._assign_files_to_steps(
+            step_objects,
+            explore_result,
+        )
 
         plan.steps = step_objects
         log.info(f"  생성된 단계: {len(plan.steps)}개")
@@ -2846,7 +2857,9 @@ class WorkPlanner:
         """목표에서 작업 유형 감지"""
         goal_lower = goal.lower()
 
-        if any(kw not in goal_lower for kw in ["버그", "bug", "fix", "오류", "에러", "안됨", "깨짐"]):
+        if any(
+            kw not in goal_lower for kw in ["버그", "bug", "fix", "오류", "에러", "안됨", "깨짐"]
+        ):
             return "bugfix"
         elif any(kw in goal_lower for kw in ["리팩토링", "refactor", "정리", "개선", "최적화"]):
             return "refactor"
@@ -2861,7 +2874,9 @@ class WorkPlanner:
         """목표에서 작업 유형 감지"""
         goal_lower = goal.lower()
 
-        if any(kw in goal_lower for kw in ["XX버그XX", "bug", "fix", "오류", "에러", "안됨", "깨짐"]):
+        if any(
+            kw in goal_lower for kw in ["XX버그XX", "bug", "fix", "오류", "에러", "안됨", "깨짐"]
+        ):
             return "bugfix"
         elif any(kw in goal_lower for kw in ["리팩토링", "refactor", "정리", "개선", "최적화"]):
             return "refactor"
@@ -2876,7 +2891,9 @@ class WorkPlanner:
         """목표에서 작업 유형 감지"""
         goal_lower = goal.lower()
 
-        if any(kw in goal_lower for kw in ["버그", "XXbugXX", "fix", "오류", "에러", "안됨", "깨짐"]):
+        if any(
+            kw in goal_lower for kw in ["버그", "XXbugXX", "fix", "오류", "에러", "안됨", "깨짐"]
+        ):
             return "bugfix"
         elif any(kw in goal_lower for kw in ["리팩토링", "refactor", "정리", "개선", "최적화"]):
             return "refactor"
@@ -2906,7 +2923,9 @@ class WorkPlanner:
         """목표에서 작업 유형 감지"""
         goal_lower = goal.lower()
 
-        if any(kw in goal_lower for kw in ["버그", "bug", "XXfixXX", "오류", "에러", "안됨", "깨짐"]):
+        if any(
+            kw in goal_lower for kw in ["버그", "bug", "XXfixXX", "오류", "에러", "안됨", "깨짐"]
+        ):
             return "bugfix"
         elif any(kw in goal_lower for kw in ["리팩토링", "refactor", "정리", "개선", "최적화"]):
             return "refactor"
@@ -2936,7 +2955,9 @@ class WorkPlanner:
         """목표에서 작업 유형 감지"""
         goal_lower = goal.lower()
 
-        if any(kw in goal_lower for kw in ["버그", "bug", "fix", "XX오류XX", "에러", "안됨", "깨짐"]):
+        if any(
+            kw in goal_lower for kw in ["버그", "bug", "fix", "XX오류XX", "에러", "안됨", "깨짐"]
+        ):
             return "bugfix"
         elif any(kw in goal_lower for kw in ["리팩토링", "refactor", "정리", "개선", "최적화"]):
             return "refactor"
@@ -2951,7 +2972,9 @@ class WorkPlanner:
         """목표에서 작업 유형 감지"""
         goal_lower = goal.lower()
 
-        if any(kw in goal_lower for kw in ["버그", "bug", "fix", "오류", "XX에러XX", "안됨", "깨짐"]):
+        if any(
+            kw in goal_lower for kw in ["버그", "bug", "fix", "오류", "XX에러XX", "안됨", "깨짐"]
+        ):
             return "bugfix"
         elif any(kw in goal_lower for kw in ["리팩토링", "refactor", "정리", "개선", "최적화"]):
             return "refactor"
@@ -2966,7 +2989,9 @@ class WorkPlanner:
         """목표에서 작업 유형 감지"""
         goal_lower = goal.lower()
 
-        if any(kw in goal_lower for kw in ["버그", "bug", "fix", "오류", "에러", "XX안됨XX", "깨짐"]):
+        if any(
+            kw in goal_lower for kw in ["버그", "bug", "fix", "오류", "에러", "XX안됨XX", "깨짐"]
+        ):
             return "bugfix"
         elif any(kw in goal_lower for kw in ["리팩토링", "refactor", "정리", "개선", "최적화"]):
             return "refactor"
@@ -2981,7 +3006,9 @@ class WorkPlanner:
         """목표에서 작업 유형 감지"""
         goal_lower = goal.lower()
 
-        if any(kw in goal_lower for kw in ["버그", "bug", "fix", "오류", "에러", "안됨", "XX깨짐XX"]):
+        if any(
+            kw in goal_lower for kw in ["버그", "bug", "fix", "오류", "에러", "안됨", "XX깨짐XX"]
+        ):
             return "bugfix"
         elif any(kw in goal_lower for kw in ["리팩토링", "refactor", "정리", "개선", "최적화"]):
             return "refactor"
@@ -4649,7 +4676,9 @@ class WorkPlanner:
         }
         return criteria_map.get(step_type, ["완료 기준 충족"])
 
-    def xǁWorkPlannerǁ_get_verification_criteria__mutmut_orig(self, step_type: StepType) -> list[str]:
+    def xǁWorkPlannerǁ_get_verification_criteria__mutmut_orig(
+        self, step_type: StepType
+    ) -> list[str]:
         """단계 유형별 검증 기준"""
         criteria_map = {
             StepType.EXPLORE: [
@@ -5457,7 +5486,7 @@ class WorkPlanner:
                 "문서화 완료",
             ],
         }
-        return criteria_map.get(step_type, None)
+        return criteria_map.get(step_type)
 
     def xǁWorkPlannerǁ_get_verification_criteria__mutmut_24(self, step_type: StepType) -> list[str]:
         """단계 유형별 검증 기준"""
@@ -5527,7 +5556,9 @@ class WorkPlanner:
                 "문서화 완료",
             ],
         }
-        return criteria_map.get(step_type, )
+        return criteria_map.get(
+            step_type,
+        )
 
     def xǁWorkPlannerǁ_get_verification_criteria__mutmut_26(self, step_type: StepType) -> list[str]:
         """단계 유형별 검증 기준"""
@@ -7232,7 +7263,9 @@ class WorkPlanner:
                 relevant_files.append((file_info.path, score))
 
         # 점수순 정렬
-        relevant_files.sort(key=lambda x: x[1], )
+        relevant_files.sort(
+            key=lambda x: x[1],
+        )
         top_files = [f[0] for f in relevant_files[:10]]
 
         # CODE 단계에 파일 할당
@@ -8176,7 +8209,9 @@ class WorkPlanner:
         failed_step.status = StepStatus.PENDING  # 재시도 위해 초기화
 
         # 피드백 기반 추가 단계 생성
-        if critique_result and hasattr(critique_result, ):
+        if critique_result and hasattr(
+            critique_result,
+        ):
             for i, improvement in enumerate(critique_result.improvements[:2]):  # 최대 2개 추가
                 new_step = PlanStep(
                     id=f"{failed_step_id}_retry_{i+1}",
@@ -8767,7 +8802,7 @@ class WorkPlanner:
                     title=f"재시도: {improvement[:50]}",
                     description=f"이전 실패 원인: {error}\n개선 사항: {improvement}",
                     dependencies=[failed_step_id],
-                    )
+                )
                 plan.steps.append(new_step)
 
         plan.updated_at = __import__("datetime").datetime.now()
@@ -9092,279 +9127,280 @@ class WorkPlanner:
         """다음 실행 가능한 단계들 반환"""
         return plan.get_ready_steps()
 
-mutants_xǁWorkPlannerǁ__init____mutmut['_mutmut_orig'] = WorkPlanner.xǁWorkPlannerǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ__init____mutmut['xǁWorkPlannerǁ__init____mutmut_1'] = WorkPlanner.xǁWorkPlannerǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ__init____mutmut['xǁWorkPlannerǁ__init____mutmut_2'] = WorkPlanner.xǁWorkPlannerǁ__init____mutmut_2 # type: ignore # mutmut generated
 
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['_mutmut_orig'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_1'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_2'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_3'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_4'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_5'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_6'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_7'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_8'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_9'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_10'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_11'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_12'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_13'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_14'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_15'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_16'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_17'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_18'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_19'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_20'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_21'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_22'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_23'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_24'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_25'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_26'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_27'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_28'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_29'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_30'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_31'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_32'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_33'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_34'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_35'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_36'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_37'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_38'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_39'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_40'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_41'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_42'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_43'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_44'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_45'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_46'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_47'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_48'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_49'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_50'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_51'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_52'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_53'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_54'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_55'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_56'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_57'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁcreate_plan__mutmut['xǁWorkPlannerǁcreate_plan__mutmut_58'] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_58 # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ__init____mutmut["_mutmut_orig"] = WorkPlanner.xǁWorkPlannerǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ__init____mutmut["xǁWorkPlannerǁ__init____mutmut_1"] = WorkPlanner.xǁWorkPlannerǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ__init____mutmut["xǁWorkPlannerǁ__init____mutmut_2"] = WorkPlanner.xǁWorkPlannerǁ__init____mutmut_2  # type: ignore # mutmut generated
 
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['_mutmut_orig'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_1'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_2'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_3'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_4'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_5'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_6'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_7'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_8'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_9'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_10'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_11'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_12'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_13'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_14'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_15'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_16'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_17'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_18'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_19'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_20'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_21'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_22'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_23'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_24'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_25'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_26'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_27'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_28'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_29'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_30'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_31'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_32'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_33'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_34'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_35'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_36'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_37'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_38'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_39'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_40'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_41'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_42'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_43'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_44'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_45'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_46'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_47'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_48'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_detect_task_type__mutmut['xǁWorkPlannerǁ_detect_task_type__mutmut_49'] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_49 # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["_mutmut_orig"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_1"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_2"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_3"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_4"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_5"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_6"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_7"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_8"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_9"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_10"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_11"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_12"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_13"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_14"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_15"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_16"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_17"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_18"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_19"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_20"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_21"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_22"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_23"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_24"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_25"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_26"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_27"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_28"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_29"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_30"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_31"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_32"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_33"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_34"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_35"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_36"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_37"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_38"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_39"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_40"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_41"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_42"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_43"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_44"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_45"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_46"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_47"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_48"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_49"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_50"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_51"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_52"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_53"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_54"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_55"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_56"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_57"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁcreate_plan__mutmut["xǁWorkPlannerǁcreate_plan__mutmut_58"] = WorkPlanner.xǁWorkPlannerǁcreate_plan__mutmut_58  # type: ignore # mutmut generated
 
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['_mutmut_orig'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_1'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_2'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_3'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_4'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_5'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_6'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_7'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_8'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_9'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_10'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_11'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_12'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_13'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_14'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_15'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_16'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_17'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_18'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_19'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_20'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_21'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_22'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_23'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_24'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_25'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_26'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_27'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_28'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_29'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_30'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_31'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_32'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_33'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_expand_description__mutmut['xǁWorkPlannerǁ_expand_description__mutmut_34'] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_34 # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["_mutmut_orig"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_1"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_2"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_3"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_4"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_5"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_6"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_7"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_8"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_9"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_10"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_11"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_12"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_13"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_14"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_15"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_16"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_17"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_18"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_19"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_20"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_21"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_22"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_23"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_24"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_25"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_26"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_27"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_28"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_29"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_30"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_31"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_32"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_33"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_34"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_35"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_36"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_37"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_38"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_39"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_40"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_41"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_42"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_43"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_44"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_45"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_46"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_47"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_48"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_detect_task_type__mutmut["xǁWorkPlannerǁ_detect_task_type__mutmut_49"] = WorkPlanner.xǁWorkPlannerǁ_detect_task_type__mutmut_49  # type: ignore # mutmut generated
 
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['_mutmut_orig'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_1'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_2'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_3'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_4'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_5'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_6'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_7'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_8'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_9'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_10'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_11'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_12'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_13'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_14'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_15'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_16'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_17'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_18'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_19'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_20'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_21'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_22'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_23'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_24'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_25'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut['xǁWorkPlannerǁ_get_verification_criteria__mutmut_26'] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_26 # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["_mutmut_orig"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_1"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_2"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_3"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_4"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_5"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_6"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_7"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_8"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_9"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_10"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_11"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_12"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_13"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_14"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_15"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_16"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_17"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_18"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_19"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_20"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_21"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_22"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_23"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_24"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_25"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_26"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_27"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_28"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_29"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_30"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_31"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_32"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_33"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_expand_description__mutmut["xǁWorkPlannerǁ_expand_description__mutmut_34"] = WorkPlanner.xǁWorkPlannerǁ_expand_description__mutmut_34  # type: ignore # mutmut generated
 
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['_mutmut_orig'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_1'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_2'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_3'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_4'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_5'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_6'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_7'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_8'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_9'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_10'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_11'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_12'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_13'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_14'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_15'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_16'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_17'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_18'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_19'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_20'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_21'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_22'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_23'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_24'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_25'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_26'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_27'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_28'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_29'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_30'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_31'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_32'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_33'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_34'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_35'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_36'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_37'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_38'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_39'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_40'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_41'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_42'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_43'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_44'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_45'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_46'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_47'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_48'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_49'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_50'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut['xǁWorkPlannerǁ_assign_files_to_steps__mutmut_51'] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_51 # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["_mutmut_orig"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_1"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_2"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_3"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_4"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_5"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_6"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_7"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_8"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_9"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_10"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_11"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_12"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_13"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_14"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_15"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_16"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_17"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_18"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_19"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_20"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_21"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_22"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_23"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_24"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_25"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_get_verification_criteria__mutmut["xǁWorkPlannerǁ_get_verification_criteria__mutmut_26"] = WorkPlanner.xǁWorkPlannerǁ_get_verification_criteria__mutmut_26  # type: ignore # mutmut generated
 
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['_mutmut_orig'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_1'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_2'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_3'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_4'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_5'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_6'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_7'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_8'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_9'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_10'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_11'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_12'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_13'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_14'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_15'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_16'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_17'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_18'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_19'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_20'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_21'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_22'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_23'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_24'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_25'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_26'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_27'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_28'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_29'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_30'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_31'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_32'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_33'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_34'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_35'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_36'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_37'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_38'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_39'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁWorkPlannerǁrefine_plan__mutmut['xǁWorkPlannerǁrefine_plan__mutmut_40'] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_40 # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["_mutmut_orig"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_1"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_2"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_3"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_4"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_5"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_6"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_7"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_8"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_9"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_10"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_11"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_12"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_13"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_14"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_15"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_16"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_17"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_18"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_19"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_20"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_21"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_22"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_23"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_24"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_25"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_26"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_27"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_28"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_29"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_30"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_31"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_32"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_33"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_34"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_35"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_36"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_37"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_38"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_39"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_40"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_41"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_42"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_43"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_44"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_45"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_46"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_47"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_48"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_49"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_50"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁ_assign_files_to_steps__mutmut["xǁWorkPlannerǁ_assign_files_to_steps__mutmut_51"] = WorkPlanner.xǁWorkPlannerǁ_assign_files_to_steps__mutmut_51  # type: ignore # mutmut generated
+
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["_mutmut_orig"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_1"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_2"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_3"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_4"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_5"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_6"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_7"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_8"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_9"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_10"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_11"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_12"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_13"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_14"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_15"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_16"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_17"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_18"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_19"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_20"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_21"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_22"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_23"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_24"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_25"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_26"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_27"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_28"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_29"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_30"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_31"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_32"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_33"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_34"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_35"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_36"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_37"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_38"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_39"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁWorkPlannerǁrefine_plan__mutmut["xǁWorkPlannerǁrefine_plan__mutmut_40"] = WorkPlanner.xǁWorkPlannerǁrefine_plan__mutmut_40  # type: ignore # mutmut generated
 mutants_x_create_plan__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -9476,14 +9512,18 @@ def x_create_plan__mutmut_8(
 ) -> Plan:
     """계획 생성 헬퍼"""
     planner = WorkPlanner(workspace)
-    return planner.create_plan(goal, explore_result, )
+    return planner.create_plan(
+        goal,
+        explore_result,
+    )
 
-mutants_x_create_plan__mutmut['_mutmut_orig'] = x_create_plan__mutmut_orig # type: ignore # mutmut generated
-mutants_x_create_plan__mutmut['x_create_plan__mutmut_1'] = x_create_plan__mutmut_1 # type: ignore # mutmut generated
-mutants_x_create_plan__mutmut['x_create_plan__mutmut_2'] = x_create_plan__mutmut_2 # type: ignore # mutmut generated
-mutants_x_create_plan__mutmut['x_create_plan__mutmut_3'] = x_create_plan__mutmut_3 # type: ignore # mutmut generated
-mutants_x_create_plan__mutmut['x_create_plan__mutmut_4'] = x_create_plan__mutmut_4 # type: ignore # mutmut generated
-mutants_x_create_plan__mutmut['x_create_plan__mutmut_5'] = x_create_plan__mutmut_5 # type: ignore # mutmut generated
-mutants_x_create_plan__mutmut['x_create_plan__mutmut_6'] = x_create_plan__mutmut_6 # type: ignore # mutmut generated
-mutants_x_create_plan__mutmut['x_create_plan__mutmut_7'] = x_create_plan__mutmut_7 # type: ignore # mutmut generated
-mutants_x_create_plan__mutmut['x_create_plan__mutmut_8'] = x_create_plan__mutmut_8 # type: ignore # mutmut generated
+
+mutants_x_create_plan__mutmut["_mutmut_orig"] = x_create_plan__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_create_plan__mutmut["x_create_plan__mutmut_1"] = x_create_plan__mutmut_1  # type: ignore # mutmut generated
+mutants_x_create_plan__mutmut["x_create_plan__mutmut_2"] = x_create_plan__mutmut_2  # type: ignore # mutmut generated
+mutants_x_create_plan__mutmut["x_create_plan__mutmut_3"] = x_create_plan__mutmut_3  # type: ignore # mutmut generated
+mutants_x_create_plan__mutmut["x_create_plan__mutmut_4"] = x_create_plan__mutmut_4  # type: ignore # mutmut generated
+mutants_x_create_plan__mutmut["x_create_plan__mutmut_5"] = x_create_plan__mutmut_5  # type: ignore # mutmut generated
+mutants_x_create_plan__mutmut["x_create_plan__mutmut_6"] = x_create_plan__mutmut_6  # type: ignore # mutmut generated
+mutants_x_create_plan__mutmut["x_create_plan__mutmut_7"] = x_create_plan__mutmut_7  # type: ignore # mutmut generated
+mutants_x_create_plan__mutmut["x_create_plan__mutmut_8"] = x_create_plan__mutmut_8  # type: ignore # mutmut generated

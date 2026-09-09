@@ -20,7 +20,8 @@ from fastapi.templating import Jinja2Templates
 log = logging.getLogger("autonomous_coding_agent.dashboard")
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
 
 
 @dataclass
@@ -65,6 +66,8 @@ class SessionProgress:
             "overall_progress": self.overall_progress,
             "metrics": self.metrics,
         }
+
+
 mutants_xǁConnectionManagerǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁConnectionManagerǁconnect__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁConnectionManagerǁdisconnect__mutmut: MutantDict = {}  # type: ignore
@@ -181,21 +184,22 @@ class ConnectionManager:
         for d in dead:
             self.disconnect(None)
 
-mutants_xǁConnectionManagerǁ__init____mutmut['_mutmut_orig'] = ConnectionManager.xǁConnectionManagerǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁConnectionManagerǁ__init____mutmut['xǁConnectionManagerǁ__init____mutmut_1'] = ConnectionManager.xǁConnectionManagerǁ__init____mutmut_1 # type: ignore # mutmut generated
 
-mutants_xǁConnectionManagerǁconnect__mutmut['_mutmut_orig'] = ConnectionManager.xǁConnectionManagerǁconnect__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁConnectionManagerǁconnect__mutmut['xǁConnectionManagerǁconnect__mutmut_1'] = ConnectionManager.xǁConnectionManagerǁconnect__mutmut_1 # type: ignore # mutmut generated
+mutants_xǁConnectionManagerǁ__init____mutmut["_mutmut_orig"] = ConnectionManager.xǁConnectionManagerǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁConnectionManagerǁ__init____mutmut["xǁConnectionManagerǁ__init____mutmut_1"] = ConnectionManager.xǁConnectionManagerǁ__init____mutmut_1  # type: ignore # mutmut generated
 
-mutants_xǁConnectionManagerǁdisconnect__mutmut['_mutmut_orig'] = ConnectionManager.xǁConnectionManagerǁdisconnect__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁConnectionManagerǁdisconnect__mutmut['xǁConnectionManagerǁdisconnect__mutmut_1'] = ConnectionManager.xǁConnectionManagerǁdisconnect__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁConnectionManagerǁdisconnect__mutmut['xǁConnectionManagerǁdisconnect__mutmut_2'] = ConnectionManager.xǁConnectionManagerǁdisconnect__mutmut_2 # type: ignore # mutmut generated
+mutants_xǁConnectionManagerǁconnect__mutmut["_mutmut_orig"] = ConnectionManager.xǁConnectionManagerǁconnect__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁConnectionManagerǁconnect__mutmut["xǁConnectionManagerǁconnect__mutmut_1"] = ConnectionManager.xǁConnectionManagerǁconnect__mutmut_1  # type: ignore # mutmut generated
 
-mutants_xǁConnectionManagerǁbroadcast__mutmut['_mutmut_orig'] = ConnectionManager.xǁConnectionManagerǁbroadcast__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁConnectionManagerǁbroadcast__mutmut['xǁConnectionManagerǁbroadcast__mutmut_1'] = ConnectionManager.xǁConnectionManagerǁbroadcast__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁConnectionManagerǁbroadcast__mutmut['xǁConnectionManagerǁbroadcast__mutmut_2'] = ConnectionManager.xǁConnectionManagerǁbroadcast__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁConnectionManagerǁbroadcast__mutmut['xǁConnectionManagerǁbroadcast__mutmut_3'] = ConnectionManager.xǁConnectionManagerǁbroadcast__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁConnectionManagerǁbroadcast__mutmut['xǁConnectionManagerǁbroadcast__mutmut_4'] = ConnectionManager.xǁConnectionManagerǁbroadcast__mutmut_4 # type: ignore # mutmut generated
+mutants_xǁConnectionManagerǁdisconnect__mutmut["_mutmut_orig"] = ConnectionManager.xǁConnectionManagerǁdisconnect__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁConnectionManagerǁdisconnect__mutmut["xǁConnectionManagerǁdisconnect__mutmut_1"] = ConnectionManager.xǁConnectionManagerǁdisconnect__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁConnectionManagerǁdisconnect__mutmut["xǁConnectionManagerǁdisconnect__mutmut_2"] = ConnectionManager.xǁConnectionManagerǁdisconnect__mutmut_2  # type: ignore # mutmut generated
+
+mutants_xǁConnectionManagerǁbroadcast__mutmut["_mutmut_orig"] = ConnectionManager.xǁConnectionManagerǁbroadcast__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁConnectionManagerǁbroadcast__mutmut["xǁConnectionManagerǁbroadcast__mutmut_1"] = ConnectionManager.xǁConnectionManagerǁbroadcast__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁConnectionManagerǁbroadcast__mutmut["xǁConnectionManagerǁbroadcast__mutmut_2"] = ConnectionManager.xǁConnectionManagerǁbroadcast__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁConnectionManagerǁbroadcast__mutmut["xǁConnectionManagerǁbroadcast__mutmut_3"] = ConnectionManager.xǁConnectionManagerǁbroadcast__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁConnectionManagerǁbroadcast__mutmut["xǁConnectionManagerǁbroadcast__mutmut_4"] = ConnectionManager.xǁConnectionManagerǁbroadcast__mutmut_4  # type: ignore # mutmut generated
 mutants_xǁDashboardServerǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁDashboardServerǁ_create_app__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁDashboardServerǁ_update_overall_progress__mutmut: MutantDict = {}  # type: ignore
@@ -4180,7 +4184,10 @@ class DashboardServer:
         static_dir = Path(__file__).parent / "static"
         static_dir.mkdir(exist_ok=True)
 
-        app.mount("/static", StaticFiles(directory=static_dir), )
+        app.mount(
+            "/static",
+            StaticFiles(directory=static_dir),
+        )
         templates = Jinja2Templates(directory=templates_dir)
 
         @app.get("/", response_class=HTMLResponse)
@@ -5517,9 +5524,7 @@ class DashboardServer:
         """세션 업데이트 브로드캐스트"""
         if session_id in self.sessions:
             s = self.sessions[session_id]
-            await self.manager.broadcast(
-                None
-            )
+            await self.manager.broadcast(None)
 
     async def xǁDashboardServerǁ_broadcast_update__mutmut_4(self, session_id: str):
         """세션 업데이트 브로드캐스트"""
@@ -5832,7 +5837,11 @@ class DashboardServer:
 
     def xǁDashboardServerǁrun__mutmut_8(self):
         """서버 실행"""
-        uvicorn.run(self.app, host=self.host, port=self.port, )
+        uvicorn.run(
+            self.app,
+            host=self.host,
+            port=self.port,
+        )
 
     def xǁDashboardServerǁrun__mutmut_9(self):
         """서버 실행"""
@@ -5842,90 +5851,91 @@ class DashboardServer:
         """서버 실행"""
         uvicorn.run(self.app, host=self.host, port=self.port, log_level="INFO")
 
-mutants_xǁDashboardServerǁ__init____mutmut['_mutmut_orig'] = DashboardServer.xǁDashboardServerǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ__init____mutmut['xǁDashboardServerǁ__init____mutmut_1'] = DashboardServer.xǁDashboardServerǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ__init____mutmut['xǁDashboardServerǁ__init____mutmut_2'] = DashboardServer.xǁDashboardServerǁ__init____mutmut_2 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ__init____mutmut['xǁDashboardServerǁ__init____mutmut_3'] = DashboardServer.xǁDashboardServerǁ__init____mutmut_3 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ__init____mutmut['xǁDashboardServerǁ__init____mutmut_4'] = DashboardServer.xǁDashboardServerǁ__init____mutmut_4 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ__init____mutmut['xǁDashboardServerǁ__init____mutmut_5'] = DashboardServer.xǁDashboardServerǁ__init____mutmut_5 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ__init____mutmut['xǁDashboardServerǁ__init____mutmut_6'] = DashboardServer.xǁDashboardServerǁ__init____mutmut_6 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ__init____mutmut['xǁDashboardServerǁ__init____mutmut_7'] = DashboardServer.xǁDashboardServerǁ__init____mutmut_7 # type: ignore # mutmut generated
 
-mutants_xǁDashboardServerǁ_create_app__mutmut['_mutmut_orig'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_1'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_2'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_3'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_4'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_5'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_6'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_7'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_8'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_9'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_10'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_11'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_12'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_13'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_14'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_15'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_16'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_17'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_18'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_19'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_20'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_21'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_22'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_23'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_24'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_25'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_26'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_27'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_28'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_29'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_30'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_31'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_create_app__mutmut['xǁDashboardServerǁ_create_app__mutmut_32'] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_32 # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ__init____mutmut["_mutmut_orig"] = DashboardServer.xǁDashboardServerǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ__init____mutmut["xǁDashboardServerǁ__init____mutmut_1"] = DashboardServer.xǁDashboardServerǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ__init____mutmut["xǁDashboardServerǁ__init____mutmut_2"] = DashboardServer.xǁDashboardServerǁ__init____mutmut_2  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ__init____mutmut["xǁDashboardServerǁ__init____mutmut_3"] = DashboardServer.xǁDashboardServerǁ__init____mutmut_3  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ__init____mutmut["xǁDashboardServerǁ__init____mutmut_4"] = DashboardServer.xǁDashboardServerǁ__init____mutmut_4  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ__init____mutmut["xǁDashboardServerǁ__init____mutmut_5"] = DashboardServer.xǁDashboardServerǁ__init____mutmut_5  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ__init____mutmut["xǁDashboardServerǁ__init____mutmut_6"] = DashboardServer.xǁDashboardServerǁ__init____mutmut_6  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ__init____mutmut["xǁDashboardServerǁ__init____mutmut_7"] = DashboardServer.xǁDashboardServerǁ__init____mutmut_7  # type: ignore # mutmut generated
 
-mutants_xǁDashboardServerǁ_update_overall_progress__mutmut['_mutmut_orig'] = DashboardServer.xǁDashboardServerǁ_update_overall_progress__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_update_overall_progress__mutmut['xǁDashboardServerǁ_update_overall_progress__mutmut_1'] = DashboardServer.xǁDashboardServerǁ_update_overall_progress__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_update_overall_progress__mutmut['xǁDashboardServerǁ_update_overall_progress__mutmut_2'] = DashboardServer.xǁDashboardServerǁ_update_overall_progress__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_update_overall_progress__mutmut['xǁDashboardServerǁ_update_overall_progress__mutmut_3'] = DashboardServer.xǁDashboardServerǁ_update_overall_progress__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_update_overall_progress__mutmut['xǁDashboardServerǁ_update_overall_progress__mutmut_4'] = DashboardServer.xǁDashboardServerǁ_update_overall_progress__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_update_overall_progress__mutmut['xǁDashboardServerǁ_update_overall_progress__mutmut_5'] = DashboardServer.xǁDashboardServerǁ_update_overall_progress__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_update_overall_progress__mutmut['xǁDashboardServerǁ_update_overall_progress__mutmut_6'] = DashboardServer.xǁDashboardServerǁ_update_overall_progress__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_update_overall_progress__mutmut['xǁDashboardServerǁ_update_overall_progress__mutmut_7'] = DashboardServer.xǁDashboardServerǁ_update_overall_progress__mutmut_7 # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["_mutmut_orig"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_1"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_2"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_3"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_4"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_5"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_6"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_7"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_8"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_9"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_10"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_11"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_12"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_13"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_14"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_15"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_16"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_17"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_18"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_19"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_20"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_21"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_22"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_23"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_24"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_25"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_26"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_27"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_28"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_29"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_30"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_31"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_create_app__mutmut["xǁDashboardServerǁ_create_app__mutmut_32"] = DashboardServer.xǁDashboardServerǁ_create_app__mutmut_32  # type: ignore # mutmut generated
 
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['_mutmut_orig'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_1'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_2'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_3'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_4'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_5'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_6'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_7'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_8'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_9'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_10'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_11'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_12'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_13'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_14'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_15'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_16'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_17'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_18'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁ_broadcast_update__mutmut['xǁDashboardServerǁ_broadcast_update__mutmut_19'] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_19 # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_update_overall_progress__mutmut["_mutmut_orig"] = DashboardServer.xǁDashboardServerǁ_update_overall_progress__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_update_overall_progress__mutmut["xǁDashboardServerǁ_update_overall_progress__mutmut_1"] = DashboardServer.xǁDashboardServerǁ_update_overall_progress__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_update_overall_progress__mutmut["xǁDashboardServerǁ_update_overall_progress__mutmut_2"] = DashboardServer.xǁDashboardServerǁ_update_overall_progress__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_update_overall_progress__mutmut["xǁDashboardServerǁ_update_overall_progress__mutmut_3"] = DashboardServer.xǁDashboardServerǁ_update_overall_progress__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_update_overall_progress__mutmut["xǁDashboardServerǁ_update_overall_progress__mutmut_4"] = DashboardServer.xǁDashboardServerǁ_update_overall_progress__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_update_overall_progress__mutmut["xǁDashboardServerǁ_update_overall_progress__mutmut_5"] = DashboardServer.xǁDashboardServerǁ_update_overall_progress__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_update_overall_progress__mutmut["xǁDashboardServerǁ_update_overall_progress__mutmut_6"] = DashboardServer.xǁDashboardServerǁ_update_overall_progress__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_update_overall_progress__mutmut["xǁDashboardServerǁ_update_overall_progress__mutmut_7"] = DashboardServer.xǁDashboardServerǁ_update_overall_progress__mutmut_7  # type: ignore # mutmut generated
 
-mutants_xǁDashboardServerǁrun__mutmut['_mutmut_orig'] = DashboardServer.xǁDashboardServerǁrun__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁrun__mutmut['xǁDashboardServerǁrun__mutmut_1'] = DashboardServer.xǁDashboardServerǁrun__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁrun__mutmut['xǁDashboardServerǁrun__mutmut_2'] = DashboardServer.xǁDashboardServerǁrun__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁrun__mutmut['xǁDashboardServerǁrun__mutmut_3'] = DashboardServer.xǁDashboardServerǁrun__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁrun__mutmut['xǁDashboardServerǁrun__mutmut_4'] = DashboardServer.xǁDashboardServerǁrun__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁrun__mutmut['xǁDashboardServerǁrun__mutmut_5'] = DashboardServer.xǁDashboardServerǁrun__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁrun__mutmut['xǁDashboardServerǁrun__mutmut_6'] = DashboardServer.xǁDashboardServerǁrun__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁrun__mutmut['xǁDashboardServerǁrun__mutmut_7'] = DashboardServer.xǁDashboardServerǁrun__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁrun__mutmut['xǁDashboardServerǁrun__mutmut_8'] = DashboardServer.xǁDashboardServerǁrun__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁrun__mutmut['xǁDashboardServerǁrun__mutmut_9'] = DashboardServer.xǁDashboardServerǁrun__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁDashboardServerǁrun__mutmut['xǁDashboardServerǁrun__mutmut_10'] = DashboardServer.xǁDashboardServerǁrun__mutmut_10 # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["_mutmut_orig"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_1"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_2"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_3"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_4"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_5"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_6"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_7"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_8"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_9"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_10"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_11"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_12"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_13"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_14"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_15"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_16"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_17"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_18"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁ_broadcast_update__mutmut["xǁDashboardServerǁ_broadcast_update__mutmut_19"] = DashboardServer.xǁDashboardServerǁ_broadcast_update__mutmut_19  # type: ignore # mutmut generated
+
+mutants_xǁDashboardServerǁrun__mutmut["_mutmut_orig"] = DashboardServer.xǁDashboardServerǁrun__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁrun__mutmut["xǁDashboardServerǁrun__mutmut_1"] = DashboardServer.xǁDashboardServerǁrun__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁrun__mutmut["xǁDashboardServerǁrun__mutmut_2"] = DashboardServer.xǁDashboardServerǁrun__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁrun__mutmut["xǁDashboardServerǁrun__mutmut_3"] = DashboardServer.xǁDashboardServerǁrun__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁrun__mutmut["xǁDashboardServerǁrun__mutmut_4"] = DashboardServer.xǁDashboardServerǁrun__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁrun__mutmut["xǁDashboardServerǁrun__mutmut_5"] = DashboardServer.xǁDashboardServerǁrun__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁrun__mutmut["xǁDashboardServerǁrun__mutmut_6"] = DashboardServer.xǁDashboardServerǁrun__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁrun__mutmut["xǁDashboardServerǁrun__mutmut_7"] = DashboardServer.xǁDashboardServerǁrun__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁrun__mutmut["xǁDashboardServerǁrun__mutmut_8"] = DashboardServer.xǁDashboardServerǁrun__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁrun__mutmut["xǁDashboardServerǁrun__mutmut_9"] = DashboardServer.xǁDashboardServerǁrun__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁDashboardServerǁrun__mutmut["xǁDashboardServerǁrun__mutmut_10"] = DashboardServer.xǁDashboardServerǁrun__mutmut_10  # type: ignore # mutmut generated
 
 
 # 글로벌 대시보드 인스턴스
@@ -6010,18 +6020,21 @@ def x_get_dashboard__mutmut_8(host: str = "0.0.0.0", port: int = 8899) -> Dashbo
     """싱글톤 대시보드 인스턴스 반환"""
     global _dashboard
     if _dashboard is None:
-        _dashboard = DashboardServer(host, )
+        _dashboard = DashboardServer(
+            host,
+        )
     return _dashboard
 
-mutants_x_get_dashboard__mutmut['_mutmut_orig'] = x_get_dashboard__mutmut_orig # type: ignore # mutmut generated
-mutants_x_get_dashboard__mutmut['x_get_dashboard__mutmut_1'] = x_get_dashboard__mutmut_1 # type: ignore # mutmut generated
-mutants_x_get_dashboard__mutmut['x_get_dashboard__mutmut_2'] = x_get_dashboard__mutmut_2 # type: ignore # mutmut generated
-mutants_x_get_dashboard__mutmut['x_get_dashboard__mutmut_3'] = x_get_dashboard__mutmut_3 # type: ignore # mutmut generated
-mutants_x_get_dashboard__mutmut['x_get_dashboard__mutmut_4'] = x_get_dashboard__mutmut_4 # type: ignore # mutmut generated
-mutants_x_get_dashboard__mutmut['x_get_dashboard__mutmut_5'] = x_get_dashboard__mutmut_5 # type: ignore # mutmut generated
-mutants_x_get_dashboard__mutmut['x_get_dashboard__mutmut_6'] = x_get_dashboard__mutmut_6 # type: ignore # mutmut generated
-mutants_x_get_dashboard__mutmut['x_get_dashboard__mutmut_7'] = x_get_dashboard__mutmut_7 # type: ignore # mutmut generated
-mutants_x_get_dashboard__mutmut['x_get_dashboard__mutmut_8'] = x_get_dashboard__mutmut_8 # type: ignore # mutmut generated
+
+mutants_x_get_dashboard__mutmut["_mutmut_orig"] = x_get_dashboard__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_get_dashboard__mutmut["x_get_dashboard__mutmut_1"] = x_get_dashboard__mutmut_1  # type: ignore # mutmut generated
+mutants_x_get_dashboard__mutmut["x_get_dashboard__mutmut_2"] = x_get_dashboard__mutmut_2  # type: ignore # mutmut generated
+mutants_x_get_dashboard__mutmut["x_get_dashboard__mutmut_3"] = x_get_dashboard__mutmut_3  # type: ignore # mutmut generated
+mutants_x_get_dashboard__mutmut["x_get_dashboard__mutmut_4"] = x_get_dashboard__mutmut_4  # type: ignore # mutmut generated
+mutants_x_get_dashboard__mutmut["x_get_dashboard__mutmut_5"] = x_get_dashboard__mutmut_5  # type: ignore # mutmut generated
+mutants_x_get_dashboard__mutmut["x_get_dashboard__mutmut_6"] = x_get_dashboard__mutmut_6  # type: ignore # mutmut generated
+mutants_x_get_dashboard__mutmut["x_get_dashboard__mutmut_7"] = x_get_dashboard__mutmut_7  # type: ignore # mutmut generated
+mutants_x_get_dashboard__mutmut["x_get_dashboard__mutmut_8"] = x_get_dashboard__mutmut_8  # type: ignore # mutmut generated
 mutants_x_start_dashboard__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -6110,7 +6123,9 @@ def x_start_dashboard__mutmut_7(host: str = "0.0.0.0", port: int = 8899):
     """대시보드 서버 시작 (백그라운드)"""
     import threading
 
-    dashboard = get_dashboard(host, )
+    dashboard = get_dashboard(
+        host,
+    )
     thread = threading.Thread(target=dashboard.run, daemon=True)
     thread.start()
     return dashboard
@@ -6161,7 +6176,9 @@ def x_start_dashboard__mutmut_12(host: str = "0.0.0.0", port: int = 8899):
     import threading
 
     dashboard = get_dashboard(host, port)
-    thread = threading.Thread(target=dashboard.run, )
+    thread = threading.Thread(
+        target=dashboard.run,
+    )
     thread.start()
     return dashboard
 
@@ -6175,17 +6192,18 @@ def x_start_dashboard__mutmut_13(host: str = "0.0.0.0", port: int = 8899):
     thread.start()
     return dashboard
 
-mutants_x_start_dashboard__mutmut['_mutmut_orig'] = x_start_dashboard__mutmut_orig # type: ignore # mutmut generated
-mutants_x_start_dashboard__mutmut['x_start_dashboard__mutmut_1'] = x_start_dashboard__mutmut_1 # type: ignore # mutmut generated
-mutants_x_start_dashboard__mutmut['x_start_dashboard__mutmut_2'] = x_start_dashboard__mutmut_2 # type: ignore # mutmut generated
-mutants_x_start_dashboard__mutmut['x_start_dashboard__mutmut_3'] = x_start_dashboard__mutmut_3 # type: ignore # mutmut generated
-mutants_x_start_dashboard__mutmut['x_start_dashboard__mutmut_4'] = x_start_dashboard__mutmut_4 # type: ignore # mutmut generated
-mutants_x_start_dashboard__mutmut['x_start_dashboard__mutmut_5'] = x_start_dashboard__mutmut_5 # type: ignore # mutmut generated
-mutants_x_start_dashboard__mutmut['x_start_dashboard__mutmut_6'] = x_start_dashboard__mutmut_6 # type: ignore # mutmut generated
-mutants_x_start_dashboard__mutmut['x_start_dashboard__mutmut_7'] = x_start_dashboard__mutmut_7 # type: ignore # mutmut generated
-mutants_x_start_dashboard__mutmut['x_start_dashboard__mutmut_8'] = x_start_dashboard__mutmut_8 # type: ignore # mutmut generated
-mutants_x_start_dashboard__mutmut['x_start_dashboard__mutmut_9'] = x_start_dashboard__mutmut_9 # type: ignore # mutmut generated
-mutants_x_start_dashboard__mutmut['x_start_dashboard__mutmut_10'] = x_start_dashboard__mutmut_10 # type: ignore # mutmut generated
-mutants_x_start_dashboard__mutmut['x_start_dashboard__mutmut_11'] = x_start_dashboard__mutmut_11 # type: ignore # mutmut generated
-mutants_x_start_dashboard__mutmut['x_start_dashboard__mutmut_12'] = x_start_dashboard__mutmut_12 # type: ignore # mutmut generated
-mutants_x_start_dashboard__mutmut['x_start_dashboard__mutmut_13'] = x_start_dashboard__mutmut_13 # type: ignore # mutmut generated
+
+mutants_x_start_dashboard__mutmut["_mutmut_orig"] = x_start_dashboard__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_start_dashboard__mutmut["x_start_dashboard__mutmut_1"] = x_start_dashboard__mutmut_1  # type: ignore # mutmut generated
+mutants_x_start_dashboard__mutmut["x_start_dashboard__mutmut_2"] = x_start_dashboard__mutmut_2  # type: ignore # mutmut generated
+mutants_x_start_dashboard__mutmut["x_start_dashboard__mutmut_3"] = x_start_dashboard__mutmut_3  # type: ignore # mutmut generated
+mutants_x_start_dashboard__mutmut["x_start_dashboard__mutmut_4"] = x_start_dashboard__mutmut_4  # type: ignore # mutmut generated
+mutants_x_start_dashboard__mutmut["x_start_dashboard__mutmut_5"] = x_start_dashboard__mutmut_5  # type: ignore # mutmut generated
+mutants_x_start_dashboard__mutmut["x_start_dashboard__mutmut_6"] = x_start_dashboard__mutmut_6  # type: ignore # mutmut generated
+mutants_x_start_dashboard__mutmut["x_start_dashboard__mutmut_7"] = x_start_dashboard__mutmut_7  # type: ignore # mutmut generated
+mutants_x_start_dashboard__mutmut["x_start_dashboard__mutmut_8"] = x_start_dashboard__mutmut_8  # type: ignore # mutmut generated
+mutants_x_start_dashboard__mutmut["x_start_dashboard__mutmut_9"] = x_start_dashboard__mutmut_9  # type: ignore # mutmut generated
+mutants_x_start_dashboard__mutmut["x_start_dashboard__mutmut_10"] = x_start_dashboard__mutmut_10  # type: ignore # mutmut generated
+mutants_x_start_dashboard__mutmut["x_start_dashboard__mutmut_11"] = x_start_dashboard__mutmut_11  # type: ignore # mutmut generated
+mutants_x_start_dashboard__mutmut["x_start_dashboard__mutmut_12"] = x_start_dashboard__mutmut_12  # type: ignore # mutmut generated
+mutants_x_start_dashboard__mutmut["x_start_dashboard__mutmut_13"] = x_start_dashboard__mutmut_13  # type: ignore # mutmut generated

@@ -16,7 +16,9 @@ from .models import AgentState, ExploreResult, Plan, PlanStep, StepStatus
 log = logging.getLogger("autonomous_coding_agent.state")
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
+
 mutants_xǁStateManagerǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁStateManagerǁsave_state__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁStateManagerǁload_state__mutmut: MutantDict = {}  # type: ignore
@@ -95,7 +97,9 @@ class StateManager:
     def xǁStateManagerǁ__init____mutmut_10(self, workspace: Path):
         self.workspace = Path(workspace).resolve()
         self.state_dir = self.workspace / ".autonomous_state"
-        self.state_dir.mkdir(parents=True, )
+        self.state_dir.mkdir(
+            parents=True,
+        )
 
     def xǁStateManagerǁ__init____mutmut_11(self, workspace: Path):
         self.workspace = Path(workspace).resolve()
@@ -234,7 +238,10 @@ class StateManager:
         state_file = self.state_dir / f"{state.session_id}.json"
 
         try:
-            with open(state_file, "w", ) as f:
+            with open(
+                state_file,
+                "w",
+            ) as f:
                 json.dump(self._serialize_state(state), f, ensure_ascii=False, indent=2)
             log.debug(f"상태 저장: {state_file}")
         except Exception as e:
@@ -379,7 +386,11 @@ class StateManager:
 
         try:
             with open(state_file, "w", encoding="utf-8") as f:
-                json.dump(self._serialize_state(state), f, ensure_ascii=False, )
+                json.dump(
+                    self._serialize_state(state),
+                    f,
+                    ensure_ascii=False,
+                )
             log.debug(f"상태 저장: {state_file}")
         except Exception as e:
             log.error(f"상태 저장 실패: {e}")
@@ -573,7 +584,9 @@ class StateManager:
             return None
 
         try:
-            with open(state_file, ) as f:
+            with open(
+                state_file,
+            ) as f:
                 data = json.load(f)
             return self._deserialize_state(data)
         except Exception as e:
@@ -865,7 +878,9 @@ class StateManager:
         sessions = []
         for state_file in self.state_dir.glob("*.json"):
             try:
-                with open(state_file, ) as f:
+                with open(
+                    state_file,
+                ) as f:
                     data = json.load(f)
                 sessions.append(
                     {
@@ -972,9 +987,7 @@ class StateManager:
             try:
                 with open(state_file, encoding="utf-8") as f:
                     data = json.load(f)
-                sessions.append(
-                    None
-                )
+                sessions.append(None)
             except Exception:
                 pass
         return sorted(sessions, key=lambda x: x.get("updated_at", ""), reverse=True)
@@ -1305,7 +1318,9 @@ class StateManager:
                     {
                         "session_id": data.get("session_id"),
                         "goal": data.get("goal"),
-                        "iteration": data.get("iteration", ),
+                        "iteration": data.get(
+                            "iteration",
+                        ),
                         "started_at": data.get("started_at"),
                         "updated_at": data.get("updated_at"),
                         "current_step": data.get("current_step_id"),
@@ -1817,7 +1832,10 @@ class StateManager:
                 )
             except Exception:
                 pass
-        return sorted(sessions, key=lambda x: x.get("updated_at", ""), )
+        return sorted(
+            sessions,
+            key=lambda x: x.get("updated_at", ""),
+        )
 
     def xǁStateManagerǁlist_sessions__mutmut_54(self) -> list[dict[str, Any]]:
         """세션 목록"""
@@ -1922,7 +1940,13 @@ class StateManager:
                 )
             except Exception:
                 pass
-        return sorted(sessions, key=lambda x: x.get("updated_at", ), reverse=True)
+        return sorted(
+            sessions,
+            key=lambda x: x.get(
+                "updated_at",
+            ),
+            reverse=True,
+        )
 
     def xǁStateManagerǁlist_sessions__mutmut_59(self) -> list[dict[str, Any]]:
         """세션 목록"""
@@ -2081,7 +2105,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_orig(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_orig(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2104,7 +2130,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_1(self, state: AgentState, label: str = "XXXX") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_1(
+        self, state: AgentState, label: str = "XXXX"
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2306,7 +2334,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_10(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_10(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2329,7 +2359,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_11(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_11(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2352,7 +2384,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_12(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_12(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2375,7 +2409,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_13(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_13(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2398,7 +2434,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_14(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_14(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2421,7 +2459,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_15(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_15(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2444,7 +2484,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_16(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_16(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2467,7 +2509,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_17(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_17(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2490,7 +2534,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_18(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_18(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2513,7 +2559,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_19(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_19(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2536,7 +2584,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_20(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_20(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2559,7 +2609,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_21(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_21(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2582,7 +2634,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_22(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_22(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2597,7 +2651,10 @@ class StateManager:
                 "created_at": datetime.now().isoformat(),
                 "state": self._serialize_state(state),
             }
-            with open(checkpoint_file, "w", ) as f:
+            with open(
+                checkpoint_file,
+                "w",
+            ) as f:
                 json.dump(checkpoint_data, f, ensure_ascii=False, indent=2)
             log.info(f"체크포인트 생성: {checkpoint_id}")
             return checkpoint_id
@@ -2605,7 +2662,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_23(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_23(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2628,7 +2687,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_24(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_24(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2651,7 +2712,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_25(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_25(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2674,7 +2737,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_26(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_26(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2697,7 +2762,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_27(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_27(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2720,7 +2787,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_28(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_28(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2743,7 +2812,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_29(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_29(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2766,7 +2837,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_30(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_30(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2789,7 +2862,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_31(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_31(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2812,7 +2887,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_32(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_32(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2835,7 +2912,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_33(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_33(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2858,7 +2937,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_34(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_34(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2874,14 +2955,20 @@ class StateManager:
                 "state": self._serialize_state(state),
             }
             with open(checkpoint_file, "w", encoding="utf-8") as f:
-                json.dump(checkpoint_data, f, ensure_ascii=False, )
+                json.dump(
+                    checkpoint_data,
+                    f,
+                    ensure_ascii=False,
+                )
             log.info(f"체크포인트 생성: {checkpoint_id}")
             return checkpoint_id
         except Exception as e:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_35(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_35(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2904,7 +2991,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_36(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_36(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2927,7 +3016,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_37(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_37(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2950,7 +3041,9 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_38(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_38(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -2973,7 +3066,9 @@ class StateManager:
             log.error(None)
             return ""
 
-    def xǁStateManagerǁcreate_checkpoint__mutmut_39(self, state: AgentState, label: str = "") -> str:
+    def xǁStateManagerǁcreate_checkpoint__mutmut_39(
+        self, state: AgentState, label: str = ""
+    ) -> str:
         """체크포인트 생성 (롤백용)"""
         checkpoint_id = f"checkpoint_{uuid.uuid4().hex[:8]}"
         if label:
@@ -3022,7 +3117,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_orig(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_orig(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3047,7 +3144,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_1(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_1(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = None
 
@@ -3072,7 +3171,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_2(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_2(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir * f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3097,7 +3198,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_3(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_3(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3122,7 +3225,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_4(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_4(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3147,7 +3252,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_5(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_5(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3172,7 +3279,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_6(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_6(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3197,7 +3306,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_7(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_7(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3222,7 +3333,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_8(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_8(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3247,7 +3360,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_9(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_9(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3256,7 +3371,9 @@ class StateManager:
             return False
 
         try:
-            with open(checkpoint_file, ) as f:
+            with open(
+                checkpoint_file,
+            ) as f:
                 data = json.load(f)
 
             restored = self._deserialize_state(data["state"])
@@ -3272,7 +3389,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_10(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_10(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3297,7 +3416,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_11(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_11(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3322,7 +3443,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_12(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_12(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3347,7 +3470,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_13(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_13(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3372,7 +3497,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_14(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_14(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3397,7 +3524,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_15(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_15(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3422,7 +3551,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_16(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_16(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3447,7 +3578,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_17(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_17(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3472,7 +3605,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_18(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_18(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3497,7 +3632,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_19(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_19(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3522,7 +3659,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_20(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_20(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3547,7 +3686,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_21(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_21(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3572,7 +3713,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_22(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_22(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3597,7 +3740,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_23(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_23(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3622,7 +3767,9 @@ class StateManager:
             log.error(f"롤백 실패: {e}")
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_24(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_24(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3647,7 +3794,9 @@ class StateManager:
             log.error(None)
             return False
 
-    def xǁStateManagerǁrollback_to_checkpoint__mutmut_25(self, state: AgentState, checkpoint_id: str) -> bool:
+    def xǁStateManagerǁrollback_to_checkpoint__mutmut_25(
+        self, state: AgentState, checkpoint_id: str
+    ) -> bool:
         """체크포인트로 롤백"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
@@ -3804,7 +3953,9 @@ class StateManager:
         checkpoints = []
         for cp_file in self.state_dir.glob(f"{session_id}_checkpoint_*.json"):
             try:
-                with open(cp_file, ) as f:
+                with open(
+                    cp_file,
+                ) as f:
                     data = json.load(f)
                 checkpoints.append(
                     {
@@ -3896,9 +4047,7 @@ class StateManager:
             try:
                 with open(cp_file, encoding="utf-8") as f:
                     data = json.load(f)
-                checkpoints.append(
-                    None
-                )
+                checkpoints.append(None)
             except Exception:
                 pass
         return sorted(checkpoints, key=lambda x: x.get("created_at", ""), reverse=True)
@@ -4093,7 +4242,9 @@ class StateManager:
                 checkpoints.append(
                     {
                         "checkpoint_id": data.get("checkpoint_id"),
-                        "label": data.get("label", ),
+                        "label": data.get(
+                            "label",
+                        ),
                         "created_at": data.get("created_at"),
                     }
                 )
@@ -4351,7 +4502,10 @@ class StateManager:
                 )
             except Exception:
                 pass
-        return sorted(checkpoints, key=lambda x: x.get("created_at", ""), )
+        return sorted(
+            checkpoints,
+            key=lambda x: x.get("created_at", ""),
+        )
 
     def xǁStateManagerǁlist_checkpoints__mutmut_37(self, session_id: str) -> list[dict[str, Any]]:
         """체크포인트 목록"""
@@ -4441,7 +4595,13 @@ class StateManager:
                 )
             except Exception:
                 pass
-        return sorted(checkpoints, key=lambda x: x.get("created_at", ), reverse=True)
+        return sorted(
+            checkpoints,
+            key=lambda x: x.get(
+                "created_at",
+            ),
+            reverse=True,
+        )
 
     def xǁStateManagerǁlist_checkpoints__mutmut_42(self, session_id: str) -> list[dict[str, Any]]:
         """체크포인트 목록"""
@@ -4960,9 +5120,7 @@ class StateManager:
             "started_at": state.started_at.isoformat() if state.started_at else None,
             "updated_at": state.updated_at.isoformat() if state.updated_at else None,
             "plan": self._serialize_plan(state.plan) if state.plan else None,
-            "explore_result": (
-                self._serialize_explore(None) if state.explore_result else None
-            ),
+            "explore_result": (self._serialize_explore(None) if state.explore_result else None),
             "checkpoints": state.checkpoints,
         }
 
@@ -6158,7 +6316,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_orig(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_orig(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -6498,7 +6658,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_10(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_10(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -6532,7 +6694,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_11(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_11(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -6566,7 +6730,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_12(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_12(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -6600,7 +6766,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_13(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_13(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -6634,7 +6802,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_14(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_14(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -6668,7 +6838,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_15(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_15(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -6702,7 +6874,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_16(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_16(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -6736,7 +6910,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_17(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_17(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -6770,7 +6946,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_18(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_18(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -6804,7 +6982,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_19(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_19(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -6838,7 +7018,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_20(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_20(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -6872,7 +7054,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_21(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_21(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -6906,7 +7090,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_22(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_22(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -6940,7 +7126,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_23(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_23(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -6974,7 +7162,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_24(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_24(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7008,7 +7198,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_25(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_25(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7042,7 +7234,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_26(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_26(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7076,7 +7270,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_27(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_27(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7110,7 +7306,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_28(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_28(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7144,7 +7342,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_29(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_29(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7178,7 +7378,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_30(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_30(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7212,7 +7414,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_31(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_31(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7246,7 +7450,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_32(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_32(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7280,7 +7486,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_33(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_33(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7314,7 +7522,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_34(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_34(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7348,7 +7558,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_35(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_35(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7382,7 +7594,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_36(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_36(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7416,7 +7630,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_37(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_37(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7450,7 +7666,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_38(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_38(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7484,7 +7702,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_39(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_39(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7518,7 +7738,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_40(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_40(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7552,7 +7774,9 @@ class StateManager:
             "test_files": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_41(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_41(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7586,7 +7810,9 @@ class StateManager:
             "XXtest_filesXX": explore.test_files,
         }
 
-    def xǁStateManagerǁ_serialize_explore__mutmut_42(self, explore: ExploreResult) -> dict[str, Any]:
+    def xǁStateManagerǁ_serialize_explore__mutmut_42(
+        self, explore: ExploreResult
+    ) -> dict[str, Any]:
         """탐색 결과 직렬화"""
         return {
             "symbols": [
@@ -7967,7 +8193,7 @@ class StateManager:
             goal=data["goal"],
             iteration=data.get("iteration", 0),
             max_iterations=data.get("max_iterations", 5),
-            )
+        )
 
         if data.get("started_at"):
             state.started_at = datetime.fromisoformat(data["started_at"])
@@ -8189,7 +8415,7 @@ class StateManager:
             session_id=data["session_id"],
             workspace=Path(data["workspace"]),
             goal=data["goal"],
-            iteration=data.get("iteration", None),
+            iteration=data.get("iteration"),
             max_iterations=data.get("max_iterations", 5),
             current_step_id=data.get("current_step_id"),
         )
@@ -8239,7 +8465,9 @@ class StateManager:
             session_id=data["session_id"],
             workspace=Path(data["workspace"]),
             goal=data["goal"],
-            iteration=data.get("iteration", ),
+            iteration=data.get(
+                "iteration",
+            ),
             max_iterations=data.get("max_iterations", 5),
             current_step_id=data.get("current_step_id"),
         )
@@ -8365,7 +8593,7 @@ class StateManager:
             workspace=Path(data["workspace"]),
             goal=data["goal"],
             iteration=data.get("iteration", 0),
-            max_iterations=data.get("max_iterations", None),
+            max_iterations=data.get("max_iterations"),
             current_step_id=data.get("current_step_id"),
         )
 
@@ -8415,7 +8643,9 @@ class StateManager:
             workspace=Path(data["workspace"]),
             goal=data["goal"],
             iteration=data.get("iteration", 0),
-            max_iterations=data.get("max_iterations", ),
+            max_iterations=data.get(
+                "max_iterations",
+            ),
             current_step_id=data.get("current_step_id"),
         )
 
@@ -9354,7 +9584,7 @@ class StateManager:
         if data.get("explore_result"):
             state.explore_result = self._deserialize_explore(data["explore_result"])
 
-        state.checkpoints = data.get("checkpoints", None)
+        state.checkpoints = data.get("checkpoints")
 
         return state
 
@@ -9404,7 +9634,9 @@ class StateManager:
         if data.get("explore_result"):
             state.explore_result = self._deserialize_explore(data["explore_result"])
 
-        state.checkpoints = data.get("checkpoints", )
+        state.checkpoints = data.get(
+            "checkpoints",
+        )
 
         return state
 
@@ -10713,7 +10945,7 @@ class StateManager:
                 max_retries=s_data["max_retries"],
                 retry_count=s_data["retry_count"],
                 error=s_data["error"],
-                )
+            )
             if s_data.get("started_at"):
                 step.started_at = datetime.fromisoformat(s_data["started_at"])
             if s_data.get("completed_at"):
@@ -12033,7 +12265,9 @@ class StateManager:
 
         return explore
 
-    def xǁStateManagerǁ_deserialize_explore__mutmut_orig(self, data: dict[str, Any]) -> ExploreResult:
+    def xǁStateManagerǁ_deserialize_explore__mutmut_orig(
+        self, data: dict[str, Any]
+    ) -> ExploreResult:
         """탐색 결과 역직렬화"""
         from .models import CodeSymbol, FileInfo
 
@@ -12099,7 +12333,7 @@ class StateManager:
 
         explore = ExploreResult()
 
-        for s_data in data.get("symbols", None):
+        for s_data in data.get("symbols"):
             explore.symbols.append(CodeSymbol(**s_data))
 
         for f_data in data.get("files", []):
@@ -12139,7 +12373,9 @@ class StateManager:
 
         explore = ExploreResult()
 
-        for s_data in data.get("symbols", ):
+        for s_data in data.get(
+            "symbols",
+        ):
             explore.symbols.append(CodeSymbol(**s_data))
 
         for f_data in data.get("files", []):
@@ -12242,7 +12478,7 @@ class StateManager:
         for s_data in data.get("symbols", []):
             explore.symbols.append(CodeSymbol(**s_data))
 
-        for f_data in data.get("files", None):
+        for f_data in data.get("files"):
             explore.files.append(FileInfo(**f_data))
 
         explore.import_graph = data.get("import_graph", {})
@@ -12282,7 +12518,9 @@ class StateManager:
         for s_data in data.get("symbols", []):
             explore.symbols.append(CodeSymbol(**s_data))
 
-        for f_data in data.get("files", ):
+        for f_data in data.get(
+            "files",
+        ):
             explore.files.append(FileInfo(**f_data))
 
         explore.import_graph = data.get("import_graph", {})
@@ -12405,7 +12643,7 @@ class StateManager:
         for f_data in data.get("files", []):
             explore.files.append(FileInfo(**f_data))
 
-        explore.import_graph = data.get("import_graph", None)
+        explore.import_graph = data.get("import_graph")
         explore.call_graph = data.get("call_graph", {})
         explore.entry_points = data.get("entry_points", [])
         explore.config_files = data.get("config_files", [])
@@ -12445,7 +12683,9 @@ class StateManager:
         for f_data in data.get("files", []):
             explore.files.append(FileInfo(**f_data))
 
-        explore.import_graph = data.get("import_graph", )
+        explore.import_graph = data.get(
+            "import_graph",
+        )
         explore.call_graph = data.get("call_graph", {})
         explore.entry_points = data.get("entry_points", [])
         explore.config_files = data.get("config_files", [])
@@ -12546,7 +12786,7 @@ class StateManager:
             explore.files.append(FileInfo(**f_data))
 
         explore.import_graph = data.get("import_graph", {})
-        explore.call_graph = data.get("call_graph", None)
+        explore.call_graph = data.get("call_graph")
         explore.entry_points = data.get("entry_points", [])
         explore.config_files = data.get("config_files", [])
         explore.test_files = data.get("test_files", [])
@@ -12586,7 +12826,9 @@ class StateManager:
             explore.files.append(FileInfo(**f_data))
 
         explore.import_graph = data.get("import_graph", {})
-        explore.call_graph = data.get("call_graph", )
+        explore.call_graph = data.get(
+            "call_graph",
+        )
         explore.entry_points = data.get("entry_points", [])
         explore.config_files = data.get("config_files", [])
         explore.test_files = data.get("test_files", [])
@@ -12687,7 +12929,7 @@ class StateManager:
 
         explore.import_graph = data.get("import_graph", {})
         explore.call_graph = data.get("call_graph", {})
-        explore.entry_points = data.get("entry_points", None)
+        explore.entry_points = data.get("entry_points")
         explore.config_files = data.get("config_files", [])
         explore.test_files = data.get("test_files", [])
 
@@ -12727,7 +12969,9 @@ class StateManager:
 
         explore.import_graph = data.get("import_graph", {})
         explore.call_graph = data.get("call_graph", {})
-        explore.entry_points = data.get("entry_points", )
+        explore.entry_points = data.get(
+            "entry_points",
+        )
         explore.config_files = data.get("config_files", [])
         explore.test_files = data.get("test_files", [])
 
@@ -12828,7 +13072,7 @@ class StateManager:
         explore.import_graph = data.get("import_graph", {})
         explore.call_graph = data.get("call_graph", {})
         explore.entry_points = data.get("entry_points", [])
-        explore.config_files = data.get("config_files", None)
+        explore.config_files = data.get("config_files")
         explore.test_files = data.get("test_files", [])
 
         return explore
@@ -12868,7 +13112,9 @@ class StateManager:
         explore.import_graph = data.get("import_graph", {})
         explore.call_graph = data.get("call_graph", {})
         explore.entry_points = data.get("entry_points", [])
-        explore.config_files = data.get("config_files", )
+        explore.config_files = data.get(
+            "config_files",
+        )
         explore.test_files = data.get("test_files", [])
 
         return explore
@@ -12969,7 +13215,7 @@ class StateManager:
         explore.call_graph = data.get("call_graph", {})
         explore.entry_points = data.get("entry_points", [])
         explore.config_files = data.get("config_files", [])
-        explore.test_files = data.get("test_files", None)
+        explore.test_files = data.get("test_files")
 
         return explore
 
@@ -13009,7 +13255,9 @@ class StateManager:
         explore.call_graph = data.get("call_graph", {})
         explore.entry_points = data.get("entry_points", [])
         explore.config_files = data.get("config_files", [])
-        explore.test_files = data.get("test_files", )
+        explore.test_files = data.get(
+            "test_files",
+        )
 
         return explore
 
@@ -13053,570 +13301,571 @@ class StateManager:
 
         return explore
 
-mutants_xǁStateManagerǁ__init____mutmut['_mutmut_orig'] = StateManager.xǁStateManagerǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ__init____mutmut['xǁStateManagerǁ__init____mutmut_1'] = StateManager.xǁStateManagerǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ__init____mutmut['xǁStateManagerǁ__init____mutmut_2'] = StateManager.xǁStateManagerǁ__init____mutmut_2 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ__init____mutmut['xǁStateManagerǁ__init____mutmut_3'] = StateManager.xǁStateManagerǁ__init____mutmut_3 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ__init____mutmut['xǁStateManagerǁ__init____mutmut_4'] = StateManager.xǁStateManagerǁ__init____mutmut_4 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ__init____mutmut['xǁStateManagerǁ__init____mutmut_5'] = StateManager.xǁStateManagerǁ__init____mutmut_5 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ__init____mutmut['xǁStateManagerǁ__init____mutmut_6'] = StateManager.xǁStateManagerǁ__init____mutmut_6 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ__init____mutmut['xǁStateManagerǁ__init____mutmut_7'] = StateManager.xǁStateManagerǁ__init____mutmut_7 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ__init____mutmut['xǁStateManagerǁ__init____mutmut_8'] = StateManager.xǁStateManagerǁ__init____mutmut_8 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ__init____mutmut['xǁStateManagerǁ__init____mutmut_9'] = StateManager.xǁStateManagerǁ__init____mutmut_9 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ__init____mutmut['xǁStateManagerǁ__init____mutmut_10'] = StateManager.xǁStateManagerǁ__init____mutmut_10 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ__init____mutmut['xǁStateManagerǁ__init____mutmut_11'] = StateManager.xǁStateManagerǁ__init____mutmut_11 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ__init____mutmut['xǁStateManagerǁ__init____mutmut_12'] = StateManager.xǁStateManagerǁ__init____mutmut_12 # type: ignore # mutmut generated
 
-mutants_xǁStateManagerǁsave_state__mutmut['_mutmut_orig'] = StateManager.xǁStateManagerǁsave_state__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_1'] = StateManager.xǁStateManagerǁsave_state__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_2'] = StateManager.xǁStateManagerǁsave_state__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_3'] = StateManager.xǁStateManagerǁsave_state__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_4'] = StateManager.xǁStateManagerǁsave_state__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_5'] = StateManager.xǁStateManagerǁsave_state__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_6'] = StateManager.xǁStateManagerǁsave_state__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_7'] = StateManager.xǁStateManagerǁsave_state__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_8'] = StateManager.xǁStateManagerǁsave_state__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_9'] = StateManager.xǁStateManagerǁsave_state__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_10'] = StateManager.xǁStateManagerǁsave_state__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_11'] = StateManager.xǁStateManagerǁsave_state__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_12'] = StateManager.xǁStateManagerǁsave_state__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_13'] = StateManager.xǁStateManagerǁsave_state__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_14'] = StateManager.xǁStateManagerǁsave_state__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_15'] = StateManager.xǁStateManagerǁsave_state__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_16'] = StateManager.xǁStateManagerǁsave_state__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_17'] = StateManager.xǁStateManagerǁsave_state__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_18'] = StateManager.xǁStateManagerǁsave_state__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_19'] = StateManager.xǁStateManagerǁsave_state__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_20'] = StateManager.xǁStateManagerǁsave_state__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_21'] = StateManager.xǁStateManagerǁsave_state__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_22'] = StateManager.xǁStateManagerǁsave_state__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_23'] = StateManager.xǁStateManagerǁsave_state__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_24'] = StateManager.xǁStateManagerǁsave_state__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_25'] = StateManager.xǁStateManagerǁsave_state__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁsave_state__mutmut['xǁStateManagerǁsave_state__mutmut_26'] = StateManager.xǁStateManagerǁsave_state__mutmut_26 # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ__init____mutmut["_mutmut_orig"] = StateManager.xǁStateManagerǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ__init____mutmut["xǁStateManagerǁ__init____mutmut_1"] = StateManager.xǁStateManagerǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ__init____mutmut["xǁStateManagerǁ__init____mutmut_2"] = StateManager.xǁStateManagerǁ__init____mutmut_2  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ__init____mutmut["xǁStateManagerǁ__init____mutmut_3"] = StateManager.xǁStateManagerǁ__init____mutmut_3  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ__init____mutmut["xǁStateManagerǁ__init____mutmut_4"] = StateManager.xǁStateManagerǁ__init____mutmut_4  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ__init____mutmut["xǁStateManagerǁ__init____mutmut_5"] = StateManager.xǁStateManagerǁ__init____mutmut_5  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ__init____mutmut["xǁStateManagerǁ__init____mutmut_6"] = StateManager.xǁStateManagerǁ__init____mutmut_6  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ__init____mutmut["xǁStateManagerǁ__init____mutmut_7"] = StateManager.xǁStateManagerǁ__init____mutmut_7  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ__init____mutmut["xǁStateManagerǁ__init____mutmut_8"] = StateManager.xǁStateManagerǁ__init____mutmut_8  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ__init____mutmut["xǁStateManagerǁ__init____mutmut_9"] = StateManager.xǁStateManagerǁ__init____mutmut_9  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ__init____mutmut["xǁStateManagerǁ__init____mutmut_10"] = StateManager.xǁStateManagerǁ__init____mutmut_10  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ__init____mutmut["xǁStateManagerǁ__init____mutmut_11"] = StateManager.xǁStateManagerǁ__init____mutmut_11  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ__init____mutmut["xǁStateManagerǁ__init____mutmut_12"] = StateManager.xǁStateManagerǁ__init____mutmut_12  # type: ignore # mutmut generated
 
-mutants_xǁStateManagerǁload_state__mutmut['_mutmut_orig'] = StateManager.xǁStateManagerǁload_state__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁStateManagerǁload_state__mutmut['xǁStateManagerǁload_state__mutmut_1'] = StateManager.xǁStateManagerǁload_state__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁload_state__mutmut['xǁStateManagerǁload_state__mutmut_2'] = StateManager.xǁStateManagerǁload_state__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁload_state__mutmut['xǁStateManagerǁload_state__mutmut_3'] = StateManager.xǁStateManagerǁload_state__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁload_state__mutmut['xǁStateManagerǁload_state__mutmut_4'] = StateManager.xǁStateManagerǁload_state__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁload_state__mutmut['xǁStateManagerǁload_state__mutmut_5'] = StateManager.xǁStateManagerǁload_state__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁload_state__mutmut['xǁStateManagerǁload_state__mutmut_6'] = StateManager.xǁStateManagerǁload_state__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁload_state__mutmut['xǁStateManagerǁload_state__mutmut_7'] = StateManager.xǁStateManagerǁload_state__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁload_state__mutmut['xǁStateManagerǁload_state__mutmut_8'] = StateManager.xǁStateManagerǁload_state__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁload_state__mutmut['xǁStateManagerǁload_state__mutmut_9'] = StateManager.xǁStateManagerǁload_state__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁload_state__mutmut['xǁStateManagerǁload_state__mutmut_10'] = StateManager.xǁStateManagerǁload_state__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁload_state__mutmut['xǁStateManagerǁload_state__mutmut_11'] = StateManager.xǁStateManagerǁload_state__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁload_state__mutmut['xǁStateManagerǁload_state__mutmut_12'] = StateManager.xǁStateManagerǁload_state__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁload_state__mutmut['xǁStateManagerǁload_state__mutmut_13'] = StateManager.xǁStateManagerǁload_state__mutmut_13 # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["_mutmut_orig"] = StateManager.xǁStateManagerǁsave_state__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_1"] = StateManager.xǁStateManagerǁsave_state__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_2"] = StateManager.xǁStateManagerǁsave_state__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_3"] = StateManager.xǁStateManagerǁsave_state__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_4"] = StateManager.xǁStateManagerǁsave_state__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_5"] = StateManager.xǁStateManagerǁsave_state__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_6"] = StateManager.xǁStateManagerǁsave_state__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_7"] = StateManager.xǁStateManagerǁsave_state__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_8"] = StateManager.xǁStateManagerǁsave_state__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_9"] = StateManager.xǁStateManagerǁsave_state__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_10"] = StateManager.xǁStateManagerǁsave_state__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_11"] = StateManager.xǁStateManagerǁsave_state__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_12"] = StateManager.xǁStateManagerǁsave_state__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_13"] = StateManager.xǁStateManagerǁsave_state__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_14"] = StateManager.xǁStateManagerǁsave_state__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_15"] = StateManager.xǁStateManagerǁsave_state__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_16"] = StateManager.xǁStateManagerǁsave_state__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_17"] = StateManager.xǁStateManagerǁsave_state__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_18"] = StateManager.xǁStateManagerǁsave_state__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_19"] = StateManager.xǁStateManagerǁsave_state__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_20"] = StateManager.xǁStateManagerǁsave_state__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_21"] = StateManager.xǁStateManagerǁsave_state__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_22"] = StateManager.xǁStateManagerǁsave_state__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_23"] = StateManager.xǁStateManagerǁsave_state__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_24"] = StateManager.xǁStateManagerǁsave_state__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_25"] = StateManager.xǁStateManagerǁsave_state__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁsave_state__mutmut["xǁStateManagerǁsave_state__mutmut_26"] = StateManager.xǁStateManagerǁsave_state__mutmut_26  # type: ignore # mutmut generated
 
-mutants_xǁStateManagerǁlist_sessions__mutmut['_mutmut_orig'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_1'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_2'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_3'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_4'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_5'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_6'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_7'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_8'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_9'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_10'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_11'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_12'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_13'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_14'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_15'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_16'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_17'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_18'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_19'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_20'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_21'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_22'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_23'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_24'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_25'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_26'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_27'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_28'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_29'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_30'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_31'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_32'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_33'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_34'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_35'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_36'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_37'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_38'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_39'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_40'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_41'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_42'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_43'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_44'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_45'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_46'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_47'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_48'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_49'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_50'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_51'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_52'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_53'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_54'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_55'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_56'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_57'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_58'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_59'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_60'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_61'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_sessions__mutmut['xǁStateManagerǁlist_sessions__mutmut_62'] = StateManager.xǁStateManagerǁlist_sessions__mutmut_62 # type: ignore # mutmut generated
+mutants_xǁStateManagerǁload_state__mutmut["_mutmut_orig"] = StateManager.xǁStateManagerǁload_state__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁload_state__mutmut["xǁStateManagerǁload_state__mutmut_1"] = StateManager.xǁStateManagerǁload_state__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁload_state__mutmut["xǁStateManagerǁload_state__mutmut_2"] = StateManager.xǁStateManagerǁload_state__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁload_state__mutmut["xǁStateManagerǁload_state__mutmut_3"] = StateManager.xǁStateManagerǁload_state__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁload_state__mutmut["xǁStateManagerǁload_state__mutmut_4"] = StateManager.xǁStateManagerǁload_state__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁload_state__mutmut["xǁStateManagerǁload_state__mutmut_5"] = StateManager.xǁStateManagerǁload_state__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁload_state__mutmut["xǁStateManagerǁload_state__mutmut_6"] = StateManager.xǁStateManagerǁload_state__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁload_state__mutmut["xǁStateManagerǁload_state__mutmut_7"] = StateManager.xǁStateManagerǁload_state__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁload_state__mutmut["xǁStateManagerǁload_state__mutmut_8"] = StateManager.xǁStateManagerǁload_state__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁload_state__mutmut["xǁStateManagerǁload_state__mutmut_9"] = StateManager.xǁStateManagerǁload_state__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁload_state__mutmut["xǁStateManagerǁload_state__mutmut_10"] = StateManager.xǁStateManagerǁload_state__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁload_state__mutmut["xǁStateManagerǁload_state__mutmut_11"] = StateManager.xǁStateManagerǁload_state__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁload_state__mutmut["xǁStateManagerǁload_state__mutmut_12"] = StateManager.xǁStateManagerǁload_state__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁload_state__mutmut["xǁStateManagerǁload_state__mutmut_13"] = StateManager.xǁStateManagerǁload_state__mutmut_13  # type: ignore # mutmut generated
 
-mutants_xǁStateManagerǁdelete_session__mutmut['_mutmut_orig'] = StateManager.xǁStateManagerǁdelete_session__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁStateManagerǁdelete_session__mutmut['xǁStateManagerǁdelete_session__mutmut_1'] = StateManager.xǁStateManagerǁdelete_session__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁdelete_session__mutmut['xǁStateManagerǁdelete_session__mutmut_2'] = StateManager.xǁStateManagerǁdelete_session__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁdelete_session__mutmut['xǁStateManagerǁdelete_session__mutmut_3'] = StateManager.xǁStateManagerǁdelete_session__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁdelete_session__mutmut['xǁStateManagerǁdelete_session__mutmut_4'] = StateManager.xǁStateManagerǁdelete_session__mutmut_4 # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["_mutmut_orig"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_1"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_2"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_3"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_4"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_5"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_6"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_7"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_8"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_9"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_10"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_11"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_12"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_13"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_14"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_15"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_16"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_17"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_18"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_19"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_20"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_21"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_22"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_23"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_24"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_25"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_26"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_27"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_28"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_29"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_30"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_31"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_32"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_33"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_34"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_35"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_36"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_37"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_38"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_39"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_40"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_41"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_42"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_43"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_44"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_45"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_46"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_47"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_48"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_49"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_50"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_51"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_52"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_53"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_54"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_55"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_56"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_57"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_58"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_59"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_60"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_61"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_sessions__mutmut["xǁStateManagerǁlist_sessions__mutmut_62"] = StateManager.xǁStateManagerǁlist_sessions__mutmut_62  # type: ignore # mutmut generated
 
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['_mutmut_orig'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_1'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_2'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_3'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_4'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_5'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_6'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_7'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_8'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_9'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_10'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_11'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_12'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_13'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_14'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_15'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_16'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_17'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_18'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_19'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_20'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_21'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_22'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_23'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_24'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_25'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_26'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_27'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_28'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_29'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_30'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_31'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_32'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_33'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_34'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_35'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_36'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_37'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_38'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁcreate_checkpoint__mutmut['xǁStateManagerǁcreate_checkpoint__mutmut_39'] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_39 # type: ignore # mutmut generated
+mutants_xǁStateManagerǁdelete_session__mutmut["_mutmut_orig"] = StateManager.xǁStateManagerǁdelete_session__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁdelete_session__mutmut["xǁStateManagerǁdelete_session__mutmut_1"] = StateManager.xǁStateManagerǁdelete_session__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁdelete_session__mutmut["xǁStateManagerǁdelete_session__mutmut_2"] = StateManager.xǁStateManagerǁdelete_session__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁdelete_session__mutmut["xǁStateManagerǁdelete_session__mutmut_3"] = StateManager.xǁStateManagerǁdelete_session__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁdelete_session__mutmut["xǁStateManagerǁdelete_session__mutmut_4"] = StateManager.xǁStateManagerǁdelete_session__mutmut_4  # type: ignore # mutmut generated
 
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['_mutmut_orig'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_1'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_2'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_3'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_4'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_5'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_6'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_7'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_8'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_9'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_10'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_11'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_12'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_13'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_14'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_15'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_16'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_17'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_18'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_19'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_20'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_21'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_22'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_23'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_24'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut['xǁStateManagerǁrollback_to_checkpoint__mutmut_25'] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_25 # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["_mutmut_orig"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_1"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_2"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_3"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_4"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_5"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_6"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_7"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_8"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_9"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_10"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_11"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_12"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_13"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_14"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_15"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_16"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_17"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_18"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_19"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_20"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_21"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_22"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_23"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_24"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_25"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_26"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_27"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_28"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_29"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_30"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_31"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_32"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_33"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_34"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_35"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_36"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_37"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_38"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁcreate_checkpoint__mutmut["xǁStateManagerǁcreate_checkpoint__mutmut_39"] = StateManager.xǁStateManagerǁcreate_checkpoint__mutmut_39  # type: ignore # mutmut generated
 
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['_mutmut_orig'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_1'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_2'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_3'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_4'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_5'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_6'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_7'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_8'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_9'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_10'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_11'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_12'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_13'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_14'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_15'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_16'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_17'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_18'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_19'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_20'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_21'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_22'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_23'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_24'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_25'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_26'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_27'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_28'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_29'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_30'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_31'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_32'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_33'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_34'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_35'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_36'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_37'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_38'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_39'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_40'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_41'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_42'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_43'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_44'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁlist_checkpoints__mutmut['xǁStateManagerǁlist_checkpoints__mutmut_45'] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_45 # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["_mutmut_orig"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_1"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_2"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_3"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_4"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_5"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_6"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_7"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_8"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_9"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_10"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_11"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_12"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_13"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_14"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_15"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_16"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_17"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_18"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_19"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_20"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_21"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_22"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_23"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_24"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁrollback_to_checkpoint__mutmut["xǁStateManagerǁrollback_to_checkpoint__mutmut_25"] = StateManager.xǁStateManagerǁrollback_to_checkpoint__mutmut_25  # type: ignore # mutmut generated
 
-mutants_xǁStateManagerǁ_serialize_state__mutmut['_mutmut_orig'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_1'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_2'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_3'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_4'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_5'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_6'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_7'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_8'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_9'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_10'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_11'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_12'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_13'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_14'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_15'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_16'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_17'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_18'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_19'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_20'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_21'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_22'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_23'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_24'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_state__mutmut['xǁStateManagerǁ_serialize_state__mutmut_25'] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_25 # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["_mutmut_orig"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_1"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_2"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_3"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_4"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_5"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_6"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_7"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_8"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_9"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_10"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_11"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_12"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_13"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_14"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_15"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_16"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_17"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_18"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_19"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_20"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_21"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_22"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_23"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_24"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_25"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_26"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_27"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_28"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_29"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_30"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_31"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_32"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_33"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_34"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_35"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_36"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_37"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_38"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_39"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_40"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_41"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_42"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_43"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_44"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁlist_checkpoints__mutmut["xǁStateManagerǁlist_checkpoints__mutmut_45"] = StateManager.xǁStateManagerǁlist_checkpoints__mutmut_45  # type: ignore # mutmut generated
 
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['_mutmut_orig'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_1'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_2'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_3'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_4'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_5'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_6'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_7'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_8'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_9'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_10'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_11'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_12'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_13'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_14'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_15'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_16'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_17'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_18'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_19'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_20'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_21'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_22'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_23'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_24'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_25'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_26'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_27'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_28'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_29'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_30'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_31'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_32'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_33'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_34'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_35'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_36'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_37'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_plan__mutmut['xǁStateManagerǁ_serialize_plan__mutmut_38'] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_38 # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["_mutmut_orig"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_1"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_2"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_3"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_4"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_5"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_6"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_7"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_8"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_9"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_10"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_11"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_12"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_13"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_14"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_15"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_16"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_17"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_18"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_19"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_20"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_21"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_22"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_23"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_24"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_state__mutmut["xǁStateManagerǁ_serialize_state__mutmut_25"] = StateManager.xǁStateManagerǁ_serialize_state__mutmut_25  # type: ignore # mutmut generated
 
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['_mutmut_orig'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_1'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_2'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_3'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_4'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_5'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_6'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_7'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_8'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_9'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_10'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_11'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_12'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_13'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_14'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_15'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_16'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_17'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_18'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_19'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_20'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_21'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_22'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_23'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_24'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_25'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_26'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_27'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_28'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_29'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_30'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_31'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_32'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_33'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_34'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_35'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_36'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_37'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_38'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_39'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_40'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_41'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_serialize_explore__mutmut['xǁStateManagerǁ_serialize_explore__mutmut_42'] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_42 # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["_mutmut_orig"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_1"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_2"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_3"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_4"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_5"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_6"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_7"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_8"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_9"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_10"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_11"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_12"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_13"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_14"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_15"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_16"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_17"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_18"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_19"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_20"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_21"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_22"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_23"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_24"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_25"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_26"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_27"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_28"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_29"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_30"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_31"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_32"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_33"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_34"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_35"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_36"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_37"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_plan__mutmut["xǁStateManagerǁ_serialize_plan__mutmut_38"] = StateManager.xǁStateManagerǁ_serialize_plan__mutmut_38  # type: ignore # mutmut generated
 
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['_mutmut_orig'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_1'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_2'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_3'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_4'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_5'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_6'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_7'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_8'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_9'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_10'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_11'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_12'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_13'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_14'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_15'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_16'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_17'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_18'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_19'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_20'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_21'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_22'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_23'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_24'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_25'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_26'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_27'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_28'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_29'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_30'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_31'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_32'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_33'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_34'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_35'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_36'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_37'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_38'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_39'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_40'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_41'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_42'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_43'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_44'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_45'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_46'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_47'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_48'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_49'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_50'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_51'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_52'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_53'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_54'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_55'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_56'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_57'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_58'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_59'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_60'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_61'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_62'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_63'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_64'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_65'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_66'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_67'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_68'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_69'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_70'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_71'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_state__mutmut['xǁStateManagerǁ_deserialize_state__mutmut_72'] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_72 # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["_mutmut_orig"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_1"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_2"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_3"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_4"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_5"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_6"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_7"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_8"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_9"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_10"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_11"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_12"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_13"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_14"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_15"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_16"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_17"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_18"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_19"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_20"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_21"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_22"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_23"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_24"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_25"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_26"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_27"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_28"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_29"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_30"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_31"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_32"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_33"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_34"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_35"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_36"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_37"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_38"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_39"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_40"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_41"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_serialize_explore__mutmut["xǁStateManagerǁ_serialize_explore__mutmut_42"] = StateManager.xǁStateManagerǁ_serialize_explore__mutmut_42  # type: ignore # mutmut generated
 
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['_mutmut_orig'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_1'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_2'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_3'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_4'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_5'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_6'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_7'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_8'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_9'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_10'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_11'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_12'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_13'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_14'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_15'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_16'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_17'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_18'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_19'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_20'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_21'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_22'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_23'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_24'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_25'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_26'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_27'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_28'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_29'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_30'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_31'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_32'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_33'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_34'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_35'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_36'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_37'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_38'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_39'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_40'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_41'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_42'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_43'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_44'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_45'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_46'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_47'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_48'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_49'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_50'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_51'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_52'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_53'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_54'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_55'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_56'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_57'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_58'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_59'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_60'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_61'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_62'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_63'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_64'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_65'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_66'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_67'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_68'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_69'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_70'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_71'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_72'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_73'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_74'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_75'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_76'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_77'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_78'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_79'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_80'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_81'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_82'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_83'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_plan__mutmut['xǁStateManagerǁ_deserialize_plan__mutmut_84'] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_84 # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["_mutmut_orig"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_1"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_2"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_3"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_4"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_5"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_6"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_7"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_8"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_9"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_10"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_11"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_12"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_13"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_14"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_15"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_16"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_17"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_18"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_19"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_20"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_21"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_22"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_23"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_24"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_25"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_26"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_27"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_28"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_29"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_30"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_31"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_32"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_33"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_34"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_35"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_36"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_37"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_38"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_39"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_40"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_41"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_42"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_43"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_44"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_45"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_46"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_47"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_48"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_49"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_50"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_51"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_52"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_53"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_54"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_55"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_56"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_57"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_58"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_59"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_60"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_61"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_62"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_63"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_64"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_65"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_66"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_67"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_68"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_69"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_70"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_71"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_state__mutmut["xǁStateManagerǁ_deserialize_state__mutmut_72"] = StateManager.xǁStateManagerǁ_deserialize_state__mutmut_72  # type: ignore # mutmut generated
 
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['_mutmut_orig'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_1'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_2'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_3'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_4'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_5'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_6'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_7'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_8'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_9'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_10'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_11'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_12'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_13'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_14'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_15'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_16'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_17'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_18'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_19'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_20'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_21'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_22'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_23'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_24'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_25'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_26'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_27'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_28'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_29'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_30'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_31'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_32'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_33'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_34'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_35'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_36'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_37'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_38'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_39'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_40'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_41'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_42'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_43'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_44'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_45'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_46'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_47'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_48'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_49'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁStateManagerǁ_deserialize_explore__mutmut['xǁStateManagerǁ_deserialize_explore__mutmut_50'] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_50 # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["_mutmut_orig"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_1"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_2"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_3"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_4"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_5"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_6"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_7"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_8"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_9"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_10"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_11"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_12"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_13"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_14"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_15"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_16"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_17"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_18"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_19"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_20"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_21"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_22"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_23"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_24"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_25"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_26"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_27"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_28"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_29"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_30"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_31"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_32"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_33"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_34"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_35"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_36"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_37"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_38"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_39"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_40"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_41"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_42"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_43"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_44"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_45"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_46"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_47"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_48"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_49"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_50"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_51"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_52"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_53"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_54"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_55"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_56"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_57"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_58"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_59"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_60"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_61"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_62"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_63"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_64"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_65"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_66"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_67"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_68"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_69"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_70"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_71"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_72"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_73"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_74"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_75"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_76"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_77"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_78"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_79"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_80"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_81"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_82"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_83"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_plan__mutmut["xǁStateManagerǁ_deserialize_plan__mutmut_84"] = StateManager.xǁStateManagerǁ_deserialize_plan__mutmut_84  # type: ignore # mutmut generated
+
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["_mutmut_orig"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_1"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_2"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_3"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_4"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_5"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_6"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_7"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_8"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_9"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_10"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_11"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_12"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_13"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_14"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_15"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_16"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_17"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_18"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_19"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_20"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_21"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_22"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_23"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_24"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_25"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_26"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_27"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_28"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_29"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_30"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_31"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_32"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_33"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_34"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_35"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_36"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_37"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_38"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_39"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_40"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_41"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_42"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_43"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_44"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_45"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_46"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_47"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_48"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_49"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁStateManagerǁ_deserialize_explore__mutmut["xǁStateManagerǁ_deserialize_explore__mutmut_50"] = StateManager.xǁStateManagerǁ_deserialize_explore__mutmut_50  # type: ignore # mutmut generated
 mutants_x_get_state_manager__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -13635,5 +13884,6 @@ def x_get_state_manager__mutmut_1(workspace: Path) -> StateManager:
     """상태 관리자 헬퍼"""
     return StateManager(None)
 
-mutants_x_get_state_manager__mutmut['_mutmut_orig'] = x_get_state_manager__mutmut_orig # type: ignore # mutmut generated
-mutants_x_get_state_manager__mutmut['x_get_state_manager__mutmut_1'] = x_get_state_manager__mutmut_1 # type: ignore # mutmut generated
+
+mutants_x_get_state_manager__mutmut["_mutmut_orig"] = x_get_state_manager__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_get_state_manager__mutmut["x_get_state_manager__mutmut_1"] = x_get_state_manager__mutmut_1  # type: ignore # mutmut generated

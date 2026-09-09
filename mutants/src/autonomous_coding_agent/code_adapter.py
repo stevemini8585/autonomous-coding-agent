@@ -17,7 +17,8 @@ from .web_search import Documentation, DocumentationParser
 log = logging.getLogger("autonomous_coding_agent.code_adapter")
 
 
-from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated, MutantDict
+from mutmut.mutation.trampoline import MutantDict
+from mutmut.mutation.trampoline import wrap_in_trampoline as _mutmut_mutated
 
 
 @dataclass
@@ -49,6 +50,8 @@ class AdaptedCode:
     replace_pattern: str | None = None  # 특정 패턴 대체
     explanation: str = ""
     confidence: float = 0.8
+
+
 mutants_xǁProjectAnalyzerǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁProjectAnalyzerǁanalyze__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁProjectAnalyzerǁ_detect_language__mutmut: MutantDict = {}  # type: ignore
@@ -688,9 +691,7 @@ class ProjectAnalyzer:
         context.test_framework = self._detect_test_framework(context.language)
         context.lint_config = self._detect_lint_config()
 
-        log.info(
-            None
-        )
+        log.info(None)
         return context
 
     @_mutmut_mutated(mutants_xǁProjectAnalyzerǁ_detect_language__mutmut)
@@ -1400,7 +1401,13 @@ class ProjectAnalyzer:
             "go": len(go_files),
         }
 
-        return max(counts, ) if max(counts.values()) > 0 else "python"
+        return (
+            max(
+                counts,
+            )
+            if max(counts.values()) > 0
+            else "python"
+        )
 
     def xǁProjectAnalyzerǁ_detect_language__mutmut_41(self) -> str:
         """주 언어 감지"""
@@ -2550,7 +2557,9 @@ class ProjectAnalyzer:
             ]:
                 path = self.workspace / req_file
                 if path.exists():
-                    content = path.read_text(encoding="utf-8", ).lower()
+                    content = path.read_text(
+                        encoding="utf-8",
+                    ).lower()
                     if "fastapi" in content:
                         return "fastapi"
                     elif "django" in content:
@@ -4816,7 +4825,9 @@ class ProjectAnalyzer:
                 try:
                     data = json.loads(pkg_json.read_text())
                     deps = {
-                        **data.get("dependencies", ),
+                        **data.get(
+                            "dependencies",
+                        ),
                         **data.get("devDependencies", {}),
                     }
                     if "next" in deps:
@@ -5117,7 +5128,9 @@ class ProjectAnalyzer:
                     data = json.loads(pkg_json.read_text())
                     deps = {
                         **data.get("dependencies", {}),
-                        **data.get("devDependencies", ),
+                        **data.get(
+                            "devDependencies",
+                        ),
                     }
                     if "next" in deps:
                         return "nextjs"
@@ -7783,7 +7796,9 @@ class ProjectAnalyzer:
         # 1. Poetry 감지 (최우선 - pyproject.toml + poetry.lock 또는 [tool.poetry])
         pyproject = workspace / "pyproject.toml"
         if pyproject.exists():
-            content = pyproject.read_text(encoding="utf-8", )
+            content = pyproject.read_text(
+                encoding="utf-8",
+            )
             if "[tool.poetry]" in content or (workspace / "poetry.lock").exists():
                 return "poetry"
             # pyproject.toml에 poetry 관련 설정이 있는 경우도 체크
@@ -9049,7 +9064,8 @@ class ProjectAnalyzer:
             # pyproject.toml에 poetry 관련 설정이 있는 경우도 체크
             if (
                 "poetry" in content.lower()
-                and ("tool.poetry" in content or "poetry" in content) or (workspace / "poetry.lock").exists()
+                and ("tool.poetry" in content or "poetry" in content)
+                or (workspace / "poetry.lock").exists()
             ):
                 return "poetry"
 
@@ -9137,7 +9153,8 @@ class ProjectAnalyzer:
                 return "poetry"
             # pyproject.toml에 poetry 관련 설정이 있는 경우도 체크
             if (
-                "poetry" in content.lower() or ("tool.poetry" in content or "poetry" in content)
+                "poetry" in content.lower()
+                or ("tool.poetry" in content or "poetry" in content)
                 and (workspace / "poetry.lock").exists()
             ):
                 return "poetry"
@@ -11034,7 +11051,9 @@ class ProjectAnalyzer:
 
         # 2. PDM 감지 (pyproject.toml + pdm.lock 또는 [tool.pdm])
         if pyproject.exists():
-            content = pyproject.read_text(encoding="utf-8", )
+            content = pyproject.read_text(
+                encoding="utf-8",
+            )
             if "[tool.pdm]" in content or (workspace / "pdm.lock").exists():
                 return "pdm"
 
@@ -12660,7 +12679,9 @@ class ProjectAnalyzer:
 
         # 3. Hatch 감지 (pyproject.toml + hatch.toml 또는 [tool.hatch])
         if pyproject.exists():
-            content = pyproject.read_text(encoding="utf-8", )
+            content = pyproject.read_text(
+                encoding="utf-8",
+            )
             if "[tool.hatch]" in content or (workspace / "hatch.toml").exists():
                 return "hatch"
 
@@ -15552,7 +15573,9 @@ class ProjectAnalyzer:
         if (workspace / "uv.lock").exists():
             return "uv"
         if pyproject.exists():
-            content = pyproject.read_text(encoding="utf-8", )
+            content = pyproject.read_text(
+                encoding="utf-8",
+            )
             if "[tool.uv]" in content:
                 return "uv"
 
@@ -19717,7 +19740,9 @@ class ProjectAnalyzer:
 
         # 8. pyproject.toml이 있지만 위 매니저가 아니면 기본 pip (build-system이 setuptools/wheel인 경우 또는 [project] 섹션이 있는 경우)
         if pyproject.exists():
-            content = pyproject.read_text(encoding="utf-8", )
+            content = pyproject.read_text(
+                encoding="utf-8",
+            )
             if (
                 "[build-system]" in content
                 and ("setuptools" in content or "wheel" in content or "pip" in content)
@@ -20259,7 +20284,8 @@ class ProjectAnalyzer:
         if pyproject.exists():
             content = pyproject.read_text(encoding="utf-8", errors="ignore")
             if (
-                "[build-system]" in content or ("setuptools" in content or "wheel" in content or "pip" in content)
+                "[build-system]" in content
+                or ("setuptools" in content or "wheel" in content or "pip" in content)
             ) or "[project]" in content:
                 return "pip"
 
@@ -26439,7 +26465,9 @@ class ProjectAnalyzer:
 
         for py_file in py_files:
             try:
-                content = py_file.read_text(encoding="utf-8", )
+                content = py_file.read_text(
+                    encoding="utf-8",
+                )
 
                 # import 스타일
                 imports = re.findall(r"^(?:from\s+(\S+)\s+)?import\s+(.+)$", content, re.MULTILINE)
@@ -27025,7 +27053,10 @@ class ProjectAnalyzer:
                 content = py_file.read_text(encoding="utf-8", errors="ignore")
 
                 # import 스타일
-                imports = re.findall(r"^(?:from\s+(\S+)\s+)?import\s+(.+)$", content, )
+                imports = re.findall(
+                    r"^(?:from\s+(\S+)\s+)?import\s+(.+)$",
+                    content,
+                )
                 for from_mod, imported in imports:
                     if from_mod:
                         import_patterns.append(f"from {from_mod} import {imported}")
@@ -27078,7 +27109,9 @@ class ProjectAnalyzer:
                 content = py_file.read_text(encoding="utf-8", errors="ignore")
 
                 # import 스타일
-                imports = re.findall(r"XX^(?:from\s+(\S+)\s+)?import\s+(.+)$XX", content, re.MULTILINE)
+                imports = re.findall(
+                    r"XX^(?:from\s+(\S+)\s+)?import\s+(.+)$XX", content, re.MULTILINE
+                )
                 for from_mod, imported in imports:
                     if from_mod:
                         import_patterns.append(f"from {from_mod} import {imported}")
@@ -27349,9 +27382,7 @@ class ProjectAnalyzer:
                         import_patterns.append(f"import {imported}")
 
                 # 함수 정의 분석
-                funcs = re.findall(
-                    None, content, re.MULTILINE
-                )
+                funcs = re.findall(None, content, re.MULTILINE)
                 for func_name, args in funcs:
                     total_functions += 1
                     if func_name.startswith("async "):
@@ -27455,9 +27486,7 @@ class ProjectAnalyzer:
                         import_patterns.append(f"import {imported}")
 
                 # 함수 정의 분석
-                funcs = re.findall(
-                    r"^\s*(?:async\s+)?def\s+(\w+)\s*\(([^)]*)\)", content, None
-                )
+                funcs = re.findall(r"^\s*(?:async\s+)?def\s+(\w+)\s*\(([^)]*)\)", content, None)
                 for func_name, args in funcs:
                     total_functions += 1
                     if func_name.startswith("async "):
@@ -27508,9 +27537,7 @@ class ProjectAnalyzer:
                         import_patterns.append(f"import {imported}")
 
                 # 함수 정의 분석
-                funcs = re.findall(
-                    content, re.MULTILINE
-                )
+                funcs = re.findall(content, re.MULTILINE)
                 for func_name, args in funcs:
                     total_functions += 1
                     if func_name.startswith("async "):
@@ -27561,9 +27588,7 @@ class ProjectAnalyzer:
                         import_patterns.append(f"import {imported}")
 
                 # 함수 정의 분석
-                funcs = re.findall(
-                    r"^\s*(?:async\s+)?def\s+(\w+)\s*\(([^)]*)\)", re.MULTILINE
-                )
+                funcs = re.findall(r"^\s*(?:async\s+)?def\s+(\w+)\s*\(([^)]*)\)", re.MULTILINE)
                 for func_name, args in funcs:
                     total_functions += 1
                     if func_name.startswith("async "):
@@ -27615,7 +27640,9 @@ class ProjectAnalyzer:
 
                 # 함수 정의 분석
                 funcs = re.findall(
-                    r"^\s*(?:async\s+)?def\s+(\w+)\s*\(([^)]*)\)", content, )
+                    r"^\s*(?:async\s+)?def\s+(\w+)\s*\(([^)]*)\)",
+                    content,
+                )
                 for func_name, args in funcs:
                     total_functions += 1
                     if func_name.startswith("async "):
@@ -30394,7 +30421,9 @@ class ProjectAnalyzer:
 
         # 스타일 결정
         context.import_style = "absolute"  # 기본값
-        context.naming_convention = max(naming_patterns, )
+        context.naming_convention = max(
+            naming_patterns,
+        )
         context.type_hints = (type_hint_count / max(total_functions, 1)) > 0.3
         context.async_pattern = (async_count / max(total_functions, 1)) > 0.1
         context.common_imports = list(set(import_patterns))[:20]
@@ -30713,7 +30742,12 @@ class ProjectAnalyzer:
         # 스타일 결정
         context.import_style = "absolute"  # 기본값
         context.naming_convention = max(naming_patterns, key=naming_patterns.get)
-        context.type_hints = (type_hint_count / max(total_functions, )) > 0.3
+        context.type_hints = (
+            type_hint_count
+            / max(
+                total_functions,
+            )
+        ) > 0.3
         context.async_pattern = (async_count / max(total_functions, 1)) > 0.1
         context.common_imports = list(set(import_patterns))[:20]
 
@@ -31191,7 +31225,12 @@ class ProjectAnalyzer:
         context.import_style = "absolute"  # 기본값
         context.naming_convention = max(naming_patterns, key=naming_patterns.get)
         context.type_hints = (type_hint_count / max(total_functions, 1)) > 0.3
-        context.async_pattern = (async_count / max(total_functions, )) > 0.1
+        context.async_pattern = (
+            async_count
+            / max(
+                total_functions,
+            )
+        ) > 0.1
         context.common_imports = list(set(import_patterns))[:20]
 
     def xǁProjectAnalyzerǁ_analyze_python_style__mutmut_120(self, context: ProjectContext) -> None:
@@ -33211,7 +33250,9 @@ class ProjectAnalyzer:
                 try:
                     data = json.loads(pkg_json.read_text())
                     deps = {
-                        **data.get("dependencies", ),
+                        **data.get(
+                            "dependencies",
+                        ),
                         **data.get("devDependencies", {}),
                     }
                     if "vitest" in deps:
@@ -33422,7 +33463,9 @@ class ProjectAnalyzer:
                     data = json.loads(pkg_json.read_text())
                     deps = {
                         **data.get("dependencies", {}),
-                        **data.get("devDependencies", ),
+                        **data.get(
+                            "devDependencies",
+                        ),
                     }
                     if "vitest" in deps:
                         return "vitest"
@@ -34164,7 +34207,9 @@ class ProjectAnalyzer:
         """린트 설정 감지"""
         config = {}
         # ruff
-        if (self.workspace / "XXruff.tomlXX").exists() or (self.workspace / "pyproject.toml").exists():
+        if (self.workspace / "XXruff.tomlXX").exists() or (
+            self.workspace / "pyproject.toml"
+        ).exists():
             config["ruff"] = True
         # mypy
         if (self.workspace / "mypy.ini").exists() or (self.workspace / "pyproject.toml").exists():
@@ -34221,7 +34266,9 @@ class ProjectAnalyzer:
         """린트 설정 감지"""
         config = {}
         # ruff
-        if (self.workspace / "ruff.toml").exists() or (self.workspace / "XXpyproject.tomlXX").exists():
+        if (self.workspace / "ruff.toml").exists() or (
+            self.workspace / "XXpyproject.tomlXX"
+        ).exists():
             config["ruff"] = True
         # mypy
         if (self.workspace / "mypy.ini").exists() or (self.workspace / "pyproject.toml").exists():
@@ -34376,7 +34423,9 @@ class ProjectAnalyzer:
         if (self.workspace / "ruff.toml").exists() or (self.workspace / "pyproject.toml").exists():
             config["ruff"] = True
         # mypy
-        if (self.workspace / "XXmypy.iniXX").exists() or (self.workspace / "pyproject.toml").exists():
+        if (self.workspace / "XXmypy.iniXX").exists() or (
+            self.workspace / "pyproject.toml"
+        ).exists():
             config["mypy"] = True
         # eslint
         if (self.workspace / ".eslintrc.js").exists() or (
@@ -34433,7 +34482,9 @@ class ProjectAnalyzer:
         if (self.workspace / "ruff.toml").exists() or (self.workspace / "pyproject.toml").exists():
             config["ruff"] = True
         # mypy
-        if (self.workspace / "mypy.ini").exists() or (self.workspace / "XXpyproject.tomlXX").exists():
+        if (self.workspace / "mypy.ini").exists() or (
+            self.workspace / "XXpyproject.tomlXX"
+        ).exists():
             config["mypy"] = True
         # eslint
         if (self.workspace / ".eslintrc.js").exists() or (
@@ -34882,634 +34933,635 @@ class ProjectAnalyzer:
             config["prettier"] = False
         return config
 
-mutants_xǁProjectAnalyzerǁ__init____mutmut['_mutmut_orig'] = ProjectAnalyzer.xǁProjectAnalyzerǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ__init____mutmut['xǁProjectAnalyzerǁ__init____mutmut_1'] = ProjectAnalyzer.xǁProjectAnalyzerǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ__init____mutmut['xǁProjectAnalyzerǁ__init____mutmut_2'] = ProjectAnalyzer.xǁProjectAnalyzerǁ__init____mutmut_2 # type: ignore # mutmut generated
 
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['_mutmut_orig'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_1'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_2'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_3'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_4'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_5'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_6'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_7'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_8'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_9'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_10'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_11'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_12'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_13'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_14'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_15'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_16'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_17'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_18'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_19'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁanalyze__mutmut['xǁProjectAnalyzerǁanalyze__mutmut_20'] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_20 # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ__init____mutmut["_mutmut_orig"] = ProjectAnalyzer.xǁProjectAnalyzerǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ__init____mutmut["xǁProjectAnalyzerǁ__init____mutmut_1"] = ProjectAnalyzer.xǁProjectAnalyzerǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ__init____mutmut["xǁProjectAnalyzerǁ__init____mutmut_2"] = ProjectAnalyzer.xǁProjectAnalyzerǁ__init____mutmut_2  # type: ignore # mutmut generated
 
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['_mutmut_orig'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_1'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_2'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_3'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_4'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_5'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_6'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_7'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_8'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_9'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_10'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_11'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_12'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_13'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_14'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_15'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_16'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_17'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_18'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_19'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_20'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_21'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_22'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_23'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_24'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_25'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_26'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_27'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_28'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_29'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_30'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_31'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_32'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_33'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_34'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_35'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_36'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_37'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_38'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_39'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_40'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_41'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_42'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_43'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_44'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_language__mutmut['xǁProjectAnalyzerǁ_detect_language__mutmut_45'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_45 # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["_mutmut_orig"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_1"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_2"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_3"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_4"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_5"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_6"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_7"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_8"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_9"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_10"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_11"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_12"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_13"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_14"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_15"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_16"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_17"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_18"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_19"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁanalyze__mutmut["xǁProjectAnalyzerǁanalyze__mutmut_20"] = ProjectAnalyzer.xǁProjectAnalyzerǁanalyze__mutmut_20  # type: ignore # mutmut generated
 
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['_mutmut_orig'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_1'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_2'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_3'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_4'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_5'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_6'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_7'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_8'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_9'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_10'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_11'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_12'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_13'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_14'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_15'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_16'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_17'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_18'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_19'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_20'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_21'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_22'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_23'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_24'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_25'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_26'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_27'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_28'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_29'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_30'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_31'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_32'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_33'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_34'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_35'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_36'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_37'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_38'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_39'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_40'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_41'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_42'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_43'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_44'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_45'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_46'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_47'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_48'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_49'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_50'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_51'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_52'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_53'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_54'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_55'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_56'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_57'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_58'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_59'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_60'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_61'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_62'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_63'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_64'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_65'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_66'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_67'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_68'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_69'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_70'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_71'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_72'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_73'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_74'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_75'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_76'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_77'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_78'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_79'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_80'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_81'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_82'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_83'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_84'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_85'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_86'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_87'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_88'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_89'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_90'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_91'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_92'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_93'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_94'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_95'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_96'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_96 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_97'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_97 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_98'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_98 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_99'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_99 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_100'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_100 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_101'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_101 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_102'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_102 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_103'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_103 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut['xǁProjectAnalyzerǁ_detect_framework__mutmut_104'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_104 # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["_mutmut_orig"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_1"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_2"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_3"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_4"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_5"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_6"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_7"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_8"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_9"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_10"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_11"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_12"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_13"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_14"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_15"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_16"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_17"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_18"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_19"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_20"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_21"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_22"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_23"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_24"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_25"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_26"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_27"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_28"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_29"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_30"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_31"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_32"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_33"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_34"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_35"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_36"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_37"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_38"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_39"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_40"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_41"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_42"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_43"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_44"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_language__mutmut["xǁProjectAnalyzerǁ_detect_language__mutmut_45"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_language__mutmut_45  # type: ignore # mutmut generated
 
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['_mutmut_orig'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_1'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_2'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_3'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_4'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_5'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_6'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_7'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_8'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_9'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_10'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_11'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_12'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_13'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_14'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_15'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_16'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_17'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_18'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_19'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_20'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_21'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_22'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_23'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_24'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_25'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_26'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_27'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_28'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_29'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_30'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_31'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_32'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_33'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_34'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_35'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_36'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_37'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_38'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_39'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_40'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_41'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_42'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_43'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_44'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_45'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_46'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_47'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_48'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_49'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_50'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_51'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_52'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_53'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_54'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_55'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_56'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_57'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_58'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_59'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_60'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_61'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_62'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_63'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_64'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_65'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_66'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_67'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_68'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_69'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_70'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_71'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_72'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_73'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_74'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_75'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_76'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_77'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_78'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_79'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_80'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_81'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_82'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_83'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_84'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_85'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_86'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_87'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_88'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_89'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_90'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_91'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_92'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_93'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_94'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_95'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_96'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_96 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_97'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_97 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_98'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_98 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_99'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_99 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_100'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_100 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_101'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_101 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_102'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_102 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_103'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_103 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_104'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_104 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_105'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_105 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_106'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_106 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_107'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_107 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_108'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_108 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_109'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_109 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_110'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_110 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_111'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_111 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_112'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_112 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_113'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_113 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_114'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_114 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_115'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_115 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_116'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_116 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_117'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_117 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_118'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_118 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_119'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_119 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_120'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_120 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_121'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_121 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_122'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_122 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_123'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_123 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_124'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_124 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_125'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_125 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_126'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_126 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_127'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_127 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_128'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_128 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_129'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_129 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_130'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_130 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_131'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_131 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_132'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_132 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_133'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_133 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_134'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_134 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_135'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_135 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_136'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_136 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_137'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_137 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_138'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_138 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_139'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_139 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_140'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_140 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_141'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_141 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_142'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_142 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_143'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_143 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_144'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_144 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_145'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_145 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_146'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_146 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_147'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_147 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_148'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_148 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_149'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_149 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_150'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_150 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_151'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_151 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_152'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_152 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_153'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_153 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_154'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_154 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_155'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_155 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_156'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_156 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_157'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_157 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_158'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_158 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_159'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_159 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_160'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_160 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_161'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_161 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_162'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_162 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_163'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_163 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_164'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_164 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_165'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_165 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_166'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_166 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_167'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_167 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_168'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_168 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_169'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_169 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_170'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_170 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_171'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_171 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_172'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_172 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_173'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_173 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_174'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_174 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_175'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_175 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_176'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_176 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_177'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_177 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_178'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_178 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_179'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_179 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_180'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_180 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_181'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_181 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_182'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_182 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_183'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_183 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_184'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_184 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_185'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_185 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_186'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_186 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_187'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_187 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_188'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_188 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_189'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_189 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_190'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_190 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_191'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_191 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_192'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_192 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_193'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_193 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_194'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_194 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_195'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_195 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_196'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_196 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_197'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_197 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut['xǁProjectAnalyzerǁ_detect_package_manager__mutmut_198'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_198 # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["_mutmut_orig"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_1"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_2"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_3"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_4"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_5"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_6"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_7"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_8"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_9"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_10"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_11"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_12"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_13"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_14"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_15"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_16"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_17"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_18"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_19"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_20"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_21"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_22"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_23"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_24"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_25"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_26"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_27"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_28"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_29"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_30"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_31"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_32"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_33"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_34"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_35"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_36"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_37"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_38"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_39"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_40"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_41"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_42"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_43"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_44"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_45"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_46"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_47"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_48"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_49"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_50"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_51"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_52"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_53"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_54"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_55"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_56"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_57"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_58"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_59"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_60"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_61"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_62"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_63"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_64"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_65"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_66"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_67"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_68"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_69"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_70"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_71"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_72"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_73"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_74"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_75"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_76"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_77"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_78"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_79"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_80"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_81"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_82"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_83"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_84"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_85"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_86"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_87"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_88"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_89"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_90"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_91"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_92"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_93"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_94"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_95"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_96"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_96  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_97"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_97  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_98"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_98  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_99"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_99  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_100"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_100  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_101"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_101  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_102"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_102  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_103"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_103  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_framework__mutmut["xǁProjectAnalyzerǁ_detect_framework__mutmut_104"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_framework__mutmut_104  # type: ignore # mutmut generated
 
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['_mutmut_orig'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_1'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_2'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_3'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_4'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_5'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_6'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_7'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_8'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_9'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_10'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_11'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_12'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_13'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_14'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_15'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_16'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_17'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_18'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_19'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_20'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_21'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_22'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_23'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_24'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_25'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_26'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_27'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_28'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_29'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_30'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_31'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_32'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_33'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_34'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_35'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_36'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_37'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_38'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_39'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_40'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_41'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_42'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_43'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_44'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_45'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_46'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_47'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_48'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_49'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_50'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_51'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_52'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_53'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_54'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_55'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_56'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_57'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_58'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_59'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_60'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_61'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_62'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_63'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_64'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_65'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_66'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_67'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_68'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_69'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_70'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_71'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_72'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_73'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_74'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_75'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_76'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_77'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_78'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_79'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_80'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_81'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_82'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_83'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_84'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_85'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_86'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_87'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_87 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_88'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_88 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_89'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_89 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_90'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_90 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_91'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_91 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_92'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_92 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_93'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_93 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_94'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_94 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_95'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_95 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_96'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_96 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_97'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_97 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_98'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_98 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_99'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_99 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_100'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_100 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_101'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_101 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_102'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_102 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_103'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_103 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_104'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_104 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_105'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_105 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_106'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_106 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_107'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_107 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_108'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_108 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_109'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_109 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_110'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_110 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_111'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_111 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_112'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_112 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_113'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_113 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_114'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_114 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_115'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_115 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_116'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_116 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_117'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_117 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_118'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_118 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_119'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_119 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_120'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_120 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_121'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_121 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_122'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_122 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_123'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_123 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_124'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_124 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_125'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_125 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut['xǁProjectAnalyzerǁ_analyze_python_style__mutmut_126'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_126 # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["_mutmut_orig"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_1"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_2"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_3"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_4"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_5"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_6"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_7"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_8"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_9"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_10"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_11"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_12"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_13"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_14"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_15"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_16"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_17"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_18"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_19"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_20"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_21"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_22"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_23"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_24"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_25"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_26"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_27"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_28"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_29"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_30"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_31"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_32"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_33"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_34"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_35"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_36"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_37"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_38"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_39"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_40"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_41"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_42"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_43"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_44"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_45"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_46"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_47"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_48"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_49"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_50"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_51"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_52"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_53"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_54"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_55"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_56"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_57"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_58"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_59"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_60"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_61"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_62"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_63"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_64"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_65"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_66"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_67"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_68"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_69"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_70"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_71"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_72"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_73"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_74"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_75"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_76"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_77"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_78"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_79"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_80"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_81"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_82"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_83"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_84"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_85"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_86"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_87"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_88"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_89"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_90"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_91"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_92"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_93"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_94"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_95"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_96"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_96  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_97"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_97  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_98"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_98  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_99"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_99  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_100"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_100  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_101"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_101  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_102"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_102  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_103"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_103  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_104"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_104  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_105"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_105  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_106"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_106  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_107"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_107  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_108"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_108  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_109"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_109  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_110"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_110  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_111"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_111  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_112"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_112  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_113"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_113  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_114"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_114  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_115"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_115  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_116"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_116  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_117"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_117  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_118"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_118  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_119"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_119  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_120"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_120  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_121"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_121  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_122"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_122  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_123"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_123  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_124"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_124  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_125"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_125  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_126"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_126  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_127"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_127  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_128"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_128  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_129"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_129  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_130"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_130  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_131"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_131  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_132"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_132  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_133"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_133  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_134"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_134  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_135"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_135  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_136"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_136  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_137"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_137  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_138"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_138  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_139"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_139  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_140"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_140  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_141"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_141  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_142"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_142  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_143"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_143  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_144"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_144  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_145"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_145  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_146"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_146  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_147"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_147  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_148"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_148  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_149"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_149  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_150"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_150  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_151"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_151  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_152"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_152  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_153"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_153  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_154"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_154  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_155"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_155  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_156"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_156  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_157"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_157  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_158"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_158  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_159"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_159  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_160"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_160  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_161"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_161  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_162"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_162  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_163"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_163  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_164"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_164  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_165"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_165  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_166"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_166  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_167"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_167  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_168"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_168  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_169"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_169  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_170"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_170  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_171"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_171  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_172"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_172  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_173"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_173  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_174"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_174  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_175"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_175  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_176"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_176  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_177"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_177  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_178"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_178  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_179"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_179  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_180"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_180  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_181"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_181  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_182"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_182  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_183"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_183  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_184"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_184  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_185"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_185  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_186"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_186  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_187"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_187  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_188"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_188  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_189"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_189  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_190"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_190  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_191"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_191  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_192"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_192  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_193"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_193  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_194"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_194  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_195"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_195  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_196"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_196  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_197"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_197  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_package_manager__mutmut["xǁProjectAnalyzerǁ_detect_package_manager__mutmut_198"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_package_manager__mutmut_198  # type: ignore # mutmut generated
 
-mutants_xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut['_mutmut_orig'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut['xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_1'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut['xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_2'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut['xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_3'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut['xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_4'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut['xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_5'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut['xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_6'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut['xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_7'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_7 # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["_mutmut_orig"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_1"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_2"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_3"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_4"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_5"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_6"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_7"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_8"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_9"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_10"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_11"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_12"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_13"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_14"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_15"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_16"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_17"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_18"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_19"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_20"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_21"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_22"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_23"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_24"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_25"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_26"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_27"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_28"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_29"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_30"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_31"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_32"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_33"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_34"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_35"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_36"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_37"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_38"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_39"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_40"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_41"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_42"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_43"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_44"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_45"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_46"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_47"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_48"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_49"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_50"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_51"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_52"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_53"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_54"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_55"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_56"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_57"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_58"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_59"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_60"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_61"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_62"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_63"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_64"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_65"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_66"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_67"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_68"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_69"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_70"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_71"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_72"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_73"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_74"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_75"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_76"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_77"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_78"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_79"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_80"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_81"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_82"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_83"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_84"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_85"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_86"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_87"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_87  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_88"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_88  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_89"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_89  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_90"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_90  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_91"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_91  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_92"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_92  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_93"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_93  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_94"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_94  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_95"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_95  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_96"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_96  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_97"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_97  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_98"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_98  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_99"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_99  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_100"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_100  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_101"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_101  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_102"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_102  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_103"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_103  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_104"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_104  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_105"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_105  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_106"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_106  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_107"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_107  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_108"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_108  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_109"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_109  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_110"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_110  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_111"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_111  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_112"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_112  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_113"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_113  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_114"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_114  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_115"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_115  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_116"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_116  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_117"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_117  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_118"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_118  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_119"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_119  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_120"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_120  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_121"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_121  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_122"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_122  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_123"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_123  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_124"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_124  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_125"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_125  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_python_style__mutmut["xǁProjectAnalyzerǁ_analyze_python_style__mutmut_126"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_python_style__mutmut_126  # type: ignore # mutmut generated
 
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['_mutmut_orig'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_1'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_2'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_3'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_4'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_5'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_6'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_7'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_8'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_9'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_10'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_11'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_12'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_13'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_14'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_15'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_16'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_17'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_18'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_19'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_20'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_21'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_22'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_23'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_24'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_25'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_26'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_27'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_28'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_29'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_30'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_31'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_32'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_33'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_34'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_35'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_36'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_37'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_38'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_39'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_40'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_41'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_42'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_43'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_44'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_45'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_46'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_47'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_48'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_49'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_50'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_51'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_52'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_53'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_54'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_55'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_56'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_57'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_58'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_59'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_60'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_61'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_62'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_63'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_64'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_65'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_66'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_67'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut['xǁProjectAnalyzerǁ_detect_test_framework__mutmut_68'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_68 # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut["_mutmut_orig"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut["xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_1"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut["xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_2"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut["xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_3"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut["xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_4"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut["xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_5"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut["xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_6"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut["xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_7"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_analyze_js_ts_style__mutmut_7  # type: ignore # mutmut generated
 
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['_mutmut_orig'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_1'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_2'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_3'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_4'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_5'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_6'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_7'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_8'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_9'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_10'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_11'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_12'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_13'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_14'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_15'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_16'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_17'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_18'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_19'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_20'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_21'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_22'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_23'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_24'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_25'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_26'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_27'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_28'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_29'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_30'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_31'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_32'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_33'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_34'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_35'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_36'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_37'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_38'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_39'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_40'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut['xǁProjectAnalyzerǁ_detect_lint_config__mutmut_41'] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_41 # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["_mutmut_orig"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_1"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_2"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_3"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_4"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_5"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_6"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_7"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_8"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_9"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_10"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_11"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_12"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_13"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_14"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_15"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_16"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_17"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_18"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_19"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_20"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_21"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_22"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_23"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_24"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_25"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_26"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_27"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_28"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_29"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_30"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_31"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_32"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_33"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_34"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_35"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_36"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_37"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_38"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_39"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_40"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_41"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_42"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_43"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_44"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_45"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_46"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_47"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_48"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_49"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_50"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_51"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_52"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_53"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_54"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_55"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_56"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_57"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_58"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_59"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_60"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_61"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_62"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_63"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_64"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_65"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_66"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_67"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_test_framework__mutmut["xǁProjectAnalyzerǁ_detect_test_framework__mutmut_68"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_test_framework__mutmut_68  # type: ignore # mutmut generated
+
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["_mutmut_orig"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_1"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_2"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_3"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_4"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_5"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_6"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_7"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_8"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_9"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_10"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_11"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_12"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_13"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_14"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_15"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_16"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_17"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_18"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_19"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_20"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_21"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_22"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_23"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_24"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_25"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_26"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_27"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_28"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_29"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_30"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_31"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_32"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_33"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_34"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_35"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_36"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_37"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_38"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_39"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_40"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁProjectAnalyzerǁ_detect_lint_config__mutmut["xǁProjectAnalyzerǁ_detect_lint_config__mutmut_41"] = ProjectAnalyzer.xǁProjectAnalyzerǁ_detect_lint_config__mutmut_41  # type: ignore # mutmut generated
 mutants_xǁCodeExampleAdapterǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁCodeExampleAdapterǁadapt_example__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut: MutantDict = {}  # type: ignore
@@ -35552,37 +35604,51 @@ class CodeExampleAdapter:
         self.context = context or ProjectAnalyzer(workspace).analyze()
         self.parser = DocumentationParser()
 
-    def xǁCodeExampleAdapterǁ__init____mutmut_orig(self, workspace: str | Path, context: ProjectContext | None = None):
+    def xǁCodeExampleAdapterǁ__init____mutmut_orig(
+        self, workspace: str | Path, context: ProjectContext | None = None
+    ):
         self.workspace = Path(workspace).resolve()
         self.context = context or ProjectAnalyzer(workspace).analyze()
         self.parser = DocumentationParser()
 
-    def xǁCodeExampleAdapterǁ__init____mutmut_1(self, workspace: str | Path, context: ProjectContext | None = None):
+    def xǁCodeExampleAdapterǁ__init____mutmut_1(
+        self, workspace: str | Path, context: ProjectContext | None = None
+    ):
         self.workspace = None
         self.context = context or ProjectAnalyzer(workspace).analyze()
         self.parser = DocumentationParser()
 
-    def xǁCodeExampleAdapterǁ__init____mutmut_2(self, workspace: str | Path, context: ProjectContext | None = None):
+    def xǁCodeExampleAdapterǁ__init____mutmut_2(
+        self, workspace: str | Path, context: ProjectContext | None = None
+    ):
         self.workspace = Path(None).resolve()
         self.context = context or ProjectAnalyzer(workspace).analyze()
         self.parser = DocumentationParser()
 
-    def xǁCodeExampleAdapterǁ__init____mutmut_3(self, workspace: str | Path, context: ProjectContext | None = None):
+    def xǁCodeExampleAdapterǁ__init____mutmut_3(
+        self, workspace: str | Path, context: ProjectContext | None = None
+    ):
         self.workspace = Path(workspace).resolve()
         self.context = None
         self.parser = DocumentationParser()
 
-    def xǁCodeExampleAdapterǁ__init____mutmut_4(self, workspace: str | Path, context: ProjectContext | None = None):
+    def xǁCodeExampleAdapterǁ__init____mutmut_4(
+        self, workspace: str | Path, context: ProjectContext | None = None
+    ):
         self.workspace = Path(workspace).resolve()
         self.context = context and ProjectAnalyzer(workspace).analyze()
         self.parser = DocumentationParser()
 
-    def xǁCodeExampleAdapterǁ__init____mutmut_5(self, workspace: str | Path, context: ProjectContext | None = None):
+    def xǁCodeExampleAdapterǁ__init____mutmut_5(
+        self, workspace: str | Path, context: ProjectContext | None = None
+    ):
         self.workspace = Path(workspace).resolve()
         self.context = context or ProjectAnalyzer(None).analyze()
         self.parser = DocumentationParser()
 
-    def xǁCodeExampleAdapterǁ__init____mutmut_6(self, workspace: str | Path, context: ProjectContext | None = None):
+    def xǁCodeExampleAdapterǁ__init____mutmut_6(
+        self, workspace: str | Path, context: ProjectContext | None = None
+    ):
         self.workspace = Path(workspace).resolve()
         self.context = context or ProjectAnalyzer(workspace).analyze()
         self.parser = None
@@ -35991,7 +36057,9 @@ class CodeExampleAdapter:
 
         # 3. 컨텍스트 맞춤 변환 (태스크가 있는 경우)
         if task:
-            adapted = self._apply_task_context(adapted, )
+            adapted = self._apply_task_context(
+                adapted,
+            )
 
         # 4. 타겟 파일 맞춤 변환
         if target_file:
@@ -36170,7 +36238,9 @@ class CodeExampleAdapter:
 
         # 4. 타겟 파일 맞춤 변환
         if target_file:
-            adapted = self._apply_file_context(adapted, )
+            adapted = self._apply_file_context(
+                adapted,
+            )
 
         # 5. 설명 생성
         explanation = self._generate_explanation(code, adapted)
@@ -36348,7 +36418,9 @@ class CodeExampleAdapter:
             adapted = self._apply_file_context(adapted, target_file)
 
         # 5. 설명 생성
-        explanation = self._generate_explanation(code, )
+        explanation = self._generate_explanation(
+            code,
+        )
 
         return AdaptedCode(
             original=code,
@@ -36701,7 +36773,7 @@ class CodeExampleAdapter:
             adapted=adapted,
             target_file=target_file,
             explanation=explanation,
-            )
+        )
 
     def xǁCodeExampleAdapterǁadapt_example__mutmut_31(
         self,
@@ -37468,7 +37540,7 @@ class CodeExampleAdapter:
                 r"^from\s+\.(\.?)\s+import",
                 lambda m: f"from {self._get_package_root()}{'.' * len(m.group(1))} import",
                 adapted,
-                )
+            )
 
         # 2. 타입 힌트 추가 (설정되어 있고 없는 경우)
         if self.context.type_hints:
@@ -39460,7 +39532,7 @@ class CodeExampleAdapter:
                 r"^(\s*)def\s+(\w+)(\s*\([^)]*\)):",
                 r"\1async def \2\3:",
                 adapted,
-                )
+            )
 
         return adapted
 
@@ -39881,7 +39953,7 @@ class CodeExampleAdapter:
         adapted = re.sub(
             r"const\s+(\w+)\s*=\s*require\(['\"](.+)['\"]\)",
             r"import \1 from '\2'",
-            )
+        )
 
         # var/let → const (불변인 경우)
         adapted = re.sub(
@@ -40218,7 +40290,7 @@ class CodeExampleAdapter:
             r"^\s*let\s+(\w+)\s*=",
             r"const \1 =",
             adapted,
-            )
+        )
 
         # 네이밍 컨벤션 적용
         if self.context.naming_convention == "snake_case":
@@ -41416,7 +41488,7 @@ class CodeExampleAdapter:
         adapted = re.sub(
             r"\bimport\s+requests\b",
             "import httpx",
-            )
+        )
         adapted = re.sub(
             r"\bfrom\s+requests\s+import",
             "from httpx import",
@@ -41975,7 +42047,7 @@ class CodeExampleAdapter:
         adapted = re.sub(
             r"\bfrom\s+requests\s+import",
             "from httpx import",
-            )
+        )
         # requests.get/post/put/delete → httpx.AsyncClient().get/post/put/delete
         adapted = re.sub(
             r"\brequests\.get\(",
@@ -42535,7 +42607,7 @@ class CodeExampleAdapter:
         adapted = re.sub(
             r"\brequests\.get\(",
             "await client.get(",
-            )
+        )
         adapted = re.sub(
             r"\brequests\.post\(",
             "await client.post(",
@@ -43094,7 +43166,7 @@ class CodeExampleAdapter:
         adapted = re.sub(
             r"\brequests\.post\(",
             "await client.post(",
-            )
+        )
         adapted = re.sub(
             r"\brequests\.put\(",
             "await client.put(",
@@ -43653,7 +43725,7 @@ class CodeExampleAdapter:
         adapted = re.sub(
             r"\brequests\.put\(",
             "await client.put(",
-            )
+        )
         adapted = re.sub(
             r"\brequests\.delete\(",
             "await client.delete(",
@@ -44212,7 +44284,7 @@ class CodeExampleAdapter:
         adapted = re.sub(
             r"\brequests\.delete\(",
             "await client.delete(",
-            )
+        )
         # response.json() → response.json() (동일)
         # response.text → response.text (동일)
 
@@ -45473,7 +45545,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_orig(self, code: str, task: ParsedTask) -> str:
+    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_orig(
+        self, code: str, task: ParsedTask
+    ) -> str:
         """태스크 컨텍스트 적용"""
         adapted = code
 
@@ -45485,7 +45559,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_1(self, code: str, task: ParsedTask) -> str:
+    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_1(
+        self, code: str, task: ParsedTask
+    ) -> str:
         """태스크 컨텍스트 적용"""
         adapted = None
 
@@ -45497,7 +45573,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_2(self, code: str, task: ParsedTask) -> str:
+    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_2(
+        self, code: str, task: ParsedTask
+    ) -> str:
         """태스크 컨텍스트 적용"""
         adapted = code
 
@@ -45509,7 +45587,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_3(self, code: str, task: ParsedTask) -> str:
+    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_3(
+        self, code: str, task: ParsedTask
+    ) -> str:
         """태스크 컨텍스트 적용"""
         adapted = code
 
@@ -45521,7 +45601,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_4(self, code: str, task: ParsedTask) -> str:
+    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_4(
+        self, code: str, task: ParsedTask
+    ) -> str:
         """태스크 컨텍스트 적용"""
         adapted = code
 
@@ -45533,7 +45615,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_5(self, code: str, task: ParsedTask) -> str:
+    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_5(
+        self, code: str, task: ParsedTask
+    ) -> str:
         """태스크 컨텍스트 적용"""
         adapted = code
 
@@ -45545,7 +45629,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_6(self, code: str, task: ParsedTask) -> str:
+    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_6(
+        self, code: str, task: ParsedTask
+    ) -> str:
         """태스크 컨텍스트 적용"""
         adapted = code
 
@@ -45557,7 +45643,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_7(self, code: str, task: ParsedTask) -> str:
+    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_7(
+        self, code: str, task: ParsedTask
+    ) -> str:
         """태스크 컨텍스트 적용"""
         adapted = code
 
@@ -45569,7 +45657,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_8(self, code: str, task: ParsedTask) -> str:
+    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_8(
+        self, code: str, task: ParsedTask
+    ) -> str:
         """태스크 컨텍스트 적용"""
         adapted = code
 
@@ -45581,7 +45671,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_9(self, code: str, task: ParsedTask) -> str:
+    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_9(
+        self, code: str, task: ParsedTask
+    ) -> str:
         """태스크 컨텍스트 적용"""
         adapted = code
 
@@ -45593,7 +45685,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_10(self, code: str, task: ParsedTask) -> str:
+    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_10(
+        self, code: str, task: ParsedTask
+    ) -> str:
         """태스크 컨텍스트 적용"""
         adapted = code
 
@@ -45605,7 +45699,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_11(self, code: str, task: ParsedTask) -> str:
+    def xǁCodeExampleAdapterǁ_apply_task_context__mutmut_11(
+        self, code: str, task: ParsedTask
+    ) -> str:
         """태스크 컨텍스트 적용"""
         adapted = code
 
@@ -45822,7 +45918,7 @@ class CodeExampleAdapter:
                 r"^(\s*)def\s+(\w+)(\s*\([^)]*\)):",
                 r"\1def test_\2\3:",
                 code,
-                )
+            )
         return code
 
     def xǁCodeExampleAdapterǁ_add_test_structure__mutmut_17(self, code: str) -> str:
@@ -45943,7 +46039,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_orig(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_orig(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -45976,7 +46074,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_1(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_1(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = None
 
@@ -46009,7 +46109,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_2(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_2(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46042,7 +46144,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_3(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_3(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46075,7 +46179,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_4(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_4(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46108,7 +46214,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_5(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_5(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46141,7 +46249,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_6(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_6(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46174,7 +46284,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_7(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_7(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46207,7 +46319,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_8(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_8(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46215,7 +46329,9 @@ class CodeExampleAdapter:
         file_path = self.workspace / target_file
         if file_path.exists():
             try:
-                existing = file_path.read_text(encoding="utf-8", )
+                existing = file_path.read_text(
+                    encoding="utf-8",
+                )
 
                 # 기존 import 스타일 맞추기
                 existing_imports = re.findall(
@@ -46240,7 +46356,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_9(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_9(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46273,7 +46391,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_10(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_10(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46306,7 +46426,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_11(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_11(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46339,7 +46461,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_12(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_12(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46372,7 +46496,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_13(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_13(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46403,7 +46529,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_14(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_14(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46414,9 +46542,7 @@ class CodeExampleAdapter:
                 existing = file_path.read_text(encoding="utf-8", errors="ignore")
 
                 # 기존 import 스타일 맞추기
-                existing_imports = re.findall(
-                    None, existing, re.MULTILINE
-                )
+                existing_imports = re.findall(None, existing, re.MULTILINE)
                 if existing_imports:
                     # import 순서/스타일 맞춤
                     pass
@@ -46436,7 +46562,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_15(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_15(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46469,7 +46597,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_16(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_16(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46502,7 +46632,75 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_17(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_17(
+        self, code: str, target_file: str
+    ) -> str:
+        """타겟 파일 컨텍스트 적용"""
+        adapted = code
+
+        # 기존 파일 내용 분석
+        file_path = self.workspace / target_file
+        if file_path.exists():
+            try:
+                existing = file_path.read_text(encoding="utf-8", errors="ignore")
+
+                # 기존 import 스타일 맞추기
+                existing_imports = re.findall(existing, re.MULTILINE)
+                if existing_imports:
+                    # import 순서/스타일 맞춤
+                    pass
+
+                # 기존 네이밍 컨벤션 확인
+                func_names = re.findall(r"^\s*(?:async\s+)?def\s+(\w+)", existing, re.MULTILINE)
+                if func_names:
+                    snake_count = sum(1 for n in func_names if "_" in n and n.islower())
+                    camel_count = sum(
+                        1 for n in func_names if n[0].islower() and any(c.isupper() for c in n)
+                    )
+                    if camel_count > snake_count:
+                        # camelCase로 변환 필요
+                        pass
+            except (OSError, UnicodeDecodeError):
+                pass
+
+        return adapted
+
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_18(
+        self, code: str, target_file: str
+    ) -> str:
+        """타겟 파일 컨텍스트 적용"""
+        adapted = code
+
+        # 기존 파일 내용 분석
+        file_path = self.workspace / target_file
+        if file_path.exists():
+            try:
+                existing = file_path.read_text(encoding="utf-8", errors="ignore")
+
+                # 기존 import 스타일 맞추기
+                existing_imports = re.findall(r"^(?:from\s+(\S+)\s+)?import\s+(.+)$", re.MULTILINE)
+                if existing_imports:
+                    # import 순서/스타일 맞춤
+                    pass
+
+                # 기존 네이밍 컨벤션 확인
+                func_names = re.findall(r"^\s*(?:async\s+)?def\s+(\w+)", existing, re.MULTILINE)
+                if func_names:
+                    snake_count = sum(1 for n in func_names if "_" in n and n.islower())
+                    camel_count = sum(
+                        1 for n in func_names if n[0].islower() and any(c.isupper() for c in n)
+                    )
+                    if camel_count > snake_count:
+                        # camelCase로 변환 필요
+                        pass
+            except (OSError, UnicodeDecodeError):
+                pass
+
+        return adapted
+
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_19(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46514,7 +46712,8 @@ class CodeExampleAdapter:
 
                 # 기존 import 스타일 맞추기
                 existing_imports = re.findall(
-                    existing, re.MULTILINE
+                    r"^(?:from\s+(\S+)\s+)?import\s+(.+)$",
+                    existing,
                 )
                 if existing_imports:
                     # import 순서/스타일 맞춤
@@ -46535,72 +46734,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_18(self, code: str, target_file: str) -> str:
-        """타겟 파일 컨텍스트 적용"""
-        adapted = code
-
-        # 기존 파일 내용 분석
-        file_path = self.workspace / target_file
-        if file_path.exists():
-            try:
-                existing = file_path.read_text(encoding="utf-8", errors="ignore")
-
-                # 기존 import 스타일 맞추기
-                existing_imports = re.findall(
-                    r"^(?:from\s+(\S+)\s+)?import\s+(.+)$", re.MULTILINE
-                )
-                if existing_imports:
-                    # import 순서/스타일 맞춤
-                    pass
-
-                # 기존 네이밍 컨벤션 확인
-                func_names = re.findall(r"^\s*(?:async\s+)?def\s+(\w+)", existing, re.MULTILINE)
-                if func_names:
-                    snake_count = sum(1 for n in func_names if "_" in n and n.islower())
-                    camel_count = sum(
-                        1 for n in func_names if n[0].islower() and any(c.isupper() for c in n)
-                    )
-                    if camel_count > snake_count:
-                        # camelCase로 변환 필요
-                        pass
-            except (OSError, UnicodeDecodeError):
-                pass
-
-        return adapted
-
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_19(self, code: str, target_file: str) -> str:
-        """타겟 파일 컨텍스트 적용"""
-        adapted = code
-
-        # 기존 파일 내용 분석
-        file_path = self.workspace / target_file
-        if file_path.exists():
-            try:
-                existing = file_path.read_text(encoding="utf-8", errors="ignore")
-
-                # 기존 import 스타일 맞추기
-                existing_imports = re.findall(
-                    r"^(?:from\s+(\S+)\s+)?import\s+(.+)$", existing, )
-                if existing_imports:
-                    # import 순서/스타일 맞춤
-                    pass
-
-                # 기존 네이밍 컨벤션 확인
-                func_names = re.findall(r"^\s*(?:async\s+)?def\s+(\w+)", existing, re.MULTILINE)
-                if func_names:
-                    snake_count = sum(1 for n in func_names if "_" in n and n.islower())
-                    camel_count = sum(
-                        1 for n in func_names if n[0].islower() and any(c.isupper() for c in n)
-                    )
-                    if camel_count > snake_count:
-                        # camelCase로 변환 필요
-                        pass
-            except (OSError, UnicodeDecodeError):
-                pass
-
-        return adapted
-
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_20(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_20(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46633,7 +46769,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_21(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_21(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46666,7 +46804,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_22(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_22(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46699,7 +46839,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_23(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_23(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46732,7 +46874,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_24(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_24(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46765,7 +46909,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_25(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_25(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46798,7 +46944,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_26(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_26(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46831,7 +46979,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_27(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_27(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46864,7 +47014,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_28(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_28(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46883,7 +47035,10 @@ class CodeExampleAdapter:
                     pass
 
                 # 기존 네이밍 컨벤션 확인
-                func_names = re.findall(r"^\s*(?:async\s+)?def\s+(\w+)", existing, )
+                func_names = re.findall(
+                    r"^\s*(?:async\s+)?def\s+(\w+)",
+                    existing,
+                )
                 if func_names:
                     snake_count = sum(1 for n in func_names if "_" in n and n.islower())
                     camel_count = sum(
@@ -46897,7 +47052,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_29(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_29(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46930,7 +47087,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_30(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_30(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46963,7 +47122,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_31(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_31(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -46996,7 +47157,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_32(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_32(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -47029,7 +47192,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_33(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_33(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -47062,7 +47227,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_34(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_34(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -47095,7 +47262,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_35(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_35(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -47128,7 +47297,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_36(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_36(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -47161,7 +47332,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_37(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_37(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -47192,7 +47365,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_38(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_38(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -47214,9 +47389,7 @@ class CodeExampleAdapter:
                 func_names = re.findall(r"^\s*(?:async\s+)?def\s+(\w+)", existing, re.MULTILINE)
                 if func_names:
                     snake_count = sum(1 for n in func_names if "_" in n and n.islower())
-                    camel_count = sum(
-                        None
-                    )
+                    camel_count = sum(None)
                     if camel_count > snake_count:
                         # camelCase로 변환 필요
                         pass
@@ -47225,7 +47398,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_39(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_39(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -47258,7 +47433,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_40(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_40(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -47291,7 +47468,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_41(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_41(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -47324,7 +47503,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_42(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_42(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -47346,9 +47527,7 @@ class CodeExampleAdapter:
                 func_names = re.findall(r"^\s*(?:async\s+)?def\s+(\w+)", existing, re.MULTILINE)
                 if func_names:
                     snake_count = sum(1 for n in func_names if "_" in n and n.islower())
-                    camel_count = sum(
-                        1 for n in func_names if n[0].islower() and any(None)
-                    )
+                    camel_count = sum(1 for n in func_names if n[0].islower() and any(None))
                     if camel_count > snake_count:
                         # camelCase로 변환 필요
                         pass
@@ -47357,7 +47536,9 @@ class CodeExampleAdapter:
 
         return adapted
 
-    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_43(self, code: str, target_file: str) -> str:
+    def xǁCodeExampleAdapterǁ_apply_file_context__mutmut_43(
+        self, code: str, target_file: str
+    ) -> str:
         """타겟 파일 컨텍스트 적용"""
         adapted = code
 
@@ -47403,7 +47584,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_orig(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_orig(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47415,7 +47598,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_1(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_1(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = None
         if original != adapted:
@@ -47427,7 +47612,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_2(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_2(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original == adapted:
@@ -47439,7 +47626,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_3(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_3(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47451,7 +47640,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_4(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_4(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47463,7 +47654,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_5(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_5(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47475,7 +47668,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_6(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_6(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47487,7 +47682,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_7(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_7(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47499,7 +47696,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_8(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_8(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47511,7 +47710,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_9(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_9(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47523,7 +47724,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_10(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_10(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47535,7 +47738,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_11(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_11(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47547,7 +47752,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_12(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_12(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47559,7 +47766,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_13(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_13(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47571,7 +47780,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_14(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_14(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47583,7 +47794,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_15(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_15(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47595,7 +47808,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_16(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_16(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47607,7 +47822,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_17(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_17(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47619,7 +47836,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_18(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_18(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47631,7 +47850,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_19(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_19(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47643,7 +47864,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_20(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_20(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47655,7 +47878,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_21(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_21(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47667,7 +47892,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_22(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_22(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47679,7 +47906,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_23(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_23(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47691,7 +47920,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_24(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_24(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47703,7 +47934,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_25(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_25(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47715,7 +47948,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_26(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_26(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47727,7 +47962,9 @@ class CodeExampleAdapter:
                 changes.append(None)
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_27(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_27(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47739,7 +47976,9 @@ class CodeExampleAdapter:
                 changes.append("XX타입 힌트/문서화 추가XX")
         return "; ".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_28(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_28(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47751,7 +47990,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "; ".join(None) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_29(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_29(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47763,7 +48004,9 @@ class CodeExampleAdapter:
                 changes.append("타입 힌트/문서화 추가")
         return "XX; XX".join(changes) if changes else "변경 사항 없음"
 
-    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_30(self, original: str, adapted: str) -> str:
+    def xǁCodeExampleAdapterǁ_generate_explanation__mutmut_30(
+        self, original: str, adapted: str
+    ) -> str:
         """변경 사항 설명 생성"""
         changes = []
         if original != adapted:
@@ -47914,7 +48157,9 @@ class CodeExampleAdapter:
         pyproject = self.workspace / "pyproject.toml"
         if pyproject.exists():
             content = pyproject.read_text()
-            match = re.search(r'name\s*=\s*["\']([^"\']+)["\']', )
+            match = re.search(
+                r'name\s*=\s*["\']([^"\']+)["\']',
+            )
             if match:
                 return match.group(1).replace("-", "_")
         # 디렉토리 이름 사용
@@ -47988,7 +48233,9 @@ class CodeExampleAdapter:
             content = pyproject.read_text()
             match = re.search(r'name\s*=\s*["\']([^"\']+)["\']', content)
             if match:
-                return match.group(1).replace("-", )
+                return match.group(1).replace(
+                    "-",
+                )
         # 디렉토리 이름 사용
         return self.workspace.name.replace("-", "_")
 
@@ -48086,7 +48333,9 @@ class CodeExampleAdapter:
             if match:
                 return match.group(1).replace("-", "_")
         # 디렉토리 이름 사용
-        return self.workspace.name.replace("-", )
+        return self.workspace.name.replace(
+            "-",
+        )
 
     def xǁCodeExampleAdapterǁ_get_package_root__mutmut_25(self) -> str:
         """패키지 루트 경로 추정"""
@@ -48112,417 +48361,418 @@ class CodeExampleAdapter:
         # 디렉토리 이름 사용
         return self.workspace.name.replace("-", "XX_XX")
 
-mutants_xǁCodeExampleAdapterǁ__init____mutmut['_mutmut_orig'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ__init____mutmut['xǁCodeExampleAdapterǁ__init____mutmut_1'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ__init____mutmut['xǁCodeExampleAdapterǁ__init____mutmut_2'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ__init____mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ__init____mutmut['xǁCodeExampleAdapterǁ__init____mutmut_3'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ__init____mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ__init____mutmut['xǁCodeExampleAdapterǁ__init____mutmut_4'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ__init____mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ__init____mutmut['xǁCodeExampleAdapterǁ__init____mutmut_5'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ__init____mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ__init____mutmut['xǁCodeExampleAdapterǁ__init____mutmut_6'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ__init____mutmut_6 # type: ignore # mutmut generated
 
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['_mutmut_orig'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_1'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_2'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_3'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_4'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_5'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_6'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_7'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_8'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_9'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_10'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_11'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_12'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_13'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_14'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_15'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_16'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_17'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_18'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_19'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_20'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_21'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_22'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_23'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_24'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_25'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_26'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_27'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_28'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_29'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_30'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁadapt_example__mutmut['xǁCodeExampleAdapterǁadapt_example__mutmut_31'] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_31 # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ__init____mutmut["_mutmut_orig"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ__init____mutmut["xǁCodeExampleAdapterǁ__init____mutmut_1"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ__init____mutmut["xǁCodeExampleAdapterǁ__init____mutmut_2"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ__init____mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ__init____mutmut["xǁCodeExampleAdapterǁ__init____mutmut_3"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ__init____mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ__init____mutmut["xǁCodeExampleAdapterǁ__init____mutmut_4"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ__init____mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ__init____mutmut["xǁCodeExampleAdapterǁ__init____mutmut_5"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ__init____mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ__init____mutmut["xǁCodeExampleAdapterǁ__init____mutmut_6"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ__init____mutmut_6  # type: ignore # mutmut generated
 
-mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut['_mutmut_orig'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut['xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_1'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut['xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_2'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut['xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_3'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut['xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_4'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut['xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_5'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut['xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_6'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut['xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_7'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut['xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_8'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut['xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_9'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut['xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_10'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_10 # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["_mutmut_orig"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_1"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_2"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_3"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_4"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_5"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_6"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_7"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_8"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_9"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_10"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_11"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_12"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_13"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_14"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_15"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_16"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_17"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_18"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_19"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_20"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_21"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_22"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_23"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_24"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_25"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_26"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_27"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_28"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_29"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_30"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁadapt_example__mutmut["xǁCodeExampleAdapterǁadapt_example__mutmut_31"] = CodeExampleAdapter.xǁCodeExampleAdapterǁadapt_example__mutmut_31  # type: ignore # mutmut generated
 
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['_mutmut_orig'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_1'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_2'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_3'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_4'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_5'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_6'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_7'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_8'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_9'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_10'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_11'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_12'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_13'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_14'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_15'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_16'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_17'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_18'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_19'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_20'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_21'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_22'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_23'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_24'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_25'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_26'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_27'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_28'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_29'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_30'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_31'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_32'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_33'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_34'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_35'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_36'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_37'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_38'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_39'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_40'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_41'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_42'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_43'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_44'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_45'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_46'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_47'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_48'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_49'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_50'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_51'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_52'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_53'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_54'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_55'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_56'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_57'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_58'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_59'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_60'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut['xǁCodeExampleAdapterǁ_transform_python__mutmut_61'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_61 # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut["_mutmut_orig"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut["xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_1"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut["xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_2"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut["xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_3"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut["xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_4"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut["xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_5"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut["xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_6"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut["xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_7"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut["xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_8"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut["xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_9"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut["xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_10"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_language_transformations__mutmut_10  # type: ignore # mutmut generated
 
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['_mutmut_orig'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_1'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_2'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_3'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_4'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_5'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_6'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_7'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_8'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_9'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_10'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_11'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_12'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_13'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_14'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_15'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_16'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_17'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_18'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_19'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_20'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_21'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_22'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_23'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_24'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_25'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_26'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_27'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut['xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_28'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_28 # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["_mutmut_orig"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_1"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_2"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_3"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_4"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_5"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_6"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_7"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_8"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_9"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_10"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_11"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_12"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_13"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_14"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_15"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_16"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_17"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_18"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_19"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_20"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_21"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_22"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_23"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_24"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_25"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_26"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_27"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_28"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_29"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_30"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_31"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_32"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_33"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_34"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_35"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_36"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_37"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_38"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_39"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_40"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_41"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_42"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_43"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_44"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_45"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_46"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_47"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_48"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_49"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_50"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_51"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_52"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_53"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_54"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_55"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_56"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_57"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_58"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_59"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_60"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_python__mutmut["xǁCodeExampleAdapterǁ_transform_python__mutmut_61"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_python__mutmut_61  # type: ignore # mutmut generated
 
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['_mutmut_orig'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_1'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_2'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_3'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_4'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_5'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_6'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_7'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_8'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_9'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_10'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_11'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_12'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_13'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_14'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_15'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_16'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_17'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_18'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_19'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_20'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_21'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_22'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_23'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_24'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_25'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_26'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_27'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_28'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_29'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut['xǁCodeExampleAdapterǁ_apply_project_style__mutmut_30'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_30 # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["_mutmut_orig"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_1"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_2"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_3"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_4"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_5"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_6"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_7"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_8"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_9"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_10"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_11"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_12"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_13"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_14"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_15"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_16"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_17"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_18"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_19"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_20"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_21"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_22"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_23"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_24"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_25"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_26"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_27"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_transform_js_ts__mutmut["xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_28"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_transform_js_ts__mutmut_28  # type: ignore # mutmut generated
 
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['_mutmut_orig'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_1'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_2'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_3'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_4'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_5'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_6'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_7'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_8'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_9'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_10'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_11'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_12'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_13'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_14'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_15'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_16'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_17'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_18'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_19'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_20'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_21'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_22'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_23'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_24'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_25'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_26'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_27'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_28'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_29'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_30'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_31'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_32'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_33'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_34'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_35'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_36'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_37'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_38'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_39'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_40'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_41'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_42'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_43'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_44'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_45'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_46'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_47'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_48'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_49'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_50'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_51'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_52'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_53'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_54'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_55'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_56'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_57'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_58'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_59'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_60'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_61'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_62'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_63'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_64'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_65'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_66'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_67'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_68'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_69'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_70'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_70 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_71'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_71 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_72'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_72 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_73'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_73 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_74'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_74 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_75'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_75 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_76'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_76 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_77'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_77 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_78'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_78 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_79'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_79 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_80'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_80 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_81'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_81 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_82'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_82 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_83'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_83 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_84'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_84 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_85'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_85 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_86'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_86 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut['xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_87'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_87 # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["_mutmut_orig"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_1"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_2"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_3"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_4"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_5"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_6"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_7"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_8"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_9"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_10"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_11"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_12"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_13"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_14"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_15"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_16"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_17"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_18"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_19"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_20"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_21"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_22"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_23"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_24"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_25"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_26"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_27"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_28"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_29"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_project_style__mutmut["xǁCodeExampleAdapterǁ_apply_project_style__mutmut_30"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_project_style__mutmut_30  # type: ignore # mutmut generated
 
-mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut['_mutmut_orig'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut['xǁCodeExampleAdapterǁ_apply_task_context__mutmut_1'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut['xǁCodeExampleAdapterǁ_apply_task_context__mutmut_2'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut['xǁCodeExampleAdapterǁ_apply_task_context__mutmut_3'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut['xǁCodeExampleAdapterǁ_apply_task_context__mutmut_4'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut['xǁCodeExampleAdapterǁ_apply_task_context__mutmut_5'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut['xǁCodeExampleAdapterǁ_apply_task_context__mutmut_6'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut['xǁCodeExampleAdapterǁ_apply_task_context__mutmut_7'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut['xǁCodeExampleAdapterǁ_apply_task_context__mutmut_8'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut['xǁCodeExampleAdapterǁ_apply_task_context__mutmut_9'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut['xǁCodeExampleAdapterǁ_apply_task_context__mutmut_10'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut['xǁCodeExampleAdapterǁ_apply_task_context__mutmut_11'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_11 # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["_mutmut_orig"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_1"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_2"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_3"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_4"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_5"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_6"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_7"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_8"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_9"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_10"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_11"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_12"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_13"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_14"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_15"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_16"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_17"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_18"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_19"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_20"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_21"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_22"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_23"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_24"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_25"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_26"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_27"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_28"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_29"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_30"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_31"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_32"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_33"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_34"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_35"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_36"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_37"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_38"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_39"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_40"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_41"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_42"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_43"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_44"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_45"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_46"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_47"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_48"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_49"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_50"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_51"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_52"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_53"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_54"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_55"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_56"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_57"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_58"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_59"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_60"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_61"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_62"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_63"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_64"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_65"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_66"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_67"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_68"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_69"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_70"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_70  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_71"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_71  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_72"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_72  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_73"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_73  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_74"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_74  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_75"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_75  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_76"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_76  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_77"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_77  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_78"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_78  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_79"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_79  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_80"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_80  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_81"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_81  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_82"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_82  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_83"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_83  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_84"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_84  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_85"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_85  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_86"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_86  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut["xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_87"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_fastapi_patterns__mutmut_87  # type: ignore # mutmut generated
 
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['_mutmut_orig'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_1'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_2'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_3'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_4'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_5'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_6'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_7'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_8'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_9'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_10'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_11'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_12'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_13'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_14'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_15'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_16'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_17'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_18'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_19'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut['xǁCodeExampleAdapterǁ_add_test_structure__mutmut_20'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_20 # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut["_mutmut_orig"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut["xǁCodeExampleAdapterǁ_apply_task_context__mutmut_1"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut["xǁCodeExampleAdapterǁ_apply_task_context__mutmut_2"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut["xǁCodeExampleAdapterǁ_apply_task_context__mutmut_3"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut["xǁCodeExampleAdapterǁ_apply_task_context__mutmut_4"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut["xǁCodeExampleAdapterǁ_apply_task_context__mutmut_5"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut["xǁCodeExampleAdapterǁ_apply_task_context__mutmut_6"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut["xǁCodeExampleAdapterǁ_apply_task_context__mutmut_7"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut["xǁCodeExampleAdapterǁ_apply_task_context__mutmut_8"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut["xǁCodeExampleAdapterǁ_apply_task_context__mutmut_9"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut["xǁCodeExampleAdapterǁ_apply_task_context__mutmut_10"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_task_context__mutmut["xǁCodeExampleAdapterǁ_apply_task_context__mutmut_11"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_task_context__mutmut_11  # type: ignore # mutmut generated
 
-mutants_xǁCodeExampleAdapterǁ_add_docstrings__mutmut['_mutmut_orig'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_docstrings__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_docstrings__mutmut['xǁCodeExampleAdapterǁ_add_docstrings__mutmut_1'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_docstrings__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_docstrings__mutmut['xǁCodeExampleAdapterǁ_add_docstrings__mutmut_2'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_docstrings__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_add_docstrings__mutmut['xǁCodeExampleAdapterǁ_add_docstrings__mutmut_3'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_docstrings__mutmut_3 # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["_mutmut_orig"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_1"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_2"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_3"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_4"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_5"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_6"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_7"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_8"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_9"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_10"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_11"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_12"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_13"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_14"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_15"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_16"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_17"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_18"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_19"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_test_structure__mutmut["xǁCodeExampleAdapterǁ_add_test_structure__mutmut_20"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_test_structure__mutmut_20  # type: ignore # mutmut generated
 
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['_mutmut_orig'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_1'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_2'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_3'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_4'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_5'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_6'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_7'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_8'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_9'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_10'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_11'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_12'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_13'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_14'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_15'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_16'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_17'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_18'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_19'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_20'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_21'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_22'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_23'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_24'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_25'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_26'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_27'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_28'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_29'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_30'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_31'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_32'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_33'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_34'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_35'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_36'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_37'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_38'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_39'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_40'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_41'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_42'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut['xǁCodeExampleAdapterǁ_apply_file_context__mutmut_43'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_43 # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_docstrings__mutmut["_mutmut_orig"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_docstrings__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_docstrings__mutmut["xǁCodeExampleAdapterǁ_add_docstrings__mutmut_1"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_docstrings__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_docstrings__mutmut["xǁCodeExampleAdapterǁ_add_docstrings__mutmut_2"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_docstrings__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_add_docstrings__mutmut["xǁCodeExampleAdapterǁ_add_docstrings__mutmut_3"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_add_docstrings__mutmut_3  # type: ignore # mutmut generated
 
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['_mutmut_orig'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_1'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_2'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_3'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_4'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_5'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_6'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_7'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_8'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_9'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_10'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_11'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_12'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_13'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_14'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_15'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_16'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_17'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_18'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_19'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_20'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_21'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_22'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_23'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_24'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_25'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_26'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_27'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_28'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_29'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut['xǁCodeExampleAdapterǁ_generate_explanation__mutmut_30'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_30 # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["_mutmut_orig"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_1"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_2"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_3"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_4"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_5"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_6"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_7"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_8"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_9"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_10"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_11"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_12"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_13"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_14"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_15"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_16"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_17"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_18"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_19"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_20"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_21"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_22"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_23"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_24"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_25"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_26"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_27"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_28"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_29"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_30"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_31"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_32"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_33"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_34"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_35"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_36"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_37"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_38"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_39"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_40"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_41"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_42"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_apply_file_context__mutmut["xǁCodeExampleAdapterǁ_apply_file_context__mutmut_43"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_apply_file_context__mutmut_43  # type: ignore # mutmut generated
 
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['_mutmut_orig'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_1'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_2'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_3'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_4'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_5'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_6'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_7'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_8'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_9'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_10'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_11'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_12'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_13'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_14'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_15'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_16'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_17'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_18'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_19'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_20'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_21'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_22'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_23'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_24'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_25'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut['xǁCodeExampleAdapterǁ_get_package_root__mutmut_26'] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_26 # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["_mutmut_orig"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_1"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_2"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_3"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_4"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_5"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_6"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_7"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_8"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_9"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_10"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_11"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_12"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_13"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_14"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_15"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_16"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_17"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_18"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_19"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_20"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_21"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_22"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_23"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_24"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_25"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_26"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_27"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_28"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_29"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_generate_explanation__mutmut["xǁCodeExampleAdapterǁ_generate_explanation__mutmut_30"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_generate_explanation__mutmut_30  # type: ignore # mutmut generated
+
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["_mutmut_orig"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_1"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_2"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_3"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_4"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_5"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_6"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_7"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_8"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_9"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_10"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_11"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_12"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_13"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_14"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_15"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_16"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_17"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_18"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_19"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_20"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_21"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_22"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_23"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_24"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_25"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeExampleAdapterǁ_get_package_root__mutmut["xǁCodeExampleAdapterǁ_get_package_root__mutmut_26"] = CodeExampleAdapter.xǁCodeExampleAdapterǁ_get_package_root__mutmut_26  # type: ignore # mutmut generated
 mutants_xǁCodeExampleApplierǁ__init____mutmut: MutantDict = {}  # type: ignore
 mutants_xǁCodeExampleApplierǁapply__mutmut: MutantDict = {}  # type: ignore
 mutants_xǁCodeExampleApplierǁapply_batch__mutmut: MutantDict = {}  # type: ignore
@@ -48607,7 +48857,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_orig(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_orig(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -48669,7 +48921,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_1(self, adapted: AdaptedCode, dry_run: bool = True) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_1(
+        self, adapted: AdaptedCode, dry_run: bool = True
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -48731,7 +48985,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_2(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_2(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -48793,7 +49049,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_3(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_3(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning(None)
@@ -48855,7 +49113,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_4(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_4(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("XX타겟 파일이 지정되지 않음XX")
@@ -48917,7 +49177,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_5(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_5(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -48979,7 +49241,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_6(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_6(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -49041,7 +49305,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_7(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_7(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -49103,7 +49369,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_8(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_8(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -49165,7 +49433,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_9(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_9(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -49227,7 +49497,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_10(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_10(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -49289,14 +49561,18 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_11(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_11(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
             return False
 
         target_path = self.workspace / adapted.target_file
-        target_path.parent.mkdir(parents=True, )
+        target_path.parent.mkdir(
+            parents=True,
+        )
 
         if dry_run:
             log.info(f"[DRY RUN] {target_path}에 적용 예정")
@@ -49351,7 +49627,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_12(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_12(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -49413,7 +49691,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_13(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_13(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -49475,7 +49755,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_14(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_14(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -49537,7 +49819,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_15(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_15(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -49599,7 +49883,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_16(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_16(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -49661,7 +49947,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_17(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_17(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -49723,7 +50011,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_18(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_18(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -49785,7 +50075,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_19(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_19(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -49847,7 +50139,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_20(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_20(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -49909,7 +50203,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_21(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_21(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -49971,7 +50267,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_22(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_22(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -50028,7 +50326,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_23(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_23(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -50090,7 +50390,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_24(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_24(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -50152,7 +50454,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_25(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_25(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -50214,7 +50518,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_26(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_26(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -50276,7 +50582,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_27(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_27(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -50337,7 +50645,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_28(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_28(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -50398,68 +50708,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_29(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
-        """코드 적용"""
-        if not adapted.target_file:
-            log.warning("타겟 파일이 지정되지 않음")
-            return False
-
-        target_path = self.workspace / adapted.target_file
-        target_path.parent.mkdir(parents=True, exist_ok=True)
-
-        if dry_run:
-            log.info(f"[DRY RUN] {target_path}에 적용 예정")
-            return True
-
-        try:
-            # 기존 내용 읽기
-            existing = ""
-            if target_path.exists():
-                existing = target_path.read_text(encoding="utf-8")
-
-            # 적용 전략 결정
-            if adapted.replace_pattern:
-                # 패턴 대체
-                new_content = re.sub(
-                    adapted.replace_pattern,
-                    adapted.adapted,
-                    flags=re.MULTILINE | re.DOTALL,
-                )
-            elif adapted.insert_after:
-                # 특정 패턴 뒤에 삽입
-                new_content = re.sub(
-                    f"({re.escape(adapted.insert_after)})",
-                    f"\\1\n\n{adapted.adapted}",
-                    existing,
-                    flags=re.MULTILINE | re.DOTALL,
-                )
-            else:
-                # 파일 끝에 추가 (기본)
-                new_content = existing.rstrip() + f"\n\n{adapted.adapted}\n"
-
-            # 변경사항이 없으면 스킵
-            if new_content == existing:
-                log.info(f"변경사항 없음: {target_path}")
-                return True
-
-            # 백업 후 쓰기
-            backup_path = target_path.with_suffix(target_path.suffix + ".bak")
-            if target_path.exists():
-                target_path.rename(backup_path)
-
-            target_path.write_text(new_content, encoding="utf-8")
-            log.info(f"적용 완료: {target_path}")
-            return True
-
-        except (OSError, UnicodeError, re.error) as e:
-            log.error(f"적용 실패: {target_path} - {e}")
-            # 복구
-            backup_path = target_path.with_suffix(target_path.suffix + ".bak")
-            if backup_path.exists():
-                backup_path.rename(target_path)
-            return False
-
-    def xǁCodeExampleApplierǁapply__mutmut_30(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_29(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -50484,8 +50735,8 @@ class CodeExampleApplier:
                 new_content = re.sub(
                     adapted.replace_pattern,
                     adapted.adapted,
-                    existing,
-                    )
+                    flags=re.MULTILINE | re.DOTALL,
+                )
             elif adapted.insert_after:
                 # 특정 패턴 뒤에 삽입
                 new_content = re.sub(
@@ -50520,7 +50771,72 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_31(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_30(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
+        """코드 적용"""
+        if not adapted.target_file:
+            log.warning("타겟 파일이 지정되지 않음")
+            return False
+
+        target_path = self.workspace / adapted.target_file
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+
+        if dry_run:
+            log.info(f"[DRY RUN] {target_path}에 적용 예정")
+            return True
+
+        try:
+            # 기존 내용 읽기
+            existing = ""
+            if target_path.exists():
+                existing = target_path.read_text(encoding="utf-8")
+
+            # 적용 전략 결정
+            if adapted.replace_pattern:
+                # 패턴 대체
+                new_content = re.sub(
+                    adapted.replace_pattern,
+                    adapted.adapted,
+                    existing,
+                )
+            elif adapted.insert_after:
+                # 특정 패턴 뒤에 삽입
+                new_content = re.sub(
+                    f"({re.escape(adapted.insert_after)})",
+                    f"\\1\n\n{adapted.adapted}",
+                    existing,
+                    flags=re.MULTILINE | re.DOTALL,
+                )
+            else:
+                # 파일 끝에 추가 (기본)
+                new_content = existing.rstrip() + f"\n\n{adapted.adapted}\n"
+
+            # 변경사항이 없으면 스킵
+            if new_content == existing:
+                log.info(f"변경사항 없음: {target_path}")
+                return True
+
+            # 백업 후 쓰기
+            backup_path = target_path.with_suffix(target_path.suffix + ".bak")
+            if target_path.exists():
+                target_path.rename(backup_path)
+
+            target_path.write_text(new_content, encoding="utf-8")
+            log.info(f"적용 완료: {target_path}")
+            return True
+
+        except (OSError, UnicodeError, re.error) as e:
+            log.error(f"적용 실패: {target_path} - {e}")
+            # 복구
+            backup_path = target_path.with_suffix(target_path.suffix + ".bak")
+            if backup_path.exists():
+                backup_path.rename(target_path)
+            return False
+
+    def xǁCodeExampleApplierǁapply__mutmut_31(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -50582,7 +50898,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_32(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_32(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -50639,7 +50957,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_33(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_33(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -50701,7 +51021,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_34(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_34(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -50763,7 +51085,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_35(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_35(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -50825,7 +51149,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_36(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_36(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -50887,7 +51213,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_37(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_37(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -50948,7 +51276,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_38(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_38(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -51009,68 +51339,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_39(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
-        """코드 적용"""
-        if not adapted.target_file:
-            log.warning("타겟 파일이 지정되지 않음")
-            return False
-
-        target_path = self.workspace / adapted.target_file
-        target_path.parent.mkdir(parents=True, exist_ok=True)
-
-        if dry_run:
-            log.info(f"[DRY RUN] {target_path}에 적용 예정")
-            return True
-
-        try:
-            # 기존 내용 읽기
-            existing = ""
-            if target_path.exists():
-                existing = target_path.read_text(encoding="utf-8")
-
-            # 적용 전략 결정
-            if adapted.replace_pattern:
-                # 패턴 대체
-                new_content = re.sub(
-                    adapted.replace_pattern,
-                    adapted.adapted,
-                    existing,
-                    flags=re.MULTILINE | re.DOTALL,
-                )
-            elif adapted.insert_after:
-                # 특정 패턴 뒤에 삽입
-                new_content = re.sub(
-                    f"({re.escape(adapted.insert_after)})",
-                    f"\\1\n\n{adapted.adapted}",
-                    flags=re.MULTILINE | re.DOTALL,
-                )
-            else:
-                # 파일 끝에 추가 (기본)
-                new_content = existing.rstrip() + f"\n\n{adapted.adapted}\n"
-
-            # 변경사항이 없으면 스킵
-            if new_content == existing:
-                log.info(f"변경사항 없음: {target_path}")
-                return True
-
-            # 백업 후 쓰기
-            backup_path = target_path.with_suffix(target_path.suffix + ".bak")
-            if target_path.exists():
-                target_path.rename(backup_path)
-
-            target_path.write_text(new_content, encoding="utf-8")
-            log.info(f"적용 완료: {target_path}")
-            return True
-
-        except (OSError, UnicodeError, re.error) as e:
-            log.error(f"적용 실패: {target_path} - {e}")
-            # 복구
-            backup_path = target_path.with_suffix(target_path.suffix + ".bak")
-            if backup_path.exists():
-                backup_path.rename(target_path)
-            return False
-
-    def xǁCodeExampleApplierǁapply__mutmut_40(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_39(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -51103,8 +51374,8 @@ class CodeExampleApplier:
                 new_content = re.sub(
                     f"({re.escape(adapted.insert_after)})",
                     f"\\1\n\n{adapted.adapted}",
-                    existing,
-                    )
+                    flags=re.MULTILINE | re.DOTALL,
+                )
             else:
                 # 파일 끝에 추가 (기본)
                 new_content = existing.rstrip() + f"\n\n{adapted.adapted}\n"
@@ -51131,7 +51402,72 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_41(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_40(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
+        """코드 적용"""
+        if not adapted.target_file:
+            log.warning("타겟 파일이 지정되지 않음")
+            return False
+
+        target_path = self.workspace / adapted.target_file
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+
+        if dry_run:
+            log.info(f"[DRY RUN] {target_path}에 적용 예정")
+            return True
+
+        try:
+            # 기존 내용 읽기
+            existing = ""
+            if target_path.exists():
+                existing = target_path.read_text(encoding="utf-8")
+
+            # 적용 전략 결정
+            if adapted.replace_pattern:
+                # 패턴 대체
+                new_content = re.sub(
+                    adapted.replace_pattern,
+                    adapted.adapted,
+                    existing,
+                    flags=re.MULTILINE | re.DOTALL,
+                )
+            elif adapted.insert_after:
+                # 특정 패턴 뒤에 삽입
+                new_content = re.sub(
+                    f"({re.escape(adapted.insert_after)})",
+                    f"\\1\n\n{adapted.adapted}",
+                    existing,
+                )
+            else:
+                # 파일 끝에 추가 (기본)
+                new_content = existing.rstrip() + f"\n\n{adapted.adapted}\n"
+
+            # 변경사항이 없으면 스킵
+            if new_content == existing:
+                log.info(f"변경사항 없음: {target_path}")
+                return True
+
+            # 백업 후 쓰기
+            backup_path = target_path.with_suffix(target_path.suffix + ".bak")
+            if target_path.exists():
+                target_path.rename(backup_path)
+
+            target_path.write_text(new_content, encoding="utf-8")
+            log.info(f"적용 완료: {target_path}")
+            return True
+
+        except (OSError, UnicodeError, re.error) as e:
+            log.error(f"적용 실패: {target_path} - {e}")
+            # 복구
+            backup_path = target_path.with_suffix(target_path.suffix + ".bak")
+            if backup_path.exists():
+                backup_path.rename(target_path)
+            return False
+
+    def xǁCodeExampleApplierǁapply__mutmut_41(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -51193,7 +51529,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_42(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_42(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -51255,7 +51593,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_43(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_43(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -51317,7 +51657,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_44(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_44(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -51379,7 +51721,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_45(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_45(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -51441,7 +51785,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_46(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_46(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -51503,7 +51849,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_47(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_47(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -51565,7 +51913,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_48(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_48(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -51627,7 +51977,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_49(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_49(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -51689,7 +52041,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_50(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_50(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -51751,7 +52105,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_51(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_51(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -51813,7 +52169,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_52(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_52(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -51875,7 +52233,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_53(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_53(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -51937,7 +52297,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_54(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_54(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -51999,7 +52361,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_55(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_55(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -52061,7 +52425,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_56(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_56(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -52123,7 +52489,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_57(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_57(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -52185,7 +52553,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_58(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_58(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -52235,7 +52605,9 @@ class CodeExampleApplier:
             if target_path.exists():
                 target_path.rename(backup_path)
 
-            target_path.write_text(new_content, )
+            target_path.write_text(
+                new_content,
+            )
             log.info(f"적용 완료: {target_path}")
             return True
 
@@ -52247,7 +52619,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_59(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_59(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -52309,7 +52683,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_60(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_60(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -52371,7 +52747,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_61(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_61(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -52433,7 +52811,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_62(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_62(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -52495,7 +52875,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_63(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_63(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -52557,7 +52939,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_64(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_64(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -52619,7 +53003,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_65(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_65(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -52681,7 +53067,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_66(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_66(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -52743,7 +53131,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_67(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_67(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -52805,7 +53195,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_68(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_68(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -52867,7 +53259,9 @@ class CodeExampleApplier:
                 backup_path.rename(target_path)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_69(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_69(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -52929,7 +53323,9 @@ class CodeExampleApplier:
                 backup_path.rename(None)
             return False
 
-    def xǁCodeExampleApplierǁapply__mutmut_70(self, adapted: AdaptedCode, dry_run: bool = False) -> bool:
+    def xǁCodeExampleApplierǁapply__mutmut_70(
+        self, adapted: AdaptedCode, dry_run: bool = False
+    ) -> bool:
         """코드 적용"""
         if not adapted.target_file:
             log.warning("타겟 파일이 지정되지 않음")
@@ -53097,96 +53493,99 @@ class CodeExampleApplier:
         """여러 코드 일괄 적용"""
         results = {}
         for adapted in adapted_codes:
-            results[adapted.target_file or "unknown"] = self.apply(adapted, )
+            results[adapted.target_file or "unknown"] = self.apply(
+                adapted,
+            )
         return results
 
-mutants_xǁCodeExampleApplierǁ__init____mutmut['_mutmut_orig'] = CodeExampleApplier.xǁCodeExampleApplierǁ__init____mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁ__init____mutmut['xǁCodeExampleApplierǁ__init____mutmut_1'] = CodeExampleApplier.xǁCodeExampleApplierǁ__init____mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁ__init____mutmut['xǁCodeExampleApplierǁ__init____mutmut_2'] = CodeExampleApplier.xǁCodeExampleApplierǁ__init____mutmut_2 # type: ignore # mutmut generated
 
-mutants_xǁCodeExampleApplierǁapply__mutmut['_mutmut_orig'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_1'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_2'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_3'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_4'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_5'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_6'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_7'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_8'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_9'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_10'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_10 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_11'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_11 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_12'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_12 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_13'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_13 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_14'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_14 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_15'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_15 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_16'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_16 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_17'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_17 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_18'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_18 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_19'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_19 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_20'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_20 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_21'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_21 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_22'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_22 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_23'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_23 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_24'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_24 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_25'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_25 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_26'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_26 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_27'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_27 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_28'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_28 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_29'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_29 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_30'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_30 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_31'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_31 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_32'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_32 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_33'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_33 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_34'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_34 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_35'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_35 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_36'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_36 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_37'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_37 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_38'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_38 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_39'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_39 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_40'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_40 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_41'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_41 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_42'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_42 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_43'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_43 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_44'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_44 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_45'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_45 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_46'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_46 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_47'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_47 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_48'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_48 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_49'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_49 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_50'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_50 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_51'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_51 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_52'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_52 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_53'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_53 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_54'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_54 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_55'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_55 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_56'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_56 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_57'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_57 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_58'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_58 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_59'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_59 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_60'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_60 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_61'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_61 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_62'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_62 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_63'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_63 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_64'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_64 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_65'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_65 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_66'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_66 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_67'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_67 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_68'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_68 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_69'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_69 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply__mutmut['xǁCodeExampleApplierǁapply__mutmut_70'] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_70 # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁ__init____mutmut["_mutmut_orig"] = CodeExampleApplier.xǁCodeExampleApplierǁ__init____mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁ__init____mutmut["xǁCodeExampleApplierǁ__init____mutmut_1"] = CodeExampleApplier.xǁCodeExampleApplierǁ__init____mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁ__init____mutmut["xǁCodeExampleApplierǁ__init____mutmut_2"] = CodeExampleApplier.xǁCodeExampleApplierǁ__init____mutmut_2  # type: ignore # mutmut generated
 
-mutants_xǁCodeExampleApplierǁapply_batch__mutmut['_mutmut_orig'] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_orig # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply_batch__mutmut['xǁCodeExampleApplierǁapply_batch__mutmut_1'] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_1 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply_batch__mutmut['xǁCodeExampleApplierǁapply_batch__mutmut_2'] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_2 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply_batch__mutmut['xǁCodeExampleApplierǁapply_batch__mutmut_3'] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_3 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply_batch__mutmut['xǁCodeExampleApplierǁapply_batch__mutmut_4'] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_4 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply_batch__mutmut['xǁCodeExampleApplierǁapply_batch__mutmut_5'] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_5 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply_batch__mutmut['xǁCodeExampleApplierǁapply_batch__mutmut_6'] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_6 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply_batch__mutmut['xǁCodeExampleApplierǁapply_batch__mutmut_7'] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_7 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply_batch__mutmut['xǁCodeExampleApplierǁapply_batch__mutmut_8'] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_8 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply_batch__mutmut['xǁCodeExampleApplierǁapply_batch__mutmut_9'] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_9 # type: ignore # mutmut generated
-mutants_xǁCodeExampleApplierǁapply_batch__mutmut['xǁCodeExampleApplierǁapply_batch__mutmut_10'] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_10 # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["_mutmut_orig"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_1"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_2"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_3"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_4"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_5"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_6"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_7"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_8"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_9"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_10"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_10  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_11"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_11  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_12"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_12  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_13"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_13  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_14"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_14  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_15"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_15  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_16"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_16  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_17"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_17  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_18"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_18  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_19"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_19  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_20"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_20  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_21"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_21  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_22"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_22  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_23"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_23  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_24"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_24  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_25"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_25  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_26"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_26  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_27"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_27  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_28"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_28  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_29"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_29  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_30"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_30  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_31"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_31  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_32"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_32  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_33"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_33  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_34"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_34  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_35"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_35  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_36"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_36  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_37"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_37  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_38"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_38  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_39"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_39  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_40"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_40  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_41"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_41  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_42"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_42  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_43"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_43  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_44"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_44  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_45"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_45  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_46"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_46  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_47"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_47  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_48"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_48  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_49"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_49  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_50"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_50  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_51"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_51  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_52"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_52  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_53"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_53  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_54"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_54  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_55"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_55  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_56"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_56  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_57"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_57  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_58"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_58  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_59"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_59  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_60"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_60  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_61"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_61  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_62"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_62  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_63"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_63  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_64"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_64  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_65"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_65  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_66"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_66  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_67"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_67  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_68"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_68  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_69"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_69  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply__mutmut["xǁCodeExampleApplierǁapply__mutmut_70"] = CodeExampleApplier.xǁCodeExampleApplierǁapply__mutmut_70  # type: ignore # mutmut generated
+
+mutants_xǁCodeExampleApplierǁapply_batch__mutmut["_mutmut_orig"] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_orig  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply_batch__mutmut["xǁCodeExampleApplierǁapply_batch__mutmut_1"] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_1  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply_batch__mutmut["xǁCodeExampleApplierǁapply_batch__mutmut_2"] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_2  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply_batch__mutmut["xǁCodeExampleApplierǁapply_batch__mutmut_3"] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_3  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply_batch__mutmut["xǁCodeExampleApplierǁapply_batch__mutmut_4"] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_4  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply_batch__mutmut["xǁCodeExampleApplierǁapply_batch__mutmut_5"] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_5  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply_batch__mutmut["xǁCodeExampleApplierǁapply_batch__mutmut_6"] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_6  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply_batch__mutmut["xǁCodeExampleApplierǁapply_batch__mutmut_7"] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_7  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply_batch__mutmut["xǁCodeExampleApplierǁapply_batch__mutmut_8"] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_8  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply_batch__mutmut["xǁCodeExampleApplierǁapply_batch__mutmut_9"] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_9  # type: ignore # mutmut generated
+mutants_xǁCodeExampleApplierǁapply_batch__mutmut["xǁCodeExampleApplierǁapply_batch__mutmut_10"] = CodeExampleApplier.xǁCodeExampleApplierǁapply_batch__mutmut_10  # type: ignore # mutmut generated
 mutants_x_adapt_and_apply_examples__mutmut: MutantDict = {}  # type: ignore
 
 
@@ -53602,7 +54001,9 @@ def x_adapt_and_apply_examples__mutmut_9(
     analyzer = ProjectAnalyzer(workspace)
     context = analyzer.analyze()
 
-    adapter = CodeExampleAdapter(workspace, )
+    adapter = CodeExampleAdapter(
+        workspace,
+    )
     applier = CodeExampleApplier(workspace)
 
     all_adapted = []
@@ -54664,7 +55065,11 @@ def x_adapt_and_apply_examples__mutmut_35(
             elif task and task.target_files:
                 target_file = task.target_files[0]
 
-            adapted = adapter.adapt_example(code, doc, target_file, )
+            adapted = adapter.adapt_example(
+                code,
+                doc,
+                target_file,
+            )
             all_adapted.append(adapted)
 
     # 적용
@@ -54868,46 +55273,49 @@ def x_adapt_and_apply_examples__mutmut_40(
             all_adapted.append(adapted)
 
     # 적용
-    return applier.apply_batch(all_adapted, )
+    return applier.apply_batch(
+        all_adapted,
+    )
 
-mutants_x_adapt_and_apply_examples__mutmut['_mutmut_orig'] = x_adapt_and_apply_examples__mutmut_orig # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_1'] = x_adapt_and_apply_examples__mutmut_1 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_2'] = x_adapt_and_apply_examples__mutmut_2 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_3'] = x_adapt_and_apply_examples__mutmut_3 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_4'] = x_adapt_and_apply_examples__mutmut_4 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_5'] = x_adapt_and_apply_examples__mutmut_5 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_6'] = x_adapt_and_apply_examples__mutmut_6 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_7'] = x_adapt_and_apply_examples__mutmut_7 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_8'] = x_adapt_and_apply_examples__mutmut_8 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_9'] = x_adapt_and_apply_examples__mutmut_9 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_10'] = x_adapt_and_apply_examples__mutmut_10 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_11'] = x_adapt_and_apply_examples__mutmut_11 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_12'] = x_adapt_and_apply_examples__mutmut_12 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_13'] = x_adapt_and_apply_examples__mutmut_13 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_14'] = x_adapt_and_apply_examples__mutmut_14 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_15'] = x_adapt_and_apply_examples__mutmut_15 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_16'] = x_adapt_and_apply_examples__mutmut_16 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_17'] = x_adapt_and_apply_examples__mutmut_17 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_18'] = x_adapt_and_apply_examples__mutmut_18 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_19'] = x_adapt_and_apply_examples__mutmut_19 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_20'] = x_adapt_and_apply_examples__mutmut_20 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_21'] = x_adapt_and_apply_examples__mutmut_21 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_22'] = x_adapt_and_apply_examples__mutmut_22 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_23'] = x_adapt_and_apply_examples__mutmut_23 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_24'] = x_adapt_and_apply_examples__mutmut_24 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_25'] = x_adapt_and_apply_examples__mutmut_25 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_26'] = x_adapt_and_apply_examples__mutmut_26 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_27'] = x_adapt_and_apply_examples__mutmut_27 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_28'] = x_adapt_and_apply_examples__mutmut_28 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_29'] = x_adapt_and_apply_examples__mutmut_29 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_30'] = x_adapt_and_apply_examples__mutmut_30 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_31'] = x_adapt_and_apply_examples__mutmut_31 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_32'] = x_adapt_and_apply_examples__mutmut_32 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_33'] = x_adapt_and_apply_examples__mutmut_33 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_34'] = x_adapt_and_apply_examples__mutmut_34 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_35'] = x_adapt_and_apply_examples__mutmut_35 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_36'] = x_adapt_and_apply_examples__mutmut_36 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_37'] = x_adapt_and_apply_examples__mutmut_37 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_38'] = x_adapt_and_apply_examples__mutmut_38 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_39'] = x_adapt_and_apply_examples__mutmut_39 # type: ignore # mutmut generated
-mutants_x_adapt_and_apply_examples__mutmut['x_adapt_and_apply_examples__mutmut_40'] = x_adapt_and_apply_examples__mutmut_40 # type: ignore # mutmut generated
+
+mutants_x_adapt_and_apply_examples__mutmut["_mutmut_orig"] = x_adapt_and_apply_examples__mutmut_orig  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_1"] = x_adapt_and_apply_examples__mutmut_1  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_2"] = x_adapt_and_apply_examples__mutmut_2  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_3"] = x_adapt_and_apply_examples__mutmut_3  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_4"] = x_adapt_and_apply_examples__mutmut_4  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_5"] = x_adapt_and_apply_examples__mutmut_5  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_6"] = x_adapt_and_apply_examples__mutmut_6  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_7"] = x_adapt_and_apply_examples__mutmut_7  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_8"] = x_adapt_and_apply_examples__mutmut_8  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_9"] = x_adapt_and_apply_examples__mutmut_9  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_10"] = x_adapt_and_apply_examples__mutmut_10  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_11"] = x_adapt_and_apply_examples__mutmut_11  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_12"] = x_adapt_and_apply_examples__mutmut_12  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_13"] = x_adapt_and_apply_examples__mutmut_13  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_14"] = x_adapt_and_apply_examples__mutmut_14  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_15"] = x_adapt_and_apply_examples__mutmut_15  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_16"] = x_adapt_and_apply_examples__mutmut_16  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_17"] = x_adapt_and_apply_examples__mutmut_17  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_18"] = x_adapt_and_apply_examples__mutmut_18  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_19"] = x_adapt_and_apply_examples__mutmut_19  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_20"] = x_adapt_and_apply_examples__mutmut_20  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_21"] = x_adapt_and_apply_examples__mutmut_21  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_22"] = x_adapt_and_apply_examples__mutmut_22  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_23"] = x_adapt_and_apply_examples__mutmut_23  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_24"] = x_adapt_and_apply_examples__mutmut_24  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_25"] = x_adapt_and_apply_examples__mutmut_25  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_26"] = x_adapt_and_apply_examples__mutmut_26  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_27"] = x_adapt_and_apply_examples__mutmut_27  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_28"] = x_adapt_and_apply_examples__mutmut_28  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_29"] = x_adapt_and_apply_examples__mutmut_29  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_30"] = x_adapt_and_apply_examples__mutmut_30  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_31"] = x_adapt_and_apply_examples__mutmut_31  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_32"] = x_adapt_and_apply_examples__mutmut_32  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_33"] = x_adapt_and_apply_examples__mutmut_33  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_34"] = x_adapt_and_apply_examples__mutmut_34  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_35"] = x_adapt_and_apply_examples__mutmut_35  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_36"] = x_adapt_and_apply_examples__mutmut_36  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_37"] = x_adapt_and_apply_examples__mutmut_37  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_38"] = x_adapt_and_apply_examples__mutmut_38  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_39"] = x_adapt_and_apply_examples__mutmut_39  # type: ignore # mutmut generated
+mutants_x_adapt_and_apply_examples__mutmut["x_adapt_and_apply_examples__mutmut_40"] = x_adapt_and_apply_examples__mutmut_40  # type: ignore # mutmut generated
