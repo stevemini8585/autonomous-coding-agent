@@ -40,5 +40,165 @@
       "files_created": 0,
       "coverage": 0.0
     }
+  },
+  {
+    "session_id": "session_edf4608b",
+    "goal": "Add hello endpoint",
+    "workspace": "/var/folders/_k/1zvf_npd5cdgpgbrm8_vg2040000gn/T/e2e_test_d3gqehr3/test_project",
+    "start_time": "2026-09-09T15:13:49.903754",
+    "end_time": "2026-09-09T15:13:49.903757",
+    "success": true,
+    "steps_completed": 0,
+    "total_steps": 0,
+    "patterns_used": [],
+    "patterns_created": [],
+    "errors": [],
+    "metrics": {
+      "language": "python",
+      "framework": "fastapi",
+      "tests_generated": 5,
+      "files_modified": 1,
+      "files_created": 0
+    }
+  },
+  {
+    "session_id": "session_81eccc00",
+    "goal": "Add hello endpoint",
+    "workspace": "/var/folders/_k/1zvf_npd5cdgpgbrm8_vg2040000gn/T/e2e_test__r8879h9/test_project",
+    "start_time": "2026-09-09T15:32:47.240417",
+    "end_time": "2026-09-09T15:32:47.240420",
+    "success": true,
+    "steps_completed": 0,
+    "total_steps": 0,
+    "patterns_used": [],
+    "patterns_created": [],
+    "errors": [],
+    "metrics": {
+      "language": "python",
+      "framework": "fastapi",
+      "tests_generated": 5,
+      "files_modified": 1,
+      "files_created": 0
+    }
+  },
+  {
+    "session_id": "session_76d7afd9",
+    "goal": "Add hello endpoint",
+    "workspace": "/var/folders/_k/1zvf_npd5cdgpgbrm8_vg2040000gn/T/e2e_test_8bkxclh0/test_project",
+    "start_time": "2026-09-09T16:30:32.889846",
+    "end_time": "2026-09-09T16:30:32.889849",
+    "success": true,
+    "steps_completed": 0,
+    "total_steps": 0,
+    "patterns_used": [],
+    "patterns_created": [],
+    "errors": [],
+    "metrics": {
+      "language": "python",
+      "framework": "fastapi",
+      "tests_generated": 5,
+      "files_modified": 1,
+      "files_created": 0
+    }
+  },
+  {
+    "session_id": "session_3e2877d6",
+    "goal": "Add hello endpoint",
+    "workspace": "/var/folders/_k/1zvf_npd5cdgpgbrm8_vg2040000gn/T/e2e_test_90xkk15l/test_project",
+    "start_time": "2026-09-09T16:35:16.515010",
+    "end_time": "2026-09-09T16:35:16.515013",
+    "success": true,
+    "steps_completed": 0,
+    "total_steps": 0,
+    "patterns_used": [],
+    "patterns_created": [],
+    "errors": [],
+    "metrics": {
+      "language": "python",
+      "framework": "fastapi",
+      "tests_generated": 5,
+      "files_modified": 1,
+      "files_created": 0
+    }
+  },
+  {
+    "session_id": "session_dd7b18df",
+    "goal": "Add hello endpoint",
+    "workspace": "/var/folders/_k/1zvf_npd5cdgpgbrm8_vg2040000gn/T/e2e_test_wqdp4fpk/test_project",
+    "start_time": "2026-09-09T16:36:54.012289",
+    "end_time": "2026-09-09T16:36:54.012292",
+    "success": true,
+    "steps_completed": 0,
+    "total_steps": 0,
+    "patterns_used": [],
+    "patterns_created": [],
+    "errors": [],
+    "metrics": {
+      "language": "python",
+      "framework": "fastapi",
+      "tests_generated": 5,
+      "files_modified": 1,
+      "files_created": 0
+    }
+  },
+  {
+    "session_id": "session_352e5ef8",
+    "goal": "Add hello endpoint",
+    "workspace": "/var/folders/_k/1zvf_npd5cdgpgbrm8_vg2040000gn/T/e2e_test_fwbn0kwk/test_project",
+    "start_time": "2026-09-09T16:38:01.341378",
+    "end_time": "2026-09-09T16:38:01.341384",
+    "success": true,
+    "steps_completed": 0,
+    "total_steps": 0,
+    "patterns_used": [],
+    "patterns_created": [],
+    "errors": [],
+    "metrics": {
+      "language": "python",
+      "framework": "fastapi",
+      "tests_generated": 5,
+      "files_modified": 1,
+      "files_created": 0
+    }
+  },
+  {
+    "session_id": "session_dae4ddd5",
+    "goal": "Add hello endpoint",
+    "workspace": "/var/folders/_k/1zvf_npd5cdgpgbrm8_vg2040000gn/T/e2e_test_19jcctj2/test_project",
+    "start_time": "2026-09-09T16:42:19.804850",
+    "end_time": "2026-09-09T16:42:19.804853",
+    "success": true,
+    "steps_completed": 0,
+    "total_steps": 0,
+    "patterns_used": [],
+    "patterns_created": [],
+    "errors": [],
+    "metrics": {
+      "language": "python",
+      "framework": "fastapi",
+      "tests_generated": 5,
+      "files_modified": 1,
+      "files_created": 0
+    }
+  },
+  {
+    "session_id": "session_33c3176f",
+    "goal": "Add hello endpoint",
+    "workspace": "/var/folders/_k/1zvf_npd5cdgpgbrm8_vg2040000gn/T/e2e_test_rzrw1apt/test_project",
+    "start_time": "2026-09-09T16:42:45.783392",
+    "end_time": "2026-09-09T16:42:45.783401",
+    "success": true,
+    "steps_completed": 0,
+    "total_steps": 0,
+    "patterns_used": [],
+    "patterns_created": [],
+    "errors": [],
+    "metrics": {
+      "language": "python",
+      "framework": "fastapi",
+      "tests_generated": 5,
+      "files_modified": 1,
+      "files_created": 0
+    }
   }
 ]

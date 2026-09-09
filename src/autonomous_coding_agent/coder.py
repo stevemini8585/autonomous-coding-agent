@@ -181,14 +181,19 @@ class CodeGenerator:
         return self._enhance_python_file(content, goal)
 
     def _add_fastapi_endpoint(self, content: str, goal: str, file_path: str) -> str:
-        """FastAPI 파일에 새 엔드포인트 추가"""
+        """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
         import re
 
         # 목표에서 경로와 응답 추출
         path_match = re.search(r"GET\s+(/\w+)", goal, re.IGNORECASE)
         if not path_match:
-            path_match = re.search(r"(/\w+)", goal)
+            path_match = re.search(r"(//\w+)", goal)
         endpoint_path = path_match.group(1) if path_match else "/hello"
+
+        # 이미 존재하는 엔드포인트인지 체크
+        if re.search(rf'@app\.get\(\s*["\']{re.escape(endpoint_path)}["\']\s*\)', content):
+            log.info(f"엔드포인트 {endpoint_path} 이미 존재함, 건너뜀")
+            return content
 
         # 응답 메시지 추출
         msg_match = re.search(r'message\s*[:=]\s*["\']([^"\']+)["\']', goal, re.IGNORECASE)
@@ -212,14 +217,15 @@ class CodeGenerator:
             insert_idx = 0
 
         # 엔드포인트 코드 생성
-        endpoint_code = f'''@app.get("{endpoint_path}")
-def read_hello():
-    """{endpoint_path} 엔드포인트.
-
-    Returns:
-        결과값.
-    """
-    return {{"message": "{message}"}}'''
+        endpoint_code = (
+            f'@app.get("{endpoint_path}")\n'
+            f"def read_hello():\n"
+            f'    """{endpoint_path} 엔드포인트.\n\n'
+            f"    Returns:\n"
+            f"        결과값.\n"
+            f'    """\n'
+            f'    return {{"message": "{message}"}}'
+        )
 
         # 삽입
         new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]

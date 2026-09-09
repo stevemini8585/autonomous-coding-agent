@@ -125,13 +125,15 @@ class GitManager:
         hash_result = self._run("git rev-parse HEAD")
         return hash_result.stdout.strip()
 
-    def create_branch(self, branch_name: str, base: str | None = None) -> bool:
+    def create_branch(self, branch_name: str, base: str | None = None) -> str:
         """브랜치 생성"""
         cmd = f"git checkout -b {branch_name}"
         if base:
             cmd = f"git checkout -b {branch_name} {base}"
         result = self._run(cmd)
-        return result.returncode == 0
+        if result.returncode != 0:
+            raise RuntimeError(f"브랜치 생성 실패: {result.stderr}")
+        return branch_name
 
     def push(self, branch: str | None = None, force: bool = False) -> bool:
         """푸시"""

@@ -79,6 +79,9 @@ jobs:
       - name: Run tests
         run: pytest -v --asyncio-mode=auto --tb=short
 
+      - name: Coverage Gate
+        run: pytest --cov=src --cov-fail-under=43
+
       - name: Upload coverage
         if: always()
         uses: actions/upload-artifact@v4
@@ -149,25 +152,25 @@ jobs:
           import tempfile
           from pathlib import Path
           from autonomous_coding_agent import TestGenerator
-          
+
           with tempfile.TemporaryDirectory() as tmpdir:
               tmp_path = Path(tmpdir)
               (tmp_path / 'sample.py').write_text('''
           import httpx
           from pydantic import BaseModel
-          
+
           class User(BaseModel):
               name: str
               email: str
               age: int
-          
+
           async def fetch_user(user_id: int) -> User:
               async with httpx.AsyncClient() as client:
                   response = await client.get(f\"https://api.example.com/users/{user_id}\")
                   response.raise_for_status()
                   return User(**response.json())
           ''')
-              
+
               generator = TestGenerator(tmp_path)
               module = generator.generate_tests_for_file('sample.py')
               test_path = generator.write_test_file(module)
@@ -215,21 +218,21 @@ jobs:
           python -c "
           import os
           from autonomous_coding_agent import PRReviewer
-          
+
           pr_number = int(os.environ['PR_NUMBER'])
           repo_owner = os.environ['REPO_OWNER']
           repo_name = os.environ['REPO_NAME']
-          
+
           reviewer = PRReviewer(repo_owner, repo_name)
           result = reviewer.review_pr(pr_number)
-          
+
           print(f'PR Review completed: {result.total_comments} comments')
           print(f'  Critical: {result.critical_count}')
           print(f'  Error: {result.error_count}')
           print(f'  Warning: {result.warning_count}')
           print(f'  Info: {result.info_count}')
           print(f'  Nit: {result.nit_count}')
-          
+
           if result.critical_count > 0:
               exit(1)
           "
