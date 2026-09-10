@@ -1,1 +1,10 @@
 docs/build/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+# 에이전트 런타임 부산물 (백업/패치/메모리 — 커밋 금지)
+.autonomous_backups/
+.patch_backups/
+.autonomous_memory/
+.autonomous_state/

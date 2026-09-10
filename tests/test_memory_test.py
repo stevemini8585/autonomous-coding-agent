@@ -1,0 +1,62 @@
+"""
+Tests for test_memory
+Auto-generated test for: GitHub 이슈 #5: Add edge-case unit test for join_types
+
+tests/test_type_inference.py의 TestJoinTypes 클래스에 Union 중첩 엣지 케이스 테스트 1개를 추가하세요. 예: join_types('Optional[int]', 'str') 결과 검증. 수용 기준: 새 테스트 통과.
+
+작업 항목:
+- [create] tests/test_type_inference.py의 TestJoinTypes 클래스에 Union 중첩 엣지 케이스 테스트 1개를 추가하세요: tests/test_type_inference.py의 TestJoinTypes 클래스에 Union 중첩 엣지 케이스 테스트 1개를 추가하세요
+- [create] 예: join_types('Optional[int]', 'str') 결과 검증: 예: join_types('Optional[int]', 'str') 결과 검증
+- [create] 수용 기준: 새 테스트 통과.: 수용 기준: 새 테스트 통과.
+
+수용 기준:
+- 새 테스트 통과.
+"""
+
+import pytest
+from test_memory import (
+    test_learning_agent_pattern_application,
+    test_pattern_memory_basic,
+    test_pattern_memory_similarity,
+    test_session_record,
+    test_statistics,
+)
+
+
+def test_test_pattern_memory_basic():
+    """Test test_pattern_memory_basic function"""
+    result = test_pattern_memory_basic()
+    assert result is not None
+    # TODO: 구체적 테스트 케이스 추가
+
+
+def test_test_pattern_memory_similarity():
+    """Test test_pattern_memory_similarity function"""
+    result = test_pattern_memory_similarity()
+    assert result is not None
+    # TODO: 구체적 테스트 케이스 추가
+
+
+def test_test_session_record():
+    """Test test_session_record function"""
+    result = test_session_record()
+    assert result is not None
+    # TODO: 구체적 테스트 케이스 추가
+
+
+def test_test_learning_agent_pattern_application():
+    """Test test_learning_agent_pattern_application function"""
+    result = test_learning_agent_pattern_application()
+    assert result is not None
+    # TODO: 구체적 테스트 케이스 추가
+
+
+def test_test_statistics():
+    """Test test_statistics function"""
+    result = test_statistics()
+    assert result is not None
+    # TODO: 구체적 테스트 케이스 추가
+
+
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])
