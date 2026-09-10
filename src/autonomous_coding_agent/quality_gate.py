@@ -100,6 +100,14 @@ class Finding:
     message: str
 
     def to_dict(self) -> dict[str, Any]:
+        """to_dict 함수.
+
+        Args:
+            self: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         return {
             "rule": self.rule,
             "target": self.target,
