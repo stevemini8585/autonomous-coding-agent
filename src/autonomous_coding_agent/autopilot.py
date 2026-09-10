@@ -164,6 +164,10 @@ class Autopilot:
         """worktree용 워크플로우 (테스트에서 스텁 교체 가능)"""
         return GitWorkflow(Path(workspace))
 
+    def _make_reviewer(self, workspace: str | Path) -> PRReviewer:
+        """worktree용 리뷰어 — PR 파일을 실제 검사 (테스트에서 스텁 교체 가능)"""
+        return PRReviewer(Path(workspace))
+
     @staticmethod
     def _git(args: list[str], cwd: Path) -> tuple[int, str]:
         import subprocess
@@ -289,13 +293,12 @@ class Autopilot:
             pr = self.github.get_pr(pr_number)
             result.pr_url = pr.url if pr else None
 
-            # 5) 자동 리뷰
+            # 5) 자동 리뷰 (worktree 파일 기준 — 메인 체크아웃 유령 경고 방지)
             repo_info = self.github.get_repo_info()
             if repo_info:
                 repo = f"{repo_info['owner']['login']}/{repo_info['name']}"
-                review = self.reviewer.review_pr(
-                    pr_number, repo, base_branch=self.config.base_branch
-                )
+                wt_reviewer = self._make_reviewer(wt)
+                review = wt_reviewer.review_pr(pr_number, repo, base_branch=self.config.base_branch)
                 result.review_summary = (
                     f"critical {review.critical_count}, "
                     f"error {review.error_count}, warning {review.warning_count}"

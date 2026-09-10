@@ -67,9 +67,10 @@ class GitWorkflow:
         branch = self._branch_name(issue_number, issue_title)
         wt_path = self.workspace.parent / f"{self.workspace.name}-wt-{branch}"
 
-        # 기존 잔재 정리 (재실행 멱등성)
+        # 기존 잔재 정리 (재실행 멱등성 — 로컬 + 원격 브랜치 모두)
         self.remove_worktree(wt_path, missing_ok=True)
         self._run_git(["branch", "-D", branch], check=False)
+        self._run_git(["push", "origin", "--delete", branch], check=False)
 
         # 최신 base 확보 (실패해도 로컬 base로 계속)
         self._run_git(["fetch", "origin", base], check=False)
@@ -177,7 +178,7 @@ Closes #{issue_number}"""
             title=f"Fix #{issue_number}: {issue.title}",
             body=body,
             head=branch,
-            base="main",
+            base=base,
         )
 
         if pr_number:

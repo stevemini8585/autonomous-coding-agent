@@ -522,13 +522,18 @@ class PRReviewer:
         return added
 
     def _run_static_analysis(self, file_paths: list[str]) -> list[ReviewComment]:
-        """정적 분석 도구 실행 (ruff, mypy)"""
-        comments = []
+        """정적 분석 도구 실행 (ruff, mypy) — .py 변경 파일만, 결과도 해당 파일로 한정"""
+        comments: list[ReviewComment] = []
+        ws = Path(self.workspace)
+        py_files = [f for f in file_paths if f.endswith(".py") and (ws / f).exists()]
+        if not py_files:
+            return comments
+        wanted = {Path(f).name for f in py_files} | set(py_files)
 
         # ruff 실행
         try:
             result = subprocess.run(
-                ["ruff", "check", "--output-format=json"] + file_paths,
+                ["ruff", "check", "--output-format=json"] + py_files,
                 capture_output=True,
                 text=True,
                 timeout=120,
@@ -559,10 +564,10 @@ class PRReviewer:
         except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as e:
             log.warning(f"ruff 실행 실패: {e}")
 
-        # mypy 실행
+        # mypy 실행 (import 추적 금지 — 변경 파일 결과만 취함)
         try:
             result = subprocess.run(
-                ["mypy", "--explicit-package-bases", "--json"] + file_paths,
+                ["mypy", "--explicit-package-bases", "--follow-imports=skip", "--json"] + py_files,
                 capture_output=True,
                 text=True,
                 timeout=120,
@@ -589,6 +594,10 @@ class PRReviewer:
         except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as e:
             log.warning(f"mypy 실행 실패: {e}")
 
+        # 변경 파일이 아닌 결과 제거 (mypy import 추적 잔재 등)
+        comments = [
+            c for c in comments if c.file_path in wanted or Path(c.file_path).name in wanted
+        ]
         return comments
 
     def _map_ruff_severity(self, level: str) -> ReviewSeverity:

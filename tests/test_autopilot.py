@@ -239,6 +239,7 @@ class TestRunIssue:
         )
         pilot.reviewer = PRReviewer(str(tmp_path))
         pilot.reviewer.review_pr = lambda *a, **k: bad
+        pilot._make_reviewer = lambda wt: pilot.reviewer  # noqa: SLF001
         r = pilot.run_issue(1)
         assert r.stage == "failed" and "리뷰 차단" in (r.error or "")
         assert 99 not in pilot.github.merged
@@ -395,3 +396,56 @@ class TestNotifyModule:
 
         monkeypatch.setattr(urllib.request, "urlopen", boom)
         assert send_telegram("hi") is False
+
+
+class TestReviewScoping:
+    def test_make_reviewer_binds_workspace(self):
+        from autonomous_coding_agent.autopilot import Autopilot
+
+        pilot = Autopilot(".")
+        rev = pilot._make_reviewer(".")  # noqa: SLF001
+        assert Path(rev.workspace).resolve() == Path(".").resolve()
+
+    def test_create_pr_base_passthrough(self, tmp_path):
+        import subprocess
+
+        from autonomous_coding_agent.git_integration import GitWorkflow
+
+        repo = tmp_path / "r"
+        repo.mkdir()
+        subprocess.run(["git", "init", "-q"], cwd=repo, check=True)
+        subprocess.run(["git", "config", "user.email", "t@t"], cwd=repo, check=True)
+        subprocess.run(["git", "config", "user.name", "t"], cwd=repo, check=True)
+        (repo / "a.txt").write_text("hi\n")
+        subprocess.run(["git", "add", "-A"], cwd=repo, check=True)
+        subprocess.run(["git", "commit", "-qm", "init"], cwd=repo, check=True)
+
+        seen = {}
+
+        class FakeGH:
+            def get_issue(self, n):
+                from autonomous_coding_agent.github import GitHubIssue
+
+                return GitHubIssue(
+                    number=n,
+                    title="t",
+                    body="b",
+                    state="open",
+                    labels=[],
+                    assignees=[],
+                    created_at="",
+                    updated_at="",
+                    url="",
+                )
+
+            def create_pr(self, title, body, head, base="main", draft=False):
+                seen["base"] = base
+                return 99
+
+            def add_comment(self, n, body):
+                return True
+
+        wf = GitWorkflow(repo)
+        wf.github = FakeGH()  # type: ignore[assignment]
+        wf.create_pr_from_issue(1, "b", base="test/feature-hello")
+        assert seen["base"] == "test/feature-hello"

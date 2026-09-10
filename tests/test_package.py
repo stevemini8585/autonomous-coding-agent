@@ -170,3 +170,12 @@ dependencies = ["httpx", "pydantic"]
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
+
+
+class TestReviewerFiles:
+    def test_missing_files_skipped(self, tmp_path):
+        from autonomous_coding_agent.pr_reviewer import PRReviewer
+
+        r = PRReviewer(tmp_path)
+        out = r._run_static_analysis(["ghost.py", "notes.txt"])  # noqa: SLF001
+        assert out == []
