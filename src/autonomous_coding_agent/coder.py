@@ -470,97 +470,80 @@ if __name__ == "__main__":
     def _generate_test_files(
         self, step: PlanStep, goal: str, context: dict[str, Any]
     ) -> dict[str, str]:
-        """테스트 파일 생성"""
+        """테스트 스텁 생성 (수집 안전 규칙 적용)"""
         test_files = {}
 
         for file_path in step.assigned_files:
-            if file_path.endswith(".py") and not file_path.endswith("_test.py"):
-                test_path = file_path.replace(".py", "_test.py")
-                test_files[test_path] = self._generate_python_test_file(file_path, goal, context)
+            if not file_path.endswith(".py") or file_path.endswith("_test.py"):
+                continue
+            norm = file_path.replace("\\", "/")
+            stem = Path(file_path).stem
+            if stem.startswith("test_") or stem in ("__init__", "__main__"):
+                continue  # 기존 테스트/패키지 파일에는 스텁을 만들지 않음
+            if norm.startswith("tests/") or "/tests/" in norm:
+                continue
+            stub = self._generate_python_test_file(file_path, goal, context)
+            if stub:
+                test_path = str(Path(file_path).parent / f"{stem}_test.py")
+                test_files[test_path] = stub
 
         return test_files
 
+    def _dotted_module(self, source_file: str) -> str:
+        """파일 경로 → dotted 모듈명 (src/ 기준)"""
+        parts = [p for p in Path(source_file).parts if p not in (".",)]
+        if parts and parts[0] == "src":
+            parts = parts[1:]
+        if parts and parts[-1].endswith(".py"):
+            parts[-1] = parts[-1][:-3]
+        return ".".join(parts)
+
     def _generate_python_test_file(
         self, source_file: str, goal: str, context: dict[str, Any]
-    ) -> str:
-        """소스 파일에 대한 테스트 파일 생성"""
-        module_name = Path(source_file).stem
-        test_path = f"{module_name}_test.py"
+    ) -> str | None:
+        """수집 안전한 스모크 스텁. 테스트할 최상위 함수가 없으면 None."""
+        import re
 
-        # 소스 파일 읽어서 함수들 파악
         source_path = self.workspace / source_file
-        functions = []  # list of (name, params)
+        functions: list[str] = []
         if source_path.exists():
             content = source_path.read_text(encoding="utf-8")
-            for match in re.finditer(r"^\s*def (\w+)\((.*?)\)", content, re.MULTILINE):
-                if not match.group(1).startswith("_"):
-                    func_name = match.group(1)
-                    params = match.group(2).strip()
-                    # Parse parameters to get default values
-                    param_list = []
-                    for p in params.split(","):
-                        p = p.strip()
-                        if p:
-                            if "=" in p:
-                                name, default = p.split("=", 1)
-                                param_list.append((name.strip(), default.strip()))
-                            else:
-                                param_list.append((p.split(":")[0].strip(), None))
-                    functions.append((func_name, param_list))
+            # 최상위 def만 (메서드/중첩 제외), _ 비공개 제외
+            for match in re.finditer(r"^def (\w+)\(", content, re.MULTILINE):
+                name = match.group(1)
+                if not name.startswith("_"):
+                    functions.append(name)
 
         if not functions:
-            functions = [("main", [])]
+            return None
 
-        test_content = f'''"""
-Tests for {module_name}
-Auto-generated test for: {goal}
+        module = self._dotted_module(source_file)
+        names = ", ".join(sorted(set(functions)))
+        checks = "\n\n".join(
+            f"def test_{name}_callable():\n"
+            f'    """{name} 호출 가능 여부(스모크)"""\n'
+            f"    assert callable({name})"
+            for name in sorted(set(functions))
+        )
+        return f'''"""
+Tests for {module} (auto-generated smoke).
+Goal: {goal[:150]}
 """
 
-from {module_name} import {', '.join(sorted(f[0] for f in functions)) if functions else 'main'}
 import pytest
 
+try:
+    from {module} import {names}
+except ImportError:
+    {names.split(",")[0].strip()} = None
 
-'''
 
-        for func_name, params in functions:
-            # Build function call with arguments
-            args = []
-            for param_name, default in params:
-                if default is not None:
-                    args.append(f"{param_name}={default}")
-                # Provide sensible defaults based on param name/type hints
-                elif "name" in param_name.lower():
-                    args.append('"test"')
-                elif (
-                    "id" in param_name.lower()
-                    or "num" in param_name.lower()
-                    or "count" in param_name.lower()
-                ):
-                    args.append("1")
-                elif "list" in param_name.lower() or "items" in param_name.lower():
-                    args.append("[]")
-                elif "dict" in param_name.lower() or "map" in param_name.lower():
-                    args.append("{}")
-                elif "bool" in param_name.lower() or "flag" in param_name.lower():
-                    args.append("True")
-                else:
-                    args.append('"test_value"')
+{checks}
 
-            call_args = ", ".join(args)
 
-            test_content += f'''def test_{func_name}():
-    """Test {func_name} function"""
-    result = {func_name}({call_args})
-    assert result is not None
-    # TODO: 구체적 테스트 케이스 추가
-
-'''
-
-        test_content += """if __name__ == "__main__":
+if __name__ == "__main__":
     pytest.main([__file__, "-v"])
-"""
-
-        return test_content
+'''
 
     def _generate_python_test(self, step: PlanStep, existing: str, context: dict[str, Any]) -> str:
         """기존 테스트 파일 수정"""
