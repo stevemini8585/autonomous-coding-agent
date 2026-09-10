@@ -199,8 +199,10 @@ class TestChaosConcurrency:
 class TestChaosVerificationFailure:
     """검증 실패 시나리오 테스트"""
 
-    def test_verification_failure_triggers_critique_and_retry(self):
+    def test_verification_failure_triggers_critique_and_retry(self, monkeypatch):
         """검증 실패 시 비평 및 재시도 트리거"""
+        # LLM 폴백 제외: 실패→재시도 경로 자체를 검증하는 시나리오
+        monkeypatch.setenv("LLM_CODER", "off")
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
             # 파싱 불가 코드: coder가 무엇을 해도 가드레일이 거부 → 실패 경로
