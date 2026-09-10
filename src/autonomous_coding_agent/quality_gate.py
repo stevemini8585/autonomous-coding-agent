@@ -38,6 +38,14 @@ class GateConfig:
     min_type_coverage_warn: float = 0.5
 
     def to_dict(self) -> dict[str, Any]:
+        """to_dict 함수.
+
+        Args:
+            self: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         return {
             "max_complexity_warn": self.max_complexity_warn,
             "max_complexity_block": self.max_complexity_block,

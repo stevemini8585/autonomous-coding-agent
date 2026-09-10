@@ -23,6 +23,14 @@ def _g(r: InferenceResult, name: str, scope: str = "module") -> TypeInfo:
 
 class TestJoinTypes:
     def test_same(self):
+        """test_same 함수.
+
+        Args:
+            self: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         assert join_types("int", "int") == "int"
 
     def test_any(self):
