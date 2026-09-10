@@ -18,6 +18,17 @@ from .patch_utils import PatchManager, PatchOperation
 log = logging.getLogger("autonomous_coding_agent.coder")
 
 
+def _parses(content: str) -> bool:
+    """Python 파싱 가능 여부"""
+    import ast
+
+    try:
+        ast.parse(content)
+        return True
+    except SyntaxError:
+        return False
+
+
 class CodeGenerator:
     """코드 생성 및 수정 - 작업 목표에 맞게 구체적 구현"""
 
@@ -90,12 +101,17 @@ class CodeGenerator:
                     )
                 )
             else:
-                # 새 파일 생성
+                # 새 파일 생성 (py는 파싱 검증 후 기록 — 깨진 파일 생성 방지)
+                if file_path.endswith(".py") and not _parses(content):
+                    log.error("신규 파일 신택스 오류로 건너뜀: %s", file_path)
+                    artifacts.setdefault("files_rejected", []).append(file_path)
+                    continue
                 full_path.parent.mkdir(parents=True, exist_ok=True)
                 full_path.write_text(content, encoding="utf-8")
                 artifacts["files_created"].append(file_path)
 
         # 패치 적용 (트랜잭션으로 원자적 적용)
+        results: list = []
         if operations:
             results = patch_manager.apply_patches(operations)
             for result in results:
