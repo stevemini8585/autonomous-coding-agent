@@ -356,24 +356,23 @@ class CodeGenerator:
                         func_name = func_match.group(2)
                         params = func_match.group(3)
 
-                        # docstring 생성 (Google style - ruff/black 호환)
-                        docstring_lines = [f'{indent}    """{func_name} 함수."""']
+                        # docstring 생성 (Google style, 단일 문자열로 유효하게)
+                        parts = [f"{func_name} 함수."]
                         if params.strip():
                             param_list = [
                                 p.strip().split(":")[0].strip()
                                 for p in params.split(",")
                                 if p.strip()
                             ]
+                            param_list = [p for p in param_list if p and "=" not in p]
                             if param_list:
-                                docstring_lines.append(f"{indent}    Args:")
-                                for param in param_list:
-                                    if param and "=" not in param:
-                                        docstring_lines.append(
-                                            f"{indent}        {param}: 매개변수 설명."
-                                        )
-                        docstring_lines.append(f"{indent}    Returns:")
-                        docstring_lines.append(f"{indent}        결과값.")
-                        docstring = "\n".join(docstring_lines)
+                                parts += ["", "Args:"]
+                                parts += [f"    {p}: 매개변수 설명." for p in param_list]
+                        parts += ["", "Returns:", "    결과값."]
+                        doc_lines = [f'{indent}    """{parts[0]}']
+                        doc_lines += [f"{indent}    {p}" if p else "" for p in parts[1:]]
+                        doc_lines.append(f'{indent}    """')
+                        docstring = "\n".join(doc_lines)
 
                         # 현재 라인(함수 정의)을 추가하고, docstring을 그 다음에 삽입
                         enhanced.append(line)

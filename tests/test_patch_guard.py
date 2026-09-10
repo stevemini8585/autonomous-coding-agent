@@ -175,3 +175,29 @@ class TestFastAPIInsert:
         )
         ast.parse(out)
         assert "async def get_ping_2" in out
+
+
+class TestEnhanceDocstring:
+    SRC = """\
+def add(a, b):
+    return a + b
+
+
+class C:
+    def method(self, x):
+        return x
+"""
+
+    def test_output_parses(self, tmp_path):
+        import ast
+
+        gen = CodeGenerator(tmp_path)
+        out = gen._implement_feature_in_file(self.SRC, "독스트링 추가", "m.py", {})
+        ast.parse(out)  # 유효한 파이썬이어야 함 (회귀: Args 블록 깨짐)
+        assert '"""add 함수.' in out
+
+    def test_existing_docstring_kept(self, tmp_path):
+        gen = CodeGenerator(tmp_path)
+        src = 'def f():\n    """이미 있음."""\n    return 1\n'
+        out = gen._implement_feature_in_file(src, "독스트링 추가", "m.py", {})
+        assert out.count('"""') == 2  # 중복 삽입 금지
