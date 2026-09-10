@@ -539,10 +539,6 @@ except ImportError:
 
 
 {checks}
-
-
-if __name__ == "__main__":
-    pytest.main([__file__, "-v"])
 '''
 
     def _generate_python_test(self, step: PlanStep, existing: str, context: dict[str, Any]) -> str:

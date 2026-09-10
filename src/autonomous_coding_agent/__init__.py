@@ -101,6 +101,9 @@ from .quality_gate import (
     gate_summary,
 )
 from .quality_gate import (
+    check_against_baseline as check_quality_against_baseline,
+)
+from .quality_gate import (
     check_file as check_quality_file,
 )
 from .quality_gate import (
@@ -108,6 +111,9 @@ from .quality_gate import (
 )
 from .quality_gate import (
     check_source as check_quality_source,
+)
+from .quality_gate import (
+    new_findings as quality_new_findings,
 )
 from .rollback import (
     RollbackConfig,
@@ -228,6 +234,8 @@ __all__ = [
     "check_quality_paths",
     "gate_summary",
     "create_quality_gate",
+    "check_quality_against_baseline",
+    "quality_new_findings",
     "send_telegram",
     "RollbackConfig",
     "RollbackError",

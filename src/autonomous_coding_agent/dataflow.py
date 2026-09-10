@@ -18,8 +18,22 @@ from typing import Any
 
 log = logging.getLogger("autonomous_coding_agent.dataflow")
 
-# 도달 정의가 없어도 정상인 이름 (내장 + 예외 핸들러 관용구)
-_BUILTIN_NAMES = set(dir(builtins)) | {"self", "cls"}
+# 도달 정의가 없어도 정상인 이름 (내장 + 모듈 던더 + 관용구)
+_BUILTIN_NAMES = (
+    set(dir(builtins))
+    | {"self", "cls"}
+    | {
+        "__name__",
+        "__doc__",
+        "__package__",
+        "__loader__",
+        "__spec__",
+        "__file__",
+        "__cached__",
+        "__builtins__",
+        "__annotations__",
+    }
+)
 
 
 @dataclass
@@ -192,12 +206,14 @@ class _Collector(ast.NodeVisitor):
     def scope(self) -> str:
         return ".".join(self.scope_stack)
 
-    def _add_def(self, name: str, node: ast.AST, kind: str) -> None:
+    def _add_def(
+        self, name: str, node: ast.AST, kind: str, col_override: int | None = None
+    ) -> None:
         self.defs.append(
             Definition(
                 name=name,
                 lineno=getattr(node, "lineno", 0),
-                col=getattr(node, "col_offset", 0),
+                col=col_override if col_override is not None else getattr(node, "col_offset", 0),
                 kind=kind,
                 scope=self.scope,
             )
@@ -228,7 +244,8 @@ class _Collector(ast.NodeVisitor):
         self.scope_stack.append(node.name)
         self.func_stack.append(node.name)
         args = node.args
-        for a in list(args.args) + list(args.kwonlyargs):
+        posonly = getattr(args, "posonlyargs", [])
+        for a in list(posonly) + list(args.args) + list(args.kwonlyargs):
             self._add_def(a.arg, a, "argument")
         if args.vararg:
             self._add_def(args.vararg.arg, args.vararg, "argument")
@@ -319,18 +336,41 @@ class _Collector(ast.NodeVisitor):
 
     def visit_comprehension(self, node: ast.comprehension) -> None:  # noqa: N802
         self.visit(node.iter)
-        self._def_target(node.target, "assign")
+        # 내포 타겟은 같은 행의 elt/조건보다 텍스트상 뒤에 있어도
+        # 의미상 먼저 정의되므로 col=0으로 기록 (오탐 방지)
+        self._def_target(node.target, "assign", col_override=0)
         for cond in node.ifs:
             self.visit(cond)
 
-    def _def_target(self, target: ast.expr, kind: str) -> None:
+    def visit_ListComp(self, node: ast.ListComp) -> None:
+        for gen in node.generators:
+            self.visit(gen)
+        self.visit(node.elt)
+
+    def visit_SetComp(self, node: ast.SetComp) -> None:
+        for gen in node.generators:
+            self.visit(gen)
+        self.visit(node.elt)
+
+    def visit_GeneratorExp(self, node: ast.GeneratorExp) -> None:
+        for gen in node.generators:
+            self.visit(gen)
+        self.visit(node.elt)
+
+    def visit_DictComp(self, node: ast.DictComp) -> None:
+        for gen in node.generators:
+            self.visit(gen)
+        self.visit(node.key)
+        self.visit(node.value)
+
+    def _def_target(self, target: ast.expr, kind: str, col_override: int | None = None) -> None:
         if isinstance(target, ast.Name):
-            self._add_def(target.id, target, kind)
+            self._add_def(target.id, target, kind, col_override=col_override)
         elif isinstance(target, ast.Starred):
-            self._def_target(target.value, kind)
+            self._def_target(target.value, kind, col_override=col_override)
         elif isinstance(target, (ast.Tuple, ast.List)):
             for e in target.elts:
-                self._def_target(e, kind)
+                self._def_target(e, kind, col_override=col_override)
         elif isinstance(target, ast.Attribute):
             # self.x = ... → 클래스 속성 정의로 기록
             if (
@@ -375,6 +415,17 @@ class _Collector(ast.NodeVisitor):
             self._add_use(node.value.id, node.value, ctx="attribute")
         else:
             self.visit(node.value)
+
+    def visit_Lambda(self, node: ast.Lambda) -> None:
+        # 람다 인자는 정의로 기록 (미기록 시 본문 사용이 오탐됨)
+        posonly = getattr(node.args, "posonlyargs", [])
+        for a in list(posonly) + list(node.args.args) + list(node.args.kwonlyargs):
+            self._add_def(a.arg, a, "argument")
+        if node.args.vararg:
+            self._add_def(node.args.vararg.arg, node.args.vararg, "argument")
+        if node.args.kwarg:
+            self._add_def(node.args.kwarg.arg, node.args.kwarg, "argument")
+        self.visit(node.body)
 
     def visit_Return(self, node: ast.Return) -> None:
         if node.value:

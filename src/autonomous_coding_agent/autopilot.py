@@ -17,7 +17,7 @@ from .github import GitHubIssue, get_github_client
 from .issue_parser import IssueParser
 from .notify import send_telegram
 from .pr_reviewer import PRReviewer
-from .quality_gate import GateConfig, check_paths
+from .quality_gate import GateConfig, check_against_baseline
 
 log = logging.getLogger("autonomous_coding_agent.autopilot")
 
@@ -164,6 +164,31 @@ class Autopilot:
         """worktree용 워크플로우 (테스트에서 스텁 교체 가능)"""
         return GitWorkflow(Path(workspace))
 
+    @staticmethod
+    def _git(args: list[str], cwd: Path) -> tuple[int, str]:
+        import subprocess
+
+        try:
+            r = subprocess.run(
+                ["git", *args],
+                cwd=cwd,
+                capture_output=True,
+                text=True,
+                timeout=30,
+            )
+            return r.returncode, r.stdout.strip()
+        except Exception:
+            return 1, ""
+
+    def _baseline_text(self, wt: Path, rel_path: str) -> str | None:
+        """worktree 분기점 버전의 파일 내용 (신규 파일이면 None)"""
+        code, out = self._git(["merge-base", "HEAD", f"origin/{self.config.base_branch}"], wt)
+        ref = out if code == 0 and out else self.config.base_branch
+        code, content = self._git(["show", f"{ref}:{rel_path}"], wt)
+        if code != 0 or not content:
+            return None
+        return content
+
     def _notify(self, message: str) -> None:
         """텔레그램 알림 (설정 꺼져 있으면 무음, 실패해도 본류 무영향)"""
         if self.config.notify_telegram:
@@ -224,25 +249,28 @@ class Autopilot:
                 return result
             result.stage = "implemented"
 
-            # 3) 품질 게이트 (변경된 .py 파일)
+            # 3) 품질 게이트 (변경된 .py 파일, 기준 대비 신규 위반만 차단)
             changed = [f for f in (agent_result.files_changed or []) if f.endswith(".py")]
-            gate_results = (
-                check_paths(
-                    [wt / f for f in changed],
+            gate_results = []
+            new_blocks = []
+            for f in changed:
+                cur, new = check_against_baseline(
+                    wt / f,
+                    self._baseline_text(wt, f),
                     config=self.config.gate_config,
                 )
-                if changed
-                else []
-            )
-            blocks = [g for g in gate_results if g.blocked]
+                gate_results.append(cur)
+                new_blocks.extend(new)
             warns = sum(len(g.warnings()) for g in gate_results)
-            result.gate_summary = f"{len(gate_results)}개 파일: 차단 {len(blocks)}, 경고 {warns}"
+            result.gate_summary = (
+                f"{len(gate_results)}개 파일: 신규차단 {len(new_blocks)}, 경고 {warns}"
+            )
             result.stage = "gated"
             # 커밋+푸시는 게이트 전 수행 (흔적 보존)
             wt_flow.commit_changes(f"fix: resolve issue #{number}\n\n{issue.title}")
             wt_flow.push_branch(branch)
-            if blocks and self.config.require_gate_pass:
-                detail = "; ".join(b.summary() for b in blocks[:3])
+            if new_blocks and self.config.require_gate_pass:
+                detail = "; ".join(f"{x.target}: {x.message}" for x in new_blocks[:3])
                 self.github.add_comment(number, f"🛑 품질 게이트 차단:\n{detail}")
                 result.stage = "failed"
                 result.error = f"게이트 차단: {detail}"

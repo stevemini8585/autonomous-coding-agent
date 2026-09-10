@@ -313,6 +313,29 @@ def check_paths(
     return [check_file(f, config=cfg) for f in files]
 
 
+def new_findings(baseline: GateResult, current: GateResult) -> list[Finding]:
+    """baseline에 없던 차단 finding만 반환 (diff-aware 게이팅).
+
+    기존 위반이 있는 파일도 다룰 수 있게, 새로 생긴 차단에만 반응한다.
+    비교 키는 (rule, target) — 메시지의 행번호 변동은 무시.
+    """
+    base_keys = {(f.rule, f.target) for f in baseline.findings if f.severity == "block"}
+    return [f for f in current.blocks() if (f.rule, f.target) not in base_keys]
+
+
+def check_against_baseline(
+    path: str | Path,
+    baseline_source: str | None,
+    config: GateConfig | None = None,
+) -> tuple[GateResult, list[Finding]]:
+    """현재 파일 vs 기준 소스 비교 판정. 신규 파일(baseline 없음)은 전체 적용."""
+    current = check_file(path, config=config)
+    if baseline_source is None:
+        return current, current.blocks()
+    base = check_source(baseline_source, filename=str(path), config=config)
+    return current, new_findings(base, current)
+
+
 def gate_summary(results: list[GateResult]) -> dict[str, Any]:
     """일괄 판정 요약 (CI 리포트용)"""
     passed = sum(1 for r in results if r.passed and not r.errors)
@@ -342,6 +365,8 @@ __all__ = [
     "check_source",
     "check_file",
     "check_paths",
+    "check_against_baseline",
+    "new_findings",
     "gate_summary",
     "create_quality_gate",
 ]

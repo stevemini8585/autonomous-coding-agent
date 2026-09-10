@@ -134,3 +134,30 @@ class TestRobustness:
 
     def test_missing_file(self, tmp_path):
         assert analyze_file(str(tmp_path / "nope.py")).errors
+
+
+class TestLambdaComp:
+    def test_lambda_args(self):
+        from autonomous_coding_agent.dataflow import analyze_source
+
+        r = analyze_source("f = lambda a, b: a + b\nprint(f(1, 2))\n")
+        assert not r.errors
+        assert r.uses_before_def() == []
+
+    def test_comp_target(self):
+        from autonomous_coding_agent.dataflow import analyze_source
+
+        r = analyze_source(
+            "xs = [1, 2]\nys = [x * 2 for x in xs if x]\n"
+            "d = {k: v for k, v in zip(xs, ys)}\nprint(ys, d)\n"
+        )
+        assert r.uses_before_def() == []
+        chains = {c.definition.name: len(c.uses) for c in r.chains}
+        assert chains.get("x", 0) >= 2
+        assert chains.get("k", 0) >= 1
+
+    def test_dunder_ok(self):
+        from autonomous_coding_agent.dataflow import analyze_source
+
+        r = analyze_source('import pytest\n\npytest.main([__file__, "-v"])\n')
+        assert r.uses_before_def() == []

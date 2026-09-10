@@ -140,3 +140,70 @@ class TestFiles:
         d = r.to_dict()
         assert d["blocked"] and "summary" in d
         assert d["findings"] and "rule" in d["findings"][0]
+
+
+class TestDiffAware:
+    def test_new_findings_only(self):
+        from autonomous_coding_agent.quality_gate import (
+            Finding,
+            GateResult,
+            new_findings,
+        )
+
+        def f(rule, target, sev="block"):
+            return Finding(
+                rule=rule,
+                target=target,
+                actual=1,
+                threshold=0,
+                severity=sev,
+                message=f"{rule}@{target}",
+            )
+
+        base = GateResult(filename="a.py", findings=[f("complexity", "m.f")])
+        cur = GateResult(
+            filename="a.py",
+            findings=[f("complexity", "m.f"), f("use-before-def", "m.g")],
+        )
+        new = new_findings(base, cur)
+        assert [(x.rule, x.target) for x in new] == [("use-before-def", "m.g")]
+
+    def test_warns_ignored(self):
+        from autonomous_coding_agent.quality_gate import (
+            Finding,
+            GateResult,
+            new_findings,
+        )
+
+        base = GateResult(filename="a.py", findings=[])
+        cur = GateResult(
+            filename="a.py",
+            findings=[
+                Finding(
+                    rule="complexity",
+                    target="m.f",
+                    actual=11,
+                    threshold=10,
+                    severity="warn",
+                    message="w",
+                )
+            ],
+        )
+        assert new_findings(base, cur) == []
+
+    def test_against_baseline_new_file(self, tmp_path):
+        from autonomous_coding_agent.quality_gate import check_against_baseline
+
+        p = tmp_path / "n.py"
+        p.write_text("print(zzz_undefined_abc)\n")
+        cur, new = check_against_baseline(str(p), None)
+        assert cur.blocked and len(new) == 1
+
+    def test_against_baseline_same(self, tmp_path):
+        from autonomous_coding_agent.quality_gate import check_against_baseline
+
+        src = "x = 1\nprint(x)\n"
+        p = tmp_path / "s.py"
+        p.write_text(src)
+        cur, new = check_against_baseline(str(p), src)
+        assert new == []
