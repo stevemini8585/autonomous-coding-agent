@@ -163,9 +163,16 @@ class CodeGenerator:
                     step, file_path, goal, context
                 )
             else:
-                implementations[file_path] = self._generate_generic_code(
-                    step, file_path, goal, context
-                )
+                # 미지원 확장자: 기존 파일은 무변경(스텁 덮어쓰기 금지),
+                # 신규 파일만 스텁 생성
+                full_path = self.workspace / file_path
+                if full_path.exists():
+                    log.info("미지원 확장자, 변경 생략: %s", file_path)
+                    implementations[file_path] = full_path.read_text(encoding="utf-8")
+                else:
+                    implementations[file_path] = self._generate_generic_code(
+                        step, file_path, goal, context
+                    )
 
         # 테스트 파일도 생성 (목표에 '테스트' 포함시)
         if "테스트" in goal or "test" in goal.lower():
