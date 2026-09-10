@@ -108,3 +108,34 @@ Rollback Checklist
 - [ ] Notify team
 - [ ] Create incident record
 - [ ] Schedule postmortem if SEV-1/2
+
+Autopilot 오머지 롤백 (자동화)
+-------------------------------
+
+Autopilot이 잘못 머지한 PR은 ``rollback`` 모듈로 revert PR + 연결 이슈 재오픈을
+한 번에 처리한다. main 직접 푸시는 하지 않으며, 항상 revert PR 경유이다.
+
+.. code-block:: bash
+
+   # 1) 계획만 확인 (읽기 전용: gh pr view + git status만 실행, 변경 없음)
+   PYTHONPATH=src python -m autonomous_coding_agent.rollback 34 --dry-run --workspace /path/to/repo
+
+   # 2) 실행 (revert 브랜치 → revert PR → 이슈 재오픈 → 텔레그램 알림)
+   PYTHONPATH=src python -m autonomous_coding_agent.rollback 34 --workspace /path/to/repo
+
+   # 옵션:
+   #   --base main        기준 브랜치 (기본값: PR의 baseRef)
+   #   --no-reopen        이슈 재오픈 생략
+   #   --quiet            텔레그램 알림 생략
+
+동작 순서:
+
+1. ``gh pr view`` 로 머지 상태·머지 커밋·연결 이슈 확인 (미머지면 즉시 중단)
+2. 작업 트리가 깨끗한지 확인 (더러우면 중단 — 커밋/스태시 후 재시도)
+3. ``revert/pr-<N>`` 브랜치에서 ``git revert -m 1 <merge-sha>`` 후 푸시
+4. revert PR 생성 (제목: ``Revert #<N>``)
+5. 연결 이슈 ``reopen`` + 원인 코멘트
+6. 텔레그램 알림 (성공/실패)
+
+충돌(``CONFLICT``) 시 자동 중단되며, 작업자는 로컬에서 수동 해결 후
+revert PR을 완성한다. 관련 테스트: ``tests/test_rollback.py``.

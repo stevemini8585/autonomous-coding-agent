@@ -109,6 +109,18 @@ from .quality_gate import (
 from .quality_gate import (
     check_source as check_quality_source,
 )
+from .rollback import (
+    RollbackConfig,
+    RollbackError,
+    RollbackPlan,
+    RollbackResult,
+    execute_rollback,
+    plan_rollback,
+    rollback_pr,
+)
+from .rollback import (
+    main as rollback_main,
+)
 from .state import StateManager
 from .test_generator import (
     EdgeCaseAnalyzer,
@@ -217,6 +229,14 @@ __all__ = [
     "gate_summary",
     "create_quality_gate",
     "send_telegram",
+    "RollbackConfig",
+    "RollbackError",
+    "RollbackPlan",
+    "RollbackResult",
+    "plan_rollback",
+    "execute_rollback",
+    "rollback_pr",
+    "rollback_main",
     "Autopilot",
     "AutopilotConfig",
     "AutopilotResult",

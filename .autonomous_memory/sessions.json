@@ -1141,5 +1141,51 @@
       "files_modified": 1,
       "files_created": 0
     }
+  },
+  {
+    "session_id": "session_d9a0d82c",
+    "goal": "Add hello endpoint",
+    "workspace": "/var/folders/_k/1zvf_npd5cdgpgbrm8_vg2040000gn/T/e2e_test__eylok50/test_project",
+    "start_time": "2026-09-10T09:36:04.720902",
+    "end_time": "2026-09-10T09:36:04.720906",
+    "success": true,
+    "steps_completed": 0,
+    "total_steps": 0,
+    "patterns_used": [],
+    "patterns_created": [
+      "test_a4bdb275",
+      "fix_c928b2bb"
+    ],
+    "errors": [],
+    "metrics": {
+      "language": "python",
+      "framework": "fastapi",
+      "tests_generated": 5,
+      "files_modified": 1,
+      "files_created": 0
+    }
+  },
+  {
+    "session_id": "session_029b4272",
+    "goal": "Add hello endpoint",
+    "workspace": "/var/folders/_k/1zvf_npd5cdgpgbrm8_vg2040000gn/T/e2e_test_kqpc1rn2/test_project",
+    "start_time": "2026-09-10T09:37:25.153420",
+    "end_time": "2026-09-10T09:37:25.153428",
+    "success": true,
+    "steps_completed": 0,
+    "total_steps": 0,
+    "patterns_used": [],
+    "patterns_created": [
+      "test_dabfd5cb",
+      "fix_82dc5540"
+    ],
+    "errors": [],
+    "metrics": {
+      "language": "python",
+      "framework": "fastapi",
+      "tests_generated": 5,
+      "files_modified": 1,
+      "files_created": 0
+    }
   }
 ]
