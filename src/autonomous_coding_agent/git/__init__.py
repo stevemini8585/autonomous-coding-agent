@@ -123,7 +123,7 @@ class GitManager:
 
         # 커밋 해시 반환
         hash_result = self._run("git rev-parse HEAD")
-        return hash_result.stdout.strip()
+        return str(hash_result.stdout).strip()
 
     def create_branch(self, branch_name: str, base: str | None = None) -> str:
         """브랜치 생성"""
@@ -151,7 +151,7 @@ class GitManager:
         if staged:
             cmd += " --cached"
         result = self._run(cmd)
-        return result.stdout
+        return str(result.stdout)
 
     def get_log(self, limit: int = 10) -> list[CommitInfo]:
         """커밋 로그"""
@@ -180,7 +180,7 @@ class GitManager:
         """특정 파일 diff"""
         cmd = f"git diff {'--cached ' if staged else ''}{filepath}"
         result = self._run(cmd)
-        return result.stdout
+        return str(result.stdout)
 
 
 def get_git_manager(workspace: Path) -> GitManager:
