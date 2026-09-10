@@ -270,3 +270,25 @@ class TestLLMFallback:
         )
         out = g.execute_step(step, {"goal": "뭔가 변경"})
         assert out["files_modified"] == [] and out["files_created"] == []
+
+
+class TestResourceLeakGuard:
+    def test_with_statement_skipped(self):
+        from autonomous_coding_agent.pr_reviewer import PRReviewer
+
+        r = PRReviewer(".")
+        diff = (
+            "diff --git a/x.py b/x.py\n"
+            "@@ -1 +1 @@\n"
+            "+        with urllib.request.urlopen(request, timeout=10) as resp:\n"
+        )
+        comments = r._analyze_file("x.py", diff)  # noqa: SLF001
+        assert [c for c in comments if c.rule_id == "RESOURCE_LEAK"] == []
+
+    def test_bare_open_flagged(self):
+        from autonomous_coding_agent.pr_reviewer import PRReviewer
+
+        r = PRReviewer(".")
+        diff = "diff --git a/x.py b/x.py\n@@ -1 +1 @@\n+f = open(path)\n"
+        comments = r._analyze_file("x.py", diff)  # noqa: SLF001
+        assert any(c.rule_id == "RESOURCE_LEAK" for c in comments)

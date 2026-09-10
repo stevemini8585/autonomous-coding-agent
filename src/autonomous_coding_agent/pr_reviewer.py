@@ -479,6 +479,10 @@ class PRReviewer:
                 severity,
                 suggestion,
             ) in self.all_patterns:
+                # with 문 사용 시 리소스 누수 오탐 방지
+                # (urlopen 속 open 매칭 + 닫는 위치 lookahead 무력화 대응)
+                if rule_id == "RESOURCE_LEAK" and "with " in line_content:
+                    continue
                 matches = pattern.finditer(line_content)
                 for match in matches:
                     comments.append(
