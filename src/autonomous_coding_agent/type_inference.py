@@ -65,6 +65,14 @@ class TypeInfo:
     evidence: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
+        """to_dict 함수.
+
+        Args:
+            self: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         return {
             "name": self.name,
             "kind": self.kind,
