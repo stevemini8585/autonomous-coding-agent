@@ -35,6 +35,15 @@ class StubGitHub:
         self.merged = []
 
     def get_issue(self, n):
+        """get_issue 함수.
+
+        Args:
+            self: 매개변수 설명.
+            n: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         return self.issues.get(n)
 
     def list_issues(self, state="open", labels=None, limit=20):

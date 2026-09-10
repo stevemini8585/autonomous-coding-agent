@@ -28,9 +28,11 @@ def send_telegram(text: str, chat_id: str | None = None, token: str | None = Non
         return False
     text = text[:MAX_LEN]
     try:
-        data = urllib.parse.urlencode({"chat_id": chat, "text": text}).encode()
-        req = urllib.request.Request(f"https://api.telegram.org/bot{token}/sendMessage", data=data)
-        with urllib.request.urlopen(req, timeout=10) as resp:
+        payload = urllib.parse.urlencode({"chat_id": chat, "text": text}).encode()
+        request = urllib.request.Request(
+            f"https://api.telegram.org/bot{token}/sendMessage", data=payload
+        )
+        with urllib.request.urlopen(request, timeout=10) as resp:
             return bool(resp.status == 200)
     except Exception as e:
         log.warning("telegram send failed: %s", e)

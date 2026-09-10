@@ -43,6 +43,14 @@ class AutopilotConfig:
     gate_config: GateConfig = field(default_factory=GateConfig)
 
     def to_dict(self) -> dict[str, Any]:
+        """to_dict 함수.
+
+        Args:
+            self: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         return {
             "only_labels": self.only_labels,
             "skip_labels": sorted(self.skip_labels),
