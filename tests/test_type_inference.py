@@ -46,6 +46,14 @@ class TestJoinTypes:
         assert join_types("str", "Any") == "str"
 
     def test_optional(self):
+        """test_optional 함수.
+
+        Args:
+            self: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         assert join_types("None", "int") == "Optional[int]"
         assert join_types("str", "None") == "Optional[str]"
 

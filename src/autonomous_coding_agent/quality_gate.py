@@ -126,6 +126,14 @@ class GateResult:
 
     @property
     def blocked(self) -> bool:
+        """blocked 함수.
+
+        Args:
+            self: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         return any(f.severity == "block" for f in self.findings)
 
     @property
