@@ -193,6 +193,14 @@ class TypeInferenceVisitor(ast.NodeVisitor):
     # -- 스코프/기록 헬퍼 --
     @property
     def scope(self) -> str:
+        """scope 함수.
+
+        Args:
+            self: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         return ".".join(self.scope_stack)
 
     def _key(self, name: str, scope: str | None = None) -> str:
@@ -243,6 +251,15 @@ class TypeInferenceVisitor(ast.NodeVisitor):
 
     # -- 식 추론 --
     def infer_expr(self, node: ast.expr | None) -> tuple[str, float]:
+        """infer_expr 함수.
+
+        Args:
+            self: 매개변수 설명.
+            node: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         if node is None:
             return "Any", 0.2
         if isinstance(node, ast.Constant):
