@@ -458,3 +458,34 @@ class TestReviewScoping:
         wf.github = FakeGH()  # type: ignore[assignment]
         wf.create_pr_from_issue(1, "b", base="test/feature-hello")
         assert seen["base"] == "test/feature-hello"
+
+
+class TestMemoryWire:
+    def test_disabled(self):
+        from autonomous_coding_agent.autopilot import Autopilot, AutopilotConfig
+
+        p = Autopilot(".", AutopilotConfig(use_memory=False))
+        assert p.memory is None
+        assert p._recall_hint("x") == ""  # noqa: SLF001
+
+    def test_record_and_recall(self, tmp_path):
+        import shutil
+
+        from autonomous_coding_agent.autopilot import Autopilot, AutopilotConfig
+        from autonomous_coding_agent.models import AgentResult
+
+        p = Autopilot(".", AutopilotConfig(use_memory=True))
+        if p.memory is None:
+            pytest.skip("벡터 메모리 비활성 환경")
+        n0 = len(p.memory.vector_patterns)
+        p.memory.store_pattern(
+            "autopilot_issue",
+            {"goal": "리팩토링 테스트 목표", "title": "t"},
+            {"stage": "merged"},
+            {"success_rate": 1.0},
+            tags=["merged"],
+        )
+        assert len(p.memory.vector_patterns) == n0 + 1
+        hint = p._recall_hint("리팩토링 테스트 목표")  # noqa: SLF001
+        assert isinstance(hint, str)
+        shutil.rmtree(p.memory.memory_dir / "chroma", ignore_errors=True)

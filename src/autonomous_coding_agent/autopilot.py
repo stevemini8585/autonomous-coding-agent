@@ -40,6 +40,7 @@ class AutopilotConfig:
     base_branch: str = "main"
     max_iterations: int = 6  # 4단계 계획 + 재시도 여유
     notify_telegram: bool = True  # 차단/실패/머지 시 텔레그램 알림
+    use_memory: bool = True  # 벡터 메모리 회상/기록 (실패해도 파이프라인 무영향)
     gate_config: GateConfig = field(default_factory=GateConfig)
 
     def to_dict(self) -> dict[str, Any]:
@@ -131,6 +132,64 @@ class Autopilot:
         self.workflow = GitWorkflow(self.workspace)
         self.parser = IssueParser()
         self.reviewer = PRReviewer(self.workspace)
+        self.memory = self._init_memory()
+
+    def _init_memory(self) -> Any | None:
+        """벡터 메모리 초기화 (실패 시 None — 파이프라인은 계속)."""
+        if not self.config.use_memory:
+            return None
+        try:
+            from .vector_memory import VectorPatternMemory
+
+            mem = VectorPatternMemory(self.workspace / ".autonomous_memory")
+            log.info("벡터 메모리 연결: %d개 패턴", len(mem.vector_patterns))
+            return mem
+        except Exception as e:
+            log.warning("벡터 메모리 비활성: %s", e)
+            return None
+
+    def _recall_hint(self, goal: str) -> str:
+        """과거 유사 성공 패턴을 목표 힌트로 변환 (없으면 "")."""
+        mem = getattr(self, "memory", None)
+        if mem is None:
+            return ""
+        try:
+            found = mem.find_patterns_vector({"goal": goal}, limit=2)
+            ok = [p for p in found if p.success_metrics.get("success_rate", 0) >= 0.5]
+            if not ok:
+                return ""
+            lines = []
+            for p in ok[:2]:
+                sol = p.solution if isinstance(p.solution, str) else str(p.solution)[:300]
+                lines.append(f"- {p.pattern_type}: {sol}")
+            return "과거 유사 성공 패턴:\n" + "\n".join(lines)
+        except Exception as e:
+            log.warning("메모리 회상 실패: %s", e)
+            return ""
+
+    def _record_memory(self, number: int, result: IssueRunResult) -> None:
+        """실행 결과를 패턴으로 기록 (성공/실패 모두 — 절대 예외 없음)."""
+        mem = getattr(self, "memory", None)
+        if mem is None:
+            return
+        try:
+            issue = self.github.get_issue(number)
+            title = issue.title if issue else f"#{number}"
+            success = result.stage == "merged"
+            mem.store_pattern(
+                pattern_type="autopilot_issue",
+                context={"goal": self.build_goal(issue) if issue else title, "title": title},
+                solution={
+                    "stage": result.stage,
+                    "gate": result.gate_summary,
+                    "review": result.review_summary,
+                    "error": result.error or "",
+                },
+                success_metrics={"success_rate": 1.0 if success else 0.0},
+                tags=["merged" if success else "failed"],
+            )
+        except Exception as e:
+            log.warning("메모리 기록 실패: %s", e)
 
     # -- 조회/판정 (테스트 용이성을 위해 분리) --
     def should_process(self, issue: GitHubIssue) -> tuple[bool, str]:
@@ -218,6 +277,12 @@ class Autopilot:
 
     # -- 단일 이슈 처리 --
     def run_issue(self, number: int) -> IssueRunResult:
+        """단일 이슈 처리 + 메모리 기록 (기록 실패가 결과를 깨지 않음)."""
+        result = self._run_issue_inner(number)
+        self._record_memory(number, result)
+        return result
+
+    def _run_issue_inner(self, number: int) -> IssueRunResult:
         result = IssueRunResult(issue_number=number)
         try:
             issue = self.github.get_issue(number)
@@ -233,6 +298,10 @@ class Autopilot:
                 return result
 
             goal = self.build_goal(issue)
+            hint = self._recall_hint(goal)
+            if hint:
+                goal = goal + "\n" + hint
+                log.info("이슈 #%d 메모리 힌트 주입", number)
             result.stage = "planned"
             log.info("이슈 #%d 계획 완료: %s", number, issue.title)
             if self.config.dry_run:
