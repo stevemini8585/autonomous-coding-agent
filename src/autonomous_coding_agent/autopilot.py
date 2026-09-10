@@ -110,9 +110,15 @@ class AutopilotResult:
 class Autopilot:
     """Issue → Merge 무인 파이프라인"""
 
-    def __init__(self, workspace: str | Path, config: AutopilotConfig | None = None):
+    def __init__(
+        self,
+        workspace: str | Path,
+        config: AutopilotConfig | None = None,
+        dashboard: Any | None = None,
+    ):
         self.workspace = Path(workspace).resolve()
         self.config = config or AutopilotConfig()
+        self.dashboard = dashboard
         self.github = get_github_client(self.workspace)
         self.workflow = GitWorkflow(self.workspace)
         self.parser = IssueParser()
@@ -158,6 +164,16 @@ class Autopilot:
         """텔레그램 알림 (설정 꺼져 있으면 무음, 실패해도 본류 무영향)"""
         if self.config.notify_telegram:
             send_telegram(message)
+
+    def _report_dashboard(self, result: IssueRunResult) -> None:
+        """대시보드 현황 보고 (없으면 무시, 실패해도 본류 무영향)"""
+        dashboard = getattr(self, "dashboard", None)
+        if dashboard is None:
+            return
+        try:
+            dashboard.report_autopilot(result.to_dict())
+        except Exception as e:
+            log.warning("dashboard report failed: %s", e)
 
     # -- 단일 이슈 처리 --
     def run_issue(self, number: int) -> IssueRunResult:
@@ -301,6 +317,7 @@ class Autopilot:
                 break
             res = self.run_issue(issue.number)
             out.runs.append(res)
+            self._report_dashboard(res)
             if res.stage != "skipped":
                 count += 1
         log.info(

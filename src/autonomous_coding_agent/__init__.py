@@ -18,6 +18,7 @@ from .code_adapter import (
 from .coder import CodeGenerator
 from .critic import Critic as CodeCritic
 from .dashboard import (
+    AutopilotRun,
     DashboardServer,
     SessionProgress,
     StepProgress,
@@ -224,6 +225,7 @@ __all__ = [
     "DashboardServer",
     "SessionProgress",
     "StepProgress",
+    "AutopilotRun",
     "get_dashboard",
     "start_dashboard",
 ]
