@@ -480,6 +480,15 @@ class TypeInferenceVisitor(ast.NodeVisitor):
 
     # -- 문 방문 --
     def visit_Assign(self, node: ast.Assign) -> None:
+        """visit_Assign 함수.
+
+        Args:
+            self: 매개변수 설명.
+            node: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         inferred, conf = self.infer_expr(node.value)
         for target in node.targets:
             self._assign_target(target, inferred, conf, node.lineno, "assignment")
