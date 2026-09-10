@@ -495,6 +495,15 @@ class TypeInferenceVisitor(ast.NodeVisitor):
         self.generic_visit(node.value)
 
     def visit_AnnAssign(self, node: ast.AnnAssign) -> None:
+        """visit_AnnAssign 함수.
+
+        Args:
+            self: 매개변수 설명.
+            node: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         ann = annotation_to_str(node.annotation) or "Any"
         target = node.target
         if isinstance(target, ast.Name):
@@ -527,6 +536,15 @@ class TypeInferenceVisitor(ast.NodeVisitor):
             self.generic_visit(node)
 
     def visit_AugAssign(self, node: ast.AugAssign) -> None:
+        """visit_AugAssign 함수.
+
+        Args:
+            self: 매개변수 설명.
+            node: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         if isinstance(node.target, ast.Name):
             val_t, _ = self.infer_expr(node.value)
             old = self._lookup(node.target.id)
