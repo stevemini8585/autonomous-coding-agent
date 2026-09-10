@@ -179,3 +179,33 @@ class TestReviewerFiles:
         r = PRReviewer(tmp_path)
         out = r._run_static_analysis(["ghost.py", "notes.txt"])  # noqa: SLF001
         assert out == []
+
+
+class TestUsageExample:
+    def test_adds_usage_to_existing_docstring(self):
+        import ast
+
+        from autonomous_coding_agent.coder import CodeGenerator
+
+        src = '"""\nMod.\n"""\n\n\ndef send_telegram(text):\n    """Send."""\n    return True\n'
+        out = CodeGenerator._ensure_usage_example(
+            src, "모듈 독스트링에 사용 예시(Usage) 추가. send_telegram 호출 예시 포함."
+        )
+        ast.parse(out)
+        assert "Usage:" in out
+        assert "send_telegram" in out.split("Usage:")[1]
+
+    def test_noop_without_goal(self):
+        from autonomous_coding_agent.coder import CodeGenerator
+
+        src = '"""\nMod.\n"""\n\n\ndef f():\n    pass\n'
+        assert CodeGenerator._ensure_usage_example(src, "버그 수정") == src
+
+    def test_noop_when_present(self):
+        from autonomous_coding_agent.coder import CodeGenerator
+
+        src = (
+            '"""\nMod.\n\nUsage:\n    >>> send_telegram(...)\n"""\n\n\n'
+            "def send_telegram(x):\n    pass\n"
+        )
+        assert CodeGenerator._ensure_usage_example(src, "사용 예시 추가. send_telegram") == src

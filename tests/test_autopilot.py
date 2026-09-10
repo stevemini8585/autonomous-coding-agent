@@ -404,7 +404,7 @@ class TestReviewScoping:
 
         pilot = Autopilot(".")
         rev = pilot._make_reviewer(".")  # noqa: SLF001
-        assert Path(rev.workspace).resolve() == Path(".").resolve()
+        assert Path(rev.workspace).resolve() == Path().resolve()
 
     def test_create_pr_base_passthrough(self, tmp_path):
         import subprocess

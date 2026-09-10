@@ -5,6 +5,7 @@
 
 from __future__ import annotations
 
+import ast
 import logging
 import re
 import subprocess
@@ -329,6 +330,7 @@ class CodeGenerator:
 
     def _enhance_python_file(self, content: str, goal: str) -> str:
         """기존 Python 파일 개선 (docstring, type hints, 문서화 추가)"""
+        content = self._ensure_usage_example(content, goal)
         lines = content.split("\n")
         enhanced = []
 
@@ -399,6 +401,70 @@ class CodeGenerator:
             i += 1
 
         return "\n".join(enhanced)
+
+    @staticmethod
+    def _ensure_usage_example(content: str, goal: str) -> str:
+        """목표가 사용 예시(Usage)면 모듈 독스트링에 예시 섹션 보장.
+
+        이미 Usage + 대표 심볼이 있으면 그대로 둔다.
+        """
+        low = goal.lower()
+        if not any(k in low for k in ("usage", "사용 예시", "예시", "example")):
+            return content
+        try:
+            tree = ast.parse(content)
+        except SyntaxError:
+            return content
+        func = next(
+            (
+                n.name
+                for n in ast.walk(tree)
+                if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))
+                and not n.name.startswith("_")
+            ),
+            None,
+        )
+        if not func:
+            return content
+        lines = content.split("\n")
+        if not lines or not lines[0].strip().startswith(('"""', "'''")):
+            # 모듈 독스트링 없음 → Usage 포함 독스트링 신설
+            quote = '"""'
+            new_doc = (
+                f"{quote}\n모듈 사용 예시.\n\nUsage:\n"
+                f"    >>> from {func}_module import {func}\n"
+                f"    >>> {func}()\n{quote}\n\n"
+            )
+            return new_doc + content
+        quote = '"""' if lines[0].strip().startswith('"""') else "'''"
+        # 닫는 따옴표 행 탐색
+        if lines[0].count(quote) >= 2:
+            close_idx = 0
+            single_line = True
+        else:
+            close_idx = next(
+                (i for i in range(1, len(lines)) if quote in lines[i]),
+                None,
+            )
+            single_line = False
+            if close_idx is None:
+                return content
+        block = "\n".join(lines[: close_idx + 1])
+        if "usage" in block.lower() and func in block:
+            return content
+        example = ["", "Usage:", f"    >>> {func}(...)"]
+        if single_line:
+            inner = lines[0][3:].partition(quote)[0]
+            lines[0] = f"{quote}{inner}" + "\n".join(example) + f"\n{quote}"
+        else:
+            lines[close_idx:close_idx] = example
+        candidate = "\n".join(lines)
+        try:
+            ast.parse(candidate)
+        except SyntaxError:
+            return content
+        log.info("Usage 예시 추가: %s()", func)
+        return candidate
 
     def _generate_python_module(
         self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]
