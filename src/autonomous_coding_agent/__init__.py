@@ -46,6 +46,7 @@ from .github import GitHubClient
 from .issue_parser import IssueParser
 from .llm_client import chat as llm_chat
 from .llm_client import ollama_chat, openrouter_chat
+from .llm_coder import LLMCoder, create_llm_coder
 from .llm_critic import (
     LLMCritic,
     LLMCriticWithMemory,
@@ -255,6 +256,8 @@ __all__ = [
     "AutopilotResult",
     "IssueRunResult",
     "create_autopilot",
+    "LLMCoder",
+    "create_llm_coder",
     "DashboardServer",
     "SessionProgress",
     "StepProgress",

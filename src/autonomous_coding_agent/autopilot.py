@@ -236,6 +236,9 @@ class Autopilot:
             workspace=workspace or self.workspace,
             max_iterations=self.config.max_iterations,
             hitl_on_failure=False,  # 무인: 사람 개입 없이 실패 반환
+            verify_tests=True,
+            verify_lint=True,
+            verify_types=True,
         )
 
     def _make_workflow(self, workspace: str | Path) -> GitWorkflow:

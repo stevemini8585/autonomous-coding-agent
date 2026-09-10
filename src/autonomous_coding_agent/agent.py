@@ -15,6 +15,7 @@ from .coder import CodeGenerator
 from .critic import Critic
 from .dashboard import DashboardServer, get_dashboard
 from .explorer import CodeExplorer
+from .llm_coder import LLMCoder
 from .memory import LearningAgent, PatternMemory
 from .models import (
     AgentResult,
@@ -155,7 +156,7 @@ class AutonomousCodingAgent:
         # 모듈 초기화
         self.explorer = CodeExplorer(self.workspace)
         self.planner = WorkPlanner(self.workspace)
-        self.coder = CodeGenerator(self.workspace)
+        self.coder = LLMCoder(self.workspace, max_refinement_rounds=3)
         self.verifier = Verifier(self.workspace)
         self.critic = Critic(self.workspace)
 
@@ -479,9 +480,16 @@ class AutonomousCodingAgent:
                 },
             }
 
-            # 1. 코드 실행
+            # 1. 코드 실행 (LLM-first Coder + Self-Correction 루프)
             if step.type == StepType.CODE:
-                code_result = self.coder.execute_step(step, context)
+                # LLMCoder의 refine 루프 사용 (버전 호환성 위해 속성 확인)
+                if hasattr(self.coder, "execute_step_with_refinement"):
+                    code_result = self.coder.execute_step_with_refinement(
+                        step, context, self.verifier, self.critic
+                    )
+                else:
+                    # 폴백: 기존 CodeGenerator
+                    code_result = self.coder.execute_step(step, context)
                 # Merge code result into artifacts (preserve any existing)
                 step.artifacts.update(code_result)
 
