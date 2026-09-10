@@ -12,6 +12,7 @@ import urllib.parse
 import urllib.request
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
+from html import unescape as _unescape
 from typing import Any, ClassVar
 from urllib.error import HTTPError, URLError
 
@@ -608,7 +609,7 @@ class DocumentationParser:
         html = re.sub(r"<[^>]+>", " ", html)
 
         # 엔티티 디코딩
-        html = html.replace("&nbsp;", " ").replace("<", "<").replace(">", ">").replace("&", "&")
+        html = _unescape(html.replace("&nbsp;", " "))
 
         # 코드 블록 복원
         for i, code in enumerate(code_blocks):
@@ -643,7 +644,7 @@ class DocumentationParser:
         # 태그 제거
         text = re.sub(r"<[^>]+>", " ", html)
         # 엔티티 디코딩
-        text = text.replace("&nbsp;", " ").replace("<", "<").replace(">", ">").replace("&", "&")
+        text = _unescape(text.replace("&nbsp;", " "))
         # 공백 정리
         text = re.sub(r"\s+", " ", text)
         return text.strip()
