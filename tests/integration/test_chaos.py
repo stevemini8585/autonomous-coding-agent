@@ -203,7 +203,8 @@ class TestChaosVerificationFailure:
         """검증 실패 시 비평 및 재시도 트리거"""
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
-            (tmp_path / "main.py").write_text("def broken():\n    return 1/0\n")  # 에러 있는 코드
+            # 파싱 불가 코드: coder가 무엇을 해도 가드레일이 거부 → 실패 경로
+            (tmp_path / "main.py").write_text("def broken(:\n    return 1/0\n")
 
             agent = AutonomousCodingAgent(tmp_path, max_iterations=2)
             agent.state.goal = "Fix the broken function"
