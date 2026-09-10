@@ -78,15 +78,17 @@ class TestCoderNewFile:
         )
 
     def test_bad_new_file_rejected(self, tmp_path, monkeypatch):
+        import pytest
+
         gen = CodeGenerator(tmp_path)
         monkeypatch.setattr(
             gen,
             "_generate_task_specific_implementation",
             lambda step, goal, ctx: {"new_mod_xyz.py": "def broken(:\n"},
         )
-        out = gen._implement_code(self._step(), {"goal": "g"})
+        with pytest.raises(ValueError, match="가드레일 거부"):
+            gen._implement_code(self._step(), {"goal": "g"})
         assert not (tmp_path / "new_mod_xyz.py").exists()
-        assert out.get("files_rejected") == ["new_mod_xyz.py"]
 
     def test_good_new_file_written(self, tmp_path, monkeypatch):
         gen = CodeGenerator(tmp_path)

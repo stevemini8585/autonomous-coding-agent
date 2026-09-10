@@ -487,6 +487,27 @@ class AutonomousCodingAgent:
                 # 대시보드: 진행률 업데이트
                 self.dashboard_client.update_step_progress(step.id, 0.5, log="코드 생성 중...")
 
+                # 코드 실행 자체가 실패하면 검증 실패와 동일하게 취급
+                # (가드레일 거부 등 — 깨진 코드가 파일에 남지 않은 경우)
+                if step.status == StepStatus.FAILED or code_result.get("error"):
+                    step.status = StepStatus.FAILED
+                    step.error = step.error or str(code_result.get("error", "코드 실행 실패"))
+                    log.warning(f"  ❌ 코드 실행 실패: {step.id} - {step.error}")
+                    self.dashboard_client.complete_step(
+                        step.id, "failed", metrics={"errors": [step.error]}
+                    )
+                    failed_verification = VerificationResult(
+                        step_id=step.id, passed=False, errors=[step.error or "코드 실행 실패"]
+                    )
+                    step.artifacts["verification"] = failed_verification.__dict__
+                    critique = self.critic.critique(step, failed_verification, context)
+                    step.artifacts["critique"] = critique.__dict__
+                    if critique.should_retry and step.retry_count < step.max_retries:
+                        step.retry_count += 1
+                        step.status = StepStatus.PENDING
+                        log.info(f"  🔄 재시도 예정 ({step.retry_count}/{step.max_retries})")
+                    return
+
             # 2. 검증
             if step.type in (StepType.CODE, StepType.VERIFY):
                 # Only verify the assigned/modified files, not all project files

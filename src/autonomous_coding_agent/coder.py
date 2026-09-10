@@ -119,7 +119,15 @@ class CodeGenerator:
                     artifacts["files_modified"].append(result.file_path)
                 elif not result.success:
                     log.error(f"패치 실패: {result.file_path} - {result.error}")
+                    artifacts.setdefault("files_rejected", []).append(result.file_path)
                     # 실패 시 롤백됨
+
+        if (
+            not artifacts["files_created"]
+            and not artifacts["files_modified"]
+            and artifacts.get("files_rejected")
+        ):
+            raise ValueError(f"가드레일 거부로 적용된 파일 없음: {artifacts['files_rejected']}")
 
         artifacts["patches_applied"] = [
             {"file": r.file_path, "applied": r.applied, "hunks": r.hunks_applied}
