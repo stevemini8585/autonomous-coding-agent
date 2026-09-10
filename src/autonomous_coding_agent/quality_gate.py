@@ -152,6 +152,14 @@ class GateResult:
         return not self.blocked
 
     def warnings(self) -> list[Finding]:
+        """warnings 함수.
+
+        Args:
+            self: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         return [f for f in self.findings if f.severity == "warn"]
 
     def blocks(self) -> list[Finding]:

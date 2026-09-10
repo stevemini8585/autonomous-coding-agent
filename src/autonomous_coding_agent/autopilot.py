@@ -2,6 +2,9 @@
 완전 자동화 파이프라인 (Autopilot)
 - GitHub Issue → 파싱 → 계획/구현(Agent) → 품질 게이트 → PR → 자동 리뷰 → 머지
 - 무인 운영 안전장치: dry-run, 라벨 필터, 이슈당 1회, 게이트/리뷰 차단 시 머지 금지
+
+Usage:
+    >>> create_autopilot(...)
 """
 
 from __future__ import annotations
@@ -79,6 +82,14 @@ class IssueRunResult:
     error: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
+        """to_dict 함수.
+
+        Args:
+            self: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         return {
             "issue_number": self.issue_number,
             "stage": self.stage,
