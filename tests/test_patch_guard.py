@@ -98,3 +98,78 @@ class TestCoderNewFile:
         out = gen._implement_code(self._step(), {"goal": "g"})
         assert (tmp_path / "new_mod_xyz.py").read_text() == "VALUE = 42\n"
         assert "new_mod_xyz.py" in out["files_created"]
+
+
+FASTAPI_APP = """\
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/health")
+async def get_health():
+    return {"status": "ok"}
+"""
+
+FASTAPI_FACTORY = """\
+from fastapi import FastAPI
+
+
+def create_app():
+    app = FastAPI()
+
+    @app.get("/health")
+    async def get_health():
+        return {"status": "ok"}
+
+    return app
+"""
+
+
+class TestFastAPIInsert:
+    def test_module_level_append(self, tmp_path):
+        import ast
+
+        gen = CodeGenerator(tmp_path)
+        out = gen._add_fastapi_endpoint(
+            FASTAPI_APP, 'GET /ping 추가. 응답: {"status": "ok"}.', "x.py"
+        )
+        tree = ast.parse(out)  # 파싱 필수
+        assert '"/ping"' in out and "async def get_ping" in out
+        assert out.index('"/ping"') > out.index('"/health"')  # 末尾 추가
+
+    def test_factory_insert_before_return(self, tmp_path):
+        import ast
+
+        gen = CodeGenerator(tmp_path)
+        out = gen._add_fastapi_endpoint(
+            FASTAPI_FACTORY, 'GET /ping 추가. 응답: {"status": "ok"}.', "x.py"
+        )
+        ast.parse(out)
+        lines = out.split("\n")
+        ping_idx = next(i for i, l in enumerate(lines) if '"/ping"' in l)
+        ret_idx = next(i for i, l in enumerate(lines) if l.strip() == "return app")
+        assert ping_idx < ret_idx  # return 직전
+        assert lines[ping_idx].startswith("    @app.get")  # 함수 들여쓰기
+
+    def test_duplicate_skipped(self, tmp_path):
+        gen = CodeGenerator(tmp_path)
+        out = gen._add_fastapi_endpoint(FASTAPI_APP, "GET /health 추가.", "x.py")
+        assert out == FASTAPI_APP
+
+    def test_broken_source_unchanged(self, tmp_path):
+        gen = CodeGenerator(tmp_path)
+        bad = "def broken(:\n"
+        assert gen._add_fastapi_endpoint(bad, "GET /x 추가.", "x.py") == bad
+
+    def test_name_collision_suffix(self, tmp_path):
+        import ast
+
+        gen = CodeGenerator(tmp_path)
+        out = gen._add_fastapi_endpoint(
+            FASTAPI_APP + "\nasync def get_ping():\n    return 1\n",
+            "GET /ping 추가.",
+            "x.py",
+        )
+        ast.parse(out)
+        assert "async def get_ping_2" in out

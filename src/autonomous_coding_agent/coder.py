@@ -197,55 +197,120 @@ class CodeGenerator:
         return self._enhance_python_file(content, goal)
 
     def _add_fastapi_endpoint(self, content: str, goal: str, file_path: str) -> str:
-        """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
+        """FastAPI 파일에 새 엔드포인트 추가 (AST 기반: 위치·들여쓰기·중복 정확히)"""
+        import ast
         import re
 
-        # 목표에서 경로와 응답 추출
-        path_match = re.search(r"GET\s+(/\w+)", goal, re.IGNORECASE)
-        if not path_match:
-            path_match = re.search(r"(//\w+)", goal)
-        endpoint_path = path_match.group(1) if path_match else "/hello"
-
-        # 이미 존재하는 엔드포인트인지 체크
-        if re.search(rf'@app\.get\(\s*["\']{re.escape(endpoint_path)}["\']\s*\)', content):
-            log.info(f"엔드포인트 {endpoint_path} 이미 존재함, 건너뜀")
+        try:
+            tree = ast.parse(content)
+        except SyntaxError as e:
+            log.warning("원본 파싱 실패, 변경 생략 %s: %s", file_path, e)
             return content
 
-        # 응답 메시지 추출
-        msg_match = re.search(r'message\s*[:=]\s*["\']([^"\']+)["\']', goal, re.IGNORECASE)
-        message = msg_match.group(1) if msg_match else "Hello World"
+        # 목표에서 경로/메서드 추출
+        m = re.search(r"(GET|POST|PUT|DELETE|PATCH)\s+(/\S*)", goal, re.IGNORECASE)
+        method = (m.group(1) if m else "GET").lower()
+        endpoint_path = (m.group(2) if m else None) or "/hello"
+        endpoint_path = endpoint_path.rstrip(",.:")
 
-        # app = FastAPI(...) 라인 찾기
-        lines = content.split("\n")
-        insert_idx = -1
-        for i, line in enumerate(lines):
-            if line.strip().startswith("app = FastAPI"):
-                insert_idx = i + 1
+        # 응답 본문 추출 (goal 속 {...} → dict 리터럴 검증, 실패 시 기본값)
+        body = '{"status": "ok"}'
+        bm = re.search(r"\{[^{}]*\}", goal)
+        if bm:
+            try:
+                ast.literal_eval(bm.group(0))
+                body = bm.group(0)
+            except (SyntaxError, ValueError):
+                pass
+
+        # app 변수명 찾기 (app = FastAPI(...))
+        app_var = "app"
+        for node in ast.walk(tree):
+            if (
+                isinstance(node, ast.Assign)
+                and len(node.targets) == 1
+                and isinstance(node.targets[0], ast.Name)
+                and isinstance(node.value, ast.Call)
+                and getattr(node.value.func, "id", "") == "FastAPI"
+            ):
+                app_var = node.targets[0].id
                 break
 
-        if insert_idx == -1:
-            # Fallback: 마지막 import 이후
-            for i, line in enumerate(lines):
-                if line.strip().startswith("from ") or line.strip().startswith("import "):
-                    insert_idx = i + 1
+        # 중복 체크 (AST): 같은 경로+메서드 데코레이터 존재 시 변경 없음
+        for node in ast.walk(tree):
+            if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                continue
+            for dec in node.decorator_list:
+                if (
+                    isinstance(dec, ast.Call)
+                    and isinstance(dec.func, ast.Attribute)
+                    and isinstance(dec.func.value, ast.Name)
+                    and dec.func.value.id == app_var
+                    and dec.func.attr == method
+                    and dec.args
+                    and isinstance(dec.args[0], ast.Constant)
+                    and dec.args[0].value == endpoint_path
+                ):
+                    log.info(
+                        "엔드포인트 %s %s 이미 존재함, 건너뜀",
+                        method.upper(),
+                        endpoint_path,
+                    )
+                    return content
 
-        if insert_idx == -1:
-            insert_idx = 0
+        # 핸들러명 (경로 기반, 충돌 시 접미사)
+        base_name = re.sub(r"\W+", "_", endpoint_path.strip("/")).strip("_") or "root"
+        func_name = f"{method}_{base_name}"
+        taken = {
+            n.name for n in ast.walk(tree) if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))
+        }
+        i = 2
+        while func_name in taken:
+            func_name = f"{method}_{base_name}_{i}"
+            i += 1
 
-        # 엔드포인트 코드 생성
-        endpoint_code = (
-            f'@app.get("{endpoint_path}")\n'
-            f"def read_hello():\n"
-            f'    """{endpoint_path} 엔드포인트.\n\n'
-            f"    Returns:\n"
-            f"        결과값.\n"
-            f'    """\n'
-            f'    return {{"message": "{message}"}}'
-        )
+        snippet = [
+            f'@{app_var}.{method}("{endpoint_path}")',
+            f"async def {func_name}():",
+            f'    """{method.upper()} {endpoint_path} (auto-generated)."""',
+            f"    return {body}",
+        ]
 
-        # 삽입
-        new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
-        return "\n".join(new_lines)
+        lines = content.split("\n")
+        # 삽입점: app 변수를 반환하는 함수 내 `return app` 직전, else 파일末尾
+        insert_at: int | None = None
+        indent = ""
+        for node in ast.walk(tree):
+            if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                continue
+            for stmt in node.body:
+                if (
+                    isinstance(stmt, ast.Return)
+                    and isinstance(stmt.value, ast.Name)
+                    and stmt.value.id == app_var
+                ):
+                    insert_at = stmt.lineno - 1  # 0-based
+                    indent = " " * stmt.col_offset
+                    break
+            if insert_at is not None:
+                break
+
+        if insert_at is None:
+            # 모듈 레벨: 파일末尾에 2줄 띄고 추가
+            block = ["", ""] + snippet + [""]
+            candidate = "\n".join(lines).rstrip("\n") + "\n" + "\n".join(block)
+        else:
+            indented = [indent + ln if ln else "" for ln in snippet]
+            block = [""] + indented + [""]
+            candidate = "\n".join(lines[:insert_at] + block + lines[insert_at:])
+
+        try:
+            ast.parse(candidate)
+        except SyntaxError as e:
+            log.warning("삽입 결과 파싱 실패, 변경 생략 %s: %s", file_path, e)
+            return content
+        log.info("엔드포인트 추가: %s %s → %s()", method.upper(), endpoint_path, func_name)
+        return candidate
 
     def _enhance_python_file(self, content: str, goal: str) -> str:
         """기존 Python 파일 개선 (docstring, type hints, 문서화 추가)"""
