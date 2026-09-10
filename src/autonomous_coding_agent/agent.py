@@ -578,23 +578,34 @@ class AutonomousCodingAgent:
             self.dashboard_client.complete_step(step.id, "failed", metrics={"error": str(e)})
 
     def _final_verification(self) -> dict[str, Any]:
-        """최종 전체 검증"""
+        """최종 검증 (변경 파일 범위로만 — 전체 프로젝트 검사 금지)"""
         log.info("4️⃣ 최종 검증...")
 
-        # 원본 파일 + 생성/수정된 파일 모두 검증
-        all_files = {f.path for f in self.state.explore_result.files}
-
-        for step in self.state.plan.steps:
+        assert self.state is not None, "상태 없이 최종 검증 불가"
+        assert self.state.plan is not None, "계획 없이 최종 검증 불가"
+        plan = self.state.plan
+        changed: set[str] = set()
+        for step in plan.steps:
             if step.status == StepStatus.COMPLETED:
                 artifacts = step.artifacts
-                all_files.update(artifacts.get("files_created", []))
-                all_files.update(artifacts.get("files_modified", []))
+                changed.update(artifacts.get("files_created", []))
+                changed.update(artifacts.get("files_modified", []))
 
-        all_files_list = list(all_files)
-        final_verification = self.verifier.verify_project(all_files_list)
-
-        # 결과 종합
-        all_passed = all(v.passed for v in final_verification.values())
+        changed_list = sorted(changed)
+        if not changed_list:
+            all_passed = plan.is_complete()
+            final_verification: dict[str, VerificationResult] = {}
+        else:
+            scope_step = PlanStep(
+                id="final_verification",
+                type=StepType.VERIFY,
+                title="최종 검증",
+                description="변경 파일 범위 최종 확인",
+                assigned_files=changed_list,
+            )
+            v = self.verifier.verify_step(scope_step, changed_list)
+            final_verification = {"final": v}
+            all_passed = v.passed and plan.is_complete()
 
         files_changed = []
         files_created = []

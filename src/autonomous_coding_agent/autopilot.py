@@ -38,7 +38,7 @@ class AutopilotConfig:
     merge_method: str = "squash"
     delete_branch: bool = True
     base_branch: str = "main"
-    max_iterations: int = 5  # 에이전트 반복 상한
+    max_iterations: int = 6  # 4단계 계획 + 재시도 여유
     notify_telegram: bool = True  # 차단/실패/머지 시 텔레그램 알림
     gate_config: GateConfig = field(default_factory=GateConfig)
 
