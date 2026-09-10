@@ -163,6 +163,19 @@ from .vector_memory import (
 )
 from .verifier import Verifier
 from .web_search import DocumentationParser, VersionChecker, WebSearcher
+from .week3_3 import (
+    DecompositionResult,
+    IssueDecomposer,
+    LLMReviewer,
+    LLMReviewResult,
+    ReviewComment,
+    SubTask,
+    TDDCycle,
+    TDDResult,
+    create_issue_decomposer,
+    create_llm_reviewer,
+    create_tdd_cycle,
+)
 
 __all__ = [
     "AutonomousCodingAgent",
@@ -266,6 +279,17 @@ __all__ = [
     "create_autopilot",
     "LLMCoder",
     "create_llm_coder",
+    "IssueDecomposer",
+    "SubTask",
+    "DecompositionResult",
+    "create_issue_decomposer",
+    "TDDCycle",
+    "TDDResult",
+    "create_tdd_cycle",
+    "LLMReviewer",
+    "LLMReviewResult",
+    "ReviewComment",
+    "create_llm_reviewer",
     "CodebaseIndexer",
     "ContextBuilder",
     "IndexedFile",
