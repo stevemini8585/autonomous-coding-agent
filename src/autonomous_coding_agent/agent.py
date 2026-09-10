@@ -454,6 +454,7 @@ class AutonomousCodingAgent:
 
     def _run_single_step(self, step: PlanStep) -> None:
         """단일 단계 실행"""
+        assert self.state is not None, "상태 없이 단계 실행 불가"
         log.info(f"  ▶ {step.id}: {step.title}")
 
         self.state.current_step_id = step.id
@@ -510,10 +511,19 @@ class AutonomousCodingAgent:
 
             # 2. 검증
             if step.type in (StepType.CODE, StepType.VERIFY):
-                # Only verify the assigned/modified files, not all project files
+                # Only verify the assigned/modified files, not all project files.
+                # VERIFY 단계는 형제 CODE 단계들의 산출물을 검증한다.
                 project_files = step.assigned_files or step.artifacts.get("files_modified", [])
+                if not project_files and self.state.plan is not None:
+                    for other in self.state.plan.steps:
+                        if other.type == StepType.CODE:
+                            project_files.extend(other.artifacts.get("files_created", []))
+                            project_files.extend(other.artifacts.get("files_modified", []))
+                    project_files = sorted(set(project_files))
                 if not project_files and self.state.explore_result:
-                    project_files = [f.path for f in self.state.explore_result.files]
+                    project_files = [
+                        f.path for f in self.state.explore_result.files if f.path.endswith(".py")
+                    ][:20]
                 verification = self.verifier.verify_step(step, project_files)
                 # Merge verification with existing artifacts (preserve files_created/files_modified)
                 step.artifacts["verification"] = verification.__dict__
