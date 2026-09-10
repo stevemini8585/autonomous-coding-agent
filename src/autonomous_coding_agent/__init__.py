@@ -82,6 +82,7 @@ from .models import (
     StepType,
     VerificationResult,
 )
+from .notify import send_telegram
 from .patch_utils import PatchManager
 from .planner import WorkPlanner
 from .pr_reviewer import (
@@ -214,6 +215,7 @@ __all__ = [
     "check_quality_paths",
     "gate_summary",
     "create_quality_gate",
+    "send_telegram",
     "Autopilot",
     "AutopilotConfig",
     "AutopilotResult",

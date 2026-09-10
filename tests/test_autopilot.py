@@ -256,3 +256,64 @@ class TestRunOnce:
         subprocess.run(["git", "init", "-q", str(tmp_path)], check=True)
         assert isinstance(create_autopilot(tmp_path), Autopilot)
         assert "max_issues" in AutopilotConfig().to_dict()
+
+
+class TestNotify:
+    def test_merged_notifies(self, pilot, tmp_path, monkeypatch):
+        import autonomous_coding_agent.autopilot as ap
+        from autonomous_coding_agent.issue_parser import IssueParser
+
+        sent = []
+        monkeypatch.setattr(ap, "send_telegram", lambda msg: sent.append(msg) or True)
+        pilot.parser = IssueParser()
+        (tmp_path / "a.py").write_text("x = 1\nprint(x)\n")
+        _wire(pilot, [_issue(1)])
+        r = pilot.run_issue(1)
+        assert r.merged
+        assert any("머지 완료" in m for m in sent)
+
+    def test_failure_notifies(self, pilot, monkeypatch):
+        import autonomous_coding_agent.autopilot as ap
+        from autonomous_coding_agent.issue_parser import IssueParser
+
+        sent = []
+        monkeypatch.setattr(ap, "send_telegram", lambda msg: sent.append(msg) or True)
+        pilot.parser = IssueParser()
+        _wire(pilot, [_issue(1)], agent_ok=False)
+        pilot.run_issue(1)
+        assert any("구현 실패" in m for m in sent)
+
+    def test_notify_disabled(self, pilot, monkeypatch):
+        import autonomous_coding_agent.autopilot as ap
+        from autonomous_coding_agent.issue_parser import IssueParser
+
+        sent = []
+        monkeypatch.setattr(ap, "send_telegram", lambda msg: sent.append(msg) or True)
+        pilot.parser = IssueParser()
+        pilot.config.notify_telegram = False
+        _wire(pilot, [_issue(1)], agent_ok=False)
+        pilot.run_issue(1)
+        assert sent == []
+
+
+class TestNotifyModule:
+    def test_no_credentials_returns_false(self, monkeypatch):
+        from autonomous_coding_agent.notify import send_telegram
+
+        monkeypatch.delenv("TELEGRAM_BOT_TOKEN", raising=False)
+        monkeypatch.delenv("TELEGRAM_CHAT_ID", raising=False)
+        assert send_telegram("hi") is False
+
+    def test_network_failure_returns_false(self, monkeypatch):
+        import urllib.request
+
+        from autonomous_coding_agent.notify import send_telegram
+
+        monkeypatch.setenv("TELEGRAM_BOT_TOKEN", "x")
+        monkeypatch.setenv("TELEGRAM_CHAT_ID", "y")
+
+        def boom(*a, **k):
+            raise OSError("net down")
+
+        monkeypatch.setattr(urllib.request, "urlopen", boom)
+        assert send_telegram("hi") is False

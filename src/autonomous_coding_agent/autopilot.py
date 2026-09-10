@@ -15,6 +15,7 @@ from .agent import AutonomousCodingAgent
 from .git_integration import GitWorkflow
 from .github import GitHubIssue, get_github_client
 from .issue_parser import IssueParser
+from .notify import send_telegram
 from .pr_reviewer import PRReviewer
 from .quality_gate import GateConfig, check_paths
 
@@ -38,6 +39,7 @@ class AutopilotConfig:
     delete_branch: bool = True
     base_branch: str = "main"
     max_iterations: int = 5  # 에이전트 반복 상한
+    notify_telegram: bool = True  # 차단/실패/머지 시 텔레그램 알림
     gate_config: GateConfig = field(default_factory=GateConfig)
 
     def to_dict(self) -> dict[str, Any]:
@@ -52,6 +54,7 @@ class AutopilotConfig:
             "delete_branch": self.delete_branch,
             "base_branch": self.base_branch,
             "max_iterations": self.max_iterations,
+            "notify_telegram": self.notify_telegram,
         }
 
 
@@ -151,6 +154,11 @@ class Autopilot:
             hitl_on_failure=False,  # 무인: 사람 개입 없이 실패 반환
         )
 
+    def _notify(self, message: str) -> None:
+        """텔레그램 알림 (설정 꺼져 있으면 무음, 실패해도 본류 무영향)"""
+        if self.config.notify_telegram:
+            send_telegram(message)
+
     # -- 단일 이슈 처리 --
     def run_issue(self, number: int) -> IssueRunResult:
         result = IssueRunResult(issue_number=number)
@@ -184,6 +192,7 @@ class Autopilot:
                 result.stage = "failed"
                 result.error = agent_result.error or "에이전트 구현 실패"
                 self.github.add_comment(number, f"🤖 자동 처리 실패: {result.error}")
+                self._notify(f"🤖 Autopilot #{number} 구현 실패: {result.error}")
                 return result
             result.stage = "implemented"
 
@@ -209,6 +218,7 @@ class Autopilot:
                 self.github.add_comment(number, f"🛑 품질 게이트 차단:\n{detail}")
                 result.stage = "failed"
                 result.error = f"게이트 차단: {detail}"
+                self._notify(f"🛑 Autopilot #{number} 게이트 차단: {detail}")
                 return result
 
             # 4) PR 생성
@@ -218,6 +228,7 @@ class Autopilot:
             if not pr_number:
                 result.stage = "failed"
                 result.error = "PR 생성 실패"
+                self._notify(f"🤖 Autopilot #{number} PR 생성 실패")
                 return result
             result.pr_number = pr_number
             result.stage = "pr_opened"
@@ -245,6 +256,10 @@ class Autopilot:
                     )
                     result.stage = "failed"
                     result.error = f"리뷰 차단: {result.review_summary}"
+                    self._notify(
+                        f"🔍 Autopilot #{number} 리뷰 차단 "
+                        f"(PR #{pr_number}): {result.review_summary}"
+                    )
                     return result
             else:
                 result.review_summary = "repo 정보 없음: 리뷰 생략"
@@ -258,16 +273,19 @@ class Autopilot:
             if not merged:
                 result.stage = "failed"
                 result.error = f"PR #{pr_number} 머지 실패"
+                self._notify(f"🤖 Autopilot #{number} 머지 실패 (PR #{pr_number})")
                 return result
             result.merged = True
             result.stage = "merged"
             self.github.add_comment(number, f"✅ 자동 머지 완료: PR #{pr_number}")
+            self._notify(f"✅ Autopilot #{number} 자동 머지 완료 (PR #{pr_number})")
             log.info("이슈 #%d 자동 머지 완료 (PR #%d)", number, pr_number)
             return result
         except Exception as e:
             log.error("이슈 #%d 처리 중 예외: %s", number, e)
             result.stage = "failed"
             result.error = str(e)
+            self._notify(f"🤖 Autopilot #{number} 예외: {e}")
             return result
 
     # -- 일괄 실행 --
