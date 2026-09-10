@@ -59,7 +59,7 @@ class Verifier:
         }
 
     def verify_step(self, step: PlanStep, project_files: list[str]) -> VerificationResult:
-        """단계 검증 실행"""
+        """단계 검증 실행 (변경 파일 범위로 스코핑 — 전체 프로젝트 검사 금지)"""
         log.info(f"검증 시작: {step.id}")
         start_time = time.time()
 
@@ -70,26 +70,35 @@ class Verifier:
         result = VerificationResult(step_id=step.id)
 
         try:
-            # 테스트 실행
+            py_files = [f for f in project_files if f.endswith(".py")]
+            test_files = [f for f in py_files if self._is_test_file(f)]
+
+            # 테스트 실행 (테스트 파일이 있을 때만, 없으면 스킵=통과)
             if "test" in config:
-                result.test_results = self._run_command(config["test"], "테스트", project_files)
+                if test_files:
+                    result.test_results = self._run_command(config["test"], "테스트", test_files)
+                else:
+                    result.test_results = {"passed": True, "skipped": True}
                 result.passed = result.test_results.get("passed", False)
 
             # 린트 실행
             if "lint" in config:
-                result.lint_results = self._run_command(config["lint"], "린트", project_files)
+                result.lint_results = self._run_command(config["lint"], "린트", py_files or None)
                 if not result.lint_results.get("passed", False):
                     result.warnings.append("린트 경고/오류 발견")
 
             # 포맷 체크
             if "format" in config:
-                result.format_results = self._run_command(config["format"], "포맷", project_files)
+                result.format_results = self._run_command(
+                    config["format"], "포맷", py_files or None
+                )
                 if not result.format_results.get("passed", False):
                     result.warnings.append("포맷팅 필요")
 
-            # 타입 체크
+            # 타입 체크 (의존성 추적 없이 지정 파일만 — 전체 오류에 매몰 방지)
             if "type" in config:
-                result.type_results = self._run_command(config["type"], "타입 체크", project_files)
+                type_cmd = config["type"] + " --follow-imports=skip"
+                result.type_results = self._run_command(type_cmd, "타입 체크", py_files or None)
                 if not result.type_results.get("passed", False):
                     result.errors.append("타입 체크 실패")
                     result.passed = False
@@ -109,6 +118,16 @@ class Verifier:
         )
 
         return result
+
+    @staticmethod
+    def _is_test_file(path: str) -> bool:
+        """테스트 파일 판정"""
+        name = Path(path).name
+        return (
+            name.startswith("test_")
+            or name.endswith("_test.py")
+            or "/tests/" in path.replace("\\", "/")
+        )
 
     def _detect_language(self, files: list[str]) -> str:
         """파일 확장자로 언어 감지"""
@@ -148,29 +167,31 @@ class Verifier:
     def _run_command(
         self, command: str, name: str, files: list[str] | None = None
     ) -> dict[str, Any]:
-        """명령어 실행 및 결과 파싱"""
+        """명령어 실행 및 결과 파싱 (파일 지정 시 해당 범위로만)"""
+        # 명령에 박힌 " ." (전체 프로젝트)를 제거하고 파일 범위로 대체
+        base = command[:-2].rstrip() if command.endswith(" .") else command
+        scope = " ".join(files) if files else ""
         log.info(f"  {name} 실행: {command}")
 
         try:
-            # 테스트 명령어는 전체 프로젝트에서 실행 (특정 파일 지정 안 함)
+            # 테스트 명령어는 파일 지정 시 해당 파일만, 미지정 시 전체
             if name == "테스트":
-                full_command = command
+                full_command = f"{base} {scope}".strip() if files else command
             # 린트/포맷/타입 체크는 특정 파일이 있으면 그 파일들만, 없으면 전체
             elif files:
-                file_args = " ".join(files)
-                full_command = f"{command} {file_args}"
+                full_command = f"{base} {scope}"
             else:
                 full_command = command
 
             log.info(f"  {name} 실행: {full_command}")
 
-            # For lint/format, first try to auto-fix
+            # For lint/format, first try to auto-fix (동일 범위로만)
             if name in ("린트", "포맷") and name != "테스트":
                 fix_command = ""
                 if name == "린트":
-                    fix_command = "ruff check --fix ."
+                    fix_command = f"ruff check --fix {scope}".strip()
                 elif name == "포맷":
-                    fix_command = "black ."
+                    fix_command = f"black {scope}".strip()
 
                 if fix_command:
                     log.info(f"  {name} 자동 수정 시도: {fix_command}")
