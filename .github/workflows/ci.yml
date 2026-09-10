@@ -80,7 +80,7 @@ jobs:
         run: pytest -v --asyncio-mode=auto --tb=short
 
       - name: Coverage Gate
-        run: pytest --cov=src --cov-fail-under=43
+        run: pytest --cov=src --cov-fail-under=70
 
       - name: Upload coverage
         if: always()

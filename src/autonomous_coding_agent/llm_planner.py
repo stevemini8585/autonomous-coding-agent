@@ -267,6 +267,8 @@ class LLMPlanner:
 
     def _select_consistent_plan(self, plans: list[dict]) -> dict:
         """Self-Consistency: 가장 일관된 계획 선택"""
+        if not plans:
+            return {}
         if len(plans) == 1:
             return plans[0]
 
