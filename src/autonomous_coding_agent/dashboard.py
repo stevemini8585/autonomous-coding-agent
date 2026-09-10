@@ -319,6 +319,11 @@ class DashboardServer:
             await self.broadcast_autopilot(run)
             return {"status": "reported", "run": run.to_dict()}
 
+        @app.get("/ping")
+        async def get_ping():
+            """GET /ping (auto-generated)."""
+            return {"status": "ok"}
+
         return app
 
     def _update_overall_progress(self, session: SessionProgress):

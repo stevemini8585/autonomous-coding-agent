@@ -92,9 +92,28 @@ class InferenceResult:
     errors: list[str] = field(default_factory=list)
 
     def get(self, name: str, scope: str = "module") -> TypeInfo | None:
+        """get 함수.
+
+        Args:
+            self: 매개변수 설명.
+            name: 매개변수 설명.
+            scope: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         return self.types.get(f"{scope}.{name}") or self.types.get(name)
 
     def by_kind(self, kind: str) -> list[TypeInfo]:
+        """by_kind 함수.
+
+        Args:
+            self: 매개변수 설명.
+            kind: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         return [t for t in self.types.values() if t.kind == kind]
 
     def coverage(self) -> float:
