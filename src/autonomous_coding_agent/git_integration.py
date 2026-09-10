@@ -50,15 +50,75 @@ class GitWorkflow:
             "behind": git_status.behind,
         }
 
-    def create_feature_branch(self, issue_number: int, issue_title: str) -> str:
-        """이슈 기반 기능 브랜치 생성"""
-        # 안전한 브랜치 이름 생성
+    def _branch_name(self, issue_number: int, issue_title: str) -> str:
+        """이슈 기반 안전한 브랜치명"""
         safe_title = "".join(c if c.isalnum() or c in "-_" else "-" for c in issue_title.lower())
         safe_title = safe_title[:50].strip("-")
-        branch_name = f"issue-{issue_number}-{safe_title}"
+        return f"issue-{issue_number}-{safe_title}"
+
+    def create_worktree(
+        self, issue_number: int, issue_title: str, base: str = "main"
+    ) -> tuple[str, Path]:
+        """격리 worktree 생성 (기존 체크아웃을 건드리지 않음).
+
+        E2E 교훈: checkout -b 방식은 실행 중 작업 트리를 갈아엎어
+        구코드 위에서 작업하게 된다. worktree로 격리한다.
+        """
+        branch = self._branch_name(issue_number, issue_title)
+        wt_path = self.workspace.parent / f"{self.workspace.name}-wt-{branch}"
+
+        # 기존 잔재 정리 (재실행 멱등성)
+        self.remove_worktree(wt_path, missing_ok=True)
+        self._run_git(["branch", "-D", branch], check=False)
+
+        # 최신 base 확보 (실패해도 로컬 base로 계속)
+        self._run_git(["fetch", "origin", base], check=False)
+
+        base_ref = self._ref_exists(f"origin/{base}", default=base)
+        r = self._run_git(["worktree", "add", "-b", branch, str(wt_path), base_ref])
+        if r.returncode != 0:
+            raise RuntimeError(f"worktree 생성 실패: {r.stderr.strip()[:300]}")
+        log.info("worktree 생성: %s (branch %s, base %s)", wt_path, branch, base_ref)
+        return branch, wt_path
+
+    def remove_worktree(self, path: str | Path, missing_ok: bool = True) -> bool:
+        """worktree 제거 + 메타 정리"""
+        wt = Path(path)
+        if not wt.exists():
+            if missing_ok:
+                self._run_git(["worktree", "prune"], check=False)
+                return True
+            return False
+        r = self._run_git(["worktree", "remove", "--force", str(wt)])
+        self._run_git(["worktree", "prune"], check=False)
+        ok = r.returncode == 0 and not wt.exists()
+        log.info("worktree 제거: %s (%s)", wt, "ok" if ok else "실패")
+        return ok
+
+    def _ref_exists(self, ref: str, default: str) -> str:
+        r = self._run_git(["rev-parse", "--verify", "--quiet", ref])
+        return ref if r.returncode == 0 else default
+
+    def _run_git(self, args: list[str], check: bool = False) -> subprocess.CompletedProcess:
+        r = subprocess.run(
+            ["git", *args],
+            cwd=self.workspace,
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+        if check and r.returncode != 0:
+            raise RuntimeError(f"git {' '.join(args)} 실패: {r.stderr.strip()[:300]}")
+        return r
+
+    def create_feature_branch(self, issue_number: int, issue_title: str) -> str:
+        """이슈 기반 기능 브랜치 생성 (레거시: 현재 체크아웃을 전환함.
+
+        무인 파이프라인은 create_worktree()를 사용할 것.)
+        """
+        branch_name = self._branch_name(issue_number, issue_title)
 
         # 현재 브랜치가 main/master인지 확인
-        current_status = self.git.get_status()
         base_branch = "main"
 
         # main/master 확인

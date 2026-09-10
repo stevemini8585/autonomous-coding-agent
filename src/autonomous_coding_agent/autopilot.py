@@ -153,12 +153,16 @@ class Autopilot:
                 lines.append(f"- {c}")
         return "\n".join(lines).strip()
 
-    def _make_agent(self) -> AutonomousCodingAgent:
+    def _make_agent(self, workspace: Path | None = None) -> AutonomousCodingAgent:
         return AutonomousCodingAgent(
-            workspace=self.workspace,
+            workspace=workspace or self.workspace,
             max_iterations=self.config.max_iterations,
             hitl_on_failure=False,  # 무인: 사람 개입 없이 실패 반환
         )
+
+    def _make_workflow(self, workspace: str | Path) -> GitWorkflow:
+        """worktree용 워크플로우 (테스트에서 스텁 교체 가능)"""
+        return GitWorkflow(Path(workspace))
 
     def _notify(self, message: str) -> None:
         """텔레그램 알림 (설정 꺼져 있으면 무음, 실패해도 본류 무영향)"""
@@ -198,11 +202,19 @@ class Autopilot:
                 result.gate_summary = "dry-run: 계획까지만 수행"
                 return result
 
-            # 1) 브랜치
-            branch = self.workflow.create_feature_branch(number, issue.title)
+            # 1) 격리 worktree (현재 체크아웃을 건드리지 않음 — E2E 교훈)
+            try:
+                branch, wt = self.workflow.create_worktree(
+                    number, issue.title, base=self.config.base_branch
+                )
+            except RuntimeError as e:
+                result.stage = "failed"
+                result.error = f"worktree 생성 실패: {e}"
+                return result
+            wt_flow = self._make_workflow(wt)
 
             # 2) 구현
-            agent = self._make_agent()
+            agent = self._make_agent(wt)
             agent_result = agent.run(goal)
             if not agent_result.success:
                 result.stage = "failed"
@@ -216,7 +228,7 @@ class Autopilot:
             changed = [f for f in (agent_result.files_changed or []) if f.endswith(".py")]
             gate_results = (
                 check_paths(
-                    [self.workspace / f for f in changed],
+                    [wt / f for f in changed],
                     config=self.config.gate_config,
                 )
                 if changed
@@ -227,8 +239,8 @@ class Autopilot:
             result.gate_summary = f"{len(gate_results)}개 파일: 차단 {len(blocks)}, 경고 {warns}"
             result.stage = "gated"
             # 커밋+푸시는 게이트 전 수행 (흔적 보존)
-            self.workflow.commit_changes(f"fix: resolve issue #{number}\n\n{issue.title}")
-            self.workflow.push_branch(branch)
+            wt_flow.commit_changes(f"fix: resolve issue #{number}\n\n{issue.title}")
+            wt_flow.push_branch(branch)
             if blocks and self.config.require_gate_pass:
                 detail = "; ".join(b.summary() for b in blocks[:3])
                 self.github.add_comment(number, f"🛑 품질 게이트 차단:\n{detail}")
@@ -238,9 +250,7 @@ class Autopilot:
                 return result
 
             # 4) PR 생성
-            pr_number = self.workflow.create_pr_from_issue(
-                number, branch, base=self.config.base_branch
-            )
+            pr_number = wt_flow.create_pr_from_issue(number, branch, base=self.config.base_branch)
             if not pr_number:
                 result.stage = "failed"
                 result.error = "PR 생성 실패"
@@ -296,6 +306,8 @@ class Autopilot:
             self.github.add_comment(number, f"✅ 자동 머지 완료: PR #{pr_number}")
             self._notify(f"✅ Autopilot #{number} 자동 머지 완료 (PR #{pr_number})")
             log.info("이슈 #%d 자동 머지 완료 (PR #%d)", number, pr_number)
+            if self.config.delete_branch:
+                self.workflow.remove_worktree(wt)
             return result
         except Exception as e:
             log.error("이슈 #%d 처리 중 예외: %s", number, e)

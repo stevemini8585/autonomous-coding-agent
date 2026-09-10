@@ -59,14 +59,30 @@ class StubGitHub:
 
 
 class StubWorkflow:
-    def __init__(self):
+    def __init__(self, workspace=None, wt_base="/tmp"):
         self.branches = []
         self.pushed = []
+        self.worktrees = []
+        self.removed = []
+        self._ws = Path(workspace) if workspace else None
+        self._wt_base = Path(wt_base)
 
     def create_feature_branch(self, n, title):
         b = f"issue-{n}-x"
         self.branches.append(b)
         return b
+
+    def create_worktree(self, n, title, base="main"):
+        b = f"issue-{n}-x"
+        self.branches.append(b)
+        wt = self._wt_base / f"wt-{n}"
+        wt.mkdir(parents=True, exist_ok=True)
+        self.worktrees.append(wt)
+        return b, wt
+
+    def remove_worktree(self, path, missing_ok=True):
+        self.removed.append(Path(path))
+        return True
 
     def commit_changes(self, msg, files=None):
         return "abc123"
@@ -97,10 +113,11 @@ def pilot(tmp_path):
     return p
 
 
-def _wire(pilot, issues, agent_ok=True):
+def _wire(pilot, issues, agent_ok=True, wt_base="/tmp"):
     pilot.github = StubGitHub(issues)
-    pilot.workflow = StubWorkflow()
-    pilot._make_agent = lambda: StubAgent(ok=agent_ok)  # noqa: SLF001
+    pilot.workflow = StubWorkflow(wt_base=wt_base)
+    pilot._make_agent = lambda workspace=None: StubAgent(ok=agent_ok)  # noqa: SLF001
+    pilot._make_workflow = StubWorkflow  # noqa: SLF001
     return pilot
 
 
@@ -156,24 +173,25 @@ class TestRunIssue:
         _wire(pilot, [_issue(1)])
         r = pilot.run_issue(1)
         assert r.stage == "planned" and "dry-run" in r.gate_summary
-        assert pilot.workflow.branches == []  # 브랜치도 안 만듦
+        assert pilot.workflow.branches == []  # 브랜치도 worktree도 안 만듦
 
     def test_full_merge(self, pilot, tmp_path):
         from autonomous_coding_agent.issue_parser import IssueParser
 
         pilot.parser = IssueParser()
-        (Path(tmp_path) / "a.py").write_text("x = 1\nprint(x)\n")
-        _wire(pilot, [_issue(1)])
+        (Path(tmp_path) / "wt-1").mkdir(parents=True, exist_ok=True)
+        (Path(tmp_path) / "wt-1" / "a.py").write_text("x = 1\nprint(x)\n")
+        _wire(pilot, [_issue(1)], wt_base=str(tmp_path))
         r = pilot.run_issue(1)
         assert r.stage == "merged" and r.merged and r.pr_number == 99
         assert 99 in pilot.github.merged
         assert any("머지 완료" in c[1] for c in pilot.github.comments)
 
-    def test_agent_failure(self, pilot):
+    def test_agent_failure(self, pilot, tmp_path):
         from autonomous_coding_agent.issue_parser import IssueParser
 
         pilot.parser = IssueParser()
-        _wire(pilot, [_issue(1)], agent_ok=False)
+        _wire(pilot, [_issue(1)], agent_ok=False, wt_base=str(tmp_path))
         r = pilot.run_issue(1)
         assert r.stage == "failed" and r.error == "boom"
         assert any("자동 처리 실패" in c[1] for c in pilot.github.comments)
@@ -182,8 +200,9 @@ class TestRunIssue:
         from autonomous_coding_agent.issue_parser import IssueParser
 
         pilot.parser = IssueParser()
-        (Path(tmp_path) / "a.py").write_text("print(zzz_no_such_var_xyz)\n")
-        _wire(pilot, [_issue(1)])
+        (Path(tmp_path) / "wt-1").mkdir(parents=True, exist_ok=True)
+        (Path(tmp_path) / "wt-1" / "a.py").write_text("print(zzz_no_such_var_xyz)\n")
+        _wire(pilot, [_issue(1)], wt_base=str(tmp_path))
         r = pilot.run_issue(1)
         assert r.stage == "failed" and "게이트 차단" in (r.error or "")
         assert r.pr_number is None  # PR 만들지 않음
@@ -193,8 +212,9 @@ class TestRunIssue:
 
         pilot.parser = IssueParser()
         pilot.config.require_gate_pass = False
-        (Path(tmp_path) / "a.py").write_text("print(zzz_no_such_var_xyz)\n")
-        _wire(pilot, [_issue(1)])
+        (Path(tmp_path) / "wt-1").mkdir(parents=True, exist_ok=True)
+        (Path(tmp_path) / "wt-1" / "a.py").write_text("print(zzz_no_such_var_xyz)\n")
+        _wire(pilot, [_issue(1)], wt_base=str(tmp_path))
         r = pilot.run_issue(1)
         assert r.stage == "merged" and r.pr_number == 99
 
@@ -203,8 +223,9 @@ class TestRunIssue:
         from autonomous_coding_agent.pr_reviewer import PRReviewer
 
         pilot.parser = IssueParser()
-        (Path(tmp_path) / "a.py").write_text("x = 1\nprint(x)\n")
-        _wire(pilot, [_issue(1)])
+        (Path(tmp_path) / "wt-1").mkdir(parents=True, exist_ok=True)
+        (Path(tmp_path) / "wt-1" / "a.py").write_text("x = 1\nprint(x)\n")
+        _wire(pilot, [_issue(1)], wt_base=str(tmp_path))
         pilot.github.get_repo_info = lambda: {"owner": {"login": "o"}, "name": "r"}
         bad = PRReviewResult(
             pr_number=99,
@@ -221,6 +242,62 @@ class TestRunIssue:
         r = pilot.run_issue(1)
         assert r.stage == "failed" and "리뷰 차단" in (r.error or "")
         assert 99 not in pilot.github.merged
+
+
+class TestWorktree:
+    def test_uses_worktree_and_cleans_up(self, pilot, tmp_path):
+        from autonomous_coding_agent.issue_parser import IssueParser
+
+        pilot.parser = IssueParser()
+        (tmp_path / "wt-1").mkdir(exist_ok=True)
+        (tmp_path / "wt-1" / "a.py").write_text("x = 1\nprint(x)\n")
+        _wire(pilot, [_issue(1)], wt_base=str(tmp_path))
+        r = pilot.run_issue(1)
+        assert r.merged
+        assert pilot.workflow.worktrees != []  # worktree 경유
+        assert pilot.workflow.removed != []  # 머지 후 정리
+
+    def test_failure_keeps_worktree(self, pilot, tmp_path):
+        from autonomous_coding_agent.issue_parser import IssueParser
+
+        pilot.parser = IssueParser()
+        _wire(pilot, [_issue(1)], agent_ok=False, wt_base=str(tmp_path))
+        r = pilot.run_issue(1)
+        assert r.stage == "failed"
+        assert pilot.workflow.worktrees != []
+        assert pilot.workflow.removed == []  # 실패 시 조사용 보존
+
+    def test_real_git_worktree(self, tmp_path):
+        import subprocess
+
+        from autonomous_coding_agent.git_integration import GitWorkflow
+
+        repo = tmp_path / "repo"
+        repo.mkdir()
+        subprocess.run(["git", "init", "-q", str(repo)], check=True)
+        subprocess.run(["git", "config", "user.email", "t@t"], cwd=repo, check=True)
+        subprocess.run(["git", "config", "user.name", "t"], cwd=repo, check=True)
+        (repo / "a.txt").write_text("hi\n")
+        subprocess.run(["git", "add", "-A"], cwd=repo, check=True)
+        subprocess.run(["git", "commit", "-qm", "init"], cwd=repo, check=True)
+        subprocess.run(["git", "branch", "-M", "main"], cwd=repo, check=True)
+
+        flow = GitWorkflow(repo)
+        branch, wt = flow.create_worktree(7, "Add thing")
+        try:
+            assert branch == "issue-7-add-thing"
+            assert (wt / "a.txt").read_text() == "hi\n"
+            # 현재 체크아웃 불변
+            cur = subprocess.run(
+                ["git", "branch", "--show-current"],
+                cwd=repo,
+                capture_output=True,
+                text=True,
+            ).stdout.strip()
+            assert cur == "main"
+        finally:
+            assert flow.remove_worktree(wt) is True
+        assert not wt.exists()
 
 
 class TestRunOnce:
@@ -266,24 +343,25 @@ class TestNotify:
         sent = []
         monkeypatch.setattr(ap, "send_telegram", lambda msg: sent.append(msg) or True)
         pilot.parser = IssueParser()
-        (tmp_path / "a.py").write_text("x = 1\nprint(x)\n")
-        _wire(pilot, [_issue(1)])
+        (tmp_path / "wt-1").mkdir(exist_ok=True)
+        (tmp_path / "wt-1" / "a.py").write_text("x = 1\nprint(x)\n")
+        _wire(pilot, [_issue(1)], wt_base=str(tmp_path))
         r = pilot.run_issue(1)
         assert r.merged
         assert any("머지 완료" in m for m in sent)
 
-    def test_failure_notifies(self, pilot, monkeypatch):
+    def test_failure_notifies(self, pilot, tmp_path, monkeypatch):
         import autonomous_coding_agent.autopilot as ap
         from autonomous_coding_agent.issue_parser import IssueParser
 
         sent = []
         monkeypatch.setattr(ap, "send_telegram", lambda msg: sent.append(msg) or True)
         pilot.parser = IssueParser()
-        _wire(pilot, [_issue(1)], agent_ok=False)
+        _wire(pilot, [_issue(1)], agent_ok=False, wt_base=str(tmp_path))
         pilot.run_issue(1)
         assert any("구현 실패" in m for m in sent)
 
-    def test_notify_disabled(self, pilot, monkeypatch):
+    def test_notify_disabled(self, pilot, tmp_path, monkeypatch):
         import autonomous_coding_agent.autopilot as ap
         from autonomous_coding_agent.issue_parser import IssueParser
 
@@ -291,7 +369,7 @@ class TestNotify:
         monkeypatch.setattr(ap, "send_telegram", lambda msg: sent.append(msg) or True)
         pilot.parser = IssueParser()
         pilot.config.notify_telegram = False
-        _wire(pilot, [_issue(1)], agent_ok=False)
+        _wire(pilot, [_issue(1)], agent_ok=False, wt_base=str(tmp_path))
         pilot.run_issue(1)
         assert sent == []
 
