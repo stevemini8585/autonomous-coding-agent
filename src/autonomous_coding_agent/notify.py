@@ -2,6 +2,9 @@
 텔레그램 알림 (Autopilot 운영 알림용)
 - stdlib만 사용, 실패해도 절대 예외를 던지지 않음 (알림 실패가 본류를 깨지 않도록)
 - 토큰/채팅ID는 환경변수에서만 (하드코딩 금지)
+
+Usage:
+    >>> send_telegram(...)
 """
 
 from __future__ import annotations

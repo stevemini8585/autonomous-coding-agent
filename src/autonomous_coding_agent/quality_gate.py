@@ -3,6 +3,9 @@
 - 복잡도·규모·결합·응집·데이터플로우·타입커버리지 임계값 검사
 - warn(경고) / block(차단) 2단계 심각도 → CI 게이트로 직결
 - metrics + dataflow + type_inference 결과를 통합 판정
+
+Usage:
+    >>> check_source(...)
 """
 
 from __future__ import annotations
@@ -138,6 +141,14 @@ class GateResult:
 
     @property
     def passed(self) -> bool:
+        """passed 함수.
+
+        Args:
+            self: 매개변수 설명.
+
+        Returns:
+            결과값.
+        """
         return not self.blocked
 
     def warnings(self) -> list[Finding]:
