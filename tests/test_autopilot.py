@@ -113,6 +113,11 @@ class TestShouldProcess:
         ok, reason = pilot.should_process(_issue(state="closed"))
         assert not ok and "closed" in reason
 
+    def test_uppercase_open_ok(self, pilot):
+        # gh CLI는 state를 "OPEN" 대문자로 반환 — 회귀 테스트
+        ok, _ = pilot.should_process(_issue(state="OPEN"))
+        assert ok
+
     def test_skip_label(self, pilot):
         ok, reason = pilot.should_process(_issue(labels=["needs-human"]))
         assert not ok and "needs-human" in reason

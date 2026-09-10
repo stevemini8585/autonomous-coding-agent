@@ -118,7 +118,7 @@ class Autopilot:
     # -- 조회/판정 (테스트 용이성을 위해 분리) --
     def should_process(self, issue: GitHubIssue) -> tuple[bool, str]:
         """이슈 처리 여부 판정"""
-        if issue.state != "open":
+        if issue.state.lower() != "open":
             return False, f"state={issue.state}"
         if set(issue.labels) & self.config.skip_labels:
             hit = sorted(set(issue.labels) & self.config.skip_labels)
