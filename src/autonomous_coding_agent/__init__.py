@@ -84,6 +84,22 @@ from .pr_reviewer import (
     ReviewComment,
     ReviewSeverity,
 )
+from .quality_gate import (
+    Finding,
+    GateConfig,
+    GateResult,
+    create_quality_gate,
+    gate_summary,
+)
+from .quality_gate import (
+    check_file as check_quality_file,
+)
+from .quality_gate import (
+    check_paths as check_quality_paths,
+)
+from .quality_gate import (
+    check_source as check_quality_source,
+)
 from .state import StateManager
 from .test_generator import (
     EdgeCaseAnalyzer,
@@ -183,6 +199,14 @@ __all__ = [
     "analyze_metrics_source",
     "analyze_metrics_file",
     "risk_rank",
+    "GateConfig",
+    "GateResult",
+    "Finding",
+    "check_quality_source",
+    "check_quality_file",
+    "check_quality_paths",
+    "gate_summary",
+    "create_quality_gate",
     "DashboardServer",
     "SessionProgress",
     "StepProgress",
