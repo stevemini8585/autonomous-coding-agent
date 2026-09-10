@@ -3,6 +3,13 @@ Autonomous Coding Agent - Codex/Claude Code 수준의 자율 코딩 에이전트
 """
 
 from .agent import AutonomousCodingAgent
+from .autopilot import (
+    Autopilot,
+    AutopilotConfig,
+    AutopilotResult,
+    IssueRunResult,
+    create_autopilot,
+)
 from .code_adapter import (
     CodeExampleAdapter,
     CodeExampleApplier,
@@ -207,6 +214,11 @@ __all__ = [
     "check_quality_paths",
     "gate_summary",
     "create_quality_gate",
+    "Autopilot",
+    "AutopilotConfig",
+    "AutopilotResult",
+    "IssueRunResult",
+    "create_autopilot",
     "DashboardServer",
     "SessionProgress",
     "StepProgress",
