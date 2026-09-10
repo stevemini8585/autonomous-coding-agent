@@ -88,6 +88,14 @@ class CodeExplorer:
             ".idea",
             ".vscode",
             "__MACOSX",
+            # 생성물/실험 잔재 (대용량 파일이 탐색을 마비시킴)
+            "mutants",
+            "htmlcov",
+            ".hypothesis",
+            ".autonomous_backups",
+            ".patch_backups",
+            ".autonomous_memory",
+            ".autonomous_state",
         }
         exclude_patterns = {
             "*.pyc",
@@ -380,7 +388,7 @@ class CodeExplorer:
         return symbols
 
     def _extract_python_symbols(self, file_path: Path, content: str) -> list[CodeSymbol]:
-        """Python 심볼 추출 (AST 기반)"""
+        """Python 심볼 추출 (AST 기반, 단일 순회 + 부모맵)"""
         symbols = []
         rel_path = file_path.relative_to(self.workspace)
 
@@ -389,12 +397,30 @@ class CodeExplorer:
         except SyntaxError:
             return symbols
 
+        # 부모맵 1회 구축 (함수마다 전체를 재순회하지 않음 — O(n²) 방지)
+        parent_of: dict[int, ast.AST] = {}
+        for parent in ast.walk(tree):
+            for child in ast.iter_child_nodes(parent):
+                parent_of.setdefault(id(child), parent)
+
+        def is_method(node: ast.AST) -> bool:
+            seen: set[int] = set()
+            cur = parent_of.get(id(node))
+            while cur is not None and id(cur) not in seen:
+                if isinstance(cur, ast.ClassDef):
+                    return True
+                if isinstance(cur, ast.Module):
+                    return False
+                seen.add(id(cur))
+                cur = parent_of.get(id(cur))
+            return False
+
         for node in ast.walk(tree):
             if isinstance(node, ast.FunctionDef):
                 symbols.append(
                     CodeSymbol(
                         name=node.name,
-                        type="function" if not self._is_method(node, tree) else "method",
+                        type="function" if not is_method(node) else "method",
                         file_path=str(rel_path),
                         line_start=node.lineno,
                         line_end=node.end_lineno or node.lineno,
@@ -418,9 +444,7 @@ class CodeExplorer:
                 symbols.append(
                     CodeSymbol(
                         name=node.name,
-                        type=(
-                            "async_function" if not self._is_method(node, tree) else "async_method"
-                        ),
+                        type=("async_function" if not is_method(node) else "async_method"),
                         file_path=str(rel_path),
                         line_start=node.lineno,
                         line_end=node.end_lineno or node.lineno,
@@ -432,7 +456,7 @@ class CodeExplorer:
         return symbols
 
     def _is_method(self, node: ast.FunctionDef, tree: ast.AST) -> bool:
-        """클래스 내 메서드인지 확인"""
+        """클래스 내 메서드인지 확인 (하위 호환용, 신규 코드는 부모맵 사용)"""
         for parent in ast.walk(tree):
             if isinstance(parent, ast.ClassDef):
                 for item in parent.body:

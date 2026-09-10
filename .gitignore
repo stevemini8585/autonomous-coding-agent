@@ -8,3 +8,9 @@ __pycache__/
 .patch_backups/
 .autonomous_memory/
 .autonomous_state/
+# 생성물 (mutmut, coverage, hypothesis)
+mutants/
+htmlcov/
+.coverage*
+coverage.xml
+.hypothesis/
