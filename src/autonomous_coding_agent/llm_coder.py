@@ -12,6 +12,12 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from .codebase_indexer import (
+    CodebaseIndexer,
+    ContextBuilder,
+    create_codebase_indexer,
+    create_context_builder,
+)
 from .coder import CodeGenerator, _parses
 from .llm_client import chat
 from .models import PlanStep, StepStatus, StepType, VerificationResult
@@ -36,9 +42,26 @@ class LLMCoder(CodeGenerator):
         workspace: Path,
         use_llm: bool = True,
         max_refinement_rounds: int = 3,
+        use_codebase_index: bool = True,
     ):
         super().__init__(workspace, use_llm=use_llm)
         self.max_refinement_rounds = max_refinement_rounds
+
+        # 코드베이스 인덱서 + 컨텍스트 빌더 (지연 초기화)
+        self._indexer: CodebaseIndexer | None = None
+        self._context_builder: ContextBuilder | None = None
+        self._use_codebase_index = use_codebase_index
+        if use_codebase_index:
+            try:
+                self._indexer = create_codebase_indexer(workspace)
+                self._context_builder = create_context_builder(self._indexer)
+                # 백그라운드에서 인덱스 빌드 시작 (최초 1회)
+                self._indexer.build_index()
+                log.info("코드베이스 인덱서 초기화 완료")
+            except Exception as e:
+                log.warning(f"코드베이스 인덱서 초기화 실패: {e}")
+                self._indexer = None
+                self._context_builder = None
 
     # ------------------------------------------------------------------
     # 공개 API: 에이전트/오토파일럿에서 호출
@@ -129,6 +152,24 @@ class LLMCoder(CodeGenerator):
         """단일 라운드 LLM 구현 생성 (피드백 반영)"""
         goal = context.get("goal", "")
         explore_result = context.get("explore_result")
+
+        # 코드베이스 컨텍스트 구성 (인덱서가 있는 경우)
+        codebase_ctx = ""
+        if self._context_builder and self._indexer:
+            try:
+                memory_hint = context.get("memory_hint", "")
+                idx_ctx = self._context_builder.build_context(
+                    goal=goal,
+                    explore_result=explore_result,
+                    memory_hint=memory_hint,
+                )
+                codebase_ctx = self._context_builder.format_for_prompt(idx_ctx)
+                log.info(
+                    f"  📚 코드베이스 컨텍스트 주입: 파일 {idx_ctx['stats']['files_included']}개, 심볼 {idx_ctx['stats']['symbols_included']}개"
+                )
+            except Exception as e:
+                log.warning(f"코드베이스 컨텍스트 구성 실패: {e}")
+
         implementations = {}
 
         for file_path in step.assigned_files:
@@ -142,13 +183,14 @@ class LLMCoder(CodeGenerator):
             full = self.workspace / file_path
             existing = full.read_text(encoding="utf-8") if full.exists() else ""
 
-            # 프롬프트 구성
+            # 프롬프트 구성 (코드베이스 컨텍스트 포함)
             prompt = self._build_implementation_prompt(
                 file_path=file_path,
                 existing=existing,
                 goal=goal,
                 explore_result=explore_result,
                 rctx=rctx,
+                codebase_context=codebase_ctx,
             )
 
             provider, text = chat(prompt, self._system_prompt())
@@ -174,6 +216,7 @@ class LLMCoder(CodeGenerator):
         goal: str,
         explore_result: Any | None,
         rctx: RefinementContext,
+        codebase_context: str = "",
     ) -> str:
         """구현 프롬프트 구성 (컨텍스트 압축 포함)"""
         # 탐색 결과 요약
@@ -197,6 +240,11 @@ class LLMCoder(CodeGenerator):
                 f"- [{i.get('type','?')}] {i.get('message','')}" for i in rctx.critique_issues[:10]
             )
 
+        # 코드베이스 컨텍스트 (RAG 검색 결과)
+        cb_ctx = (
+            f"\n=== 코드베이스 컨텍스트 (RAG) ===\n{codebase_context}\n" if codebase_context else ""
+        )
+
         # 라운드 표시
         round_info = (
             f" (라운드 {rctx.round_num + 1}/{self.max_refinement_rounds + 1})"
@@ -209,7 +257,8 @@ class LLMCoder(CodeGenerator):
             f"목표: {goal}\n"
             f"{explore_summary}\n"
             f"{feedback}\n"
-            f"{attempts_summary}\n\n"
+            f"{attempts_summary}\n"
+            f"{cb_ctx}\n"
             f"```python\n{existing[:12000]}\n```\n\n"
             f"위 파일을 목표에 맞게 수정해 **파일 전체**를 출력해. "
             f"설명·마크다운 펜스 없이 코드만. "

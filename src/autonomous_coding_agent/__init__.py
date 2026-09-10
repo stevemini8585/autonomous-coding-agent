@@ -15,6 +15,14 @@ from .code_adapter import (
     CodeExampleApplier,
     ProjectAnalyzer,
 )
+from .codebase_indexer import (
+    CodebaseIndexer,
+    ContextBuilder,
+    IndexedFile,
+    SearchResult,
+    create_codebase_indexer,
+    create_context_builder,
+)
 from .coder import CodeGenerator
 from .critic import Critic as CodeCritic
 from .dashboard import (
@@ -258,6 +266,12 @@ __all__ = [
     "create_autopilot",
     "LLMCoder",
     "create_llm_coder",
+    "CodebaseIndexer",
+    "ContextBuilder",
+    "IndexedFile",
+    "SearchResult",
+    "create_codebase_indexer",
+    "create_context_builder",
     "DashboardServer",
     "SessionProgress",
     "StepProgress",
