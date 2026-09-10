@@ -1,5 +1,8 @@
 """
 Git 통합 모듈 - 브랜치, 커밋, PR 자동화
+
+Usage:
+    >>> get_git_manager(...)
 """
 
 from __future__ import annotations
