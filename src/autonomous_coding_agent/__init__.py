@@ -44,6 +44,8 @@ from .git import GitManager
 from .git_integration import GitWorkflow
 from .github import GitHubClient
 from .issue_parser import IssueParser
+from .llm_client import chat as llm_chat
+from .llm_client import ollama_chat, openrouter_chat
 from .llm_critic import (
     LLMCritic,
     LLMCriticWithMemory,
@@ -179,6 +181,9 @@ __all__ = [
     "GitWorkflow",
     "GitHubClient",
     "IssueParser",
+    "llm_chat",
+    "ollama_chat",
+    "openrouter_chat",
     "PRReviewer",
     "WebSearcher",
     "DocumentationParser",

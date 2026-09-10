@@ -33,10 +33,13 @@ def _parses(content: str) -> bool:
 class CodeGenerator:
     """코드 생성 및 수정 - 작업 목표에 맞게 구체적 구현"""
 
-    def __init__(self, workspace: Path):
+    def __init__(self, workspace: Path, use_llm: bool = True):
         self.workspace = Path(workspace).resolve()
         self._backup_dir = self.workspace / ".autonomous_backups"
         self._backup_dir.mkdir(exist_ok=True)
+        import os
+
+        self.use_llm = use_llm and os.getenv("LLM_CODER", "") != "off"
 
     def execute_step(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
@@ -84,6 +87,25 @@ class CodeGenerator:
         # 2. 작업 목표 분석하여 구체적 구현 생성
         goal = context.get("goal", "")
         implementation = self._generate_task_specific_implementation(step, goal, context)
+
+        # 2b. LLM 폴백: 규칙 기반이 변경을 못 만든 기존 .py 파일만 대상.
+        # LLM 출력도 아래 PatchManager 가드레일(신택스+삭제율)을 그대로 통과해야 적용됨.
+        if self.use_llm:
+            for file_path in step.assigned_files:
+                if not file_path.endswith(".py"):
+                    continue
+                full = self.workspace / file_path
+                if not full.exists():
+                    continue
+                try:
+                    existing = full.read_text(encoding="utf-8")
+                except OSError:
+                    continue
+                if implementation.get(file_path) != existing:
+                    continue  # 규칙 기반이 이미 변경함
+                llm_content = self._llm_rewrite(file_path, existing, goal)
+                if llm_content and llm_content != existing and _parses(llm_content):
+                    implementation[file_path] = llm_content
 
         # 3. 파일 적용 - PatchManager 사용
         patch_manager = PatchManager(self.workspace)
@@ -137,6 +159,36 @@ class CodeGenerator:
         ]
 
         return artifacts
+
+    @staticmethod
+    def _llm_rewrite(file_path: str, existing: str, goal: str) -> str:
+        """LLM으로 파일 전체 재작성. 실패/무변경 시 "" 반환."""
+        from .llm_client import chat
+
+        body = existing
+        if len(body) > 12000:
+            body = body[:6000] + "\n# ... (중략) ...\n" + body[-6000:]
+        system = (
+            "너는 파이썬 코드 수정기다. 요청된 목표만 최소 diff로 반영한 "
+            "파일 전체를 출력한다. 설명·마크다운 펜스 없이 코드만 출력한다."
+        )
+        prompt = (
+            f"파일: {file_path}\n목표: {goal}\n\n"
+            f"```python\n{body}\n```\n\n위 파일 전체를 목표에 맞게 수정해 출력해."
+        )
+        provider, text = chat(prompt, system)
+        if provider == "none" or not text.strip():
+            return ""
+        text = text.strip()
+        # 펜스 제거
+        if text.startswith("```"):
+            lines = text.split("\n")
+            lines = lines[1:]
+            if lines and lines[-1].strip() == "```":
+                lines = lines[:-1]
+            text = "\n".join(lines)
+        log.info("LLM 폴백 사용: %s (%s)", file_path, provider)
+        return text
 
     def _generate_task_specific_implementation(
         self, step: PlanStep, goal: str, context: dict[str, Any]
