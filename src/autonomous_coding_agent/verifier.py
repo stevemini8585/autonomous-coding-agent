@@ -199,7 +199,7 @@ class Verifier:
                     sandbox = run_sandboxed(
                         ["/bin/bash", "-c", fix_command],
                         SandboxConfig(workdir=self.workspace, timeout_s=60))
-                    if not (sandbox.returncode == 0 or sandbox.returncode == -1):
+                    if sandbox.returncode not in (0, -1):
                         log.warning(f"  {name} 자동 수정 종료코드: {sandbox.returncode}")
 
             # 샌드박스에서 실행
