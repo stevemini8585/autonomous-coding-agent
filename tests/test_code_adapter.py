@@ -96,3 +96,31 @@ class TestAdapter:
         ad = CodeExampleAdapter(tmp_path, context=ctx)
         out = ad.adapt_example("const x = require('m')\n", _docs())
         assert "import x from 'm'" in out.adapted
+
+
+class TestJsTsStyle:
+    def test_esm_camel(self, tmp_path):
+        (tmp_path / "app.js").write_text(
+            "import { fetchData } from './api.js';\n"
+            "export async function loadUser() {\n  const userData = await fetchData();\n  return userData;\n}\n"
+            "export class UserCard {}\n"
+        )
+        ctx = ProjectAnalyzer(tmp_path).analyze()
+        assert ctx.import_style == "esm"
+        assert ctx.naming_convention == "camelCase"
+        assert ctx.async_pattern is True
+
+    def test_cjs(self, tmp_path):
+        (tmp_path / "srv.js").write_text(
+            "const http = require('http');\n"
+            "function start_server() {}\n"
+            "module.exports = { start_server };\n"
+        )
+        ctx = ProjectAnalyzer(tmp_path).analyze()
+        assert ctx.import_style == "cjs"
+        assert ctx.naming_convention == "snake_case"
+
+    def test_ts_flag(self, tmp_path):
+        (tmp_path / "a.ts").write_text("const x: number = 1;\n")
+        ctx = ProjectAnalyzer(tmp_path).analyze()
+        assert ctx.type_hints is True

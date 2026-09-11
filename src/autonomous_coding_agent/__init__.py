@@ -138,6 +138,12 @@ from .rollback import (
 from .rollback import (
     main as rollback_main,
 )
+from .sandbox import (
+    SandboxConfig,
+    SandboxResult,
+    assert_inside,
+    run_sandboxed,
+)
 from .state import StateManager
 from .test_generator import (
     EdgeCaseAnalyzer,
@@ -242,6 +248,10 @@ __all__ = [
     "create_vector_learning_agent",
     "LLMPlanner",
     "LLMPlannerWithMemory",
+    "SandboxConfig",
+    "SandboxResult",
+    "run_sandboxed",
+    "assert_inside",
     "create_llm_planner",
     "LLMCritic",
     "LLMCriticWithMemory",

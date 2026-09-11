@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from .models import PlanStep, VerificationResult
+from .sandbox import SandboxConfig, run_sandboxed
 
 log = logging.getLogger("autonomous_coding_agent.verifier")
 
@@ -167,7 +168,7 @@ class Verifier:
     def _run_command(
         self, command: str, name: str, files: list[str] | None = None
     ) -> dict[str, Any]:
-        """명령어 실행 및 결과 파싱 (파일 지정 시 해당 범위로만)"""
+        """명령어 실행 및 결과 파싱 (파일 지정 시 해당 범위로만) - 샌드박스 격리."""
         # 명령에 박힌 " ." (전체 프로젝트)를 제거하고 파일 범위로 대체
         base = command[:-2].rstrip() if command.endswith(" .") else command
         scope = " ".join(files) if files else ""
@@ -195,39 +196,31 @@ class Verifier:
 
                 if fix_command:
                     log.info(f"  {name} 자동 수정 시도: {fix_command}")
-                    subprocess.run(
-                        fix_command,
-                        shell=True,
-                        cwd=self.workspace,
-                        capture_output=True,
-                        text=True,
-                        timeout=60,
-                    )
+                    sandbox = run_sandboxed(
+                        ["/bin/bash", "-c", fix_command],
+                        SandboxConfig(workdir=self.workspace, timeout_s=60))
+                    if not (sandbox.returncode == 0 or sandbox.returncode == -1):
+                        log.warning(f"  {name} 자동 수정 종료코드: {sandbox.returncode}")
 
-            proc = subprocess.run(
-                full_command,
-                shell=True,
-                cwd=self.workspace,
-                capture_output=True,
-                text=True,
-                timeout=300,
-            )
+            # 샌드박스에서 실행
+            sandbox = run_sandboxed(
+                ["/bin/bash", "-c", full_command],
+                SandboxConfig(workdir=self.workspace, timeout_s=300))
 
             # pytest exit code 5 = no tests collected -> treat as passed
-            passed = proc.returncode == 0 or (name == "테스트" and proc.returncode == 5)
+            passed = sandbox.returncode == 0 or (
+                name == "테스트" and sandbox.returncode == 5)
 
             return {
                 "passed": passed,
-                "returncode": proc.returncode,
-                "stdout": proc.stdout[-5000:] if proc.stdout else "",
-                "stderr": proc.stderr[-5000:] if proc.stderr else "",
+                "returncode": sandbox.returncode,
+                "stdout": sandbox.stdout[-5000:] if sandbox.stdout else "",
+                "stderr": sandbox.stderr[-5000:] if sandbox.stderr else "",
+                "timed_out": sandbox.timed_out,
+                "network_blocked": sandbox.network_blocked,
+                "wall_s": sandbox.wall_s,
             }
 
-        except subprocess.TimeoutExpired:
-            return {
-                "passed": False,
-                "error": f"{name} 타임아웃 (300초)",
-            }
         except Exception as e:
             return {
                 "passed": False,

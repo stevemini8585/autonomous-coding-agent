@@ -315,13 +315,6 @@ def create_patch(old_content: str, new_content: str, file_path: str) -> str:
     return "".join(diff)
 
 
-def apply_patch(content: str, patch_text: str) -> str:
-    """patch 텍스트를 내용에 적용"""
-    # 간단한 구현: 전체 교체
-    # 실제로는 patch 라이브러리 사용 권장
-    return content  # TODO: 실제 구현
-
-
 def generate_unified_diff(old_file: Path, new_file: Path) -> str:
     """두 파일 간 unified diff 생성"""
     old_content = old_file.read_text(encoding="utf-8")

@@ -246,7 +246,13 @@ class AutonomousCodingAgent:
                     "tests_generated": len(self._result.files_created),
                     "files_modified": len(self._result.files_modified),
                     "files_created": len(self._result.files_created),
-                    "coverage": 0.0,  # TODO: extract from test results
+                    "coverage": max(
+                        [
+                            getattr(v, "coverage", 0.0)
+                            for v in final_result.get("verification_results", [])
+                        ]
+                        + [0.0]
+                    ),
                 },
             )
 
