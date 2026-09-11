@@ -198,18 +198,35 @@ class Verifier:
                     log.info(f"  {name} 자동 수정 시도: {fix_command}")
                     sandbox = run_sandboxed(
                         ["/bin/bash", "-c", fix_command],
-                        SandboxConfig(workdir=self.workspace, timeout_s=60))
+                        SandboxConfig(workdir=self.workspace, timeout_s=60),
+                    )
                     if sandbox.returncode not in (0, -1):
                         log.warning(f"  {name} 자동 수정 종료코드: {sandbox.returncode}")
 
             # 샌드박스에서 실행
             sandbox = run_sandboxed(
                 ["/bin/bash", "-c", full_command],
-                SandboxConfig(workdir=self.workspace, timeout_s=300))
+                SandboxConfig(workdir=self.workspace, timeout_s=300),
+            )
+
+            # 타입 체크는 diff-aware: 손댄 hunk의 신규 에러만 차단
+            if name == "타입 체크" and files:
+                kept, dropped = self._new_type_errors(files, sandbox.stdout)
+                if dropped:
+                    log.info(f"  타입 기존 에러 {dropped}건 제외 (diff 범위 밖)")
+                passed = not kept and sandbox.returncode in (0, 1)
+                return {
+                    "passed": passed,
+                    "returncode": 0 if passed else sandbox.returncode,
+                    "stdout": "\n".join(kept)[-5000:],
+                    "stderr": sandbox.stderr[-5000:] if sandbox.stderr else "",
+                    "timed_out": sandbox.timed_out,
+                    "network_blocked": sandbox.network_blocked,
+                    "wall_s": sandbox.wall_s,
+                }
 
             # pytest exit code 5 = no tests collected -> treat as passed
-            passed = sandbox.returncode == 0 or (
-                name == "테스트" and sandbox.returncode == 5)
+            passed = sandbox.returncode == 0 or (name == "테스트" and sandbox.returncode == 5)
 
             return {
                 "passed": passed,
@@ -246,6 +263,72 @@ class Verifier:
                 return float(match.group(1))
 
         return 0.0
+
+    def _new_type_errors(self, files: list[str], output: str) -> tuple[list[str], int]:
+        """mypy 출력 중 이번 diff가 건드린 hunk 범위의 에러만 남긴다.
+
+        기존(손대지 않은 줄) 에러는 차단하지 않음 — quality_gate diff-aware와 동일 원칙.
+        git 저장소가 아니면 폴백: 전부 신규로 간주.
+        반환: (유지된 에러 줄, 제거된 줄 수).
+        """
+        import re as _re
+
+        try:
+            subprocess.run(
+                ["git", "-C", str(self.workspace), "rev-parse"],
+                capture_output=True,
+                timeout=10,
+                check=True,
+            )
+        except (subprocess.SubprocessError, OSError):
+            lines = [l for l in output.splitlines() if ": error:" in l]
+            return lines, 0
+
+        ranges: dict[str, list[tuple[int, int]]] = {}
+        untracked: set[str] = set()
+        for f in files:
+            rel = str(f)
+            try:
+                subprocess.run(
+                    ["git", "-C", str(self.workspace), "ls-files", "--error-unmatch", rel],
+                    capture_output=True,
+                    timeout=10,
+                    check=True,
+                )
+            except (subprocess.SubprocessError, OSError):
+                untracked.add(Path(rel).name)
+                continue
+            try:
+                diff = subprocess.run(
+                    ["git", "-C", str(self.workspace), "diff", "-U0", "--", rel],
+                    capture_output=True,
+                    text=True,
+                    timeout=10,
+                )
+            except (subprocess.SubprocessError, OSError):
+                untracked.add(Path(rel).name)
+                continue
+            file_ranges = []
+            for m in _re.finditer(
+                r"^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@", diff.stdout, _re.MULTILINE
+            ):
+                start = int(m.group(1))
+                count = int(m.group(2)) if m.group(2) else 1
+                file_ranges.append((start, start + count - 1))
+            ranges[Path(rel).name] = file_ranges
+
+        kept, dropped = [], 0
+        for line in output.splitlines():
+            m = _re.match(r"^(.*?):(\d+): error:", line)
+            if not m:
+                continue
+            base = Path(m.group(1)).name
+            lineno = int(m.group(2))
+            if base in untracked or any(s <= lineno <= e for s, e in ranges.get(base, [])):
+                kept.append(line)
+            else:
+                dropped += 1
+        return kept, dropped
 
     def verify_project(self, project_files: list[str]) -> dict[str, VerificationResult]:
         """전체 프로젝트 검증 (단계별이 아닌 전체)"""

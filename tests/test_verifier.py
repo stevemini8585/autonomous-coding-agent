@@ -74,3 +74,55 @@ class TestScoping:
         (tmp_path / "t.py").write_text("def f(x: int) -> int:\n    return x\n")
         r = v.verify_step(_step(["t.py"]), ["t.py"])
         assert r.type_results.get("passed") is True
+
+
+class TestTypeDiffAware:
+    def _git(self, d, *args):
+        import subprocess
+
+        r = subprocess.run(["git", *args], cwd=d, capture_output=True, text=True, timeout=30)
+        assert r.returncode == 0, r.stderr
+        return r.stdout
+
+    def _mk_repo(self, tmp_path):
+        d = tmp_path / "repo"
+        d.mkdir()
+        self._git(d, "init")
+        self._git(
+            d, "-c", "user.email=t@t", "-c", "user.name=t", "commit", "--allow-empty", "-m", "init"
+        )
+        return d
+
+    def test_old_error_outside_hunk_ignored(self, tmp_path):
+        from autonomous_coding_agent.verifier import Verifier
+
+        d = self._mk_repo(tmp_path)
+        (d / "m.py").write_text("print(undefined_old)\nx = 1\n")
+        self._git(d, "add", "m.py")
+        self._git(d, "-c", "user.email=t@t", "-c", "user.name=t", "commit", "-m", "base")
+        (d / "m.py").write_text("print(undefined_old)\nx = 2\n")
+        v = Verifier(d)
+        out = "m.py:1: error: Name 'undefined_old' is not defined  [name-defined]"
+        kept, dropped = v._new_type_errors(["m.py"], out)
+        assert kept == [] and dropped == 1
+
+    def test_new_error_inside_hunk_blocks(self, tmp_path):
+        from autonomous_coding_agent.verifier import Verifier
+
+        d = self._mk_repo(tmp_path)
+        (d / "m.py").write_text("x = 1\ny = 2\n")
+        self._git(d, "add", "m.py")
+        self._git(d, "-c", "user.email=t@t", "-c", "user.name=t", "commit", "-m", "base")
+        (d / "m.py").write_text("x = 1\nprint(undefined_new)\n")
+        v = Verifier(d)
+        out = "m.py:2: error: Name 'undefined_new' is not defined  [name-defined]"
+        kept, dropped = v._new_type_errors(["m.py"], out)
+        assert len(kept) == 1 and dropped == 0
+
+    def test_nongit_fallback_keeps_all(self, tmp_path):
+        from autonomous_coding_agent.verifier import Verifier
+
+        v = Verifier(tmp_path)
+        out = "m.py:3: error: Something bad  [misc]"
+        kept, dropped = v._new_type_errors(["m.py"], out)
+        assert len(kept) == 1 and dropped == 0
