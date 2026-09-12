@@ -1,8 +1,10 @@
 """Tests for dashboard module"""
 
 import pytest
+from fastapi.testclient import TestClient
 
 from autonomous_coding_agent import (
+    AutopilotRun,
     DashboardServer,
     SessionProgress,
     StepProgress,
@@ -99,3 +101,114 @@ def test_session_progress_update():
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
+
+
+class TestAutopilotTab:
+    def test_run_dataclass(self):
+        run = AutopilotRun(
+            issue_number=7, stage="merged", merged=True, pr_number=9, pr_url="https://x/pull/9"
+        )
+        d = run.to_dict()
+        assert d["issue_number"] == 7 and d["merged"] is True
+        assert d["pr_url"] == "https://x/pull/9"
+
+    def test_report_upsert(self):
+        dash = DashboardServer(host="127.0.0.1", port=TEST_PORT)
+        dash.report_autopilot({"issue_number": 1, "stage": "planned"})
+        dash.report_autopilot({"issue_number": 1, "stage": "merged", "merged": True})
+        assert len(dash.autopilot_runs) == 1
+        assert dash.autopilot_runs[1].stage == "merged"
+
+    def test_api_list(self):
+        dash = DashboardServer(host="127.0.0.1", port=TEST_PORT)
+        dash.report_autopilot({"issue_number": 3, "stage": "failed", "error": "boom"})
+        client = TestClient(dash.app)
+        res = client.get("/api/autopilot")
+        assert res.status_code == 200
+        runs = res.json()["runs"]
+        assert len(runs) == 1 and runs[0]["issue_number"] == 3
+
+    def test_api_report(self):
+        dash = DashboardServer(host="127.0.0.1", port=TEST_PORT)
+        client = TestClient(dash.app)
+        res = client.post(
+            "/api/autopilot/report", json={"issue_number": 5, "stage": "pr_opened", "pr_number": 11}
+        )
+        assert res.status_code == 200
+        assert res.json()["run"]["pr_number"] == 11
+        assert dash.autopilot_runs[5].stage == "pr_opened"
+
+    def test_api_report_missing_number(self):
+        dash = DashboardServer(host="127.0.0.1", port=TEST_PORT)
+        client = TestClient(dash.app)
+        res = client.post("/api/autopilot/report", json={"stage": "x"})
+        assert res.status_code == 400
+
+    def test_index_renders(self):
+        dash = DashboardServer(host="127.0.0.1", port=TEST_PORT)
+        client = TestClient(dash.app)
+        res = client.get("/")
+        assert res.status_code == 200
+        assert "Autopilot Runs" in res.text
+        assert "/api/autopilot" in res.text
+
+    def test_broadcast_message(self):
+        import asyncio
+
+        dash = DashboardServer(host="127.0.0.1", port=TEST_PORT)
+        received = []
+
+        class FakeWS:
+            async def send_json(self, msg):
+                received.append(msg)
+
+        run = dash.report_autopilot({"issue_number": 2, "stage": "merged"})
+        dash.manager.active_connections.append(FakeWS())  # type: ignore[arg-type]
+        asyncio.run(dash.broadcast_autopilot(run))
+        assert received and received[0]["type"] == "autopilot_update"
+        assert received[0]["run"]["issue_number"] == 2
+
+    def test_autopilot_wiring(self, tmp_path):
+        from autonomous_coding_agent.autopilot import Autopilot, AutopilotConfig
+        from autonomous_coding_agent.github import GitHubIssue
+        from autonomous_coding_agent.issue_parser import IssueParser
+
+        class StubGitHub:
+            def list_issues(self, state="open", labels=None, limit=20):
+                return [
+                    GitHubIssue(
+                        number=1,
+                        title="t",
+                        body="b",
+                        state="OPEN",
+                        labels=[],
+                        assignees=[],
+                        created_at="",
+                        updated_at="",
+                        url="",
+                    )
+                ]
+
+            def get_issue(self, n):
+                return self.list_issues()[0]
+
+        dash = DashboardServer(host="127.0.0.1", port=TEST_PORT)
+        pilot = Autopilot.__new__(Autopilot)
+        pilot.workspace = tmp_path
+        pilot.config = AutopilotConfig(dry_run=True, notify_telegram=False)
+        pilot.dashboard = dash
+        pilot.parser = IssueParser()
+        pilot.github = StubGitHub()  # type: ignore[assignment]
+        out = pilot.run_once()
+        assert out.runs and dash.autopilot_runs[1].stage == "planned"
+
+    def test_no_dashboard_ok(self, tmp_path):
+        from autonomous_coding_agent.autopilot import Autopilot, AutopilotConfig
+
+        pilot = Autopilot.__new__(Autopilot)
+        pilot.workspace = tmp_path
+        pilot.config = AutopilotConfig(notify_telegram=False)
+        pilot.dashboard = None
+        from autonomous_coding_agent.autopilot import IssueRunResult
+
+        pilot._report_dashboard(IssueRunResult(issue_number=1))  # 예외 없어야 함

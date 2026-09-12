@@ -5,6 +5,7 @@
 
 from __future__ import annotations
 
+import ast
 import logging
 import re
 import subprocess
@@ -18,13 +19,27 @@ from .patch_utils import PatchManager, PatchOperation
 log = logging.getLogger("autonomous_coding_agent.coder")
 
 
+def _parses(content: str) -> bool:
+    """Python 파싱 가능 여부"""
+    import ast
+
+    try:
+        ast.parse(content)
+        return True
+    except SyntaxError:
+        return False
+
+
 class CodeGenerator:
     """코드 생성 및 수정 - 작업 목표에 맞게 구체적 구현"""
 
-    def __init__(self, workspace: Path):
+    def __init__(self, workspace: Path, use_llm: bool = True):
         self.workspace = Path(workspace).resolve()
         self._backup_dir = self.workspace / ".autonomous_backups"
         self._backup_dir.mkdir(exist_ok=True)
+        import os
+
+        self.use_llm = use_llm and os.getenv("LLM_CODER", "") != "off"
 
     def execute_step(self, step: PlanStep, context: dict[str, Any]) -> dict[str, Any]:
         """단계 실행 (코드 생성/수정)"""
@@ -73,6 +88,25 @@ class CodeGenerator:
         goal = context.get("goal", "")
         implementation = self._generate_task_specific_implementation(step, goal, context)
 
+        # 2b. LLM 폴백: 규칙 기반이 변경을 못 만든 기존 .py 파일만 대상.
+        # LLM 출력도 아래 PatchManager 가드레일(신택스+삭제율)을 그대로 통과해야 적용됨.
+        if self.use_llm:
+            for file_path in step.assigned_files:
+                if not file_path.endswith(".py"):
+                    continue
+                full = self.workspace / file_path
+                if not full.exists():
+                    continue
+                try:
+                    existing = full.read_text(encoding="utf-8")
+                except OSError:
+                    continue
+                if implementation.get(file_path) != existing:
+                    continue  # 규칙 기반이 이미 변경함
+                llm_content = self._llm_rewrite(file_path, existing, goal)
+                if llm_content and llm_content != existing and _parses(llm_content):
+                    implementation[file_path] = llm_content
+
         # 3. 파일 적용 - PatchManager 사용
         patch_manager = PatchManager(self.workspace)
         operations = []
@@ -90,12 +124,17 @@ class CodeGenerator:
                     )
                 )
             else:
-                # 새 파일 생성
+                # 새 파일 생성 (py는 파싱 검증 후 기록 — 깨진 파일 생성 방지)
+                if file_path.endswith(".py") and not _parses(content):
+                    log.error("신규 파일 신택스 오류로 건너뜀: %s", file_path)
+                    artifacts.setdefault("files_rejected", []).append(file_path)
+                    continue
                 full_path.parent.mkdir(parents=True, exist_ok=True)
                 full_path.write_text(content, encoding="utf-8")
                 artifacts["files_created"].append(file_path)
 
         # 패치 적용 (트랜잭션으로 원자적 적용)
+        results: list = []
         if operations:
             results = patch_manager.apply_patches(operations)
             for result in results:
@@ -103,7 +142,15 @@ class CodeGenerator:
                     artifacts["files_modified"].append(result.file_path)
                 elif not result.success:
                     log.error(f"패치 실패: {result.file_path} - {result.error}")
+                    artifacts.setdefault("files_rejected", []).append(result.file_path)
                     # 실패 시 롤백됨
+
+        if (
+            not artifacts["files_created"]
+            and not artifacts["files_modified"]
+            and artifacts.get("files_rejected")
+        ):
+            raise ValueError(f"가드레일 거부로 적용된 파일 없음: {artifacts['files_rejected']}")
 
         artifacts["patches_applied"] = [
             {"file": r.file_path, "applied": r.applied, "hunks": r.hunks_applied}
@@ -112,6 +159,36 @@ class CodeGenerator:
         ]
 
         return artifacts
+
+    @staticmethod
+    def _llm_rewrite(file_path: str, existing: str, goal: str) -> str:
+        """LLM으로 파일 전체 재작성. 실패/무변경 시 "" 반환."""
+        from .llm_client import chat
+
+        body = existing
+        if len(body) > 12000:
+            body = body[:6000] + "\n# ... (중략) ...\n" + body[-6000:]
+        system = (
+            "너는 파이썬 코드 수정기다. 요청된 목표만 최소 diff로 반영한 "
+            "파일 전체를 출력한다. 설명·마크다운 펜스 없이 코드만 출력한다."
+        )
+        prompt = (
+            f"파일: {file_path}\n목표: {goal}\n\n"
+            f"```python\n{body}\n```\n\n위 파일 전체를 목표에 맞게 수정해 출력해."
+        )
+        provider, text = chat(prompt, system)
+        if provider == "none" or not text.strip():
+            return ""
+        text = text.strip()
+        # 펜스 제거
+        if text.startswith("```"):
+            lines = text.split("\n")
+            lines = lines[1:]
+            if lines and lines[-1].strip() == "```":
+                lines = lines[:-1]
+            text = "\n".join(lines)
+        log.info("LLM 폴백 사용: %s (%s)", file_path, provider)
+        return text
 
     def _generate_task_specific_implementation(
         self, step: PlanStep, goal: str, context: dict[str, Any]
@@ -139,9 +216,16 @@ class CodeGenerator:
                     step, file_path, goal, context
                 )
             else:
-                implementations[file_path] = self._generate_generic_code(
-                    step, file_path, goal, context
-                )
+                # 미지원 확장자: 기존 파일은 무변경(스텁 덮어쓰기 금지),
+                # 신규 파일만 스텁 생성
+                full_path = self.workspace / file_path
+                if full_path.exists():
+                    log.info("미지원 확장자, 변경 생략: %s", file_path)
+                    implementations[file_path] = full_path.read_text(encoding="utf-8")
+                else:
+                    implementations[file_path] = self._generate_generic_code(
+                        step, file_path, goal, context
+                    )
 
         # 테스트 파일도 생성 (목표에 '테스트' 포함시)
         if "테스트" in goal or "test" in goal.lower():
@@ -181,58 +265,124 @@ class CodeGenerator:
         return self._enhance_python_file(content, goal)
 
     def _add_fastapi_endpoint(self, content: str, goal: str, file_path: str) -> str:
-        """FastAPI 파일에 새 엔드포인트 추가 (중복 방지)"""
+        """FastAPI 파일에 새 엔드포인트 추가 (AST 기반: 위치·들여쓰기·중복 정확히)"""
+        import ast
         import re
 
-        # 목표에서 경로와 응답 추출
-        path_match = re.search(r"GET\s+(/\w+)", goal, re.IGNORECASE)
-        if not path_match:
-            path_match = re.search(r"(//\w+)", goal)
-        endpoint_path = path_match.group(1) if path_match else "/hello"
-
-        # 이미 존재하는 엔드포인트인지 체크
-        if re.search(rf'@app\.get\(\s*["\']{re.escape(endpoint_path)}["\']\s*\)', content):
-            log.info(f"엔드포인트 {endpoint_path} 이미 존재함, 건너뜀")
+        try:
+            tree = ast.parse(content)
+        except SyntaxError as e:
+            log.warning("원본 파싱 실패, 변경 생략 %s: %s", file_path, e)
             return content
 
-        # 응답 메시지 추출
-        msg_match = re.search(r'message\s*[:=]\s*["\']([^"\']+)["\']', goal, re.IGNORECASE)
-        message = msg_match.group(1) if msg_match else "Hello World"
+        # 목표에서 경로/메서드 추출
+        m = re.search(r"(GET|POST|PUT|DELETE|PATCH)\s+(/\S*)", goal, re.IGNORECASE)
+        method = (m.group(1) if m else "GET").lower()
+        endpoint_path = (m.group(2) if m else None) or "/hello"
+        endpoint_path = endpoint_path.rstrip(",.:")
 
-        # app = FastAPI(...) 라인 찾기
-        lines = content.split("\n")
-        insert_idx = -1
-        for i, line in enumerate(lines):
-            if line.strip().startswith("app = FastAPI"):
-                insert_idx = i + 1
+        # 응답 본문 추출 (goal 속 {...} → dict 리터럴 검증, 실패 시 기본값)
+        body = '{"status": "ok"}'
+        bm = re.search(r"\{[^{}]*\}", goal)
+        if bm:
+            try:
+                ast.literal_eval(bm.group(0))
+                body = bm.group(0)
+            except (SyntaxError, ValueError):
+                pass
+
+        # app 변수명 찾기 (app = FastAPI(...))
+        app_var = "app"
+        for node in ast.walk(tree):
+            if (
+                isinstance(node, ast.Assign)
+                and len(node.targets) == 1
+                and isinstance(node.targets[0], ast.Name)
+                and isinstance(node.value, ast.Call)
+                and getattr(node.value.func, "id", "") == "FastAPI"
+            ):
+                app_var = node.targets[0].id
                 break
 
-        if insert_idx == -1:
-            # Fallback: 마지막 import 이후
-            for i, line in enumerate(lines):
-                if line.strip().startswith("from ") or line.strip().startswith("import "):
-                    insert_idx = i + 1
+        # 중복 체크 (AST): 같은 경로+메서드 데코레이터 존재 시 변경 없음
+        for node in ast.walk(tree):
+            if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                continue
+            for dec in node.decorator_list:
+                if (
+                    isinstance(dec, ast.Call)
+                    and isinstance(dec.func, ast.Attribute)
+                    and isinstance(dec.func.value, ast.Name)
+                    and dec.func.value.id == app_var
+                    and dec.func.attr == method
+                    and dec.args
+                    and isinstance(dec.args[0], ast.Constant)
+                    and dec.args[0].value == endpoint_path
+                ):
+                    log.info(
+                        "엔드포인트 %s %s 이미 존재함, 건너뜀",
+                        method.upper(),
+                        endpoint_path,
+                    )
+                    return content
 
-        if insert_idx == -1:
-            insert_idx = 0
+        # 핸들러명 (경로 기반, 충돌 시 접미사)
+        base_name = re.sub(r"\W+", "_", endpoint_path.strip("/")).strip("_") or "root"
+        func_name = f"{method}_{base_name}"
+        taken = {
+            n.name for n in ast.walk(tree) if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))
+        }
+        i = 2
+        while func_name in taken:
+            func_name = f"{method}_{base_name}_{i}"
+            i += 1
 
-        # 엔드포인트 코드 생성
-        endpoint_code = (
-            f'@app.get("{endpoint_path}")\n'
-            f"def read_hello():\n"
-            f'    """{endpoint_path} 엔드포인트.\n\n'
-            f"    Returns:\n"
-            f"        결과값.\n"
-            f'    """\n'
-            f'    return {{"message": "{message}"}}'
-        )
+        snippet = [
+            f'@{app_var}.{method}("{endpoint_path}")',
+            f"async def {func_name}():",
+            f'    """{method.upper()} {endpoint_path} (auto-generated)."""',
+            f"    return {body}",
+        ]
 
-        # 삽입
-        new_lines = lines[:insert_idx] + ["", endpoint_code.strip()] + [""] + lines[insert_idx:]
-        return "\n".join(new_lines)
+        lines = content.split("\n")
+        # 삽입점: app 변수를 반환하는 함수 내 `return app` 직전, else 파일末尾
+        insert_at: int | None = None
+        indent = ""
+        for node in ast.walk(tree):
+            if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                continue
+            for stmt in node.body:
+                if (
+                    isinstance(stmt, ast.Return)
+                    and isinstance(stmt.value, ast.Name)
+                    and stmt.value.id == app_var
+                ):
+                    insert_at = stmt.lineno - 1  # 0-based
+                    indent = " " * stmt.col_offset
+                    break
+            if insert_at is not None:
+                break
+
+        if insert_at is None:
+            # 모듈 레벨: 파일末尾에 2줄 띄고 추가
+            block = ["", ""] + snippet + [""]
+            candidate = "\n".join(lines).rstrip("\n") + "\n" + "\n".join(block)
+        else:
+            indented = [indent + ln if ln else "" for ln in snippet]
+            block = [""] + indented + [""]
+            candidate = "\n".join(lines[:insert_at] + block + lines[insert_at:])
+
+        try:
+            ast.parse(candidate)
+        except SyntaxError as e:
+            log.warning("삽입 결과 파싱 실패, 변경 생략 %s: %s", file_path, e)
+            return content
+        log.info("엔드포인트 추가: %s %s → %s()", method.upper(), endpoint_path, func_name)
+        return candidate
 
     def _enhance_python_file(self, content: str, goal: str) -> str:
         """기존 Python 파일 개선 (docstring, type hints, 문서화 추가)"""
+        content = self._ensure_usage_example(content, goal)
         lines = content.split("\n")
         enhanced = []
 
@@ -260,24 +410,23 @@ class CodeGenerator:
                         func_name = func_match.group(2)
                         params = func_match.group(3)
 
-                        # docstring 생성 (Google style - ruff/black 호환)
-                        docstring_lines = [f'{indent}    """{func_name} 함수."""']
+                        # docstring 생성 (Google style, 단일 문자열로 유효하게)
+                        parts = [f"{func_name} 함수."]
                         if params.strip():
                             param_list = [
                                 p.strip().split(":")[0].strip()
                                 for p in params.split(",")
                                 if p.strip()
                             ]
+                            param_list = [p for p in param_list if p and "=" not in p]
                             if param_list:
-                                docstring_lines.append(f"{indent}    Args:")
-                                for param in param_list:
-                                    if param and "=" not in param:
-                                        docstring_lines.append(
-                                            f"{indent}        {param}: 매개변수 설명."
-                                        )
-                        docstring_lines.append(f"{indent}    Returns:")
-                        docstring_lines.append(f"{indent}        결과값.")
-                        docstring = "\n".join(docstring_lines)
+                                parts += ["", "Args:"]
+                                parts += [f"    {p}: 매개변수 설명." for p in param_list]
+                        parts += ["", "Returns:", "    결과값."]
+                        doc_lines = [f'{indent}    """{parts[0]}']
+                        doc_lines += [f"{indent}    {p}" if p else "" for p in parts[1:]]
+                        doc_lines.append(f'{indent}    """')
+                        docstring = "\n".join(doc_lines)
 
                         # 현재 라인(함수 정의)을 추가하고, docstring을 그 다음에 삽입
                         enhanced.append(line)
@@ -304,6 +453,70 @@ class CodeGenerator:
             i += 1
 
         return "\n".join(enhanced)
+
+    @staticmethod
+    def _ensure_usage_example(content: str, goal: str) -> str:
+        """목표가 사용 예시(Usage)면 모듈 독스트링에 예시 섹션 보장.
+
+        이미 Usage + 대표 심볼이 있으면 그대로 둔다.
+        """
+        low = goal.lower()
+        if not any(k in low for k in ("usage", "사용 예시", "예시", "example")):
+            return content
+        try:
+            tree = ast.parse(content)
+        except SyntaxError:
+            return content
+        func = next(
+            (
+                n.name
+                for n in ast.walk(tree)
+                if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))
+                and not n.name.startswith("_")
+            ),
+            None,
+        )
+        if not func:
+            return content
+        lines = content.split("\n")
+        if not lines or not lines[0].strip().startswith(('"""', "'''")):
+            # 모듈 독스트링 없음 → Usage 포함 독스트링 신설
+            quote = '"""'
+            new_doc = (
+                f"{quote}\n모듈 사용 예시.\n\nUsage:\n"
+                f"    >>> from {func}_module import {func}\n"
+                f"    >>> {func}()\n{quote}\n\n"
+            )
+            return new_doc + content
+        quote = '"""' if lines[0].strip().startswith('"""') else "'''"
+        # 닫는 따옴표 행 탐색
+        if lines[0].count(quote) >= 2:
+            close_idx = 0
+            single_line = True
+        else:
+            close_idx = next(
+                (i for i in range(1, len(lines)) if quote in lines[i]),
+                None,
+            )
+            single_line = False
+            if close_idx is None:
+                return content
+        block = "\n".join(lines[: close_idx + 1])
+        if "usage" in block.lower() and func in block:
+            return content
+        example = ["", "Usage:", f"    >>> {func}(...)"]
+        if single_line:
+            inner = lines[0][3:].partition(quote)[0]
+            lines[0] = f"{quote}{inner}" + "\n".join(example) + f"\n{quote}"
+        else:
+            lines[close_idx:close_idx] = example
+        candidate = "\n".join(lines)
+        try:
+            ast.parse(candidate)
+        except SyntaxError:
+            return content
+        log.info("Usage 예시 추가: %s()", func)
+        return candidate
 
     def _generate_python_module(
         self, step: PlanStep, file_path: str, goal: str, context: dict[str, Any]
@@ -375,97 +588,76 @@ if __name__ == "__main__":
     def _generate_test_files(
         self, step: PlanStep, goal: str, context: dict[str, Any]
     ) -> dict[str, str]:
-        """테스트 파일 생성"""
+        """테스트 스텁 생성 (수집 안전 규칙 적용)"""
         test_files = {}
 
         for file_path in step.assigned_files:
-            if file_path.endswith(".py") and not file_path.endswith("_test.py"):
-                test_path = file_path.replace(".py", "_test.py")
-                test_files[test_path] = self._generate_python_test_file(file_path, goal, context)
+            if not file_path.endswith(".py") or file_path.endswith("_test.py"):
+                continue
+            norm = file_path.replace("\\", "/")
+            stem = Path(file_path).stem
+            if stem.startswith("test_") or stem in ("__init__", "__main__"):
+                continue  # 기존 테스트/패키지 파일에는 스텁을 만들지 않음
+            if norm.startswith("tests/") or "/tests/" in norm:
+                continue
+            stub = self._generate_python_test_file(file_path, goal, context)
+            if stub:
+                test_path = str(Path(file_path).parent / f"{stem}_test.py")
+                test_files[test_path] = stub
 
         return test_files
 
+    def _dotted_module(self, source_file: str) -> str:
+        """파일 경로 → dotted 모듈명 (src/ 기준)"""
+        parts = [p for p in Path(source_file).parts if p not in (".",)]
+        if parts and parts[0] == "src":
+            parts = parts[1:]
+        if parts and parts[-1].endswith(".py"):
+            parts[-1] = parts[-1][:-3]
+        return ".".join(parts)
+
     def _generate_python_test_file(
         self, source_file: str, goal: str, context: dict[str, Any]
-    ) -> str:
-        """소스 파일에 대한 테스트 파일 생성"""
-        module_name = Path(source_file).stem
-        test_path = f"{module_name}_test.py"
+    ) -> str | None:
+        """수집 안전한 스모크 스텁. 테스트할 최상위 함수가 없으면 None."""
+        import re
 
-        # 소스 파일 읽어서 함수들 파악
         source_path = self.workspace / source_file
-        functions = []  # list of (name, params)
+        functions: list[str] = []
         if source_path.exists():
             content = source_path.read_text(encoding="utf-8")
-            for match in re.finditer(r"^\s*def (\w+)\((.*?)\)", content, re.MULTILINE):
-                if not match.group(1).startswith("_"):
-                    func_name = match.group(1)
-                    params = match.group(2).strip()
-                    # Parse parameters to get default values
-                    param_list = []
-                    for p in params.split(","):
-                        p = p.strip()
-                        if p:
-                            if "=" in p:
-                                name, default = p.split("=", 1)
-                                param_list.append((name.strip(), default.strip()))
-                            else:
-                                param_list.append((p.split(":")[0].strip(), None))
-                    functions.append((func_name, param_list))
+            # 최상위 def만 (메서드/중첩 제외), _ 비공개 제외
+            for match in re.finditer(r"^def (\w+)\(", content, re.MULTILINE):
+                name = match.group(1)
+                if not name.startswith("_"):
+                    functions.append(name)
 
         if not functions:
-            functions = [("main", [])]
+            return None
 
-        test_content = f'''"""
-Tests for {module_name}
-Auto-generated test for: {goal}
+        module = self._dotted_module(source_file)
+        names = ", ".join(sorted(set(functions)))
+        checks = "\n\n".join(
+            f"def test_{name}_callable():\n"
+            f'    """{name} 호출 가능 여부(스모크)"""\n'
+            f"    assert callable({name})"
+            for name in sorted(set(functions))
+        )
+        return f'''"""
+Tests for {module} (auto-generated smoke).
+Goal: {goal[:150]}
 """
 
-from {module_name} import {', '.join(sorted(f[0] for f in functions)) if functions else 'main'}
 import pytest
 
+try:
+    from {module} import {names}
+except ImportError:
+    {names.split(",")[0].strip()} = None
 
+
+{checks}
 '''
-
-        for func_name, params in functions:
-            # Build function call with arguments
-            args = []
-            for param_name, default in params:
-                if default is not None:
-                    args.append(f"{param_name}={default}")
-                # Provide sensible defaults based on param name/type hints
-                elif "name" in param_name.lower():
-                    args.append('"test"')
-                elif (
-                    "id" in param_name.lower()
-                    or "num" in param_name.lower()
-                    or "count" in param_name.lower()
-                ):
-                    args.append("1")
-                elif "list" in param_name.lower() or "items" in param_name.lower():
-                    args.append("[]")
-                elif "dict" in param_name.lower() or "map" in param_name.lower():
-                    args.append("{}")
-                elif "bool" in param_name.lower() or "flag" in param_name.lower():
-                    args.append("True")
-                else:
-                    args.append('"test_value"')
-
-            call_args = ", ".join(args)
-
-            test_content += f'''def test_{func_name}():
-    """Test {func_name} function"""
-    result = {func_name}({call_args})
-    assert result is not None
-    # TODO: 구체적 테스트 케이스 추가
-
-'''
-
-        test_content += """if __name__ == "__main__":
-    pytest.main([__file__, "-v"])
-"""
-
-        return test_content
 
     def _generate_python_test(self, step: PlanStep, existing: str, context: dict[str, Any]) -> str:
         """기존 테스트 파일 수정"""

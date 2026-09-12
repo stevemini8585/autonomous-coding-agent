@@ -1,0 +1,71 @@
+{
+ "cases": [
+  {
+   "issue": "issue-3",
+   "goal": "Add GET /ping endpoint to dashboard",
+   "base": "31aff48",
+   "fix": "46e50db",
+   "gold": [
+    "src/autonomous_coding_agent/type_inference.py"
+   ],
+   "planned": [
+    "src/autonomous_coding_agent/dashboard.py",
+    "src/autonomous_coding_agent/templates/dashboard.html",
+    "src/autonomous_coding_agent/type_inference.py"
+   ],
+   "recall": 1.0
+  },
+  {
+   "issue": "issue-5",
+   "goal": "Add edge case unit test for join_types",
+   "base": "861df89",
+   "fix": "31aff48",
+   "gold": [
+    "src/autonomous_coding_agent/quality_gate.py",
+    "src/autonomous_coding_agent/type_inference.py"
+   ],
+   "planned": [
+    "src/autonomous_coding_agent/git/__init__.py",
+    "src/autonomous_coding_agent/quality_gate.py",
+    "src/autonomous_coding_agent/type_inference.py"
+   ],
+   "recall": 1.0
+  },
+  {
+   "issue": "issue-15",
+   "goal": "Rename single letter locals in notify send_telegram",
+   "base": "01cc3b5",
+   "fix": "8dc1a4c",
+   "gold": [
+    "src/autonomous_coding_agent/autopilot.py",
+    "src/autonomous_coding_agent/notify.py"
+   ],
+   "planned": [
+    "src/autonomous_coding_agent/autopilot.py",
+    "src/autonomous_coding_agent/notify.py",
+    "tests/test_autopilot.py"
+   ],
+   "recall": 1.0
+  },
+  {
+   "issue": "issue-17",
+   "goal": "Add retry counter to send_telegram docstring usage",
+   "base": "c44d487",
+   "fix": "ea4857b",
+   "gold": [
+    "src/autonomous_coding_agent/autopilot.py",
+    "src/autonomous_coding_agent/notify.py",
+    "src/autonomous_coding_agent/quality_gate.py"
+   ],
+   "planned": [
+    "src/autonomous_coding_agent/git/__init__.py",
+    "src/autonomous_coding_agent/notify.py",
+    "src/autonomous_coding_agent/quality_gate.py"
+   ],
+   "recall": 0.667
+  }
+ ],
+ "threshold": 0.6,
+ "macro_recall": 0.917,
+ "pass": true
+}

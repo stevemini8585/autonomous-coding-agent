@@ -1,0 +1,54 @@
+name: Semgrep Static Analysis
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    - cron: '0 3 * * 1'  # Weekly on Monday 3 AM UTC
+
+jobs:
+  semgrep:
+    name: Semgrep Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install Semgrep
+        run: |
+          pip install semgrep
+
+      - name: Run Semgrep (Auto Config)
+        run: |
+          semgrep --config=auto --config=p/security-audit --json=semgrep-results.json src/ || true
+
+      - name: Upload Semgrep Results
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep-results.json
+          category: semgrep
+
+      - name: Run Semgrep (Custom Rules)
+        run: |
+          semgrep --config=p/ci --config=p/python --json=semgrep-custom.json src/ || true
+
+      - name: Upload Custom Results
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep-custom.json
+          category: semgrep-custom

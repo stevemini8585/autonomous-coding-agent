@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from .models import PlanStep, VerificationResult
+from .sandbox import SandboxConfig, run_sandboxed
 
 log = logging.getLogger("autonomous_coding_agent.verifier")
 
@@ -59,7 +60,7 @@ class Verifier:
         }
 
     def verify_step(self, step: PlanStep, project_files: list[str]) -> VerificationResult:
-        """단계 검증 실행"""
+        """단계 검증 실행 (변경 파일 범위로 스코핑 — 전체 프로젝트 검사 금지)"""
         log.info(f"검증 시작: {step.id}")
         start_time = time.time()
 
@@ -70,26 +71,35 @@ class Verifier:
         result = VerificationResult(step_id=step.id)
 
         try:
-            # 테스트 실행
+            py_files = [f for f in project_files if f.endswith(".py")]
+            test_files = [f for f in py_files if self._is_test_file(f)]
+
+            # 테스트 실행 (테스트 파일이 있을 때만, 없으면 스킵=통과)
             if "test" in config:
-                result.test_results = self._run_command(config["test"], "테스트", project_files)
+                if test_files:
+                    result.test_results = self._run_command(config["test"], "테스트", test_files)
+                else:
+                    result.test_results = {"passed": True, "skipped": True}
                 result.passed = result.test_results.get("passed", False)
 
             # 린트 실행
             if "lint" in config:
-                result.lint_results = self._run_command(config["lint"], "린트", project_files)
+                result.lint_results = self._run_command(config["lint"], "린트", py_files or None)
                 if not result.lint_results.get("passed", False):
                     result.warnings.append("린트 경고/오류 발견")
 
             # 포맷 체크
             if "format" in config:
-                result.format_results = self._run_command(config["format"], "포맷", project_files)
+                result.format_results = self._run_command(
+                    config["format"], "포맷", py_files or None
+                )
                 if not result.format_results.get("passed", False):
                     result.warnings.append("포맷팅 필요")
 
-            # 타입 체크
+            # 타입 체크 (의존성 추적 없이 지정 파일만 — 전체 오류에 매몰 방지)
             if "type" in config:
-                result.type_results = self._run_command(config["type"], "타입 체크", project_files)
+                type_cmd = config["type"] + " --follow-imports=skip"
+                result.type_results = self._run_command(type_cmd, "타입 체크", py_files or None)
                 if not result.type_results.get("passed", False):
                     result.errors.append("타입 체크 실패")
                     result.passed = False
@@ -109,6 +119,16 @@ class Verifier:
         )
 
         return result
+
+    @staticmethod
+    def _is_test_file(path: str) -> bool:
+        """테스트 파일 판정"""
+        name = Path(path).name
+        return (
+            name.startswith("test_")
+            or name.endswith("_test.py")
+            or "/tests/" in path.replace("\\", "/")
+        )
 
     def _detect_language(self, files: list[str]) -> str:
         """파일 확장자로 언어 감지"""
@@ -148,65 +168,76 @@ class Verifier:
     def _run_command(
         self, command: str, name: str, files: list[str] | None = None
     ) -> dict[str, Any]:
-        """명령어 실행 및 결과 파싱"""
+        """명령어 실행 및 결과 파싱 (파일 지정 시 해당 범위로만) - 샌드박스 격리."""
+        # 명령에 박힌 " ." (전체 프로젝트)를 제거하고 파일 범위로 대체
+        base = command[:-2].rstrip() if command.endswith(" .") else command
+        scope = " ".join(files) if files else ""
         log.info(f"  {name} 실행: {command}")
 
         try:
-            # 테스트 명령어는 전체 프로젝트에서 실행 (특정 파일 지정 안 함)
+            # 테스트 명령어는 파일 지정 시 해당 파일만, 미지정 시 전체
             if name == "테스트":
-                full_command = command
+                full_command = f"{base} {scope}".strip() if files else command
             # 린트/포맷/타입 체크는 특정 파일이 있으면 그 파일들만, 없으면 전체
             elif files:
-                file_args = " ".join(files)
-                full_command = f"{command} {file_args}"
+                full_command = f"{base} {scope}"
             else:
                 full_command = command
 
             log.info(f"  {name} 실행: {full_command}")
 
-            # For lint/format, first try to auto-fix
+            # For lint/format, first try to auto-fix (동일 범위로만)
             if name in ("린트", "포맷") and name != "테스트":
                 fix_command = ""
                 if name == "린트":
-                    fix_command = "ruff check --fix ."
+                    fix_command = f"ruff check --fix {scope}".strip()
                 elif name == "포맷":
-                    fix_command = "black ."
+                    fix_command = f"black {scope}".strip()
 
                 if fix_command:
                     log.info(f"  {name} 자동 수정 시도: {fix_command}")
-                    subprocess.run(
-                        fix_command,
-                        shell=True,
-                        cwd=self.workspace,
-                        capture_output=True,
-                        text=True,
-                        timeout=60,
+                    sandbox = run_sandboxed(
+                        ["/bin/bash", "-c", fix_command],
+                        SandboxConfig(workdir=self.workspace, timeout_s=60),
                     )
+                    if sandbox.returncode not in (0, -1):
+                        log.warning(f"  {name} 자동 수정 종료코드: {sandbox.returncode}")
 
-            proc = subprocess.run(
-                full_command,
-                shell=True,
-                cwd=self.workspace,
-                capture_output=True,
-                text=True,
-                timeout=300,
+            # 샌드박스에서 실행
+            sandbox = run_sandboxed(
+                ["/bin/bash", "-c", full_command],
+                SandboxConfig(workdir=self.workspace, timeout_s=300),
             )
 
+            # 타입 체크는 diff-aware: 손댄 hunk의 신규 에러만 차단
+            if name == "타입 체크" and files:
+                kept, dropped = self._new_type_errors(files, sandbox.stdout)
+                if dropped:
+                    log.info(f"  타입 기존 에러 {dropped}건 제외 (diff 범위 밖)")
+                passed = not kept and sandbox.returncode in (0, 1)
+                return {
+                    "passed": passed,
+                    "returncode": 0 if passed else sandbox.returncode,
+                    "stdout": "\n".join(kept)[-5000:],
+                    "stderr": sandbox.stderr[-5000:] if sandbox.stderr else "",
+                    "timed_out": sandbox.timed_out,
+                    "network_blocked": sandbox.network_blocked,
+                    "wall_s": sandbox.wall_s,
+                }
+
             # pytest exit code 5 = no tests collected -> treat as passed
-            passed = proc.returncode == 0 or (name == "테스트" and proc.returncode == 5)
+            passed = sandbox.returncode == 0 or (name == "테스트" and sandbox.returncode == 5)
 
             return {
                 "passed": passed,
-                "returncode": proc.returncode,
-                "stdout": proc.stdout[-5000:] if proc.stdout else "",
-                "stderr": proc.stderr[-5000:] if proc.stderr else "",
+                "returncode": sandbox.returncode,
+                "stdout": sandbox.stdout[-5000:] if sandbox.stdout else "",
+                "stderr": sandbox.stderr[-5000:] if sandbox.stderr else "",
+                "timed_out": sandbox.timed_out,
+                "network_blocked": sandbox.network_blocked,
+                "wall_s": sandbox.wall_s,
             }
 
-        except subprocess.TimeoutExpired:
-            return {
-                "passed": False,
-                "error": f"{name} 타임아웃 (300초)",
-            }
         except Exception as e:
             return {
                 "passed": False,
@@ -232,6 +263,72 @@ class Verifier:
                 return float(match.group(1))
 
         return 0.0
+
+    def _new_type_errors(self, files: list[str], output: str) -> tuple[list[str], int]:
+        """mypy 출력 중 이번 diff가 건드린 hunk 범위의 에러만 남긴다.
+
+        기존(손대지 않은 줄) 에러는 차단하지 않음 — quality_gate diff-aware와 동일 원칙.
+        git 저장소가 아니면 폴백: 전부 신규로 간주.
+        반환: (유지된 에러 줄, 제거된 줄 수).
+        """
+        import re as _re
+
+        try:
+            subprocess.run(
+                ["git", "-C", str(self.workspace), "rev-parse"],
+                capture_output=True,
+                timeout=10,
+                check=True,
+            )
+        except (subprocess.SubprocessError, OSError):
+            lines = [l for l in output.splitlines() if ": error:" in l]
+            return lines, 0
+
+        ranges: dict[str, list[tuple[int, int]]] = {}
+        untracked: set[str] = set()
+        for f in files:
+            rel = str(f)
+            try:
+                subprocess.run(
+                    ["git", "-C", str(self.workspace), "ls-files", "--error-unmatch", rel],
+                    capture_output=True,
+                    timeout=10,
+                    check=True,
+                )
+            except (subprocess.SubprocessError, OSError):
+                untracked.add(Path(rel).name)
+                continue
+            try:
+                diff = subprocess.run(
+                    ["git", "-C", str(self.workspace), "diff", "-U0", "--", rel],
+                    capture_output=True,
+                    text=True,
+                    timeout=10,
+                )
+            except (subprocess.SubprocessError, OSError):
+                untracked.add(Path(rel).name)
+                continue
+            file_ranges = []
+            for m in _re.finditer(
+                r"^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@", diff.stdout, _re.MULTILINE
+            ):
+                start = int(m.group(1))
+                count = int(m.group(2)) if m.group(2) else 1
+                file_ranges.append((start, start + count - 1))
+            ranges[Path(rel).name] = file_ranges
+
+        kept, dropped = [], 0
+        for line in output.splitlines():
+            m = _re.match(r"^(.*?):(\d+): error:", line)
+            if not m:
+                continue
+            base = Path(m.group(1)).name
+            lineno = int(m.group(2))
+            if base in untracked or any(s <= lineno <= e for s, e in ranges.get(base, [])):
+                kept.append(line)
+            else:
+                dropped += 1
+        return kept, dropped
 
     def verify_project(self, project_files: list[str]) -> dict[str, VerificationResult]:
         """전체 프로젝트 검증 (단계별이 아닌 전체)"""

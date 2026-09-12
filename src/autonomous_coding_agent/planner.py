@@ -190,21 +190,40 @@ class WorkPlanner:
         goal: str,
     ) -> None:
         """탐색 결과 기반으로 단계별 담당 파일 할당"""
-        # 관련 파일 추출 (파일명 + 키워드 매칭)
+        # 관련 파일 추출 (파일명 + 심볼 + 명시 경로 매칭)
         goal_keywords = set(goal.lower().split())
+        goal_lower = goal.lower()
+
+        # 심볼명 → 파일 매핑
+        symbol_files: dict[str, set[str]] = {}
+        for sym in explore_result.symbols:
+            symbol_files.setdefault(sym.name.lower(), set()).add(sym.file_path)
 
         relevant_files = []
         for file_info in explore_result.files:
+            # 0. 목표에 파일 경로가 명시된 경우 최우선
+            if file_info.path.lower() in goal_lower:
+                relevant_files.append((file_info.path, 100))
+                continue
+            # 0b. 파일명만 언급된 경우 차우선
+            if Path(file_info.path).name.lower() in goal_lower:
+                relevant_files.append((file_info.path, 50))
+                continue
             # 1. 파일명/경로에서 키워드 매칭
             file_text = f"{file_info.path} {' '.join(file_info.imports)}".lower()
             score = sum(1 for kw in goal_keywords if kw in file_text)
 
             # 2. 파일명 직접 매칭 (확장자 제거한 이름)
             file_stem = Path(file_info.path).stem.lower()
-            if file_stem in goal.lower():
+            if file_stem in goal_lower:
                 score += 10  # 높은 가중치
 
-            # 3. 일반적인 소스 파일은 기본 점수 부여
+            # 3. 심볼명 매칭 (목표에 언급된 함수/클래스가 정의된 파일)
+            for kw in goal_keywords:
+                if kw in symbol_files and file_info.path in symbol_files[kw]:
+                    score += 8
+
+            # 4. 일반적인 소스 파일은 기본 점수 부여
             if file_info.language in ("python", "javascript", "typescript", "go", "rust"):
                 score += 1
 
@@ -215,11 +234,11 @@ class WorkPlanner:
         relevant_files.sort(key=lambda x: x[1], reverse=True)
         top_files = [f[0] for f in relevant_files[:10]]
 
-        # CODE 단계에 파일 할당
+        # CODE 단계에 파일 할당 (최대 3개 — 과도한 할당은 오생성 유발)
         for step in steps:
             if step.type == StepType.CODE:
                 step.assigned_files = (
-                    top_files[:5] if top_files else [f.path for f in explore_result.files[:5]]
+                    top_files[:3] if top_files else [f.path for f in explore_result.files[:3]]
                 )
 
     def refine_plan(

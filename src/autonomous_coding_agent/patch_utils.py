@@ -4,6 +4,7 @@ Patch 유틸리티 - 향상된 fuzzy matching, 멀티 파일 원자적 적용, �
 
 from __future__ import annotations
 
+import ast
 import difflib
 import logging
 import shutil
@@ -40,11 +41,14 @@ class PatchOperation:
 class PatchManager:
     """향상된 패치 관리자 - 퍼지 매칭, 원자적 멀티파일, 백업/롤백"""
 
-    def __init__(self, workspace: Path):
+    def __init__(self, workspace: Path, max_deletion_ratio: float = 0.4, min_guard_lines: int = 20):
         self.workspace = Path(workspace).resolve()
         self._backup_dir = self.workspace / ".patch_backups"
         self._backup_dir.mkdir(exist_ok=True)
         self._transaction_backups: dict[str, str] = {}
+        # 가드레일: 기존 대비 과도한 삭제/파괴 패치 거부 (Day 5 HTML 참사 방지)
+        self.max_deletion_ratio = max_deletion_ratio
+        self.min_guard_lines = min_guard_lines
 
     @contextmanager
     def transaction(self):
@@ -119,6 +123,29 @@ class PatchManager:
             self._create_backup(file_path)
             return self._apply_single_patch(op)
 
+    def check_guardrails(self, file_path: str, old_content: str, new_content: str) -> str | None:
+        """가드레일 검사. 위반 시 사유 반환, 통과 시 None."""
+        old_lines = old_content.splitlines()
+        if len(old_lines) >= self.min_guard_lines:
+            sm = difflib.SequenceMatcher(a=old_lines, b=new_content.splitlines(), autojunk=False)
+            deleted = sum(
+                i2 - i1
+                for tag, i1, i2, _j1, _j2 in sm.get_opcodes()
+                if tag in ("delete", "replace")
+            )
+            ratio = deleted / len(old_lines)
+            if ratio > self.max_deletion_ratio:
+                return (
+                    f"삭제율 초과: {deleted}/{len(old_lines)}줄 삭제 "
+                    f"({ratio:.0%} > 상한 {self.max_deletion_ratio:.0%})"
+                )
+        if file_path.endswith(".py"):
+            try:
+                ast.parse(new_content)
+            except SyntaxError as e:
+                return f"신택스 오류: {e}"
+        return None
+
     def _apply_single_patch(self, op: PatchOperation) -> PatchResult:
         """단일 패치 적용 (내부)"""
         file_path = op.file_path
@@ -136,6 +163,12 @@ class PatchManager:
                 applied=False,
                 error="이미 최신 상태",
             )
+
+        # 가드레일: 파괴 패치/신택스 오류 거부
+        reason = self.check_guardrails(file_path, existing, new_content)
+        if reason:
+            log.warning("가드레일 거부 %s: %s", file_path, reason)
+            return PatchResult(success=False, file_path=file_path, applied=False, error=reason)
 
         # 1. 파일이 짧으면 전체 교체 (100줄 미만)
         if len(existing.split("\n")) < 100:
@@ -280,13 +313,6 @@ def create_patch(old_content: str, new_content: str, file_path: str) -> str:
         n=3,
     )
     return "".join(diff)
-
-
-def apply_patch(content: str, patch_text: str) -> str:
-    """patch 텍스트를 내용에 적용"""
-    # 간단한 구현: 전체 교체
-    # 실제로는 patch 라이브러리 사용 권장
-    return content  # TODO: 실제 구현
 
 
 def generate_unified_diff(old_file: Path, new_file: Path) -> str:

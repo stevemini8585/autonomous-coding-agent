@@ -76,6 +76,19 @@
                 </div>
             </section>
 
+            <!-- Autopilot Runs -->
+            <section id="autopilot-view" class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-semibold">🤖 Autopilot Runs</h2>
+                    <span id="autopilot-count" class="text-xs text-muted"></span>
+                </div>
+                <div class="bg-card rounded-xl border border-subtle overflow-hidden">
+                    <div id="autopilot-list" class="divide-y divide-subtle">
+                        <p class="px-4 py-6 text-muted text-center text-sm">아직 처리된 이슈가 없습니다</p>
+                    </div>
+                </div>
+            </section>
+
             <!-- Session Detail View (Hidden by default) -->
             <section id="detail-view" class="hidden">
                 <div class="mb-4 flex items-center justify-between">
@@ -226,6 +239,8 @@
                 updateProgressDisplay(msg.data);
             } else if (msg.type === 'session_started') {
                 refreshSessions();
+            } else if (msg.type === 'autopilot_update') {
+                refreshAutopilot();
             }
         }
 
@@ -259,6 +274,51 @@
             } catch (e) {
                 console.error('Failed to fetch sessions:', e);
             }
+        }
+
+        async function refreshAutopilot() {
+            try {
+                const res = await fetch('/api/autopilot');
+                const data = await res.json();
+                renderAutopilot(data.runs || []);
+            } catch (e) {
+                console.error('Failed to fetch autopilot runs:', e);
+            }
+        }
+
+        function stageBadge(stage) {
+            const color = stage === 'merged' ? 'text-success' :
+                          stage === 'failed' ? 'text-error' :
+                          stage === 'skipped' ? 'text-muted' :
+                          stage === 'planned' || stage === 'pr_opened' ? 'text-accent' : 'text-warning';
+            return `<span class="px-2 py-0.5 rounded text-xs font-medium ${color.replace('text-', 'bg-')}/20 ${color}">${escapeHtml(stage)}</span>`;
+        }
+
+        function renderAutopilot(runs) {
+            const list = document.getElementById('autopilot-list');
+            const count = document.getElementById('autopilot-count');
+            const merged = runs.filter(r => r.merged).length;
+            count.textContent = `머지 ${merged} / 전체 ${runs.length}`;
+            if (runs.length === 0) {
+                list.innerHTML = '<p class="px-4 py-6 text-muted text-center text-sm">아직 처리된 이슈가 없습니다</p>';
+                return;
+            }
+            list.innerHTML = '';
+            runs.forEach(run => {
+                const row = document.createElement('div');
+                row.className = 'px-4 py-3 flex items-center justify-between gap-4';
+                const detail = [run.gate_summary, run.review_summary].filter(Boolean).join(' · ');
+                row.innerHTML = `
+                    <div class="flex items-center gap-3 min-w-0">
+                        <span class="font-mono text-accent font-semibold">#${run.issue_number}</span>
+                        ${stageBadge(run.stage)}
+                        ${run.pr_number ? `<a href="${escapeHtml(run.pr_url || '#')}" target="_blank" class="text-xs text-accent hover:underline">PR #${run.pr_number}</a>` : ''}
+                        ${run.merged ? '<span class="text-xs text-success font-medium">✅ merged</span>' : ''}
+                    </div>
+                    <div class="text-xs text-muted truncate text-right" title="${escapeHtml(run.error || detail)}">${escapeHtml(run.error || detail)}</div>
+                `;
+                list.appendChild(row);
+            });
         }
 
         function renderSessions() {
@@ -458,7 +518,9 @@
         // Initialize
         connectWS();
         refreshSessions();
+        refreshAutopilot();
         setInterval(refreshSessions, 10000);
+        setInterval(refreshAutopilot, 10000);
 
         // Auto-scroll toggle
         document.getElementById('auto-scroll').addEventListener('change', (e) => {

@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 
 import uvicorn
-from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, HTTPException, Request, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -64,6 +64,34 @@ class SessionProgress:
         }
 
 
+@dataclass
+class AutopilotRun:
+    """Autopilot 이슈 처리 현황 (이슈별 최신 상태 1건)"""
+
+    issue_number: int
+    stage: str = "fetched"
+    pr_number: int | None = None
+    pr_url: str | None = None
+    merged: bool = False
+    gate_summary: str = ""
+    review_summary: str = ""
+    error: str | None = None
+    updated_at: float = field(default_factory=time.time)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "issue_number": self.issue_number,
+            "stage": self.stage,
+            "pr_number": self.pr_number,
+            "pr_url": self.pr_url,
+            "merged": self.merged,
+            "gate_summary": self.gate_summary,
+            "review_summary": self.review_summary,
+            "error": self.error,
+            "updated_at": self.updated_at,
+        }
+
+
 class ConnectionManager:
     """WebSocket 연결 관리"""
 
@@ -98,7 +126,26 @@ class DashboardServer:
         self.port = port
         self.manager = ConnectionManager()
         self.sessions: dict[str, SessionProgress] = {}
+        self.autopilot_runs: dict[int, AutopilotRun] = {}
         self.app = self._create_app()
+
+    def report_autopilot(self, data: dict[str, Any]) -> AutopilotRun:
+        """Autopilot 이슈 처리 현황 등록/갱신 (동기, 브로드캐스트는 스케줄)"""
+        run = AutopilotRun(
+            issue_number=int(data["issue_number"]),
+            stage=str(data.get("stage", "fetched")),
+            pr_number=data.get("pr_number"),
+            pr_url=data.get("pr_url"),
+            merged=bool(data.get("merged", False)),
+            gate_summary=str(data.get("gate_summary", "")),
+            review_summary=str(data.get("review_summary", "")),
+            error=data.get("error"),
+        )
+        self.autopilot_runs[run.issue_number] = run
+        return run
+
+    async def broadcast_autopilot(self, run: AutopilotRun) -> None:
+        await self.manager.broadcast({"type": "autopilot_update", "run": run.to_dict()})
 
     def _create_app(self) -> FastAPI:
         app = FastAPI(title="Autonomous Coding Agent Dashboard")
@@ -114,7 +161,14 @@ class DashboardServer:
 
         @app.get("/", response_class=HTMLResponse)
         async def index(request: Request):
-            return templates.TemplateResponse("dashboard.html", {"request": request})
+            # Starlette 1.x: TemplateResponse(request, name, context)
+            # 구버전: TemplateResponse(name, context)
+            try:
+                return templates.TemplateResponse(request, "dashboard.html", {"request": request})
+            except TypeError:
+                return templates.TemplateResponse(  # type: ignore[call-arg]
+                    "dashboard.html", {"request": request}  # type: ignore[arg-type]
+                )
 
         @app.get("/api/sessions")
         async def list_sessions():
@@ -247,6 +301,28 @@ class DashboardServer:
                     await websocket.receive_text()
             except WebSocketDisconnect:
                 self.manager.disconnect(websocket)
+
+        @app.get("/api/autopilot")
+        async def list_autopilot():
+            runs = sorted(
+                self.autopilot_runs.values(),
+                key=lambda r: r.updated_at,
+                reverse=True,
+            )
+            return {"runs": [r.to_dict() for r in runs]}
+
+        @app.post("/api/autopilot/report")
+        async def autopilot_report(data: dict):
+            if "issue_number" not in data:
+                raise HTTPException(status_code=400, detail="issue_number required")
+            run = self.report_autopilot(data)
+            await self.broadcast_autopilot(run)
+            return {"status": "reported", "run": run.to_dict()}
+
+        @app.get("/ping")
+        async def get_ping():
+            """GET /ping (auto-generated)."""
+            return {"status": "ok"}
 
         return app
 

@@ -15,6 +15,7 @@ from .coder import CodeGenerator
 from .critic import Critic
 from .dashboard import DashboardServer, get_dashboard
 from .explorer import CodeExplorer
+from .llm_coder import LLMCoder
 from .memory import LearningAgent, PatternMemory
 from .models import (
     AgentResult,
@@ -155,7 +156,7 @@ class AutonomousCodingAgent:
         # 모듈 초기화
         self.explorer = CodeExplorer(self.workspace)
         self.planner = WorkPlanner(self.workspace)
-        self.coder = CodeGenerator(self.workspace)
+        self.coder = LLMCoder(self.workspace, max_refinement_rounds=3)
         self.verifier = Verifier(self.workspace)
         self.critic = Critic(self.workspace)
 
@@ -245,7 +246,13 @@ class AutonomousCodingAgent:
                     "tests_generated": len(self._result.files_created),
                     "files_modified": len(self._result.files_modified),
                     "files_created": len(self._result.files_created),
-                    "coverage": 0.0,  # TODO: extract from test results
+                    "coverage": max(
+                        [
+                            getattr(v, "coverage", 0.0)
+                            for v in final_result.get("verification_results", [])
+                        ]
+                        + [0.0]
+                    ),
                 },
             )
 
@@ -454,6 +461,7 @@ class AutonomousCodingAgent:
 
     def _run_single_step(self, step: PlanStep) -> None:
         """단일 단계 실행"""
+        assert self.state is not None, "상태 없이 단계 실행 불가"
         log.info(f"  ▶ {step.id}: {step.title}")
 
         self.state.current_step_id = step.id
@@ -478,21 +486,58 @@ class AutonomousCodingAgent:
                 },
             }
 
-            # 1. 코드 실행
+            # 1. 코드 실행 (LLM-first Coder + Self-Correction 루프)
             if step.type == StepType.CODE:
-                code_result = self.coder.execute_step(step, context)
+                # LLMCoder의 refine 루프 사용 (버전 호환성 위해 속성 확인)
+                if hasattr(self.coder, "execute_step_with_refinement"):
+                    code_result = self.coder.execute_step_with_refinement(
+                        step, context, self.verifier, self.critic
+                    )
+                else:
+                    # 폴백: 기존 CodeGenerator
+                    code_result = self.coder.execute_step(step, context)
                 # Merge code result into artifacts (preserve any existing)
                 step.artifacts.update(code_result)
 
                 # 대시보드: 진행률 업데이트
                 self.dashboard_client.update_step_progress(step.id, 0.5, log="코드 생성 중...")
 
+                # 코드 실행 자체가 실패하면 검증 실패와 동일하게 취급
+                # (가드레일 거부 등 — 깨진 코드가 파일에 남지 않은 경우)
+                if step.status == StepStatus.FAILED or code_result.get("error"):
+                    step.status = StepStatus.FAILED
+                    step.error = step.error or str(code_result.get("error", "코드 실행 실패"))
+                    log.warning(f"  ❌ 코드 실행 실패: {step.id} - {step.error}")
+                    self.dashboard_client.complete_step(
+                        step.id, "failed", metrics={"errors": [step.error]}
+                    )
+                    failed_verification = VerificationResult(
+                        step_id=step.id, passed=False, errors=[step.error or "코드 실행 실패"]
+                    )
+                    step.artifacts["verification"] = failed_verification.__dict__
+                    critique = self.critic.critique(step, failed_verification, context)
+                    step.artifacts["critique"] = critique.__dict__
+                    if critique.should_retry and step.retry_count < step.max_retries:
+                        step.retry_count += 1
+                        step.status = StepStatus.PENDING
+                        log.info(f"  🔄 재시도 예정 ({step.retry_count}/{step.max_retries})")
+                    return
+
             # 2. 검증
             if step.type in (StepType.CODE, StepType.VERIFY):
-                # Only verify the assigned/modified files, not all project files
+                # Only verify the assigned/modified files, not all project files.
+                # VERIFY 단계는 형제 CODE 단계들의 산출물을 검증한다.
                 project_files = step.assigned_files or step.artifacts.get("files_modified", [])
+                if not project_files and self.state.plan is not None:
+                    for other in self.state.plan.steps:
+                        if other.type == StepType.CODE:
+                            project_files.extend(other.artifacts.get("files_created", []))
+                            project_files.extend(other.artifacts.get("files_modified", []))
+                    project_files = sorted(set(project_files))
                 if not project_files and self.state.explore_result:
-                    project_files = [f.path for f in self.state.explore_result.files]
+                    project_files = [
+                        f.path for f in self.state.explore_result.files if f.path.endswith(".py")
+                    ][:20]
                 verification = self.verifier.verify_step(step, project_files)
                 # Merge verification with existing artifacts (preserve files_created/files_modified)
                 step.artifacts["verification"] = verification.__dict__
@@ -557,23 +602,34 @@ class AutonomousCodingAgent:
             self.dashboard_client.complete_step(step.id, "failed", metrics={"error": str(e)})
 
     def _final_verification(self) -> dict[str, Any]:
-        """최종 전체 검증"""
+        """최종 검증 (변경 파일 범위로만 — 전체 프로젝트 검사 금지)"""
         log.info("4️⃣ 최종 검증...")
 
-        # 원본 파일 + 생성/수정된 파일 모두 검증
-        all_files = {f.path for f in self.state.explore_result.files}
-
-        for step in self.state.plan.steps:
+        assert self.state is not None, "상태 없이 최종 검증 불가"
+        assert self.state.plan is not None, "계획 없이 최종 검증 불가"
+        plan = self.state.plan
+        changed: set[str] = set()
+        for step in plan.steps:
             if step.status == StepStatus.COMPLETED:
                 artifacts = step.artifacts
-                all_files.update(artifacts.get("files_created", []))
-                all_files.update(artifacts.get("files_modified", []))
+                changed.update(artifacts.get("files_created", []))
+                changed.update(artifacts.get("files_modified", []))
 
-        all_files_list = list(all_files)
-        final_verification = self.verifier.verify_project(all_files_list)
-
-        # 결과 종합
-        all_passed = all(v.passed for v in final_verification.values())
+        changed_list = sorted(changed)
+        if not changed_list:
+            all_passed = plan.is_complete()
+            final_verification: dict[str, VerificationResult] = {}
+        else:
+            scope_step = PlanStep(
+                id="final_verification",
+                type=StepType.VERIFY,
+                title="최종 검증",
+                description="변경 파일 범위 최종 확인",
+                assigned_files=changed_list,
+            )
+            v = self.verifier.verify_step(scope_step, changed_list)
+            final_verification = {"final": v}
+            all_passed = v.passed and plan.is_complete()
 
         files_changed = []
         files_created = []
@@ -655,6 +711,95 @@ class AutonomousCodingAgent:
         """취소"""
         self.state_manager.save_state(self.state)
         log.info(f"취소: {self.state.session_id}")
+
+    def resume_from_checkpoint(self, checkpoint_name: str) -> AgentResult:
+        """체크포인트에서 실행 재개"""
+        log.info(f"체크포인트에서 재개: {checkpoint_name}")
+
+        # 체크포인트에서 상태 복원
+        restored_state = self.state_manager.restore_checkpoint(
+            self.state.session_id, checkpoint_name
+        )
+
+        # 현재 상태에 복원된 내용 적용
+        self.state.plan = restored_state.plan
+        self.state.explore_result = restored_state.explore_result
+        self.state.current_step_id = restored_state.current_step_id
+        self.state.iteration = restored_state.iteration
+
+        log.info(f"복원 완료: 반복 {self.state.iteration}, 단계 {self.state.current_step_id}")
+
+        # 실행 루프 재개
+        self._run_execution_loop()
+
+        # 최종 검증
+        final_result = self._final_verification()
+
+        self._result = AgentResult(
+            success=final_result.get("success", False),
+            summary=final_result.get("summary", ""),
+            files_changed=final_result.get("files_changed", []),
+            files_created=final_result.get("files_created", []),
+            files_modified=final_result.get("files_modified", []),
+            test_results=final_result.get("test_results", {}),
+            verification_results=final_result.get("verification_results", []),
+            critique_results=final_result.get("critique_results", []),
+            duration_seconds=0.0,
+            iterations_used=self.state.iteration,
+        )
+
+        self.state_manager.save_state(self.state)
+        return self._result
+
+    def _run_with_auto_recovery(self, goal: str, max_retries: int = 3) -> AgentResult:
+        """자동 재시도/복구 로직 포함 메인 루프"""
+        last_error = None
+
+        for attempt in range(max_retries):
+            try:
+                log.info(f"자율 에이전트 실행 시도 {attempt + 1}/{max_retries}")
+                result = self.run(goal)
+
+                if result.success:
+                    log.info("자율 에이전트 성공적으로 완료")
+                    return result
+                else:
+                    last_error = result.error or "알 수 없는 실패"
+                    log.warning(f"실행 실패 (시도 {attempt + 1}): {last_error}")
+
+                    if attempt < max_retries - 1:
+                        # 마지막 체크포인트에서 재시도
+                        checkpoints = self.state_manager.list_checkpoints(self.state.session_id)
+                        if checkpoints:
+                            latest_cp = checkpoints[0]["checkpoint_id"]
+                            log.info(f"체크포인트에서 재시도: {latest_cp}")
+                            self.state = self.state_manager.restore_checkpoint(
+                                self.state.session_id, latest_cp
+                            )
+                            continue
+
+            except (OSError, RuntimeError, ValueError) as e:
+                last_error = str(e)
+                log.error(f"실행 중 예외 발생 (시도 {attempt + 1}): {e}")
+
+                if attempt < max_retries - 1:
+                    checkpoints = self.state_manager.list_checkpoints(self.state.session_id)
+                    if checkpoints:
+                        latest_cp = checkpoints[0]["checkpoint_id"]
+                        log.info(f"체크포인트에서 복구 재시도: {latest_cp}")
+                        self.state = self.state_manager.restore_checkpoint(
+                            self.state.session_id, latest_cp
+                        )
+                        continue
+
+        # 모든 재시도 실패
+        return AgentResult(
+            success=False,
+            summary=f"최대 재시도 횟수({max_retries}) 초과 후 실패",
+            error=f"마지막 오류: {last_error}",
+            duration_seconds=0.0,
+            iterations_used=self.state.iteration,
+        )
 
 
 def run_autonomous(

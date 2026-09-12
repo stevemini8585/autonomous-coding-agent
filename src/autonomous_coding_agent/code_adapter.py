@@ -293,10 +293,38 @@ class ProjectAnalyzer:
         context.common_imports = list(set(import_patterns))[:20]
 
     def _analyze_js_ts_style(self, context: ProjectContext) -> None:
-        """JS/TS 코드 스타일 분석"""
-        # TODO: 구현
-        context.naming_convention = "camelCase"
-        context.import_style = "esm"
+        """JS/TS 코드 스타일 분석 (ESM vs CJS, 네이밍, TS 여부)."""
+        js_files = list(self.workspace.rglob("*.js"))[:10]
+        ts_files = list(self.workspace.rglob("*.ts"))[:10]
+        naming: dict[str, int] = {"camelCase": 0, "PascalCase": 0, "snake_case": 0}
+        esm = cjs = async_hits = 0
+        for f in js_files + ts_files:
+            try:
+                content = f.read_text(encoding="utf-8", errors="ignore")
+            except OSError:
+                continue
+            esm += len(re.findall(r"^\s*import\s+.+\s+from\s+['\"]", content, re.MULTILINE))
+            esm += len(re.findall(r"^\s*export\s+", content, re.MULTILINE))
+            cjs += len(re.findall(r"require\s*\(", content))
+            cjs += len(re.findall(r"module\.exports", content))
+            if "async " in content or "await " in content:
+                async_hits += 1
+            names = re.findall(r"function\s+(\w+)", content)
+            names += re.findall(r"(?:const|let|var)\s+(\w+)\s*=", content)
+            names += re.findall(r"class\s+(\w+)", content)
+            for n in names:
+                if n.islower() and "_" not in n:
+                    continue  # 신호 없음 (http, x 등)
+                if n[0].isupper():
+                    naming["PascalCase"] += 1
+                elif "_" in n:
+                    naming["snake_case"] += 1
+                else:
+                    naming["camelCase"] += 1
+        context.import_style = "esm" if esm >= cjs else "cjs"
+        context.naming_convention = max(naming, key=naming.get)
+        context.type_hints = len(ts_files) > 0
+        context.async_pattern = async_hits > 0
 
     def _detect_test_framework(self, language: str) -> str | None:
         """테스트 프레임워크 감지"""

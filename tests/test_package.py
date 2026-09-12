@@ -170,3 +170,125 @@ dependencies = ["httpx", "pydantic"]
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
+
+
+class TestReviewerFiles:
+    def test_missing_files_skipped(self, tmp_path):
+        from autonomous_coding_agent.pr_reviewer import PRReviewer
+
+        r = PRReviewer(tmp_path)
+        out = r._run_static_analysis(["ghost.py", "notes.txt"])  # noqa: SLF001
+        assert out == []
+
+
+class TestUsageExample:
+    def test_adds_usage_to_existing_docstring(self):
+        import ast
+
+        from autonomous_coding_agent.coder import CodeGenerator
+
+        src = '"""\nMod.\n"""\n\n\ndef send_telegram(text):\n    """Send."""\n    return True\n'
+        out = CodeGenerator._ensure_usage_example(
+            src, "모듈 독스트링에 사용 예시(Usage) 추가. send_telegram 호출 예시 포함."
+        )
+        ast.parse(out)
+        assert "Usage:" in out
+        assert "send_telegram" in out.split("Usage:")[1]
+
+    def test_noop_without_goal(self):
+        from autonomous_coding_agent.coder import CodeGenerator
+
+        src = '"""\nMod.\n"""\n\n\ndef f():\n    pass\n'
+        assert CodeGenerator._ensure_usage_example(src, "버그 수정") == src
+
+    def test_noop_when_present(self):
+        from autonomous_coding_agent.coder import CodeGenerator
+
+        src = (
+            '"""\nMod.\n\nUsage:\n    >>> send_telegram(...)\n"""\n\n\n'
+            "def send_telegram(x):\n    pass\n"
+        )
+        assert CodeGenerator._ensure_usage_example(src, "사용 예시 추가. send_telegram") == src
+
+
+class TestLLMClient:
+    def test_chat_unreachable(self, monkeypatch):
+        from autonomous_coding_agent import llm_client
+
+        monkeypatch.setattr(llm_client, "OLLAMA_URL", "http://127.0.0.1:1")
+        monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
+        p, t = llm_client.chat("hi")
+        assert (p, t) == ("none", "")
+
+    def test_openrouter_no_key(self):
+        import os
+
+        from autonomous_coding_agent import llm_client
+
+        os.environ.pop("OPENROUTER_API_KEY", None)
+        ok, reason = llm_client.openrouter_chat("hi")
+        assert ok is False
+
+
+class TestLLMFallback:
+    def test_fallback_applies_llm_change(self, tmp_path, monkeypatch):
+        from autonomous_coding_agent.coder import CodeGenerator
+        from autonomous_coding_agent.models import PlanStep, StepType
+
+        (tmp_path / "m.py").write_text(
+            '"""M."""\n\n\ndef calc(a, b):\n    """Add."""\n    return a + b\n'
+        )
+        import autonomous_coding_agent.llm_client as lc
+
+        monkeypatch.setattr(
+            lc,
+            "chat",
+            lambda prompt, system="": (
+                "ollama",
+                '"""M."""\n\n\ndef calc(x, y):\n    return x + y\n',
+            ),
+        )
+        g = CodeGenerator(tmp_path)
+        step = PlanStep(
+            id="s", type=StepType.CODE, title="r", description="d", assigned_files=["m.py"]
+        )
+        out = g.execute_step(step, {"goal": "인자명 변경"})
+        assert out["files_modified"] == ["m.py"]
+        assert "def calc(x, y)" in (tmp_path / "m.py").read_text()
+
+    def test_fallback_skips_bad_syntax(self, tmp_path, monkeypatch):
+        from autonomous_coding_agent.coder import CodeGenerator
+        from autonomous_coding_agent.models import PlanStep, StepType
+
+        (tmp_path / "m.py").write_text("x = 1\n")
+        import autonomous_coding_agent.llm_client as lc
+
+        monkeypatch.setattr(lc, "chat", lambda prompt, system="": ("ollama", "def broken(:\n"))
+        g = CodeGenerator(tmp_path)
+        step = PlanStep(
+            id="s", type=StepType.CODE, title="r", description="d", assigned_files=["m.py"]
+        )
+        out = g.execute_step(step, {"goal": "뭔가 변경"})
+        assert out["files_modified"] == [] and out["files_created"] == []
+
+
+class TestResourceLeakGuard:
+    def test_with_statement_skipped(self):
+        from autonomous_coding_agent.pr_reviewer import PRReviewer
+
+        r = PRReviewer(".")
+        diff = (
+            "diff --git a/x.py b/x.py\n"
+            "@@ -1 +1 @@\n"
+            "+        with urllib.request.urlopen(request, timeout=10) as resp:\n"
+        )
+        comments = r._analyze_file("x.py", diff)  # noqa: SLF001
+        assert [c for c in comments if c.rule_id == "RESOURCE_LEAK"] == []
+
+    def test_bare_open_flagged(self):
+        from autonomous_coding_agent.pr_reviewer import PRReviewer
+
+        r = PRReviewer(".")
+        diff = "diff --git a/x.py b/x.py\n@@ -1 +1 @@\n+f = open(path)\n"
+        comments = r._analyze_file("x.py", diff)  # noqa: SLF001
+        assert any(c.rule_id == "RESOURCE_LEAK" for c in comments)

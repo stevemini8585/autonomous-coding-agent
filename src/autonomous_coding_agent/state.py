@@ -4,8 +4,10 @@
 
 from __future__ import annotations
 
+import fcntl
 import json
 import logging
+import os
 import uuid
 from datetime import datetime
 from pathlib import Path
@@ -23,6 +25,8 @@ class StateManager:
         self.workspace = Path(workspace).resolve()
         self.state_dir = self.workspace / ".autonomous_state"
         self.state_dir.mkdir(parents=True, exist_ok=True)
+        self._lock_file = None
+        self._lock_path = self.state_dir / ".lock"
 
     def save_state(self, state: AgentState) -> None:
         """상태 저장"""
@@ -103,8 +107,26 @@ class StateManager:
             log.error(f"체크포인트 생성 실패: {e}")
             return ""
 
+    def restore_checkpoint(self, session_id: str, checkpoint_name: str) -> AgentState:
+        """체크포인트에서 상태 복원 (새로운 AgentState 반환)"""
+        checkpoint_file = self.state_dir / f"{session_id}_{checkpoint_name}.json"
+
+        if not checkpoint_file.exists():
+            raise FileNotFoundError(f"체크포인트 없음: {checkpoint_name}")
+
+        try:
+            with open(checkpoint_file, encoding="utf-8") as f:
+                data = json.load(f)
+
+            restored = self._deserialize_state(data["state"])
+            log.info(f"체크포인트 복원: {checkpoint_name}")
+            return restored
+        except Exception as e:
+            log.error(f"체크포인트 복원 실패: {e}")
+            raise
+
     def rollback_to_checkpoint(self, state: AgentState, checkpoint_id: str) -> bool:
-        """체크포인트로 롤백"""
+        """체크포인트로 롤백 (기존 상태 객체 수정)"""
         checkpoint_file = self.state_dir / f"{state.session_id}_{checkpoint_id}.json"
 
         if not checkpoint_file.exists():
@@ -145,6 +167,53 @@ class StateManager:
             except Exception:
                 pass
         return sorted(checkpoints, key=lambda x: x.get("created_at", ""), reverse=True)
+
+    def acquire_lock(self, workspace: Path, ttl: int = 3600) -> bool:
+        """워크스페이스 락 획득 (파일 기반)"""
+        lock_path = workspace / ".autonomous_state" / ".lock"
+        lock_path.parent.mkdir(parents=True, exist_ok=True)
+
+        try:
+            # 락 파일을 열고 유지 (with 문 밖에서 관리) - fcntl 락 유지를 위해 파일 핸들 유지 필요
+            self._lock_file = open(lock_path, "w")  # noqa: SIM115
+            fcntl.flock(self._lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+            self._lock_file.write(str(os.getpid()))
+            self._lock_file.flush()
+            log.debug(f"락 획득: {lock_path}")
+            return True
+        except OSError:
+            if self._lock_file:
+                self._lock_file.close()
+            self._lock_file = None
+            log.warning(f"락 획득 실패 (이미 다른 프로세스가 사용 중): {lock_path}")
+            return False
+
+    def release_lock(self) -> bool:
+        """워크스페이스 락 해제"""
+        if self._lock_file:
+            try:
+                fcntl.flock(self._lock_file.fileno(), fcntl.LOCK_UN)
+                self._lock_file.close()
+                self._lock_file = None
+                log.debug("락 해제")
+                return True
+            except Exception as e:
+                log.error(f"락 해제 실패: {e}")
+                return False
+        return True
+
+    def is_locked(self, workspace: Path) -> bool:
+        """워크스페이스가 락되어 있는지 확인"""
+        lock_path = workspace / ".autonomous_state" / ".lock"
+        if not lock_path.exists():
+            return False
+        try:
+            with open(lock_path) as f:
+                fcntl.flock(f.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+                fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+                return False
+        except OSError:
+            return True
 
     def _serialize_state(self, state: AgentState) -> dict[str, Any]:
         """상태 직렬화"""
@@ -253,6 +322,8 @@ class StateManager:
 
     def _deserialize_plan(self, data: dict[str, Any]) -> Plan:
         """계획 역직렬화"""
+        from .models import StepType
+
         plan = Plan(goal=data["goal"])
         plan.created_at = datetime.fromisoformat(data["created_at"])
         plan.updated_at = datetime.fromisoformat(data["updated_at"])
