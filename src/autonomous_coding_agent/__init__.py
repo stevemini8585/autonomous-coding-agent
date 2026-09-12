@@ -174,13 +174,15 @@ from .week3_3 import (
     IssueDecomposer,
     LLMReviewer,
     LLMReviewResult,
-    ReviewComment,
     SubTask,
     TDDCycle,
     TDDResult,
     create_issue_decomposer,
     create_llm_reviewer,
     create_tdd_cycle,
+)
+from .week3_3 import (
+    ReviewComment as LLMReviewComment,
 )
 from .week3_4 import (
     ContextManager,
@@ -312,7 +314,7 @@ __all__ = [
     "create_tdd_cycle",
     "LLMReviewer",
     "LLMReviewResult",
-    "ReviewComment",
+    "LLMReviewComment",
     "create_llm_reviewer",
     "CodebaseIndexer",
     "ContextBuilder",

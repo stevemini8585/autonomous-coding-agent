@@ -108,7 +108,7 @@ class ContextManager:
             layers = list(self._layers.values())
 
         # 우선순위 내림차순 정렬
-        layers.sort(key=lambda L: L.priority, reverse=True)
+        layers.sort(key=lambda layer: layer.priority, reverse=True)
 
         selected = []
         total = 0

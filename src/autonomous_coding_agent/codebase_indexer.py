@@ -8,6 +8,7 @@
 
 from __future__ import annotations
 
+import contextlib
 import hashlib
 import json
 import logging
@@ -268,13 +269,8 @@ class CodebaseIndexer:
             from .explorer import CodeExplorer
 
             explorer = CodeExplorer(self.workspace)
-            # 단일 파일만 탐색
-            old_rglob = Path.rglob
-            try:
-                Path.rglob = lambda self, pat: [fpath] if pat == "*.py" else []
-                explore_result = explorer.explore()
-            finally:
-                Path.rglob = old_rglob
+            # 단일 파일만 탐색 (target_paths 지원으로 몽키패치 불필요)
+            explore_result = explorer.explore([rel])
 
             symbols = explore_result.symbols if explore_result else []
 
@@ -404,19 +400,15 @@ class CodebaseIndexer:
             del self.file_meta[rel]
         # ChromaDB에서 삭제
         if self.use_chroma and self.files_collection:
-            try:
+            with contextlib.suppress(Exception):
                 self.files_collection.delete(ids=[rel])
-            except Exception:
-                pass
         # 심볼도 정리
         to_del = [sid for sid, (fp, _) in self.symbol_meta.items() if fp == rel]
         for sid in to_del:
             del self.symbol_meta[sid]
             if self.use_chroma and self.symbols_collection:
-                try:
+                with contextlib.suppress(Exception):
                     self.symbols_collection.delete(ids=[sid])
-                except Exception:
-                    pass
 
     def search_files(self, query: str, k: int = 10, min_score: float = 0.2) -> list[SearchResult]:
         """목표 쿼리로 관련 파일 검색"""

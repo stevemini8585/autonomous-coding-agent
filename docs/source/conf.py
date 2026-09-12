@@ -1,23 +1,24 @@
 # Configuration file for the Sphinx documentation builder.
 
-import os
 import sys
-sys.path.insert(0, os.path.abspath('../../src'))
+from pathlib import Path
+
+sys.path.insert(0, str(Path("../../src").resolve()))
 
 # -- Project information -----------------------------------------------------
-project = 'Autonomous Coding Agent'
-copyright = '2024, Steve'
-author = 'Steve'
-release = '0.1.0'
+project = "Autonomous Coding Agent"
+copyright = "2024, Steve"
+author = "Steve"
+release = "0.1.0"
 
 # -- General configuration ---------------------------------------------------
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.napoleon',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.todo',
-    'sphinx.ext.coverage',
+    "sphinx.ext.autodoc",
+    "sphinx.ext.napoleon",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.todo",
+    "sphinx.ext.coverage",
 ]
 
 # AutoDoc2 configuration
@@ -48,26 +49,26 @@ napoleon_type_aliases = None
 napoleon_attr_annotations = True
 
 # Templates
-templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+templates_path = ["_templates"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # -- Options for HTML output -------------------------------------------------
-html_theme = 'furo'
-html_static_path = ['_static']
-html_title = f'{project} v{release}'
+html_theme = "furo"
+html_static_path = ["_static"]
+html_title = f"{project} v{release}"
 html_short_title = project
 
 # -- Options for LaTeX output ------------------------------------------------
 latex_elements = {
-    'papersize': 'a4paper',
-    'pointsize': '10pt',
-    'preamble': r'\usepackage{amsmath}',
+    "papersize": "a4paper",
+    "pointsize": "10pt",
+    "preamble": r"\usepackage{amsmath}",
 }
 
 # -- Intersphinx -------------------------------------------------------------
 intersphinx_mapping = {
-    'python': ('https://docs.python.org/3', None),
-    'pydantic': ('https://docs.pydantic.dev/latest/', None),
+    "python": ("https://docs.python.org/3", None),
+    "pydantic": ("https://docs.pydantic.dev/latest/", None),
 }
 
 # -- Todo settings -----------------------------------------------------------
